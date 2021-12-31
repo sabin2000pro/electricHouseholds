@@ -18,18 +18,44 @@ const adminSchema = new mongoose.Schema({
     
     password: {
         type: String,
-        required: [true, 'Please specify password'],
+        required: [true, 'Please specify password']
+    },
 
-        validate: function(value) {
-            return this.password === value;
+    confirmPassword: {
+        type: String,
+        required: [true, 'Please confirm your password'],
+
+        validate: {
+            validator: function(value) { // Validate the confirm password to ensure they are the same
+                 return value === this.password;
+            },
+
+            message: 'Please ensure the passwords are the same'
         }
     },
 
     passwordResetToken: String,
-    passwordResetAt: Date
+    passwordResetExpires: Date, // The date when the password expired
+    passwordChangedTime: Date
 });
 
 // Hash Password before saving to database
+
+adminSchema.pre('save', async function(next) {
+    if(!this.isModified('password')) {
+        return next();
+    }
+
+    // Generate salt
+    this.password = await bcrypt.hash(this.password, 10);
+    this.confirmPassword = undefined; // Not needed
+
+    return next();
+});
+
+adminSchema.methods.compareLoginPasswords = async function(enteredPassword) {
+    return bcrypt.compare(this.password, enteredPassword);
+}
 
 const Admin = mongoose.model('Admin', adminSchema);
 
