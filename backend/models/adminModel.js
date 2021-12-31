@@ -36,12 +36,19 @@ const adminSchema = new mongoose.Schema({
 
     passwordResetToken: String,
     passwordResetExpires: Date, // The date when the password expired
-    passwordChangedTime: Date
+    passwordChangedAt: Date,
+
+    account_active: {
+        type: Boolean,
+        default: true,
+        select: false
+    }
 });
 
 // Hash Password before saving to database
 
 adminSchema.pre('save', async function(next) {
+
     if(!this.isModified('password')) {
         return next();
     }
@@ -53,10 +60,23 @@ adminSchema.pre('save', async function(next) {
     return next();
 });
 
+adminSchema.pre('save', async function(next) {
+    if(!this.isModified('password')) {
+        return next();
+    }
+
+    this.passwordChangedt = Date.now() - 1500;
+    return next();
+})
+
 adminSchema.methods.compareLoginPasswords = async function(enteredPassword) {
     return bcrypt.compare(this.password, enteredPassword);
 }
 
-const Admin = mongoose.model('Admin', adminSchema);
+adminSchema.methods.generateResetPasswordToken = function() {
+    return jwt.sign({id: this._id}, process.env.JWT_SECRET, {expiresIn: process.env.JWT_EXPIRES_IN});
+}
+
+const Admin = mongoose.model('Admin', adminSchema); // Turn the schema into a model
 
 module.exports = Admin; // Export the Admin model
