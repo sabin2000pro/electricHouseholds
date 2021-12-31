@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Modal = (props) => {
+const About = (props) => {
     return (
         <div>
             
@@ -8,4 +8,4 @@ const Modal = (props) => {
     )
 }
 
-export default Modal
+export default About

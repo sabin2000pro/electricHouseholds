@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ContactsList = (props) => {
+const ContactsList = (props) => { // Only accessible on the Admin Dashboard
     return (
         <div>
             
