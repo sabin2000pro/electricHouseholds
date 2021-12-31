@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Button = () => {
+const EditPreference = (props) => {
     return (
         <div>
             
@@ -8,4 +8,4 @@ const Button = () => {
     )
 }
 
-export default Button
+export default EditPreference
