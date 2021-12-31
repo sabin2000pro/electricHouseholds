@@ -9,6 +9,8 @@ const cors = require('cors');
 const app = express();
 const port = process.env.PORT;
 
+// Import the Routes Here
+
 // Middlewares
 app.use(mongoSanitize());
 app.use(xss());
