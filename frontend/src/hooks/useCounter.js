@@ -1,6 +1,6 @@
 import React from 'react'
 
-const RandomAllocation = () => {
+const useCounter = () => {
     return (
         <div>
             
@@ -8,4 +8,4 @@ const RandomAllocation = () => {
     )
 }
 
-export default RandomAllocation
+export default useCounter
