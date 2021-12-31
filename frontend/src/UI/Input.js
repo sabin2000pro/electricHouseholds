@@ -1,9 +1,9 @@
 import React, {Fragment} from 'react'
 
-const Input = (props) => {
+const Input = (props) => { // Input Component
     return (
          <Fragment>
-             <input {...props.type}/>
+             <input onBlur = {props.onBlurHandler} type = {props.type} id = {props.id} value = {props.value} />
          </Fragment>
     )
 }
