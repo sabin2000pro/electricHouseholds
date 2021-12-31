@@ -1,5 +1,4 @@
 const express = require('express');
-const fs = require('fs');
 const dotenv = require('dotenv');
 dotenv.config({path: 'config.env'});
 const mongoSanitize = require('express-mongo-sanitize');
@@ -10,6 +9,7 @@ const cors = require('cors');
 const app = express();
 const port = process.env.PORT;
 
+// Middlewares
 app.use(mongoSanitize());
 app.use(xss());
 app.use(helmet());
@@ -17,7 +17,7 @@ app.use(cors());
 app.use(morgan('dev'));
 app.use(express.json());
 
-const server = app.listen(port, (err) => {
+const server = app.listen(port, (err) => { // Creates a server
     try {
         if(!err) {
             return console.log(`Listening for requests on port ${port}`);
