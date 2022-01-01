@@ -43,11 +43,13 @@ describe("Appliances Test Suite. - CRUD Operations", () => {
     });
 
     test('Fetch All Appliances. Should return a 200 OK Status Code with list of appliances created', async () => {
-
+        const response = await request(server).get('/api/v1/appliances/fetch-appliances');
     });
 
     test('Edit Appliance By ID. Should return a 200 OK status code', async () => {
 
-    })
+    });
+
+
 
 });

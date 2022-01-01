@@ -59,6 +59,7 @@ module.exports.resetAdminPassword = catchAsync(async (request, response, next) =
 })
 
 module.exports.fetchAllAdmins = catchAsync(async (request, response, next) => {
+    
     if(request.method === 'GET') {
         const allAdmins = await Admin.find();
 

@@ -9,7 +9,7 @@ module.exports = {
         filename: 'index_bundle.js'
     },
 
-    module: {
+    module: { // Module Rules for transpiling
         rules: [{test: /\.js$/, exclude: /node_modules/, use: ['babel-loader']}, {test: /.css$/, use: [ 'style-loader', 'css-loader' ]}]
     },
 

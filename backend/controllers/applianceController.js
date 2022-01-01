@@ -13,7 +13,12 @@ module.exports.getAllAppliances = catchAsync(async (request, response, next) => 
 });
 
 module.exports.createAppliance = catchAsync(async (request, response, next) => {
+    const {name, image, description} = request.body;
 
+    const newAppliance = new Appliance({name, image, description});
+    await newAppliance.save();
+
+    return response.status(201).json({newAppliance});
 });
 
 module.exports.getApplianceByID = catchAsync(async (request, response, next) => {
@@ -36,14 +41,16 @@ module.exports.editAppliance = catchAsync(async (request, response, next) => {
 });
 
 module.exports.deleteAppliance = catchAsync(async (request, response, next) => {
-
+    const id = request.params.id;
 });
 
 module.exports.sortAppliances = catchAsync(async (request, response, next) => {
-
+    const queryObject = {...request.query};
+    const sortQuery = request.sort;
 });
 
 module.exports.limitAppliances = catchAsync(async (request, response, next) => {
 
+    const queryObject = {...request.query};
+    const limitQuery = request.limitBy;
 });
-

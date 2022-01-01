@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1641063342634" clover="3.2.0">
-  <project timestamp="1641063342634" name="All files">
-    <metrics statements="115" coveredstatements="97" conditionals="30" coveredconditionals="15" methods="17" coveredmethods="14" elements="162" coveredelements="126" complexity="0" loc="115" ncloc="115" packages="6" files="6" classes="6"/>
+<coverage generated="1641078056578" clover="3.2.0">
+  <project timestamp="1641078056578" name="All files">
+    <metrics statements="115" coveredstatements="99" conditionals="30" coveredconditionals="15" methods="17" coveredmethods="15" elements="162" coveredelements="129" complexity="0" loc="115" ncloc="115" packages="6" files="6" classes="6"/>
     <package name="controllers">
       <metrics statements="39" coveredstatements="31" conditionals="18" coveredconditionals="11" methods="6" coveredmethods="4"/>
       <file name="authController.js" path="/Users/sabin2000/Desktop/eHouseholds/backend/controllers/authController.js">
@@ -39,12 +39,12 @@
         <line num="57" count="1" type="stmt"/>
         <line num="58" count="0" type="stmt"/>
         <line num="61" count="1" type="stmt"/>
-        <line num="62" count="1" type="cond" truecount="1" falsecount="1"/>
-        <line num="63" count="1" type="stmt"/>
-        <line num="65" count="1" type="stmt"/>
-        <line num="70" count="1" type="stmt"/>
+        <line num="63" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="64" count="1" type="stmt"/>
+        <line num="66" count="1" type="stmt"/>
         <line num="71" count="1" type="stmt"/>
-        <line num="73" count="1" type="stmt"/>
+        <line num="72" count="1" type="stmt"/>
+        <line num="74" count="1" type="stmt"/>
       </file>
     </package>
     <package name="database">
@@ -109,9 +109,9 @@
       </file>
     </package>
     <package name="server">
-      <metrics statements="31" coveredstatements="26" conditionals="4" coveredconditionals="1" methods="2" coveredmethods="1"/>
+      <metrics statements="31" coveredstatements="28" conditionals="4" coveredconditionals="1" methods="2" coveredmethods="2"/>
       <file name="server.js" path="/Users/sabin2000/Desktop/eHouseholds/backend/server/server.js">
-        <metrics statements="31" coveredstatements="26" conditionals="4" coveredconditionals="1" methods="2" coveredmethods="1"/>
+        <metrics statements="31" coveredstatements="28" conditionals="4" coveredconditionals="1" methods="2" coveredmethods="2"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -140,8 +140,8 @@
         <line num="41" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="42" count="0" type="stmt"/>
         <line num="49" count="1" type="stmt"/>
-        <line num="50" count="0" type="stmt"/>
-        <line num="52" count="0" type="stmt"/>
+        <line num="50" count="1" type="stmt"/>
+        <line num="52" count="1" type="stmt"/>
         <line num="56" count="1" type="stmt"/>
       </file>
     </package>
