@@ -25,7 +25,7 @@ module.exports.loginAdmin = catchAsync(async (request, response, next) => {
     const {emailAddress, password} = request.body;
 
     if(!emailAddress || !password) {
-        return response.status(400).json({status: 'Fail', message: 'Please provide e-mail and password before logging in'});
+        return response.status(401).json({status: 'Fail', message: 'Please provide e-mail and password before logging in'});
     }
 
     const admin = await Admin.findOne({emailAddress}).select("+password"); // Select an admin by pasword
@@ -65,6 +65,9 @@ module.exports.fetchAllAdmins = catchAsync(async (request, response, next) => {
 
         return response.status(200).json(allAdmins);
     }
+});
+
+module.exports.deleteAdminAccount = catchAsync(async (request, response, next) => {
 
 });
 

@@ -41,13 +41,30 @@ describe('Authentication Test Suite', () => {
             const response = await request(server).post('/api/v1/auth/login-admin').send(body);
             return expect(response.statusCode).toBe(200);
         }
-
-        test('Login Admin - Invalid E-mail Address and Invalid Password', async () => {
-
-        });
-
-        
     });
+
+    test('Login Admin - Invalid E-mail Address and Invalid Password', async () => {
+        const invalidLoginData = [{username: "unknown", password: "unknown"}];
+
+        for(const loginData of invalidLoginData) {
+            const serverResponse = await request(server).post('/api/v1/auth/login-admin').send(loginData);
+            return expect(serverResponse.statusCode).toBe(401)
+        }
+    });
+
+    test('Login Admin - Missing Password', async () => {
+        const missingPassword = [{password: ''}];
+
+        for(const data of missingPassword) {
+            const response = await request(server).post('/api/v1/auth/login-admin').send(data);
+            return expect(response.statusCode).toBe(401);
+        }
+    });
+
+    test('Login Admin - Password match NOT VALID', async () => {
+
+    });
+
 
     // Test Suite 2
 describe("Appliances Test Suite. - CRUD Operations", () => {
