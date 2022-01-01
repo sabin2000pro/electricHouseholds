@@ -18,7 +18,7 @@ module.exports.registerAdmin = catchAsync(async (request, response, next ) => { 
     const newAdmin = new Admin({username, emailAddress, password, confirmPassword});
     await newAdmin.save();
 
-    sendToken(newAdmin, ok, response); // Send the JWT Token
+    sendToken(newAdmin, 201, response); // Send the JWT Token
 
     return next();
 });
@@ -49,9 +49,17 @@ module.exports.resetAdminPassword = catchAsync(async (request, response, next) =
 })
 
 module.exports.fetchAllAdmins = catchAsync(async (request, response, next) => {
+    if(request.method === 'GET') {
+        const allAdmins = await Admin.find();
+
+        return response.status(200).json(allAdmins);
+    }
+    
      return next();
 });
 
 const sendToken = (admin, status, response) => { // Sends back the JWT token
-     
+     const token = admin.generateResetPasswordToken();
+
+     return response.status(status).json(token);
 }

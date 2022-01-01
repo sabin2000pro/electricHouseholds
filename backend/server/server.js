@@ -11,6 +11,7 @@ const port = process.env.PORT;
 const connectDB = require('../database/db');
 
 // Import the Routes Here
+const authRoutes = require('../routes/authRoutes');
 
 // Middlewares
 app.use(mongoSanitize());
@@ -19,8 +20,9 @@ app.use(helmet());
 app.use(cors());
 app.use(morgan('dev'));
 app.use(express.json());
-
 connectDB();
+
+app.use('/api/v1/auth', authRoutes);
 
 const server = app.listen(port, (err) => { // Creates a server
     try {
