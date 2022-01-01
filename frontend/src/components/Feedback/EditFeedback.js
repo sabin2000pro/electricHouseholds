@@ -1,6 +1,6 @@
 import React from 'react'
 
-const EditFeedback = () => {
+const EditFeedback = (props) => {
     return (
         <div>
             
