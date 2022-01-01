@@ -21,7 +21,8 @@ app.use(express.json());
 
 const server = app.listen(port, (err) => { // Creates a server
     try {
-        if(!err) {
+
+        if(!err) { // If no error occurred
             return console.log(`Listening for requests on port ${port}`);
         }
 
@@ -30,7 +31,7 @@ const server = app.listen(port, (err) => { // Creates a server
         }
     } 
     
-    catch(err) {
+    catch(err) { // Catch error if arises
 
         if(err) {
             return console.error(err);
@@ -39,4 +40,4 @@ const server = app.listen(port, (err) => { // Creates a server
 });
 
 
-module.exports = server;
+module.exports = server; // Export server as a module to be reused

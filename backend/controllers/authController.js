@@ -8,19 +8,20 @@ const forbidden = 403;
 const notFound = 404;
 const serverError = 500;
 
-module.exports.registerAdmin = catchAsync(async (request, response, next ) => {
+
+module.exports.registerAdmin = catchAsync(async (request, response, next ) => { // Exported Register Admin Middleware Function
  const {username, emailAddress, password, confirmPassword} = request.body;
 
- if(!username || !emailAddress || !password || !confirmPassword) {
-    return response.status(badRequest).json({status: 'Fail', message: 'Please check your entries'})
- }
+    if(!username || !emailAddress || !password || !confirmPassword) {
+        return response.status(badRequest).json({status: 'Fail', message: 'Please check your entries'})
+    }
 
- const newAdmin = new Admin({username, emailAddress, password, confirmPassword});
- await newAdmin.save();
+    const newAdmin = new Admin({username, emailAddress, password, confirmPassword});
+    await newAdmin.save();
 
- 
+    sendToken(newAdmin, ok, response); // Send the JWT Token
 
- return next();
+    return next();
 });
 
 module.exports.loginAdmin = catchAsync(async (request, response, next) => {
@@ -30,12 +31,18 @@ module.exports.loginAdmin = catchAsync(async (request, response, next) => {
 
     }
 
+    const admin = await Admin.findOne({emailAddress}).select("+password"); // Select an admin by pasword
+
+    if(!admin) {
+        
+    }
+
     return next();
 });
 
 module.exports.forgotPassword = catchAsync(async (request, response, next) => {
     const {emailAddress} = request.body;
-    return next();
+     return next();
 });
 
 module.exports.resetAdminPassword = catchAsync(async (request, response, next) => {
@@ -43,7 +50,7 @@ module.exports.resetAdminPassword = catchAsync(async (request, response, next) =
 })
 
 module.exports.fetchAllAdmins = catchAsync(async (request, response, next) => {
-    return next();
+     return next();
 });
 
 const sendToken = (admin, status, response) => { // Sends back the JWT token
