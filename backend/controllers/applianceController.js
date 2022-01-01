@@ -24,7 +24,7 @@ module.exports.createAppliance = catchAsync(async (request, response, next) => {
 module.exports.getApplianceByID = catchAsync(async (request, response, next) => {
     const id = request.params.id;
 
-    if(!id) {
+    if(!id) { // If no ID present
 
     }
 
@@ -43,6 +43,10 @@ module.exports.editAppliance = catchAsync(async (request, response, next) => {
 module.exports.deleteAppliance = catchAsync(async (request, response, next) => {
     const id = request.params.id;
 });
+
+module.exports.deleteAppliances = catchAsync(async (request, response, next) => {
+    
+})
 
 module.exports.sortAppliances = catchAsync(async (request, response, next) => {
     const queryObject = {...request.query};

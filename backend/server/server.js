@@ -12,6 +12,7 @@ const connectDB = require('../database/db');
 
 // Import the Routes Here
 const authRoutes = require('../routes/authRoutes');
+const applianceRoutes = require('../routes/applianceRoutes');
 
 // Middlewares
 app.use(mongoSanitize());

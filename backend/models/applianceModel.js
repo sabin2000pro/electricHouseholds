@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const applianceSchema = new mongoose.Schema({
+const applianceSchema = new mongoose.Schema({ // Appliance Schema
     name: {
         type: String,
         required: [true, 'You must specify the appliace name you want to create']
