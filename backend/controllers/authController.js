@@ -19,7 +19,6 @@ module.exports.registerAdmin = catchAsync(async (request, response, next ) => { 
     await newAdmin.save();
 
     sendToken(newAdmin, 201, response); // Send the JWT Token
-
 });
 
 module.exports.loginAdmin = catchAsync(async (request, response, next) => {
