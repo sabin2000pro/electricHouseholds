@@ -8,6 +8,7 @@ const xss = require('xss-clean');
 const cors = require('cors');
 const app = express();
 const port = process.env.PORT;
+const connectDB = require('../database/db');
 
 // Import the Routes Here
 
@@ -18,6 +19,8 @@ app.use(helmet());
 app.use(cors());
 app.use(morgan('dev'));
 app.use(express.json());
+
+connectDB();
 
 const server = app.listen(port, (err) => { // Creates a server
     try {

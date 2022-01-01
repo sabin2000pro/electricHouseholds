@@ -5,6 +5,7 @@ const connectDB = async () => { // Method to connect to the MongoDB database
     try {
         return await mongoose.connect(DB_CONN_URL).then(conn => {
             if(conn.connection) {
+
                 return console.log(`Connected to DB success`);
             }
 
@@ -22,4 +23,4 @@ const connectDB = async () => { // Method to connect to the MongoDB database
     }
 }
 
-module.exports = connectDB;
+module.exports = connectDB; // Export the Connect to Database module
