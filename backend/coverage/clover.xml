@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1641080478861" clover="3.2.0">
-  <project timestamp="1641080478861" name="All files">
-    <metrics statements="164" coveredstatements="137" conditionals="34" coveredconditionals="15" methods="25" coveredmethods="16" elements="223" coveredelements="168" complexity="0" loc="164" ncloc="164" packages="6" files="9" classes="9"/>
+<coverage generated="1641080732502" clover="3.2.0">
+  <project timestamp="1641080732503" name="All files">
+    <metrics statements="164" coveredstatements="138" conditionals="34" coveredconditionals="16" methods="25" coveredmethods="16" elements="223" coveredelements="170" complexity="0" loc="164" ncloc="164" packages="6" files="9" classes="9"/>
     <package name="controllers">
-      <metrics statements="70" coveredstatements="53" conditionals="22" coveredconditionals="11" methods="14" coveredmethods="6"/>
+      <metrics statements="70" coveredstatements="54" conditionals="22" coveredconditionals="12" methods="14" coveredmethods="6"/>
       <file name="applianceController.js" path="/Users/sabin2000/Desktop/eHouseholds/backend/controllers/applianceController.js">
         <metrics statements="31" coveredstatements="22" conditionals="4" coveredconditionals="0" methods="8" coveredmethods="2"/>
         <line num="1" count="1" type="stmt"/>
@@ -39,7 +39,7 @@
         <line num="59" count="0" type="stmt"/>
       </file>
       <file name="authController.js" path="/Users/sabin2000/Desktop/eHouseholds/backend/controllers/authController.js">
-        <metrics statements="39" coveredstatements="31" conditionals="18" coveredconditionals="11" methods="6" coveredmethods="4"/>
+        <metrics statements="39" coveredstatements="32" conditionals="18" coveredconditionals="12" methods="6" coveredmethods="4"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -50,9 +50,9 @@
         <line num="8" count="1" type="stmt"/>
         <line num="9" count="1" type="stmt"/>
         <line num="11" count="1" type="stmt"/>
-        <line num="12" count="1" type="stmt"/>
-        <line num="14" count="1" type="cond" truecount="5" falsecount="1"/>
-        <line num="15" count="0" type="stmt"/>
+        <line num="12" count="2" type="stmt"/>
+        <line num="14" count="2" type="cond" truecount="6" falsecount="0"/>
+        <line num="15" count="1" type="stmt"/>
         <line num="18" count="1" type="stmt"/>
         <line num="19" count="1" type="stmt"/>
         <line num="21" count="0" type="stmt"/>

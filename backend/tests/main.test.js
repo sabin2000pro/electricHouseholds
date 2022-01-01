@@ -19,6 +19,16 @@ describe('Authentication Test Suite', () => {
         }
     });
 
+    // Test Case 2 - Admin Register Invalid Data
+    test('Register Admin with Invalid Data. Should respond with 400 Bad Request', async () => {
+        const invalidBodyData = [{username: "0", emailAddress: "122239jdf", password: '1'}];
+
+        for(const bodyData of invalidBodyData) {
+            const response = await request(server).post('/api/v1/auth/register-admin').send(bodyData);
+            return expect(response.statusCode).toBe(400);
+        }
+    })
+
     test('Fetch All Admins. Should respond with a 200 OK status code', async () => {
         const theResponse = await request(server).get('/api/v1/auth/fetch-admins').send();
         return expect(theResponse.statusCode).toBe(200);
@@ -31,6 +41,12 @@ describe('Authentication Test Suite', () => {
             const response = await request(server).post('/api/v1/auth/login-admin').send(body);
             return expect(response.statusCode).toBe(200);
         }
+
+        test('Login Admin - Invalid E-mail Address and Invalid Password', async () => {
+
+        });
+
+        
     });
 
     // Test Suite 2
@@ -80,10 +96,7 @@ describe("Appliances Test Suite. - CRUD Operations", () => {
         test('Fetch All User Preferences', async () => {
 
         });
-
-        
     })
-
 });
 
 });
