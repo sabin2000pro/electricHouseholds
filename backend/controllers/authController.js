@@ -8,7 +8,6 @@ const forbidden = 403;
 const notFound = 404;
 const serverError = 500;
 
-
 module.exports.registerAdmin = catchAsync(async (request, response, next ) => { // Exported Register Admin Middleware Function
  const {username, emailAddress, password, confirmPassword} = request.body;
 
@@ -34,7 +33,7 @@ module.exports.loginAdmin = catchAsync(async (request, response, next) => {
     const admin = await Admin.findOne({emailAddress}).select("+password"); // Select an admin by pasword
 
     if(!admin) {
-        
+
     }
 
     return next();
