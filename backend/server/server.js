@@ -24,6 +24,7 @@ app.use(express.json());
 connectDB();
 
 app.use('/api/v1/auth', authRoutes);
+app.use('/api/v1/appliances/', applianceRoutes);
 
 const server = app.listen(port, (err) => { // Creates a server
     try {

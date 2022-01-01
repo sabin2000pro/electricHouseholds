@@ -11,7 +11,7 @@ describe('Authentication Test Suite', () => {
 
     // Test Case 1
     test('Register Admin on /post route. Should respond with a 201 status code', async () => {
-        const data = [{username: 'testadmin', emailAddress: 'testadmioijiojoin200@gmail.com', password: 'test123455', confirmPassword: 'test123455'}];
+        const data = [{username: 'newadmin123', emailAddress: 'newadmin123@gmail.com', password: 'newadmin123', confirmPassword: 'newadmin123'}];
 
         for(const body of data) {
             const response = await request(server).post('/api/v1/auth/register-admin').send(body);
@@ -32,24 +32,58 @@ describe('Authentication Test Suite', () => {
             return expect(response.statusCode).toBe(200);
         }
     });
-});
 
-// Test Suite 2
+    // Test Suite 2
 describe("Appliances Test Suite. - CRUD Operations", () => {
 
     // Test Case 1
     test("Create Appliance. Should return a 201 Created Status Code", async () => {
+        const applianceBodyData = [{"name": "Test Appliance", "image": "tesurl", "description": "A test appliance"}];
 
+        for(const data of applianceBodyData) {
+            const response = await request(server).post('/api/v1/appliances/create-appliance').send(data);
+            return expect(response.statusCode).toBe(201);
+        }
     });
 
     test('Fetch All Appliances. Should return a 200 OK Status Code with list of appliances created', async () => {
         const response = await request(server).get('/api/v1/appliances/fetch-appliances');
+        return expect(response.statusCode).toBe(200);
     });
 
     test('Edit Appliance By ID. Should return a 200 OK status code', async () => {
 
     });
 
+    test('Delete All Appliances. Should return a 204 NO CONTENT status code', async () => {
 
+    });
+
+    test('Delete Appliance by Single ID. Should return a 201 CREATED Status Code', async () => {
+
+    })
+
+    test('Sort all appliances in ascending order. Should return with a 200 OK Status code', async () => {
+
+    })
+
+    describe('User Preferences Testing Suite.', () => {
+
+
+        // Test Case 1 for User Preferences - POST Request
+    
+        test('Create a User Timeslot Preference', async () => {
+    
+        })
+    
+        // Test Case 2 - GET Request
+        test('Fetch All User Preferences', async () => {
+
+        });
+
+        
+    })
+
+});
 
 });
