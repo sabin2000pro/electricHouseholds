@@ -27,20 +27,28 @@ module.exports.loginAdmin = catchAsync(async (request, response, next) => {
     const {emailAddress, password} = request.body;
 
     if(!emailAddress || !password) {
-
+        return response.status(400).json({status: 'Fail', message: 'Please provide e-mail and password before logging in'});
     }
 
     const admin = await Admin.findOne({emailAddress}).select("+password"); // Select an admin by pasword
 
     if(!admin) {
-
+        return response.status(404).json({status: 'Failed reading admin', message: 'Could not find that admin'});
     }
+
+    // Compare passwords before logging in
+    const passwordsMatch = await admin.compareLoginPasswords(password);
 
     return next();
 });
 
 module.exports.forgotPassword = catchAsync(async (request, response, next) => {
     const {emailAddress} = request.body;
+
+    if(!emailAddress) {
+
+    }
+
      return next();
 });
 
@@ -54,7 +62,7 @@ module.exports.fetchAllAdmins = catchAsync(async (request, response, next) => {
 
         return response.status(200).json(allAdmins);
     }
-    
+
      return next();
 });
 

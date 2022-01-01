@@ -18,6 +18,10 @@ describe('Authentication Test Suite', () => {
         }
     });
 
+    test('Fetch All Admins. Should respond with a 200 OK status code', async () => {
+        const theResponse = await request(server).get('/api/v1/auth/fetch-admins').send();
+        return expect(theResponse.statusCode).toBe(200);
+    })
   
 
 })
