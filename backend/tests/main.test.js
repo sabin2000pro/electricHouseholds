@@ -9,6 +9,7 @@ beforeAll(async() => { // Test DB connection before the tests
 
 describe('Authentication Test Suite', () => {
 
+    // Test Case 1
     test('Register Admin on /post route. Should respond with a 201 status code', async () => {
         const data = [{username: 'testadmin', emailAddress: 'testadmioijiojoin200@gmail.com', password: 'test123455', confirmPassword: 'test123455'}];
 
@@ -30,8 +31,16 @@ describe('Authentication Test Suite', () => {
             const response = await request(server).post('/api/v1/auth/login-admin').send(body);
             return expect(response.statusCode).toBe(200);
         }
+    });
+});
 
-    })
-  
+describe("Appliances Test Suite. - CRUD Operations", () => {
 
-})
+    // Test Case 1
+    test("Create Appliance. Should return a 201 Created Status Code", async () => {
+
+    });
+
+    
+
+});
