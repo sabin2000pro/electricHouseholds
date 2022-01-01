@@ -62,8 +62,14 @@ describe('Authentication Test Suite', () => {
     });
 
     test('Login Admin - Password match NOT VALID', async () => {
+        const loginData = [{emailAddress: "sabinadmin@gmail.com", password: "testpassword"}];
 
+        for(const invalidData of loginData) {
+            const response = await request(server).post('/api/v1/auth/login-admin').send(invalidData);
+            return expect(response.statusCode).toBe(401);
+        }
     });
+
 
 
     // Test Suite 2
