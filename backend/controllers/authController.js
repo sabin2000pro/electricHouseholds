@@ -11,19 +11,30 @@ const serverError = 500;
 module.exports.registerAdmin = catchAsync(async (request, response, next ) => {
  const {username, emailAddress, password, confirmPassword} = request.body;
 
- if(!validateEntries(username, emailAddress, password, confirmPassword)) {
-    return response.status()
+ if(!username || !emailAddress || !password || !confirmPassword) {
+    return response.status(badRequest).json({status: 'Fail', message: 'Please check your entries'})
  }
+
+ const newAdmin = new Admin({username, emailAddress, password, confirmPassword});
+ await newAdmin.save();
+
+ 
 
  return next();
 });
 
 module.exports.loginAdmin = catchAsync(async (request, response, next) => {
+    const {emailAddress, password} = request.body;
+
+    if(!emailAddress || !password) {
+
+    }
+
     return next();
 });
 
 module.exports.forgotPassword = catchAsync(async (request, response, next) => {
-
+    const {emailAddress} = request.body;
     return next();
 });
 
@@ -34,3 +45,7 @@ module.exports.resetAdminPassword = catchAsync(async (request, response, next) =
 module.exports.fetchAllAdmins = catchAsync(async (request, response, next) => {
     return next();
 });
+
+const sendToken = (admin, status, response) => { // Sends back the JWT token
+     
+}

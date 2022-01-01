@@ -23,7 +23,7 @@ const adminSchema = new mongoose.Schema({
 
     confirmPassword: {
         type: String,
-        required: [true, 'Please confirm your password'],
+        required: [false, 'Please confirm your password'],
 
         validate: {
             validator: function(value) { // Validate the confirm password to ensure they are the same
