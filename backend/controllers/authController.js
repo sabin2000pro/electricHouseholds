@@ -20,7 +20,6 @@ module.exports.registerAdmin = catchAsync(async (request, response, next ) => { 
 
     sendToken(newAdmin, 201, response); // Send the JWT Token
 
-    return next();
 });
 
 module.exports.loginAdmin = catchAsync(async (request, response, next) => {
@@ -39,7 +38,12 @@ module.exports.loginAdmin = catchAsync(async (request, response, next) => {
     // Compare passwords before logging in
     const passwordsMatch = await admin.compareLoginPasswords(password);
 
-    return next();
+    if(!passwordsMatch) {
+        return response.status(401).json({status: 'Failed reading admin', message: 'PAsswords do not match!'});
+    }
+
+    sendToken(admin, 200, response);
+
 });
 
 module.exports.forgotPassword = catchAsync(async (request, response, next) => {
@@ -49,7 +53,6 @@ module.exports.forgotPassword = catchAsync(async (request, response, next) => {
 
     }
 
-     return next();
 });
 
 module.exports.resetAdminPassword = catchAsync(async (request, response, next) => {
@@ -63,7 +66,6 @@ module.exports.fetchAllAdmins = catchAsync(async (request, response, next) => {
         return response.status(200).json(allAdmins);
     }
 
-     return next();
 });
 
 const sendToken = (admin, status, response) => { // Sends back the JWT token

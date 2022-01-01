@@ -49,8 +49,8 @@ const adminSchema = new mongoose.Schema({
 
 adminSchema.pre('save', async function(next) {
 
-    if(!this.isModified('password')) {
-        return next();
+    if(!this.isModified('password')) { // If password is not already modified
+        return next(); // Call next middleware
     }
 
     // Generate salt
@@ -70,7 +70,7 @@ adminSchema.pre('save', async function(next) {
 })
 
 adminSchema.methods.compareLoginPasswords = async function(enteredPassword) {
-    return bcrypt.compare(this.password, enteredPassword);
+    return await bcrypt.compare(enteredPassword, this.password);
 }
 
 adminSchema.methods.generateResetPasswordToken = function() {
