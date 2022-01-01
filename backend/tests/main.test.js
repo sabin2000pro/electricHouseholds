@@ -34,6 +34,7 @@ describe('Authentication Test Suite', () => {
     });
 });
 
+// Test Suite 2
 describe("Appliances Test Suite. - CRUD Operations", () => {
 
     // Test Case 1
@@ -41,6 +42,8 @@ describe("Appliances Test Suite. - CRUD Operations", () => {
 
     });
 
-    
+    test('Fetch All Appliances. Should return a 200 OK Status Code with list of appliances created', async () => {
+
+    })
 
 });
