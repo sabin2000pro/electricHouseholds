@@ -46,6 +46,8 @@ describe("Appliances Test Suite. - CRUD Operations", () => {
 
     });
 
-    test('Edit Appliance By ID. Should return a 200 OK status code')
+    test('Edit Appliance By ID. Should return a 200 OK status code', async () => {
+
+    })
 
 });
