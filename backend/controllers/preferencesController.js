@@ -19,19 +19,31 @@ module.exports.createPreference = catchAsync(async (request, response, next) => 
 });
 
 module.exports.getPreferenceByID = catchAsync(async (request, response, next) => {
+    const id = request.params.id;
 
+    if(!id) {
+
+    }
 });
 
 module.exports.fetchAllPreferences = catchAsync(async (request, response, next) => {
+    if(request.method === 'GET') {
+
+    }
+
 
 });
 
 module.exports.editPreference = catchAsync(async (request, response, next) => {
+    const id = request.params.id;
 
+    if(!id) {
+        
+    }
 });
 
 module.exports.deletePreference = catchAsync(async (request, response, next) => {
-
+    const id = request.params.id;
 });
 
 module.exports.sortPreferences = catchAsync(async (request, response, next) => {
