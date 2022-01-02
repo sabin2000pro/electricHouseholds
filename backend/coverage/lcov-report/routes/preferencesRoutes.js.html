@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for routes/authRoutes.js</title>
+    <title>Code coverage report for routes/preferencesRoutes.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../prettify.css" />
     <link rel="stylesheet" href="../base.css" />
@@ -19,13 +19,13 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../index.html">All files</a> / <a href="index.html">routes</a> authRoutes.js</h1>
+        <h1><a href="../index.html">All files</a> / <a href="index.html">routes</a> preferencesRoutes.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>9/9</span>
+                <span class='fraction'>7/7</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>9/9</span>
+                <span class='fraction'>7/7</span>
             </div>
         
             
@@ -71,29 +71,23 @@
 <a name='L6'></a><a href='#L6'>6</a>
 <a name='L7'></a><a href='#L7'>7</a>
 <a name='L8'></a><a href='#L8'>8</a>
-<a name='L9'></a><a href='#L9'>9</a>
-<a name='L10'></a><a href='#L10'>10</a>
-<a name='L11'></a><a href='#L11'>11</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L9'></a><a href='#L9'>9</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">const express = require('express');
-const authRouter = express.Router();
-const authController = require('../controllers/authController');
+const preferenceRouter = express.Router();
+const preferenceController = require('../controllers/preferencesController');
 &nbsp;
-authRouter.route('/register-admin').post(authController.registerAdmin);
-authRouter.route('/login-admin').post(authController.loginAdmin);
-authRouter.route('/forgot-password').post(authController.forgotPassword);
-authRouter.route('/reset-password').put(authController.resetAdminPassword);
-authRouter.route('/fetch-admins').get(authController.fetchAllAdmins);
+preferenceRouter.route('/create-preference').post(preferenceController.createPreference);
+preferenceRouter.route('/fetch-preferences').get(preferenceController.fetchAllPreferences);
+preferenceRouter.route('/fetch-preferences/:id').get(preferenceController.getPreferenceByID);
 &nbsp;
-module.exports = authRouter; // Export router to be used in the server</pre></td></tr></table></pre>
+module.exports = preferenceRouter;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->

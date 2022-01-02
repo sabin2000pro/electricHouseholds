@@ -108,7 +108,6 @@ describe("Appliances Test Suite. - CRUD Operations", () => {
 
     describe('User Preferences Testing Suite.', () => {
 
-
         // Test Case 1 for User Preferences - POST Request
     
         test('Create a User Timeslot Preference', async () => {
@@ -118,16 +117,21 @@ describe("Appliances Test Suite. - CRUD Operations", () => {
                 const response = await request(server).post('/api/v1/preferences/create-preference').send(data);
                 return expect(response.statusCode).toBe(201);
             }
-
         });
+
+        test('Create User Timeslot with Missing Data', async () => {
+
+        })
     
         // Test Case 2 - GET Request
         test('Fetch All User Preferences', async () => {
-
+            const response = await request(server).get('/api/v1/preferences/fetch-preferences');
+            return expect(response.statusCode).toBe(200);
         });
 
         test("Delete all user preferences", async () => {
-
+            const response = await request(server).delete('/api/v1/preferences/delete-preferences');
+            return expect(response.statusCode).toBe(204);
         });
 
 

@@ -15,8 +15,10 @@ module.exports.createPreference = catchAsync(async (request, response, next) => 
     }
 
     if(request.method === 'POST') {
-        const allPreferences = await Preference.find();
-        return response.status(ok).json({allPreferences});
+        const newPreference = new Preference({username, earlyMorningslot, lateMorningslot, afternoonSlot, eveningSlot});
+        await newPreference.save();
+        
+        return response.status(ok).json({newPreference});
     }
 
 });

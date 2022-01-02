@@ -13,6 +13,8 @@ const connectDB = require('../database/db');
 // Import the Routes Here
 const authRoutes = require('../routes/authRoutes');
 const applianceRoutes = require('../routes/applianceRoutes');
+const preferenceRoutes = require('../routes/preferencesRoutes');
+const timeslotRoutes = require('../routes/timeslotsRoutes');
 
 // Middlewares
 app.use(mongoSanitize());
@@ -25,6 +27,8 @@ connectDB();
 
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/appliances/', applianceRoutes);
+app.use('/api/v1/preferences', preferenceRoutes);
+app.use('/api/v1/timeslots', timeslotRoutes);
 
 const server = app.listen(port, (err) => { // Creates a server
     try {
