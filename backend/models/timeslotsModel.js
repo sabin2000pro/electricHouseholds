@@ -1,7 +1,15 @@
 const mongoose = require('mongoose');
 
 const timeslotSchema = new mongoose.Schema({
-    timeslots: [String] // The timeslots is an array of strings containing the timeslots
+    earlyMorningSlots: [{
+        type: String
+    }],
+
+    lateMorningSlots: [{type: String}],
+    afternoonSlots: [{type: String}],
+    eveningSlots: [{type: String}],
+
+    otherHouseholdsRandom: [{type: String}]
 })
 
 const Timeslots = mongoose.model('Timeslots', timeslotSchema);
