@@ -19,7 +19,7 @@ module.exports.getAllBids = catchAsync(async (request, response, next) => {
 
 module.exports.createBid = catchAsync(async (request, response, next) => {
    
-        const {username, bid, virtualCredits} = request.body;
+    const {username, bid, virtualCredits} = request.body;
 
        if(!username || !bid) {
            return response.status(notFound).json({status: 'Fail', message: 'Invalid Bid Entries'});

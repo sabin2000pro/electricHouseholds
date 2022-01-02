@@ -91,11 +91,12 @@ describe("Appliances Test Suite. - CRUD Operations", () => {
     });
 
     test('Edit Appliance By ID. Should return a 200 OK status code', async () => {
-
+        const editBodyData = [{}]
     });
 
     test('Delete All Appliances. Should return a 204 NO CONTENT status code', async () => {
-
+        const response = await request(server).delete('/api/v1/appliances/delete-appliances');
+        return expect(response.statusCode).toBe(204);
     });
 
     test('Delete Appliance by Single ID. Should return a 201 CREATED Status Code', async () => {

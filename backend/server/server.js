@@ -26,7 +26,7 @@ app.use(express.json());
 connectDB();
 
 app.use('/api/v1/auth', authRoutes);
-app.use('/api/v1/appliances/', applianceRoutes);
+app.use('/api/v1/appliances', applianceRoutes);
 app.use('/api/v1/preferences', preferenceRoutes);
 app.use('/api/v1/timeslots', timeslotRoutes);
 

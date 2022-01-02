@@ -46,6 +46,7 @@ module.exports.deleteAppliance = catchAsync(async (request, response, next) => {
 
 module.exports.deleteAppliances = catchAsync(async (request, response, next) => {
     await Appliance.deleteMany();
+    return response.status(204).json("Appliances deleted");
 })
 
 module.exports.sortAppliances = catchAsync(async (request, response, next) => {
@@ -60,6 +61,8 @@ module.exports.sortAppliances = catchAsync(async (request, response, next) => {
         const sortBy = request.query.sort.split(',').join('');
         query = query.sort(sortBy);
     }
+
+    
 });
 
 module.exports.limitAppliances = catchAsync(async (request, response, next) => {

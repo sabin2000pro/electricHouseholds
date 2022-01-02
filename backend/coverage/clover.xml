@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1641159396778" clover="3.2.0">
-  <project timestamp="1641159396778" name="All files">
-    <metrics statements="266" coveredstatements="200" conditionals="67" coveredconditionals="26" methods="36" coveredmethods="19" elements="369" coveredelements="245" complexity="0" loc="266" ncloc="266" packages="6" files="15" classes="15"/>
+<coverage generated="1641159540485" clover="3.2.0">
+  <project timestamp="1641159540485" name="All files">
+    <metrics statements="267" coveredstatements="202" conditionals="67" coveredconditionals="26" methods="36" coveredmethods="20" elements="370" coveredelements="248" complexity="0" loc="267" ncloc="267" packages="6" files="15" classes="15"/>
     <package name="controllers">
-      <metrics statements="147" coveredstatements="89" conditionals="55" coveredconditionals="22" methods="25" coveredmethods="8"/>
+      <metrics statements="148" coveredstatements="91" conditionals="55" coveredconditionals="22" methods="25" coveredmethods="9"/>
       <file name="applianceController.js" path="/Users/sabin2000/Desktop/eHouseholds/backend/controllers/applianceController.js">
-        <metrics statements="40" coveredstatements="22" conditionals="10" coveredconditionals="0" methods="8" coveredmethods="2"/>
+        <metrics statements="41" coveredstatements="24" conditionals="10" coveredconditionals="0" methods="8" coveredmethods="3"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -31,21 +31,22 @@
         <line num="43" count="1" type="stmt"/>
         <line num="44" count="0" type="stmt"/>
         <line num="47" count="1" type="stmt"/>
-        <line num="48" count="0" type="stmt"/>
-        <line num="51" count="1" type="stmt"/>
-        <line num="52" count="0" type="stmt"/>
+        <line num="48" count="1" type="stmt"/>
+        <line num="49" count="1" type="stmt"/>
+        <line num="52" count="1" type="stmt"/>
         <line num="53" count="0" type="stmt"/>
-        <line num="56" count="0" type="stmt"/>
+        <line num="54" count="0" type="stmt"/>
         <line num="57" count="0" type="stmt"/>
-        <line num="59" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="60" count="0" type="stmt"/>
+        <line num="58" count="0" type="stmt"/>
+        <line num="60" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="61" count="0" type="stmt"/>
-        <line num="65" count="1" type="stmt"/>
-        <line num="66" count="0" type="stmt"/>
-        <line num="67" count="0" type="stmt"/>
-        <line num="68" count="0" type="stmt"/>
-        <line num="70" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="71" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="62" count="0" type="stmt"/>
+        <line num="68" count="1" type="stmt"/>
+        <line num="69" count="0" type="stmt"/>
+        <line num="70" count="0" type="stmt"/>
+        <line num="71" count="0" type="stmt"/>
+        <line num="73" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="74" count="0" type="cond" truecount="0" falsecount="2"/>
       </file>
       <file name="authController.js" path="/Users/sabin2000/Desktop/eHouseholds/backend/controllers/authController.js">
         <metrics statements="43" coveredstatements="36" conditionals="18" coveredconditionals="14" methods="8" coveredmethods="4"/>
