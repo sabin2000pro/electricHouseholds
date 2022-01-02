@@ -8,7 +8,6 @@ const timeslotSchema = new mongoose.Schema({
     lateMorningSlots: [{type: String}],
     afternoonSlots: [{type: String}],
     eveningSlots: [{type: String}],
-
     otherHouseholdsRandom: [{type: String}]
 })
 

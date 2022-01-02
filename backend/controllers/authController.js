@@ -52,13 +52,13 @@ module.exports.forgotPassword = catchAsync(async (request, response, next) => {
 
     }
 
-    // Construct e-mail URL
     const URL = ``;
 
 });
 
 module.exports.resetAdminPassword = catchAsync(async (request, response, next) => {
     const resetToken = request.params.resetToken;
+    
     return next();
 })
 
