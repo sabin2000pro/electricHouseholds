@@ -33,8 +33,10 @@ module.exports.getPreferenceByID = catchAsync(async (request, response, next) =>
 });
 
 module.exports.fetchAllPreferences = catchAsync(async (request, response, next) => {
-    if(request.method === 'GET') {
 
+    if(request.method === 'GET') {
+        const allPreferences = await Preference.find();
+        return response.status(200).json({allPreferences});
     }
 
 
@@ -43,12 +45,15 @@ module.exports.fetchAllPreferences = catchAsync(async (request, response, next) 
 module.exports.editPreference = catchAsync(async (request, response, next) => {
     const id = request.params.id;
 
-
     if(!id) {
 
     }
 
     if(request.method == 'PUT') {
+        const updatedPreference = await Preference.findByIdAndUpdate(id, request.body);
+        await updatedPreference.save();
+
+        return response.status(200).json({updatedPreference});
 
     }
 });
