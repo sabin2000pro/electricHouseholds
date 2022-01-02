@@ -8,4 +8,3 @@ module.exports.createTimeslot = catchAsync(async(request, response, next) => {
 
    return response.status(201).json({timeslots});
 });
-

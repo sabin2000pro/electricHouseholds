@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1641146363438" clover="3.2.0">
-  <project timestamp="1641146363438" name="All files">
-    <metrics statements="242" coveredstatements="186" conditionals="63" coveredconditionals="26" methods="33" coveredmethods="19" elements="338" coveredelements="231" complexity="0" loc="242" ncloc="242" packages="6" files="13" classes="13"/>
+<coverage generated="1641146410182" clover="3.2.0">
+  <project timestamp="1641146410182" name="All files">
+    <metrics statements="254" coveredstatements="194" conditionals="63" coveredconditionals="26" methods="34" coveredmethods="19" elements="351" coveredelements="239" complexity="0" loc="254" ncloc="254" packages="6" files="15" classes="15"/>
     <package name="controllers">
-      <metrics statements="129" coveredstatements="81" conditionals="51" coveredconditionals="22" methods="22" coveredmethods="8"/>
+      <metrics statements="136" coveredstatements="84" conditionals="51" coveredconditionals="22" methods="23" coveredmethods="8"/>
       <file name="applianceController.js" path="/Users/sabin2000/Desktop/eHouseholds/backend/controllers/applianceController.js">
         <metrics statements="40" coveredstatements="22" conditionals="10" coveredconditionals="0" methods="8" coveredmethods="2"/>
         <line num="1" count="1" type="stmt"/>
@@ -142,6 +142,16 @@
         <line num="85" count="0" type="stmt"/>
         <line num="88" count="0" type="stmt"/>
       </file>
+      <file name="timeslotsController.js" path="/Users/sabin2000/Desktop/eHouseholds/backend/controllers/timeslotsController.js">
+        <metrics statements="7" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+      </file>
     </package>
     <package name="database">
       <metrics statements="11" coveredstatements="8" conditionals="4" coveredconditionals="1" methods="2" coveredmethods="2"/>
@@ -161,7 +171,7 @@
       </file>
     </package>
     <package name="models">
-      <metrics statements="31" coveredstatements="29" conditionals="4" coveredconditionals="2" methods="5" coveredmethods="5"/>
+      <metrics statements="35" coveredstatements="33" conditionals="4" coveredconditionals="2" methods="5" coveredmethods="5"/>
       <file name="adminModel.js" path="/Users/sabin2000/Desktop/eHouseholds/backend/models/adminModel.js">
         <metrics statements="23" coveredstatements="21" conditionals="4" coveredconditionals="2" methods="5" coveredmethods="5"/>
         <line num="1" count="1" type="stmt"/>
@@ -202,9 +212,16 @@
         <line num="33" count="1" type="stmt"/>
         <line num="34" count="1" type="stmt"/>
       </file>
+      <file name="timeslotsModel.js" path="/Users/sabin2000/Desktop/eHouseholds/backend/models/timeslotsModel.js">
+        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
+      </file>
     </package>
     <package name="routes">
-      <metrics statements="32" coveredstatements="32" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <metrics statements="33" coveredstatements="33" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="applianceRoutes.js" path="/Users/sabin2000/Desktop/eHouseholds/backend/routes/applianceRoutes.js">
         <metrics statements="12" coveredstatements="12" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
@@ -243,11 +260,12 @@
         <line num="9" count="1" type="stmt"/>
       </file>
       <file name="timeslotsRoutes.js" path="/Users/sabin2000/Desktop/eHouseholds/backend/routes/timeslotsRoutes.js">
-        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
-        <line num="4" count="1" type="stmt"/>
-        <line num="6" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
       </file>
     </package>
     <package name="server">
@@ -297,7 +315,7 @@
       <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
       <file name="catchAsync.js" path="/Users/sabin2000/Desktop/eHouseholds/backend/utils/catchAsync.js">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
-        <line num="1" count="21" type="stmt"/>
+        <line num="1" count="22" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
       </file>
     </package>
