@@ -14,16 +14,22 @@ module.exports.createPreference = catchAsync(async (request, response, next) => 
         return response.status(badRequest).json({status: "Fail", message: "Please check your entries again"});
     }
 
-    const allPreferences = await Preference.find();
-    return response.status(ok).json({allPreferences});
+    if(request.method === 'POST') {
+        const allPreferences = await Preference.find();
+        return response.status(ok).json({allPreferences});
+    }
+
 });
 
 module.exports.getPreferenceByID = catchAsync(async (request, response, next) => {
     const id = request.params.id;
 
     if(!id) {
-
+        return response.status(404).json({status: "Fail", message: "Preference with that ID not found"});
     }
+
+    const preference = await Preference.findById(id);
+    return response.status(ok).json({preference});
 });
 
 module.exports.fetchAllPreferences = catchAsync(async (request, response, next) => {
@@ -37,13 +43,25 @@ module.exports.fetchAllPreferences = catchAsync(async (request, response, next) 
 module.exports.editPreference = catchAsync(async (request, response, next) => {
     const id = request.params.id;
 
+    if(request.method == 'PUT') {
+
+    }
+
     if(!id) {
-        
+
     }
 });
 
 module.exports.deletePreference = catchAsync(async (request, response, next) => {
     const id = request.params.id;
+
+    if(request.method === 'DELETE') {
+
+    }
+
+    if(!id) {
+
+    }
 });
 
 module.exports.sortPreferences = catchAsync(async (request, response, next) => {
