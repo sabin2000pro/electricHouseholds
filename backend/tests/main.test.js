@@ -112,13 +112,25 @@ describe("Appliances Test Suite. - CRUD Operations", () => {
         // Test Case 1 for User Preferences - POST Request
     
         test('Create a User Timeslot Preference', async () => {
-    
-        })
+            const preferenceBody = [{username: "sabin2000", earlyMorningslot: "07:00-08:00", lateMorningslot: "10:00-11:00", afternoonSlot: "13:00-14:00", eveningSlot: "19:00-20:00"}];
+
+            for(const data of preferenceBody) {
+                const response = await request(server).post('/api/v1/preferences/create-preference').send(data);
+                return expect(response.statusCode).toBe(201);
+            }
+
+        });
     
         // Test Case 2 - GET Request
         test('Fetch All User Preferences', async () => {
 
         });
+
+        test("Delete all user preferences", async () => {
+
+        });
+
+
     })
 });
 

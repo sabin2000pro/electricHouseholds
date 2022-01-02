@@ -45,16 +45,28 @@ module.exports.deleteAppliance = catchAsync(async (request, response, next) => {
 });
 
 module.exports.deleteAppliances = catchAsync(async (request, response, next) => {
-    
+    await Appliance.deleteMany();
 })
 
 module.exports.sortAppliances = catchAsync(async (request, response, next) => {
     const queryObject = {...request.query};
-    const sortQuery = request.sort;
+    const sortQuery = request.query.sort; // Extract the sort query
+
+    // Convert the object into JSON
+    let queryString = JSON.stringify(queryObject);
+    let query = await Appliance.find(JSON.parse(queryString));
+
+    if(sortQuery) {
+        const sortBy = request.query.sort.split(',').join('');
+        query = query.sort(sortBy);
+    }
 });
 
 module.exports.limitAppliances = catchAsync(async (request, response, next) => {
-
     const queryObject = {...request.query};
-    const limitQuery = request.limitBy;
+    const limitQuery = request.query.fields;
+    const fieldsToExclude = ['limit', 'fields'];
+
+    const thePage = request.query.page * 1 || 1;
+    const limitBy = request.query.limit * 1 || 100;
 });

@@ -18,14 +18,14 @@ module.exports.registerAdmin = catchAsync(async (request, response, next ) => { 
     const newAdmin = new Admin({username, emailAddress, password, confirmPassword});
     await newAdmin.save();
 
-    sendToken(newAdmin, 201, response); // Send the JWT Token
+    sendToken(newAdmin, created, response); // Send the JWT Token
 });
 
 module.exports.loginAdmin = catchAsync(async (request, response, next) => {
     const {emailAddress, password} = request.body;
 
     if(!emailAddress || !password) {
-        return response.status(401).json({status: 'Fail', message: 'Please provide e-mail and password before logging in'});
+        return response.status(unauthorized).json({status: 'Fail', message: 'Please provide e-mail and password before logging in'});
     }
 
     const admin = await Admin.findOne({emailAddress}).select("+password"); // Select an admin by pasword
@@ -38,10 +38,10 @@ module.exports.loginAdmin = catchAsync(async (request, response, next) => {
     const passwordsMatch = await admin.compareLoginPasswords(password);
 
     if(!passwordsMatch) {
-        return response.status(401).json({status: 'Failed reading admin', message: 'PAsswords do not match!'});
+        return response.status(unauthorized).json({status: 'Failed reading admin', message: 'PAsswords do not match!'});
     }
 
-    sendToken(admin, 200, response);
+    sendToken(admin, ok, response);
 
 });
 
@@ -52,9 +52,13 @@ module.exports.forgotPassword = catchAsync(async (request, response, next) => {
 
     }
 
+    // Construct e-mail URL
+    const URL = ``;
+
 });
 
 module.exports.resetAdminPassword = catchAsync(async (request, response, next) => {
+    const resetToken = request.params.resetToken;
     return next();
 })
 
@@ -63,7 +67,7 @@ module.exports.fetchAllAdmins = catchAsync(async (request, response, next) => {
     if(request.method === 'GET') {
         const allAdmins = await Admin.find();
 
-        return response.status(200).json(allAdmins);
+        return response.status(ok).json(allAdmins);
     }
 });
 

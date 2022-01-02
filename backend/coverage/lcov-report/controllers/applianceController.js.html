@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">70.96% </span>
+                <span class="strong">55% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>22/31</span>
+                <span class='fraction'>22/40</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/4</span>
+                <span class='fraction'>0/10</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">70.96% </span>
+                <span class="strong">55% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>22/31</span>
+                <span class='fraction'>22/40</span>
             </div>
         
             
@@ -123,7 +123,19 @@
 <a name='L58'></a><a href='#L58'>58</a>
 <a name='L59'></a><a href='#L59'>59</a>
 <a name='L60'></a><a href='#L60'>60</a>
-<a name='L61'></a><a href='#L61'>61</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a>
+<a name='L66'></a><a href='#L66'>66</a>
+<a name='L67'></a><a href='#L67'>67</a>
+<a name='L68'></a><a href='#L68'>68</a>
+<a name='L69'></a><a href='#L69'>69</a>
+<a name='L70'></a><a href='#L70'>70</a>
+<a name='L71'></a><a href='#L71'>71</a>
+<a name='L72'></a><a href='#L72'>72</a>
+<a name='L73'></a><a href='#L73'>73</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -170,7 +182,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -178,7 +190,19 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -230,18 +254,30 @@ module.exports.deleteAppliance = catchAsync(<span class="fstat-no" title="functi
 });
 &nbsp;
 module.exports.deleteAppliances = catchAsync(<span class="fstat-no" title="function not covered" >as</span>ync (request, response, next) =&gt; {
-    
+<span class="cstat-no" title="statement not covered" >    await Appliance.deleteMany();</span>
 })
 &nbsp;
 module.exports.sortAppliances = catchAsync(<span class="fstat-no" title="function not covered" >as</span>ync (request, response, next) =&gt; {
     const queryObject = <span class="cstat-no" title="statement not covered" >{...request.query};</span>
-    const sortQuery = <span class="cstat-no" title="statement not covered" >request.sort;</span>
+    const sortQuery = <span class="cstat-no" title="statement not covered" >request.query.sort;</span> // Extract the sort query
+&nbsp;
+    // Convert the object into JSON
+    let queryString = <span class="cstat-no" title="statement not covered" >JSON.stringify(queryObject);</span>
+    let query = <span class="cstat-no" title="statement not covered" >await Appliance.find(JSON.parse(queryString));</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if(sortQuery) {</span>
+        const sortBy = <span class="cstat-no" title="statement not covered" >request.query.sort.split(',').join('');</span>
+<span class="cstat-no" title="statement not covered" >        query = query.sort(sortBy);</span>
+    }
 });
 &nbsp;
 module.exports.limitAppliances = catchAsync(<span class="fstat-no" title="function not covered" >as</span>ync (request, response, next) =&gt; {
-&nbsp;
     const queryObject = <span class="cstat-no" title="statement not covered" >{...request.query};</span>
-    const limitQuery = <span class="cstat-no" title="statement not covered" >request.limitBy;</span>
+    const limitQuery = <span class="cstat-no" title="statement not covered" >request.query.fields;</span>
+    const fieldsToExclude = <span class="cstat-no" title="statement not covered" >['limit', 'fields'];</span>
+&nbsp;
+    const thePage = <span class="cstat-no" title="statement not covered" >request.query.page * 1 || 1;</span>
+    const limitBy = <span class="cstat-no" title="statement not covered" >request.query.limit * 1 || 100;</span>
 });
 &nbsp;</pre></td></tr></table></pre>
 
@@ -250,7 +286,7 @@ module.exports.limitAppliances = catchAsync(<span class="fstat-no" title="functi
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Sat Jan 01 2022 23:57:43 GMT+0000 (Greenwich Mean Time)
+                at Sun Jan 02 2022 11:58:50 GMT+0000 (Greenwich Mean Time)
             </div>
         <script src="../prettify.js"></script>
         <script>
