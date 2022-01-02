@@ -43,11 +43,12 @@ module.exports.fetchAllPreferences = catchAsync(async (request, response, next) 
 module.exports.editPreference = catchAsync(async (request, response, next) => {
     const id = request.params.id;
 
-    if(request.method == 'PUT') {
+
+    if(!id) {
 
     }
 
-    if(!id) {
+    if(request.method == 'PUT') {
 
     }
 });
@@ -55,13 +56,14 @@ module.exports.editPreference = catchAsync(async (request, response, next) => {
 module.exports.deletePreference = catchAsync(async (request, response, next) => {
     const id = request.params.id;
 
+    if(!id) {
+
+    }
+
     if(request.method === 'DELETE') {
 
     }
 
-    if(!id) {
-
-    }
 });
 
 module.exports.sortPreferences = catchAsync(async (request, response, next) => {
