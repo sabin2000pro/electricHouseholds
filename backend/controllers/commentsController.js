@@ -20,6 +20,7 @@ module.exports.viewAllComments = catchAsync(async (request, repsonse, next) => {
     if(request.method === 'GET') {
         const allComments = await Comment.find();
     }
+    
 });
 
 module.exports.viewComment = catchAsync(async (request, response, next) => {
