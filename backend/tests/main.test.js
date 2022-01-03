@@ -70,6 +70,51 @@ describe('Authentication Test Suite', () => {
         }
     });
 
+    test('Forgot Password - E-mail Address Valid', async () => {
+        const emailBodyData = [{emailAddress: "sabinlungu292@gmail.com"}];
+
+        for (const data of emailBodyData) {
+            const response = await request(server).post('/api/v1/auth/forgot-password').send(data);
+            return expect(response.statusCode).toBe(200);
+        }
+    })
+
+    test('Forgot Password - E-mail Address Invalid', async () => {
+        const emailBodyData = [{emailAddress: "sabinlungu29ijoij2@gmail.com"}];
+
+        for (const data of emailBodyData) {
+            const response = await request(server).post('/api/v1/auth/forgot-password').send(data);
+            return expect(response.statusCode).toBe(404);
+        }
+    });
+
+    test('Forgot Password - E-mail Address Missing', async () => {
+        const emailBodyData = [{emailAddress: ""}];
+
+        for (const data of emailBodyData) {
+            const response = await request(server).post('/api/v1/auth/forgot-password').send(data);
+            return expect(response.statusCode).toBe(404);
+        }
+    });
+
+    test('Forgot Password - E-mail Address missing @ Symbol', async () => {
+        const emailBodyData = [{emailAddress: "sabinlungu292.com"}];
+
+        for (const data of emailBodyData) {
+            const response = await request(server).post('/api/v1/auth/forgot-password').send(data);
+            return expect(response.statusCode).toBe(404);
+        }
+    });
+
+    test('Reset Password - Invalid User', async () => {
+        const passBody = [{password: "123mini123"}];
+
+        for(const data of passBody) {
+            const response = await request(server).post('/api/v1/auth/reset-password/6d41d832459b50e39d273a8df4761e236fb341ad').send(data);
+            return expect(response.statusCode).toBe(404);
+        }
+    })
+
 
 
     // Test Suite 2

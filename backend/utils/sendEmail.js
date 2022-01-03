@@ -23,8 +23,6 @@ const sendEmail = (options) => { // Function to send e-mail
 
    return transporter.sendMail(mailOptions, function(err, info) { // Send the e-mail
       
-        
-     
     })
 };
 

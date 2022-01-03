@@ -1,5 +1,7 @@
 const Admin = require('../models/adminModel');
 const catchAsync = require('../utils/catchAsync');
+const sendEmail = require('../utils/sendEmail');
+const crypto = require('crypto');
 const ok = 200;
 const created = 201;
 const badRequest = 400;
@@ -49,22 +51,44 @@ module.exports.forgotPassword = catchAsync(async (request, response, next) => {
     const {emailAddress} = request.body;
     const admin = await Admin.findOne({emailAddress});
 
-    if(!emailAddress) {
-
+    if(!admin) {
+        return response.status(404).json({status: "Fail", message: "No admin found with that e-mail address"});
     }
 
+    const resetToken = admin.getResetPasswordToken(); // Get the password reset token
     const resetPasswordURL = `http://localhost:5370/${resetToken}`;
-    
+    await admin.save();
+
     const resetMessage = `<h1> You have requested a new password reset</h1>
             <p> Please go to this link to reset your password </p>
-            <a href = ${resetURL} clicktracking = off>${resetURL}</a>`
+            <a href = ${resetPasswordURL} clicktracking = off>${resetPasswordURL}</a>`
+
+    
+    // Send e-mail
+    await sendEmail({to: admin.emailAddress, subject: 'Password Reset Request', text: resetMessage});
+    return response.status(ok).json({success: true, data: "E-mail sent"});
 
 });
 
 module.exports.resetAdminPassword = catchAsync(async (request, response, next) => {
-    const resetToken = request.params.resetToken;
+    const resetToken = request.params.resetToken; // Extract the reset token
+    const password = request.body.password; // Get the new password from the body
+    
+    const passwordResetToken = crypto.createHash("sha256").update(resetToken).digest('hex'); // Create reset password token
 
-    return next();
+    const admin = await Admin.findOne({passwordResetToken, passwordResetExpires: {$gt: Date.now()}});
+
+        if(!admin) {
+            throw new Error('No Admin Found with that E-mail Address');
+        }
+
+        admin.password = password; // Update the password by setting the admin password to the new password
+        admin.passwordResetToken = undefined; // Set the reset token to undefined
+        admin.passwordResetExpires = undefined;
+
+        await admin.save(); 
+        return response.status(created).json({success: true, data: "Password Reset Success"});
+
 })
 
 module.exports.fetchAllAdmins = catchAsync(async (request, response, next) => {

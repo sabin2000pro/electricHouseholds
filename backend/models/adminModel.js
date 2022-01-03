@@ -75,8 +75,8 @@ adminSchema.methods.compareLoginPasswords = async function(enteredPassword) {
 
 adminSchema.methods.getResetPasswordToken = function() { // Get the reset password token
     let method = 'sha256'; // Method Type
-    
-    const resetToken = crypto.randomBytes(BYTES).toString("hex"); // Create the reset token
+
+    const resetToken = crypto.randomBytes(20).toString("hex"); // Create the reset token
     this.passwordResetToken = crypto.createHash(method).update(resetToken).digest('hex');
 
     this.passwordResetExpires = Date.now() + 10 * (60 * 1000); // 1 minute before expiration
