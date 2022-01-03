@@ -166,7 +166,12 @@ describe("Appliances Test Suite. - CRUD Operations", () => {
         });
 
         test('Create User Timeslot with Missing Data', async () => {
+            const preferenceBody = [{username: "", earlyMorningslot: "", lateMorningslot: "", afternoonSlot: "", eveningSlot: ""}];
 
+            for(const data of preferenceBody) {
+                const response = await request(server).post('/api/v1/preferences/create-preference').send(data);
+                return expect(response.statusCode).toBe(400);
+            }
         })
     
         // Test Case 2 - GET Request
@@ -179,9 +184,20 @@ describe("Appliances Test Suite. - CRUD Operations", () => {
             const response = await request(server).delete('/api/v1/preferences/delete-preferences');
             return expect(response.statusCode).toBe(204);
         });
-
-
     })
 });
-
 });
+
+describe('User Comments - Testing Suite', () => {
+    test('View All Comments - Should return 200 OK status Code', async () => {
+
+    });
+
+    test('Create Single Comment - Should return 201 Created Status Code', async () => {
+
+    });
+
+    test('Delete Single Comment - Should return 204 No Content Code', async () => {
+        
+    })
+})
