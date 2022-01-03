@@ -20,7 +20,7 @@ module.exports.viewAllComments = catchAsync(async (request, repsonse, next) => {
     if(request.method === 'GET') {
 
         const allComments = await Comment.find();
-        return response.status(200).json({allComments});
+        return response.status(ok).json({allComments});
     }
 
 
@@ -30,7 +30,7 @@ module.exports.viewComment = catchAsync(async (request, response, next) => {
     const id = request.params.id;
 
     if(!id) {
-
+        return response.status(404).json({status: "Fail", message: "Comment not found with that ID"})
     }
 });
 
@@ -40,13 +40,20 @@ module.exports.editComment = catchAsync(async (request, response, next) => {
     if(!id) {
 
     }
+
+    if(request.method === 'PUT') {
+        const updatedComment = await Comment.findByIdAndUpdate(id, request.body);
+        await updatedComment.save();
+
+        return response.status(200).json("Comment Updated");
+    }
 });
 
 module.exports.deleteComment = catchAsync(async (request, response, next) => {
     const id = request.params.id;
 
     if(!id) {
-        
+
     }
 });
 
