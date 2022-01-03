@@ -10,7 +10,7 @@ const commentSchema = new mongoose.Schema({
     username: {
         type: String,
         required: [true, 'Please specify username']
-    }
+    },
 
     createdAt: Date
 })
