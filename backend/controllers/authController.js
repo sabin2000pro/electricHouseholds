@@ -47,18 +47,23 @@ module.exports.loginAdmin = catchAsync(async (request, response, next) => {
 
 module.exports.forgotPassword = catchAsync(async (request, response, next) => {
     const {emailAddress} = request.body;
+    const admin = await Admin.findOne({emailAddress});
 
     if(!emailAddress) {
 
     }
 
-    const URL = ``;
+    const resetPasswordURL = `http://localhost:5370/${resetToken}`;
+    
+    const resetMessage = `<h1> You have requested a new password reset</h1>
+            <p> Please go to this link to reset your password </p>
+            <a href = ${resetURL} clicktracking = off>${resetURL}</a>`
 
 });
 
 module.exports.resetAdminPassword = catchAsync(async (request, response, next) => {
     const resetToken = request.params.resetToken;
-    
+
     return next();
 })
 
@@ -72,6 +77,14 @@ module.exports.fetchAllAdmins = catchAsync(async (request, response, next) => {
 });
 
 module.exports.deleteAdminAccount = catchAsync(async (request, response, next) => {
+    const id = request.params.id;
+
+    if(!id) {
+        return response.status(404).json({status: "Fail", message: "Admin with that ID not found"})
+    }
+
+    await Admin.findByIdAndDelete(id);
+    return response.status(204).json("Admin Account Deleted");
 
 });
 
