@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">52.17% </span>
+                <span class="strong">30.43% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>24/46</span>
+                <span class='fraction'>14/46</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">39.13% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>9/23</span>
+                <span class='fraction'>0/23</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">33.33% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>2/6</span>
+                <span class='fraction'>0/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">52.17% </span>
+                <span class="strong">30.43% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>24/46</span>
+                <span class='fraction'>14/46</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -161,17 +161,17 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -189,9 +189,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -248,18 +248,18 @@ const badRequest = 400;
 const notFound = 404;
 const serverError = 500;
 &nbsp;
-module.exports.createPreference = catchAsync(async (request, response, next) =&gt; {
-    const {username, earlyMorningslot, lateMorningslot, afternoonSlot, eveningSlot} = request.body;
+module.exports.createPreference = catchAsync(<span class="fstat-no" title="function not covered" >as</span>ync (request, response, next) =&gt; {
+    const {username, earlyMorningslot, lateMorningslot, afternoonSlot, eveningSlot} = <span class="cstat-no" title="statement not covered" >request.body;</span>
 &nbsp;
-    if(!username || !earlyMorningslot || !lateMorningslot || !afternoonSlot || !eveningSlot) {
-        return response.status(badRequest).json({status: "Fail", message: "Please check your entries again"});
+<span class="cstat-no" title="statement not covered" >    if(!username || !earlyMorningslot || !lateMorningslot || !afternoonSlot || !eveningSlot) {</span>
+<span class="cstat-no" title="statement not covered" >        return response.status(badRequest).json({status: "Fail", message: "Please check your entries again"});</span>
     }
 &nbsp;
-    if(request.method === 'POST') {
-        const newPreference = new Preference({username, earlyMorningslot, lateMorningslot, afternoonSlot, eveningSlot});
-        await newPreference.save();
+<span class="cstat-no" title="statement not covered" >    if(request.method === 'POST') {</span>
+        const newPreference = <span class="cstat-no" title="statement not covered" >new Preference({username, earlyMorningslot, lateMorningslot, afternoonSlot, eveningSlot});</span>
+<span class="cstat-no" title="statement not covered" >        await newPreference.save();</span>
         
-        return response.status(ok).json({newPreference});
+<span class="cstat-no" title="statement not covered" >        return response.status(ok).json({newPreference});</span>
     }
 &nbsp;
 });
@@ -275,11 +275,11 @@ module.exports.getPreferenceByID = catchAsync(<span class="fstat-no" title="func
 <span class="cstat-no" title="statement not covered" >    return response.status(ok).json({preference});</span>
 });
 &nbsp;
-module.exports.fetchAllPreferences = catchAsync(async (request, response, next) =&gt; {
+module.exports.fetchAllPreferences = catchAsync(<span class="fstat-no" title="function not covered" >as</span>ync (request, response, next) =&gt; {
 &nbsp;
-    if(request.method === 'GET') {
-        const allPreferences = await Preference.find();
-        return response.status(200).json({allPreferences});
+<span class="cstat-no" title="statement not covered" >    if(request.method === 'GET') {</span>
+        const allPreferences = <span class="cstat-no" title="statement not covered" >await Preference.find();</span>
+<span class="cstat-no" title="statement not covered" >        return response.status(200).json({allPreferences});</span>
     }
 &nbsp;
 &nbsp;
@@ -334,7 +334,7 @@ module.exports.sortPreferences = catchAsync(<span class="fstat-no" title="functi
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Mon Jan 03 2022 21:19:07 GMT+0000 (Greenwich Mean Time)
+                at Mon Jan 03 2022 21:21:29 GMT+0000 (Greenwich Mean Time)
             </div>
         <script src="../prettify.js"></script>
         <script>
