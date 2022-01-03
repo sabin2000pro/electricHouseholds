@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1641192934437" clover="3.2.0">
-  <project timestamp="1641192934437" name="All files">
-    <metrics statements="274" coveredstatements="202" conditionals="69" coveredconditionals="26" methods="36" coveredmethods="20" elements="379" coveredelements="248" complexity="0" loc="274" ncloc="274" packages="6" files="15" classes="15"/>
+<coverage generated="1641192972342" clover="3.2.0">
+  <project timestamp="1641192972342" name="All files">
+    <metrics statements="280" coveredstatements="203" conditionals="69" coveredconditionals="26" methods="37" coveredmethods="20" elements="386" coveredelements="249" complexity="0" loc="280" ncloc="280" packages="6" files="15" classes="15"/>
     <package name="controllers">
       <metrics statements="155" coveredstatements="91" conditionals="57" coveredconditionals="22" methods="25" coveredmethods="9"/>
       <file name="applianceController.js" path="/Users/sabin2000/Desktop/eHouseholds/backend/controllers/applianceController.js">
@@ -190,9 +190,9 @@
       </file>
     </package>
     <package name="models">
-      <metrics statements="35" coveredstatements="33" conditionals="4" coveredconditionals="2" methods="5" coveredmethods="5"/>
+      <metrics statements="41" coveredstatements="34" conditionals="4" coveredconditionals="2" methods="6" coveredmethods="5"/>
       <file name="adminModel.js" path="/Users/sabin2000/Desktop/eHouseholds/backend/models/adminModel.js">
-        <metrics statements="23" coveredstatements="21" conditionals="4" coveredconditionals="2" methods="5" coveredmethods="5"/>
+        <metrics statements="29" coveredstatements="22" conditionals="4" coveredconditionals="2" methods="6" coveredmethods="5"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -213,9 +213,15 @@
         <line num="72" count="1" type="stmt"/>
         <line num="73" count="2" type="stmt"/>
         <line num="76" count="1" type="stmt"/>
-        <line num="77" count="1" type="stmt"/>
-        <line num="80" count="1" type="stmt"/>
-        <line num="82" count="1" type="stmt"/>
+        <line num="77" count="0" type="stmt"/>
+        <line num="79" count="0" type="stmt"/>
+        <line num="80" count="0" type="stmt"/>
+        <line num="82" count="0" type="stmt"/>
+        <line num="83" count="0" type="stmt"/>
+        <line num="86" count="1" type="stmt"/>
+        <line num="87" count="1" type="stmt"/>
+        <line num="90" count="1" type="stmt"/>
+        <line num="92" count="1" type="stmt"/>
       </file>
       <file name="applianceModel.js" path="/Users/sabin2000/Desktop/eHouseholds/backend/models/applianceModel.js">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>

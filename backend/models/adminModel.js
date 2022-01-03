@@ -71,7 +71,17 @@ adminSchema.pre('save', async function(next) {
 
 adminSchema.methods.compareLoginPasswords = async function(enteredPassword) {
     return await bcrypt.compare(enteredPassword, this.password);
-}
+};
+
+adminSchema.methods.getResetPasswordToken = function() { // Get the reset password token
+    let method = 'sha256'; // Method Type
+    
+    const resetToken = crypto.randomBytes(BYTES).toString("hex"); // Create the reset token
+    this.passwordResetToken = crypto.createHash(method).update(resetToken).digest('hex');
+
+    this.passwordResetExpires = Date.now() + 10 * (60 * 1000); // 1 minute before expiration
+    return resetToken; // Return the reset token
+};
 
 adminSchema.methods.generateResetPasswordToken = function() {
     return jwt.sign({id: this._id}, process.env.JWT_SECRET, {expiresIn: process.env.JWT_EXPIRES_IN});
