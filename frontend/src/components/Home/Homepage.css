@@ -12,6 +12,7 @@ Main Color: #00b894
     margin: 0 auto;
     display: grid;
     grid-template-columns: 1fr 1fr;
+    align-items: center;
 }
 
 .heading--primary {
@@ -42,6 +43,4 @@ Main Color: #00b894
 
 .home--img {
     width: 100%;
-    margin-left: 100px;
-    margin-top: 50px;
 }
