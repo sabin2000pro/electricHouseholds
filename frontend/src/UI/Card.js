@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './Card.css';
 
 const Card = (props) => {
-   return <div className = "card">{props.children}</div>
+   return <div className = {`${props.reverse ? 'card' : 'card--other'}`}>{props.children}</div>
 }
 
 Card.propTypes = {

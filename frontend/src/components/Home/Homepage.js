@@ -3,7 +3,8 @@ import Navigation from '../Navigation';
 import {BrowserRouter as Router, Link} from 'react-router-dom'
 import './Homepage.css';
 import HomepageImg from '../images/homepage/homepageimg.jpg';
-import PeakElectricityImg from '../images/homepage/electricity.jpeg';
+import PeakElectricityImg from '../images/homepage/peakelectricity.jpg';
+import Electricity from '../images/homepage/electricity2.jpg';
 import Card from '../../UI/Card';
 
 const Homepage = (props) => { // Main Homepage Component
@@ -60,13 +61,23 @@ const Homepage = (props) => { // Main Homepage Component
     <h2 className = "heading--secondary">Peak Electricity Consumption</h2>
 
         <div className = "container grid grid--2-cols">
-
-        <Card>
+        <Card reverse = {true}>
             <h3 className = "heading--tertiary">The Problem</h3>
             <p className = "electricity--description">Too many households are making use of their highly-powered electrical appliances at various hours during the day. This places a high demand on electricity consumption, therefore affecting the environment but also</p>
         </Card>
 
         <img className = "electricity--img" src = {PeakElectricityImg} />
+    </div>
+
+    <div className = "container grid grid--2-cols">
+
+    <img className = "electricity--img secondary--img" src = {Electricity} />
+
+        <Card>
+            <h3 className = "heading--tertiary reverse">The Solution</h3>
+            <p className = "electricity--description reverse">Too many households are making use of their highly-powered electrical appliances at various hours during the day. This places a high demand on electricity consumption, therefore affecting the environment but also</p>
+        </Card>
+
     </div>
 
     </section>
