@@ -5,7 +5,7 @@ Main Color: #00b894
 
 .section--home {
     background-color: #d3e8e3;
-    padding: 320px 0;
+    padding: 280px 0;
 }
 
 .home--grid {
@@ -47,7 +47,7 @@ Main Color: #00b894
 .btn--full:link, .btn--full:visited {
     background-color: #218c74;
     color: white;
-    transition: all 0.3s;
+    transition: all 0.2s;
 }
 
 .btn--full:active, .btn--full:hover {
@@ -57,10 +57,10 @@ Main Color: #00b894
 .btn--outline:link, .btn--outline:visited {
     background-color: white;
     color: black;
-    transition: all 0.3s;
 }
 
 .btn--outline:hover, .btn--outline:active {
     background-color: #1e7e68;
     color: white;
+    box-shadow: inset 0 0 0 3px #fff;
 }
