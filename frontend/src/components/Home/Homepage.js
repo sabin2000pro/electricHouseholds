@@ -11,7 +11,9 @@ const Homepage = (props) => { // Main Homepage Component
             <Router>
 
             <header className = "header">
-                <nav className = "main-nav">Navigation</nav>
+                <nav className = "main-nav">
+                    
+                </nav>
             </header>
 
         <main>
