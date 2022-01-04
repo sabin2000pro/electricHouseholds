@@ -137,6 +137,10 @@ Main Color: #00b894
     padding: 96px 0;
 }
 
+.container {
+    
+}
+
 .grid {
     display: grid;
     gap: 96px;
