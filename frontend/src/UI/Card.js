@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './Card.css';
 
 const Card = (props) => {
-   return <div>{props.children}</div>
+   return <div className = "card">{props.children}</div>
 }
 
 Card.propTypes = {

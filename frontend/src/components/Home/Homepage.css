@@ -29,6 +29,11 @@ Main Color: #00b894
    background-color: #d3e8e3;
 }
 
+.heading--secondary {
+    color: white;
+    margin-bottom: 40px;
+}
+
 .mgr-sm {
     margin-right: 28px !important;
 }

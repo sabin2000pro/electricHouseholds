@@ -3,6 +3,7 @@ import Navigation from '../Navigation';
 import {BrowserRouter as Router, Link} from 'react-router-dom'
 import './Homepage.css';
 import HomepageImg from '../images/homepage/homepageimg.jpg';
+import Card from '../../UI/Card';
 
 const Homepage = (props) => { // Main Homepage Component
     return (
@@ -37,8 +38,9 @@ const Homepage = (props) => { // Main Homepage Component
                     </div>
                 })}
 
-            <Link className = "btn btn--full mgr-sm" to = '/'>Start Now</Link>
+                <Link className = "btn btn--full mgr-sm" to = '/'>Start Now</Link>
             <Link className = "btn btn--outline" to = '/'>Learn More!</Link>
+         
 
             </div>
 
@@ -49,8 +51,13 @@ const Homepage = (props) => { // Main Homepage Component
         </div>
     </section>
 
-    <section>
+
+    <section className = "section--electricity">
+        <div>Test 1</div>
+        <div>Test 1</div>
     </section>
+
+
 </main>
     </Router>
 </Fragment>
