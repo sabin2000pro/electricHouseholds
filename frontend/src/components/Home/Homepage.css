@@ -19,8 +19,8 @@ Main Color: #00b894
 }
 
 .section--home {
-    background-color: #d3e8e3;
-    padding: 280px 0;
+   padding: 250px 0;
+   background-color: #d3e8e3;
 }
 
 .mgr-sm {
@@ -28,7 +28,11 @@ Main Color: #00b894
 }
 
 .header {
-    
+    background-color: #d3e8e3;
+}
+
+.main-nav {
+
 }
 
 .home--grid {
@@ -67,9 +71,8 @@ Main Color: #00b894
 }
 
 .home--img {
-    width: 115%;
-    margin-top: 5px;
-    margin-left: -50px;
+    width: 100%;
+   
     animation: moveInLeft ease-out 1.4s;
 }
 
