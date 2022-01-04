@@ -63,17 +63,19 @@ module.exports.deletePreference = catchAsync(async (request, response, next) => 
     const id = request.params.id;
 
     if(!id) {
-
+        return response.status(404).json({status: "Fail", message: "Could not find the preference with that ID"});
     }
 
     if(request.method === 'DELETE') {
-
+        await Preference.findByIdAndDelete(id);
+        return response.status(204).json("Preference Deleted");
     }
 
 });
 
 module.exports.deleteAllPreferences = catchAsync(async(request, response, next) => {
     if(request.method === 'DELETE') {
+
         await Preference.deleteMany();
         return response.status(204).json("Preferences Deleted");
     }
