@@ -11,28 +11,32 @@ const Homepage = (props) => {
             <Router>
 
             <section className = "section--home">
-                <div className = "home-text-box">
+                <div className = "home--grid">
 
-                <h1 className = "heading--primary">eHouseholds</h1>
+            <div className = "home-text-box">
 
-                <p className = "home--description">
-                    Reducing your peak electricity consumptions through the experimentation of two Fair Negotiation Algorithms.
-                </p>
+            <h1 className = "heading--primary">eHouseholds</h1>
 
-                <Link className = "btn" to = '/'>Start Now</Link>
-                <Link className = "" to = '/'>Learn More!</Link>
+            <p className = "home--description">
+                Reducing your peak electricity consumptions through the experimentation of two Fair Negotiation Algorithms.
+            </p>
+
+            <Link className = "btn" to = '/'>Start Now</Link>
+            <Link className = "" to = '/'>Learn More!</Link>
+
             </div>
 
                 <div className = "home-img-box">
-                    <img alt = "Wind Turbing Image" src = {HomepageImg} />
+                    <img className = "home--img" alt = "Wind Turbing Image" src = {HomepageImg} />
                 </div>
 
-            </section>
-
-            </Router>
+        </div>
 
 
-        </Fragment>
+        </section>
+
+    </Router>
+</Fragment>
     )
 }
 
