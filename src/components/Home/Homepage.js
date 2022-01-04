@@ -3,6 +3,7 @@ import Navigation from '../Navigation';
 import {BrowserRouter as Router, Link} from 'react-router-dom'
 import './Homepage.css';
 import HomepageImg from '../images/homepage/homepageimg.jpg';
+import PeakElectricityImg from '../images/homepage/electricity.jpeg';
 import Card from '../../UI/Card';
 
 const Homepage = (props) => { // Main Homepage Component
@@ -52,12 +53,24 @@ const Homepage = (props) => { // Main Homepage Component
     </section>
 
 
-    <section className = "section--electricity container grid grid--2-cols">
+    <section className = "section--electricity">
+
+    <h2 className = "heading--secondary">Peak Electricity Consumption</h2>
+
+        <div className = "container grid grid--2-cols">
+
         <Card>
-            <h2 className = "heading--secondary">Text Here</h2>
+            <h3 className = "heading--tertiary">Text Here</h3>
             <p className = "electricity--description">Section Description Here</p>
         </Card>
-        <div>Image Here</div>
+
+        <img className = "electricity--img" src = {PeakElectricityImg} />
+    </div>
+
+   
+
+
+
     </section>
 
 
