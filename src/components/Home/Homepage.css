@@ -29,10 +29,15 @@ Main Color: #00b894
 
 .header {
     background-color: #d3e8e3;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1600px;
+    height: 96px;
 }
 
 .main-nav {
-
+    
 }
 
 .home--grid {
