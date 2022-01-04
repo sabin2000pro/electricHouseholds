@@ -18,7 +18,7 @@ const Homepage = (props) => {
             <h1 className = "heading--primary">eHouseholds</h1>
 
             <p className = "home--description">
-                Reducing your peak electricity consumptions through the experimentation of two Fair Negotiation Algorithms.
+                Reducing your peak electricity consumptions through the experimentation of two Fair Negotiation Algorithms. This is very important in order to reuse clean energy from green renewable sources.
             </p>
 
             <Link className = "btn" to = '/'>Start Now</Link>
