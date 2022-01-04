@@ -137,3 +137,8 @@ Main Color: #00b894
 .section--electricity {
     padding: 96px 0;
 }
+
+.section--electricity div {
+    padding: 100px;
+    font-size: 50px;
+}
