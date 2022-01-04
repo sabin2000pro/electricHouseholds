@@ -1,11 +1,25 @@
-import React from 'react'
+import React, {useState, useRef, useContext, useReducer, Fragment} from 'react';
+import PropTypes from 'prop-types'
 
-const AdminCreateAppliance = () => {
+const AdminCreateAppliance = (props) => {
+    const [applianceName, setApplianceName] = useState('');
+    
+
     return (
-        <div>
-            
-        </div>
+        <Fragment>
+            <div>
+
+            </div>
+        </Fragment>
     )
+};
+
+AdminCreateAppliance.defaultProps = {
+
 }
 
-export default AdminCreateAppliance
+AdminCreateAppliance.propTypes = {
+
+}
+
+export default AdminCreateAppliance // Exports the Create Appliance Component
