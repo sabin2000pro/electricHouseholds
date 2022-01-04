@@ -40,6 +40,8 @@ module.exports.editBids = catchAsync(async(request, response, next) => {
 
 module.exports.deleteBidById = catchAsync(async(request, response, next) => {
     const id = request.params.id;
+
+    
 })
 
 module.exports.deleteAllBids = async (request, response, next) => {

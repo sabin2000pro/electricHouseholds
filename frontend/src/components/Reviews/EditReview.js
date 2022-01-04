@@ -9,4 +9,12 @@ const EditReview = (props) => {
     )
 }
 
+EditReview.defaultProps = {
+
+};
+
+EditReview.propTypes = {
+    
+}
+
 export default EditReview

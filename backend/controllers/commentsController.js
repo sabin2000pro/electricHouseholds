@@ -11,6 +11,8 @@ module.exports.createComment = catchAsync(async (request, response, next) => {
         const {comment, username} = request.body;
         const newComment = await Comment({comment, username});
         await newComment.save();
+
+        return response.status(201).json({newComment});
     }
 
 });
