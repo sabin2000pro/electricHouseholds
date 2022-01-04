@@ -54,7 +54,7 @@ Main Color: #00b894
 .heading--tertiary {
     color: white;
     text-align: center;
-    margin-top: -50px;
+    margin-top: -60px;
 }
 
 .mgr-sm {
@@ -157,7 +157,7 @@ Main Color: #00b894
 }
 
 .container {
-    max-width: 1250px;
+    max-width: 1450px;
     margin: 0 auto;
 }
 
@@ -183,17 +183,27 @@ Main Color: #00b894
 }
 
 .electricity--img {
-    width: 70%;
-    margin-left: 150px;
+    width: 90%;
+    height: 90%;
+    margin-left: 100px;
 }
 
 h3:after {
-    background: none repeat scroll 0 0 #d3e8e3;
+   background: none repeat scroll 0 0 #d3e8e3;
    bottom: -10px;
    content: "";
    display: block;
    height: 5px;
    position: relative;
    width: 150px;
-   margin-left: 105px;
+   margin-left: 175px;
+   margin-bottom: 40px;
+}
+
+.reverse {
+    color: black;
+}
+
+.secondary--img {
+    margin-left: 15px;
 }

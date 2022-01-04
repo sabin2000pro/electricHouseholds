@@ -1,9 +1,18 @@
 .card {
     background-color: #1e7e68;
     color: #333;
-    box-shadow: 2px 4px 8px black;
     border-radius: 15px;
-    padding: 10px 200px;
+    padding: 10px 10px;
+    height: 80%;
+    width: 120%;
+    position: relative;
+  }
+
+  .card--other {
+    background-color: #d3e8e3;
+    color: black;
+    border-radius: 15px;
+    padding: 10px 10px;
     height: 80%;
     width: 120%;
     position: relative;
