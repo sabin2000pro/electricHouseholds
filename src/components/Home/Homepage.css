@@ -3,6 +3,21 @@
 Main Color: #00b894
 */
 
+@keyframes moveInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(35px);
+    }
+
+    80% {
+        transform: translateX(100px);
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
 .section--home {
     background-color: #d3e8e3;
     padding: 280px 0;
@@ -50,6 +65,7 @@ Main Color: #00b894
     width: 115%;
     margin-top: 5px;
     margin-left: -50px;
+    animation: moveInLeft ease-out 1.4s;
 }
 
 .btn--full:link, .btn--full:visited {
