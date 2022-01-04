@@ -94,4 +94,5 @@ module.exports.sortPreferences = catchAsync(async (request, response, next) => {
     }
 
     const allPreferences = await sort;
+    return response.status(200).json({allPreferences});
 });

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1641317456260" clover="3.2.0">
-  <project timestamp="1641317456260" name="All files">
-    <metrics statements="428" coveredstatements="288" conditionals="114" coveredconditionals="31" methods="52" coveredmethods="24" elements="594" coveredelements="343" complexity="0" loc="428" ncloc="428" packages="8" files="22" classes="22"/>
+<coverage generated="1641317649579" clover="3.2.0">
+  <project timestamp="1641317649579" name="All files">
+    <metrics statements="429" coveredstatements="288" conditionals="114" coveredconditionals="31" methods="52" coveredmethods="24" elements="595" coveredelements="343" complexity="0" loc="429" ncloc="429" packages="8" files="22" classes="22"/>
     <package name="controllers">
-      <metrics statements="218" coveredstatements="116" conditionals="78" coveredconditionals="25" methods="32" coveredmethods="11"/>
+      <metrics statements="219" coveredstatements="116" conditionals="78" coveredconditionals="25" methods="32" coveredmethods="11"/>
       <file name="applianceController.js" path="/app/controllers/applianceController.js">
         <metrics statements="41" coveredstatements="24" conditionals="10" coveredconditionals="0" methods="8" coveredmethods="3"/>
         <line num="1" count="1" type="stmt"/>
@@ -160,7 +160,7 @@
         <line num="70" count="0" type="stmt"/>
       </file>
       <file name="preferencesController.js" path="/app/controllers/preferencesController.js">
-        <metrics statements="54" coveredstatements="24" conditionals="26" coveredconditionals="9" methods="7" coveredmethods="3"/>
+        <metrics statements="55" coveredstatements="24" conditionals="26" coveredconditionals="9" methods="7" coveredmethods="3"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -215,6 +215,7 @@
         <line num="92" count="0" type="stmt"/>
         <line num="93" count="0" type="stmt"/>
         <line num="96" count="0" type="stmt"/>
+        <line num="97" count="0" type="stmt"/>
       </file>
       <file name="timeslotsController.js" path="/app/controllers/timeslotsController.js">
         <metrics statements="18" coveredstatements="8" conditionals="4" coveredconditionals="0" methods="3" coveredmethods="0"/>
