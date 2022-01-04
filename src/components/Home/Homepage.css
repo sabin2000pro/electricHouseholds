@@ -139,10 +139,12 @@ Main Color: #00b894
 }
 
 .grid {
-    
+    display: grid;
+    gap: 96px;
+    grid-template-columns: repeat(2, 1fr);
 }
 
 .section--electricity div {
     padding: 100px;
-    font-size: 50px;
+    font-size: 32px;
 }
