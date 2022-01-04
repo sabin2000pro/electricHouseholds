@@ -15,6 +15,7 @@ const Homepage = (props) => { // Main Homepage Component
             <header className = "header">
                 <nav className = "main-nav">
                     <ul className = "main-nav--list">
+
                         <Link className = 'main-nav--link' to = '/'>Home</Link>
                         <Link className = 'main-nav--link' to = '/'>Admin Register</Link>
                         <Link className = 'main-nav--link' to = '/'>Your Preferences</Link>
@@ -22,6 +23,7 @@ const Homepage = (props) => { // Main Homepage Component
                         <Link className = 'main-nav--link' to = '/'>Contact Us</Link>
                     </ul>
                 </nav>
+
             </header>
 
         <main>
@@ -60,16 +62,12 @@ const Homepage = (props) => { // Main Homepage Component
         <div className = "container grid grid--2-cols">
 
         <Card>
-            <h3 className = "heading--tertiary">Text Here</h3>
+            <h3 className = "heading--tertiary">The Problem</h3>
             <p className = "electricity--description">Section Description Here</p>
         </Card>
 
         <img className = "electricity--img" src = {PeakElectricityImg} />
     </div>
-
-   
-
-
 
     </section>
 

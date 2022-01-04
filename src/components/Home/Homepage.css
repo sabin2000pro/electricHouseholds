@@ -33,13 +33,14 @@ Main Color: #00b894
     color: #1e7e68;
     text-align: center;
     margin-top: -60px;
-    font-size: 32px;
+    font-size: 35px;
     margin-left: -30px;
 }
 
 .heading--tertiary {
     color: white;
     text-align: center;
+    margin-top: -50px;
 }
 
 
@@ -53,10 +54,6 @@ Main Color: #00b894
     justify-content: space-between;
     align-items: center;
     height: 96px;
-}
-
-.main-nav {
-    
 }
 
 .main-nav--list {
@@ -167,11 +164,11 @@ Main Color: #00b894
 
 .electricity--description {
     margin-top: 30px;
-    font-size: 28px;
+    font-size: 20px;
     text-align: center;
 }
 
 .electricity--img {
-    width: 80%;
-    margin-left: 200px;
+    width: 70%;
+    margin-left: 150px;
 }
