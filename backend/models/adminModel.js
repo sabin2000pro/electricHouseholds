@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs');
 const crypto = require('crypto');
 
 const adminSchema = new mongoose.Schema({
+
     username: {
         type: String,
         required: [true, 'You must provide Admin Username']
@@ -26,6 +27,7 @@ const adminSchema = new mongoose.Schema({
         required: [false, 'Please confirm your password'],
 
         validate: {
+            
             validator: function(value) { // Validate the confirm password to ensure they are the same
                  return value === this.password;
             },
