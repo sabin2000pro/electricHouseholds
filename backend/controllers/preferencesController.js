@@ -72,6 +72,13 @@ module.exports.deletePreference = catchAsync(async (request, response, next) => 
 
 });
 
+module.exports.deleteAllPreferences = catchAsync(async(request, response, next) => {
+    if(request.method === 'DELETE') {
+        await Preference.deleteMany();
+        return response.status(204).json("Preferences Deleted");
+    }
+})
+
 module.exports.sortPreferences = catchAsync(async (request, response, next) => {
     const queryObject = {...request.query};
     const sortQuery = request.query.sort;
