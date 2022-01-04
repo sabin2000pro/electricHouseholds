@@ -47,7 +47,7 @@ module.exports.editPreference = catchAsync(async (request, response, next) => {
     const id = request.params.id;
 
     if(!id) {
-
+        return response.status(404).json({status: "Fail", message: "Could not find the preference with that ID"});
     }
 
     if(request.method == 'PUT') {

@@ -7,5 +7,6 @@ preferenceRouter.route('/fetch-preferences').get(preferenceController.fetchAllPr
 preferenceRouter.route('/fetch-preferences/:id').get(preferenceController.getPreferenceByID);
 preferenceRouter.route('/delete-preferences').delete(preferenceController.deleteAllPreferences);
 preferenceRouter.route('/delete-preference/:id').delete(preferenceController.deletePreference);
+preferenceRouter.route('/edit-preference/:id').put(preferenceController.editPreference);
 
 module.exports = preferenceRouter;
