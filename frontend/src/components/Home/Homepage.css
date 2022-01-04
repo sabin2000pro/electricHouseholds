@@ -34,15 +34,26 @@ Main Color: #00b894
 
 .btn:link, .btn:visited {
     display: inline-block;
-    background-color: #218c74;
     font-size: 20px;
     border-radius: 150px;
     padding: 16px 32px;
-    color: white;
     text-decoration: none;
 }
 
 .home--img {
     width: 100%;
+}
+
+.btn--full:link, .btn--full:visited {
+    background-color: #218c74;
+    color: white;
+}
+
+.btn--full:active, .btn--full:hover {
     
+}
+
+.btn--outline:link, .btn--outline:visited {
+    background-color: white;
+    color: black;
 }
