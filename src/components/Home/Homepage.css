@@ -49,7 +49,9 @@ Main Color: #00b894
     text-decoration: none;
     list-style: none;
     display: flex;
-    gap: 32px;
+    gap: 50px;
+    margin-left: 30px;
+    margin-top: 20px;
 }
 
 .main-nav--link {
@@ -57,6 +59,7 @@ Main Color: #00b894
     text-decoration: none;
     color: black;
     font-size: 20px;
+    font-weight: 500;
 }
 
 .home--grid {
