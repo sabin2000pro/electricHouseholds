@@ -14,7 +14,11 @@ module.exports.fetchAllReviews = catchAsync(async(request, response, next) => {
 });
 
 module.exports.fetchReviewByID = catchAsync(async (request, response, next) => {
+    const id = request.params.id;
 
+    if(!id) {
+
+    }
 })
 
 module.exports.createReview = catchAsync(async (request, response, next) => {
@@ -34,14 +38,24 @@ module.exports.createReview = catchAsync(async (request, response, next) => {
 
 module.exports.editReview = catchAsync(async (request, response, next) => {
     const id = request.params.id;
+
+    if(!id) {
+
+        const updatedReview = await Review.findByIdAndUpdate(id, request.body);
+        await updatedReview.save(); // Save the review to the database
+    }
 });
 
 module.exports.deleteReview = catchAsync(async (request, response, next) => {
     const id = request.params.id;
+
+    if(!id) {
+
+    }
 });
 
 module.exports.deleteAllReviews = catchAsync(async (request, response, next) => {
     if(request.method === 'DELETE') {
-        
+
     }
 })
