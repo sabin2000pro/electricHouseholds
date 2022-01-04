@@ -10,6 +10,10 @@ module.exports.fetchAllReviews = catchAsync(async(request, response, next) => {
 
 });
 
+module.exports.fetchReviewByID = catchAsync(async (request, response, next) => {
+    
+})
+
 module.exports.createReview = catchAsync(async (request, response, next) => {
 
 });
@@ -21,3 +25,7 @@ module.exports.editReview = catchAsync(async (request, response, next) => {
 module.exports.deleteReview = catchAsync(async (request, response, next) => {
 
 });
+
+module.exports.deleteAllReviews = catchAsync(async (request, response, next) => {
+
+})
