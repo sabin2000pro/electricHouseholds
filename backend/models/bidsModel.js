@@ -3,12 +3,16 @@ const mongoose = require('mongoose');
 const bidSchema = new mongoose.Schema({
 
     virtualCredits: {
-        type: Number
+        type: Number,
+        required: [true, 'You must specify how many Virtual Credits should be assigned by default'],
+        min: [50, 'Minimum number of Virtual Credits must be £50'],
+        max: [100, 'Maximum number of virtual credits should be £100']
     },
 
     openingBid: { // The opening bid
         type: Number,
-        default: 10
+        default: 10,
+        required: [true, 'You must specify an opening bid']
     },
 
     bid: {
