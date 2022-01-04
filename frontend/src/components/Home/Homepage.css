@@ -18,6 +18,7 @@ Main Color: #00b894
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 96px;
+    margin-top: -50px;
     align-items: center;
 }
 
@@ -26,14 +27,14 @@ Main Color: #00b894
     font-weight: 700;
     line-height: 1.05;
     letter-spacing: -0.3px;
-    margin-bottom: 32px;
+    margin-bottom: 40px;
     color: #218c74;
 }
 
 .home--description {
     font-size: 20px;
     line-height: 1.6;
-    margin-bottom: 48px;
+    margin-bottom: 30px;
 }
 
 .btn:link, .btn:visited {
@@ -47,6 +48,7 @@ Main Color: #00b894
 
 .home--img {
     width: 100%;
+    margin-top: 5px;
 }
 
 .btn--full:link, .btn--full:visited {
