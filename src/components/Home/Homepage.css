@@ -55,6 +55,7 @@ Main Color: #00b894
 .btn:link, .btn:visited {
     display: inline-block;
     font-size: 20px;
+    font-weight: 600;
     border-radius: 150px;
     padding: 14px 28px;
     text-decoration: none;

@@ -4,7 +4,7 @@ import {BrowserRouter as Router, Link} from 'react-router-dom'
 import './Homepage.css';
 import HomepageImg from '../images/homepage/homepageimg.jpg';
 
-const Homepage = (props) => {
+const Homepage = (props) => { // Main Homepage Component
     return (
 
         <Fragment>
@@ -17,9 +17,10 @@ const Homepage = (props) => {
 
                 {props.data.map((data, key) => {
                     return <div key = {key}>
-                         <h1 className = "heading--primary">{data.title}</h1>
 
+                         <h1 className = "heading--primary">{data.title}</h1>
                         <p className = "home--description">{data.description}</p>
+
                     </div>
                 })}
 
@@ -33,8 +34,7 @@ const Homepage = (props) => {
             </div>
 
         </div>
-
-        </section>
+    </section>
 
     </Router>
 </Fragment>
