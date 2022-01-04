@@ -6,7 +6,7 @@ import HomepageImg from '../images/homepage/homepageimg.jpg';
 
 const Homepage = (props) => {
     return (
-        
+
         <Fragment>
             <Router>
 
@@ -22,8 +22,6 @@ const Homepage = (props) => {
                         <p className = "home--description">{data.description}</p>
                     </div>
                 })}
-
-           
 
             <Link className = "btn btn--full mgr-sm" to = '/'>Start Now</Link>
             <Link className = "btn btn--outline" to = '/'>Learn More!</Link>
