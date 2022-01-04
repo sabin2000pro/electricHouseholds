@@ -11,9 +11,12 @@ const Homepage = (props) => { // Main Homepage Component
             <Router>
 
             <header className = "header">
-
+                <nav className = "main-nav">
+                    Navigation
+                </nav>
             </header>
 
+        <main>
             <section className = "section--home">
                 <div className = "home--grid">
 
@@ -40,6 +43,9 @@ const Homepage = (props) => { // Main Homepage Component
         </div>
     </section>
 
+    <section>
+    </section>
+</main>
     </Router>
 </Fragment>
     )
