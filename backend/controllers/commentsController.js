@@ -15,7 +15,7 @@ module.exports.createComment = catchAsync(async (request, response, next) => {
 
 });
 
-module.exports.viewAllComments = catchAsync(async (request, repsonse, next) => {
+module.exports.viewAllComments = catchAsync(async (request, response, next) => {
     if(request.method === 'GET') {
 
         const allComments = await Comment.find();
