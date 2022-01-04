@@ -4,7 +4,8 @@ Main Color: #00b894
 */
 
 .section--home {
-
+    background-color: #d3e8e3;
+  padding: 300px;
 }
 
 .home--grid {
@@ -12,6 +13,7 @@ Main Color: #00b894
     margin: 0 auto;
     display: grid;
     grid-template-columns: 1fr 1fr;
+    gap: 96px;
     align-items: center;
 }
 
@@ -19,8 +21,9 @@ Main Color: #00b894
     font-size: 45px;
     font-weight: 700;
     line-height: 1.05;
-    letter-spacing: -0.5px;
+    letter-spacing: -0.3px;
     margin-bottom: 32px;
+    color: #218c74;
 }
 
 .home--description {
@@ -29,18 +32,16 @@ Main Color: #00b894
     margin-bottom: 48px;
 }
 
-.home-text-box {
-
-}
-
-.home-img-box {
-
-}
-
 .btn {
-    
+    background-color: #218c74;
+    font-size: 20px;
+    border-radius: 150px;
+    padding: 16px 32px;
+    color: white;
+    text-decoration: none;
 }
 
 .home--img {
     width: 100%;
+    
 }
