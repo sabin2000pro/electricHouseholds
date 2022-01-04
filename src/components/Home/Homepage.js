@@ -7,8 +7,18 @@ const Homepage = (props) => {
     return (
         <Fragment>
             <section className = "section--home">
+
+                <div className = "home-text-box">
+
                 <h1>Reducing your household peak electricity consumption through Fair Negotiation Algorithms</h1>
+                </div>
+
+                <div className = "home-img-box">
+                    
+                </div>
+
             </section>
+
         </Fragment>
     )
 }
