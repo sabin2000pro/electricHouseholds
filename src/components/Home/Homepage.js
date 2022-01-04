@@ -12,7 +12,13 @@ const Homepage = (props) => { // Main Homepage Component
 
             <header className = "header">
                 <nav className = "main-nav">
-                    
+                    <ul className = "main-nav--list">
+                        <Link className = 'main-nav--link' to = '/'>Home</Link>
+                        <Link className = 'main-nav--link' to = '/'>Admin Register</Link>
+                        <Link className = 'main-nav--link' to = '/'>Your Preferences</Link>
+                        <Link className = 'main-nav--link' to = '/'>Fair Negotiations</Link>
+                        <Link className = 'main-nav--link' to = '/'>Contact Us</Link>
+                    </ul>
                 </nav>
             </header>
 
