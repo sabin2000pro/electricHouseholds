@@ -52,9 +52,12 @@ const Homepage = (props) => { // Main Homepage Component
     </section>
 
 
-    <section className = "section--electricity grid grid--2-cols">
-        <div>Test 1</div>
-        <div>Test 1</div>
+    <section className = "section--electricity container grid grid--2-cols">
+        <Card>
+            <h2 className = "heading--secondary">Text Here</h2>
+            <p className = "electricity--description">Section Description Here</p>
+        </Card>
+        <div>Image Here</div>
     </section>
 
 

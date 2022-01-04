@@ -31,7 +31,10 @@ Main Color: #00b894
 
 .heading--secondary {
     color: white;
-    margin-bottom: 40px;
+    text-align: center;
+    margin-top: -60px;
+    font-size: 32px;
+    margin-left: -30px;
 }
 
 .mgr-sm {
@@ -138,7 +141,7 @@ Main Color: #00b894
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 1250px;
     margin: 0 auto;
 }
 
@@ -154,4 +157,10 @@ Main Color: #00b894
 .section--electricity div {
     padding: 100px;
     font-size: 32px;
+}
+
+.electricity--description {
+    margin-top: 30px;
+    font-size: 28px;
+    text-align: center;
 }
