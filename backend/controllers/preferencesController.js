@@ -8,14 +8,14 @@ const notFound = 404;
 const serverError = 500;
 
 module.exports.createPreference = catchAsync(async (request, response, next) => {
-    const {username, earlyMorningslot, lateMorningslot, afternoonSlot, eveningSlot} = request.body;
+    const {username, earlyMorningslot, lateMorningslot, afternoonSlot, eveningSlot, appliance} = request.body;
 
-    if(!username || !earlyMorningslot || !lateMorningslot || !afternoonSlot || !eveningSlot) {
+    if(!username || !earlyMorningslot || !lateMorningslot || !afternoonSlot || !eveningSlot || !appliance) {
         return response.status(badRequest).json({status: "Fail", message: "Please check your entries again"});
     }
 
     if(request.method === 'POST') {
-        const newPreference = new Preference({username, earlyMorningslot, lateMorningslot, afternoonSlot, eveningSlot});
+        const newPreference = new Preference({username, earlyMorningslot, lateMorningslot, afternoonSlot, eveningSlot, appliance});
         await newPreference.save();
         
         return response.status(ok).json({newPreference});
@@ -40,7 +40,6 @@ module.exports.fetchAllPreferences = catchAsync(async (request, response, next) 
         const allPreferences = await Preference.find();
         return response.status(200).json({allPreferences});
     }
-
 
 });
 

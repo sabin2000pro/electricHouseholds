@@ -9,6 +9,11 @@ const preferencesSchema = new mongoose.Schema({
         required: [true, 'You must specify username please']
     },
 
+    appliance: {
+        type: String,
+        required: [true, 'Please choose the appliance you want to run']
+    },
+
     earlyMorningslot: {
         type: String,
         required: [true, 'Please submit early morning timeslot for when you want to run your appliance between 00:00-05:00AM']

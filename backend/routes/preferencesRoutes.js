@@ -5,5 +5,6 @@ const preferenceController = require('../controllers/preferencesController');
 preferenceRouter.route('/create-preference').post(preferenceController.createPreference);
 preferenceRouter.route('/fetch-preferences').get(preferenceController.fetchAllPreferences);
 preferenceRouter.route('/fetch-preferences/:id').get(preferenceController.getPreferenceByID);
+preferenceRouter.route('/delete-preferences').delete(preferenceControlle.deleteAllPreferences);
 
 module.exports = preferenceRouter;
