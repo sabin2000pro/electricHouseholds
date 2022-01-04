@@ -189,7 +189,7 @@ describe("Appliances Test Suite. - CRUD Operations", () => {
 });
 
 describe('User Comments - Testing Suite', () => {
-    
+
     test('View All Comments - Should return 200 OK status Code', async () => {
 
     });
@@ -226,5 +226,29 @@ describe('Algorithms Review - Testing Suite', () => {
 })
 
 describe('Contact Us - Testing Suite', () => {
-    
+    test('Fetch All Contacts', async () => {
+
+    });
+
+    test('Create Contact With Valid Data. Should return a 201 Status Code', async () => {
+
+    })
+
+    test('Create Contact with Missing Data. Should return a 404 status code', async () => {
+
+    });
+
+    test('Delete all contacts. Should return a 204 status code', async () => {
+        
+    })
+})
+
+describe('Feedback - Testing Suite', () => {
+    test('Fetch All Feedbacks. Should return a 200 Status Code', async () => {
+
+    });
+
+    test('Create Feedback. Should return a 201 Status Code', async () => {
+
+    })
 })
