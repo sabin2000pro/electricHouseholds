@@ -53,7 +53,12 @@ module.exports.deleteComment = catchAsync(async (request, response, next) => {
     const id = request.params.id;
 
     if(!id) {
+        return response.status(404).json({status: "Fail", message: "Comment not found with that ID"})
+    }
 
+    if(request.method === 'DELETE') {
+        await Comment.findByIdAndDelete(id);
+        return response.status(204).json("Comment Deleted");
     }
 });
 
