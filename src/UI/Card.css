@@ -1,0 +1,8 @@
+.card {
+    background-color: #1e7e68;
+    color: #333;
+    border-radius: 15px;
+    padding: 100px 90px;
+    margin: 20px 0;
+    position: relative;
+  }
