@@ -8,6 +8,8 @@ Main Color: #00b894
 }
 
 .home--grid {
+    max-width: 1300px;
+    margin: 0 auto;
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
@@ -25,5 +27,5 @@ Main Color: #00b894
 }
 
 .home--img {
-    width: 50%;
+    width: 100%;
 }
