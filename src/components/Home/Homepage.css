@@ -24,6 +24,20 @@ Main Color: #00b894
     }
 }
 
+@keyframes moveInRight {
+    0% {
+        transform: translateX(-35px);
+    }
+
+    60% {
+        transform: translateX(35px);
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
 .section--home {
    padding: 250px 0;
    background-color: #d3e8e3;
@@ -33,7 +47,7 @@ Main Color: #00b894
     color: #1e7e68;
     text-align: center;
     margin-top: -60px;
-    font-size: 35px;
+    font-size: 37px;
     margin-left: -30px;
 }
 
@@ -42,7 +56,6 @@ Main Color: #00b894
     text-align: center;
     margin-top: -50px;
 }
-
 
 .mgr-sm {
     margin-right: 28px !important;
