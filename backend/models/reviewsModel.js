@@ -10,7 +10,9 @@ const reviewSchema = new mongoose.Schema({
 
     review: {
         type: String,
-        required: [true, 'Please submit your review text']
+        required: [true, 'Please submit your review text'],
+        min: 10,
+        max: 20
     },
 
     username: {
@@ -24,5 +26,5 @@ const reviewSchema = new mongoose.Schema({
     }
 });
 
-const Review = mongoose.Model('Review', reviewSchema);
+const Review = mongoose.model('Review', reviewSchema);
 module.exports = Review;
