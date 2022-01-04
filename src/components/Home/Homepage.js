@@ -29,7 +29,8 @@ const Homepage = (props) => { // Main Homepage Component
             </header>
 
         <main>
-            <section className = "section--home">
+
+        <section className = "section--home">
                 <div className = "home--grid">
 
             <div className = "home-text-box">
@@ -56,12 +57,11 @@ const Homepage = (props) => { // Main Homepage Component
         </div>
     </section>
 
-
     <section className = "section--electricity">
 
     <h2 className = "heading--secondary">Peak Electricity Consumption</h2>
 
-        <div className = "container grid grid--2-cols">
+    <div className = "container grid grid--2-cols">
         <AnimatePresence>
 
     <motion.div exit = {{opacity: 0}} initial = {{opacity: 0}} animate = {{opacity: 1}}>
@@ -81,14 +81,48 @@ const Homepage = (props) => { // Main Homepage Component
 
     <img className = "electricity--img secondary--img" src = {Electricity} />
 
+     <AnimatePresence>
+
+     <motion.div exit = {{opacity: 0}} initial = {{opacity: 0}} animate = {{opacity: 1}}>
+
         <Card>
+
             <h3 className = "heading--tertiary reverse">The Solution</h3>
-            <p className = "electricity--description reverse">The solution to this problem is.</p>
+            <p className = "electricity--description reverse">The solution to this problem is to disperse the usage of household appliances by submitting when you would like to run your electrical appliance. However, you can only run your chosen appliance for a maximum of 3 hours per day.</p>
         </Card>
+        </motion.div>
+
+        </AnimatePresence>
 
     </div>
 
     </section>
+
+<section className = "section--load">
+    <h2 className = "heading--secondary">Load Balancing</h2>
+
+    <div className = "container grid grid--2-cols">
+        <p className = "load--heading">Load Balancing Problem</p>    
+    </div>
+
+    <div className = "container grid grid--2-cols">
+        <p className = "load--description reverse">The solution to this problem is to disperse the usage of household appliances by submitting when you would like to run your electrical appliance. However, you can only run your chosen appliance for a maximum of 3 hours per day.</p>
+    </div>
+    
+    
+    <div className = "container grid grid--2-cols">
+        <p className = "load--heading--second">Load Balancing Solution</p>    
+    </div>
+
+    <div className = "container grid grid--2-cols">
+        <p className = "load--description--second reverse">The solution to this problem is to disperse the usage of household appliances by submitting when you would like to run your electrical appliance. However, you can only run your chosen appliance for a maximum of 3 hours per day.</p>
+        <img className = "electricity--img secondary--img load--img" src = {Electricity} />
+
+    </div>
+
+
+    </section>
+
 
 
     </main>
