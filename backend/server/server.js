@@ -51,10 +51,8 @@ const server = app.listen(port, (err) => { // Creates a server
 });
 
 // Add an app.all() to handle 404 routes
-
 app.all('*', (request, response, next) => {
     response.status(404).json({status: 'Fail', message: 'The route you requested is not valid'});
-
     return next();
 });
 

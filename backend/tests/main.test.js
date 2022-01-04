@@ -197,7 +197,33 @@ describe('User Comments - Testing Suite', () => {
 
     });
 
+    test('Create Single Comment with Invalid Data - Should return with a 400 Bad Request ', async () => {
+
+    });
+
     test('Delete Single Comment - Should return 204 No Content Code', async () => {
-        
+
+    });
+})
+
+describe('Algorithms Review - Testing Suite', () => {
+    test('View All Reviews. Should Return a 200 OK Status Code', async () => {
+
     })
+
+    test('Create Review. Should return a 201 Created Status Code', async () => {
+
+    });
+
+    test('Create Invalid Review with missing data. Should return a 404 not found code', async () => {
+
+    });
+
+    test('Create Invalid Review with wrong data types. Should return a 400 Bad Request Data Type', async () => {
+
+    })
+})
+
+describe('Contact Us - Testing Suite', () => {
+    
 })

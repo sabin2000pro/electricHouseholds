@@ -13,7 +13,6 @@ module.exports.createComment = catchAsync(async (request, response, next) => {
         await newComment.save();
     }
 
-
 });
 
 module.exports.viewAllComments = catchAsync(async (request, repsonse, next) => {
@@ -22,7 +21,6 @@ module.exports.viewAllComments = catchAsync(async (request, repsonse, next) => {
         const allComments = await Comment.find();
         return response.status(ok).json({allComments});
     }
-
 
 });
 
@@ -58,5 +56,12 @@ module.exports.deleteComment = catchAsync(async (request, response, next) => {
 });
 
 module.exports.deleteComments = catchAsync(async (request, response, next) => {
+    if(request.method === 'DELETE') {
 
+        await Comment.deleteMany();
+
+        return response.status(204).json("Comments Deleted");
+    }
+
+    
 })

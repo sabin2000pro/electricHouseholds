@@ -26,7 +26,7 @@ module.exports.registerAdmin = catchAsync(async (request, response, next ) => { 
 module.exports.loginAdmin = catchAsync(async (request, response, next) => {
     const {emailAddress, password} = request.body;
 
-    if(!emailAddress || !password) {
+    if(!emailAddress || !password) { // If no email or password is specified
         return response.status(unauthorized).json({status: 'Fail', message: 'Please provide e-mail and password before logging in'});
     }
 
@@ -43,7 +43,7 @@ module.exports.loginAdmin = catchAsync(async (request, response, next) => {
         return response.status(unauthorized).json({status: 'Failed reading admin', message: 'PAsswords do not match!'});
     }
 
-    sendToken(admin, ok, response);
+    return sendToken(admin, ok, response);
 
 });
 
