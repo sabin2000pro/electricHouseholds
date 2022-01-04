@@ -5,7 +5,7 @@ const App = () => {
   return (
 
     <div className="App">
-       <Homepage />
+       <Homepage title = "eHouseholds" />
     </div>
     
   );
