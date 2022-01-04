@@ -183,10 +183,10 @@ Main Color: #00b894
 }
 
 .electricity--img {
-    margin-left: 60px;
+    margin-right: -234534px;
     width: 90%;
     margin-top: 40px;
-    margin-left: 20px;
+    margin-left: 120px;
 }
 
 h3:after {
@@ -197,7 +197,7 @@ h3:after {
    height: 5px;
    position: relative;
    width: 120px;
-   margin-left: 100px;
+   margin-left: 180px;
    margin-bottom: 40px;
 }
 
@@ -207,11 +207,55 @@ h3:after {
 }
 
 .secondary--img {
-    margin-left: 60px;
-    width: 90%;
+    margin-left: -50px;
+    width: 100%;
     margin-top: -100px;
 }
 
 .secondary--img:hover, .secondary--img:active {
     background-color: black;
+}
+
+.section--load div {
+    padding: 93px 0;
+    font-size: 32px;
+}
+
+.load--img {
+    background-position: center;
+    background-image: ('../images/homepage/electricity.jpeg');    
+}
+
+.load--heading {
+    font-size: 32px;
+    margin-left: 50px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.load--description {
+    font-size: 19px;
+    display: inline;
+    margin-top: -130px;
+    margin-left: 50px;
+}
+
+.load--heading--second {
+    font-size: 32px;
+    margin-left: 50px;
+    text-align: center;
+    font-weight: 600;
+    margin-top: -150px;
+    margin-bottom: -100px;
+}
+
+.load--description--second {
+    font-size: 19px;
+    display: inline;
+    margin-left: 50px;
+    margin-top: -220px;
+}
+
+.load--img {
+    margin-top: -600px;
 }
