@@ -186,3 +186,14 @@ Main Color: #00b894
     width: 70%;
     margin-left: 150px;
 }
+
+h3:after {
+    background: none repeat scroll 0 0 #d3e8e3;
+   bottom: -10px;
+   content: "";
+   display: block;
+   height: 5px;
+   position: relative;
+   width: 150px;
+   margin-left: 105px;
+}

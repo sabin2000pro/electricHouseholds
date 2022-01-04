@@ -4,8 +4,7 @@
     box-shadow: 2px 4px 8px black;
     border-radius: 15px;
     padding: 10px 200px;
-    height: 300px;
+    height: 80%;
     width: 120%;
-    gap: 500px;
     position: relative;
   }
