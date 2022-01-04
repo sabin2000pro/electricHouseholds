@@ -47,8 +47,9 @@ Main Color: #00b894
 }
 
 .home--img {
-    width: 100%;
+    width: 115%;
     margin-top: 5px;
+    margin-left: -50px;
 }
 
 .btn--full:link, .btn--full:visited {
