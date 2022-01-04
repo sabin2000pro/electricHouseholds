@@ -15,14 +15,17 @@ Main Color: #00b894
 }
 
 .heading--primary {
-    font-size: 42px;
+    font-size: 45px;
     font-weight: 700;
     line-height: 1.05;
+    letter-spacing: -0.5px;
+    margin-bottom: 32px;
 }
 
 .home--description {
     font-size: 20px;
-    line-height: 1.5;
+    line-height: 1.6;
+    margin-bottom: 48px;
 }
 
 .home-text-box {
