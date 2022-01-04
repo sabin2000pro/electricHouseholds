@@ -20,6 +20,12 @@ module.exports.fetchReviewByID = catchAsync(async (request, response, next) => {
     if(!id) {
         return response.status(notFound).json({status: "Fail", message: "Could not find that review"});
     }
+
+    if(request.method === 'GET') {
+        const theReview = await Review.findById(id);
+        return response.status(200).json({theReview});
+    }
+
 })
 
 module.exports.createReview = catchAsync(async (request, response, next) => {
@@ -67,6 +73,7 @@ module.exports.deleteReview = catchAsync(async (request, response, next) => {
 });
 
 module.exports.deleteAllReviews = catchAsync(async (request, response, next) => {
+    
     if(request.method === 'DELETE') {
         await Review.deleteMany();
         return response.status('Reviews deleted');

@@ -1,5 +1,46 @@
 version: '3'
+services: 
 
-services:
+  #: Docker Service for the back-end
   backend:
-   
+    image: ehouseholds
+    build:
+      context: .
+      dockerfile: Dockerfile # Dockerfile to run
+    ports: 
+      - "5370:5370"
+    volumes: # Volumes for web application to auto reload
+      - /app/node_modules
+      - .:/app
+
+  #: Docker service for the database. Parameters: Image, Restart, Ports, Volumes, Environment and Healthcheck
+  database:
+    image: mongo
+    restart: always #: Always restart the database if an error occurs
+    ports:
+      - 27017:27017
+    volumes:
+      - type: volume
+        source: mongodb_data_volume
+        target: /data/db
+    environment: # MongoDB environment, specifies the username and password from the environment variables in config.env
+      MONGO_INITDB_ROOT_USERNAME: process.env.MONGO_USERNAME
+      MONGO_INITDB_ROOT_PASSWORD: process.env.MONGO_PASSWORD
+    healthcheck:
+      test: echo 'db.stats().ok' | mongo localhost:27017/eHouseholds --quiet
+      interval: 10s
+      timeout: 10s
+      retries: 5
+
+  tests: # Tests Service
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - /app/node_modules
+      - .:/app
+    command: ["npm", "test"]
+
+volumes:
+  mongodb_data_volume:
+    external: true
