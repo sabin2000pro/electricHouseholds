@@ -9,7 +9,7 @@ Main Color: #00b894
 }
 
 .mgr-sm {
-    margin-right: 28px;
+    margin-right: 28px !important;
 }
 
 .home--grid {
