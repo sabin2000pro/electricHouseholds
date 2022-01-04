@@ -1,5 +1,4 @@
 import React, {Fragment} from 'react';
-import Header from '../Header';
 import Navigation from '../Navigation';
 import {BrowserRouter as Router, Link} from 'react-router-dom'
 import './Homepage.css';
@@ -15,11 +14,15 @@ const Homepage = (props) => {
 
             <div className = "home-text-box">
 
-            <h1 className = "heading--primary">{props.title}</h1>
+                {props.data.map((data, key) => {
+                    return <div key = {key}>
+                         <h1 className = "heading--primary">{data.title}</h1>
 
-            <p className = "home--description">
-                Reducing your peak electricity consumptions through the experimentation of two Fair Negotiation Algorithms. This is very important in order to reuse clean energy from green renewable sources.
-            </p>
+                        <p className = "home--description">{data.description}</p>
+                    </div>
+                })}
+
+           
 
             <Link className = "btn btn--full mgr-sm" to = '/'>Start Now</Link>
             <Link className = "btn btn--outline" to = '/'>Learn More!</Link>
