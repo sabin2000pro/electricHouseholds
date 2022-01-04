@@ -32,7 +32,8 @@ Main Color: #00b894
     margin-bottom: 48px;
 }
 
-.btn {
+.btn:link, .btn:visited {
+    display: inline-block;
     background-color: #218c74;
     font-size: 20px;
     border-radius: 150px;
