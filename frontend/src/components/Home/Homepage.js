@@ -63,7 +63,7 @@ const Homepage = (props) => { // Main Homepage Component
 
         <Card>
             <h3 className = "heading--tertiary">The Problem</h3>
-            <p className = "electricity--description">Too many households are making use of their highly-powered electrical appliances at various hours during the day. </p>
+            <p className = "electricity--description">Too many households are making use of their highly-powered electrical appliances at various hours during the day. This places a high demand on electricity consumption, therefore affecting the environment but also</p>
         </Card>
 
         <img className = "electricity--img" src = {PeakElectricityImg} />
