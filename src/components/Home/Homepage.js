@@ -26,9 +26,9 @@ const Homepage = (props) => {
 
             </div>
 
-                <div className = "home-img-box">
-                    <img className = "home--img" alt = "Wind Turbing Image" src = {HomepageImg} />
-                </div>
+            <div className = "home-img-box">
+                <img className = "home--img" alt = "Wind Turbing Image" src = {HomepageImg} />
+            </div>
 
         </div>
 
