@@ -22,7 +22,7 @@ const Homepage = (props) => {
             </p>
 
             <Link className = "btn" to = '/'>Start Now</Link>
-            <Link className = "" to = '/'>Learn More!</Link>
+            <Link className = "btn" to = '/'>Learn More!</Link>
 
             </div>
 
@@ -31,7 +31,6 @@ const Homepage = (props) => {
             </div>
 
         </div>
-
 
         </section>
 
