@@ -52,7 +52,7 @@ const Homepage = (props) => { // Main Homepage Component
     </section>
 
 
-    <section className = "section--electricity grid">
+    <section className = "section--electricity grid grid--2-cols">
         <div>Test 1</div>
         <div>Test 1</div>
     </section>
