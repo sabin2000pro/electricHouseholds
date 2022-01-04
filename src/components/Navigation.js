@@ -1,10 +1,11 @@
 import React, {useState, useEffect} from 'react';
+import './Navigation.css';
 
-const Navigation = () => {
+const Navigation = (props) => {
     return (
-        <div>
-            
-        </div>
+         <nav>
+             
+         </nav>
     )
 }
 
