@@ -58,9 +58,9 @@ const Homepage = (props) => { // Main Homepage Component
     </section>
 
 
-</main>
-    </Router>
-</Fragment>
+    </main>
+        </Router>
+    </Fragment>
     )
 }
 
