@@ -10,6 +10,10 @@ const Homepage = (props) => { // Main Homepage Component
         <Fragment>
             <Router>
 
+            <header className = "header">
+
+            </header>
+
             <section className = "section--home">
                 <div className = "home--grid">
 
