@@ -14,11 +14,13 @@ const reviewSchema = new mongoose.Schema({
     },
 
     username: {
-
+        type: String,
+        required: [true, 'Please provide your Username']
     },
 
     reason: {
-
+        type: String,
+        required: [true, "Please provide the reason for this review"]
     }
 });
 
