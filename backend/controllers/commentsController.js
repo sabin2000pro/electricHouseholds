@@ -38,7 +38,7 @@ module.exports.editComment = catchAsync(async (request, response, next) => {
     const id = request.params.id;
 
     if(!id) {
-
+        return response.status(404).json({status: "Fail", message: "Comment not found with that ID"})
     }
 
     if(request.method === 'PUT') {
