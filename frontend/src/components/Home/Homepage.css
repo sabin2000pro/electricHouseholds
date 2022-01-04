@@ -14,6 +14,16 @@ Main Color: #00b894
     grid-template-columns: 1fr 1fr;
 }
 
+.heading--primary {
+    font-size: 42px;
+    font-weight: 700;
+    line-height: 1.05;
+}
+
+.home--description {
+
+}
+
 .home-text-box {
 
 }
