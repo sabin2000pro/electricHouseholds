@@ -21,7 +21,7 @@ const Homepage = (props) => {
                 Reducing your peak electricity consumptions through the experimentation of two Fair Negotiation Algorithms. This is very important in order to reuse clean energy from green renewable sources.
             </p>
 
-            <Link className = "btn btn--full" to = '/'>Start Now</Link>
+            <Link className = "btn btn--full mgr-sm" to = '/'>Start Now</Link>
             <Link className = "btn btn--outline" to = '/'>Learn More!</Link>
 
             </div>

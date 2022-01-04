@@ -8,6 +8,10 @@ Main Color: #00b894
     padding: 280px 0;
 }
 
+.mgr-sm {
+    margin-right: 28px;
+}
+
 .home--grid {
     max-width: 1300px;
     margin: 0 auto;
