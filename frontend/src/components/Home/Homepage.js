@@ -6,6 +6,7 @@ import HomepageImg from '../images/homepage/homepageimg.jpg';
 import PeakElectricityImg from '../images/homepage/peakelectricity.jpg';
 import Electricity from '../images/homepage/electricity2.jpg';
 import Card from '../../UI/Card';
+import {motion, AnimatePresence} from 'framer-motion';
 
 const Homepage = (props) => { // Main Homepage Component
     return (
@@ -61,10 +62,17 @@ const Homepage = (props) => { // Main Homepage Component
     <h2 className = "heading--secondary">Peak Electricity Consumption</h2>
 
         <div className = "container grid grid--2-cols">
+        <AnimatePresence>
+
+    <motion.div exit = {{opacity: 0}} initial = {{opacity: 0}} animate = {{opacity: 1}}>
+
         <Card reverse = {true}>
             <h3 className = "heading--tertiary">The Problem</h3>
-            <p className = "electricity--description">Too many households are making use of their highly-powered electrical appliances at various hours during the day. This places a high demand on electricity consumption, therefore affecting the environment but also</p>
+            <p className = "electricity--description">Too many households are making use of their highly-powered electrical appliances at various hours during the day. This places a high demand on electricity consumption, therefore affecting the environment negatively but also impacting the electricity bills</p>
         </Card>
+
+        </motion.div>
+        </AnimatePresence>
 
         <img className = "electricity--img" src = {PeakElectricityImg} />
     </div>
@@ -75,7 +83,7 @@ const Homepage = (props) => { // Main Homepage Component
 
         <Card>
             <h3 className = "heading--tertiary reverse">The Solution</h3>
-            <p className = "electricity--description reverse">Too many households are making use of their highly-powered electrical appliances at various hours during the day. This places a high demand on electricity consumption, therefore affecting the environment but also</p>
+            <p className = "electricity--description reverse">The solution to this problem is.</p>
         </Card>
 
     </div>

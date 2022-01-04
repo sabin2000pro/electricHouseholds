@@ -46,7 +46,7 @@ Main Color: #00b894
 .heading--secondary {
     color: #1e7e68;
     text-align: center;
-    margin-top: -60px;
+    margin-top: -30px;
     font-size: 37px;
     margin-left: -30px;
 }
@@ -157,7 +157,7 @@ Main Color: #00b894
 }
 
 .container {
-    max-width: 1450px;
+    max-width: 1600px;
     margin: 0 auto;
 }
 
@@ -183,9 +183,10 @@ Main Color: #00b894
 }
 
 .electricity--img {
+    margin-left: 60px;
     width: 90%;
-    height: 90%;
-    margin-left: 100px;
+    margin-top: 40px;
+    margin-left: 20px;
 }
 
 h3:after {
@@ -195,15 +196,22 @@ h3:after {
    display: block;
    height: 5px;
    position: relative;
-   width: 150px;
-   margin-left: 175px;
+   width: 120px;
+   margin-left: 100px;
    margin-bottom: 40px;
 }
 
 .reverse {
     color: black;
+    font-weight: 600;
 }
 
 .secondary--img {
-    margin-left: 15px;
+    margin-left: 60px;
+    width: 90%;
+    margin-top: -100px;
+}
+
+.secondary--img:hover, .secondary--img:active {
+    background-color: black;
 }
