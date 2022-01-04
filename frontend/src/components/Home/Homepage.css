@@ -30,12 +30,18 @@ Main Color: #00b894
 }
 
 .heading--secondary {
-    color: white;
+    color: #1e7e68;
     text-align: center;
     margin-top: -60px;
     font-size: 32px;
     margin-left: -30px;
 }
+
+.heading--tertiary {
+    color: white;
+    text-align: center;
+}
+
 
 .mgr-sm {
     margin-right: 28px !important;
@@ -163,4 +169,9 @@ Main Color: #00b894
     margin-top: 30px;
     font-size: 28px;
     text-align: center;
+}
+
+.electricity--img {
+    width: 80%;
+    margin-left: 200px;
 }
