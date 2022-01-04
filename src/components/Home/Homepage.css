@@ -38,6 +38,7 @@ Main Color: #00b894
     border-radius: 150px;
     padding: 14px 28px;
     text-decoration: none;
+    transition: all 0.5s;
 }
 
 .home--img {
@@ -47,7 +48,6 @@ Main Color: #00b894
 .btn--full:link, .btn--full:visited {
     background-color: #218c74;
     color: white;
-    transition: all 0.2s;
 }
 
 .btn--full:active, .btn--full:hover {
@@ -62,5 +62,4 @@ Main Color: #00b894
 .btn--outline:hover, .btn--outline:active {
     background-color: #1e7e68;
     color: white;
-    box-shadow: inset 0 0 0 3px #fff;
 }
