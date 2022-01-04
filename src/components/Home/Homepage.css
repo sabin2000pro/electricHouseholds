@@ -3,6 +3,12 @@
 Main Color: #00b894
 */
 
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
 @keyframes moveInLeft {
     0% {
         opacity: 0;
@@ -43,6 +49,7 @@ Main Color: #00b894
 .home--grid {
     max-width: 1300px;
     margin: 0 auto;
+    padding: 0 32px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 96px;
