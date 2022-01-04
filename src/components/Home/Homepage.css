@@ -111,7 +111,6 @@ Main Color: #00b894
 
 .home--img {
     width: 100%;
-   
     animation: moveInLeft ease-out 1.4s;
 }
 
@@ -141,6 +140,9 @@ Main Color: #00b894
 .grid {
     display: grid;
     gap: 96px;
+}
+
+.grid--2-cols {
     grid-template-columns: repeat(2, 1fr);
 }
 
