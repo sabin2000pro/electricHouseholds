@@ -2,6 +2,7 @@ const Review = require('../../models/reviewsModel');
 const catchAsync = require('../../utils/catchAsync');
 const ok = 200;
 const created = 201;
+const noContent = 204;
 const badRequest = 400;
 const notFound = 404;
 const serverError = 500;
@@ -59,13 +60,15 @@ module.exports.deleteReview = catchAsync(async (request, response, next) => {
     }
 
     if(request.method === 'DELETE') {
-
+        await Review.findByIdAndDelete(id);
+        return response.status(noContent).json("Review Deleted");
     }
-    
+
 });
 
 module.exports.deleteAllReviews = catchAsync(async (request, response, next) => {
     if(request.method === 'DELETE') {
-
+        await Review.deleteMany();
+        return response.status('Reviews deleted');
     }
 })
