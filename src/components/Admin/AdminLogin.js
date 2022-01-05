@@ -11,7 +11,9 @@ const AdminLogin = (props) => { // Admin Login Component
     const [enteredEmail, setEmailAddress] = useState('');
     const [emailValid, setEmailValid] = useState(true);
     const [enteredPassword, setPassword] = useState('');
-    const [passwordValid, setPasswordValid] = useState(true);  
+    const [passwordValid, setPasswordValid] = useState(true); 
+    
+    const modalContent = 
 
     useEffect(() => {
         const authToken = localStorage.getItem("authToken");
@@ -31,10 +33,8 @@ const AdminLogin = (props) => { // Admin Login Component
             e.preventDefault();
 
             const {data} = await axios.post(`http://localhost:5200/api/v1/auth/login-admin`, {emailAddress: enteredEmail, password: enteredPassword});
-
             const authorizationToken = data.token;
             localStorage.setItem("authToken", authorizationToken);
-            alert('You are logged in');
             return history.push('/admin-dashboard');
           
         }   

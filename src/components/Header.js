@@ -20,7 +20,6 @@ const Header = (props) => {
 
         if(!authToken) {
             setIsLoggedIn(false); // Not logged in
-            
         }
 
         if(authToken) {
@@ -35,13 +34,7 @@ const Header = (props) => {
         <Router>
             <header className = "header">
                 <img src = {Logo} className = "img--logo"/>
-
-                {isLoggedIn ?
-                    <nav className = "main-nav">
-                        <ul className = "main-nav--list">
-
-                        </ul>
-                    </nav> :  <nav className = "main-nav">
+                <nav className = "main-nav">
                     <ul className = "main-nav--list">
 
                         <li><a className = "main-nav--link" href = "/home">Home</a></li>
@@ -52,6 +45,14 @@ const Header = (props) => {
                         <li><a className = "main-nav--link" href = "/contact">Contact Us</a></li>
                     </ul>
                 </nav>
+
+                {isLoggedIn ?
+                    <nav className = "main-nav">
+                        <ul className = "main-nav--list">
+
+                        </ul>
+
+                    </nav> : null
 }
                
         </header>

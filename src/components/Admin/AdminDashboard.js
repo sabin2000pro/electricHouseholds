@@ -10,11 +10,9 @@ const AdminDashboard = (props) => {
     }, []);
 
     const verifyAuthToken = () => {
+
         if(!localStorage.getItem("authToken")) {
-
             alert('You are not authorized to view this route. You are not logged in');
-
-
             return history.push('/home');
         }
     }
