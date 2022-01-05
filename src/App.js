@@ -7,6 +7,7 @@ import Header from './components/Header';
 import PreferencesHome from './components/Preferences/PreferencesHome';
 import AdminLogin from './components/Admin/AdminLogin';
 import AdminDashboard from './components/Admin/AdminDashboard';
+import ContactUs from './components/Contact/ContactHome';
 
 const App = () => {
 
@@ -19,8 +20,11 @@ const App = () => {
         <Route path = '/admin-register' component = {AdminRegister}/>
         <Route path = '/your-preferences' component = {PreferencesHome}/>
         <Route path = '/admin-login' component = {AdminLogin}/>
-        
+
         <Route path = '/admin-dashboard' component = {AdminDashboard}/>
+        <Route path = '/contact-us' component = {ContactUs} />
+
+
       </Router>
 
 

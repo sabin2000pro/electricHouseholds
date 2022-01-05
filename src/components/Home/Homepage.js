@@ -25,7 +25,7 @@ const Homepage = (props) => { // Main Homepage Component
 
                 
                 <a className = "btn btn--full mgr-sm" href = "#">Start Now</a>
-                <a className = "btn btn--outline" href = "#">Learn More!</a>
+                <a className = "btn btn--outline" href = "/about-us">About Us</a>
             </div>
 
             <div className = "home-img-box">
@@ -51,12 +51,12 @@ const Homepage = (props) => { // Main Homepage Component
         </motion.div>
         </AnimatePresence>
 
-        <img className = "electricity--img" src = {PeakElectricityImg} />
+        <img alt = "Nice turbine" className = "electricity--img" src = {PeakElectricityImg} />
     </div>
 
     <div className = "container grid grid--2-cols">
 
-    <img className = "electricity--img secondary--img" src = {Electricity} />
+    <img alt = "Secondary img" className = "electricity--img secondary--img" src = {Electricity} />
 
      <AnimatePresence>
 
