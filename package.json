@@ -1,7 +1,7 @@
 {
   "name": "frontend",
   "version": "0.1.0",
-  "proxy": "http://localhost:5370",
+  "proxy": "http://localhost:5200",
   "private": true,
   "dependencies": {
     "@babel/core": "^7.16.7",
