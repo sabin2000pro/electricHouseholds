@@ -121,18 +121,13 @@ const Homepage = (props) => { // Main Homepage Component
     </div>
     </section>
 
-    <section className = "section--algorithms">
-        <h2 className = "heading--secondary">Fair Negotiation Algorithms</h2>
-
-    </section>
-
     <footer className = "footer">
         <ul className = "footer--items">
-            <li className = "footer--item">Copyright All Rights Reserved</li>
+            <li className = "footer--item">Copyright All Rights Reserved - eHouseholds 2021</li>
            
         </ul>
+    
     </footer>
-
 
 
     </main>
