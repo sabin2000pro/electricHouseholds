@@ -32,8 +32,8 @@ const AdminRegister = (props) => {
          <Fragment>
             <Header />
 
-<section className = "section--home">
-        <div className = "home--grid">
+    <section className = "section--home">
+            <div className = "home--grid">
 
        <div className = "home-text-box">
 
@@ -45,10 +45,10 @@ const AdminRegister = (props) => {
         <a className = "btn btn--outline" href = "#">Learn More!</a>
     </div>
 
-    <div className = "home-img-box">
-        <img className = "home--img" alt = "Wind Turbing Image" src = {HomepageImg} />
+        <div className = "home-img-box">
+            <img className = "home--img" alt = "Wind Turbing Image" src = {HomepageImg} />
+        </div>
     </div>
-</div>
 
 </section>
 
