@@ -8,23 +8,29 @@ import axios from 'axios';
 
 const AdminRegister = (props) => {
     const [username, setUsername] = useState('');
-    const [usernameValid, setUsernameValid] = useState(false);
+    const [usernameValid, setUsernameValid] = useState(true);
 
     const [emailAddress, setEmailAddress] = useState('');
+    const [emailValid, setEmailValid] = useState(true);
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [formIsValid, setFormIsValid] = useState(false);
 
     const validateInput = function() {
-        return username.trim().length !== 0;
+        return username.trim().length !== 0 || emailAddress.trim().length !== 0 || password.trim().length !== 0 || confirmPassword.trim().length !== 0;
     }
 
-    const registerHandler = (event) => {
+    const registerHandler = (event) => { // Method that validates and sends data to DB
         try {
+
             event.preventDefault();
 
             if(validateInput) {
-                alert('Username field cannot be left empty');
+                alert('Fields Cannot be left empty');
+
+                setUsernameValid(false);
+                setEmailValid(false);
+                setUsername("");
             }
         
 
@@ -40,6 +46,7 @@ const AdminRegister = (props) => {
     }
 
     return (
+        
          <Fragment>
             <Header />
 
