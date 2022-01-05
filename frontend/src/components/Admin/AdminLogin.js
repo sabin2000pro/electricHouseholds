@@ -6,9 +6,7 @@ import HomepageImg from '../../components/images/homepage/homepageimg.jpg';
 import RegisterCard from './RegisterCard';
 
 const AdminLogin = (props) => { // Admin Login Component
-
     let history = useHistory();
-
     const [enteredEmail, setEmailAddress] = useState('');
     const [emailValid, setEmailValid] = useState(true);
     const [enteredPassword, setPassword] = useState('');
@@ -16,8 +14,10 @@ const AdminLogin = (props) => { // Admin Login Component
 
     const loginHandler = (e) => {
         try {
+            e.preventDefault();
 
-        } 
+          
+        }   
         
         catch(error) {
             if(error) {
@@ -31,24 +31,24 @@ const AdminLogin = (props) => { // Admin Login Component
     <Fragment>
         <Header />
 
-<section className = "section--home">
-        <div className = "home--grid">
+        <section className = "section--home">
+                    <div className = "home--grid">
 
-   <div className = "home-text-box">
+            <div className = "home-text-box">
 
 
-     <h1 className = "heading--primary">Admin Dashboard Login</h1>
-    <p className = "home--description">Login into the Dashboard in order to configure appliances.</p>
+                <h1 className = "heading--primary">Admin Dashboard Login</h1>
+                <p className = "home--description">Login into the Dashboard in order to configure appliances.</p>
 
-    <a className = "btn btn--full mgr-sm" href = "#">Start Now</a>
-    <a className = "btn btn--outline" href = "#">Learn More!</a>
-</div>
+                <a className = "btn btn--full mgr-sm" href = "#">Start Now</a>
+                <a className = "btn btn--outline" href = "#">Learn More!</a>
+            </div>
 
-    <div className = "home-img-box">
-        <img className = "home--img" alt = "Wind Turbing Image" src = {HomepageImg} />
-    </div>
-</div>
-</section>
+                <div className = "home-img-box">
+                    <img className = "home--img" alt = "Wind Turbing Image" src = {HomepageImg} />
+                </div>
+            </div>
+    </section>
 
 
 <section className = "section--login">
@@ -75,7 +75,7 @@ const AdminLogin = (props) => { // Admin Login Component
                    <Link className = "link--to" to = '/admin-login'>Reset Here!</Link>
 
                    <div className = "submit--container">
-                       <button className = "register--btn" type = "submit">Login</button>
+                       <button className = "login--btn" type = "submit">Login</button>
                    </div>
 
                 </form>

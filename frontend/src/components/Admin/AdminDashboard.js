@@ -1,10 +1,10 @@
-import React from 'react';
+import React, {useState, useEffect, useReducer, useContext} from 'react';
 
 
 const AdminDashboard = (props) => {
     return (
         <div>
-            
+            <h1>Your Admin Dashboard</h1>
         </div>
     )
 }
