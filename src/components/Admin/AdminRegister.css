@@ -14,7 +14,6 @@
     margin-top: 50px;
 }
 
-
 .register--form label {
     font-size: 24px;
     margin-left: 300px;
@@ -34,13 +33,29 @@
     align-items: center;
 }
 
+.username--box {
+    margin-top: -30px;
+    margin-left: -25px;
+}
+
 .email--box {
     margin-left: -20px;
     margin-top: 20px;
 }
 
+.email--box input {
+    padding: 2px 4px;
+    width: 200px;
+    margin-left: 10px;
+}
+
 .password--box {
     margin-top: 30px;
     margin-left: -20px;
-    
+}
+
+.register--btn {
+    align-items: center;
+    margin-top: 50px;
+    margin-left: 400px;
 }

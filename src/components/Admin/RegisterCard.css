@@ -4,9 +4,10 @@
     border-radius: 15px;
     padding: -140px -100px;
     box-shadow: 2px 2px 8px black;
-    height: 130%;
+    
     width: 100%;
     margin-left: 370px;
     margin-top: -20px;
     position: relative;
+    margin-bottom: 80px;
 }
