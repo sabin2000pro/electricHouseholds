@@ -58,9 +58,15 @@ const AdminRegister = (props) => {
                        <input type = "text"/>
                    </div>
 
+                   <div className = "confirmPassword--box">
+                       <label className = "confirm--lbl">Confirm Password</label>
+                   </div>
+
                    <div className = "submit--container">
                        <button className = "register--btn" type = "submit">Register Now</button>
                    </div>
+
+                
             
                 </form>
 
