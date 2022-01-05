@@ -39,7 +39,8 @@ const Homepage = (props) => { // Main Homepage Component
         <h2 className = "heading--secondary">Peak Electricity Consumption</h2>
 
     <div className = "container grid grid--2-cols">
-        <AnimatePresence>
+
+    <AnimatePresence>
 
     <motion.div exit = {{opacity: 0}} initial = {{opacity: 0}} animate = {{opacity: 1}}>
 
@@ -49,7 +50,7 @@ const Homepage = (props) => { // Main Homepage Component
         </Card>
 
         </motion.div>
-        </AnimatePresence>
+    </AnimatePresence>
 
         <img alt = "Nice turbine" className = "electricity--img" src = {PeakElectricityImg} />
     </div>
