@@ -6,12 +6,14 @@ import Preferences from '../components/Preferences/PreferencesList';
 import PrivateScreen from '../components/PrivateScreen';
 import PrivateRoute from './routing/PrivateRoute';
 import './Home/Homepage.css';
+import Logo from '../components/images/logo.png';
 
 const Header = (props) => {
     return (
         
         <Router>
             <header className = "header">
+                <img src = {Logo} className = "img--logo"/>
            
                 <nav className = "main-nav">
                     <ul className = "main-nav--list">
@@ -24,9 +26,7 @@ const Header = (props) => {
                     </ul>
                 </nav>
 
-        
-                
-            </header>
+        </header>
             </Router>
             
 

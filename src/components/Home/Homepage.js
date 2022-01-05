@@ -7,6 +7,7 @@ import Card from '../../UI/Card';
 import {motion, AnimatePresence} from 'framer-motion';
 import LoadBalance from '../images/homepage/loadbalance.jpg';
 import Header from '../Header';
+import Logo from '../images/logo.png'
 
 const Homepage = (props) => { // Main Homepage Component
     return (
@@ -17,10 +18,10 @@ const Homepage = (props) => { // Main Homepage Component
         <section className = "section--home">
                 <div className = "home--grid">
 
-            <div className = "home-text-box">
+               <div className = "home-text-box">
 
-    
-                 <h1 className = "heading--primary">eHouseolds</h1>
+
+                 <h1 className = "heading--primary">eHouseholds</h1>
                 <p className = "home--description">Reducing your peak electricity consumptions through the experimentation of two Fair Negotiation Algorithms. This is very important in order to reuse clean energy from green renewable sources. We are aiming to save the planet by limiting the usage of electrical appliances throughout various hours during the day.</p>
 
                 
@@ -100,7 +101,7 @@ const Homepage = (props) => { // Main Homepage Component
 
     <footer className = "footer">
         <ul className = "footer--items">
-            <li className = "footer--item">Copyright All Rights Reserved - eHouseholds 2021</li>
+            <li className = "footer--item">Copyright All Rights Reserved - eHouseholds Sabin Constantin Lungu - 2021</li>
         </ul>
     </footer>
 

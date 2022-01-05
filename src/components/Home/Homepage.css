@@ -73,9 +73,9 @@ Main Color: #00b894
     text-decoration: none;
     list-style: none;
     display: flex;
-    gap: 50px;
-    margin-left: 30px;
-    margin-top: 20px;
+    gap: 30px;
+    margin-top: 30px;
+    margin-right: 70px;
 }
 
 .main-nav--link {
@@ -306,4 +306,10 @@ h2::after {
 .algo--description {
     margin-left: 150px;
     margin-top: -100px;
+}
+
+.img--logo {
+    width: 7%;
+    margin-left: 120px;
+    margin-top: 100px;
 }
