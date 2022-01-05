@@ -44,6 +44,7 @@
     height: 35px;
     width: 250px;
     align-items: center;
+    text-align: center;
 }
 
 .username--box {
@@ -60,6 +61,7 @@
     padding: 2px 4px;
     width: 250px;
     margin-left: 10px;
+    text-align: center;
 }
 
 .password--box {
