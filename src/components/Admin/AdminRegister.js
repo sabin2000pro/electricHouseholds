@@ -8,17 +8,17 @@ import axios from 'axios';
 
 const AdminRegister = (props) => {
     let history = useHistory();
-    const [username, setUsername] = useState('');
+    const [enteredUsername, setUsername] = useState('');
     const [usernameValid, setUsernameValid] = useState(true);
 
-    const [emailAddress, setEmailAddress] = useState('');
+    const [enteredEmail, setEmailAddress] = useState('');
     const [emailValid, setEmailValid] = useState(true);
-    const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
+    const [enteredPassword, setPassword] = useState('');
+    const [enteredConfirmPassword, setConfirmPassword] = useState('');
     const [formIsValid, setFormIsValid] = useState(true);
 
     const validateInput = function() {
-        return username.trim().length !== 0 || emailAddress.trim().length !== 0 || password.trim().length !== 0 || confirmPassword.trim().length !== 0;
+        return enteredUsername.trim().length !== 0 || enteredEmail.trim().length !== 0 || enteredPassword.trim().length !== 0 || enteredConfirmPassword.trim().length !== 0;
     }
 
     const registerHandler = async (event) => { // Method that validates and sends data to DB
@@ -26,14 +26,14 @@ const AdminRegister = (props) => {
 
             event.preventDefault();
 
-            if(validateInput) {
-                alert('Fields Cannot be left empty');
-                setUsernameValid(false);
-                setEmailValid(false);
-                setUsername("");
-            }
+            // if(!validateInput) {
+            //     alert('Fields Cannot be left empty');
+            //     setUsernameValid(false);
+            //     setEmailValid(false);
+            //     setUsername("");
+            // }
 
-            const {data} = await axios.post(`http://localhost:5370/api/v1/auth/register-admin`, username, emailAddress, password);
+            const {data} = await axios.post(`http://localhost:5370/api/v1/auth/register-admin`, {username: enteredUsername, emailAddress: enteredEmail, password: enteredPassword, confirmPassword: enteredConfirmPassword});
             const authorizationToken = data.token; 
             
             localStorage.setItem("authToken", authorizationToken);
