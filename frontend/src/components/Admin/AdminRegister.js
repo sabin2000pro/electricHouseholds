@@ -11,13 +11,15 @@ const AdminRegister = (props) => {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [formIsValid, setFormIsValid] = useState(false);
 
-    const registerHandler = () => {
+    const registerHandler = (event) => {
         try {
-            
+            event.preventDefault();
         } 
         
         catch(err) {
-
+            if(err) {
+                
+            }
         }
 
 
