@@ -33,6 +33,7 @@ const AdminRegister = (props) => { // Admin Register Props
                 setUsernameValid(false);
                 setEmailValid(false);
                 setUsername("");
+                setEmailAddress("");
             }
 
             if(enteredPassword !== enteredConfirmPassword) {
@@ -49,17 +50,18 @@ const AdminRegister = (props) => { // Admin Register Props
         catch(err) {
 
             if(err) {
-                console.log(err);
+                return console.log(err);
             }
         }
     }
 
     const onBlurHandler = () => {
         setUsernameValid(true);
+        setEmailValid(true);
     }
 
     const invalidUsernameMsg = <p className = "err-msg">Invalid Username</p>
-    const invalidEmailMsg = <p className = "err-msg">Invalid E-mail Address</p>
+    const invalidEmailMsg = <p className = "err-msg">Invalid E-mail</p>
     const invalidPasswordMsg = <p className = "err-msg">Invalid Password</p>
 
     return (
@@ -110,6 +112,7 @@ const AdminRegister = (props) => { // Admin Register Props
                    <div className = "email--box">
                        <label className = "email--lbl">E-mail</label>
                        <input autoComplete = "off" value = {enteredEmail} onChange = {(e) => {setEmailAddress(e.target.value)}} placeholder = "Enter your E-mail" type = "text"/>
+                       {!emailValid && invalidEmailMsg}
                    </div>
 
                    <div className = "password--box">
