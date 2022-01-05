@@ -58,5 +58,22 @@
 .register--btn {
     align-items: center;
     margin-top: 50px;
-    margin-left: 400px;
+    margin-left: 350px;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 100px;
+    background-color: white;
+    text-decoration: none;
+    padding: 12px 32px;
+    font-size: 18px;
+    color: black;
+    font-weight: 600;
+    border-radius: 200px;
+    transition: all 0.2s;
+}
+
+.register--btn:hover {
+   background-color: #d3e8e3;
+   color: black;
+   box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.4);
 }

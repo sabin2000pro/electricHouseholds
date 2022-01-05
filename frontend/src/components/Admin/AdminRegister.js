@@ -11,6 +11,18 @@ const AdminRegister = (props) => {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [formIsValid, setFormIsValid] = useState(false);
 
+    const registerHandler = () => {
+        try {
+            
+        } 
+        
+        catch(err) {
+
+        }
+
+
+    }
+
     return (
          <Fragment>
             <Header />
@@ -67,7 +79,6 @@ const AdminRegister = (props) => {
                    </div>
 
                 
-            
                 </form>
 
               
