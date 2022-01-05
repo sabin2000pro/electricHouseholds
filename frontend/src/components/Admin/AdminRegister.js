@@ -86,23 +86,23 @@ const AdminRegister = (props) => {
 
                     <div className = "username--box">
                         <label>Username</label>
-                        <input placeholder = "Enter your Username" type = "text"/>
+                        <input value = {enteredUsername} onChange = {(e) => {setUsername(e.target.value)}} placeholder = "Enter your Username" type = "text"/>
                     </div>
 
                    <div className = "email--box">
                        <label className = "email--lbl">E-mail</label>
-                       <input placeholder = "Enter your E-mail" type = "text"/>
+                       <input value = {enteredEmail} onChange = {(e) => {setEmailAddress(e.target.value)}} placeholder = "Enter your E-mail" type = "text"/>
                    </div>
 
                    <div className = "password--box">
                        <label className = "password--lbl">Password</label>
-                       <input placeholder = "Enter your Password" required id = "password" type = "text"/>
+                       <input value = {enteredPassword} onChange = {(e) => {setPassword(e.target.value)}} placeholder = "Enter your Password" required id = "password" type = "text"/>
                    </div>
                    
 
                    <div className = "confirmPassword--box">
                        <label className = "confirm--lbl">Confirm Password</label>
-                       <input  placeholder = "Confirm your password" required id = "confirmPassword" type = "text"/>                   
+                       <input value = {enteredConfirmPassword} onChange = {(e) => {setConfirmPassword(e.target.value)}} placeholder = "Confirm your password" required id = "confirmPassword" type = "text"/>                   
                    </div>
 
                    <p className = "already--text">Already have an account with us?</p>
