@@ -6,6 +6,7 @@ import React, {useState} from 'react';
 import Header from './components/Header';
 import PreferencesHome from './components/Preferences/PreferencesHome';
 import AdminLogin from './components/Admin/AdminLogin';
+import AdminDashboard from './components/Admin/AdminDashboard';
 
 const App = () => {
 
@@ -18,6 +19,8 @@ const App = () => {
         <Route path = '/admin-register' component = {AdminRegister}/>
         <Route path = '/your-preferences' component = {PreferencesHome}/>
         <Route path = '/admin-login' component = {AdminLogin}/>
+        
+        <Route path = '/admin-dashboard' component = {AdminDashboard}/>
       </Router>
 
 
