@@ -80,6 +80,15 @@
     transition: all 0.2s;
 }
 
+.confirmPassword--box p {
+   color: white;
+   font-size: 14px;
+   text-align: center;
+   padding: 2px;
+   margin-top: 50px;
+   font-weight: 600;
+}
+
 .register--btn:hover {
    background-color: #d3e8e3;
    color: black;

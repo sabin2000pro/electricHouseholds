@@ -18,7 +18,7 @@ const AdminRegister = (props) => {
         
         catch(err) {
             if(err) {
-                
+
             }
         }
 
@@ -75,6 +75,8 @@ const AdminRegister = (props) => {
                    <div className = "confirmPassword--box">
                        <label className = "confirm--lbl">Confirm Password</label>
                        <input  placeholder = "Confirm your password" required id = "confirmPassword" type = "text"/>
+                       <p>Already have an account?</p>
+
                    </div>
 
                    <div className = "submit--container">
