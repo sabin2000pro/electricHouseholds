@@ -1,6 +1,8 @@
 import React, {Fragment, useState, useEffect} from 'react';
 import Header from '../../components/Header';
 import HomepageImg from '../../components/images/homepage/homepageimg.jpg';
+import RegisterCard from './RegisterCard.js'
+import './AdminRegister.css';
 
 const AdminRegister = (props) => {
     const [username, setUsername] = useState('');
@@ -25,6 +27,18 @@ const AdminRegister = (props) => {
         <img className = "home--img" alt = "Wind Turbing Image" src = {HomepageImg} />
     </div>
 </div>
+
+</section>
+
+<section className = "section--register">
+    <h2 className = "heading--secondary">Register Account</h2>
+
+    <div className = "container grid grid--2-cols">
+            <RegisterCard>
+                sfkk
+        </RegisterCard>
+    </div>    
+    
 
 
 </section>

@@ -1,4 +1,9 @@
-.card {
+.admin--description {
+    padding: 100px;
+   
+}
+
+.register--card {
     background-color: #1e7e68;
     color: #333;
     border-radius: 15px;
@@ -9,16 +14,4 @@
     margin-left: -150px;
     margin-top: -40px;
     position: relative;
-  }
-
-  .card--other {
-    background-color: #d3e8e3;
-    color: black;
-    border-radius: 15px;
-    
-    padding: 50px 10px;
-    height: 230%;
-    width: 130%;
-    position: relative;
-    margin-top: -190px;
-  }
+}

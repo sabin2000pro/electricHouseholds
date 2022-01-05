@@ -313,3 +313,7 @@ h3:after {
     display: flex;
     text-transform: uppercase;
 }
+
+.section--register {
+    padding: 96px 0;
+}
