@@ -44,12 +44,12 @@ const AdminLogin = (props) => { // Admin Login Component
 </section>
 
 
-<section className = "section--register">
+<section className = "section--login">
 
     <div className = "container grid grid--2-cols">
 
             <RegisterCard>
-                <h1 className = "heading--primary register">Admin Login</h1>
+                <h1 className = "heading--primary login">Admin Login</h1>
                 <form className = "register--form">
 
                 
