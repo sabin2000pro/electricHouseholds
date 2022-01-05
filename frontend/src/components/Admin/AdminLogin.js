@@ -17,7 +17,7 @@ const AdminLogin = (props) => { // Admin Login Component
         try {
             e.preventDefault();
 
-            const {data} = await axios.post(`http://localhost:5200/api/v1/auth/admin-login`, {emailAddress: enteredEmail, password: enteredPassword});
+            const {data} = await axios.post(`http://localhost:5200/api/v1/auth/login-admin`, {emailAddress: enteredEmail, password: enteredPassword});
 
             const authorizationToken = data.token;
             localStorage.setItem("authToken", authorizationToken);
