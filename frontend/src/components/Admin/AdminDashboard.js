@@ -16,9 +16,9 @@ const AdminDashboard = (props) => {
         }
     }
 
-    const logoutHandler = () => {
+    const logoutHandler = () => { // Logout Handler Function
         localStorage.removeItem("authToken"); // Remove auth token from local storage
-        history.push('/admin-login');
+        history.push('/admin-login'); // Redirect to Login
         
         return window.location.reload(false);
     }
