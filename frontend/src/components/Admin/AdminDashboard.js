@@ -19,6 +19,7 @@ const AdminDashboard = (props) => {
     const logoutHandler = () => {
         localStorage.removeItem("authToken"); // Remove auth token from local storage
         history.push('/admin-login');
+        
         return window.location.reload(false);
     }
 
