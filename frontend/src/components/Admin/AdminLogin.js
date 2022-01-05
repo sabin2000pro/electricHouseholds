@@ -13,7 +13,24 @@ const AdminLogin = (props) => { // Admin Login Component
     const [enteredPassword, setPassword] = useState('');
     const [passwordValid, setPasswordValid] = useState(true);  
 
+    useEffect(() => {
+        const authToken = localStorage.getItem("authToken");
+        return checkToken(authToken);
+    }, []);
+
+    const checkToken = (authToken) => {
+
+         if(authToken) {
+             return history.push('/admin-dashboard');
+         }
+
+         if(!authToken) {
+            return history.push('/home');
+         }
+    }
+
     const loginHandler = async (e) => {
+        
         try {
             e.preventDefault();
 
