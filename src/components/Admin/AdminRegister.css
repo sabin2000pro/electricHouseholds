@@ -4,6 +4,7 @@
 
 .register--form {
     padding: 20px;
+    margin-top: 30px;
     display: inline-block;
 }
 
@@ -11,19 +12,9 @@
     color: white;
     text-align: center;
     font-size: 40px;
-    margin-top: 50px;
-}
-
-h1:after {
-    background: none repeat scroll 0 0 #d3e8e3;
-   bottom: -10px;
-   content: "";
-   display: block;
-   height: 5px;
-   position: relative;
-   width: 150px;
-   margin-left: 400px;
-   margin-bottom: 40px;    
+    padding: 90px -0;
+    margin-left: 50px;
+    margin-bottom: -40px;
 }
 
 .register--form label {
@@ -59,7 +50,6 @@ h1:after {
     margin-top: -30px;
     margin-left: -25px;
 }
-
 
 .email--box input {
     padding: 2px 4px;

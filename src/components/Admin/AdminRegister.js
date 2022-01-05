@@ -30,6 +30,7 @@ const AdminRegister = (props) => {
             event.preventDefault();
 
             if(!validateInput) {
+
                 alert('Fields Cannot be left empty');
                 setUsernameValid(false);
                 setEmailValid(false);
@@ -42,7 +43,7 @@ const AdminRegister = (props) => {
                 setFormIsValid(false);
             }
 
-            const {data} = await axios.post(`http://localhost:5200/api/v1/auth/register-admin`, {username: enteredUsername, emailAddress: enteredEmail, password: enteredPassword, confirmPassword: enteredConfirmPassword});
+            const { data } = await axios.post(`http://localhost:5200/api/v1/auth/register-admin`, {username: enteredUsername, emailAddress: enteredEmail, password: enteredPassword, confirmPassword: enteredConfirmPassword});
             alert('Regiser success');
 
             return history.push('/home'); // Redirect home
@@ -63,21 +64,22 @@ const AdminRegister = (props) => {
             <Header />
 
     <section className = "section--home">
-            <div className = "home--grid">
+        <div className = "home--grid">
 
        <div className = "home-text-box">
 
 
          <h1 className = "heading--primary">Admin Dashboard Registration</h1>
-        <p className = "home--description">If you wish to have access to the Admin Dashboard. Please Register an account with us below and explore our options.</p>
+        <p className = "home--description">If you wish to register an account with us please fill out the form below.</p>
 
         <a className = "btn btn--full mgr-sm" href = "#">Start Now</a>
-        <a className = "btn btn--outline" href = "#">Learn More!</a>
-    </div>
+        <a className = "btn btn--outline" href = "#">About us!</a>
+     </div>
 
         <div className = "home-img-box">
             <img className = "home--img" alt = "Wind Turbing Image" src = {HomepageImg} />
         </div>
+
     </div>
 
 </section>
@@ -86,6 +88,9 @@ const AdminRegister = (props) => {
 
     <div className = "container grid grid--2-cols">
 
+        <AnimatePresence>
+       
+        <motion.div exit = {{opacity: 0}} initial = {{opacity: 0}} animate = {{opacity: 1}}>
 
             <RegisterCard>
                 <h1 className = "heading--primary register">Admin Register</h1>
@@ -122,17 +127,19 @@ const AdminRegister = (props) => {
                 </form>
             
           </RegisterCard>
+         </motion.div> 
+          </AnimatePresence>
           
     </div>    
 
-</section>
+        </section>
 
-<footer className = "footer">
-        <ul className = "footer--items">
-            <li className = "footer--item">Copyright All Rights Reserved - eHouseholds Sabin Constantin Lungu - 2021</li>
-        </ul>
-    </footer>
-         </Fragment>
+        <footer className = "footer">
+                <ul className = "footer--items">
+                    <li className = "footer--item">Copyright All Rights Reserved - eHouseholds Sabin Constantin Lungu - 2021</li>
+                </ul>
+            </footer>
+                </Fragment>
     )
 }
 
