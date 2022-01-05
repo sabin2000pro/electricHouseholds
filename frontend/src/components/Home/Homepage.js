@@ -32,7 +32,6 @@ const Homepage = (props) => { // Main Homepage Component
             <div className = "home-img-box">
                 <img className = "home--img" alt = "Wind Turbing Image" src = {HomepageImg} />
             </div>
-
         </div>
     </section>
 
@@ -88,7 +87,6 @@ const Homepage = (props) => { // Main Homepage Component
         <p className = "load--description reverse">The solution to this problem is to disperse the usage of household appliances by submitting when you would like to run your electrical appliance. However, you can only run your chosen appliance for a maximum of 3 hours per day.</p>
     </div>
     
-    
     <div className = "container grid grid--2-cols">
         <p className = "load--heading--second">Problem Solution</p>    
     </div>
@@ -97,7 +95,10 @@ const Homepage = (props) => { // Main Homepage Component
         <p className = "load--description--second reverse">The solution to this problem is to disperse the usage of household appliances by submitting when you would like to run your electrical appliance. However, you can only run your chosen appliance for a maximum of 3 hours per day.</p>
         <img className = "electricity--img secondary--img load--img" src = {LoadBalance} />
     </div>
+
     </section>
+
+   
 
     <footer className = "footer">
         <ul className = "footer--items">
