@@ -3,6 +3,7 @@ import Header from '../../components/Header';
 import HomepageImg from '../../components/images/homepage/homepageimg.jpg';
 import RegisterCard from './RegisterCard.js'
 import './AdminRegister.css';
+import { Link } from 'react-router-dom';
 
 const AdminRegister = (props) => {
     const [username, setUsername] = useState('');
@@ -71,12 +72,11 @@ const AdminRegister = (props) => {
                        <label className = "password--lbl">Password</label>
                        <input placeholder = "Enter your Password" required id = "password" type = "text"/>
                    </div>
+                   
 
                    <div className = "confirmPassword--box">
                        <label className = "confirm--lbl">Confirm Password</label>
-                       <input  placeholder = "Confirm your password" required id = "confirmPassword" type = "text"/>
-                       <p>Already have an account?</p>
-
+                       <input  placeholder = "Confirm your password" required id = "confirmPassword" type = "text"/>                       
                    </div>
 
                    <div className = "submit--container">
