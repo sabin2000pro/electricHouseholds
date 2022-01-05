@@ -2,7 +2,7 @@ import React, {useState, Fragment} from 'react';
 import Header from '../../components/Header';
 import HomepageImg from '../../components/images/homepage/homepageimg.jpg';
 
-const ContactHome = () => {
+const ContactHome = () => { // Contact Us Home Page
 
     return (
         <Fragment>
