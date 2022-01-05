@@ -2,12 +2,16 @@
     padding: 100px;
 }
 
+.section--login {
+    padding: 100px 0;
+}
+
 .register--form {
     padding: 20px;
     display: inline-block;
 }
 
-.register {
+.login {
     color: white;
     text-align: center;
     font-size: 40px;
