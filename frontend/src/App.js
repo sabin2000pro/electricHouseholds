@@ -1,15 +1,21 @@
 import './App.css';
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Homepage from './components/Home/Homepage';
+import AdminRegister from './components/Admin/AdminRegister';
 import React, {useState} from 'react';
-import HomeData from './components/data/Home.json';
+import Header from './components/Header';
 
 const App = () => {
-  const [homeData, setHomeData] = useState(HomeData);
 
   return (
 
-    <div className="App">
-       <Homepage data = {homeData} />
+    <div className = "App">
+      <Router>
+        <Route path='/home' component={Homepage} />
+        <Route path = '/admin-register' component = {AdminRegister}/>
+      </Router>
+
+
     </div>
     
   );

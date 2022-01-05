@@ -1,10 +1,10 @@
-import React from 'react'
+import React, {Fragment} from 'react'
 
-const AdminRegister = () => {
+const AdminRegister = (props) => {
     return (
-        <div>
-            
-        </div>
+         <Fragment>
+            <h1>Admin Register Page</h1>
+         </Fragment>
     )
 }
 

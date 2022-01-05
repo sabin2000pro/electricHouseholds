@@ -1,6 +1,4 @@
 import React, {Fragment} from 'react';
-import Navigation from '../Navigation';
-import {BrowserRouter as Router, Link} from 'react-router-dom'
 import './Homepage.css';
 import HomepageImg from '../images/homepage/homepageimg.jpg';
 import PeakElectricityImg from '../images/homepage/peakelectricity.jpg';
@@ -8,47 +6,26 @@ import Electricity from '../images/homepage/electricity2.jpg';
 import Card from '../../UI/Card';
 import {motion, AnimatePresence} from 'framer-motion';
 import LoadBalance from '../images/homepage/loadbalance.jpg';
+import Header from '../Header';
 
 const Homepage = (props) => { // Main Homepage Component
     return (
 
         <Fragment>
-            <Router>
-
-            <header className = "header">
-                <nav className = "main-nav">
-                    <ul className = "main-nav--list">
-
-                        <Link className = 'main-nav--link' to = '/'>Home</Link>
-                        <Link className = 'main-nav--link' to = '/'>Admin Register</Link>
-                        <Link className = 'main-nav--link' to = '/'>Your Preferences</Link>
-                        <Link className = 'main-nav--link' to = '/'>Fair Negotiations</Link>
-                        <Link className = 'main-nav--link' to = '/'>Contact Us</Link>
-                    </ul>
-                </nav>
-
-            </header>
-
-        <main>
+            <Header />
 
         <section className = "section--home">
                 <div className = "home--grid">
 
             <div className = "home-text-box">
 
-                {props.data.map((data, key) => {
-                    return <div key = {key}>
+    
+                 <h1 className = "heading--primary">eHouseolds</h1>
+                <p className = "home--description">Reducing your peak electricity consumptions through the experimentation of two Fair Negotiation Algorithms. This is very important in order to reuse clean energy from green renewable sources. We are aiming to save the planet by limiting the usage of electrical appliances throughout various hours during the day.</p>
 
-                         <h1 className = "heading--primary">{data.title}</h1>
-                        <p className = "home--description">{data.description}</p>
-
-                    </div>
-                })}
-
-                <Link className = "btn btn--full mgr-sm" to = '/'>Start Now</Link>
-            <Link className = "btn btn--outline" to = '/'>Learn More!</Link>
-         
-
+                
+                <a className = "btn btn--full mgr-sm" href = "#">Start Now</a>
+                <a className = "btn btn--outline" href = "#">Learn More!</a>
             </div>
 
             <div className = "home-img-box">
@@ -124,14 +101,10 @@ const Homepage = (props) => { // Main Homepage Component
     <footer className = "footer">
         <ul className = "footer--items">
             <li className = "footer--item">Copyright All Rights Reserved - eHouseholds 2021</li>
-           
         </ul>
-    
     </footer>
 
-
-    </main>
-        </Router>
+       
     </Fragment>
     )
 }
