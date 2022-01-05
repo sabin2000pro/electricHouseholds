@@ -26,12 +26,12 @@ const AdminRegister = (props) => {
 
             event.preventDefault();
 
-            // if(!validateInput) {
-            //     alert('Fields Cannot be left empty');
-            //     setUsernameValid(false);
-            //     setEmailValid(false);
-            //     setUsername("");
-            // }
+            if(!validateInput) {
+                alert('Fields Cannot be left empty');
+                setUsernameValid(false);
+                setEmailValid(false);
+                setUsername("");
+            }
 
             const {data} = await axios.post(`http://localhost:5200/api/v1/auth/register-admin`, {username: enteredUsername, emailAddress: enteredEmail, password: enteredPassword, confirmPassword: enteredConfirmPassword});
             const authorizationToken = data.token; 

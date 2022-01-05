@@ -119,5 +119,5 @@ module.exports.updatePassword = catchAsync(async(request, response, next) => {
 const sendToken = (admin, status, response) => { // Sends back the JWT token
      const token = admin.generateResetPasswordToken();
 
-     return response.status(status).json(token);
+     return response.status(status).json({token});
 }
