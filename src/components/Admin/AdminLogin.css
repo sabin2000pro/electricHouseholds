@@ -74,10 +74,11 @@
 }
 
 
-.register--btn {
+.login--btn {
     align-items: center;
     margin-top: 50px;
-    margin-left: 350px;
+    margin-left: 400px;
+    width: 150px;
     border: none;
     cursor: pointer;
     margin-bottom: 100px;
