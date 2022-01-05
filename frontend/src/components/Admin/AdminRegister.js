@@ -34,7 +34,7 @@ const AdminRegister = (props) => {
 </section>
 
 <section className = "section--register">
-    
+
     <div className = "container grid grid--2-cols">
 
             <RegisterCard>
@@ -55,8 +55,14 @@ const AdminRegister = (props) => {
                        <label className = "password--lbl">Password</label>
                        <input type = "text"/>
                    </div>
-                   
+
+                   <div className = "submit--container">
+                       <button className = "register--btn" type = "submit">Register Now</button>
+                   </div>
+            
                 </form>
+
+              
 
           </RegisterCard>
     </div>    
