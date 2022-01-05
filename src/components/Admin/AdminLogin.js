@@ -23,14 +23,10 @@ const AdminLogin = (props) => { // Admin Login Component
          if(authToken) {
              return history.push('/admin-dashboard');
          }
-
-         if(!authToken) {
-            return history.push('/home');
-         }
     }
 
     const loginHandler = async (e) => {
-        
+
         try {
             e.preventDefault();
 
