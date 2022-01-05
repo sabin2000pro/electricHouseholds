@@ -14,26 +14,29 @@ const AdminRegister = (props) => {
     const [emailValid, setEmailValid] = useState(true);
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-    const [formIsValid, setFormIsValid] = useState(false);
+    const [formIsValid, setFormIsValid] = useState(true);
 
     const validateInput = function() {
         return username.trim().length !== 0 || emailAddress.trim().length !== 0 || password.trim().length !== 0 || confirmPassword.trim().length !== 0;
     }
 
-    const registerHandler = (event) => { // Method that validates and sends data to DB
+    const registerHandler = async (event) => { // Method that validates and sends data to DB
         try {
 
             event.preventDefault();
 
             if(validateInput) {
                 alert('Fields Cannot be left empty');
-
                 setUsernameValid(false);
                 setEmailValid(false);
                 setUsername("");
             }
-        
 
+            const {data} = await axios.post(`http://localhost:5370/api/v1/auth/register-admin`, username, emailAddress, password);
+            const authorizationToken = data.token; 
+            
+            localStorage.setItem("authToken", authorizationToken);
+            alert('Regiser success');
         } 
         
         catch(err) {
@@ -46,7 +49,7 @@ const AdminRegister = (props) => {
     }
 
     return (
-        
+
          <Fragment>
             <Header />
 
@@ -100,6 +103,7 @@ const AdminRegister = (props) => {
                    </div>
 
                    <p className = "already--text">Already have an account with us?</p>
+                   <Link className = "link--to" to = '/admin-login'>Login Now!</Link>
 
                    <div className = "submit--container">
                        <button className = "register--btn" type = "submit">Register Now</button>
