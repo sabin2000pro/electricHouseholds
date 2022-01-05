@@ -28,6 +28,12 @@
     text-align: center;
  }
 
+ .confirmPassword--box {
+    display: inline-block;
+    margin-left: -111px;
+ }
+
+
 .register--form input {
     color: black;
     margin-top: 50px;
@@ -80,15 +86,6 @@
     transition: all 0.2s;
 }
 
-.confirmPassword--box p {
-   color: white;
-   font-size: 14px;
-   text-align: center;
-   padding: 2px;
-   margin-top: 50px;
-   font-weight: 600;
-}
-
 .register--btn:hover {
    background-color: #d3e8e3;
    color: black;
@@ -97,4 +94,14 @@
 
 input[type=submit]:hover {
     background-color: #45a049;
+  }
+
+.login--link {
+      list-style: none;
+      text-decoration: none;
+      text-align: center;
+      margin-left: 200px;
+      color: white;
+      font-weight: 600;
+      font-size: 24px;
   }
