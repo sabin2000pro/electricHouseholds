@@ -34,8 +34,7 @@ const AdminRegister = (props) => {
 </section>
 
 <section className = "section--register">
-    <h2 className = "heading--secondary">Register Account</h2>
-
+    
     <div className = "container grid grid--2-cols">
 
             <RegisterCard>
@@ -53,7 +52,8 @@ const AdminRegister = (props) => {
                    </div>
 
                    <div className = "password--box">
-                       
+                       <label className = "password--lbl">Password</label>
+                       <input type = "text"/>
                    </div>
                    
                 </form>
