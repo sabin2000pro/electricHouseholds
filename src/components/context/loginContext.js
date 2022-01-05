@@ -1,1 +1,5 @@
-import React, {useContext} from 'react';
+import React, {createContext} from 'react';
+
+export const LoginContext = createContext({ // The Login Context
+
+})
