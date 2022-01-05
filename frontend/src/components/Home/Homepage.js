@@ -33,11 +33,11 @@ const Homepage = (props) => { // Main Homepage Component
                 <img className = "home--img" alt = "Wind Turbing Image" src = {HomepageImg} />
             </div>
         </div>
+        
     </section>
 
     <section className = "section--electricity">
-
-    <h2 className = "heading--secondary">Peak Electricity Consumption</h2>
+        <h2 className = "heading--secondary">Peak Electricity Consumption</h2>
 
     <div className = "container grid grid--2-cols">
         <AnimatePresence>
