@@ -1,4 +1,4 @@
-import React, {Fragment, useState, useEffect, useRef} from 'react';
+import React, {Fragment, useState, useEffect, useRef, useContext} from 'react';
 import Header from '../../components/Header';
 import HomepageImg from '../../components/images/homepage/homepageimg.jpg';
 import RegisterCard from './RegisterCard.js'
@@ -8,9 +8,7 @@ import axios from 'axios';
 
 const AdminRegister = (props) => {
     let history = useHistory();
-    const usernameRef = useRef();
-    const emailRef = useRef();
-
+   
     const [enteredUsername, setUsername] = useState('');
     const [usernameValid, setUsernameValid] = useState(true);
 
@@ -116,9 +114,7 @@ const AdminRegister = (props) => {
                        <button className = "register--btn" type = "submit">Register Now</button>
                    </div>
 
-                
                 </form>
-
             
           </RegisterCard>
           
