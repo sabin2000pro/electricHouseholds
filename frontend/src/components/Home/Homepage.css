@@ -257,10 +257,42 @@ h3:after {
 }
 
 .load--img {
-    margin-top: -600px;
+    margin-top: -590px;
+    width: 80%;
+}
+
+.section--algorithms {
+    padding: 96px 0;
+}
+
+h2::after {
+  background: none repeat scroll 0 0 #d3e8e3;
+   bottom: -10px;
+   content: "";
+   display: block;
+   left: 660px;
+   height: 5px;
+   position: relative;
+   width: 150px;
+   margin-left: 180px;
+   margin-bottom: 40px;
 }
 
 .footer {
     background-color: #1e7e68;
-    padding: 48px 0;
+    padding: 54px 0;
+}
+
+.footer ul {
+    display: flex;
+    text-align: center;
+    margin: 0 auto;
+    color: white;
+    margin-left: 150px;
+    list-style: none;
+}
+
+.footer--item {
+    text-align: center;
+    font-weight: 600;
 }

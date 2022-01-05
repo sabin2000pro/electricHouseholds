@@ -118,13 +118,18 @@ const Homepage = (props) => { // Main Homepage Component
     <div className = "container grid grid--2-cols">
         <p className = "load--description--second reverse">The solution to this problem is to disperse the usage of household appliances by submitting when you would like to run your electrical appliance. However, you can only run your chosen appliance for a maximum of 3 hours per day.</p>
         <img className = "electricity--img secondary--img load--img" src = {LoadBalance} />
-
     </div>
     </section>
 
+    <section className = "section--algorithms">
+        <h2 className = "heading--secondary">Fair Negotiation Algorithms</h2>
+
+    </section>
+
     <footer className = "footer">
-        <ul>
-            <li>Home</li>
+        <ul className = "footer--items">
+            <li className = "footer--item">Copyright All Rights Reserved</li>
+           
         </ul>
     </footer>
 
