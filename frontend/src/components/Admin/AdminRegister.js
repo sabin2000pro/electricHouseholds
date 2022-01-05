@@ -59,17 +59,17 @@ const AdminRegister = (props) => {
 
                     <div className = "username--box">
                         <label>Username</label>
-                        <input type = "text"/>
+                        <input placeholder = "Enter your Username" type = "text"/>
                     </div>
 
                    <div className = "email--box">
                        <label className = "email--lbl">E-mail</label>
-                       <input  placeholder = "Confirm your E-mail Address" type = "text"/>
+                       <input placeholder = "Enter your E-mail Address" type = "text"/>
                    </div>
 
                    <div className = "password--box">
                        <label className = "password--lbl">Password</label>
-                       <input required id = "password" type = "text"/>
+                       <input placeholder = "Enter your Password" required id = "password" type = "text"/>
                    </div>
 
                    <div className = "confirmPassword--box">
