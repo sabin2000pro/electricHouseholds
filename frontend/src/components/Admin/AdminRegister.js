@@ -33,13 +33,13 @@ const AdminRegister = (props) => {
             //     setUsername("");
             // }
 
-            const {data} = await axios.post(`http://localhost:5370/api/v1/auth/register-admin`, {username: enteredUsername, emailAddress: enteredEmail, password: enteredPassword, confirmPassword: enteredConfirmPassword});
+            const {data} = await axios.post(`http://localhost:5200/api/v1/auth/register-admin`, {username: enteredUsername, emailAddress: enteredEmail, password: enteredPassword, confirmPassword: enteredConfirmPassword});
             const authorizationToken = data.token; 
             
             localStorage.setItem("authToken", authorizationToken);
             alert('Regiser success');
 
-            return history.push('/'); // Redirect home
+            return history.push('/home'); // Redirect home
         } 
         
         catch(err) {
