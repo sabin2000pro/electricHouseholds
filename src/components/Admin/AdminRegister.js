@@ -76,8 +76,10 @@ const AdminRegister = (props) => {
 
                    <div className = "confirmPassword--box">
                        <label className = "confirm--lbl">Confirm Password</label>
-                       <input  placeholder = "Confirm your password" required id = "confirmPassword" type = "text"/>                       
+                       <input  placeholder = "Confirm your password" required id = "confirmPassword" type = "text"/>                   
                    </div>
+
+                   <p className = "already--text">Already have an account with us?</p>
 
                    <div className = "submit--container">
                        <button className = "register--btn" type = "submit">Register Now</button>
