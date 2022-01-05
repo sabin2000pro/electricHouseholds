@@ -13,8 +13,6 @@ const AdminLogin = (props) => { // Admin Login Component
     const [enteredPassword, setPassword] = useState('');
     const [passwordValid, setPasswordValid] = useState(true); 
     
-    const modalContent = 
-
     useEffect(() => {
         const authToken = localStorage.getItem("authToken");
         return checkToken(authToken);
@@ -44,7 +42,6 @@ const AdminLogin = (props) => { // Admin Login Component
             if(error) {
                 return console.log(error);
             }
-
         }  
     }
     
