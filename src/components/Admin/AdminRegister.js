@@ -3,10 +3,11 @@ import Header from '../../components/Header';
 import HomepageImg from '../../components/images/homepage/homepageimg.jpg';
 import RegisterCard from './RegisterCard.js'
 import './AdminRegister.css';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 const AdminRegister = (props) => {
+    let history = useHistory();
     const [username, setUsername] = useState('');
     const [usernameValid, setUsernameValid] = useState(true);
 
@@ -37,6 +38,8 @@ const AdminRegister = (props) => {
             
             localStorage.setItem("authToken", authorizationToken);
             alert('Regiser success');
+
+            return history.push('/'); // Redirect home
         } 
         
         catch(err) {
