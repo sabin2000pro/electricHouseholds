@@ -7,8 +7,7 @@ import { Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
 import {motion, AnimatePresence} from 'framer-motion';
 
-
-const AdminRegister = (props) => {
+const AdminRegister = (props) => { // Admin Register Props
     let history = useHistory();
    
     const [enteredUsername, setUsername] = useState('');
@@ -29,12 +28,10 @@ const AdminRegister = (props) => {
 
             event.preventDefault();
 
-            if(!validateInput) {
-
+            if(validateInput) {
                 alert('Fields Cannot be left empty');
                 setUsernameValid(false);
                 setEmailValid(false);
-                
                 setUsername("");
             }
 
@@ -55,8 +52,15 @@ const AdminRegister = (props) => {
                 console.log(err);
             }
         }
-
     }
+
+    const onBlurHandler = () => {
+        setUsernameValid(true);
+    }
+
+    const invalidUsernameMsg = <p className = "err-msg">Invalid Username</p>
+    const invalidEmailMsg = <p className = "err-msg">Invalid E-mail Address</p>
+    const invalidPasswordMsg = <p className = "err-msg">Invalid Password</p>
 
     return (
 
@@ -94,27 +98,29 @@ const AdminRegister = (props) => {
 
             <RegisterCard>
                 <h1 className = "heading--primary register">Admin Register</h1>
-                <form onSubmit = {registerHandler} className = "register--form">
+                <form autoComplete = "false" onSubmit = {registerHandler} className = "register--form">
 
                     <div className = "username--box">
                         <label>Username</label>
-                        <input value = {enteredUsername} onChange = {(e) => {setUsername(e.target.value)}} placeholder = "Enter your Username" type = "text"/>
+                        <input autoComplete = "off" onBlur = {onBlurHandler} value = {enteredUsername} onChange = {(e) => {setUsername(e.target.value)}} placeholder = "Enter your Username" type = "text"/>
+                        {!usernameValid && invalidUsernameMsg}
+
                     </div>
 
                    <div className = "email--box">
                        <label className = "email--lbl">E-mail</label>
-                       <input value = {enteredEmail} onChange = {(e) => {setEmailAddress(e.target.value)}} placeholder = "Enter your E-mail" type = "email"/>
+                       <input autoComplete = "off" value = {enteredEmail} onChange = {(e) => {setEmailAddress(e.target.value)}} placeholder = "Enter your E-mail" type = "text"/>
                    </div>
 
                    <div className = "password--box">
                        <label className = "password--lbl">Password</label>
-                       <input value = {enteredPassword} onChange = {(e) => {setPassword(e.target.value)}} placeholder = "Enter your Password" required id = "password" type = "password"/>
+                       <input autoComplete = "off" value = {enteredPassword} onChange = {(e) => {setPassword(e.target.value)}} placeholder = "Enter your Password" required id = "password" type = "text"/>
                    </div>
                    
 
                    <div className = "confirmPassword--box">
                        <label className = "confirm--lbl">Confirm Password</label>
-                       <input value = {enteredConfirmPassword} onChange = {(e) => {setConfirmPassword(e.target.value)}} placeholder = "Confirm your password" required id = "confirmPassword" type = "password"/>                   
+                       <input autoComplete = "off" value = {enteredConfirmPassword} onChange = {(e) => {setConfirmPassword(e.target.value)}} placeholder = "Confirm your password" required id = "confirmPassword" type = "password"/>                   
                    </div>
 
                    <p className = "already--text">Already have an account with us?</p>
