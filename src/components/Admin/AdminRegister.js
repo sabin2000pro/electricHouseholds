@@ -4,6 +4,7 @@ import HomepageImg from '../../components/images/homepage/homepageimg.jpg';
 import RegisterCard from './RegisterCard.js'
 import './AdminRegister.css';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const AdminRegister = (props) => {
     const [username, setUsername] = useState('');
@@ -15,11 +16,12 @@ const AdminRegister = (props) => {
     const registerHandler = (event) => {
         try {
             event.preventDefault();
+            console.log(`In the register handler `);
         } 
         
         catch(err) {
             if(err) {
-
+                console.log(err);
             }
         }
 
@@ -56,7 +58,7 @@ const AdminRegister = (props) => {
 
             <RegisterCard>
                 <h1 className = "heading--primary register">Admin Register</h1>
-                <form className = "register--form">
+                <form onSubmit = {registerHandler} className = "register--form">
 
                     <div className = "username--box">
                         <label>Username</label>
