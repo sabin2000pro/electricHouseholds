@@ -52,7 +52,7 @@ const AdminRegister = (props) => {
     <div className = "container grid grid--2-cols">
 
             <RegisterCard>
-                <h1 className = "heading--primary register">Register Below</h1>
+                <h1 className = "heading--primary register">Admin Register</h1>
                 <form className = "register--form">
 
                     <div className = "username--box">
@@ -62,16 +62,17 @@ const AdminRegister = (props) => {
 
                    <div className = "email--box">
                        <label className = "email--lbl">E-mail</label>
-                       <input type = "text"/>
+                       <input  placeholder = "Confirm your E-mail Address" type = "text"/>
                    </div>
 
                    <div className = "password--box">
                        <label className = "password--lbl">Password</label>
-                       <input type = "text"/>
+                       <input required id = "password" type = "text"/>
                    </div>
 
                    <div className = "confirmPassword--box">
                        <label className = "confirm--lbl">Confirm Password</label>
+                       <input  placeholder = "Confirm your password" required id = "confirmPassword" type = "text"/>
                    </div>
 
                    <div className = "submit--container">
@@ -81,14 +82,18 @@ const AdminRegister = (props) => {
                 
                 </form>
 
-              
-
+            
           </RegisterCard>
+          
     </div>    
-    
-
 
 </section>
+
+<footer className = "footer">
+        <ul className = "footer--items">
+            <li className = "footer--item">Copyright All Rights Reserved - eHouseholds Sabin Constantin Lungu - 2021</li>
+        </ul>
+    </footer>
          </Fragment>
     )
 }
