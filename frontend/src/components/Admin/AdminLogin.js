@@ -4,6 +4,7 @@ import './AdminLogin.css';
 import Header from '../Header';
 import HomepageImg from '../../components/images/homepage/homepageimg.jpg';
 import RegisterCard from './RegisterCard';
+import axios from 'axios';
 
 const AdminLogin = (props) => { // Admin Login Component
     let history = useHistory();
@@ -12,17 +13,25 @@ const AdminLogin = (props) => { // Admin Login Component
     const [enteredPassword, setPassword] = useState('');
     const [passwordValid, setPasswordValid] = useState(true);  
 
-    const loginHandler = (e) => {
+    const loginHandler = async (e) => {
         try {
             e.preventDefault();
 
+            const {data} = await axios.post(`http://localhost:5200/api/v1/auth/admin-login`, {emailAddress: enteredEmail, password: enteredPassword});
+
+            const authorizationToken = data.token;
+            localStorage.setItem("authToken", authorizationToken);
+            alert('You are logged in');
+            return history.push('/admin-dashboard');
           
         }   
         
         catch(error) {
+
             if(error) {
                 return console.log(error);
             }
+
         }  
     }
     
@@ -72,7 +81,7 @@ const AdminLogin = (props) => { // Admin Login Component
                    
 
                    <p className = "already--text">Forgot your password?</p>
-                   <Link className = "link--to" to = '/admin-login'>Reset Here!</Link>
+                   <Link className = "link--to" to = '/admin-resetpassword'>Reset Here!</Link>
 
                    <div className = "submit--container">
                        <button className = "login--btn" type = "submit">Login</button>
