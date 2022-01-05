@@ -34,9 +34,16 @@ const AdminRegister = (props) => {
     <h2 className = "heading--secondary">Register Account</h2>
 
     <div className = "container grid grid--2-cols">
+
             <RegisterCard>
-                sfkk
-        </RegisterCard>
+                <h1 className = "heading--primary register">Register Below</h1>
+                
+                <form className = "register--form">
+                    <label>Username</label>
+                    <input type = "text"/>
+                </form>
+
+          </RegisterCard>
     </div>    
     
 
