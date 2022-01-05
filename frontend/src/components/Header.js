@@ -32,8 +32,10 @@ const Header = (props) => {
     return (
     
         <Router>
+
             <header className = "header">
                 <img src = {Logo} className = "img--logo"/>
+
                 <nav className = "main-nav">
                     <ul className = "main-nav--list">
 
@@ -49,12 +51,12 @@ const Header = (props) => {
                 {isLoggedIn ?
                     <nav className = "main-nav">
                         <ul className = "main-nav--list">
-
+                            
                         </ul>
 
                     </nav> : null
 }
-               
+            
         </header>
     </Router>
             

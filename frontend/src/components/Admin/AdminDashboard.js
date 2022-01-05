@@ -5,7 +5,6 @@ const AdminDashboard = (props) => {
     let history = useHistory();
 
     useEffect(() => {
-
         return verifyAuthToken();
     }, []);
 
@@ -17,9 +16,17 @@ const AdminDashboard = (props) => {
         }
     }
 
+    const logoutHandler = () => {
+        localStorage.removeItem("authToken"); // Remove auth token from local storage
+        history.push('/admin-login');
+        return window.location.reload(false);
+    }
+
     return (
         <div>
             <h1>Your Admin Dashboard</h1>
+
+            <button onClick = {logoutHandler}>Logout</button>
         </div>
     )
 }
