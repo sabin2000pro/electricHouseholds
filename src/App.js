@@ -17,6 +17,7 @@ const App = () => {
         <Route path = '/home' component={Homepage} />
         <Route path = '/admin-register' component = {AdminRegister}/>
         <Route path = '/your-preferences' component = {PreferencesHome}/>
+        <Route path = '/admin-login' component = {AdminLogin}/>
       </Router>
 
 
