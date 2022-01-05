@@ -7,7 +7,6 @@ import Card from '../../UI/Card';
 import {motion, AnimatePresence} from 'framer-motion';
 import LoadBalance from '../images/homepage/loadbalance.jpg';
 import Header from '../Header';
-import Logo from '../images/logo.png'
 
 const Homepage = (props) => { // Main Homepage Component
     return (
@@ -33,7 +32,7 @@ const Homepage = (props) => { // Main Homepage Component
                 <img className = "home--img" alt = "Wind Turbing Image" src = {HomepageImg} />
             </div>
         </div>
-        
+
     </section>
 
     <section className = "section--electricity">
@@ -97,8 +96,6 @@ const Homepage = (props) => { // Main Homepage Component
     </div>
 
     </section>
-
-   
 
     <footer className = "footer">
         <ul className = "footer--items">
