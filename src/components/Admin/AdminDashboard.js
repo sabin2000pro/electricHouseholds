@@ -5,11 +5,16 @@ const AdminDashboard = (props) => {
     let history = useHistory();
 
     useEffect(() => {
+
         return verifyAuthToken();
     }, []);
 
     const verifyAuthToken = () => {
         if(!localStorage.getItem("authToken")) {
+
+            alert('You are not authorized to view this route. You are not logged in');
+
+
             return history.push('/home');
         }
     }
