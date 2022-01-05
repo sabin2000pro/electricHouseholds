@@ -50,7 +50,7 @@ const AdminLogin = (props) => { // Admin Login Component
 
             <RegisterCard>
                 <h1 className = "heading--primary login">Admin Login</h1>
-                <form className = "register--form">
+                <form className = "login--form">
 
                 
                    <div className = "email--box">
