@@ -15,16 +15,19 @@ const AdminRegister = (props) => {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [formIsValid, setFormIsValid] = useState(false);
 
+    const validateInput = function() {
+        return username.trim().length !== 0;
+    }
+
     const registerHandler = (event) => {
         try {
             event.preventDefault();
 
-            // Validate Inputs before submitting to DB
-
-            if(username.trim().length === 0) {
+            if(validateInput) {
                 alert('Username field cannot be left empty');
             }
-            
+        
+
         } 
         
         catch(err) {
