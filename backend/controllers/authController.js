@@ -33,7 +33,7 @@ module.exports.loginAdmin = catchAsync(async (request, response, next) => {
     const admin = await Admin.findOne({emailAddress}).select("+password"); // Select an admin by pasword
 
     if(!admin) {
-        return response.status(404).json({status: 'Failed reading admin', message: 'Could not find that admin'});
+        return response.status(notFound).json({status: 'Failed reading admin', message: 'Could not find that admin'});
     }
 
     // Compare passwords before logging in
@@ -52,7 +52,7 @@ module.exports.forgotPassword = catchAsync(async (request, response, next) => {
     const admin = await Admin.findOne({emailAddress});
 
     if(!admin) {
-        return response.status(404).json({status: "Fail", message: "No admin found with that e-mail address"});
+        return response.status(notFound).json({status: "Fail", message: "No admin found with that e-mail address"});
     }
 
     const resetToken = admin.getResetPasswordToken(); // Get the password reset token
