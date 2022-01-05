@@ -5,6 +5,7 @@ import AdminRegister from './components/Admin/AdminRegister';
 import React, {useState} from 'react';
 import Header from './components/Header';
 import PreferencesHome from './components/Preferences/PreferencesHome';
+import AdminLogin from './components/Admin/AdminLogin';
 
 const App = () => {
 
