@@ -13,6 +13,7 @@ const Header = (props) => {
         
         <Router>
             <header className = "header">
+                
                 <img src = {Logo} className = "img--logo"/>
            
                 <nav className = "main-nav">
@@ -28,7 +29,7 @@ const Header = (props) => {
                 </nav>
 
         </header>
-            </Router>
+    </Router>
             
 
     )
