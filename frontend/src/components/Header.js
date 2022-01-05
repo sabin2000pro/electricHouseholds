@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React, {useEffect, useState} from 'react';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Homepage from './Home/Homepage';
 import AdminRegister from './Admin/AdminRegister';
@@ -9,11 +9,30 @@ import './Home/Homepage.css';
 import Logo from '../components/images/logo.png';
 
 const Header = (props) => {
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    useEffect(() => {
+        const authToken = localStorage.getItem("authToken");
+        return fetchAuthToken(authToken);
+    }, []);
+
+    const fetchAuthToken = (authToken) => {
+        if(!authToken) {
+            alert('No auth toek nfound');
+            setIsLoggedIn(false); // Not logged in
+        }
+
+        if(authToken) {
+            setIsLoggedIn(true);
+        }
+
+    }
+
     return (
         
         <Router>
             <header className = "header">
-                
+
                 <img src = {Logo} className = "img--logo"/>
            
                 <nav className = "main-nav">
