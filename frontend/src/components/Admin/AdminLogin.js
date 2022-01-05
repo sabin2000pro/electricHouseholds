@@ -8,16 +8,11 @@ import RegisterCard from './RegisterCard';
 const AdminLogin = (props) => { // Admin Login Component
 
     let history = useHistory();
-   
-    const [enteredUsername, setUsername] = useState('');
-    const [usernameValid, setUsernameValid] = useState(true);
 
     const [enteredEmail, setEmailAddress] = useState('');
     const [emailValid, setEmailValid] = useState(true);
     const [enteredPassword, setPassword] = useState('');
-    const [enteredConfirmPassword, setConfirmPassword] = useState('');
-    const [formIsValid, setFormIsValid] = useState(true);
-  
+    const [passwordValid, setPasswordValid] = useState(true);  
     
     return (
 
@@ -55,12 +50,12 @@ const AdminLogin = (props) => { // Admin Login Component
                 
                    <div className = "email--box">
                        <label className = "email--lbl">E-mail</label>
-                       <input value = {enteredEmail} onChange = {(e) => {setEmailAddress(e.target.value)}} placeholder = "Enter your E-mail" type = "text"/>
+                       <input value = {enteredEmail} onChange = {(e) => {setEmailAddress(e.target.value)}} placeholder = "Enter your E-mail" type = "email"/>
                    </div>
 
                    <div className = "password--box">
                        <label className = "password--lbl">Password</label>
-                       <input value = {enteredPassword} onChange = {(e) => {setPassword(e.target.value)}} placeholder = "Enter your Password" required id = "password" type = "text"/>
+                       <input value = {enteredPassword} onChange = {(e) => {setPassword(e.target.value)}} placeholder = "Enter your Password" required id = "password" type = "password"/>
                    </div>
                    
 
