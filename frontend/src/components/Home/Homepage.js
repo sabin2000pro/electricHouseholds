@@ -7,6 +7,7 @@ import PeakElectricityImg from '../images/homepage/peakelectricity.jpg';
 import Electricity from '../images/homepage/electricity2.jpg';
 import Card from '../../UI/Card';
 import {motion, AnimatePresence} from 'framer-motion';
+import LoadBalance from '../images/homepage/loadbalance.jpg';
 
 const Homepage = (props) => { // Main Homepage Component
     return (
@@ -67,7 +68,7 @@ const Homepage = (props) => { // Main Homepage Component
     <motion.div exit = {{opacity: 0}} initial = {{opacity: 0}} animate = {{opacity: 1}}>
 
         <Card reverse = {true}>
-            <h3 className = "heading--tertiary">The Problem</h3>
+            <h3 className = "heading--tertiary">Problem Description</h3>
             <p className = "electricity--description">Too many households are making use of their highly-powered electrical appliances at various hours during the day. This places a high demand on electricity consumption, therefore affecting the environment negatively but also impacting the electricity bills</p>
         </Card>
 
@@ -87,7 +88,7 @@ const Homepage = (props) => { // Main Homepage Component
 
         <Card>
 
-            <h3 className = "heading--tertiary reverse">The Solution</h3>
+            <h3 className = "heading--tertiary reverse">Problem Solution</h3>
             <p className = "electricity--description reverse">The solution to this problem is to disperse the usage of household appliances by submitting when you would like to run your electrical appliance. However, you can only run your chosen appliance for a maximum of 3 hours per day.</p>
         </Card>
         </motion.div>
@@ -102,7 +103,7 @@ const Homepage = (props) => { // Main Homepage Component
     <h2 className = "heading--secondary">Load Balancing</h2>
 
     <div className = "container grid grid--2-cols">
-        <p className = "load--heading">Load Balancing Problem</p>    
+        <p className = "load--heading">Problem Description</p>    
     </div>
 
     <div className = "container grid grid--2-cols">
@@ -111,17 +112,21 @@ const Homepage = (props) => { // Main Homepage Component
     
     
     <div className = "container grid grid--2-cols">
-        <p className = "load--heading--second">Load Balancing Solution</p>    
+        <p className = "load--heading--second">Problem Solution</p>    
     </div>
 
     <div className = "container grid grid--2-cols">
         <p className = "load--description--second reverse">The solution to this problem is to disperse the usage of household appliances by submitting when you would like to run your electrical appliance. However, you can only run your chosen appliance for a maximum of 3 hours per day.</p>
-        <img className = "electricity--img secondary--img load--img" src = {Electricity} />
+        <img className = "electricity--img secondary--img load--img" src = {LoadBalance} />
 
     </div>
-
-
     </section>
+
+    <footer className = "footer">
+        <ul>
+            <li>Home</li>
+        </ul>
+    </footer>
 
 
 

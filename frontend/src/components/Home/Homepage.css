@@ -227,7 +227,7 @@ h3:after {
 }
 
 .load--heading {
-    font-size: 32px;
+    font-size: 39px;
     margin-left: 50px;
     text-align: center;
     font-weight: 600;
@@ -241,21 +241,26 @@ h3:after {
 }
 
 .load--heading--second {
-    font-size: 32px;
+    font-size: 39px;
     margin-left: 50px;
     text-align: center;
     font-weight: 600;
     margin-top: -150px;
-    margin-bottom: -100px;
+    margin-bottom: -150px;
 }
 
 .load--description--second {
     font-size: 19px;
     display: inline;
     margin-left: 50px;
-    margin-top: -220px;
+    margin-top: -250px;
 }
 
 .load--img {
     margin-top: -600px;
+}
+
+.footer {
+    background-color: #1e7e68;
+    padding: 48px 0;
 }
