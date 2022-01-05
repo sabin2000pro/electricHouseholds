@@ -3,6 +3,7 @@
     color: #333;
     border-radius: 15px;
     padding: 50px 10px;
+    box-shadow: 2px 2px 8px black;
     height: 120%;
     width: 150%;
     margin-left: -150px;
@@ -14,6 +15,7 @@
     background-color: #d3e8e3;
     color: black;
     border-radius: 15px;
+    
     padding: 50px 10px;
     height: 230%;
     width: 130%;

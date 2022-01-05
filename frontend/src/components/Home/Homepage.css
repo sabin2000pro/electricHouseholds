@@ -261,19 +261,19 @@ h3:after {
     width: 80%;
 }
 
-.section--algorithms {
+.section--algorithms div {
     padding: 96px 0;
 }
 
 h2::after {
   background: none repeat scroll 0 0 #d3e8e3;
-   bottom: -10px;
+   bottom: -5px;
    content: "";
    display: block;
-   left: 660px;
+   left: 645px;
    height: 5px;
    position: relative;
-   width: 150px;
+   width: 180px;
    margin-left: 180px;
    margin-bottom: 40px;
 }
@@ -295,4 +295,15 @@ h2::after {
 .footer--item {
     text-align: center;
     font-weight: 600;
+    margin: 0 auto;
+    
+}
+
+.algo {
+    margin-bottom: 150px;
+}
+
+.algo--description {
+    margin-left: 150px;
+    margin-top: -100px;
 }
