@@ -33,7 +33,6 @@
     margin-left: -111px;
  }
 
-
 .register--form input {
     color: black;
     margin-top: 50px;
@@ -105,3 +104,11 @@ input[type=submit]:hover {
       font-weight: 600;
       font-size: 24px;
   }
+
+.already--text {
+    color: white;
+    font-size: 18px;
+    text-align: center;
+    margin-top: 50px;
+    margin-left: 220px;
+}
