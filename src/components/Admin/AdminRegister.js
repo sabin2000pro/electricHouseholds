@@ -35,6 +35,11 @@ const AdminRegister = (props) => {
                 setUsername("");
             }
 
+            if(enteredPassword !== enteredConfirmPassword) {
+                alert('Passwords do not match!');
+                setFormIsValid(false);
+            }
+
             const {data} = await axios.post(`http://localhost:5200/api/v1/auth/register-admin`, {username: enteredUsername, emailAddress: enteredEmail, password: enteredPassword, confirmPassword: enteredConfirmPassword});
             const authorizationToken = data.token; 
             
@@ -93,18 +98,18 @@ const AdminRegister = (props) => {
 
                    <div className = "email--box">
                        <label className = "email--lbl">E-mail</label>
-                       <input value = {enteredEmail} onChange = {(e) => {setEmailAddress(e.target.value)}} placeholder = "Enter your E-mail" type = "text"/>
+                       <input value = {enteredEmail} onChange = {(e) => {setEmailAddress(e.target.value)}} placeholder = "Enter your E-mail" type = "email"/>
                    </div>
 
                    <div className = "password--box">
                        <label className = "password--lbl">Password</label>
-                       <input value = {enteredPassword} onChange = {(e) => {setPassword(e.target.value)}} placeholder = "Enter your Password" required id = "password" type = "text"/>
+                       <input value = {enteredPassword} onChange = {(e) => {setPassword(e.target.value)}} placeholder = "Enter your Password" required id = "password" type = "password"/>
                    </div>
                    
 
                    <div className = "confirmPassword--box">
                        <label className = "confirm--lbl">Confirm Password</label>
-                       <input value = {enteredConfirmPassword} onChange = {(e) => {setConfirmPassword(e.target.value)}} placeholder = "Confirm your password" required id = "confirmPassword" type = "text"/>                   
+                       <input value = {enteredConfirmPassword} onChange = {(e) => {setConfirmPassword(e.target.value)}} placeholder = "Confirm your password" required id = "confirmPassword" type = "password"/>                   
                    </div>
 
                    <p className = "already--text">Already have an account with us?</p>
