@@ -26,7 +26,6 @@ const Header = (props) => {
             console.log(authToken);
             setIsLoggedIn(true);
         }
-
     }
 
     return (
@@ -44,14 +43,14 @@ const Header = (props) => {
                         <li><a className = "main-nav--link" href = "/admin-login">Admin Login</a></li>
                         <li><a className = "main-nav--link" href = "/your-preferences">Your Preferences</a></li>
                         <li><a className = "main-nav--link" href = "/fair-negotiations">Fair Negotiations</a></li>
-                        <li><a className = "main-nav--link" href = "/contact">Contact Us</a></li>
+                        <li><a className = "main-nav--link" href = "/contact-us">Contact Us</a></li>
                     </ul>
                 </nav>
 
                 {isLoggedIn ?
                     <nav className = "main-nav">
                         <ul className = "main-nav--list">
-                            
+
                         </ul>
 
                     </nav> : null

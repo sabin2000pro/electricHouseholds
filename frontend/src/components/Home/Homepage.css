@@ -178,6 +178,7 @@ Main Color: #00b894
 .electricity--description {
     margin-top: 30px;
     font-size: 20px;
+    font-weight: 600;
     text-align: center;
     color: white;
 }
@@ -199,6 +200,18 @@ h3:after {
    width: 120px;
    margin-left: 180px;
    margin-bottom: 40px;
+}
+
+.heading--secondary::after {
+    background: none repeat scroll 0 0 #1e7e68;
+    bottom: -10px;
+    content: "";
+    display: block;
+    height: 5px;
+    position: relative;
+    width: 120px;
+    margin-left: 960px;
+    margin-bottom: 40px;
 }
 
 .reverse {
