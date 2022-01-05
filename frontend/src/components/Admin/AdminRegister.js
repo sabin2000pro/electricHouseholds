@@ -6,6 +6,9 @@ import './AdminRegister.css';
 
 const AdminRegister = (props) => {
     const [username, setUsername] = useState('');
+    const [emailAddress, setEmailAddress] = useState('');
+    const [password, setPassword] = useState('');
+
     return (
          <Fragment>
             <Header />
@@ -37,10 +40,22 @@ const AdminRegister = (props) => {
 
             <RegisterCard>
                 <h1 className = "heading--primary register">Register Below</h1>
-                
                 <form className = "register--form">
-                    <label>Username</label>
-                    <input type = "text"/>
+
+                    <div className = "username--box">
+                        <label>Username</label>
+                        <input type = "text"/>
+                    </div>
+
+                   <div className = "email--box">
+                       <label className = "email--lbl">E-mail</label>
+                       <input type = "text"/>
+                   </div>
+
+                   <div className = "password--box">
+                       
+                   </div>
+                   
                 </form>
 
           </RegisterCard>
