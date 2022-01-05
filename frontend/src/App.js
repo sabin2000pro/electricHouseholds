@@ -8,6 +8,7 @@ import PreferencesHome from './components/Preferences/PreferencesHome';
 import AdminLogin from './components/Admin/AdminLogin';
 import AdminDashboard from './components/Admin/AdminDashboard';
 import ContactUs from './components/Contact/ContactHome';
+import AlgorithmsHome from './components/Algorithms/AlgorithmsHome';
 
 const App = () => {
 
@@ -23,6 +24,7 @@ const App = () => {
 
         <Route path = '/admin-dashboard' component = {AdminDashboard}/>
         <Route path = '/contact-us' component = {ContactUs} />
+        <Route path = '/fair-negotiations' component = {AlgorithmsHome} />
 
 
       </Router>
