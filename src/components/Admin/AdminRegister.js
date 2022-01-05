@@ -5,6 +5,8 @@ import RegisterCard from './RegisterCard.js'
 import './AdminRegister.css';
 import { Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
+import {motion, AnimatePresence} from 'framer-motion';
+
 
 const AdminRegister = (props) => {
     let history = useHistory();
@@ -83,6 +85,7 @@ const AdminRegister = (props) => {
 <section className = "section--register">
 
     <div className = "container grid grid--2-cols">
+
 
             <RegisterCard>
                 <h1 className = "heading--primary register">Admin Register</h1>
