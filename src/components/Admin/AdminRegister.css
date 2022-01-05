@@ -14,8 +14,16 @@
     margin-top: 50px;
 }
 
-.register h1:after {
-    color: green;
+h1:after {
+    background: none repeat scroll 0 0 #d3e8e3;
+   bottom: -10px;
+   content: "";
+   display: block;
+   height: 5px;
+   position: relative;
+   width: 150px;
+   margin-left: 400px;
+   margin-bottom: 40px;    
 }
 
 .register--form label {
@@ -52,15 +60,12 @@
     margin-left: -25px;
 }
 
-.email--box {
-    margin-left: -20px;
-    margin-top: 20px;
-}
 
 .email--box input {
     padding: 2px 4px;
-    width: 250px;
+    width: 300px;
     margin-left: 10px;
+    margin-right: 50px;
     text-align: center;
 }
 
@@ -112,5 +117,5 @@ input[type=submit]:hover {
     font-size: 18px;
     text-align: center;
     margin-top: 50px;
-    margin-left: 220px;
+    margin-left: 200px;
 }
