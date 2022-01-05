@@ -13,6 +13,18 @@ const AdminLogin = (props) => { // Admin Login Component
     const [emailValid, setEmailValid] = useState(true);
     const [enteredPassword, setPassword] = useState('');
     const [passwordValid, setPasswordValid] = useState(true);  
+
+    const loginHandler = (e) => {
+        try {
+
+        } 
+        
+        catch(error) {
+            if(error) {
+                return console.log(error);
+            }
+        }  
+    }
     
     return (
 
@@ -45,7 +57,7 @@ const AdminLogin = (props) => { // Admin Login Component
 
             <RegisterCard>
                 <h1 className = "heading--primary login">Admin Login</h1>
-                <form className = "login--form">
+                <form onSubmit = {loginHandler} className = "login--form">
 
                 
                    <div className = "email--box">
