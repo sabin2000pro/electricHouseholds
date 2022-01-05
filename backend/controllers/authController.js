@@ -112,10 +112,6 @@ module.exports.deleteAdminAccount = catchAsync(async (request, response, next) =
 
 });
 
-module.exports.updatePassword = catchAsync(async(request, response, next) => {
-
-});
-
 const sendToken = (admin, status, response) => { // Sends back the JWT token
      const token = admin.generateResetPasswordToken();
 

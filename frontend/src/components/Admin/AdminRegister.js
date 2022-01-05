@@ -8,6 +8,9 @@ import axios from 'axios';
 
 const AdminRegister = (props) => {
     let history = useHistory();
+    const usernameRef = useRef();
+    const emailRef = useRef();
+
     const [enteredUsername, setUsername] = useState('');
     const [usernameValid, setUsernameValid] = useState(true);
 
@@ -30,6 +33,7 @@ const AdminRegister = (props) => {
                 alert('Fields Cannot be left empty');
                 setUsernameValid(false);
                 setEmailValid(false);
+                
                 setUsername("");
             }
 
@@ -43,11 +47,11 @@ const AdminRegister = (props) => {
         } 
         
         catch(err) {
+
             if(err) {
                 console.log(err);
             }
         }
-
 
     }
 
