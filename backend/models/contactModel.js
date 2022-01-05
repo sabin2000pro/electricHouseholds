@@ -22,13 +22,15 @@ const contactSchema = new mongoose.Schema({
     },
 
     issueType: {
-
+        type: String,
+        required: [true, 'Please include what the kind of issue you are encountering']
     },
 
     description: {
-
+        type: String,
+        required: [true, 'Please provide a description of your problem']
     }
 });
 
 const Contact = mongoose.model('Contact', contactSchema);
-module.exports = Contact;
+module.exports = Contact; // Export the Contact Schema
