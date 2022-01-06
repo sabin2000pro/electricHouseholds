@@ -6,7 +6,7 @@ import {motion, AnimatePresence} from 'framer-motion';
 
 const CreateContact = (props) => {
    let history = useHistory();
-   
+
    const [firstName, setFirstName] = useState('');
    const [firstNameValid, setFirstNameValid] = useState(true);
    const [lastName, setLastName] = useState('');
@@ -17,6 +17,22 @@ const CreateContact = (props) => {
    const [email, setEmail] = useState('');
    const [emailValid, setEmailValid] = useState(false);
 
+   
+   const contactUsHandler = (e) => {
+       try {
+            e.preventDefault(); // Prevent form resubmission
+       } 
+       
+       catch(error) {
+
+        if(error) {
+
+        }
+
+       }
+
+   }
+
 
     return (
         <Fragment>
@@ -25,9 +41,8 @@ const CreateContact = (props) => {
         <RegisterCard>
             <h1 className = "heading--primary login">Contact Us</h1>
             
-            <form className = "login--form">
+    <form onSubmit = {contactUsHandler} method = "POST" className = "login--form">
 
-    
        <div className = "forename--box">
            <label className = "forename--lbl">Forename</label>
            <input  placeholder = "Enter your First Name" type = "text"/>
