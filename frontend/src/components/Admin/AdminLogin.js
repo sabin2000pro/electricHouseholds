@@ -48,7 +48,9 @@ const AdminLogin = (props) => { // Admin Login Component
             }
 
             if(!enteredEmail.trim().includes("@")) { // If e-mail address does not contain @ symbol
-
+                setFormValid(false);
+                setEmailValid(false);
+                setEmailAddress("");
             }
 
             if(enteredPassword.trim().length === 0) { // If password field is left empty
@@ -135,7 +137,6 @@ const AdminLogin = (props) => { // Admin Login Component
                         <input onBlur = {blurHandler} value = {enteredPassword} onChange = {(e) => {setPassword(e.target.value)}} placeholder = "Enter your Password" required id = "password" type = "password"/>
                     </div>
                     
-
                     <p className = "already--text">Forgot your password?</p>
                     <Link className = "link--to" to = '/admin-resetpassword'>Reset Here!</Link>
 
