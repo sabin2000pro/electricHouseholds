@@ -21,6 +21,25 @@
     margin-left: -20px;
 }
 
+.email--box {
+    margin-bottom: 50px;
+    margin-left: -20px;
+}
+
+.email--box label {
+   padding: 40px;
+}
+
+.email--lbl {
+    margin-top: 30px;
+    margin-left: 50100px;
+}
+
+.email--box input {
+    margin-top: 30px;
+    margin-left: -60px;
+}
+
 .lastname--lbl {
 
 }

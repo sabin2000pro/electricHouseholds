@@ -32,9 +32,9 @@ const CreateContact = (props) => {
            <input placeholder = "Enter your Username" required id = "password" type = "text"/>
        </div>
 
-       <div className = "password--box">
-           <label className = "password--lbl">E-mail</label>
-           <input placeholder = "Enter your Password" required id = "password" type = "password"/>
+       <div className = "email--box">
+           <label className = "email--lbl">E-mail</label>
+           <input placeholder = "Enter your E-mail Address" required id = "email" type = "email"/>
        </div>
 
        <div className = "issueType--box">
