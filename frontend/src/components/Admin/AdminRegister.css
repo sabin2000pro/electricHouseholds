@@ -50,6 +50,12 @@
     margin-left: -25px;
 }
 
+.username--box input {
+    font-weight: 600;
+    text-align: center;
+    font-size: 14px;
+}
+
 .email--box input {
     padding: 2px 4px;
     width: 300px;
@@ -62,6 +68,12 @@
     margin-top: 30px;
     margin-left: -20px;
     margin-bottom: 30px;
+}
+
+.password--box input {
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
 }
 
 .register--btn {
