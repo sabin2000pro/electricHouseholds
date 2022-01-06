@@ -22,12 +22,12 @@ const ContactHome = (props) => { // Contact Us Home Page
              <h1 className = "heading--primary">Contact Us</h1>
             <p className = "home--description">Should you encounter any issues with the web application please contact us using the form below. If you are having problems with the algorithms please let us know.</p>
 
-            <a className = "btn btn--full mgr-sm" href = "#">Start Now</a>
+            <a className = "btn btn--full mgr-sm" href = "/your-preferences">Start Now</a>
             <a className = "btn btn--outline" href = "/about-us">About Us</a>
         </div>
 
         <div className = "home-img-box">
-            <img className = "home--img" alt = "Wind Turbing Image" src = {HomepageImg} />
+            <img className = "home--img" alt = "Wind Turbine" src = {HomepageImg} />
         </div>
 
     </div>
