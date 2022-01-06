@@ -28,7 +28,7 @@ const AdminRegister = (props) => { // Admin Register Props
 
             event.preventDefault();
 
-            if(validateInput) {
+            if(!validateInput) {
                 alert('Fields Cannot be left empty');
                 setUsernameValid(false);
                 setEmailValid(false);
@@ -117,7 +117,7 @@ const AdminRegister = (props) => { // Admin Register Props
 
                    <div className = "password--box">
                        <label className = "password--lbl">Password</label>
-                       <input autoComplete = "off" value = {enteredPassword} onChange = {(e) => {setPassword(e.target.value)}} placeholder = "Enter your Password" required id = "password" type = "text"/>
+                       <input autoComplete = "off" value = {enteredPassword} onChange = {(e) => {setPassword(e.target.value)}} placeholder = "Enter your Password" required id = "password" type = "password"/>
                    </div>
                    
 

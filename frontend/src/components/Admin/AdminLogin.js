@@ -20,9 +20,9 @@ const AdminLogin = (props) => { // Admin Login Component
         return checkToken(authToken);
     }, []);
 
-    const checkToken = (authToken) => {
+    const checkToken = (authToken) => { // Verifies the authentication token
 
-         if(authToken) {
+         if(authToken) { // if there is one already present
              return history.push('/admin-dashboard');
          }
     }
