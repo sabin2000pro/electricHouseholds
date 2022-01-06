@@ -22,22 +22,36 @@ const CreateContact = (props) => {
            <input  placeholder = "Enter your E-mail" type = "email"/>
        </div>
 
-       <div className = "password--box">
-           <label className = "password--lbl">Last Name</label>
+       <div className = "lastname--box">
+           <label className = "lastname--lbl">Last Name</label>
            <input placeholder = "Enter your Password" required id = "password" type = "password"/>
        </div>
 
+       <div className = "username--box">
+           <label className = "username--lbl">Username</label>
+           <input placeholder = "Enter your Username" required id = "password" type = "text"/>
+       </div>
+
        <div className = "password--box">
-           <label className = "password--lbl">Username</label>
+           <label className = "password--lbl">E-mail</label>
            <input placeholder = "Enter your Password" required id = "password" type = "password"/>
        </div>
+
+       <div className = "issueType--box">
+       <label className = "issue--lbl" htmlFor = "issue">Issue Type</label>
+           <select>
+               <option>Homepage</option>
+               <option>Register</option>
+               <option>Login</option>
+               <option>Algorithms</option>
+               <option>Preferences</option>
+           </select>
+       </div>
+
        
 
-       <p className = "already--text">Forgot your password?</p>
-       <Link className = "link--to" to = '/admin-resetpassword'>Reset Here!</Link>
-
        <div className = "submit--container">
-           <button className = "login--btn" type = "submit">Login</button>
+           <button className = "login--btn" type = "submit">Submit</button>
        </div>
 
     </form>
