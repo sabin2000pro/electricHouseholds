@@ -1,6 +1,7 @@
 import React, {Fragment} from 'react';
 import Header from '../Header';
 import HomepageImg from '../images/homepage/homepageimg.jpg';
+import AdminForgotPassword from './AdminForgotPassword';
 
 const AdminForgotPasswordHome = () => {
     return (
@@ -25,9 +26,10 @@ const AdminForgotPasswordHome = () => {
             <img className = "home--img" alt = "Wind Turbine" src = {HomepageImg} />
         </div>
     </div>
-    
-   
+
    </section>
+
+   <AdminForgotPassword/>
             </Fragment>
     )
 }
