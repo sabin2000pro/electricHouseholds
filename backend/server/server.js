@@ -17,6 +17,7 @@ const preferenceRoutes = require('../routes/preferencesRoutes');
 const timeslotRoutes = require('../routes/timeslotsRoutes');
 const commentRoutes = require('../routes/commentRoutes');
 const reviewRoutes = require('../routes/reviews/reviewRoutes');
+const contactRoutes = require('../routes/contactRoutes');
 
 // Middlewares
 app.use(mongoSanitize());
@@ -33,6 +34,7 @@ app.use('/api/v1/preferences', preferenceRoutes);
 app.use('/api/v1/timeslots', timeslotRoutes);
 app.use('/api/v1/comments', commentRoutes);
 app.use('/api/v1/reviews', reviewRoutes);
+app.use('/api/v1/contact', contactRoutes);
 
 const server = app.listen(port, (err) => { // Creates a server
     try {
