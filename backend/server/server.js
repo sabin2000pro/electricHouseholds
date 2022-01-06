@@ -34,7 +34,7 @@ app.use('/api/v1/preferences', preferenceRoutes);
 app.use('/api/v1/timeslots', timeslotRoutes);
 app.use('/api/v1/comments', commentRoutes);
 app.use('/api/v1/reviews', reviewRoutes);
-app.use('/api/v1/contact', contactRoutes);
+app.use('/api/v1/contacts', contactRoutes);
 
 const server = app.listen(port, (err) => { // Creates a server
     try {
