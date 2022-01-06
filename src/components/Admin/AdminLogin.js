@@ -47,18 +47,18 @@ const AdminLogin = (props) => { // Admin Login Component
                 setEmailAddress("");
             }
 
-            if(!enteredEmail.trim().includes("@")) {
-                
+            if(!enteredEmail.trim().includes("@")) { // If e-mail address does not contain @ symbol
+
             }
 
-            if(enteredPassword.trim().length === 0) {
+            if(enteredPassword.trim().length === 0) { // If password field is left empty
                 setFormValid(false);
                 setPassword("");
             }
 
             const {data} = await axios.post(`http://localhost:5200/api/v1/auth/login-admin`, {emailAddress: enteredEmail, password: enteredPassword});
+            const authorizationToken = data.token; // Extract the token
 
-            const authorizationToken = data.token;
             localStorage.setItem("authToken", authorizationToken);
 
             setPasswordValid(true);
@@ -79,7 +79,6 @@ const AdminLogin = (props) => { // Admin Login Component
         catch(error) {
 
             if(error) {
-
                 setFormValid(false);
                 return console.log(error);
             }

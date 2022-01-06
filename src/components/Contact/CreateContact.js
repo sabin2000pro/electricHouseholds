@@ -11,25 +11,24 @@ const CreateContact = (props) => {
    const [firstNameValid, setFirstNameValid] = useState(true);
    const [lastName, setLastName] = useState('');
    const [lastNameValid, setLastNameValid] = useState(false);
-
    const [username, setUsername] = useState('');
    const [usernameValid, setUsernameValid] = useState(false);
    const [email, setEmail] = useState('');
    const [emailValid, setEmailValid] = useState(false);
 
-   
    const contactUsHandler = (e) => {
        try {
             e.preventDefault(); // Prevent form resubmission
+
+            // Validate Data
        } 
        
        catch(error) {
 
         if(error) {
-
+            return console.log(error);
         }
-
-       }
+    }
 
    }
 
