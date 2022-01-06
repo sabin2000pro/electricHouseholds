@@ -25,6 +25,11 @@
 
 }
 
+.issue--lbl {
+    margin-right: 30px;
+}
+
 .issueType--box {
     text-align: center;
+    margin-left: -140px
 }
