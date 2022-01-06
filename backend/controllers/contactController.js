@@ -8,11 +8,25 @@ const badRequest = 400;
 
 
 module.exports.getAllContacts = catchAsync(async (request, response, next) => {
+
+    if(request.method === 'GET') {
+        const allContacts = await Contact.find();
+        return response.status(200).json({allContacts});
+    }
     
 });
 
 module.exports.getContactByID = catchAsync(async (request, response, next) => {
 
+    const id = request.params.id;
+
+    if(!id) {
+        return response.status(notFound).json({status: "Fail", message: "Contact with that ID not found"});
+    }
+
+    const theContact = await Contact.findById(id);
+
+    return response.status(ok).json({theContact});
 });
 
 module.exports.createContact = catchAsync(async (request, response, next) => {
@@ -29,4 +43,4 @@ module.exports.deleteAllContacts = catchAsync(async (request, response, next) =>
 
 module.exports.deleteContactByID = catchAsync(async (request, response, next) => {
 
-})
+});
