@@ -5,6 +5,13 @@ import RegisterCard from '../Admin/RegisterCard';
 const CreateContact = (props) => {
    const [firstName, setFirstName] = useState('');
    const [firstNameValid, setFirstNameValid] = useState(true);
+   const [lastName, setLastName] = useState('');
+   const [lastNameValid, setLastNameValid] = useState(false);
+
+   const [username, setUsername] = useState('');
+   const [usernameValid, setUsernameValid] = useState(false);
+   const [email, setEmail] = useState('');
+   const [emailValid, setEmailValid] = useState(false);
 
 
     return (
