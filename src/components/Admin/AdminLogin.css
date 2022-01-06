@@ -110,3 +110,7 @@
 input[type=submit]:hover {
     background-color: #45a049;
   }
+
+  .err-msg {
+      margin-right: 110px;
+  }

@@ -28,6 +28,7 @@ const AdminLogin = (props) => { // Admin Login Component
     }
 
     const missingEmail = <p className = "err-msg">Invalid E-mail Address</p>
+    const notFound = <p className = "err-msg">Account not found</p>
 
     const loginHandler = async (e) => {
 
@@ -38,21 +39,32 @@ const AdminLogin = (props) => { // Admin Login Component
                 setFormValid(false);
             }
 
+            if(enteredEmail.trim().length < 3) {
+                setFormValid(false);
+            }
+
             const {data} = await axios.post(`http://localhost:5200/api/v1/auth/login-admin`, {emailAddress: enteredEmail, password: enteredPassword});
+
             const authorizationToken = data.token;
             localStorage.setItem("authToken", authorizationToken);
 
             setPasswordValid(true);
             setEmailValid(true);
 
-            return history.push('/admin-dashboard');
+            if(!authorizationToken) {
+                setFormValid(false);
+            }
+
+            else {
+                return history.push('/admin-dashboard');
+            }
           
         }   
         
         catch(error) {
 
             if(error) {
-                
+
                 setFormValid(false);
                 return console.log(error);
             }
@@ -65,7 +77,7 @@ const AdminLogin = (props) => { // Admin Login Component
         <Header />
 
         <section className = "section--home">
-                    <div className = "home--grid">
+                <div className = "home--grid">
 
             <div className = "home-text-box">
 
@@ -97,6 +109,7 @@ const AdminLogin = (props) => { // Admin Login Component
                     <div className = "email--box">
                         <label className = "email--lbl">E-mail</label>
                         <input value = {enteredEmail} onChange = {(e) => {setEmailAddress(e.target.value)}} placeholder = "Enter your E-mail" type = "email"/>
+                        {!formValid && missingEmail}
                     </div>
 
                     <div className = "password--box">
@@ -111,6 +124,8 @@ const AdminLogin = (props) => { // Admin Login Component
                     <div className = "submit--container">
                         <button className = "login--btn" type = "submit">Login</button>
                     </div>
+
+                    {!formValid && notFound}
 
                     </form>
                 
