@@ -66,13 +66,14 @@ const AdminLogin = (props) => { // Admin Login Component
                 <h1 className = "heading--primary">Admin Dashboard Login</h1>
                 <p className = "home--description">Login into the Dashboard in order to configure appliances.</p>
 
-                <a className = "btn btn--full mgr-sm" href = "#">Start Now</a>
-                <a className = "btn btn--outline" href = "#">Learn More!</a>
+                <a className = "btn btn--full mgr-sm" href = "/your-preferences">Start Now</a>
+                <a className = "btn btn--outline" href = "/about-us">About Us</a>
             </div>
 
                 <div className = "home-img-box">
-                    <img className = "home--img" alt = "Wind Turbing Image" src = {HomepageImg} />
+                    <img className = "home--img" alt = "Wind Turbing On The Main Webpage" src = {HomepageImg} />
                 </div>
+
             </div>
     </section>
 
