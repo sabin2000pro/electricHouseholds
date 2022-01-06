@@ -11,9 +11,9 @@ const AlgorithmsHome = (props) => {
 
         <section className = "section--home">
              
-             <div className = "home--grid">
+            <div className = "home--grid">
 
-             <div className = "home-text-box">
+            <div className = "home-text-box">
 
 
              <h1 className = "heading--primary">Negotiate your Preferences</h1>
@@ -29,8 +29,9 @@ const AlgorithmsHome = (props) => {
                     <img className = "home--img" alt = "Wind Turbine" src = {HomepageImg} />
                 </div>
             </div>
-
       </section>
+
+
     </Fragment>
 
 

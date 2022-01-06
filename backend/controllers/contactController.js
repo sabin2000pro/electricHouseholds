@@ -45,13 +45,29 @@ module.exports.createContact = catchAsync(async (request, response, next) => {
 });
 
 module.exports.editContact = catchAsync(async (request, response, next) => {
+    const id = request.params.id;
+
+    if(!id) {
+        return response.status(notFound).json({status: "Fail", message: "Contact with that ID not found"});
+    }
+
+    const updatedContact = await Contact.findByIdAndUpdate(id, request.body);
+    await updatedContact.save();
+
+    return response.status(200).json({status: 'Success', message: "Contact Updated"});
 
 });
 
 module.exports.deleteAllContacts = catchAsync(async (request, response, next) => {
+    if(request.method === 'DELETE') {
+        await Contact.deleteMany();
 
+        return response.status(204).json("All contacts deleted");
+    }
 });
 
 module.exports.deleteContactByID = catchAsync(async (request, response, next) => {
-
+    if(request.method === 'DELETE') {
+        const id = request.params.id;
+    }
 });
