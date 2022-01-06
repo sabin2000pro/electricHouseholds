@@ -14,6 +14,7 @@ const CreateContact = (props) => {
 
         <RegisterCard>
             <h1 className = "heading--primary login">Contact Us</h1>
+            
             <form className = "login--form">
 
     
@@ -49,7 +50,6 @@ const CreateContact = (props) => {
            </select>
        </div>
 
-
        <div className = "description--box">
            <label className = "description--lbl">Description</label>
            <input placeholder = "Enter your Description" required id = "description" type = "text"/>
@@ -63,7 +63,7 @@ const CreateContact = (props) => {
 
 </RegisterCard>
 
-</div>    
+    </div>    
         </Fragment>
     )
 }
