@@ -37,10 +37,13 @@ const AdminLogin = (props) => { // Admin Login Component
 
             if(!enteredEmail || !enteredPassword) {
                 setFormValid(false);
+                setEmailAddress("");
+                setPassword("");
             }
 
             if(enteredEmail.trim().length < 3) {
                 setFormValid(false);
+                setEmailAddress("");
             }
 
             const {data} = await axios.post(`http://localhost:5200/api/v1/auth/login-admin`, {emailAddress: enteredEmail, password: enteredPassword});
@@ -53,6 +56,8 @@ const AdminLogin = (props) => { // Admin Login Component
 
             if(!authorizationToken) {
                 setFormValid(false);
+                setEmailAddress("");
+                setPassword("");
             }
 
             else {
