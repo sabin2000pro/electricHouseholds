@@ -16,8 +16,8 @@ const PreferencesHome = () => {
             <h1 className = "heading--primary">Your Preferences</h1>
            <p className = "home--description">Fill out the form below and let us know when you wish to run your electrical appliances. You can only run an appliance for only 1 hour in the morning, afternoon and evening to save energy.</p>
    
-           <a className = "btn btn--full mgr-sm" href = "#">Start Now</a>
-           <a className = "btn btn--outline" href = "#">Learn More!</a>
+           <a className = "btn btn--full mgr-sm" href = "/your-preferences">Start Now</a>
+           <a className = "btn btn--outline" href = "/about-us">About Us</a>
        </div>
    
        <div className = "home-img-box">
