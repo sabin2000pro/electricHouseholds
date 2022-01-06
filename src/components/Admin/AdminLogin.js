@@ -29,8 +29,9 @@ const AdminLogin = (props) => { // Admin Login Component
 
     const missingEmail = <p className = "err-msg">Invalid E-mail Address</p>
     const notFound = <p className = "err-msg">Account not found</p>
+    const passwordInvalid = <p className = "err-msg">Password Invalid</p>
 
-    const loginHandler = async (e) => {
+    const loginHandler = async (e) => { // Login Handler function to login admin
 
         try {
             e.preventDefault();
@@ -45,6 +46,8 @@ const AdminLogin = (props) => { // Admin Login Component
                 setFormValid(false);
                 setEmailAddress("");
             }
+
+            if()
 
             const {data} = await axios.post(`http://localhost:5200/api/v1/auth/login-admin`, {emailAddress: enteredEmail, password: enteredPassword});
 
