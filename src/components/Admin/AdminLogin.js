@@ -42,12 +42,15 @@ const AdminLogin = (props) => { // Admin Login Component
                 setPassword("");
             }
 
-            if(enteredEmail.trim().length < 3) {
+            if(enteredEmail.trim().length < 3 || enteredEmail.trim().length === 0) {
                 setFormValid(false);
                 setEmailAddress("");
             }
 
-            if()
+            if(enteredPassword.trim().length === 0) {
+                setFormValid(false);
+                setPassword("");
+            }
 
             const {data} = await axios.post(`http://localhost:5200/api/v1/auth/login-admin`, {emailAddress: enteredEmail, password: enteredPassword});
 
