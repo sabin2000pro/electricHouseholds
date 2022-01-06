@@ -6,8 +6,8 @@ const PreferencesHome = () => {
         return (
             <Fragment>
                <Header />
-   
-   <section className = "section--home">
+            
+      <section className = "section--home">
            <div className = "home--grid">
    
           <div className = "home-text-box">
@@ -21,7 +21,7 @@ const PreferencesHome = () => {
        </div>
    
        <div className = "home-img-box">
-           <img className = "home--img" alt = "Wind Turbing Image" src = {HomepageImg} />
+           <img className = "home--img" alt = "Wind Turbine" src = {HomepageImg} />
        </div>
    </div>
    
