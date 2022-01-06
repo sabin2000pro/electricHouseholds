@@ -1,6 +1,8 @@
 import React, {useState, Fragment} from 'react';
 import Header from '../../components/Header';
 import HomepageImg from '../../components/images/homepage/homepageimg.jpg';
+import './ContactHome.css'
+import CreateContact from './CreateContact';
 
 const ContactHome = () => { // Contact Us Home Page
 
@@ -28,6 +30,12 @@ const ContactHome = () => { // Contact Us Home Page
     </div>
 
     </section>
+
+    <section className = "section--createcontact">
+        <CreateContact />
+    </section>
+
+
     </Fragment>
     )
 }
