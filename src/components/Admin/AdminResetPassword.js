@@ -1,11 +1,11 @@
-import React from 'react'
+import React, {Fragment} from 'react'
 
 const AdminResetPassword = () => {
     return (
-        <div>
-            
-        </div>
+        <Fragment>
+
+        </Fragment>
     )
 }
 
-export default AdminResetPassword
+export default AdminResetPassword // Reset Password Component Exported
