@@ -9,3 +9,22 @@
 .forename--lbl {
    padding-left: -28px;
 }
+
+.username--box {
+    margin-top: 30px;
+    margin-left: -20px;
+    margin-top: 50px;
+}
+
+.lastname--box {
+    margin-top: 50px;
+    margin-left: -20px;
+}
+
+.lastname--lbl {
+
+}
+
+.issueType--box {
+    text-align: center;
+}
