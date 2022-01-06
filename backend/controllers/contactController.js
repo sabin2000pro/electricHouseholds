@@ -25,12 +25,23 @@ module.exports.getContactByID = catchAsync(async (request, response, next) => {
     }
 
     const theContact = await Contact.findById(id);
-
     return response.status(ok).json({theContact});
 });
 
 module.exports.createContact = catchAsync(async (request, response, next) => {
 
+    if(request.method === 'POST') {
+        const {firstName, lastName, username, emailAddress, issueType, description} = request.body;
+
+        if(!firstName || !lastName || !username || !emailAddress || !issueType || !description) {
+            return response.status(400).json({status: "Fail", message: "Please check your Contact us entries"});
+        }
+
+        const newContact = new Contact({firstName, lastName, username, emailAddress, issueType, description});
+        await newContact.save(); // Save the contact to the database
+
+        return response.status(created).json({newContact});
+    }
 });
 
 module.exports.editContact = catchAsync(async (request, response, next) => {
