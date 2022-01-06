@@ -75,6 +75,10 @@ const AdminLogin = (props) => { // Admin Login Component
             }
         }  
     }
+
+    const blurHandler = function() {
+        setFormValid(true);
+    }
     
     return (
 
@@ -113,13 +117,13 @@ const AdminLogin = (props) => { // Admin Login Component
                     
                     <div className = "email--box">
                         <label className = "email--lbl">E-mail</label>
-                        <input value = {enteredEmail} onChange = {(e) => {setEmailAddress(e.target.value)}} placeholder = "Enter your E-mail" type = "email"/>
+                        <input onBlur = {blurHandler} value = {enteredEmail} onChange = {(e) => {setEmailAddress(e.target.value)}} placeholder = "Enter your E-mail" type = "email"/>
                         {!formValid && missingEmail}
                     </div>
 
                     <div className = "password--box">
                         <label className = "password--lbl">Password</label>
-                        <input value = {enteredPassword} onChange = {(e) => {setPassword(e.target.value)}} placeholder = "Enter your Password" required id = "password" type = "password"/>
+                        <input onBlur = {blurHandler} value = {enteredPassword} onChange = {(e) => {setPassword(e.target.value)}} placeholder = "Enter your Password" required id = "password" type = "password"/>
                     </div>
                     
 
