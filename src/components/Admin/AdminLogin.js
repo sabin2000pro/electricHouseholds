@@ -27,10 +27,16 @@ const AdminLogin = (props) => { // Admin Login Component
          }
     }
 
+    const missingEmail = <p className = "err-msg">Invalid E-mail Address</p>
+
     const loginHandler = async (e) => {
 
         try {
             e.preventDefault();
+
+            if(!enteredEmail || !enteredPassword) {
+                setFormValid(false);
+            }
 
             const {data} = await axios.post(`http://localhost:5200/api/v1/auth/login-admin`, {emailAddress: enteredEmail, password: enteredPassword});
             const authorizationToken = data.token;
@@ -46,6 +52,7 @@ const AdminLogin = (props) => { // Admin Login Component
         catch(error) {
 
             if(error) {
+                
                 setFormValid(false);
                 return console.log(error);
             }
