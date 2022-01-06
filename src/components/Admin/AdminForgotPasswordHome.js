@@ -1,9 +1,10 @@
 import React, {Fragment} from 'react';
 import Header from '../Header';
-import HomepageImg from '../../components/images/homepage/homepageimg.jpg';
+import HomepageImg from '../images/homepage/homepageimg.jpg';
 
-const PreferencesHome = () => {
-        return (
+const AdminForgotPasswordHome = () => {
+    return (
+        
             <Fragment>
                <Header />
             
@@ -13,8 +14,8 @@ const PreferencesHome = () => {
           <div className = "home-text-box">
    
    
-            <h1 className = "heading--primary">Your Preferences</h1>
-           <p className = "home--description">Fill out the form below and let us know when you wish to run your electrical appliances. You can only run an appliance for only 1 hour in the morning, afternoon and evening to save energy.</p>
+            <h1 className = "heading--primary">Admin Forgot Password</h1>
+           <p className = "home--description">If you are an Admin and have forgotten your password, please fill out the form below to reset it.</p>
    
            <a className = "btn btn--full mgr-sm" href = "/your-preferences">Start Now</a>
            <a className = "btn btn--outline" href = "/about-us">About Us</a>
@@ -31,4 +32,4 @@ const PreferencesHome = () => {
     )
 }
 
-export default PreferencesHome
+export default AdminForgotPasswordHome
