@@ -48,10 +48,9 @@ const CreateContact = (props) => {
            </select>
        </div>
 
-       
 
        <div className = "submit--container">
-           <button className = "login--btn" type = "submit">Submit</button>
+           <button className = "submit--btn" type = "submit">Submit</button>
        </div>
 
     </form>

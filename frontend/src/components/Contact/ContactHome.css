@@ -33,3 +33,25 @@
     text-align: center;
     margin-left: -140px
 }
+
+.submit--btn {
+    align-items: center;
+    margin-top: 50px;
+    margin-left: 400px;
+    width: 150px;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 100px;
+    background-color: white;
+    text-decoration: none;
+    padding: 12px 32px;
+    font-size: 18px;
+    color: black;
+    font-weight: 600;
+    border-radius: 200px;
+    transition: all 0.2s;
+}
+
+.submit--btn:hover {
+    background-color: #d3e8e3;
+}
