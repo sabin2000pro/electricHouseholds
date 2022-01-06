@@ -3,15 +3,18 @@ import {Link} from 'react-router-dom';
 import RegisterCard from '../Admin/RegisterCard';
 
 const CreateContact = (props) => {
-   
+   const [firstName, setFirstName] = useState('');
+   const [firstNameValid, setFirstNameValid] = useState(true);
+
+
 
     return (
         <Fragment>
              <div className = "container grid grid--2-cols">
 
-<RegisterCard>
-    <h1 className = "heading--primary login">Contact Us</h1>
-    <form className = "login--form">
+        <RegisterCard>
+            <h1 className = "heading--primary login">Contact Us</h1>
+            <form className = "login--form">
 
     
        <div className = "forename--box">
