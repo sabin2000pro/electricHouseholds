@@ -23,10 +23,11 @@ const contactSchema = new mongoose.Schema({
 
     issueType: {
         type: String,
-        required: [true, 'Please include what the kind of issue you are encountering']
+        required: [true, 'Please include what the kind of issue you are encountering'],
+        enum: ['Homepage', 'Algorithms', 'Preferences', 'Register', 'Login']
     },
 
-    description: {
+    description: { // Description Field
         type: String,
         required: [true, 'Please provide a description of your problem']
     }
