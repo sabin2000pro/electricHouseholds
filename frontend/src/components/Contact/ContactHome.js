@@ -13,8 +13,9 @@ const ContactHome = (props) => { // Contact Us Home Page
         <Fragment>
          <Header />
 
+
     <section className = "section--home">
-            <div className = "home--grid">
+        <div className = "home--grid">
 
            <div className = "home-text-box">
 
