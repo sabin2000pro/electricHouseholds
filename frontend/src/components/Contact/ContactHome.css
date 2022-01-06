@@ -40,23 +40,20 @@
     margin-left: -60px;
 }
 
-.lastname--lbl {
-
-}
-
 .issue--lbl {
-    margin-right: 30px;
+    margin-right: -40px;
 }
 
 .issueType--box {
     text-align: center;
-    margin-left: -140px
+    margin-left: -160px;
+    margin-right: -30px;
 }
 
 .submit--btn {
     align-items: center;
-    margin-top: 50px;
-    margin-left: 400px;
+    margin-top: 20px;
+    margin-left: 430px;
     width: 150px;
     border: none;
     cursor: pointer;
@@ -73,4 +70,28 @@
 
 .submit--btn:hover {
     background-color: #d3e8e3;
+}
+
+.box {
+    border-radius: 200px;
+    padding: 8px 16px;
+    margin-left: -10px;
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: none;
+    border: none;
+}
+
+.description--box {
+    margin-left: -14px;
+    margin-top: 40px;
+    margin-bottom: 30px;
+}
+
+.description--box label {
+
+}
+
+.description--box input {
+
 }

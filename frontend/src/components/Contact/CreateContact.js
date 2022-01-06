@@ -39,7 +39,8 @@ const CreateContact = (props) => {
 
        <div className = "issueType--box">
        <label className = "issue--lbl" htmlFor = "issue">Issue Type</label>
-           <select>
+
+           <select className = "box">
                <option>Homepage</option>
                <option>Register</option>
                <option>Login</option>
@@ -48,6 +49,11 @@ const CreateContact = (props) => {
            </select>
        </div>
 
+
+       <div className = "description--box">
+           <label className = "description--lbl">Description</label>
+           <input placeholder = "Enter your Description" required id = "description" type = "text"/>
+       </div>
 
        <div className = "submit--container">
            <button className = "submit--btn" type = "submit">Submit</button>
