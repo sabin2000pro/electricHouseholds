@@ -7,7 +7,6 @@ const CreateContact = (props) => {
    const [firstNameValid, setFirstNameValid] = useState(true);
 
 
-
     return (
         <Fragment>
              <div className = "container grid grid--2-cols">
