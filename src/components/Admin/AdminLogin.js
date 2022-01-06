@@ -47,6 +47,10 @@ const AdminLogin = (props) => { // Admin Login Component
                 setEmailAddress("");
             }
 
+            if(!enteredEmail.trim().includes("@")) {
+                
+            }
+
             if(enteredPassword.trim().length === 0) {
                 setFormValid(false);
                 setPassword("");
@@ -60,7 +64,7 @@ const AdminLogin = (props) => { // Admin Login Component
             setPasswordValid(true);
             setEmailValid(true);
 
-            if(!authorizationToken) {
+            if(!authorizationToken) { // If there is no authorization token found. I.e if the account is invalid
                 setFormValid(false);
                 setEmailAddress("");
                 setPassword("");
