@@ -12,6 +12,8 @@ const AdminLogin = (props) => { // Admin Login Component
     const [emailValid, setEmailValid] = useState(true);
     const [enteredPassword, setPassword] = useState('');
     const [passwordValid, setPasswordValid] = useState(true); 
+
+    const [formValid, setFormValid] = useState(true);
     
     useEffect(() => {
         const authToken = localStorage.getItem("authToken");
@@ -33,6 +35,10 @@ const AdminLogin = (props) => { // Admin Login Component
             const {data} = await axios.post(`http://localhost:5200/api/v1/auth/login-admin`, {emailAddress: enteredEmail, password: enteredPassword});
             const authorizationToken = data.token;
             localStorage.setItem("authToken", authorizationToken);
+
+            setPasswordValid(true);
+            setEmailValid(true);
+
             return history.push('/admin-dashboard');
           
         }   
@@ -40,6 +46,7 @@ const AdminLogin = (props) => { // Admin Login Component
         catch(error) {
 
             if(error) {
+                setFormValid(false);
                 return console.log(error);
             }
         }  
@@ -70,48 +77,48 @@ const AdminLogin = (props) => { // Admin Login Component
     </section>
 
 
-<section className = "section--login">
+    <section className = "section--login">
 
-    <div className = "container grid grid--2-cols">
+        <div className = "container grid grid--2-cols">
 
-            <RegisterCard>
-                <h1 className = "heading--primary login">Admin Login</h1>
-                <form onSubmit = {loginHandler} className = "login--form">
+                <RegisterCard>
+                    <h1 className = "heading--primary login">Admin Login</h1>
+                    <form onSubmit = {loginHandler} className = "login--form">
 
+                    
+                    <div className = "email--box">
+                        <label className = "email--lbl">E-mail</label>
+                        <input value = {enteredEmail} onChange = {(e) => {setEmailAddress(e.target.value)}} placeholder = "Enter your E-mail" type = "email"/>
+                    </div>
+
+                    <div className = "password--box">
+                        <label className = "password--lbl">Password</label>
+                        <input value = {enteredPassword} onChange = {(e) => {setPassword(e.target.value)}} placeholder = "Enter your Password" required id = "password" type = "password"/>
+                    </div>
+                    
+
+                    <p className = "already--text">Forgot your password?</p>
+                    <Link className = "link--to" to = '/admin-resetpassword'>Reset Here!</Link>
+
+                    <div className = "submit--container">
+                        <button className = "login--btn" type = "submit">Login</button>
+                    </div>
+
+                    </form>
                 
-                   <div className = "email--box">
-                       <label className = "email--lbl">E-mail</label>
-                       <input value = {enteredEmail} onChange = {(e) => {setEmailAddress(e.target.value)}} placeholder = "Enter your E-mail" type = "email"/>
-                   </div>
-
-                   <div className = "password--box">
-                       <label className = "password--lbl">Password</label>
-                       <input value = {enteredPassword} onChange = {(e) => {setPassword(e.target.value)}} placeholder = "Enter your Password" required id = "password" type = "password"/>
-                   </div>
-                   
-
-                   <p className = "already--text">Forgot your password?</p>
-                   <Link className = "link--to" to = '/admin-resetpassword'>Reset Here!</Link>
-
-                   <div className = "submit--container">
-                       <button className = "login--btn" type = "submit">Login</button>
-                   </div>
-
-                </form>
+            </RegisterCard>
             
-          </RegisterCard>
-          
-    </div>    
+        </div>    
 
 </section>
 
-<footer className = "footer">
-        <ul className = "footer--items">
-            <li className = "footer--item">Copyright All Rights Reserved - eHouseholds Sabin Constantin Lungu - 2021</li>
-        </ul>
-    </footer>
+    <footer className = "footer">
+            <ul className = "footer--items">
+                <li className = "footer--item">Copyright All Rights Reserved - eHouseholds Sabin Constantin Lungu - 2021</li>
+            </ul>
+        </footer>
 
-</Fragment>
+    </Fragment>
 
     )
 }
