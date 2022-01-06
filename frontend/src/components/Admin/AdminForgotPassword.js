@@ -3,22 +3,6 @@ import {useHistory, useLocation, Link} from 'react-router-dom';
 import RegisterCard from './RegisterCard';
 import './AdminForgotPassword.css'
 
-const forgotPasswordSubmitHandler = (event) => {
-
-    event.preventDefault();
-
-    try {
-
-    }
-    
-    catch(err) {
-
-        if(err) {
-            console.log(err);
-        }
-
-    }
-}
 
 const AdminForgotPassword = (props) => {
     let history = useHistory();
@@ -27,6 +11,23 @@ const AdminForgotPassword = (props) => {
     const [emailValid, setEmailValid] = useState(false);
     const [formIsValid, setFormIsValid] = useState(false);
 
+    const forgotPasswordSubmitHandler = (event) => {
+
+        event.preventDefault();
+    
+        try {
+    
+        }
+        
+        catch(err) {
+    
+            if(err) {
+                return console.log(err);
+            }
+    
+        }
+    }
+
     return (
         <section className = "section--forgotpassword">
 
@@ -34,7 +35,7 @@ const AdminForgotPassword = (props) => {
 
                 <RegisterCard>
                     <h1 className = "heading--primary login">Forgot Password</h1>
-                    <form  className = "login--form">
+                    <form className = "login--form">
 
                     
                     <div className = "email--box">
