@@ -40,19 +40,12 @@ const AdminForgotPassword = (props) => {
                     
                     <div className = "email--box">
                         <label className = "email--lbl">E-mail</label>
-                        <input  onChange = {(e) => {setEmailAddress(e.target.value)}} placeholder = "Enter your E-mail" type = "email"/>
+                        <input  onChange = {(e) => {setEmailAddress(e.target.value)}} placeholder = "Enter your E-mail Address" type = "email"/>
                     </div>
 
-                    <div className = "password--box">
-                        <label className = "password--lbl">Password</label>
-                        <input placeholder = "Enter your Password" required id = "password" type = "password"/>
-                    </div>
-                    
-                    <p className = "already--text">Forgot your password?</p>
-                    <Link className = "link--to" to = '/admin-forgotpassword'>Reset Here!</Link>
 
                     <div className = "submit--container">
-                        <button className = "login--btn" type = "submit">Login</button>
+                        <button className = "login--btn" type = "submit">Submit</button>
                     </div>
 
                    
