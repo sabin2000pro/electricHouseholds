@@ -1,10 +1,11 @@
 import React, {useState, Fragment} from 'react';
 import HomepageImg from '../images/homepage/homepageimg.jpg';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import RegisterCard from './RegisterCard';
 import './AdminResetPasswordHome.css';
 
 const AdminResetPassword = ({match}) => {
+    let history = useHistory(); // Used for navigation
     const [newPassword, setNewPassword] = useState('');
     const [newPasswordValid, setNewPasswordValid] = useState(false);
     const [formValid, setFormValid] = useState(false);
@@ -13,6 +14,10 @@ const AdminResetPassword = ({match}) => {
         try {
             event.preventDefault();
 
+            if(newPassword.trim().length < 3) {
+                setNewPasswordValid(false);
+                setFormValid(false);
+            }
 
         } 
         
@@ -22,7 +27,7 @@ const AdminResetPassword = ({match}) => {
                 setFormValid(false);
                 return console.log(err);
             }
-            
+
         }
     }
 
