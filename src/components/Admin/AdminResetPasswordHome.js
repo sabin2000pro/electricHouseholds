@@ -8,6 +8,7 @@ const AdminResetPasswordHome = (props) => {
     return (
         
         <Fragment>
+            <Header />
            
         
     <section className = "section--home">
@@ -25,7 +26,11 @@ const AdminResetPasswordHome = (props) => {
             <img className = "home--img" alt = "Wind Turbine" src = {HomepageImg} />
         </div>
         </div>
-        </section>
+    
+    </section>
+
+   
+
 
             </Fragment>
 
