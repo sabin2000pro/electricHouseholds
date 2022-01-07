@@ -12,7 +12,7 @@ const Header = (props) => {
 
     }, []);
 
-    const fetchAuthToken = (authToken) => {
+    const fetchAuthToken = (authToken) => {// Fetches the Authentication token from local storage
 
         if(!authToken) { // If there's no auth token
             return setIsInLocalStorage(false); // Not logged in
