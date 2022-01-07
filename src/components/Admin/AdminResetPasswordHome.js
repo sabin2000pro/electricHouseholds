@@ -8,7 +8,8 @@ const AdminResetPasswordHome = (props) => {
     return (
         
         <Fragment>
-            <Header />
+           
+           
         
     <section className = "section--home">
         <div className = "home--grid">
