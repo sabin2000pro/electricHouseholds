@@ -58,7 +58,7 @@ module.exports.forgotPassword = catchAsync(async (request, response, next) => {
     }
 
     const resetToken = admin.getResetPasswordToken(); // Get the password reset token
-    const resetPasswordURL = `http://localhost:5370/${resetToken}`;
+    const resetPasswordURL = `http://localhost:5200/${resetToken}`;
     await admin.save();
 
     const resetMessage = `<h1> You have requested a new password reset</h1>
@@ -77,7 +77,6 @@ module.exports.resetAdminPassword = catchAsync(async (request, response, next) =
     const password = request.body.password; // Get the new password from the body
     
     const passwordResetToken = crypto.createHash("sha256").update(resetToken).digest('hex'); // Create reset password token
-
     const admin = await Admin.findOne({passwordResetToken, passwordResetExpires: {$gt: Date.now()}});
 
         if(!admin) {
