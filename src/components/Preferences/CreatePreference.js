@@ -1,10 +1,13 @@
-import React, {useState, useEffect, useReducer, Fragment} from 'react'
+import React, {useState, useEffect, useReducer, Fragment} from 'react';
+
 
 const CreatePreference = (props) => {
     return (
-        <div>
-            
-        </div>
+       <Fragment>
+           <div>
+               
+           </div>
+       </Fragment>
     )
 }
 
