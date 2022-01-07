@@ -27,9 +27,13 @@ const AdminResetPasswordHome = (props) => {
             <img className = "home--img" alt = "Wind Turbine" src = {HomepageImg} />
         </div>
         </div>
+        </section>
 
+        <section className = "section--resetpassword">
+            <AdminResetPassword />
         </section>
             </Fragment>
+
     )
 }
 
