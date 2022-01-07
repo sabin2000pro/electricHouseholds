@@ -25,9 +25,10 @@ module.exports.getApplianceByID = catchAsync(async (request, response, next) => 
     const id = request.params.id;
 
     if(!id) { // If no ID present
-
+        return response.status(404).json({status: "Fail", message: "No Appliance found with that ID"});
     }
 
+    
 
 });
 
@@ -35,8 +36,12 @@ module.exports.editAppliance = catchAsync(async (request, response, next) => {
     const id = request.params.id;
 
     if(!id) {
-
+        return response.status(404).json({status: "Fail", message: "No Appliance found with that ID"});
     }
+
+    const updatedAppliance = await Appliance.findByIdAndUpdate(id, request.body);
+    await updatedAppliance.save();
+    return response.status(200).json("Appliance Updated");
 
 });
 
@@ -61,7 +66,6 @@ module.exports.sortAppliances = catchAsync(async (request, response, next) => {
         const sortBy = request.query.sort.split(',').join('');
         query = query.sort(sortBy);
     }
-
     
 });
 
