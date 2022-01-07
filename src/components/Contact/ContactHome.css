@@ -16,6 +16,14 @@
     font-size: 14px;
 }
 
+.contact--us {
+    color: white;
+    text-align: center;
+    padding-top: 60px;
+    margin-bottom: 40px;
+    margin-left: 25px;
+}
+
 .username--box {
     margin-top: 30px;
     margin-left: -20px;
