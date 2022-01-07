@@ -8,8 +8,8 @@ const ContactHome = (props) => { // Contact Us Home Page
 
     return (
         <Fragment>
-         <Header />
 
+         <Header />
 
     <section className = "section--home">
         <div className = "home--grid">
@@ -32,16 +32,15 @@ const ContactHome = (props) => { // Contact Us Home Page
 
     </section>
 
-    <section className = "section--createcontact">
-        <CreateContact />
-    </section>
+        <section className = "section--createcontact">
+            <CreateContact />
+        </section>
 
-    <footer className = "footer">
-            <ul className = "footer--items">
-                <li className = "footer--item">Copyright All Rights Reserved - eHouseholds Sabin Constantin Lungu - 2021</li>
-            </ul>
-        </footer>
-
+        <footer className = "footer">
+                <ul className = "footer--items">
+                    <li className = "footer--item">Copyright All Rights Reserved - eHouseholds Sabin Constantin Lungu - 2021</li>
+                </ul>
+            </footer>
 
     </Fragment>
     )

@@ -3,9 +3,11 @@ import PropTypes from 'prop-types'
 
 const CreateFeedback = (props) => {
     return (
-        <div>
-            
-        </div>
+         <Fragment>
+             <div>
+                 
+             </div>
+         </Fragment>
     )
 }
 

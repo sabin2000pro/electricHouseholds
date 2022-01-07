@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1641549231755" clover="3.2.0">
-  <project timestamp="1641549231756" name="All files">
-    <metrics statements="483" coveredstatements="316" conditionals="134" coveredconditionals="31" methods="57" coveredmethods="24" elements="674" coveredelements="371" complexity="0" loc="483" ncloc="483" packages="8" files="25" classes="25"/>
+<coverage generated="1641549240957" clover="3.2.0">
+  <project timestamp="1641549240957" name="All files">
+    <metrics statements="484" coveredstatements="317" conditionals="134" coveredconditionals="31" methods="57" coveredmethods="24" elements="675" coveredelements="372" complexity="0" loc="484" ncloc="484" packages="8" files="25" classes="25"/>
     <package name="controllers">
-      <metrics statements="257" coveredstatements="128" conditionals="98" coveredconditionals="25" methods="37" coveredmethods="11"/>
+      <metrics statements="258" coveredstatements="129" conditionals="98" coveredconditionals="25" methods="37" coveredmethods="11"/>
       <file name="applianceController.js" path="/app/controllers/applianceController.js">
         <metrics statements="41" coveredstatements="24" conditionals="10" coveredconditionals="0" methods="8" coveredmethods="3"/>
         <line num="1" count="1" type="stmt"/>
@@ -159,7 +159,7 @@
         <line num="70" count="0" type="stmt"/>
       </file>
       <file name="contactController.js" path="/app/controllers/contactController.js">
-        <metrics statements="39" coveredstatements="13" conditionals="20" coveredconditionals="0" methods="6" coveredmethods="0"/>
+        <metrics statements="40" coveredstatements="14" conditionals="20" coveredconditionals="0" methods="6" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -167,38 +167,39 @@
         <line num="5" count="1" type="stmt"/>
         <line num="6" count="1" type="stmt"/>
         <line num="7" count="1" type="stmt"/>
-        <line num="9" count="1" type="stmt"/>
-        <line num="11" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="12" count="0" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="12" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="13" count="0" type="stmt"/>
-        <line num="18" count="1" type="stmt"/>
-        <line num="20" count="0" type="stmt"/>
-        <line num="22" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="23" count="0" type="stmt"/>
-        <line num="26" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="19" count="1" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="23" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="24" count="0" type="stmt"/>
         <line num="27" count="0" type="stmt"/>
-        <line num="30" count="1" type="stmt"/>
-        <line num="32" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="33" count="0" type="stmt"/>
-        <line num="35" count="0" type="cond" truecount="0" falsecount="8"/>
-        <line num="36" count="0" type="stmt"/>
-        <line num="39" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="31" count="1" type="stmt"/>
+        <line num="33" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="36" count="0" type="cond" truecount="0" falsecount="8"/>
+        <line num="37" count="0" type="stmt"/>
         <line num="40" count="0" type="stmt"/>
-        <line num="42" count="0" type="stmt"/>
-        <line num="46" count="1" type="stmt"/>
-        <line num="47" count="0" type="stmt"/>
-        <line num="49" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="50" count="0" type="stmt"/>
-        <line num="53" count="0" type="stmt"/>
+        <line num="41" count="0" type="stmt"/>
+        <line num="43" count="0" type="stmt"/>
+        <line num="47" count="1" type="stmt"/>
+        <line num="48" count="0" type="stmt"/>
+        <line num="50" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="51" count="0" type="stmt"/>
         <line num="54" count="0" type="stmt"/>
-        <line num="56" count="0" type="stmt"/>
-        <line num="60" count="1" type="stmt"/>
-        <line num="61" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="62" count="0" type="stmt"/>
-        <line num="64" count="0" type="stmt"/>
-        <line num="68" count="1" type="stmt"/>
-        <line num="69" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="70" count="0" type="stmt"/>
+        <line num="55" count="0" type="stmt"/>
+        <line num="57" count="0" type="stmt"/>
+        <line num="61" count="1" type="stmt"/>
+        <line num="62" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="63" count="0" type="stmt"/>
+        <line num="65" count="0" type="stmt"/>
+        <line num="69" count="1" type="stmt"/>
+        <line num="70" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="71" count="0" type="stmt"/>
       </file>
       <file name="preferencesController.js" path="/app/controllers/preferencesController.js">
         <metrics statements="55" coveredstatements="24" conditionals="26" coveredconditionals="9" methods="7" coveredmethods="3"/>
