@@ -3,6 +3,7 @@ import RegisterCard from '../Admin/RegisterCard';
 import { Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
 import {motion, AnimatePresence} from 'framer-motion';
+import './ContactHome.css';
 
 const CreateContact = (props) => {
    let history = useHistory();
@@ -63,58 +64,66 @@ const CreateContact = (props) => {
 
 
     return (
-        <Fragment>
-             <div className = "container grid grid--2-cols">
+            <Fragment>
+                <div className = "container grid grid--2-cols">
 
-        <RegisterCard>
-            <h1 className = "heading--primary login">Contact Us</h1>
-            
-    <form onSubmit = {contactUsHandler} method = "POST" className = "login--form">
+         <AnimatePresence>
 
-       <div className = "forename--box">
-           <label className = "forename--lbl">Forename</label>
-           <input value = {firstName} onChange = {(e) => {setFirstName(e.target.value)}} id = "First Name" placeholder = "Enter your First Name" type = "text"/>
-       </div>
+         <motion.div exit = {{opacity: 0}} initial = {{opacity: 0}} animate = {{opacity: 1}}>
 
-       <div className = "lastname--box">
-           <label className = "lastname--lbl">Last Name</label>
-           <input value = {lastName} onChange = {(e) => {setLastName(e.target.value)}} placeholder = "Enter your Last Name" required id = "lastName" type = "text"/>
-       </div>
+            <RegisterCard>
+                <h1 className = "heading--primary contact--us">Contact Us</h1>
+                
+        <form onSubmit = {contactUsHandler} method = "POST" className = "login--form">
 
-       <div className = "username--box">
-           <label className = "username--lbl">Username</label>
-           <input placeholder = "Enter your Username" required id = "username" type = "text"/>
-       </div>
+        <div className = "forename--box">
+            <label className = "forename--lbl">Forename</label>
+            <input value = {firstName} onChange = {(e) => {setFirstName(e.target.value)}} id = "First Name" placeholder = "Enter your First Name" type = "text"/>
+        </div>
 
-       <div className = "email--box">
-           <label className = "email--lbl">E-mail</label>
-           <input placeholder = "Enter your E-mail Address" required id = "email" type = "email"/>
-       </div>
+        <div className = "lastname--box">
+            <label className = "lastname--lbl">Last Name</label>
+            <input value = {lastName} onChange = {(e) => {setLastName(e.target.value)}} placeholder = "Enter your Last Name" required id = "lastName" type = "text"/>
+        </div>
 
-       <div className = "issueType--box">
-       <label className = "issue--lbl" htmlFor = "issue">Issue Type</label>
+        <div className = "username--box">
+            <label className = "username--lbl">Username</label>
+            <input placeholder = "Enter your Username" required id = "username" type = "text"/>
+        </div>
 
-           <select value = {issueType} onChange = {(e) => {setIssueType(e.target.value)}} id = "issuetype" className = "box">
-               <option>Homepage</option>
-               <option>Register</option>
-               <option>Login</option>
-               <option>Algorithms</option>
-               <option>Preferences</option>
-           </select>
-       </div>
+        <div className = "email--box">
+            <label className = "email--lbl">E-mail</label>
+            <input placeholder = "Enter your E-mail Address" required id = "email" type = "email"/>
+        </div>
 
-       <div className = "description--box">
-           <label className = "description--lbl">Description</label>
-           <input placeholder = "Enter your Description" required id = "description" type = "text"/>
-       </div>
+        <div className = "issueType--box">
+        <label className = "issue--lbl" htmlFor = "issue">Issue Type</label>
 
-       <div className = "submit--container">
-           <button className = "submit--btn" type = "submit">Submit</button>
-       </div>
+            <select value = {issueType} onChange = {(e) => {setIssueType(e.target.value)}} id = "issuetype" className = "box">
+                <option>Homepage</option>
+                <option>Register</option>
+                <option>Login</option>
+                <option>Algorithms</option>
+                <option>Preferences</option>
+            </select>
+        </div>
 
-    </form>
+        <div className = "description--box">
+            <label className = "description--lbl">Description</label>
+            <input placeholder = "Enter your Description" required id = "description" type = "text"/>
+        </div>
 
-</RegisterCard>
+        <div className = "submit--container">
+            <button className = "submit--btn" type = "submit">Submit</button>
+        </div>
+
+        </form>
+
+        </RegisterCard>
+        </motion.div>
+        </AnimatePresence>
+
+
 
     </div>    
         </Fragment>
