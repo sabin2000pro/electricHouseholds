@@ -135,6 +135,7 @@ Main Color: #00b894
     font-size: 20px;
     line-height: 1.6;
     margin-bottom: 30px;
+    font-weight: 600;
 }
 
 .btn:link, .btn:visited {

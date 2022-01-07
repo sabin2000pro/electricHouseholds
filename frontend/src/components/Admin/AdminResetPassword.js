@@ -48,6 +48,7 @@ const AdminResetPassword = ({match}) => {
         <Fragment>
 
             <AdminResetPasswordHome />
+
             <section className = "section--resetpassword">
 
     <div className = "container grid grid--2-cols">
@@ -74,6 +75,12 @@ const AdminResetPassword = ({match}) => {
     
 </div>    
 </section>
+
+<footer className = "footer">
+                <ul className = "footer--items">
+                    <li className = "footer--item">Copyright All Rights Reserved - eHouseholds Sabin Constantin Lungu - 2021</li>
+                </ul>
+            </footer>
         </Fragment>
     )
 }
