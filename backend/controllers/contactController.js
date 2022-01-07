@@ -1,11 +1,11 @@
 const Contact = require('../models/contactModel');
 const catchAsync = require('../utils/catchAsync');
+const sendEmail = require('../utils/sendEmail');
 const ok = 200;
 const created = 201;
 const notFound = 204;
 const serverError = 500;
 const badRequest = 400;
-
 
 module.exports.getAllContacts = catchAsync(async (request, response, next) => {
 

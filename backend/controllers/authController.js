@@ -20,7 +20,9 @@ module.exports.registerAdmin = catchAsync(async (request, response, next ) => { 
     const newAdmin = new Admin({username, emailAddress, password, confirmPassword});
     await newAdmin.save();
 
-    sendToken(newAdmin, created, response); // Send the JWT Token
+    // Send E-mail After Registration
+
+    return sendToken(newAdmin, created, response); // Send the JWT Token
 });
 
 module.exports.loginAdmin = catchAsync(async (request, response, next) => { // Controller Function to Login Admin
