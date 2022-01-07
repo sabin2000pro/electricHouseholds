@@ -8,7 +8,7 @@ import AdminResetPasswordHome from './AdminResetPasswordHome';
 
 const AdminResetPassword = ({match}) => {
     let history = useHistory(); // Used for navigation
-    const [newPassword, setNewPassword] = useState('');
+    const [password, setNewPassword] = useState('');
     const [newPasswordValid, setNewPasswordValid] = useState(false);
     const [formValid, setFormValid] = useState(false);
 
@@ -16,15 +16,15 @@ const AdminResetPassword = ({match}) => {
         try {
             event.preventDefault();
 
-            if(newPassword.trim().length < 3) {
+            if(password.trim().length < 3) {
                 setNewPasswordValid(false);
                 setFormValid(false);
             }
 
             // Send PUT request
 
-            const {data} = await axios.put(`http://localhost:5200/api/v1/auth/admin/reset-password/${match.params.resetToken}`, {newPassword});
-            console.log(data);
+            const {data} = await axios.put(`http://localhost:5200/api/v1/auth/admin/reset-password/${match.params.resetToken}`, {password});
+    
             console.log(`Password Updated Success`);
 
         } 
@@ -32,8 +32,10 @@ const AdminResetPassword = ({match}) => {
         catch(err) {
 
             if(err) {
+                console.log(`${match.params.resetToken}`)
+
                 setFormValid(false);
-                return console.log(err);
+                return console.log(err.message);
             }
 
         }
@@ -51,7 +53,7 @@ const AdminResetPassword = ({match}) => {
 
             <div className = "password--box">
                 <label className = "password--lbl">New Password</label>
-                <input placeholder = "Enter your Password" required id = "password" type = "password"/>
+                <input value = {password} onChange = {(e) => {setNewPassword(e.target.value)}} placeholder = "Enter your Password" required id = "password" type = "password"/>
             </div>
             
             <p className = "already--text">Forgot your password?</p>

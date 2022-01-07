@@ -88,7 +88,7 @@ module.exports.resetAdminPassword = catchAsync(async (request, response, next) =
         admin.passwordResetExpires = undefined;
 
         await admin.save(); 
-        return response.status(created).json({success: true, data: "Password Reset Success"});
+        return response.status(200).json({success: true, data: "Password Reset Success"});
 
 })
 
