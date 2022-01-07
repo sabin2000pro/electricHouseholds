@@ -25,7 +25,7 @@ const Homepage = (props) => { // Main Homepage Component
                 <p className = "home--description">Reducing your peak electricity consumptions through the experimentation of two Fair Negotiation Algorithms. This is very important in order to reuse clean energy from green renewable sources. We are aiming to save the planet by limiting the usage of electrical appliances throughout various hours during the day.</p>
 
                 
-                <a className = "btn btn--full mgr-sm" href = "#">Start Now</a>
+                <a className = "btn btn--full mgr-sm" href = "/your-preferences">Start Now</a>
                 <a className = "btn btn--outline" href = "/about-us">About Us</a>
             </div>
 

@@ -103,6 +103,25 @@ Main Color: #00b894
     align-items: center;
 }
 
+.home-text-box button {
+    display: inline-block;
+    font-size: 20px;
+    font-weight: 600;
+    border-radius: 150px;
+    padding: 12px 24px;
+    color: white;
+    text-decoration: none;
+    border: none;
+    transition: all 0.4s;
+    background-color: #1e7e68;
+    cursor: pointer;
+}
+
+.home-text-box button:hover {
+    background-color: #218c74;
+}
+
+
 .heading--primary {
     font-size: 45px;
     font-weight: 700;
