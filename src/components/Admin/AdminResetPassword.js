@@ -3,6 +3,7 @@ import HomepageImg from '../images/homepage/homepageimg.jpg';
 import { Link, useHistory } from 'react-router-dom';
 import RegisterCard from './RegisterCard';
 import './AdminResetPasswordHome.css';
+import axios from 'axios';
 
 const AdminResetPassword = ({match}) => {
     let history = useHistory(); // Used for navigation
@@ -18,6 +19,12 @@ const AdminResetPassword = ({match}) => {
                 setNewPasswordValid(false);
                 setFormValid(false);
             }
+
+            // Send PUT request
+
+            const {data} = await axios.put(`http://localhost:5200/api/v1/auth/admin/reset-password/${match.params.resetToken}`, {newPassword});
+            console.log(data);
+            console.log(`Password Updated Success`);
 
         } 
         
