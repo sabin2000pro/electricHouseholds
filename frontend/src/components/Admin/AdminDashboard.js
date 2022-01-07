@@ -27,30 +27,30 @@ const AdminDashboard = (props) => {
 
     return (
          
-        <Fragment>
-        <Header />
-    
-<section className = "section--home">
-    <div className = "home--grid">
+            <Fragment>
+            <Header />
+        
+    <section className = "section--home">
+        <div className = "home--grid">
 
-<div className = "home-text-box">
+    <div className = "home-text-box">
 
 
- <h1 className = "heading--primary">Your Admin Dashboard</h1>
-<p className = "home--description">View Appliances Below</p>
+    <h1 className = "heading--primary">Your Admin Dashboard</h1>
+    <p className = "home--description">View Appliances Below</p>
 
-<a onClick = {logoutHandler} className = "btn btn--outline" href = "/home">Logout</a>
-</div>
+    <a onClick = {logoutHandler} className = "btn btn--outline" href = "/home">Logout</a>
+    </div>
 
-<div className = "home-img-box">
-    <img className = "home--img" alt = "Wind Turbine" src = {HomepageImg} />
-</div>
-</div>
+    <div className = "home-img-box">
+        <img className = "home--img" alt = "Wind Turbine" src = {HomepageImg} />
+    </div>
+    </div>
 
-</section>
-    </Fragment>
-       
-    )
-}
+    </section>
+        </Fragment>
+        
+        )
+    }
 
 export default AdminDashboard // The Main Admin Dashboard Component Exported
