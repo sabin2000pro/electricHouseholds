@@ -10,6 +10,13 @@ const forbidden = 403;
 const notFound = 404;
 const serverError = 500;
 
+/**
+ * Description
+ * @param {request, response, next}
+ * @description: Request parameter used for the client to send a request to the server. Stores HTTP method data. Response object returns a response to the user
+ * @returns JSON Web Token
+ */
+
 module.exports.registerAdmin = catchAsync(async (request, response, next ) => { // Exported Register Admin Middleware Function
     const {username, emailAddress, password, confirmPassword} = request.body;
 
