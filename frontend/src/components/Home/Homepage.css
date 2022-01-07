@@ -330,3 +330,14 @@ h3:after {
 .section--register {
     padding: 120px;
 }
+
+.admin--search {
+   margin-left: 50px;
+   border-radius: 200px;
+   padding: 8px 16px;
+   border: none;
+   list-style: none;
+   text-align: center;
+   font-weight: 600;
+   font-size: 14px;
+}
