@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useReducer, useContext, Fragment} from 'react';
 import {useHistory} from 'react-router-dom';
 import Header from '../Header';
+import HomepageImg from '../images/homepage/homepageimg.jpg';
 
 const AdminDashboard = (props) => {
     let history = useHistory();
@@ -25,13 +26,29 @@ const AdminDashboard = (props) => {
     }
 
     return (
+         
         <Fragment>
-            <div>
-                <h1>Your Admin Dashboard</h1>
+        <Header />
+    
+<section className = "section--home">
+    <div className = "home--grid">
 
-                <button onClick = {logoutHandler}>Logout</button>
-            </div>
-        </Fragment>
+<div className = "home-text-box">
+
+
+ <h1 className = "heading--primary">Your Admin Dashboard</h1>
+<p className = "home--description">View Appliances Below</p>
+
+<a onClick = {logoutHandler} className = "btn btn--outline" href = "/home">Logout</a>
+</div>
+
+<div className = "home-img-box">
+    <img className = "home--img" alt = "Wind Turbine" src = {HomepageImg} />
+</div>
+</div>
+
+</section>
+    </Fragment>
        
     )
 }

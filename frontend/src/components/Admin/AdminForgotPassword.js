@@ -5,7 +5,7 @@ import axios from 'axios';
 import './AdminForgotPassword.css'
 
 
-const AdminForgotPassword = (props) => {
+const AdminForgotPassword = ({match}) => {
     let history = useHistory();
 
     const [emailAddress, setEmailAddress] = useState('');
