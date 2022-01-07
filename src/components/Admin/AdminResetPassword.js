@@ -4,6 +4,7 @@ import { Link, useHistory } from 'react-router-dom';
 import RegisterCard from './RegisterCard';
 import './AdminResetPasswordHome.css';
 import axios from 'axios';
+import AdminResetPasswordHome from './AdminResetPasswordHome';
 
 const AdminResetPassword = ({match}) => {
     let history = useHistory(); // Used for navigation
@@ -11,7 +12,7 @@ const AdminResetPassword = ({match}) => {
     const [newPasswordValid, setNewPasswordValid] = useState(false);
     const [formValid, setFormValid] = useState(false);
 
-    const resetPasswordHandler = async (event) => {
+    const resetPasswordHandler = async (event) => { // Reset Password Handler method to reset admin password
         try {
             event.preventDefault();
 
