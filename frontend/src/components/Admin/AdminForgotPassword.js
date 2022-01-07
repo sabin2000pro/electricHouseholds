@@ -24,7 +24,7 @@ const AdminForgotPassword = (props) => {
             }
 
             // Send reqeust
-            const {data} = await axios.post(`http://localhost:5200/api/v1/auth/forgotpassword`, {emailAddress: emailAddress});
+            const {data} = await axios.post(`http://localhost:5200/api/v1/auth/forgot-password`, {emailAddress: emailAddress});
             console.log(`E-mail sent`);
         }
         
