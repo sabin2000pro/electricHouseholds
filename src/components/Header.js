@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import './Home/Homepage.css';
 import Logo from '../components/images/logo.png';
 
-const Header = (props) => {
+const Header = (props) => { // Header Component
     const [isInLocalStorage, setIsInLocalStorage] = useState(false);
 
     useEffect(() => {
@@ -30,10 +30,13 @@ const Header = (props) => {
 
 {isInLocalStorage ? (
     <header className = "header">
+                    <img alt = "The header logo" src = {Logo} className = "img--logo"/>
+
             <nav className = "main-nav">
+
                         <ul className = "main-nav--list">
                         <li><a className = "main-nav--link" href = "/admin-dashboard">Admin Dashboard</a></li>
-
+                        <li><a className = "main-nav--link" href = "/admin-dashboard">Create Appliance</a></li>
                 </ul>
             </nav>
             </header>) : (<header className = "header">
