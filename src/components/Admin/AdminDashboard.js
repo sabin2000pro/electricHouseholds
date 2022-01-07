@@ -2,6 +2,7 @@ import React, {useState, useEffect, useReducer, useContext, Fragment} from 'reac
 import {useHistory} from 'react-router-dom';
 import Header from '../Header';
 import HomepageImg from '../images/homepage/homepageimg.jpg';
+import '../Home/Homepage.css'
 
 const AdminDashboard = (props) => {
     let history = useHistory();
@@ -36,9 +37,11 @@ const AdminDashboard = (props) => {
     <div className = "home-text-box">
 
     <h1 className = "heading--primary">Your Admin Dashboard</h1>
-    <p className = "home--description">View Appliances Below</p>
+    <p className = "home--description">Welcome to your Admin Dashboard. Here you will be able to view all of the electrical appliances available that users can submit their preferences for. You have the option to search for appliances if there are too many as well.</p>
 
+    <button className = "btn btn--full mgr-sm" href = "#">View Appliances</button>
     <a onClick = {logoutHandler} className = "btn btn--outline" href = "/home">Logout</a>
+
     </div>
 
     <div className = "home-img-box">
