@@ -1,5 +1,6 @@
 import React, {useState, useRef, useContext, useReducer, Fragment} from 'react';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
+import Header from '../Header';
 
 const AdminCreateAppliance = (props) => {
     const [applianceName, setApplianceName] = useState('');
