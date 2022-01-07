@@ -21,6 +21,8 @@ const CreateContact = (props) => {
    const [descriptionValid, setDescriptionValid] = useState(false);
    const [formValid, setFormValid] = useState(true);
 
+   const contactSubmitMsg = <p className = "success-msg">Form Submit Success</p>
+
    const contactUsHandler = async (e) => {
 
        try {
@@ -72,12 +74,12 @@ const CreateContact = (props) => {
 
        <div className = "forename--box">
            <label className = "forename--lbl">Forename</label>
-           <input  placeholder = "Enter your First Name" type = "text"/>
+           <input value = {firstName} onChange = {(e) => {setFirstName(e.target.value)}} id = "First Name" placeholder = "Enter your First Name" type = "text"/>
        </div>
 
        <div className = "lastname--box">
            <label className = "lastname--lbl">Last Name</label>
-           <input placeholder = "Enter your Last Name" required id = "lastName" type = "text"/>
+           <input value = {lastName} onChange = {(e) => {setLastName(e.target.value)}} placeholder = "Enter your Last Name" required id = "lastName" type = "text"/>
        </div>
 
        <div className = "username--box">
