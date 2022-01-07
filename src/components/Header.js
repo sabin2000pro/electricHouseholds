@@ -15,12 +15,12 @@ const Header = (props) => {
     const fetchAuthToken = (authToken) => {
 
         if(!authToken) {
-            setIsInLocalStorage(false); // Not logged in
+            return setIsInLocalStorage(false); // Not logged in
         }
 
         if(authToken) {
             console.log(authToken);
-            setIsInLocalStorage(true);
+            return setIsInLocalStorage(true);
         }
     }
 
@@ -28,24 +28,34 @@ const Header = (props) => {
     
         <Router>
 
-            <header className = "header">
-                <img alt = "The header logo" src = {Logo} className = "img--logo"/>
+{isInLocalStorage ? (
+    <header className = "header">
+            <nav className = "main-nav">
+                        <ul className = "main-nav--list">
+                        <li><a className = "main-nav--link" href = "/admin-dashboard">Admin Dashboard</a></li>
 
-                <nav className = "main-nav">
-                    <ul className = "main-nav--list">
+                </ul>
+            </nav>
+            </header>) : (<header className = "header">
+                            <img alt = "The header logo" src = {Logo} className = "img--logo"/>
 
-                        <li><a className = "main-nav--link" href = "/home">Home</a></li>
-                        <li><a className = "main-nav--link" href = "/admin-register">Admin Register</a></li>
-                        <li><a className = "main-nav--link" href = "/admin-login">Admin Login</a></li>
-                        <li><a className = "main-nav--link" href = "/your-preferences">Your Preferences</a></li>
-                        <li><a className = "main-nav--link" href = "/fair-negotiations">Fair Negotiations</a></li>
-                        <li><a className = "main-nav--link" href = "/contact-us">Contact Us</a></li>
-                    </ul>
-                </nav>
+                            <nav className = "main-nav">
+                                <ul className = "main-nav--list">
 
-              
-            
-        </header>
+                                    <li><a className = "main-nav--link" href = "/home">Home</a></li>
+                                    <li><a className = "main-nav--link" href = "/admin-register">Admin Register</a></li>
+                                    <li><a className = "main-nav--link" href = "/admin-login">Admin Login</a></li>
+                                    <li><a className = "main-nav--link" href = "/your-preferences">Your Preferences</a></li>
+                                    <li><a className = "main-nav--link" href = "/fair-negotiations">Fair Negotiations</a></li>
+                                    <li><a className = "main-nav--link" href = "/contact-us">Contact Us</a></li>
+                                </ul>
+                            </nav>
+
+        
+                    </header>
+    )}
+
+          
     </Router>
             
 
