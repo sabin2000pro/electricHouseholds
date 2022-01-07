@@ -55,13 +55,13 @@ const CreateContact = (props) => {
        catch(error) {
 
         if(error) {
+            setFormValid(false);
             return console.log(error);
         }
 
     }
 
    }
-
 
     return (
             <Fragment>
@@ -88,12 +88,12 @@ const CreateContact = (props) => {
 
         <div className = "username--box">
             <label className = "username--lbl">Username</label>
-            <input placeholder = "Enter your Username" required id = "username" type = "text"/>
+            <input value = {username} onChange = {(e) => {setUsername(e.target.value)}} placeholder = "Enter your Username" required id = "username" type = "text"/>
         </div>
 
         <div className = "email--box">
             <label className = "email--lbl">E-mail</label>
-            <input placeholder = "Enter your E-mail Address" required id = "email" type = "email"/>
+            <input value = {emailAddress} onChange = {(e) => {setEmailAddress(e.target.value)}} placeholder = "Enter your E-mail Address" required id = "email" type = "email"/>
         </div>
 
         <div className = "issueType--box">
@@ -122,7 +122,6 @@ const CreateContact = (props) => {
         </RegisterCard>
         </motion.div>
         </AnimatePresence>
-
 
 
     </div>    
