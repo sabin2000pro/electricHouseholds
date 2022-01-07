@@ -41,10 +41,16 @@ module.exports.editBids = catchAsync(async(request, response, next) => {
 module.exports.deleteBidById = catchAsync(async(request, response, next) => {
     const id = request.params.id;
 
-    
+    if(!id) {
+        return response.status(400).json({status: "Fail", message: "No bid found with that ID"});
+    }
+
 })
 
 module.exports.deleteAllBids = async (request, response, next) => {
-    await Bid.deleteMany();
-    return response.status(deleted).json("All Bids Deleted");
+
+    if(request.method === 'DELETE') {
+        await Bid.deleteMany();
+        return response.status(deleted).json("All Bids Deleted");
+    }
 }
