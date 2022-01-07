@@ -27,9 +27,13 @@ const CreateContact = (props) => {
 
             // Validate Data
             if(firstName.trim().length === 0 || lastName.trim().length === 0) {
-             
                 setFormValid(false);
             }
+
+            if(!email.includes("@")) {
+
+            }
+            
        } 
        
        catch(error) {
