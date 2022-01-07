@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">53.33% </span>
+                <span class="strong">51.02% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>24/45</span>
+                <span class='fraction'>25/49</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">8.33% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/10</span>
+                <span class='fraction'>1/12</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">53.33% </span>
+                <span class="strong">51.02% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>24/45</span>
+                <span class='fraction'>25/49</span>
             </div>
         
             
@@ -140,7 +140,13 @@
 <a name='L75'></a><a href='#L75'>75</a>
 <a name='L76'></a><a href='#L76'>76</a>
 <a name='L77'></a><a href='#L77'>77</a>
-<a name='L78'></a><a href='#L78'>78</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L78'></a><a href='#L78'>78</a>
+<a name='L79'></a><a href='#L79'>79</a>
+<a name='L80'></a><a href='#L80'>80</a>
+<a name='L81'></a><a href='#L81'>81</a>
+<a name='L82'></a><a href='#L82'>82</a>
+<a name='L83'></a><a href='#L83'>83</a>
+<a name='L84'></a><a href='#L84'>84</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -150,8 +156,12 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -167,9 +177,11 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -227,14 +239,18 @@ const badRequest = 400;
 const serverError = 500;
 &nbsp;
 module.exports.getAllAppliances = catchAsync(async (request, response, next) =&gt; {
-    const allAppliances = await Appliance.find();
-    return response.status(ok).json({allAppliances}); // Return all the appliances in JSON format
+&nbsp;
+    if(request.method === 'GET') {
+        const allAppliances = await Appliance.find();
+        return response.status(ok).json({allAppliances}); // Return all the appliances in JSON format
+    }
+&nbsp;
 });
 &nbsp;
 module.exports.createAppliance = catchAsync(async (request, response, next) =&gt; {
     const {name, image, description} = request.body;
 &nbsp;
-    const newAppliance = new Appliance({name, image, description});
+    const newAppliance = new Appliance({name, image, description}); // Create a new Appliance Instance
     await newAppliance.save();
 &nbsp;
     return response.status(201).json({newAppliance});
@@ -244,9 +260,11 @@ module.exports.getApplianceByID = catchAsync(<span class="fstat-no" title="funct
     const id = <span class="cstat-no" title="statement not covered" >request.params.id;</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    if(!id) { // If no ID present</span>
-&nbsp;
+<span class="cstat-no" title="statement not covered" >        return response.status(404).json({status: "Fail", message: "No Appliance found with that ID"});</span>
     }
 &nbsp;
+    const appliance = <span class="cstat-no" title="statement not covered" >await Appliance.findById(id);</span>
+<span class="cstat-no" title="statement not covered" >    return response.status(200).json({appliance});</span>
 &nbsp;
 });
 &nbsp;
@@ -301,7 +319,7 @@ module.exports.limitAppliances = catchAsync(<span class="fstat-no" title="functi
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Fri Jan 07 2022 22:36:01 GMT+0000 (Coordinated Universal Time)
+                at Fri Jan 07 2022 22:37:14 GMT+0000 (Coordinated Universal Time)
             </div>
         <script src="../prettify.js"></script>
         <script>
