@@ -9,6 +9,7 @@ import LoadBalance from '../images/homepage/loadbalance.jpg';
 import Header from '../Header';
 
 const Homepage = (props) => { // Main Homepage Component
+    
     return (
 
         <Fragment>

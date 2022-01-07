@@ -8,8 +8,8 @@ import axios from 'axios';
 import {motion, AnimatePresence} from 'framer-motion';
 
 const AdminRegister = (props) => { // Admin Register Props
+
     let history = useHistory();
-   
     const [enteredUsername, setUsername] = useState('');
     const [usernameValid, setUsernameValid] = useState(true);
 
@@ -78,8 +78,8 @@ const AdminRegister = (props) => { // Admin Register Props
          <h1 className = "heading--primary">Admin Dashboard Registration</h1>
         <p className = "home--description">If you wish to register an account with us please fill out the form below.</p>
 
-        <a className = "btn btn--full mgr-sm" href = "#">Start Now</a>
-        <a className = "btn btn--outline" href = "#">About us!</a>
+        <a className = "btn btn--full mgr-sm" href = "/your-preferences">Start Now</a>
+        <a className = "btn btn--outline" href = "/about-us">About Us</a>
      </div>
 
         <div className = "home-img-box">
