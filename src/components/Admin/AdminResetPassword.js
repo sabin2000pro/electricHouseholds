@@ -1,6 +1,10 @@
-import React, {Fragment} from 'react'
+import React, {useState, Fragment} from 'react';
 
 const AdminResetPassword = ({match}) => {
+    const [newPassword, setNewPassword] = useState('');
+    const [newPasswordValid, setNewPasswordValid] = useState(false);
+    const [formValid, setFormValid] = useState(false);
+
     return (
         <Fragment>
             <div>
