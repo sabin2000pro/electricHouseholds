@@ -3,7 +3,9 @@ const mongoose = require('mongoose');
 const contactSchema = new mongoose.Schema({
     firstName: {
         type: String,
-        required: [true, 'Please provide your First Name']
+        required: [true, 'Please provide your First Name'],
+        min: [15, 'First name must not exceed 10 characters'],
+        max: [20, 'First name must not exceed 20 characters']
     },
 
     lastName: {
@@ -13,7 +15,8 @@ const contactSchema = new mongoose.Schema({
 
     username: {
         type: String,
-        required: [true, 'Please provide the Username you signed up with']
+        required: [true, 'Please provide the Username you signed up with'],
+        min: [10, 'Username must not exceed 10 characters']
     },
 
     emailAddress: {

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1641549330090" clover="3.2.0">
-  <project timestamp="1641549330091" name="All files">
+<coverage generated="1641551976591" clover="3.2.0">
+  <project timestamp="1641551976592" name="All files">
     <metrics statements="484" coveredstatements="317" conditionals="134" coveredconditionals="31" methods="57" coveredmethods="24" elements="675" coveredelements="372" complexity="0" loc="484" ncloc="484" packages="8" files="25" classes="25"/>
     <package name="controllers">
       <metrics statements="258" coveredstatements="129" conditionals="98" coveredconditionals="25" methods="37" coveredmethods="11"/>
@@ -402,8 +402,8 @@
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
-        <line num="36" count="1" type="stmt"/>
         <line num="37" count="1" type="stmt"/>
+        <line num="38" count="1" type="stmt"/>
       </file>
       <file name="preferencesModel.js" path="/app/models/preferencesModel.js">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
