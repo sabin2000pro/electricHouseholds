@@ -3,6 +3,7 @@ const DB_CONN_URL = process.env.DB_CONN_URL;
 
 const connectDB = async () => { // Method to connect to the MongoDB database
     try {
+
         return await mongoose.connect(DB_CONN_URL).then(conn => {
             if(conn.connection) {
 
@@ -20,6 +21,7 @@ const connectDB = async () => { // Method to connect to the MongoDB database
         if(err) {
             return console.log(err);
         }
+        
     }
 }
 

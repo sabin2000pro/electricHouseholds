@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1641564840819" clover="3.2.0">
-  <project timestamp="1641564840820" name="All files">
+<coverage generated="1641571774418" clover="3.2.0">
+  <project timestamp="1641571774418" name="All files">
     <metrics statements="484" coveredstatements="317" conditionals="134" coveredconditionals="31" methods="57" coveredmethods="24" elements="675" coveredelements="372" complexity="0" loc="484" ncloc="484" packages="8" files="25" classes="25"/>
     <package name="controllers">
       <metrics statements="258" coveredstatements="129" conditionals="98" coveredconditionals="25" methods="37" coveredmethods="11"/>
@@ -341,13 +341,13 @@
         <line num="2" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
         <line num="5" count="1" type="stmt"/>
-        <line num="6" count="1" type="stmt"/>
-        <line num="7" count="1" type="cond" truecount="1" falsecount="1"/>
-        <line num="9" count="1" type="stmt"/>
-        <line num="13" count="0" type="stmt"/>
-        <line num="20" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="21" count="0" type="stmt"/>
-        <line num="26" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="8" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="21" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="28" count="1" type="stmt"/>
       </file>
     </package>
     <package name="models">
