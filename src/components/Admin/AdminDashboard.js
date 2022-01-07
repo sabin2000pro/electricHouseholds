@@ -27,8 +27,8 @@ const AdminDashboard = (props) => {
 
     return (
          
-            <Fragment>
-            <Header />
+    <Fragment>
+     <Header />
         
     <section className = "section--home">
         <div className = "home--grid">

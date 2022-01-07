@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import './Home/Homepage.css';
 import Logo from '../components/images/logo.png';
+import {FaSearch} from 'react-icons/fa';
 
 const Header = (props) => { // Header Component
     const [isInLocalStorage, setIsInLocalStorage] = useState(false);
@@ -29,7 +30,11 @@ const Header = (props) => { // Header Component
 
 {isInLocalStorage ? (
     <header className = "header">
-           <input className = "admin--search" type = "text" />
+            <div className = "search--box">
+             <FaSearch className = "search--icon" />
+             <input className = "admin--search" type = "text" placeholder = "Search Appliances" />
+            </div>
+
             <nav className = "main-nav">
 
                     <ul className = "main-nav--list">
