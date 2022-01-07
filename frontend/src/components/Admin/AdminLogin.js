@@ -151,8 +151,7 @@ const AdminLogin = (props) => { // Admin Login Component
             </RegisterCard>
             
         </div>    
-
-</section>
+    </section>
 
     <footer className = "footer">
             <ul className = "footer--items">

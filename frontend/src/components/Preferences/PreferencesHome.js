@@ -24,6 +24,10 @@ const PreferencesHome = () => {
             <img className = "home--img" alt = "Wind Turbine" src = {HomepageImg} />
         </div>
     </div>
+
+    <section className = "section--createpreference">
+        
+    </section>
     
    
    </section>
