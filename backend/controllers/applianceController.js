@@ -52,11 +52,19 @@ module.exports.editAppliance = catchAsync(async (request, response, next) => {
 
 module.exports.deleteAppliance = catchAsync(async (request, response, next) => {
     const id = request.params.id;
+
+    if(!id) {
+        return response.status(404).json({status: "Fail", message: "No Appliance found with that ID"});
+    }
+
+
 });
 
 module.exports.deleteAppliances = catchAsync(async (request, response, next) => {
-    await Appliance.deleteMany();
-    return response.status(204).json("Appliances deleted");
+    if(request.method === 'DELETE') {
+        await Appliance.deleteMany();
+        return response.status(204).json("Appliances deleted");
+    }
 })
 
 module.exports.sortAppliances = catchAsync(async (request, response, next) => {
