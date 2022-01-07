@@ -7,7 +7,7 @@ const AdminResetPasswordHome = (props) => {
 
     return (
         
-            <Fragment>
+        <Fragment>
             <Header />
         
     <section className = "section--home">
@@ -16,20 +16,20 @@ const AdminResetPasswordHome = (props) => {
    <div className = "home-text-box">
 
 
-     <h1 className = "heading--primary">Admin Reset Password</h1>
-    <p className = "home--description">Reset your password below.</p>
+        <h1 className = "heading--primary">Admin Reset Password</h1>
+        <p className = "home--description">Reset your password below.</p>
 
-    <a className = "btn btn--full mgr-sm" href = "/your-preferences">Start Now</a>
-    <a className = "btn btn--outline" href = "/about-us">About Us</a>
-</div>
-
-    <div className = "home-img-box">
-        <img className = "home--img" alt = "Wind Turbine" src = {HomepageImg} />
-    </div>
+        <a className = "btn btn--full mgr-sm" href = "/your-preferences">Start Now</a>
+        <a className = "btn btn--outline" href = "/about-us">About Us</a>
     </div>
 
-    </section>
-        </Fragment>
+        <div className = "home-img-box">
+            <img className = "home--img" alt = "Wind Turbine" src = {HomepageImg} />
+        </div>
+        </div>
+
+        </section>
+            </Fragment>
     )
 }
 
