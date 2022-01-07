@@ -48,8 +48,6 @@ const CreateContact = (props) => {
                 return history.push('/home')
             }, 2000);
 
-
-
        } 
 
 
@@ -58,6 +56,7 @@ const CreateContact = (props) => {
         if(error) {
             return console.log(error);
         }
+
     }
 
    }
@@ -95,7 +94,7 @@ const CreateContact = (props) => {
        <div className = "issueType--box">
        <label className = "issue--lbl" htmlFor = "issue">Issue Type</label>
 
-           <select className = "box">
+           <select value = {issueType} onChange = {(e) => {setIssueType(e.target.value)}} id = "issuetype" className = "box">
                <option>Homepage</option>
                <option>Register</option>
                <option>Login</option>
