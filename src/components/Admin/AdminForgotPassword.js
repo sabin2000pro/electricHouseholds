@@ -22,8 +22,15 @@ const AdminForgotPassword = ({match}) => { // Forgot Password Component
                 setFormIsValid(false);
             }
 
-            // Send reqeust
+            if(!emailAddress.trim().includes("@")) {
+                setFormIsValid(false);
+                setEmailValid(false);
+            }
+
+            // Send POST request to the server
             const {data} = await axios.post(`http://localhost:5200/api/v1/auth/forgot-password`, {emailAddress: emailAddress});
+            console.log(data);
+
             setFormIsValid(true);
             setEmailValid(true);
         }
@@ -42,6 +49,7 @@ const AdminForgotPassword = ({match}) => { // Forgot Password Component
   <section className = "section--forgotpassword">
 
 <div className = "container grid grid--2-cols">
+
         <RegisterCard>
             <h1 className = "heading--primary login">Forgot Password</h1>
             <form onSubmit = {forgotPasswordSubmitHandler} method = "POST" className = "login--form">
@@ -60,23 +68,17 @@ const AdminForgotPassword = ({match}) => { // Forgot Password Component
         
     </RegisterCard>
     
-</div>    
-
-
+    </div>    
 </section>
 
-<footer className = "footer">
-        <ul className = "footer--items">
-            <li className = "footer--item">Copyright All Rights Reserved - eHouseholds Sabin Constantin Lungu - 2021</li>
-        </ul>
-    </footer>
-
-
+    <footer className = "footer">
+            <ul className = "footer--items">
+                <li className = "footer--item">Copyright All Rights Reserved - eHouseholds Sabin Constantin Lungu - 2021</li>
+            </ul>
+        </footer>
 
         </Fragment>
       
-
-
 
     )
 }

@@ -1,9 +1,8 @@
 import React, {Fragment} from 'react'
-import AdminResetPassword from './AdminResetPassword';
 import Header from '../Header';
 import HomepageImg from '../images/homepage/homepageimg.jpg';
 
-const AdminResetPasswordHome = (props) => {
+const AdminResetPasswordHome = (props) => { // Homepage Component for the Admin Reset Password
 
     return (
         
@@ -29,10 +28,7 @@ const AdminResetPasswordHome = (props) => {
     
     </section>
 
-   
-
-
-            </Fragment>
+</Fragment>
 
     )
 }
