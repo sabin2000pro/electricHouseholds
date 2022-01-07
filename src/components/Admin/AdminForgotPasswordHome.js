@@ -3,7 +3,7 @@ import Header from '../Header';
 import HomepageImg from '../images/homepage/homepageimg.jpg';
 import AdminForgotPassword from './AdminForgotPassword';
 
-const AdminForgotPasswordHome = () => {
+const AdminForgotPasswordHome = () => { // Forgot Password Home
     return (
         
             <Fragment>
