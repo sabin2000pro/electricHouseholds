@@ -9,7 +9,6 @@ const AdminResetPasswordHome = (props) => {
         
         <Fragment>
            
-           
         
     <section className = "section--home">
         <div className = "home--grid">
@@ -30,9 +29,6 @@ const AdminResetPasswordHome = (props) => {
         </div>
         </section>
 
-        <section className = "section--resetpassword">
-            <AdminResetPassword />
-        </section>
             </Fragment>
 
     )

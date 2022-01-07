@@ -22,9 +22,12 @@ const AdminResetPassword = ({match}) => {
             }
 
             // Send PUT request
-
             const {data} = await axios.put(`http://localhost:5200/api/v1/auth/admin/reset-password/${match.params.resetToken}`, {password});
-    
+
+            if(!match.params.resetToken) {
+
+            }
+            console.log(data);
             console.log(`Password Updated Success`);
 
         } 
@@ -43,6 +46,8 @@ const AdminResetPassword = ({match}) => {
 
     return (
         <Fragment>
+
+            <AdminResetPasswordHome />
             <section className = "section--resetpassword">
 
     <div className = "container grid grid--2-cols">
