@@ -35,7 +35,6 @@ const AdminDashboard = (props) => {
 
     <div className = "home-text-box">
 
-
     <h1 className = "heading--primary">Your Admin Dashboard</h1>
     <p className = "home--description">View Appliances Below</p>
 

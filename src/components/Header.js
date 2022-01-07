@@ -5,7 +5,6 @@ import Logo from '../components/images/logo.png';
 
 const Header = (props) => { // Header Component
     const [isInLocalStorage, setIsInLocalStorage] = useState(false);
-    const [isInDashboard, setIsInDashboard] = useState(false);
 
     useEffect(() => {
         const authToken = localStorage.getItem("authToken");
@@ -16,14 +15,11 @@ const Header = (props) => { // Header Component
     const fetchAuthToken = (authToken) => {// Fetches the Authentication token from local storage
 
         if(!authToken) { // If there's no auth token
-            setIsInLocalStorage(false); // Not logged in
-            setIsInDashboard(false);
+            return setIsInLocalStorage(false); // Not logged in
         }
 
         if(authToken) {
-            console.log(authToken);
-         setIsInLocalStorage(true);
-         setIsInDashboard(true);
+            return setIsInLocalStorage(true);
         }
     }
 
@@ -33,11 +29,13 @@ const Header = (props) => { // Header Component
 
 {isInLocalStorage ? (
     <header className = "header">
-
+           <input className = "admin--search" type = "text" />
             <nav className = "main-nav">
 
                     <ul className = "main-nav--list">
-                        
+
+                        <li><a className = "main-nav--link" href = "/admin-dashboard">Admin Dashboard</a></li>
+                        <li><a className = "main-nav--link" href = "/admin-dashboard">Create Appliance</a></li>
                 </ul>
             </nav>
             </header>) : (<header className = "header">
@@ -56,12 +54,11 @@ const Header = (props) => { // Header Component
                             </nav>
 
         
-                    </header>
+        </header>
     )}
 
-          
     </Router>
-            
+
 
     )
 }

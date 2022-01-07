@@ -14,8 +14,6 @@ const AdminResetPasswordHome = (props) => {
         <div className = "home--grid">
 
    <div className = "home-text-box">
-
-
         <h1 className = "heading--primary">Admin Reset Password</h1>
         <p className = "home--description">Reset your password below.</p>
 
