@@ -65,13 +65,15 @@
 }
 
 .password--box {
-    margin-top: 30px;
+    margin-top: -150px;
     margin-left: -20px;
     margin-bottom: 30px;
 }
 
 .password--box input {
     font-size: 14px;
+    margin-top: 1px;
+    margin-left: -14px;
     font-weight: 600;
     text-align: center;
 }
