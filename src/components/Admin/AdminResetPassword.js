@@ -1,9 +1,13 @@
 import React, {Fragment} from 'react'
 
-const AdminResetPassword = () => {
+const AdminResetPassword = ({match}) => {
     return (
         <Fragment>
-
+            <div>
+                <h1>Reset Password</h1>
+                <label>PASSWORD</label>
+                <input type = "text" />
+            </div>
         </Fragment>
     )
 }

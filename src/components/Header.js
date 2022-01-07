@@ -4,7 +4,7 @@ import './Home/Homepage.css';
 import Logo from '../components/images/logo.png';
 
 const Header = (props) => {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [isInLocalStorage, setIsInLocalStorage] = useState(false);
 
     useEffect(() => {
         const authToken = localStorage.getItem("authToken");
@@ -15,12 +15,12 @@ const Header = (props) => {
     const fetchAuthToken = (authToken) => {
 
         if(!authToken) {
-            setIsLoggedIn(false); // Not logged in
+            setIsInLocalStorage(false); // Not logged in
         }
 
         if(authToken) {
             console.log(authToken);
-            setIsLoggedIn(true);
+            setIsInLocalStorage(true);
         }
     }
 
@@ -29,7 +29,7 @@ const Header = (props) => {
         <Router>
 
             <header className = "header">
-                <img src = {Logo} className = "img--logo"/>
+                <img alt = "The header logo" src = {Logo} className = "img--logo"/>
 
                 <nav className = "main-nav">
                     <ul className = "main-nav--list">
@@ -43,15 +43,7 @@ const Header = (props) => {
                     </ul>
                 </nav>
 
-                {isLoggedIn ?
-                    <nav className = "main-nav">
-                        <ul className = "main-nav--list">
-                            <li><a className = "main-nav--link" href = "/home">Admin Dashboard</a></li>
-                            <li><a className = "main-nav--link" href = "/admin-register">Create Appliance</a></li>
-                        </ul>
-
-                    </nav> : null
-                    }
+              
             
         </header>
     </Router>
