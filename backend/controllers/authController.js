@@ -49,7 +49,7 @@ module.exports.loginAdmin = catchAsync(async (request, response, next) => { // C
 
 });
 
-module.exports.forgotPassword = catchAsync(async (request, response, next) => {
+module.exports.forgotPassword = catchAsync(async (request, response, next) => { // Forgot Password Handler
     const {emailAddress} = request.body;
     const admin = await Admin.findOne({emailAddress});
 
@@ -58,7 +58,7 @@ module.exports.forgotPassword = catchAsync(async (request, response, next) => {
     }
 
     const resetToken = admin.getResetPasswordToken(); // Get the password reset token
-    const resetPasswordURL = `http://localhost:5200/${resetToken}`;
+    const resetPasswordURL = `http://localhost:5200/reset-password/${resetToken}`;
     await admin.save();
 
     const resetMessage = `<h1> You have requested a new password reset</h1>

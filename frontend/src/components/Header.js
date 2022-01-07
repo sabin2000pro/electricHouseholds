@@ -46,7 +46,8 @@ const Header = (props) => {
                 {isLoggedIn ?
                     <nav className = "main-nav">
                         <ul className = "main-nav--list">
-
+                            <li><a className = "main-nav--link" href = "/home">Admin Dashboard</a></li>
+                            <li><a className = "main-nav--link" href = "/admin-register">Create Appliance</a></li>
                         </ul>
 
                     </nav> : null
