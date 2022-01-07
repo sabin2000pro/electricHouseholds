@@ -40,7 +40,7 @@ const CreateContact = (props) => {
                 setFormValid(false);
             }
 
-            const {data} = await axios.post(`http://localhost:5200/api/v1/contacts/create-contact`, {firstName, lastName, username, emailAddress, issueType, description});
+            const {data} = await axios.post(`http://localhost:5200/api/v1/contacts/create-contact`, {firstName: firstName, lastName: lastName, username: username, emailAddress: emailAddress, issueType: issueType, description: description});
             console.log(data);
             
             setFormValid(true);
@@ -50,7 +50,6 @@ const CreateContact = (props) => {
             }, 2000);
 
        } 
-
 
        catch(error) {
 
@@ -110,7 +109,7 @@ const CreateContact = (props) => {
 
         <div className = "description--box">
             <label className = "description--lbl">Description</label>
-            <input placeholder = "Enter your Description" required id = "description" type = "text"/>
+            <input value = {description} onChange = {(e) => {setDescription(e.target.value)}} placeholder = "Enter your Description" required id = "description" type = "text"/>
         </div>
 
         <div className = "submit--container">
