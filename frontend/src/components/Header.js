@@ -1,10 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Homepage from './Home/Homepage';
-import AdminRegister from './Admin/AdminRegister';
-import Preferences from '../components/Preferences/PreferencesList';
-import PrivateScreen from '../components/PrivateScreen';
-import PrivateRoute from './routing/PrivateRoute';
 import './Home/Homepage.css';
 import Logo from '../components/images/logo.png';
 
@@ -14,6 +9,7 @@ const Header = (props) => {
     useEffect(() => {
         const authToken = localStorage.getItem("authToken");
         return fetchAuthToken(authToken);
+
     }, []);
 
     const fetchAuthToken = (authToken) => {
@@ -54,7 +50,7 @@ const Header = (props) => {
                         </ul>
 
                     </nav> : null
-}
+                    }
             
         </header>
     </Router>

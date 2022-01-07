@@ -15,12 +15,21 @@ const CreateContact = (props) => {
    const [usernameValid, setUsernameValid] = useState(false);
    const [email, setEmail] = useState('');
    const [emailValid, setEmailValid] = useState(false);
+   const [issueType, setIssueType] = useState('');
+   const [issueTypeValid, setIssueTypeValid] = useState(false);
+   const [description, setDescription] = useState('');
+   const [descriptionValid, setDescriptionValid] = useState(false);
+   const [formValid, setFormValid] = useState(true);
 
    const contactUsHandler = (e) => {
        try {
             e.preventDefault(); // Prevent form resubmission
 
             // Validate Data
+            if(firstName.trim().length === 0 || lastName.trim().length === 0) {
+             
+                setFormValid(false);
+            }
        } 
        
        catch(error) {

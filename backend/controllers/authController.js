@@ -11,7 +11,7 @@ const notFound = 404;
 const serverError = 500;
 
 module.exports.registerAdmin = catchAsync(async (request, response, next ) => { // Exported Register Admin Middleware Function
- const {username, emailAddress, password, confirmPassword} = request.body;
+    const {username, emailAddress, password, confirmPassword} = request.body;
 
     if(!username || !emailAddress || !password || !confirmPassword) {
         return response.status(badRequest).json({status: 'Fail', message: 'Please check your entries'})

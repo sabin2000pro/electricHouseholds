@@ -16,7 +16,12 @@ const AdminForgotPassword = (props) => {
         event.preventDefault();
     
         try {
-    
+
+            if(emailAddress.trim().length === 0) {
+                setEmailValid(false);
+                setFormIsValid(false);
+            }
+
         }
         
         catch(err) {

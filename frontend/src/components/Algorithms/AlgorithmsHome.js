@@ -34,7 +34,6 @@ const AlgorithmsHome = (props) => {
 
     </Fragment>
 
-
     )
 }
 
