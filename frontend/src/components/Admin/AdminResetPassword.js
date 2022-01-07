@@ -2,6 +2,7 @@ import React, {useState, Fragment} from 'react';
 import HomepageImg from '../images/homepage/homepageimg.jpg';
 import { Link } from 'react-router-dom';
 import RegisterCard from './RegisterCard';
+import './AdminResetPasswordHome.css';
 
 const AdminResetPassword = ({match}) => {
     const [newPassword, setNewPassword] = useState('');
@@ -24,9 +25,9 @@ const AdminResetPassword = ({match}) => {
 
     return (
         <Fragment>
-            <section className = "section--login">
+            <section className = "section--resetpassword">
 
-<div className = "container grid grid--2-cols">
+    <div className = "container grid grid--2-cols">
 
         <RegisterCard>
             <h1 className = "heading--primary login">Reset Your Password</h1>
@@ -41,7 +42,7 @@ const AdminResetPassword = ({match}) => {
             <Link className = "link--to" to = '/admin-forgotpassword'>Reset Here!</Link>
 
             <div className = "submit--container">
-                <button className = "login--btn" type = "submit">Reset Password</button>
+                <button className = "resetpassword--btn" type = "submit">Reset</button>
             </div>
 
             </form>
