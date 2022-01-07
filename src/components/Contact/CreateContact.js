@@ -13,7 +13,7 @@ const CreateContact = (props) => {
    const [lastNameValid, setLastNameValid] = useState(false);
    const [username, setUsername] = useState('');
    const [usernameValid, setUsernameValid] = useState(false);
-   const [email, setEmail] = useState('');
+   const [emailAddress, setEmailAddress] = useState('');
    const [emailValid, setEmailValid] = useState(false);
    const [issueType, setIssueType] = useState('');
    const [issueTypeValid, setIssueTypeValid] = useState(false);
@@ -21,8 +21,10 @@ const CreateContact = (props) => {
    const [descriptionValid, setDescriptionValid] = useState(false);
    const [formValid, setFormValid] = useState(true);
 
-   const contactUsHandler = (e) => {
+   const contactUsHandler = async (e) => {
+
        try {
+
             e.preventDefault(); // Prevent form resubmission
 
             // Validate Data
@@ -30,13 +32,23 @@ const CreateContact = (props) => {
                 setFormValid(false);
             }
 
-            if(!email.includes("@")) {
-
+            if(!emailAddress.includes("@")) {
+                setEmailValid(false); // E-mail not valid
+                setFormValid(false);
             }
-            
+
+            const {data} = await axios.post(`http://localhost:5200/api/v1/contacts/create-contact`, {firstName, lastName, username, emailAddress, issueType, description});
+            console.log(data);
+
+            setTimeout(() => {
+
+            })
+
        } 
        
+
        catch(error) {
+           
 
         if(error) {
             return console.log(error);

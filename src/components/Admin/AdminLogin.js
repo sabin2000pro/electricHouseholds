@@ -12,7 +12,6 @@ const AdminLogin = (props) => { // Admin Login Component
     const [emailValid, setEmailValid] = useState(true);
     const [enteredPassword, setPassword] = useState('');
     const [passwordValid, setPasswordValid] = useState(true); 
-
     const [formValid, setFormValid] = useState(true);
     
     useEffect(() => {
@@ -58,9 +57,9 @@ const AdminLogin = (props) => { // Admin Login Component
                 setPassword("");
             }
 
-            const {data} = await axios.post(`http://localhost:5200/api/v1/auth/login-admin`, {emailAddress: enteredEmail, password: enteredPassword});
-            const authorizationToken = data.token; // Extract the token
+            const {data} = await axios.post(`http://localhost:5200/api/v1/auth/login-admin`, {emailAddress: enteredEmail, password: enteredPassword}); // Send off a POST request to the backend
 
+            const authorizationToken = data.token; // Extract the token
             localStorage.setItem("authToken", authorizationToken);
 
             setPasswordValid(true);
@@ -81,6 +80,7 @@ const AdminLogin = (props) => { // Admin Login Component
         catch(error) {
 
             if(error) {
+
                 setFormValid(false);
                 return console.log(error);
             }
@@ -153,11 +153,11 @@ const AdminLogin = (props) => { // Admin Login Component
         </div>    
     </section>
 
-    <footer className = "footer">
-            <ul className = "footer--items">
-                <li className = "footer--item">Copyright All Rights Reserved - eHouseholds Sabin Constantin Lungu - 2021</li>
-            </ul>
-        </footer>
+        <footer className = "footer">
+                <ul className = "footer--items">
+                    <li className = "footer--item">Copyright All Rights Reserved - eHouseholds Sabin Constantin Lungu - 2021</li>
+                </ul>
+            </footer>
 
     </Fragment>
 
