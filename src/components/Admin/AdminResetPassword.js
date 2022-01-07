@@ -11,15 +11,18 @@ const AdminResetPassword = ({match}) => {
 
     const resetPasswordHandler = async (event) => {
         try {
-            
+            event.preventDefault();
+
+
         } 
         
         catch(err) {
 
             if(err) {
-
-                console.log(err);
+                setFormValid(false);
+                return console.log(err);
             }
+            
         }
     }
 
