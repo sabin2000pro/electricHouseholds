@@ -39,16 +39,19 @@ const CreateContact = (props) => {
 
             const {data} = await axios.post(`http://localhost:5200/api/v1/contacts/create-contact`, {firstName, lastName, username, emailAddress, issueType, description});
             console.log(data);
+            
+            setFormValid(true);
 
             setTimeout(() => {
+                return history.push('/home')
+            }, 2000);
 
-            })
+
 
        } 
-       
+
 
        catch(error) {
-           
 
         if(error) {
             return console.log(error);
