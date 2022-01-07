@@ -4,8 +4,7 @@ import RegisterCard from './RegisterCard';
 import axios from 'axios';
 import './AdminForgotPassword.css'
 
-
-const AdminForgotPassword = ({match}) => {
+const AdminForgotPassword = ({match}) => { // Forgot Password Component
     let history = useHistory();
 
     const [emailAddress, setEmailAddress] = useState('');
@@ -27,7 +26,6 @@ const AdminForgotPassword = ({match}) => {
             const {data} = await axios.post(`http://localhost:5200/api/v1/auth/forgot-password`, {emailAddress: emailAddress});
             setFormIsValid(true);
             setEmailValid(true);
-            
         }
         
         catch(err) {
@@ -40,34 +38,45 @@ const AdminForgotPassword = ({match}) => {
     }
 
     return (
-        <section className = "section--forgotpassword">
+        <Fragment>
+  <section className = "section--forgotpassword">
 
-        <div className = "container grid grid--2-cols">
+<div className = "container grid grid--2-cols">
+        <RegisterCard>
+            <h1 className = "heading--primary login">Forgot Password</h1>
+            <form onSubmit = {forgotPasswordSubmitHandler} method = "POST" className = "login--form">
 
-                <RegisterCard>
-                    <h1 className = "heading--primary login">Forgot Password</h1>
-                    <form onSubmit = {forgotPasswordSubmitHandler} method = "POST" className = "login--form">
-
-                
-                    <div className = "email--box">
-                        <label className = "email--lbl">E-mail</label>
-                        <input value = {emailAddress}  onChange = {(e) => {setEmailAddress(e.target.value)}} placeholder = "Enter your E-mail Address" type = "email"/>
-                    </div>
-
-
-                    <div className = "submit--container">
-                        <button className = "login--btn" type = "submit">Submit</button>
-                    </div>
+        
+            <div className = "email--box">
+                <label className = "email--lbl">E-mail</label>
+                <input value = {emailAddress}  onChange = {(e) => {setEmailAddress(e.target.value)}} placeholder = "Enter your E-mail Address" type = "email"/>
+            </div>
 
 
+            <div className = "submit--container">
+                <button className = "login--btn" type = "submit">Submit</button>
+            </div>
+            </form>
+        
+    </RegisterCard>
+    
+</div>    
 
-                    </form>
-                
-            </RegisterCard>
-            
-        </div>    
 
 </section>
+
+<footer className = "footer">
+        <ul className = "footer--items">
+            <li className = "footer--item">Copyright All Rights Reserved - eHouseholds Sabin Constantin Lungu - 2021</li>
+        </ul>
+    </footer>
+
+
+
+        </Fragment>
+      
+
+
 
     )
 }
