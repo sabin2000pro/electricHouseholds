@@ -5,6 +5,7 @@ import Logo from '../components/images/logo.png';
 
 const Header = (props) => { // Header Component
     const [isInLocalStorage, setIsInLocalStorage] = useState(false);
+    const [isInDashboard, setIsInDashboard] = useState(false);
 
     useEffect(() => {
         const authToken = localStorage.getItem("authToken");
@@ -15,12 +16,14 @@ const Header = (props) => { // Header Component
     const fetchAuthToken = (authToken) => {// Fetches the Authentication token from local storage
 
         if(!authToken) { // If there's no auth token
-            return setIsInLocalStorage(false); // Not logged in
+            setIsInLocalStorage(false); // Not logged in
+            setIsInDashboard(false);
         }
 
         if(authToken) {
             console.log(authToken);
-            return setIsInLocalStorage(true);
+         setIsInLocalStorage(true);
+         setIsInDashboard(true);
         }
     }
 
@@ -30,13 +33,11 @@ const Header = (props) => { // Header Component
 
 {isInLocalStorage ? (
     <header className = "header">
-                    <img alt = "The header logo" src = {Logo} className = "img--logo"/>
 
             <nav className = "main-nav">
 
-                        <ul className = "main-nav--list">
-                        <li><a className = "main-nav--link" href = "/admin-dashboard">Admin Dashboard</a></li>
-                        <li><a className = "main-nav--link" href = "/admin-dashboard">Create Appliance</a></li>
+                    <ul className = "main-nav--list">
+                        
                 </ul>
             </nav>
             </header>) : (<header className = "header">
