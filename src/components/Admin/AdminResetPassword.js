@@ -27,7 +27,7 @@ const AdminResetPassword = ({match}) => {
             if(!match.params.resetToken) {
 
             }
-            
+
             console.log(data);
             console.log(`Password Updated Success`);
 
@@ -77,11 +77,11 @@ const AdminResetPassword = ({match}) => {
 </div>    
 </section>
 
-<footer className = "footer">
-                <ul className = "footer--items">
-                    <li className = "footer--item">Copyright All Rights Reserved - eHouseholds Sabin Constantin Lungu - 2021</li>
-                </ul>
-            </footer>
+    <footer className = "footer">
+                    <ul className = "footer--items">
+                        <li className = "footer--item">Copyright All Rights Reserved - eHouseholds Sabin Constantin Lungu - 2021</li>
+                    </ul>
+     </footer>
         </Fragment>
     )
 }
