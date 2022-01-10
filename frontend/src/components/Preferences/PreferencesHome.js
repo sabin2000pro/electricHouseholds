@@ -31,7 +31,20 @@ const PreferencesHome = () => {
 
     <section className = "section--createpreference">
         <CreatePreference/>
+
      </section>
+
+        <div className = "viewcontainer--btn">
+     <button className = "viewpreferences--btn">View your preferences</button>
+
+        </div>
+
+
+    <footer className = "footer">
+        <ul className = "footer--items">
+            <li className = "footer--item">Copyright All Rights Reserved - eHouseholds Sabin Constantin Lungu - 2021</li>
+        </ul>
+    </footer>
 
    
    

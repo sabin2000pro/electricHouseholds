@@ -42,7 +42,6 @@ const Header = (props) => { // Header Component
                         <li><a className = "main-nav--link" href = "/admin-dashboard">Admin Dashboard</a></li>
                         <li><a className = "main-nav--link" href = "/admin-dashboard/create-appliance">Create Appliance</a></li>
                         <li><a className = "main-nav--link" href = "/admin-dashboard/edit-appliances">Edit Appliance</a></li>
-                        <li><a className = "main-nav--link" href = "/admin-dashboard">Create Appliance</a></li>
                 </ul>
             </nav>
             </header>) : (<header className = "header">

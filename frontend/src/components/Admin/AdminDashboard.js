@@ -47,15 +47,12 @@ const AdminDashboard = (props) => {
     <div className = "home-img-box">
         <img className = "home--img" alt = "Wind Turbine" src = {HomepageImg} />
     </div>
-    </div>
+
+</div>
+
+
 
     </section>
-
-    <footer className = "footer">
-        <ul className = "footer--items">
-            <li className = "footer--item">Copyright All Rights Reserved - eHouseholds Sabin Constantin Lungu - 2021</li>
-        </ul>
-    </footer>
     
         </Fragment>
         
