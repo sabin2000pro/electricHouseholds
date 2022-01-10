@@ -101,7 +101,6 @@ const AdminLogin = (props) => { // Admin Login Component
 
             <div className = "home-text-box">
 
-
                 <h1 className = "heading--primary">Admin Dashboard Login</h1>
                 <p className = "home--description">Login into the Dashboard in order to configure appliances.</p>
 

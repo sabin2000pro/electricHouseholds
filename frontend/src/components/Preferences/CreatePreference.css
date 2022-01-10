@@ -1,0 +1,32 @@
+.section--yourpreferences {
+    padding: 96px 0;
+}
+
+.submit--container button {
+   margin-bottom: 100px;
+   text-align: center;
+   margin-top: 25x;
+   margin-left: 420px;
+}
+
+.appliance--box {
+    margin-left: -30px;
+}
+
+.morningslot--box {
+    margin-top: 55px;
+    margin-left: -60px;
+   
+}
+
+.username--box {
+    margin-bottom: 50px;
+    margin-top: 30px;
+    text-align: center;
+    margin-right: 23px;
+}
+
+.latemorning--box {
+    margin-top: 50px;
+    margin-left: -100px;
+}
