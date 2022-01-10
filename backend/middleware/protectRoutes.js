@@ -1,14 +1,19 @@
 
 const Admin = require('../models/adminModel');
 const ErrorResponse = require('../utils/errorResponse');
+const catchAsync = require('../utils/catchAsync');
 const jwt = require('jsonwebtoken');
 
-module.exports.protect = (request, response, next) => {
+module.exports.protect = catchAsync(async (request, response, next) => {
     let token;
     const authHeader = request.headers.authorization;
 
     if(authHeader && authHeader.startsWith('Bearer')) {
         token = authHeader.split(' ')[1]; // Turn it into an array
+    }
+
+    if(!token) {
+        return next(new ErrorResponse(`Token not found`, 401));
     }
 
     try {
@@ -24,7 +29,7 @@ module.exports.protect = (request, response, next) => {
             return next(new ErrorResponse(`Invalid Token.`, 401));
         }
     }
-};
+});
 
 module.exports.restrictTo = (...roles) => {
 

@@ -57,6 +57,16 @@ module.exports.loginAdmin = catchAsync(async (request, response, next) => { // C
 
 });
 
+module.exports.logout = catchAsync(async (request, response, next) => {
+
+});
+
+// Middleware Routine to get the currently logged in Admin
+module.exports.getMe = catchAsync(async (request, response, next) => {
+    const admin = await Admin.findById(request.admin.id);
+    return response.status(200).json({success: true, data: admin});
+})
+
 module.exports.forgotPassword = catchAsync(async (request, response, next) => { // Forgot Password Handler
     const {emailAddress} = request.body;
     const admin = await Admin.findOne({emailAddress});
