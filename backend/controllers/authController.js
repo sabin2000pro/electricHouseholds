@@ -1,4 +1,5 @@
 const Admin = require('../models/adminModel');
+const ErrorResponse = require('../utils/errorResponse');
 const catchAsync = require('../utils/catchAsync');
 const sendEmail = require('../utils/sendEmail');
 const crypto = require('crypto');
