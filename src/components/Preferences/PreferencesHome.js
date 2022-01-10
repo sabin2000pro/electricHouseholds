@@ -1,6 +1,8 @@
 import React, {Fragment} from 'react';
 import Header from '../Header';
 import HomepageImg from '../../components/images/homepage/homepageimg.jpg';
+import CreatePreference from './CreatePreference';
+import './CreatePreference.css';
 
 const PreferencesHome = () => {
         return (
@@ -24,13 +26,15 @@ const PreferencesHome = () => {
             <img className = "home--img" alt = "Wind Turbine" src = {HomepageImg} />
         </div>
     </div>
+       
+    </section>
 
     <section className = "section--createpreference">
-        
-    </section>
-    
+        <CreatePreference/>
+     </section>
+
    
-   </section>
+   
             </Fragment>
     )
 }

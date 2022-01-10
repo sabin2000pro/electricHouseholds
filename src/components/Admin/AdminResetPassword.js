@@ -30,7 +30,6 @@ const AdminResetPassword = ({match}) => {
 
             console.log(data);
             console.log(`Password Updated Success`);
-
         } 
         
         catch(err) {
