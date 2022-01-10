@@ -27,6 +27,7 @@ const AdminResetPassword = ({match}) => {
             if(!match.params.resetToken) {
 
             }
+            
             console.log(data);
             console.log(`Password Updated Success`);
 
