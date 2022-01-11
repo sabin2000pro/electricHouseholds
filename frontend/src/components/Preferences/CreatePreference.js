@@ -4,19 +4,19 @@ import RegisterCard from '../Admin/RegisterCard';
 import axios from 'axios';
 
 const CreatePreference = (props) => {
-    const [username, setUsername] = useState("");
+    const [enteredUsername, setUsername] = useState("");
     const [usernameValid, setUsernameValid] = useState(true);
 
-    const [appliance, setAppliance] = useState("");
+    const [chosenAppliance, setAppliance] = useState("");
     const [applianceValid, setApplianceValid] = useState(true);
 
-    const [image, setImage] = useState("");
+    const [chosenImage, setImage] = useState("");
     const [imageValid, setImageValid] = useState(true);
 
-    const [earlyMorningSlot, setEarlyMorningSlot] = useState("");
-    const [lateMorningSlot, setLateMorningSlot] = useState("");
-    const [afternoonSlot, setAfternoonSlot] = useState("");
-    const [eveningSlot, setEveningSlot] = useState("");
+    const [chosenEarlyMorningSlot, setEarlyMorningSlot] = useState("");
+    const [chosenLateMorningSlot, setLateMorningSlot] = useState("");
+    const [chosenAfternoonSlot, setAfternoonSlot] = useState("");
+    const [chosenEveningSlot, setEveningSlot] = useState("");
     const [appliances, setAppliances] = useState([]); // Array of appliances
 
     useEffect(() => {
@@ -42,8 +42,7 @@ const CreatePreference = (props) => {
         try {
             e.preventDefault();
            
-            const {data} = await axios.post(`http://localhost:5200/api/v1/preferences/create-preference`, {username, appliance, image, earlyMorningSlot, lateMorningSlot, afternoonSlot, eveningSlot});
-            console.log(username);
+            const {data} = await axios.post(`http://localhost:5200/api/v1/preferences/create-preference`, {username: enteredUsername, appliance: chosenAppliance, image: chosenImage, earlyMorningslot: chosenEarlyMorningSlot, lateMorningslot: chosenLateMorningSlot , afternoonSlot: chosenAfternoonSlot, eveningSlot: chosenEveningSlot});
 
             alert('Preferences Submitted Success');
         } 
@@ -73,13 +72,13 @@ const CreatePreference = (props) => {
 
         <div className = "username--box">
             <label className = "username--lbl">Username</label>
-            <input id = "username" onChange = {(e) => {setUsername(e.target.value)}} value = {username} placeholder = "Enter your Username" type = "text"/>
+            <input id = "username" onChange = {(e) => {setUsername(e.target.value)}} value = {enteredUsername} placeholder = "Enter your Username" type = "text"/>
         </div>
 
         <div className = "issueType--box">
         <label className = "issue--lbl" htmlFor = "issue">Appliance</label>
 
-            <select onChange = {(e) => {setAppliance(e.target.value)}} value = {appliance} className = "box">
+            <select onChange = {(e) => {setAppliance(e.target.value)}} value = {chosenAppliance} className = "box">
                 <option>Washing Machine</option>
                 <option>Tumble Drier</option>
                 <option>Kettle</option>
@@ -93,27 +92,27 @@ const CreatePreference = (props) => {
 
         <div className = "img--box">
             <label className = "img--lbl">Image</label>
-            <input value = {image} onChange = {(e) => {setImage(e.target.value)}} placeholder = "Enter Image URL" required id = "image" type = "text"/>
+            <input value = {chosenImage} onChange = {(e) => {setImage(e.target.value)}} placeholder = "Enter Image URL" required id = "image" type = "text"/>
         </div>
 
         <div className = "morningslot--box">
             <label className = "morning--lbl">Morning Slot</label>
-            <input value = {earlyMorningSlot} onChange = {(e) => {setEarlyMorningSlot(e.target.value)}} placeholder = "Enter your desired Morning Slot" required id = "morningslot" type = "text"/>
+            <input value = {chosenEarlyMorningSlot} onChange = {(e) => {setEarlyMorningSlot(e.target.value)}} placeholder = "Enter your desired Morning Slot" required id = "morningslot" type = "text"/>
         </div>
 
         <div className = "latemorning--box">
             <label className = "password--lbl">Late Morning Slot</label>
-            <input value = {lateMorningSlot} onChange = {(e) => {setLateMorningSlot(e.target.value)}} placeholder = "Enter your second Morning Slot" required id = "password" type = "text"/>
+            <input value = {chosenLateMorningSlot} onChange = {(e) => {setLateMorningSlot(e.target.value)}} placeholder = "Enter your second Morning Slot" required id = "password" type = "text"/>
         </div>
 
         <div className = "afternoon--box">
             <label className = "password--lbl">Afternoon Slot</label>
-            <input placeholder = "Enter your desired Afternoon Slot" required id = "afternoonSlot" type = "text"/>
+            <input value = {chosenAfternoonSlot} onChange = {(e) => {setAfternoonSlot(e.target.value)}} placeholder = "Enter your desired Afternoon Slot" required id = "afternoonSlot" type = "text"/>
         </div>
 
         <div className = "eveningslot--box">
             <label className = "password--lbl">Evening Slot</label>
-            <input placeholder = "Enter your desired Evening Slot" required id = "eveningslot" type = "text"/>
+            <input value = {chosenEveningSlot} onChange = {(e) => {setEveningSlot(e.target.value)}} placeholder = "Enter your desired Evening Slot" required id = "eveningslot" type = "text"/>
         </div>
         
         <div className = "submit--container">
