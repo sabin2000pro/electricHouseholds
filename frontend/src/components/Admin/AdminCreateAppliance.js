@@ -3,11 +3,17 @@ import { useHistory } from 'react-router';
 import Header from '../Header';
 import HomepageImg from '../images/homepage/homepageimg.jpg';
 import RegisterCard from './RegisterCard';
+import './AdminCreateAppliance.css';
 
 const AdminCreateAppliance = (props) => {
     const [name, setName] = useState('');
+    const [nameValid, setNameValid] = useState('');
     const [image, setImage] = useState('');
+    const [imageValid, setImageValid] = useState('');
+    
     const [description, setDescription] = useState('');
+    const [descriptionValid, setDescriptionValid] = useState('');
+    const [formValid, setFormValid] = useState(true);
 
     let history = useHistory();
 
@@ -52,27 +58,25 @@ const AdminCreateAppliance = (props) => {
                     <form className = "login--form">
 
                     
-                    <div className = "email--box">
+                    <div className = "appliancename--box">
                         <label className = "email--lbl">Name</label>
-                        <input placeholder = "Enter your E-mail" type = "email"/>
+                        <input placeholder = "Enter Appliance Name" type = "text"/>
                        
                     </div>
 
-                    <div className = "password--box">
+                    <div className = "applianceimage--box">
                         <label className = "password--lbl">Image</label>
-                        <input placeholder = "Enter your Password" required id = "password" type = "password"/>
+                        <input placeholder = "Enter Appliance Image URL" required id = "applianceurl" type = "text"/>
                     </div>
 
-                    <div className = "password--box">
-                        <label className = "password--lbl">Image</label>
-                        <input placeholder = "Enter your Password" required id = "password" type = "password"/>
+                    <div className = "appliancedescription--box">
+                        <label className = "password--lbl">Description</label>
+                        <input placeholder = "Enter Appliance Description" required id = "description" type = "text"/>
                     </div>
                     
                     <div className = "submit--container">
                         <button className = "login--btn" type = "submit">Submit</button>
                     </div>
-
-                 
 
                     </form>
                 
