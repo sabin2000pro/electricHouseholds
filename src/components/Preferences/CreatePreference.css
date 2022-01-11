@@ -121,3 +121,9 @@
     width: 30%;
     align-items: center;
 }
+
+.generic--text {
+    color: white;
+    font-weight: 600;
+    font-size: 26px;
+}
