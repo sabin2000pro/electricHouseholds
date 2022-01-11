@@ -1,10 +1,12 @@
-import React from 'react'
+import React, {Fragment} from 'react'
 
-const AdminEditAppliance = () => {
+const AdminEditAppliance = (props) => {
     return (
-        <div>
-            
-        </div>
+        <Fragment>
+            <div>
+                
+            </div>
+        </Fragment>
     )
 }
 
