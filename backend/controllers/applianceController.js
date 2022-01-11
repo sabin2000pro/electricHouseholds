@@ -57,6 +57,7 @@ module.exports.deleteAppliance = catchAsync(async (request, response, next) => {
         return response.status(404).json({status: "Fail", message: "No Appliance found with that ID"});
     }
 
+    return response.status(204).json("Appliance deleted");
 
 });
 

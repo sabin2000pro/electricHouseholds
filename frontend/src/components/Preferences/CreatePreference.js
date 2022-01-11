@@ -1,9 +1,11 @@
 import React, {useState, useReducer, Fragment, useEffect} from 'react';
 import './CreatePreference.css';
+import {useHistory} from 'react-router-dom';
 import RegisterCard from '../Admin/RegisterCard';
 import axios from 'axios';
 
 const CreatePreference = (props) => {
+    let history = useHistory();
     const [enteredUsername, setUsername] = useState("");
     const [usernameValid, setUsernameValid] = useState(true);
 
@@ -43,8 +45,9 @@ const CreatePreference = (props) => {
             e.preventDefault();
            
             const {data} = await axios.post(`http://localhost:5200/api/v1/preferences/create-preference`, {username: enteredUsername, appliance: chosenAppliance, image: chosenImage, earlyMorningslot: chosenEarlyMorningSlot, lateMorningslot: chosenLateMorningSlot , afternoonSlot: chosenAfternoonSlot, eveningSlot: chosenEveningSlot});
-
             alert('Preferences Submitted Success');
+
+            return history.push('/home');
         } 
         
         catch(err) {
