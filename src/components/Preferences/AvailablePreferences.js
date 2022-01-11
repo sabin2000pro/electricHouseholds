@@ -1,6 +1,7 @@
-import React from 'react'
+import React, {} from 'react'
 
-const AvailablePreferences = () => {
+const AvailablePreferences = (props) => {
+  
     
     return (
         <div>
