@@ -1,10 +1,13 @@
-import React from 'react'
+import React, {Fragment} from 'react'
 
 const EditAppliance = () => {
     return (
+        <Fragment>
         <div>
             
         </div>
+
+        </Fragment>
     )
 }
 

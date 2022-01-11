@@ -90,6 +90,7 @@ const CreatePreference = (props) => {
 
     const fetchAllPreferences = async () => {
         try {
+            
             return await axios.get(`http://localhost:5200/api/v1/preferences/fetch-preferences`).then(response => {
                 const allPreferences = response.data.allPreferences;
                 setPreferences(allPreferences);
@@ -109,15 +110,16 @@ const CreatePreference = (props) => {
         }
     }
 
-    const deletePreference = async (id) => {
+    const deletePreference = async (id) => { // Deletes a preference
         try {
-
+            // Send DELETE request to backend
+            return await axios.delete(`http://localhost:5200/api/v1/preferences/delete-preference/${id}`, {id: id});
         } 
         
         catch(err) {
 
             if(err) {
-
+                return console.error(err);
             }
         }
     };
@@ -205,7 +207,7 @@ const CreatePreference = (props) => {
                     <h2 className = "appliance--heading"><img className = "appliance--img" src = {theData.image} alt = "Appliance" /></h2>
 
                     <button className = "negotiate--btn">Negotiate Preference</button>
-                            <p>Not happy with your timeslot? Modify it</p>
+                            <p className = "generic--text">Not happy with your timeslot? Modify it</p>
 
                             <button type = "submit">Edit Now</button>
 
