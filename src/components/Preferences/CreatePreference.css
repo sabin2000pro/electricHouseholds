@@ -49,6 +49,7 @@
     color: white;
     background-color: #1e7e68;
     cursor: pointer;
+    margin-bottom: -50px;
 }
 
 .viewcontainer--btn {
@@ -66,3 +67,23 @@
     margin-left: 22px;
 }
 
+.preferences--card {
+    background-color: #1e7e68;
+    color: #333;
+    border-radius: 15px;
+    padding: 130px 10px;
+    box-shadow: 2px 2px 8px black;
+    text-align: center;
+    width: 50%;
+    margin-left: 600px;
+    margin-top: 30px;
+    margin-bottom: 100px;
+    position: relative;
+}
+
+.appliance--heading {
+    color: white;
+    font-weight: 600;
+    padding: 12px;
+    font-size: 28px;
+}

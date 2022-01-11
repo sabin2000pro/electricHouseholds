@@ -52,7 +52,7 @@ const CreatePreference = (props) => {
 
     const fetchApplianceData = async () => { // Routine to fetch the available appliances from the backend database
         try {
-            // To be finsihed
+            // To be finsished.
         } 
         
         catch(err) {
@@ -68,9 +68,7 @@ const CreatePreference = (props) => {
         try {
 
             e.preventDefault();
-           
             const {data} = await axios.post(`http://localhost:5200/api/v1/preferences/create-preference`, {username: enteredUsername, appliance: chosenAppliance, image: chosenImage, earlyMorningslot: chosenEarlyMorningSlot, lateMorningslot: chosenLateMorningSlot , afternoonSlot: chosenAfternoonSlot, eveningSlot: chosenEveningSlot});
-            console.log(data);
             alert('Preferences Submitted Success');
 
             return history.push('/home');
@@ -88,15 +86,21 @@ const CreatePreference = (props) => {
 
     const fetchAllPreferences = async () => {
         try {
-            // Send a GET request to backend
-            console.log(`In the fetch function`);
+            return await axios.get(`http://localhost:5200/api/v1/preferences/fetch-preferences`).then(response => {
+                const allPreferences = response.data.allPreferences;
+                setPreferences(allPreferences);
+
+            }).catch(err => {
+
+                if(err) {
+                    return console.error(err);
+                }
+
+            })
         } 
         
         catch(err) {
 
-            if(err) {
-                return console.error(err);
-            }
         }
     }
 
@@ -106,12 +110,12 @@ const CreatePreference = (props) => {
         } 
         
         catch(err) {
-            
+
             if(err) {
 
             }
         }
-    }
+    };
 
     return (
 
@@ -183,8 +187,27 @@ const CreatePreference = (props) => {
             <button onClick = {fetchAllPreferences} className = "viewpreferences--btn">View your preferences</button>
         </div> 
 
-</section>
+        <section>
 
+            {preferences.map((data, key) => {
+                const theData = data;
+
+                return <div key = {key}>
+                    <div className = "preferences--card">
+
+                    <h2 className = "appliance--heading">Username : {JSON.stringify(theData.username, null).toString().replaceAll("\"", "")}</h2>
+                    <h2 className = "appliance--heading">Appliance : {JSON.stringify(theData.appliance, null).toString().replaceAll("\"", "")}</h2>
+                    <h2 className = "appliance--heading">Image : {theData.image}</h2>
+
+                    </div>
+
+                </div>
+            })};
+
+
+        </section>
+
+</section>
 
         </Fragment>
     )
