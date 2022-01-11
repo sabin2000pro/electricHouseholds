@@ -19,11 +19,17 @@ const CreatePreference = (props) => {
     const [chosenLateMorningSlot, setLateMorningSlot] = useState("");
     const [chosenAfternoonSlot, setAfternoonSlot] = useState("");
     const [chosenEveningSlot, setEveningSlot] = useState("");
+
     const [appliances, setAppliances] = useState([]); // Array of appliances
+    const [preferences, setPreferences] = useState([]);
 
     useEffect(() => {
         return fetchApplianceData();
-    }, [appliances])
+    }, [appliances]);
+
+    useEffect(() => {
+
+    }, [])
 
     const fetchApplianceData = async => {
         try {
@@ -121,14 +127,16 @@ const CreatePreference = (props) => {
         <div className = "submit--container">
             <button className = "login--btn" type = "submit">Submit</button>
         </div>
-
-
+    
         </form>
+
 
     </RegisterCard>
 
     </div>    
+
 </section>
+
 
         </Fragment>
     )
