@@ -12,6 +12,10 @@ const FLAGS = {
     IMG_WIDTH: IMG_WIDTH
 }
 
+let DEFAULT_TEXT = {
+    preferenceHeader: 'Your Preferences'
+}
+
 const CreatePreference = (props) => {
     let history = useHistory();
     const [enteredUsername, setUsername] = useState("");
@@ -102,11 +106,11 @@ const CreatePreference = (props) => {
         } 
         
         catch(err) {
+            
             if(err) {
 
             }
         }
-
     }
 
     return (
@@ -116,7 +120,7 @@ const CreatePreference = (props) => {
            <div className = "container grid grid--2-cols">
 
         <RegisterCard>
-            <h1 className = "heading--primary login">Your Preferences</h1>
+            <h1 className = "heading--primary login">{DEFAULT_TEXT.preferenceHeader}</h1>
 
         <form onSubmit = {preferencesSubmitHandler} method = "POST" className = "login--form">
 
