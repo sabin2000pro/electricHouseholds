@@ -6,6 +6,10 @@ const helmet = require('helmet');
 const morgan = require('morgan');
 const xss = require('xss-clean');
 const cors = require('cors');
+const csrf = require('csurf');
+const csrfProtection = csrf({ cookie: true })
+const cookieParser = require('cookie-parser');
+const nocache = require('nocache');
 const app = express();
 const port = process.env.PORT;
 const connectDB = require('../database/db');
@@ -19,12 +23,16 @@ const commentRoutes = require('../routes/commentRoutes');
 const reviewRoutes = require('../routes/reviews/reviewRoutes');
 const contactRoutes = require('../routes/contactRoutes');
 
+
+
 // Middlewares
 app.use(mongoSanitize());
 app.use(xss());
 app.use(helmet());
 app.use(cors());
 app.use(morgan('dev'));
+app.use(cookieParser());
+app.use(nocache());
 app.use(express.json());
 connectDB();
 
