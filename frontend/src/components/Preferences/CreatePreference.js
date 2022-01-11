@@ -42,8 +42,8 @@ const CreatePreference = (props) => {
         try {
             e.preventDefault();
            
-            const {data} = await axios.post(`http://localhost:5370/api/v1/preferences/create-preference`, {username, appliance, image, earlyMorningSlot, lateMorningSlot, afternoonSlot, eveningSlot});
-            console.log(data);
+            const {data} = await axios.post(`http://localhost:5200/api/v1/preferences/create-preference`, {username, appliance, image, earlyMorningSlot, lateMorningSlot, afternoonSlot, eveningSlot});
+            console.log(username);
 
             alert('Preferences Submitted Success');
         } 
@@ -69,18 +69,17 @@ const CreatePreference = (props) => {
         <RegisterCard>
             <h1 className = "heading--primary login">Your Preferences</h1>
 
-
         <form onSubmit = {preferencesSubmitHandler} method = "POST" className = "login--form">
 
         <div className = "username--box">
             <label className = "username--lbl">Username</label>
-            <input placeholder = "Enter your Username" type = "text"/>
+            <input id = "username" onChange = {(e) => {setUsername(e.target.value)}} value = {username} placeholder = "Enter your Username" type = "text"/>
         </div>
 
         <div className = "issueType--box">
         <label className = "issue--lbl" htmlFor = "issue">Appliance</label>
 
-            <select className = "box">
+            <select onChange = {(e) => {setAppliance(e.target.value)}} value = {appliance} className = "box">
                 <option>Washing Machine</option>
                 <option>Tumble Drier</option>
                 <option>Kettle</option>
@@ -94,17 +93,17 @@ const CreatePreference = (props) => {
 
         <div className = "img--box">
             <label className = "img--lbl">Image</label>
-            <input placeholder = "Enter Image URL" required id = "image" type = "text"/>
+            <input value = {image} onChange = {(e) => {setImage(e.target.value)}} placeholder = "Enter Image URL" required id = "image" type = "text"/>
         </div>
 
         <div className = "morningslot--box">
             <label className = "morning--lbl">Morning Slot</label>
-            <input placeholder = "Enter your desired Morning Slot" required id = "morningslot" type = "text"/>
+            <input value = {earlyMorningSlot} onChange = {(e) => {setEarlyMorningSlot(e.target.value)}} placeholder = "Enter your desired Morning Slot" required id = "morningslot" type = "text"/>
         </div>
 
         <div className = "latemorning--box">
             <label className = "password--lbl">Late Morning Slot</label>
-            <input placeholder = "Enter your second Morning Slot" required id = "password" type = "text"/>
+            <input value = {lateMorningSlot} onChange = {(e) => {setLateMorningSlot(e.target.value)}} placeholder = "Enter your second Morning Slot" required id = "password" type = "text"/>
         </div>
 
         <div className = "afternoon--box">
