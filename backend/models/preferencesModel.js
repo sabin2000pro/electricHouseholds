@@ -16,6 +16,11 @@ const preferencesSchema = new mongoose.Schema({
         required: [true, 'Please choose the appliance you want to run']
     },
 
+    image: {
+        type: String,
+        required: [true, 'Please submit image URL of the appliance you would like to run']
+    },
+
     earlyMorningslot: {
         type: String,
         required: [true, 'Please submit early morning timeslot for when you want to run your appliance between 00:00-05:00AM']

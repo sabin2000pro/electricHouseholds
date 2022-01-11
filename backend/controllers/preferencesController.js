@@ -8,14 +8,14 @@ const notFound = 404;
 const serverError = 500;
 
 module.exports.createPreference = catchAsync(async (request, response, next) => {
-    const {username, earlyMorningslot, lateMorningslot, afternoonSlot, eveningSlot, appliance} = request.body;
+    const {username, earlyMorningslot, lateMorningslot, afternoonSlot, eveningSlot, appliance, image} = request.body;
 
-    if(!username || !earlyMorningslot || !lateMorningslot || !afternoonSlot || !eveningSlot || !appliance) {
+    if(!username || !earlyMorningslot || !lateMorningslot || !afternoonSlot || !eveningSlot || !appliance || !image) {
         return response.status(badRequest).json({status: "Fail", message: "Please check your entries again"});
     }
 
     if(request.method === 'POST') {
-        const newPreference = new Preference({username, earlyMorningslot, lateMorningslot, afternoonSlot, eveningSlot, appliance});
+        const newPreference = new Preference({username, earlyMorningslot, lateMorningslot, afternoonSlot, eveningSlot, appliance, image});
         await newPreference.save();
         
         return response.status(ok).json({newPreference});
