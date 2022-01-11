@@ -47,7 +47,14 @@ const Header = (props) => { // Header Component
                 </ul>
             </nav>
             </header>) : (<header className = "header">
+
+           
                             <img alt = "The header logo" src = {Logo} className = "img--logo"/>
+                            <div className = "search--box">
+                        <FaSearch className = "search--icon" />
+                   <input className = "admin--search" type = "text" placeholder = "Search" />            
+
+                            </div>
 
                             <nav className = "main-nav">
                                 <ul className = "main-nav--list">

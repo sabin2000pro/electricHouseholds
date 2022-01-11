@@ -3,6 +3,7 @@ import './CreatePreference.css';
 import {useHistory} from 'react-router-dom';
 import RegisterCard from '../Admin/RegisterCard';
 import axios from 'axios';
+import {FaSearch} from 'react-icons/fa';
 
 
 let IMG_HEIGHT = 100;
