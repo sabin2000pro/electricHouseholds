@@ -35,6 +35,11 @@ const CreatePreference = (props) => {
     const [washingMachineChosen, setWashingMachineChosen] = useState(false);
     const [tumbleDrierChosen, setTumbleDrierChosen] = useState(false);
     const [kettleChosen, setKettleChosen] = useState(false);
+    const [tvChosen, setTvChosen] = useState(false);
+    const [lightsChosen, setLightsChosen] = useState(false);
+    const [dishWasherChosen, setDishWasherChosen] = useState(false);
+    const [showerChosen, setShowerChosen] = useState(false);
+    const [gamingConsoleChosen, setGamingConsoleChosen] = useState(false);
 
     useEffect(() => {
         return fetchApplianceData();
