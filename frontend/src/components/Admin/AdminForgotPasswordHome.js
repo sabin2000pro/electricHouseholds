@@ -4,10 +4,11 @@ import HomepageImg from '../images/homepage/homepageimg.jpg';
 import AdminForgotPassword from './AdminForgotPassword';
 
 const AdminForgotPasswordHome = () => { // Forgot Password Home
+
     return (
         
-            <Fragment>
-               <Header />
+         <Fragment>
+            <Header />
             
       <section className = "section--home">
            <div className = "home--grid">

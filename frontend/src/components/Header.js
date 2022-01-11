@@ -29,6 +29,7 @@ const Header = (props) => { // Header Component
         <Router>
 
 {isInLocalStorage ? (
+    
     <header className = "header">
             <div className = "search--box">
              <FaSearch className = "search--icon" />
@@ -37,7 +38,6 @@ const Header = (props) => { // Header Component
             </div>
 
             <nav className = "main-nav">
-
                     <ul className = "main-nav--list">
 
                         <li><a className = "main-nav--link" href = "/admin-dashboard">Admin Dashboard</a></li>
@@ -46,6 +46,7 @@ const Header = (props) => { // Header Component
                         <li><a className = "main-nav--link" href = "/admin-dashboard/bids-settings">Bids Settings</a></li>
                 </ul>
             </nav>
+
             </header>) : (<header className = "header">
 
            
@@ -59,16 +60,15 @@ const Header = (props) => { // Header Component
                             <nav className = "main-nav">
                                 <ul className = "main-nav--list">
 
-                                    <li><a className = "main-nav--link" href = "/home">Home</a></li>
-                                    <li><a className = "main-nav--link" href = "/admin-register">Admin Register</a></li>
-                                    <li><a className = "main-nav--link" href = "/admin-login">Admin Login</a></li>
-                                    <li><a className = "main-nav--link" href = "/your-preferences">Your Preferences</a></li>
-                                    <li><a className = "main-nav--link" href = "/fair-negotiations">Fair Negotiations</a></li>
-                                    <li><a className = "main-nav--link" href = "/contact-us">Contact Us</a></li>
-                                </ul>
-                            </nav>
+                                <li><a className = "main-nav--link" href = "/home">Home</a></li>
+                                <li><a className = "main-nav--link" href = "/admin-register">Admin Register</a></li>
+                                <li><a className = "main-nav--link" href = "/admin-login">Admin Login</a></li>
+                                <li><a className = "main-nav--link" href = "/your-preferences">Your Preferences</a></li>
+                                <li><a className = "main-nav--link" href = "/fair-negotiations">Fair Negotiations</a></li>
+                                <li><a className = "main-nav--link" href = "/contact-us">Contact Us</a></li>
+                         </ul>
+                    </nav>
 
-        
         </header>
     )}
 
