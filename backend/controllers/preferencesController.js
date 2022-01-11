@@ -14,7 +14,7 @@ module.exports.createPreference = catchAsync(async (request, response, next) => 
         return response.status(badRequest).json({status: "Fail", message: "Please check your entries again"});
     }
 
-    if(request.method === 'POST') {
+    if(request.method === 'POST') { // If there is a POST request -> create the preference
         const newPreference = new Preference({username, earlyMorningslot, lateMorningslot, afternoonSlot, eveningSlot, appliance, image});
         await newPreference.save();
         

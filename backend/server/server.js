@@ -24,7 +24,6 @@ const reviewRoutes = require('../routes/reviews/reviewRoutes');
 const contactRoutes = require('../routes/contactRoutes');
 
 
-
 // Middlewares
 app.use(mongoSanitize());
 app.use(xss());
@@ -75,6 +74,7 @@ process.on('uncaughtException', (err, promise) => {
 // Add an app.all() to handle 404 routes
 app.all('*', (request, response, next) => {
     response.status(404).json({status: 'Fail', message: 'The route you requested is not valid'});
+    res.cookie('XSRF-TOKEN', req.csrfToken())
     return next();
 });
 
