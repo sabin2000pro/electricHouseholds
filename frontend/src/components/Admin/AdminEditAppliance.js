@@ -4,7 +4,7 @@ const AdminEditAppliance = (props) => {
     return (
         <Fragment>
             <div>
-                
+
             </div>
         </Fragment>
     )
