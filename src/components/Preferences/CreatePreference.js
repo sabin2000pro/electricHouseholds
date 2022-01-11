@@ -4,6 +4,14 @@ import {useHistory} from 'react-router-dom';
 import RegisterCard from '../Admin/RegisterCard';
 import axios from 'axios';
 
+let IMG_HEIGHT = 100;
+let IMG_WIDTH = 100;
+
+const FLAGS = {
+    IMG_HEIGHT: IMG_HEIGHT,
+    IMG_WIDTH: IMG_WIDTH
+}
+
 const CreatePreference = (props) => {
     let history = useHistory();
     const [enteredUsername, setUsername] = useState("");
@@ -23,34 +31,23 @@ const CreatePreference = (props) => {
     const [appliances, setAppliances] = useState([]); // Array of appliances
     const [preferences, setPreferences] = useState([]);
     const [validPreferences, setValidPreferences] = useState(true);
+    const [formValid, setFormValid] = useState(true);
+    const [washingMachineChosen, setWashingMachineChosen] = useState(false);
+    const [tumbleDrierChosen, setTumbleDrierChosen] = useState(false);
+    const [kettleChosen, setKettleChosen] = useState(false);
 
     useEffect(() => {
         return fetchApplianceData();
     }, [appliances]);
 
-    useEffect(() => {
-        try {
 
+    const fetchApplianceData = async () => { // Routine to fetch the available appliances from the backend database
+        try {
+            // To be finsihed
         } 
         
         catch(err) {
-            
-            if(err) {
-                setValidPreferences(false);
-                return console.error(err);
-            }
-        }
 
-    }, [])
-
-    const fetchApplianceData = async => {
-        try {
-            // Send a GET request to the back-end route to retrieve all of the appliances using the fetch method
-
-            // TBC
-        } 
-        
-        catch(err) {
             if(err) {
                 return console.error(err);
             }
@@ -60,9 +57,11 @@ const CreatePreference = (props) => {
 
     const preferencesSubmitHandler = async (e) => {
         try {
+
             e.preventDefault();
            
             const {data} = await axios.post(`http://localhost:5200/api/v1/preferences/create-preference`, {username: enteredUsername, appliance: chosenAppliance, image: chosenImage, earlyMorningslot: chosenEarlyMorningSlot, lateMorningslot: chosenLateMorningSlot , afternoonSlot: chosenAfternoonSlot, eveningSlot: chosenEveningSlot});
+            console.log(data);
             alert('Preferences Submitted Success');
 
             return history.push('/home');
@@ -71,14 +70,39 @@ const CreatePreference = (props) => {
         catch(err) {
 
             if(err) {
-
+                setFormValid(false);
                 return console.error(err);
             }
 
         }
-
     }
 
+    const fetchAllPreferences = async () => {
+        try {
+            // Send a GET request to backend
+            console.log(`In the fetch function`);
+        } 
+        
+        catch(err) {
+
+            if(err) {
+                return console.error(err);
+            }
+        }
+    }
+
+    const deletePreference = async (id) => {
+        try {
+
+        } 
+        
+        catch(err) {
+            if(err) {
+
+            }
+        }
+
+    }
 
     return (
 
@@ -142,10 +166,13 @@ const CreatePreference = (props) => {
     
         </form>
 
-
     </RegisterCard>
 
-    </div>    
+    </div>   
+
+        <div className = "viewcontainer--btn">
+            <button onClick = {fetchAllPreferences} className = "viewpreferences--btn">View your preferences</button>
+        </div> 
 
 </section>
 
