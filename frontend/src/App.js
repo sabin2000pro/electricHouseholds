@@ -11,6 +11,7 @@ import AlgorithmsHome from './components/Algorithms/AlgorithmsHome';
 import AdminForgotPasswordHome from './components/Admin/AdminForgotPasswordHome';
 import AdminResetPassword from './components/Admin/AdminResetPassword';
 import AdminCreateAppliance from './components/Admin/AdminCreateAppliance';
+import AdminEditAppliance from './components/Admin/AdminEditAppliance';
 
 const App = () => {
 
@@ -19,17 +20,18 @@ const App = () => {
     <div className = "App">
 
       <Router>
-        <Route path = '/home' component={Homepage} />
-        <Route path = '/admin-register' component = {AdminRegister}/>
-        <Route path = '/your-preferences' component = {PreferencesHome}/>
-        <Route path = '/admin-login' component = {AdminLogin}/>
+        <Route exact path = '/home' component={Homepage} />
+        <Route exact path = '/admin-register' component = {AdminRegister}/>
+        <Route exact path = '/your-preferences' component = {PreferencesHome}/>
+        <Route exact path = '/admin-login' component = {AdminLogin}/>
 
         <Route exact path = '/admin-dashboard' component = {AdminDashboard}/>
         <Route exact path = '/contact-us' component = {ContactUs} />
         <Route exact path = '/fair-negotiations' component = {AlgorithmsHome} />
         <Route exact path = "/admin-forgotpassword" component = {AdminForgotPasswordHome}/>
-        <Route path = "/admin/reset-password/:resetToken" component = {AdminResetPassword} />
-        <Route path = "/admin-dashboard/create-appliance" component = {AdminCreateAppliance} />
+        <Route exact path = "/admin/reset-password/:resetToken" component = {AdminResetPassword} />
+        <Route exact path = "/admin-dashboard/create-appliance" component = {AdminCreateAppliance} />
+        <Route exact path = "/admin-dashboard/edit-appliance" component = {AdminEditAppliance}/>
 
       </Router>
 
