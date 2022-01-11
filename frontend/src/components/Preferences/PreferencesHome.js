@@ -34,10 +34,6 @@ const PreferencesHome = () => {
 
      </section>
 
-        <div className = "viewcontainer--btn">
-     <button className = "viewpreferences--btn">View your preferences</button>
-
-        </div>
 
 
     <footer className = "footer">
