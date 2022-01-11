@@ -9,6 +9,7 @@ import AdminDashboard from './components/Admin/AdminDashboard';
 import ContactUs from './components/Contact/ContactHome';
 import AlgorithmsHome from './components/Algorithms/AlgorithmsHome';
 import AdminForgotPasswordHome from './components/Admin/AdminForgotPasswordHome';
+import AdminCreateApplianceHome from './components/Admin/AdminCreateApplianceHome';
 import AdminResetPassword from './components/Admin/AdminResetPassword';
 
 const App = () => {
@@ -28,6 +29,7 @@ const App = () => {
         <Route path = '/fair-negotiations' component = {AlgorithmsHome} />
         <Route path = "/admin-forgotpassword" component = {AdminForgotPasswordHome}/>
         <Route path = "/admin/reset-password/:resetToken" component = {AdminResetPassword} />
+        <Route path = "/admin-dashboard/create-appliance" component = {AdminCreateApplianceHome}/>
 
       </Router>
 
