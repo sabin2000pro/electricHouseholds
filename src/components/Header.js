@@ -32,6 +32,7 @@ const Header = (props) => { // Header Component
     <header className = "header">
             <div className = "search--box">
              <FaSearch className = "search--icon" />
+             
              <input className = "admin--search" type = "text" placeholder = "Search Appliances" />
             </div>
 
