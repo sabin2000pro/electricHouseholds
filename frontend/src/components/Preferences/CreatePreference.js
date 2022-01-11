@@ -4,6 +4,7 @@ import {useHistory} from 'react-router-dom';
 import RegisterCard from '../Admin/RegisterCard';
 import axios from 'axios';
 
+
 let IMG_HEIGHT = 100;
 let IMG_WIDTH = 100;
 
@@ -23,7 +24,7 @@ const CreatePreference = (props) => {
 
     const [chosenAppliance, setAppliance] = useState("");
     const [applianceValid, setApplianceValid] = useState(true);
-
+    const [savingDataMsg, setSavingDataMsg] = useState(false);
     const [chosenImage, setImage] = useState("");
     const [imageValid, setImageValid] = useState(true);
 
@@ -44,6 +45,10 @@ const CreatePreference = (props) => {
     const [dishWasherChosen, setDishWasherChosen] = useState(false);
     const [showerChosen, setShowerChosen] = useState(false);
     const [gamingConsoleChosen, setGamingConsoleChosen] = useState(false);
+    const [preferencesBtnClicked, setPreferencesBtnClicked] = useState(false);
+    const [preferenceSubmitted, setPreferenceSubmitted] = useState(false);
+    const [hideSpinner, setHideSpinner] = useState(false);
+    const [timeoutStart, setTimeoutStart] = useState(false);
 
     useEffect(() => {
         return fetchApplianceData();
@@ -69,9 +74,7 @@ const CreatePreference = (props) => {
 
             e.preventDefault();
             const {data} = await axios.post(`http://localhost:5200/api/v1/preferences/create-preference`, {username: enteredUsername, appliance: chosenAppliance, image: chosenImage, earlyMorningslot: chosenEarlyMorningSlot, lateMorningslot: chosenLateMorningSlot , afternoonSlot: chosenAfternoonSlot, eveningSlot: chosenEveningSlot});
-            alert('Preferences Submitted Success');
-
-            return history.push('/home');
+            setPreferenceSubmitted(true);
         } 
         
         catch(err) {
@@ -89,6 +92,7 @@ const CreatePreference = (props) => {
             return await axios.get(`http://localhost:5200/api/v1/preferences/fetch-preferences`).then(response => {
                 const allPreferences = response.data.allPreferences;
                 setPreferences(allPreferences);
+                setPreferencesBtnClicked(!preferencesBtnClicked);
 
             }).catch(err => {
 
@@ -184,12 +188,12 @@ const CreatePreference = (props) => {
     </div>   
 
         <div className = "viewcontainer--btn">
-            <button onClick = {fetchAllPreferences} className = "viewpreferences--btn">View your preferences</button>
+            <button onClick = {fetchAllPreferences} className = "viewpreferences--btn">View All Preferences</button>
         </div> 
 
         <section>
 
-            {preferences.map((data, key) => {
+            {preferencesBtnClicked && preferences.map((data, key) => {
                 const theData = data;
 
                 return <div key = {key}>
@@ -197,13 +201,20 @@ const CreatePreference = (props) => {
 
                     <h2 className = "appliance--heading">Username : {JSON.stringify(theData.username, null).toString().replaceAll("\"", "")}</h2>
                     <h2 className = "appliance--heading">Appliance : {JSON.stringify(theData.appliance, null).toString().replaceAll("\"", "")}</h2>
-                    <h2 className = "appliance--heading">Image : {theData.image}</h2>
+                    <h2 className = "appliance--heading"><img className = "appliance--img" src = {theData.image} alt = "Appliance" /></h2>
 
+                    <button className = "negotiate--btn">Negotiate Preference</button>
+                            <p>Not happy with your timeslot? Modify it</p>
+
+                            <button type = "submit">Edit Now</button>
+
+                            <div>
+                        <h2 className = "delete--header">No longer need it ? Delete your preference</h2>
+                            <button className = "delete--btn" onClick = {() => deletePreference(theData._id)} type = "submit">Delete</button>
+                         </div>
                     </div>
-
                 </div>
             })};
-
 
         </section>
 
