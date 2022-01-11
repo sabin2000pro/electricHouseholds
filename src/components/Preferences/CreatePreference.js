@@ -22,12 +22,24 @@ const CreatePreference = (props) => {
 
     const [appliances, setAppliances] = useState([]); // Array of appliances
     const [preferences, setPreferences] = useState([]);
+    const [validPreferences, setValidPreferences] = useState(true);
 
     useEffect(() => {
         return fetchApplianceData();
     }, [appliances]);
 
     useEffect(() => {
+        try {
+
+        } 
+        
+        catch(err) {
+            
+            if(err) {
+                setValidPreferences(false);
+                return console.error(err);
+            }
+        }
 
     }, [])
 
