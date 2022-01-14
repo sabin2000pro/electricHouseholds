@@ -9,7 +9,4 @@ applianceRouter.route('/fetch-single-appliance/:id').get(applianceController.get
 applianceRouter.route('/delete-appliances').delete(applianceController.deleteAppliances);
 applianceRouter.route('/delete-single-appliance/:id').delete(applianceController.deleteAppliance);
 
-applianceRouter.route('/sort-appliances').get(applianceController.sortAppliances);
-applianceRouter.route('/limit-appliances').get(applianceController.limitAppliances);
-
 module.exports = applianceRouter;

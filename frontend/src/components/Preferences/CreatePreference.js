@@ -90,7 +90,7 @@ const CreatePreference = (props) => {
 
     const fetchAllPreferences = async () => {
         try {
-            
+
             return await axios.get(`http://localhost:5200/api/v1/preferences/fetch-preferences`).then(response => {
                 const allPreferences = response.data.allPreferences;
                 setPreferences(allPreferences);
@@ -194,6 +194,8 @@ const CreatePreference = (props) => {
             <button onClick = {fetchAllPreferences} className = "viewpreferences--btn">View All Preferences</button>
         </div> 
 
+        {preferences.length === 0 ? <p className = "no--preferences">No preferences found</p> : null}
+
         <section>
 
             {preferencesBtnClicked && preferences.map((data, key) => {
@@ -205,8 +207,14 @@ const CreatePreference = (props) => {
                     <h2 className = "appliance--heading">Username : {JSON.stringify(theData.username, null).toString().replaceAll("\"", "")}</h2>
                     <h2 className = "appliance--heading">Appliance : {JSON.stringify(theData.appliance, null).toString().replaceAll("\"", "")}</h2>
                     <h2 className = "appliance--heading"><img className = "appliance--img" src = {theData.image} alt = "Appliance" /></h2>
+                    <h2 className = "appliance--heading">Early Morning Slot : {JSON.stringify(theData.earlyMorningslot, null).toString().replaceAll("\"", "")}</h2>
+                    <h2 className = "appliance--heading">Late Morning Slot : {JSON.stringify(theData.lateMorningslot, null).toString().replaceAll("\"", "")}</h2>
+                    <h2 className = "appliance--heading">Afternoon Slot : {JSON.stringify(theData.afternoonSlot, null).toString().replaceAll("\"", "")}</h2>
+                    <h2 className = "appliance--heading">Evening Slot : {JSON.stringify(theData.eveningSlot, null).toString().replaceAll("\"", "")}</h2>
 
                     <button className = "negotiate--btn">Negotiate Preference</button>
+                    <button className = "negotiate--btn">View Preference</button>
+
                             <p className = "generic--text">Not happy with your timeslot? Modify it</p>
 
                             <button type = "submit">Edit Now</button>

@@ -127,3 +127,11 @@
     font-weight: 600;
     font-size: 26px;
 }
+
+.no--preferences {
+    font-size: 27px;
+    font-weight: 600;
+    margin-left: 950px;
+    padding: -20px;
+    margin-top: -35px;
+}

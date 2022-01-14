@@ -8,11 +8,12 @@ const badRequest = 400;
 const serverError = 500;
 
 module.exports.getAllAppliances = catchAsync(async (request, response, next) => {
+    let query;
 
-    if(request.method === 'GET') {
-        const allAppliances = await Appliance.find();
-        return response.status(ok).json({allAppliances}); // Return all the appliances in JSON format
-    }
+    let queryStr = JSON.stringify(request.query);
+
+    const allAppliances = await Appliance.find();
+    return response.status(ok).json({allAppliances}); // Return all the appliances in JSON format
 
 });
 
@@ -67,30 +68,3 @@ module.exports.deleteAppliances = catchAsync(async (request, response, next) => 
         return response.status(204).json("Appliances deleted");
     }
 })
-
-module.exports.sortAppliances = catchAsync(async (request, response, next) => {
-    const queryObject = {...request.query};
-    const sortQuery = request.query.sort; // Extract the sort query
-
-    // Convert the object into JSON
-    let queryString = JSON.stringify(queryObject);
-    let query = await Appliance.find(JSON.parse(queryString));
-
-    if(sortQuery) {
-        const sortBy = request.query.sort.split(',').join('');
-        query = query.sort(sortBy); // Sort by the specified query
-    }
-
-    const appliances = await query;
-    return response.status(200).json({appliances});
-    
-});
-
-module.exports.limitAppliances = catchAsync(async (request, response, next) => {
-    const queryObject = {...request.query};
-    const limitQuery = request.query.fields;
-    const fieldsToExclude = ['limit', 'fields'];
-
-    const thePage = request.query.page * 1 || 1;
-    const limitBy = request.query.limit * 1 || 100;
-});
