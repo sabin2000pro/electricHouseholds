@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useReducer, useContext, Fragment} from 'react';
-import {useHistory} from 'react-router-dom';
+import {useHistory, Link} from 'react-router-dom';
 import Header from '../Header';
 import '../Preferences/CreatePreference.css';
 import './AdminDashboard.css';
@@ -69,7 +69,7 @@ const AdminDashboard = (props) => { // Admin Dashboard Component
     return (
          
     <Fragment>
-      <Header />
+      <Header searchterm = {searchTerm} />
         
         <section className = "section--home">
             <div className = "home--grid">
@@ -103,12 +103,15 @@ const AdminDashboard = (props) => { // Admin Dashboard Component
 
                 <div className = "appliance--buttons">
                 <button className = "appliance--editbtn">Edit Appliance</button>
-                <button className = "appliance--viewbtn">View Appliance</button>
+                <Link className = "appliance--viewbtn" to = {{pathname: `/appliance/${appliance._id}`, state: {appliance}} }>View Appliance</Link>
+
+            
                 <button onClick = {() => deleteAppliance(appliance._id)} className = "appliance--deletebtn">Delete Appliance</button>
 
                 </div>
             </div>
         })}
+
 
     </section>
 

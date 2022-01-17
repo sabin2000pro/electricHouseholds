@@ -64,8 +64,9 @@ const Header = (props) => { // Header Component
 
             <div className = "search--box">
              <FaSearch className = "search--icon" />
-             
-             <input className = "admin--search" type = "text" placeholder = "Search Appliances" />
+             <input className = "admin--search" type = "text" placeholder = "Search Appliances" onChange = {(event) => {setSearchTerm(event.target.value)}} />
+
+           
             </div>
 
             <nav className = "main-nav">
