@@ -90,6 +90,16 @@ const FairNegotations = (props) => {
         }
     }
 
+    const handleRandomAlgorithm = () => {
+
+    };
+
+    const handleEnglishAuctionAlgorithm = () => {
+
+    };
+
+    
+
     return (
         <Fragment>
             <div>
