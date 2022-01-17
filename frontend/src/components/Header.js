@@ -53,15 +53,15 @@ const Header = (props) => { // Header Component
             </header>) : (<header className = "header">
 
            
-                            <img alt = "The header logo" src = {Logo} className = "img--logo"/>
-                            <div className = "search--box">
-                        <FaSearch className = "search--icon" />
-                   <input className = "admin--search" type = "text" placeholder = "Search" />            
+                        <img alt = "The header logo" src = {Logo} className = "img--logo"/>
+                        <div className = "search--box">
+                    <FaSearch className = "search--icon" />
+                <input className = "admin--search" type = "text" placeholder = "Search" />            
 
-                            </div>
+                         </div>
 
-                            <nav className = "main-nav">
-                                <ul className = "main-nav--list">
+                        <nav className = "main-nav">
+                             <ul className = "main-nav--list">
 
                                 <li><a className = "main-nav--link" href = "/home">Home</a></li>
                                 <li><a className = "main-nav--link" href = "/admin-register">Admin Register</a></li>
@@ -76,7 +76,6 @@ const Header = (props) => { // Header Component
     )}
 
     </Router>
-
 
     )
 }

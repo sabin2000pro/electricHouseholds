@@ -1,4 +1,3 @@
-
 const Admin = require('../models/adminModel');
 const ErrorResponse = require('../utils/errorResponse');
 const catchAsync = require('../utils/catchAsync');
