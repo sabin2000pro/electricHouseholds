@@ -29,7 +29,9 @@ module.exports.createBid = catchAsync(async (request, response, next) => {
 
 module.exports.editBids = catchAsync(async(request, response, next) => {
     const id = request.params.id;
-    const updatedBid = await Bid.findByIdAndUpdate(id, request.body);
+
+    const updatedBid = await Bid.findByIdAndUpdate(id, request.body, {new: true, runValidators: true});
+    await updatedBid.save();
     
     return response.status(ok).json({message: 'Bid Updated', updatedBid});
 });
