@@ -33,10 +33,9 @@ const App = () => {
         <Route exact path = "/admin-forgotpassword" component = {AdminForgotPasswordHome}/>
         <Route exact path = "/admin/reset-password/:resetToken" component = {AdminResetPassword} />
         <Route exact path = "/admin-dashboard/create-appliance" component = {AdminCreateAppliance} />
-        <Route exact path = "/admin-dashboard/edit-appliance" component = {AdminEditAppliance}/>
+        <Route exact path = "/admin-dashboard/edit-appliance/:id" component = {AdminEditAppliance}/>
         <Route exact path = "/admin-dashboard/bids-settings" component = {BidsSettings} />
         <Route exact path = "/appliance/:id" component = {Appliance}/>
-        <Route exact path = "/admin-dashboard/edit-appliance/:id" component = {AdminEditAppliance}/>
 
       </Router>
 
