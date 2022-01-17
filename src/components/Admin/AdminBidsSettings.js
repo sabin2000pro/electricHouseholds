@@ -93,7 +93,7 @@ const AdminBidsSettings = () => {
                         <input value = {enteredVirtualCredits} onChange = {(e) => {setEnteredVirtualCredits(e.target.value)}} placeholder = "Enter Virtual Credits" required id = "virtual_credits" type = "number"/>
                     </div>
 
-                    <div className = "appliancedescription--box">
+                    <div className = "openingbid--box">
                         <label className = "description--lbl">Opening Bid</label>
                         <input value = {enteredOpeningBid} onChange = {(e) => {setEnteredOpeningBid(e.target.value)}} placeholder = "Enter Opening Bid" required id = "openingbid" type = "number"/>
                     </div>
