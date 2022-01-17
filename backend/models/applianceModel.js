@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 const applianceSchema = new mongoose.Schema({ // Appliance Schema
     name: {
         type: String,
-        required: [true, 'You must specify the appliace name you want to create']
+        required: [true, 'You must specify the appliace name you want to create'],
+        enum: ['Washing Machine', 'Kettle', 'Tumble Drier', 'TV', 'Lights', 'Dish Washer', 'Shower', 'Gaming Console']
     },
 
     image: {
@@ -15,6 +16,7 @@ const applianceSchema = new mongoose.Schema({ // Appliance Schema
         type: String,
         required: [true, 'Please specify a description for your appliance']
     }
+    
 });
 
 const Appliance = mongoose.model('Appliance', applianceSchema);
