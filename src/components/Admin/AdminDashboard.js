@@ -2,6 +2,7 @@ import React, {useState, useEffect, useReducer, useContext, Fragment} from 'reac
 import {useHistory} from 'react-router-dom';
 import Header from '../Header';
 import '../Preferences/CreatePreference.css';
+import './AdminDashboard.css';
 import HomepageImg from '../images/homepage/homepageimg.jpg';
 import '../Home/Homepage.css';
 import axios from 'axios';
