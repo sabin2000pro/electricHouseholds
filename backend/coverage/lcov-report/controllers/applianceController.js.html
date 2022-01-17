@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">61.53% </span>
+                <span class="strong">60.52% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>32/52</span>
+                <span class='fraction'>23/38</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">25% </span>
+                <span class="strong">12.5% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>3/12</span>
+                <span class='fraction'>1/8</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">50% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>4/8</span>
+                <span class='fraction'>3/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">62% </span>
+                <span class="strong">60.52% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>31/50</span>
+                <span class='fraction'>23/38</span>
             </div>
         
             
@@ -131,27 +131,7 @@
 <a name='L66'></a><a href='#L66'>66</a>
 <a name='L67'></a><a href='#L67'>67</a>
 <a name='L68'></a><a href='#L68'>68</a>
-<a name='L69'></a><a href='#L69'>69</a>
-<a name='L70'></a><a href='#L70'>70</a>
-<a name='L71'></a><a href='#L71'>71</a>
-<a name='L72'></a><a href='#L72'>72</a>
-<a name='L73'></a><a href='#L73'>73</a>
-<a name='L74'></a><a href='#L74'>74</a>
-<a name='L75'></a><a href='#L75'>75</a>
-<a name='L76'></a><a href='#L76'>76</a>
-<a name='L77'></a><a href='#L77'>77</a>
-<a name='L78'></a><a href='#L78'>78</a>
-<a name='L79'></a><a href='#L79'>79</a>
-<a name='L80'></a><a href='#L80'>80</a>
-<a name='L81'></a><a href='#L81'>81</a>
-<a name='L82'></a><a href='#L82'>82</a>
-<a name='L83'></a><a href='#L83'>83</a>
-<a name='L84'></a><a href='#L84'>84</a>
-<a name='L85'></a><a href='#L85'>85</a>
-<a name='L86'></a><a href='#L86'>86</a>
-<a name='L87'></a><a href='#L87'>87</a>
-<a name='L88'></a><a href='#L88'>88</a>
-<a name='L89'></a><a href='#L89'>89</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L69'></a><a href='#L69'>69</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -161,26 +141,6 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -249,30 +209,10 @@ const badRequest = 400;
 const serverError = 500;
 &nbsp;
 module.exports.getAllAppliances = catchAsync(async (request, response, next) =&gt; {
-    let query;
-    const reqQuery = {...query};
-    const excludedFields = ['sort', 'limit', 'page'];
-    excludedFields.forEach(param =&gt; delete reqQuery[param]);
-    let queryStr = JSON.stringify(reqQuery);
 &nbsp;
-    queryStr = queryStr.replace(/\b(gt|gte|lt|lte|in)\b/g, <span class="fstat-no" title="function not covered" >ma</span>tch =&gt; <span class="cstat-no" title="statement not covered" >`$${match}`)</span>;
-    query = await Appliance.find(JSON.parse(queryStr));
+    const appliances = await Appliance.find();
 &nbsp;
-    // Sorting Fields
-    <span class="missing-if-branch" title="if path not taken" >I</span>if(request.query.sort) {
-        const fields = <span class="cstat-no" title="statement not covered" >request.query.sort.split(',').join(' ');</span>
-<span class="cstat-no" title="statement not covered" >        query = query.sort(fields);</span>
-    }
-&nbsp;
-    // Selecting Fields
-    <span class="missing-if-branch" title="if path not taken" >I</span>if(request.query.select) {
-        const fields = <span class="cstat-no" title="statement not covered" >request.query.select.split(',').join(' ');</span>
-<span class="cstat-no" title="statement not covered" >        query = query.select(fields);</span>
-    }
-    
-    const appliances = await query;
-&nbsp;
-    return response.status(ok).json({allAppliances}); // Return all the appliances in JSON format
+    return response.status(ok).json({appliances}); // Return all the appliances in JSON format
 &nbsp;
 });
 &nbsp;
@@ -334,7 +274,7 @@ module.exports.deleteAppliances = catchAsync(async (request, response, next) =&g
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Mon Jan 17 2022 08:23:57 GMT+0000 (Coordinated Universal Time)
+                at Mon Jan 17 2022 09:01:55 GMT+0000 (Coordinated Universal Time)
             </div>
         <script src="../prettify.js"></script>
         <script>

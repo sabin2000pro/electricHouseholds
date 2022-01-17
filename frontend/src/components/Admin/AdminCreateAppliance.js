@@ -4,14 +4,15 @@ import Header from '../Header';
 import HomepageImg from '../images/homepage/homepageimg.jpg';
 import RegisterCard from './RegisterCard';
 import './AdminCreateAppliance.css';
+import axios from 'axios';
 
 const AdminCreateAppliance = (props) => {
-    const [name, setName] = useState('');
+    const [enteredName, setEnteredName] = useState('');
     const [nameValid, setNameValid] = useState('');
-    const [image, setImage] = useState('');
+    const [enteredImage, setEnteredImage] = useState('');
     const [imageValid, setImageValid] = useState('');
     
-    const [description, setDescription] = useState('');
+    const [enteredDescription, setEnteredDescription] = useState('');
     const [descriptionValid, setDescriptionValid] = useState('');
     const [formValid, setFormValid] = useState(true);
 
@@ -22,6 +23,26 @@ const AdminCreateAppliance = (props) => {
         history.push('/admin-login'); // Redirect to Login
         
         return window.location.reload(false);
+    }
+
+    const createApplianceSubmitHandler = async (e) => {
+        try {
+            e.preventDefault();
+            
+            // Send Post Request using axios
+            const {data} = await axios.post(`http://localhost:5200/api/v1/appliances/create-appliance`, {name: enteredName, image: enteredImage, description: enteredDescription});
+            console.log(data);
+
+            alert('Appliance Created');
+
+        } 
+        
+        catch(error) {
+
+            if(error) {
+                return console.error(error);
+            }
+        }
     }
     
 
@@ -55,23 +76,23 @@ const AdminCreateAppliance = (props) => {
 
                 <RegisterCard>
                     <h1 className = "heading--primary login">Create Appliance</h1>
-                    <form className = "login--form">
+
+                    <form onSubmit = {createApplianceSubmitHandler} className = "login--form">
 
                     
                     <div className = "appliancename--box">
-                        <label className = "email--lbl">Name</label>
-                        <input placeholder = "Enter Appliance Name" type = "text"/>
-                       
+                        <label className = "name--lbl">Name</label>
+                        <input value = {enteredName} onChange = {(e) => {setEnteredName(e.target.value)}} placeholder = "Enter Appliance Name" type = "text"/>
                     </div>
 
                     <div className = "applianceimage--box">
-                        <label className = "password--lbl">Image</label>
-                        <input placeholder = "Enter Appliance Image URL" required id = "applianceurl" type = "text"/>
+                        <label className = "image--lbl">Image</label>
+                        <input value = {enteredImage} onChange = {(e) => {setEnteredImage(e.target.value)}} placeholder = "Enter Appliance Image URL" required id = "applianceurl" type = "text"/>
                     </div>
 
                     <div className = "appliancedescription--box">
-                        <label className = "password--lbl">Description</label>
-                        <input placeholder = "Enter Appliance Description" required id = "description" type = "text"/>
+                        <label className = "description--lbl">Description</label>
+                        <input value = {enteredDescription} onChange = {(e) => {setEnteredDescription(e.target.value)}} placeholder = "Enter Appliance Description" required id = "description" type = "text"/>
                     </div>
                     
                     <div className = "submit--container">
@@ -85,18 +106,9 @@ const AdminCreateAppliance = (props) => {
         </div>    
     </section>
   
-     
-      
-          </Fragment>
+</Fragment>
     )
 };
 
-AdminCreateAppliance.defaultProps = {
-
-}
-
-AdminCreateAppliance.propTypes = {
-
-}
 
 export default AdminCreateAppliance // Exports the Create Appliance Component

@@ -82,17 +82,7 @@ module.exports.deleteAllPreferences = catchAsync(async(request, response, next) 
 })
 
 module.exports.sortPreferences = catchAsync(async (request, response, next) => {
-    const queryObject = {...request.query};
-    const sortQuery = request.query.sort;
-
-    let queryString = JSON.stringify(queryObject);
-    let sort = await Preference.find(JSON.parse(queryString));
-
-    if(sortQuery) {
-        let sortBy = request.query.sort.split(',').join('');
-        sortBy = sortBy.sort(sort);
-    }
-
+  
     const allPreferences = await sort;
     return response.status(200).json({allPreferences});
 });

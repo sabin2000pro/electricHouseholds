@@ -57,10 +57,6 @@ module.exports.loginAdmin = catchAsync(async (request, response, next) => { // C
 
 });
 
-module.exports.logout = catchAsync(async (request, response, next) => {
-
-});
-
 // Middleware Routine to get the currently logged in Admin
 module.exports.getMe = catchAsync(async (request, response, next) => {
     const admin = await Admin.findById(request.admin.id);
