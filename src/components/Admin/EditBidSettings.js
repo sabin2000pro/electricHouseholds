@@ -1,10 +1,13 @@
-import React from 'react'
+import React, {Fragment, useState, useEffect} from 'react';
+import { useHistory, useLocation } from 'react-router';
 
 const EditBidSettings = () => {
+    let history = useHistory();
+
     return (
-        <div>
-            
-        </div>
+       <Fragment>
+           
+       </Fragment>
     )
 }
 
