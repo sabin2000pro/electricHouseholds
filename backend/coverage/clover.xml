@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1642415772990" clover="3.2.0">
-  <project timestamp="1642415772991" name="All files">
-    <metrics statements="565" coveredstatements="365" conditionals="150" coveredconditionals="32" methods="68" coveredmethods="24" elements="783" coveredelements="421" complexity="0" loc="565" ncloc="565" packages="9" files="31" classes="31"/>
+<coverage generated="1642423838115" clover="3.2.0">
+  <project timestamp="1642423838115" name="All files">
+    <metrics statements="567" coveredstatements="365" conditionals="150" coveredconditionals="32" methods="68" coveredmethods="24" elements="785" coveredelements="421" complexity="0" loc="567" ncloc="567" packages="9" files="31" classes="31"/>
     <package name="controllers">
-      <metrics statements="285" coveredstatements="143" conditionals="106" coveredconditionals="26" methods="42" coveredmethods="11"/>
+      <metrics statements="287" coveredstatements="143" conditionals="106" coveredconditionals="26" methods="42" coveredmethods="11"/>
       <file name="applianceController.js" path="/app/controllers/applianceController.js">
         <metrics statements="38" coveredstatements="22" conditionals="8" coveredconditionals="1" methods="6" coveredmethods="3"/>
         <line num="1" count="1" type="stmt"/>
@@ -118,7 +118,7 @@
         <line num="133" count="1" type="stmt"/>
       </file>
       <file name="bidsController.js" path="/app/controllers/bidsController.js">
-        <metrics statements="33" coveredstatements="14" conditionals="11" coveredconditionals="0" methods="6" coveredmethods="0"/>
+        <metrics statements="35" coveredstatements="14" conditionals="11" coveredconditionals="0" methods="6" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -132,26 +132,28 @@
         <line num="13" count="0" type="stmt"/>
         <line num="16" count="1" type="stmt"/>
         <line num="17" count="0" type="stmt"/>
-        <line num="20" count="1" type="stmt"/>
-        <line num="22" count="0" type="stmt"/>
-        <line num="24" count="0" type="cond" truecount="0" falsecount="7"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="23" count="1" type="stmt"/>
         <line num="25" count="0" type="stmt"/>
+        <line num="27" count="0" type="cond" truecount="0" falsecount="7"/>
         <line num="28" count="0" type="stmt"/>
-        <line num="29" count="0" type="stmt"/>
         <line num="31" count="0" type="stmt"/>
-        <line num="34" count="1" type="stmt"/>
-        <line num="35" count="0" type="stmt"/>
-        <line num="37" count="0" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="37" count="1" type="stmt"/>
         <line num="38" count="0" type="stmt"/>
         <line num="40" count="0" type="stmt"/>
-        <line num="43" count="1" type="stmt"/>
-        <line num="44" count="0" type="stmt"/>
-        <line num="46" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="41" count="0" type="stmt"/>
+        <line num="43" count="0" type="stmt"/>
+        <line num="46" count="1" type="stmt"/>
         <line num="47" count="0" type="stmt"/>
-        <line num="52" count="1" type="stmt"/>
-        <line num="54" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="55" count="0" type="stmt"/>
-        <line num="56" count="0" type="stmt"/>
+        <line num="49" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="50" count="0" type="stmt"/>
+        <line num="55" count="1" type="stmt"/>
+        <line num="57" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="58" count="0" type="stmt"/>
+        <line num="59" count="0" type="stmt"/>
       </file>
       <file name="commentsController.js" path="/app/controllers/commentsController.js">
         <metrics statements="39" coveredstatements="12" conditionals="16" coveredconditionals="0" methods="6" coveredmethods="0"/>
