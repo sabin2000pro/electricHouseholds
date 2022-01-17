@@ -25,6 +25,7 @@ const AdminEditAppliance = (props) => {
         } 
         
         catch(error) {
+            
             if(error) {
                 return console.error(error);
             }
