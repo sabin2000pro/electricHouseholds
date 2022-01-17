@@ -29,8 +29,11 @@ const Header = (props) => { // Header Component
         <Router>
 
 {isInLocalStorage ? (
-    
+
     <header className = "header">
+
+    <img alt = "The header logo" src = {Logo} className = "img--logo"/>
+
             <div className = "search--box">
              <FaSearch className = "search--icon" />
              
