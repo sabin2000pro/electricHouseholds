@@ -51,28 +51,9 @@ const CreatePreference = (props) => {
     const [hideSpinner, setHideSpinner] = useState(false);
     const [timeoutStart, setTimeoutStart] = useState(false);
 
-    useEffect(() => {
-        return fetchApplianceData();
-    }, [appliances]);
-
-
-    const fetchApplianceData = async () => { // Routine to fetch the available appliances from the backend database
-        try {
-            // To be finsished.
-        } 
-        
-        catch(err) {
-
-            if(err) {
-                return console.error(err);
-            }
-        }
-
-    }
-
     const preferencesSubmitHandler = async (e) => {
-        try {
 
+        try {
             e.preventDefault();
             const {data} = await axios.post(`http://localhost:5200/api/v1/preferences/create-preference`, {username: enteredUsername, appliance: chosenAppliance, image: chosenImage, earlyMorningslot: chosenEarlyMorningSlot, lateMorningslot: chosenLateMorningSlot , afternoonSlot: chosenAfternoonSlot, eveningSlot: chosenEveningSlot});
             setPreferenceSubmitted(true);
@@ -92,6 +73,7 @@ const CreatePreference = (props) => {
         try {
 
             return await axios.get(`http://localhost:5200/api/v1/preferences/fetch-preferences`).then(response => {
+
                 const allPreferences = response.data.allPreferences;
                 setPreferences(allPreferences);
                 setPreferencesBtnClicked(!preferencesBtnClicked);
@@ -106,13 +88,14 @@ const CreatePreference = (props) => {
         } 
         
         catch(err) {
-
+            if(err) {
+                return console.error(err);
+            }
         }
     }
 
     const deletePreference = async (id) => { // Deletes a preference
         try {
-            // Send DELETE request to backend
             return await axios.delete(`http://localhost:5200/api/v1/preferences/delete-preference/${id}`, {id: id});
         } 
         
@@ -215,11 +198,11 @@ const CreatePreference = (props) => {
                     <button className = "negotiate--btn">Negotiate Preference</button>
                     <button className = "negotiate--btn">View Preference</button>
 
-                            <p className = "generic--text">Not happy with your timeslot? Modify it</p>
+                        <p className = "generic--text">Not happy with your timeslot? Modify it</p>
 
-                            <button type = "submit">Edit Now</button>
-                            <div>
-                                
+                        <button type = "submit">Edit Now</button>
+                        <div>
+
                         <h2 className = "delete--header">No longer need it ? Delete your preference</h2>
                             <button className = "delete--btn" onClick = {() => deletePreference(theData._id)} type = "submit">Delete</button>
                          </div>

@@ -2,15 +2,39 @@ import React, {useState, useEffect, useReducer, useContext, Fragment} from 'reac
 import {useHistory} from 'react-router-dom';
 import Header from '../Header';
 import HomepageImg from '../images/homepage/homepageimg.jpg';
-import '../Home/Homepage.css'
+import '../Home/Homepage.css';
+import axios from 'axios';
+import RegisterCard from './RegisterCard';
 
 const AdminDashboard = (props) => {
     let history = useHistory();
     const [appliances, setAppliances] = useState([]);
+    const [appliancesFetched, setAppliancesFetched] = useState(false);
 
     useEffect(() => {
         return verifyAuthToken();
-    }, []);
+    }, [appliances]);
+
+    const fetchApplianceData = async () => { // Routine to fetch the available appliances from the backend database
+        try {
+            
+           return await axios.get(`http://localhost:5200/api/v1/appliances/fetch-appliances`).then(response => {
+               const allAppliances = response.data.appliances;
+               setAppliances(allAppliances);
+               setAppliancesFetched(!appliancesFetched);
+               console.log(allAppliances);
+           });
+
+        } 
+        
+        catch(err) {
+
+            if(err) {
+                return console.error(err);
+            }
+        }
+
+    }
 
     const verifyAuthToken = () => {
 
@@ -28,21 +52,7 @@ const AdminDashboard = (props) => {
         return window.location.reload(false);
     }
 
-    const fetchAppliances = async () => {
-        try {
-            // Send GET reqeust with axios
-        }
-        
-        catch(err) {
-
-            if(err) {
-                return console.error(err);
-            }
-
-        }
-
-    }
-
+   
     return (
          
     <Fragment>
@@ -56,7 +66,7 @@ const AdminDashboard = (props) => {
         <h1 className = "heading--primary">Your Admin Dashboard</h1>
         <p className = "home--description">Welcome to your Admin Dashboard. Here you will be able to view all of the electrical appliances available that users can submit their preferences for. You have the option to search for appliances if there are too many as well.</p>
 
-        <button className = "btn btn--full mgr-sm" href = "#">View Appliances</button>
+        <button onClick = {fetchApplianceData} className = "btn btn--full mgr-sm" href = "#">View Appliances</button>
         <a onClick = {logoutHandler} className = "btn btn--outline" href = "/home">Logout</a>
 
         </div>
@@ -64,12 +74,14 @@ const AdminDashboard = (props) => {
         <div className = "home-img-box">
             <img className = "home--img" alt = "Wind Turbine" src = {HomepageImg} />
         </div>
-
 </div>
 
     </section>
 
-   
+    <section className = "section--forgotpassword">
+        {appliances.length === 0 ? <p className = "appliances-notext">No appliances found</p> : null}
+    </section>
+
     
         </Fragment>
         
