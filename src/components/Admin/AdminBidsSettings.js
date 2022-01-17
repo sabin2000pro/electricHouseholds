@@ -10,7 +10,6 @@ const AdminBidsSettings = () => {
     const [enteredNickname, setEnteredNickname] = useState('');
     const [enteredVirtualCredits, setEnteredVirtualCredits] = useState(0);
     const [enteredOpeningBid, setEnteredOpeningBid] = useState(0);
-    const [enteredBid, setEnteredBid] = useState(0);
     const [enteredUsername, setEnteredUsername] = useState('');
     const [enteredReputationPoints, setEnteredReputationPoints] = useState(0);
     const [formValid, setFormValid] = useState(true);
@@ -44,17 +43,17 @@ const AdminBidsSettings = () => {
 
             <Header />
         
-    <section className = "section--home">
-        <div className = "home--grid">
+        <section className = "section--home">
+            <div className = "home--grid">
 
-   <div className = "home-text-box">
-        <h1 className = "heading--primary">Admin Bid Settings</h1>
-        <p className = "home--description">Configure the required bid settings.</p>
+    <div className = "home-text-box">
+            <h1 className = "heading--primary">Admin Bid Settings</h1>
+            <p className = "home--description">Configure the required bid settings.</p>
 
-        <a className = "btn btn--full mgr-sm" href = "/your-preferences">Start Now</a>
-        <a onClick = {logoutHandler} className = "btn btn--outline" href = "/home">Logout</a>
+            <a className = "btn btn--full mgr-sm" href = "/your-preferences">Start Now</a>
+            <a onClick = {logoutHandler} className = "btn btn--outline" href = "/home">Logout</a>
 
-    </div>
+        </div>
 
         <div className = "home-img-box">
             <img className = "home--img" alt = "Wind Turbine" src = {HomepageImg} />
@@ -79,16 +78,26 @@ const AdminBidsSettings = () => {
 
                     <div className = "applianceimage--box">
                         <label className = "image--lbl">Credits</label>
-                        <input placeholder = "Enter Virtual Credits" required id = "applianceurl" type = "number"/>
+                        <input placeholder = "Enter Virtual Credits" required id = "virtual_credits" type = "number"/>
                     </div>
 
                     <div className = "appliancedescription--box">
-                        <label className = "description--lbl">Description</label>
-                        <input  placeholder = "Enter Appliance Description" required id = "description" type = "text"/>
+                        <label className = "description--lbl">Opening Bid</label>
+                        <input placeholder = "Enter Opening Bid" required id = "openingbid" type = "number"/>
+                    </div>
+
+                    <div className = "appliancedescription--box">
+                        <label className = "description--lbl">Username</label>
+                        <input  placeholder = "Enter Your Username" required id = "username" type = "text"/>
+                    </div>
+
+                    <div className = "appliancedescription--box">
+                        <label className = "description--lbl">Reputation Points</label>
+                        <input placeholder = "Enter Reputation Points" required id = "reputation_points" type = "number"/>
                     </div>
                     
                     <div className = "submit--container">
-                        <button className = "submit--btn" type = "submit">Submit</button>
+                        <button className = "submit--btn" type = "submit">Configure</button>
                     </div>
 
                     </form>
