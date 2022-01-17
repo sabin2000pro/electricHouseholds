@@ -1,5 +1,5 @@
 const Bid = require('../models/bidsModel');
-const catchAsync = require('../middleware/catchAsync');
+const catchAsync = require('../utils/catchAsync');
 const ok = 200;
 const created = 201;
 const deleted = 204;
