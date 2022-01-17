@@ -83,11 +83,16 @@ const AdminDashboard = (props) => { // Admin Dashboard Component
 
             return <div className = "preferences--card" key = {key}>
                 
-                <h1 style = {{color: 'white', fontWeight: 600}}>Appliance: {appliance.name}</h1>
-                <img style = "appliance--img" src = {appliance.image} alt = "The appliance" />
-                <h1 style = {{color: 'white', marginTop: '40px', fontWeight: 600}}>Description: {appliance.description}</h1>
+                <h1 style = {{color: 'white', fontWeight: 600, fontSize: '36px'}}>Appliance: {appliance.name}</h1>
+                <img className = "appliance--img" src = {appliance.image}  />
+                <h1 style = {{color: 'white', marginTop: '40px', fontWeight: 600, fontSize: '36px'}}>Description: {appliance.description}</h1>
 
+                <div className = "appliance--buttons">
                 <button className = "appliance--editbtn">Edit Appliance</button>
+                <button className = "appliance--viewbtn">View Appliance</button>
+                <button className = "appliance--deletebtn">Delete Appliance</button>
+
+                </div>
             </div>
         })}
 
