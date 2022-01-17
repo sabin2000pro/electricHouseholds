@@ -78,6 +78,18 @@ const FairNegotations = (props) => {
         }
     }
 
+    const submitFeedbackHandler = () => {
+        try {
+
+        } 
+        
+        catch(error) {
+            if(error) {
+                return console.error(error);
+            }
+        }
+    }
+
     return (
         <Fragment>
             <div>
