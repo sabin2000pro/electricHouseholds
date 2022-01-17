@@ -2,7 +2,6 @@ import React, {Fragment} from 'react'
 
 const AvailablePreferences = (props) => {
   
-
     return (
         <div>
             

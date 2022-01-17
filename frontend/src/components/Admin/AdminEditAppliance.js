@@ -1,8 +1,9 @@
-import React, {Fragment, useState} from 'react'
+import React, {Fragment, useState, useEffect} from 'react'
 import Header from '../Header';
 import {useHistory} from 'react-router-dom';
 import HomepageImg from '../images/homepage/homepageimg.jpg';
 import RegisterCard from './RegisterCard';
+import axios from 'axios';
 
 const AdminEditAppliance = (props) => {
     let history = useHistory();
@@ -10,6 +11,8 @@ const AdminEditAppliance = (props) => {
     const [editedImage, setEditedImage] = useState('');
     const [editedDescription, setEditedDescription] = useState('');
     const [formValid, setFormValid] = useState(true);
+    const [appliances, setAppliances] = useState([]);
+    const [appliancesFetched, setAppliancesFetched] = useState(false);
 
     const logoutHandler = () => { // Logout Handler Function to logout admins
         localStorage.removeItem("authToken"); // Remove auth token from local storage
@@ -17,6 +20,33 @@ const AdminEditAppliance = (props) => {
         
         return window.location.reload(false);
     }
+
+    useEffect(() => {
+        return fetchApplianceData();
+    }, []);
+
+
+    const fetchApplianceData = async () => { // Routine to fetch the available appliances from the backend database
+        try {
+            
+           return await axios.get(`http://localhost:5200/api/v1/appliances/fetch-appliances`).then(response => {
+               const allAppliances = response.data.appliances;
+               setAppliances(allAppliances);
+               setAppliancesFetched(!appliancesFetched);
+               console.log(allAppliances);
+           });
+
+        } 
+        
+        catch(err) {
+
+            if(err) {
+                return console.error(err);
+            }
+        }
+
+    }
+
 
     const editApplianceHandler = (id) => {
         try {

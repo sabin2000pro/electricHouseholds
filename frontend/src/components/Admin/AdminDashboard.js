@@ -80,9 +80,9 @@ const AdminDashboard = (props) => {
 
     <section className = "section--forgotpassword">
         {appliances.length === 0 ? <p className = "appliances-notext">No appliances found</p> : null}
+        
     </section>
 
-    
         </Fragment>
         
         )

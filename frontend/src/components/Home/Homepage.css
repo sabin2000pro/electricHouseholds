@@ -375,3 +375,9 @@ h3:after {
 .search--box {
     text-align: center;
 }
+
+.appliances-notext {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 600;
+}
