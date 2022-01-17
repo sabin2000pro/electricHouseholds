@@ -10,22 +10,18 @@ const notFound = 404;
 module.exports.getAllBids = catchAsync(async (request, response, next) => {
     
      const bidData = await Bid.find();
-     const totalBids = await Bid.countDocuments({});
-     console.log(totalBids);
-
      return response.status(ok).json(bidData);
-   
 })
 
 module.exports.createBid = catchAsync(async (request, response, next) => {
    
-    const {username, bid, virtualCredits} = request.body;
+       const {virtualCredits, openingBid, bid, username, reputationPoints} = request.body;
 
-       if(!username || !bid) {
+       if(!virtualCredits || !openingBid || !bid || !username || !reputationPoints) {
            return response.status(notFound).json({status: 'Fail', message: 'Invalid Bid Entries'});
         }
 
-        const newBid = await Bid.create({username, bid, virtualCredits})
+        const newBid = await Bid.create({virtualCredits, openingBid, bid, username, reputationPoints});
         await newBid.save(); // Save the new bid data to the database.
 
         return response.status(created).json("Bid Created");

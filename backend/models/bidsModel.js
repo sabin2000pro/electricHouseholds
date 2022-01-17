@@ -31,6 +31,7 @@ const bidSchema = new mongoose.Schema({
     reputationPoints: {
         type: Number,
         default: 0,
+        required: [true, 'Please specify number of Reputation Points you want to alocate'],
         minlength: [5, 'You can allocate a minimum of 5 reputation points'],
         maxlength: [10, 'You can allocate a maximum of 10 social exchange reputation points to be used']
     }
