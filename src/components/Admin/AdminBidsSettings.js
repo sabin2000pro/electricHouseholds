@@ -1,5 +1,6 @@
 import React, {Fragment, useState} from 'react';
 import Header from '../Header';
+import './AdminBidsSettings.css';
 import {useHistory, useLocation} from 'react-router-dom';
 import HomepageImg from '../images/homepage/homepageimg.jpg';
 import RegisterCard from './RegisterCard';
@@ -82,12 +83,12 @@ const AdminBidsSettings = () => {
                     <form onSubmit = {bidSubmitHandler} className = "login--form">
 
                     
-                    <div className = "appliancename--box">
+                    <div className = "nickname--box">
                         <label className = "name--lbl">Nickname</label>
                         <input value = {enteredNickname} onChange = {(e) => {setEnteredNickname(e.target.value)}} placeholder = "Enter Bid Nickname" type = "text"/>
                     </div>
 
-                    <div className = "applianceimage--box">
+                    <div className = "credits--box">
                         <label className = "image--lbl">Credits</label>
                         <input value = {enteredVirtualCredits} onChange = {(e) => {setEnteredVirtualCredits(e.target.value)}} placeholder = "Enter Virtual Credits" required id = "virtual_credits" type = "number"/>
                     </div>
