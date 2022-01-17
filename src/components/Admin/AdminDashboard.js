@@ -104,10 +104,10 @@ const AdminDashboard = (props) => { // Admin Dashboard Component
                 <h1 style = {{color: 'white', marginTop: '40px', fontWeight: 600, fontSize: '36px'}}>Description: {appliance.description}</h1>
 
                 <div className = "appliance--buttons">
-                <button className = "appliance--editbtn">Edit Appliance</button>
+                <Link className = "appliance--editbtn" to = {{pathname: `/admin-dashboard/edit-appliance/${appliance._id}`, state: {appliance}} }>Edit Appliance</Link>
                 <Link className = "appliance--viewbtn" to = {{pathname: `/appliance/${appliance._id}`, state: {appliance}} }>View Appliance</Link>
 
-            
+    
                 <button onClick = {() => deleteAppliance(appliance._id)} className = "appliance--deletebtn">Delete Appliance</button>
 
                 </div>
