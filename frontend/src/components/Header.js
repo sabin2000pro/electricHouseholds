@@ -1,17 +1,23 @@
 import React, {useEffect, useState} from 'react';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import './Home/Homepage.css';
+import axios from 'axios';
 import Logo from '../components/images/logo.png';
 import {FaSearch} from 'react-icons/fa';
 
 const Header = (props) => { // Header Component
     const [isInLocalStorage, setIsInLocalStorage] = useState(false);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [appliances, setAppliances] = useState([]);
 
     useEffect(() => {
         const authToken = localStorage.getItem("authToken");
         return fetchAuthToken(authToken);
-
     }, []);
+
+    useEffect(() => {
+        return fetchApplianceData();
+    }, [appliances]);
 
     const fetchAuthToken = (authToken) => {// Fetches the Authentication token from local storage
 
@@ -21,6 +27,27 @@ const Header = (props) => { // Header Component
 
         if(authToken) {
             return setIsInLocalStorage(true);
+        }
+    }
+
+    const fetchApplianceData = async () => {
+        try {
+            return await axios.get(`http://localhost:5200/api/v1/appliances/fetch-appliances`).then(response => {
+                const allAppliances = response.data.allAppliances;
+                setAppliances(allAppliances);
+
+                console.log(allAppliances);
+                
+            }).catch(error => {
+
+            })
+        } 
+        
+        catch(error) {
+
+            if(error) {
+                return console.error(error);
+            }
         }
     }
 

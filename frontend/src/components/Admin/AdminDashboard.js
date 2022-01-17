@@ -11,6 +11,7 @@ const AdminDashboard = (props) => { // Admin Dashboard Component
     let history = useHistory();
     const [appliances, setAppliances] = useState([]);
     const [appliancesFetched, setAppliancesFetched] = useState(false);
+    const [searchTerm, setSearchTerm] = useState('');
 
     useEffect(() => {
         return verifyAuthToken();
@@ -49,6 +50,19 @@ const AdminDashboard = (props) => { // Admin Dashboard Component
         history.push('/admin-login'); // Redirect to Login
         
         return window.location.reload(false);
+    }
+
+    const deleteAppliance = (id) => {
+        try {
+        } 
+        
+        catch(error) {
+
+            if(error) {
+                return console.error(error);
+            }
+
+        }
     }
 
    
@@ -90,7 +104,7 @@ const AdminDashboard = (props) => { // Admin Dashboard Component
                 <div className = "appliance--buttons">
                 <button className = "appliance--editbtn">Edit Appliance</button>
                 <button className = "appliance--viewbtn">View Appliance</button>
-                <button className = "appliance--deletebtn">Delete Appliance</button>
+                <button onClick = {() => deleteAppliance(appliance._id)} className = "appliance--deletebtn">Delete Appliance</button>
 
                 </div>
             </div>
