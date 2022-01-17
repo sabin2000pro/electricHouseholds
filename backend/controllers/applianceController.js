@@ -9,10 +9,28 @@ const serverError = 500;
 
 module.exports.getAllAppliances = catchAsync(async (request, response, next) => {
     let query;
+    const reqQuery = {...query};
+    const excludedFields = ['sort', 'limit', 'page'];
+    excludedFields.forEach(param => delete reqQuery[param]);
+    let queryStr = JSON.stringify(reqQuery);
 
-    let queryStr = JSON.stringify(request.query);
+    queryStr = queryStr.replace(/\b(gt|gte|lt|lte|in)\b/g, match => `$${match}`);
+    query = await Appliance.find(JSON.parse(queryStr));
 
-    const allAppliances = await Appliance.find();
+    // Sorting Fields
+    if(request.query.sort) {
+        const fields = request.query.sort.split(',').join(' ');
+        query = query.sort(fields);
+    }
+
+    // Selecting Fields
+    if(request.query.select) {
+        const fields = request.query.select.split(',').join(' ');
+        query = query.select(fields);
+    }
+    
+    const appliances = await query;
+
     return response.status(ok).json({allAppliances}); // Return all the appliances in JSON format
 
 });

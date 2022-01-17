@@ -218,11 +218,12 @@ const CreatePreference = (props) => {
                             <p className = "generic--text">Not happy with your timeslot? Modify it</p>
 
                             <button type = "submit">Edit Now</button>
-
                             <div>
+                                
                         <h2 className = "delete--header">No longer need it ? Delete your preference</h2>
                             <button className = "delete--btn" onClick = {() => deletePreference(theData._id)} type = "submit">Delete</button>
                          </div>
+
                     </div>
                 </div>
             })};
