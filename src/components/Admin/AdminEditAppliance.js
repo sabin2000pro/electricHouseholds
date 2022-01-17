@@ -18,9 +18,10 @@ const AdminEditAppliance = (props) => {
         return window.location.reload(false);
     }
 
-    const editApplianceHandler = async (event) => {
+    const editApplianceHandler = (id) => {
         try {
-            event.preventDefault();
+
+            // Send a PUT request to update the appliance
         } 
         
         catch(error) {
