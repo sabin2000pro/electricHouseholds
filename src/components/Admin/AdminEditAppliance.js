@@ -50,9 +50,13 @@ const AdminEditAppliance = (props) => {
     }
 
 
-    const editApplianceHandler = (id) => {
+    const editApplianceHandler = async (id) => {
         try {
-            // Send a PUT request to update the appliance
+            await axios.put(`http://localhost:/5200/api/v1/appliances/edit-appliance/${id}`, {id: id});
+
+             return setTimeout(() => {
+                window.location.reload(false)
+            }, 3000);
 
         } 
         
@@ -96,7 +100,7 @@ const AdminEditAppliance = (props) => {
                 <RegisterCard>
                     <h1 className = "heading--primary login">Edit Your Appliance</h1>
 
-                    <form className = "login--form">
+                    <form onChange = {editApplianceHandler} className = "login--form">
 
             
                     <div className = "appliancename--box">
