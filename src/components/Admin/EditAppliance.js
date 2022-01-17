@@ -1,8 +1,12 @@
-import React, {Fragment} from 'react'
+import React, {Fragment, useState} from 'react';
+import {useHistory, useLocation} from 'react-router-dom';
+import axios from 'axios';
 
 const EditAppliance = () => {
+    let history = useHistory();
+
     return (
-        <Fragment>
+    <Fragment>
         <div>
             
         </div>
