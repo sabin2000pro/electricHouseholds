@@ -6,8 +6,8 @@ import { useHistory, useLocation } from 'react-router';
 const AdminBidsSettings = () => {
     return (
         <Fragment>
+
             <Header />
-           
         
     <section className = "section--home">
         <div className = "home--grid">
