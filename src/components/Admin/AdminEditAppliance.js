@@ -98,18 +98,18 @@ const AdminEditAppliance = (props) => {
 
             
                     <div className = "appliancename--box">
-                        <label className = "name--lbl">Name</label>
-                        <input placeholder = "Edit Appliance Name" type = "text"/>
+                        <label className = "name--lbl">New Name</label>
+                        <input placeholder = "New Appliance Name" type = "text"/>
                     </div>
 
                     <div className = "applianceimage--box">
-                        <label className = "image--lbl">Image</label>
-                        <input placeholder = "Edit Appliance Image URL" required id = "applianceurl" type = "text"/>
+                        <label className = "image--lbl">New Image</label>
+                        <input placeholder = "New Appliance Image URL" required id = "applianceurl" type = "text"/>
                     </div>
 
                     <div className = "appliancedescription--box">
-                        <label className = "description--lbl">Description</label>
-                        <input placeholder = "Edit Appliance Description" required id = "description" type = "text"/>
+                        <label className = "description--lbl">New Description</label>
+                        <input placeholder = "New Appliance Description" required id = "description" type = "text"/>
                     </div>
                     
                     <div className = "submit--container">
