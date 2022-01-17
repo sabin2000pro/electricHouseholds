@@ -74,22 +74,22 @@ const AdminBidsSettings = () => {
                     
                     <div className = "appliancename--box">
                         <label className = "name--lbl">Nickname</label>
-                        <input placeholder = "Enter Bid Nickname" type = "text"/>
+                        <input value = {enteredNickname} onChange = {(e) => {setEnteredNickname(e.target.value)}} placeholder = "Enter Bid Nickname" type = "text"/>
                     </div>
 
                     <div className = "applianceimage--box">
                         <label className = "image--lbl">Credits</label>
-                        <input placeholder = "Enter Virtual Credits" required id = "virtual_credits" type = "number"/>
+                        <input value = {enteredVirtualCredits} onChange = {(e) => {setEnteredVirtualCredits(e.target.value)}} placeholder = "Enter Virtual Credits" required id = "virtual_credits" type = "number"/>
                     </div>
 
                     <div className = "appliancedescription--box">
                         <label className = "description--lbl">Opening Bid</label>
-                        <input placeholder = "Enter Opening Bid" required id = "openingbid" type = "number"/>
+                        <input value = {enteredOpeningBid} onChange = {(e) => {setEnteredOpeningBid(e.target.value)}} placeholder = "Enter Opening Bid" required id = "openingbid" type = "number"/>
                     </div>
 
                     <div className = "appliancedescription--box">
                         <label className = "description--lbl">Username</label>
-                        <input  placeholder = "Enter Your Username" required id = "username" type = "text"/>
+                        <input value = {enteredUsername} onChange = {(e) => {setEnteredUsername(e.target.value)}} placeholder = "Enter Your Username" required id = "username" type = "text"/>
                     </div>
 
                     <div className = "appliancedescription--box">
