@@ -9,6 +9,7 @@ const EditAppliance = () => {
 
     return (
     <Fragment>
+    
         <div>
             
         </div>
@@ -17,4 +18,4 @@ const EditAppliance = () => {
     )
 }
 
-export default EditAppliance
+export default EditAppliance // Export the Edit Appliance Component

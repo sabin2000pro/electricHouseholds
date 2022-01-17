@@ -1,12 +1,14 @@
 import React, {Fragment, useState, useEffect} from 'react'
 import Header from '../Header';
-import {useHistory} from 'react-router-dom';
+import {useHistory, useLocation} from 'react-router-dom';
 import HomepageImg from '../images/homepage/homepageimg.jpg';
 import RegisterCard from './RegisterCard';
 import axios from 'axios';
 
 const AdminEditAppliance = (props) => {
     let history = useHistory();
+    let location = useLocation();
+    const {name, image, description} = location.state.appliance; // extract the location state and store the data in the input fields for modification
     const [editedName, setEditedName] = useState('');
     const [editedImage, setEditedImage] = useState('');
     const [editedDescription, setEditedDescription] = useState('');
@@ -99,17 +101,17 @@ const AdminEditAppliance = (props) => {
             
                     <div className = "appliancename--box">
                         <label className = "name--lbl">New Name</label>
-                        <input placeholder = "New Appliance Name" type = "text"/>
+                        <input value = {name} placeholder = "New Appliance Name" type = "text"/>
                     </div>
 
                     <div className = "applianceimage--box">
                         <label className = "image--lbl">New Image</label>
-                        <input placeholder = "New Appliance Image URL" required id = "applianceurl" type = "text"/>
+                        <input value = {image} placeholder = "New Appliance Image URL" required id = "applianceurl" type = "text"/>
                     </div>
 
                     <div className = "appliancedescription--box">
                         <label className = "description--lbl">New Description</label>
-                        <input placeholder = "New Appliance Description" required id = "description" type = "text"/>
+                        <input value = {description} placeholder = "New Appliance Description" required id = "description" type = "text"/>
                     </div>
                     
                     <div className = "submit--container">
