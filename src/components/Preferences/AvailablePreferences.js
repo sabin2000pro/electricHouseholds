@@ -1,8 +1,8 @@
-import React, {} from 'react'
+import React, {Fragment} from 'react'
 
 const AvailablePreferences = (props) => {
   
-    
+
     return (
         <div>
             

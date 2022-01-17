@@ -17,6 +17,7 @@ const AdminDashboard = (props) => {
         if(!localStorage.getItem("authToken")) { // If there's no authorization token
             alert('You are not authorized to view this route. You are not logged in');
             return history.push('/home');
+        
         }
     }
 
@@ -45,7 +46,7 @@ const AdminDashboard = (props) => {
     return (
          
     <Fragment>
-     <Header />
+      <Header />
         
         <section className = "section--home">
             <div className = "home--grid">
