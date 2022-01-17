@@ -17,7 +17,7 @@ const Header = (props) => { // Header Component
 
     useEffect(() => {
         return fetchApplianceData();
-    }, [appliances]);
+    }, []);
 
     const fetchAuthToken = (authToken) => {// Fetches the Authentication token from local storage
 
