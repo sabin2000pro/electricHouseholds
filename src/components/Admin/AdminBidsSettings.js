@@ -28,6 +28,13 @@ const AdminBidsSettings = () => {
             const {data} = await axios.post(`http://localhost:5200/api/v1/bids/create-bid`, {nickname: enteredNickname, virtualCredits: enteredVirtualCredits, openingBid: enteredOpeningBid, username: enteredUsername, reputationPoints: enteredReputationPoints});
             console.log(data);
             alert('Bids Configured');
+
+            // Clear Fields
+            setEnteredNickname("");
+            setEnteredVirtualCredits("");
+            setEnteredUsername("");
+            setEnteredReputationPoints('');
+            setEnteredOpeningBid('');
         } 
         
         catch(error) {
@@ -94,7 +101,7 @@ const AdminBidsSettings = () => {
 
                     <div className = "appliancedescription--box">
                         <label className = "description--lbl">Reputation Points</label>
-                        <input placeholder = "Enter Reputation Points" required id = "reputation_points" type = "number"/>
+                        <input value = {enteredReputationPoints} onChange = {(e) => {setEnteredReputationPoints(e.target.value)}} placeholder = "Enter Reputation Points" required id = "reputation_points" type = "number"/>
                     </div>
                     
                     <div className = "submit--container">
