@@ -54,6 +54,8 @@ const AdminDashboard = (props) => { // Admin Dashboard Component
 
     const deleteAppliance = (id) => {
         try {
+            axios.delete(`http://localhost:5200/api/v1/appliances/delete-appliance/${id}`, {id: id});
+            alert('Appliance Deleted');
         } 
         
         catch(error) {
