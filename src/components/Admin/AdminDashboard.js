@@ -5,9 +5,8 @@ import '../Preferences/CreatePreference.css';
 import HomepageImg from '../images/homepage/homepageimg.jpg';
 import '../Home/Homepage.css';
 import axios from 'axios';
-import RegisterCard from './RegisterCard';
 
-const AdminDashboard = (props) => {
+const AdminDashboard = (props) => { // Admin Dashboard Component
     let history = useHistory();
     const [appliances, setAppliances] = useState([]);
     const [appliancesFetched, setAppliancesFetched] = useState(false);
@@ -23,7 +22,6 @@ const AdminDashboard = (props) => {
                const allAppliances = response.data.appliances;
                setAppliances(allAppliances);
                setAppliancesFetched(!appliancesFetched);
-               console.log(allAppliances);
            });
 
         } 
@@ -34,7 +32,6 @@ const AdminDashboard = (props) => {
                 return console.error(err);
             }
         }
-
     }
 
     const verifyAuthToken = () => {
@@ -80,12 +77,16 @@ const AdminDashboard = (props) => {
     </section>
 
     <section className = "section--forgotpassword">
+
         {appliances.length === 0 ? <p className = "appliances-notext">No appliances found</p> : appliances.map((appliance, key) => {
+
             return <div className = "preferences--card" key = {key}>
                 
-                    <h1 style = {{color: 'white'}}>Appliance: {appliance.name}</h1>
-                    <img src = {appliance.image} alt = "" />
-                    <h1 style = {{color: 'white', marginTop: '40px'}}>Description: {appliance.description}</h1>
+                <h1 style = {{color: 'white', fontWeight: 600}}>Appliance: {appliance.name}</h1>
+                <img src = {appliance.image} alt = "" />
+                <h1 style = {{color: 'white', marginTop: '40px', fontWeight: 600}}>Description: {appliance.description}</h1>
+
+                <button className = "appliance--editbtn">Edit Appliance</button>
             </div>
         })}
 
