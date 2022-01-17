@@ -35,11 +35,14 @@ const AdminBidsSettings = () => {
             setEnteredUsername("");
             setEnteredReputationPoints('');
             setEnteredOpeningBid('');
+
+            setFormValid(true);
         } 
         
         catch(error) {
 
             if(error) {
+                setFormValid(false);
                 return console.error(error);
             }
         }
