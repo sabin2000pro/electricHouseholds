@@ -16,12 +16,14 @@ const connectDB = require('../database/db');
 
 // Import the Routes Here
 const authRoutes = require('../routes/authRoutes');
+const bidRoutes = require('../routes/bidsRoutes');
 const applianceRoutes = require('../routes/applianceRoutes');
 const preferenceRoutes = require('../routes/preferencesRoutes');
 const timeslotRoutes = require('../routes/timeslotsRoutes');
 const commentRoutes = require('../routes/commentRoutes');
 const reviewRoutes = require('../routes/reviews/reviewRoutes');
 const contactRoutes = require('../routes/contactRoutes');
+const feedbackRoutes = require('../routes/feedbackRoutes');
 
 
 // Middlewares
@@ -42,6 +44,8 @@ app.use('/api/v1/timeslots', timeslotRoutes);
 app.use('/api/v1/comments', commentRoutes);
 app.use('/api/v1/reviews', reviewRoutes);
 app.use('/api/v1/contacts', contactRoutes);
+app.use('/api/v1/bids', bidRoutes);
+app.use('/api/v1/feedback', feedbackRoutes);
 
 const server = app.listen(port, (err) => { // Creates a server
     try {
