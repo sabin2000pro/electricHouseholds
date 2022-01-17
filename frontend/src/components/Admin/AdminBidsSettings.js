@@ -3,6 +3,7 @@ import Header from '../Header';
 import {useHistory, useLocation} from 'react-router-dom';
 import HomepageImg from '../images/homepage/homepageimg.jpg';
 import RegisterCard from './RegisterCard';
+import axios from 'axios';
 
 const AdminBidsSettings = () => {
     let history = useHistory();
@@ -25,14 +26,14 @@ const AdminBidsSettings = () => {
         try {
             event.preventDefault();
             // Send POST request
+            const {data} = await axios.post(``);
         } 
         
         catch(error) {
 
             if(error) {
-
+                return console.error(error);
             }
-
         }
 
     }
