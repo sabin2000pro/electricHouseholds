@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1642427286023" clover="3.2.0">
-  <project timestamp="1642427286024" name="All files">
-    <metrics statements="611" coveredstatements="390" conditionals="159" coveredconditionals="32" methods="75" coveredmethods="24" elements="845" coveredelements="446" complexity="0" loc="611" ncloc="611" packages="9" files="33" classes="33"/>
+<coverage generated="1642427472562" clover="3.2.0">
+  <project timestamp="1642427472562" name="All files">
+    <metrics statements="611" coveredstatements="390" conditionals="158" coveredconditionals="32" methods="75" coveredmethods="24" elements="844" coveredelements="446" complexity="0" loc="611" ncloc="611" packages="9" files="33" classes="33"/>
     <package name="controllers">
-      <metrics statements="321" coveredstatements="158" conditionals="115" coveredconditionals="26" methods="49" coveredmethods="11"/>
+      <metrics statements="321" coveredstatements="158" conditionals="114" coveredconditionals="26" methods="49" coveredmethods="11"/>
       <file name="applianceController.js" path="/app/controllers/applianceController.js">
         <metrics statements="38" coveredstatements="22" conditionals="8" coveredconditionals="1" methods="6" coveredmethods="3"/>
         <line num="1" count="1" type="stmt"/>
@@ -119,7 +119,7 @@
         <line num="137" count="1" type="stmt"/>
       </file>
       <file name="bidsController.js" path="/app/controllers/bidsController.js">
-        <metrics statements="39" coveredstatements="15" conditionals="12" coveredconditionals="0" methods="7" coveredmethods="0"/>
+        <metrics statements="39" coveredstatements="15" conditionals="11" coveredconditionals="0" methods="7" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -141,7 +141,7 @@
         <line num="27" count="0" type="stmt"/>
         <line num="30" count="1" type="stmt"/>
         <line num="32" count="0" type="stmt"/>
-        <line num="34" count="0" type="cond" truecount="0" falsecount="8"/>
+        <line num="34" count="0" type="cond" truecount="0" falsecount="7"/>
         <line num="35" count="0" type="stmt"/>
         <line num="38" count="0" type="stmt"/>
         <line num="39" count="0" type="stmt"/>
@@ -490,8 +490,8 @@
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
+        <line num="47" count="1" type="stmt"/>
         <line num="48" count="1" type="stmt"/>
-        <line num="49" count="1" type="stmt"/>
       </file>
       <file name="commentsModel.js" path="/app/models/commentsModel.js">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>

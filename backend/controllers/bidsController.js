@@ -29,13 +29,13 @@ module.exports.fetchOpeningBid = catchAsync(async (request, response, next) => {
 
 module.exports.createBid = catchAsync(async (request, response, next) => {
    
-       const {nickname, virtualCredits, openingBid, bid, username, reputationPoints} = request.body;
+       const {nickname, virtualCredits, openingBid, username, reputationPoints} = request.body;
 
-       if(!nickname || !virtualCredits || !openingBid || !bid || !username || !reputationPoints) {
+       if(!nickname || !virtualCredits || !openingBid || !username || !reputationPoints) {
            return response.status(notFound).json({status: 'Fail', message: 'Invalid Bid Entries'});
         }
 
-        const newBid = await Bid.create({nickname, virtualCredits, openingBid, bid, username, reputationPoints});
+        const newBid = await Bid.create({nickname, virtualCredits, openingBid, username, reputationPoints});
         await newBid.save(); // Save the new bid data to the database.
 
         return response.status(created).json({newBid});

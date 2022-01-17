@@ -21,13 +21,14 @@ const AdminBidsSettings = () => {
         return window.location.reload(false);
     }
 
-    const bidHandler = async (event) => {
+    const bidSubmitHandler = async (event) => {
         try {
-
+            event.preventDefault();
+            // Send POST request
         } 
         
         catch(error) {
-            
+
             if(error) {
 
             }
@@ -67,17 +68,17 @@ const AdminBidsSettings = () => {
                 <RegisterCard>
                     <h1 className = "heading--primary login">Configure Bid Settings</h1>
 
-                    <form className = "login--form">
+                    <form onSubmit = {bidSubmitHandler} className = "login--form">
 
                     
                     <div className = "appliancename--box">
-                        <label className = "name--lbl">Name</label>
+                        <label className = "name--lbl">Nickname</label>
                         <input placeholder = "Enter Appliance Name" type = "text"/>
                     </div>
 
                     <div className = "applianceimage--box">
-                        <label className = "image--lbl">Image</label>
-                        <input placeholder = "Enter Appliance Image URL" required id = "applianceurl" type = "text"/>
+                        <label className = "image--lbl">Credits</label>
+                        <input placeholder = "Enter Virtual Credits" required id = "applianceurl" type = "number"/>
                     </div>
 
                     <div className = "appliancedescription--box">

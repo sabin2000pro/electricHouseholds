@@ -25,7 +25,6 @@ const bidSchema = new mongoose.Schema({
 
     bid: {
         type: Number,
-        required: [true, 'You must specify a bid'],
         minlength: [20, "min bid you can place is 20"],
         max: [2000, 'Max bid you can place is 2000']
     },
