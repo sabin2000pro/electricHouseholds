@@ -886,8 +886,11 @@ DA:1,1
 DA:2,1
 DA:3,1
 DA:5,1
-LF:4
-LH:4
+DA:6,1
+DA:7,1
+DA:9,1
+LF:7
+LH:7
 BRF:0
 BRH:0
 end_of_record

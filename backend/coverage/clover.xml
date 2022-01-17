@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1642413655123" clover="3.2.0">
-  <project timestamp="1642413655124" name="All files">
-    <metrics statements="558" coveredstatements="359" conditionals="150" coveredconditionals="32" methods="67" coveredmethods="24" elements="775" coveredelements="415" complexity="0" loc="558" ncloc="558" packages="9" files="31" classes="31"/>
+<coverage generated="1642413697356" clover="3.2.0">
+  <project timestamp="1642413697357" name="All files">
+    <metrics statements="561" coveredstatements="362" conditionals="150" coveredconditionals="32" methods="67" coveredmethods="24" elements="778" coveredelements="418" complexity="0" loc="561" ncloc="561" packages="9" files="31" classes="31"/>
     <package name="controllers">
       <metrics statements="283" coveredstatements="142" conditionals="106" coveredconditionals="26" methods="41" coveredmethods="11"/>
       <file name="applianceController.js" path="/app/controllers/applianceController.js">
@@ -489,7 +489,7 @@
       </file>
     </package>
     <package name="routes">
-      <metrics statements="62" coveredstatements="62" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <metrics statements="65" coveredstatements="65" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="applianceRoutes.js" path="/app/routes/applianceRoutes.js">
         <metrics statements="10" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
@@ -518,11 +518,14 @@
         <line num="13" count="1" type="stmt"/>
       </file>
       <file name="bidsRoutes.js" path="/app/routes/bidsRoutes.js">
-        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="5" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
       </file>
       <file name="commentRoutes.js" path="/app/routes/commentRoutes.js">
         <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
