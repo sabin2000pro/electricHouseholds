@@ -49,7 +49,7 @@ const AdminResetPassword = ({match}) => {
 
             <AdminResetPasswordHome />
 
-            <section className = "section--resetpassword">
+     <section className = "section--resetpassword">
 
     <div className = "container grid grid--2-cols">
 
