@@ -2,6 +2,11 @@ const mongoose = require('mongoose');
 
 const bidSchema = new mongoose.Schema({
 
+    nickname: {
+        type: String,
+        required: [true, 'Please specify a nickname for the bid settings']
+    },
+
     virtualCredits: {
         type: Number,
         default: 0,

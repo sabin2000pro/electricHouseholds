@@ -18,7 +18,14 @@ module.exports.fetchSingleBid = catchAsync(async (request, response, next) => {
     const singleBid = await Bid.findById(id);
 
     return response.status(200).json({singleBid});
-})
+});
+
+module.exports.fetchOpeningBid = catchAsync(async (request, response, next) => {
+    const id = request.params.id;
+    const bidData = await Bid.findById(id);
+    
+    return response.status(200).json({openingBid: bidData.openingBid});
+});
 
 module.exports.createBid = catchAsync(async (request, response, next) => {
    
