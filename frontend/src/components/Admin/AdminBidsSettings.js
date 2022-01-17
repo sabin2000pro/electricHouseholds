@@ -98,12 +98,12 @@ const AdminBidsSettings = () => {
                         <input value = {enteredOpeningBid} onChange = {(e) => {setEnteredOpeningBid(e.target.value)}} placeholder = "Enter Opening Bid" required id = "openingbid" type = "number"/>
                     </div>
 
-                    <div className = "appliancedescription--box">
+                    <div className = "username--box">
                         <label className = "description--lbl">Username</label>
                         <input value = {enteredUsername} onChange = {(e) => {setEnteredUsername(e.target.value)}} placeholder = "Enter Your Username" required id = "username" type = "text"/>
                     </div>
 
-                    <div className = "appliancedescription--box">
+                    <div className = "reputation--box">
                         <label className = "description--lbl">Reputation Points</label>
                         <input value = {enteredReputationPoints} onChange = {(e) => {setEnteredReputationPoints(e.target.value)}} placeholder = "Enter Reputation Points" required id = "reputation_points" type = "number"/>
                     </div>
