@@ -24,7 +24,7 @@ module.exports.createBid = catchAsync(async (request, response, next) => {
         const newBid = await Bid.create({virtualCredits, openingBid, bid, username, reputationPoints});
         await newBid.save(); // Save the new bid data to the database.
 
-        return response.status(created).json("Bid Created");
+        return response.status(created).json({newBid});
     })
 
 module.exports.editBids = catchAsync(async(request, response, next) => {
