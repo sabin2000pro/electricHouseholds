@@ -74,7 +74,7 @@ const AdminBidsSettings = () => {
                     
                     <div className = "appliancename--box">
                         <label className = "name--lbl">Nickname</label>
-                        <input placeholder = "Enter Appliance Name" type = "text"/>
+                        <input placeholder = "Enter Bid Nickname" type = "text"/>
                     </div>
 
                     <div className = "applianceimage--box">
