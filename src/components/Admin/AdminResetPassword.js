@@ -23,12 +23,7 @@ const AdminResetPassword = ({match}) => {
 
             // Send PUT request
             const {data} = await axios.put(`http://localhost:5200/api/v1/auth/admin/reset-password/${match.params.resetToken}`, {password});
-
-            if(!match.params.resetToken) {
-
-            }
-
-            console.log(data);
+            alert('Password Updated');
             console.log(`Password Updated Success`);
         } 
         
@@ -77,9 +72,9 @@ const AdminResetPassword = ({match}) => {
 </section>
 
     <footer className = "footer">
-                    <ul className = "footer--items">
-                        <li className = "footer--item">Copyright All Rights Reserved - eHouseholds Sabin Constantin Lungu - 2021</li>
-                    </ul>
+                <ul className = "footer--items">
+                <li className = "footer--item">Copyright All Rights Reserved - eHouseholds Sabin Constantin Lungu - 2021</li>
+            </ul>
      </footer>
         </Fragment>
     )
