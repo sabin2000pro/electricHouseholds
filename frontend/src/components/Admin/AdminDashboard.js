@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useReducer, useContext, Fragment} from 'react';
 import {useHistory} from 'react-router-dom';
 import Header from '../Header';
+import '../Preferences/CreatePreference.css';
 import HomepageImg from '../images/homepage/homepageimg.jpg';
 import '../Home/Homepage.css';
 import axios from 'axios';
@@ -79,8 +80,15 @@ const AdminDashboard = (props) => {
     </section>
 
     <section className = "section--forgotpassword">
-        {appliances.length === 0 ? <p className = "appliances-notext">No appliances found</p> : null}
-        
+        {appliances.length === 0 ? <p className = "appliances-notext">No appliances found</p> : appliances.map((appliance, key) => {
+            return <div className = "preferences--card" key = {key}>
+                
+                    <h1 style = {{color: 'white'}}>Appliance: {appliance.name}</h1>
+                    <img src = {appliance.image} alt = "" />
+                    <h1 style = {{color: 'white', marginTop: '40px'}}>Description: {appliance.description}</h1>
+            </div>
+        })}
+
     </section>
 
         </Fragment>
