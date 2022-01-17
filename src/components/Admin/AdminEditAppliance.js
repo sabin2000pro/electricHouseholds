@@ -20,12 +20,12 @@ const AdminEditAppliance = (props) => {
 
     const editApplianceHandler = (id) => {
         try {
-
             // Send a PUT request to update the appliance
+
         } 
         
         catch(error) {
-            
+
             if(error) {
                 return console.error(error);
             }
@@ -64,7 +64,7 @@ const AdminEditAppliance = (props) => {
                 <RegisterCard>
                     <h1 className = "heading--primary login">Edit Your Appliance</h1>
 
-                    <form onSubmit = {editApplianceHandler} className = "login--form">
+                    <form className = "login--form">
 
             
                     <div className = "appliancename--box">
