@@ -19,6 +19,39 @@ const FairNegotations = (props) => {
     const [commentsData, setCommentsData] = useState([]);
     const [creditData, setCreditData] = useState([]);
 
+    const findMinBid = (bid) => {
+        try {
+
+        } 
+        
+        catch(error) {
+
+        }
+    };
+
+    const findMaxBid = () => {
+        try {
+
+        } 
+        
+        catch(error) {
+
+        }
+        
+    }
+
+    const countTotalBids = () => {
+        try {
+             
+        }
+        
+        catch(error) {
+            if(error) {
+                return console.error(error);
+            }
+        }
+    }
+
     return (
         <Fragment>
             <div>
