@@ -69,6 +69,4 @@ module.exports.deleteComments = catchAsync(async (request, response, next) => {
 
         return response.status(204).json("Comments Deleted");
     }
-
-    
-})
+});

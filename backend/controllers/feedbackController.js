@@ -18,13 +18,34 @@ module.exports.viewFeedbackByID = catchAsync(async (request, response, next) => 
 });
 
 module.exports.createFeedback = catchAsync(async (request, response, next) => {
-    const {}
+    const {feedbackUsername, feedbackEmailAddress, feedbackFeeling, feedbackDescription} = request.body;
+    
+    if(!feedbackUsername || !feedbackEmailAddress || !feedbackFeeling || !feedbackDescription) {
+        return response.status(400).json({success: false, message: 'Invalid Feedback Entries'});
+    }
+
+    const newFeedback = new Feedback({feedbackUsername, feedbackEmailAddress, feedbackFeeling, feedbackDescription});
+    await newFeedback.save();
+
+    return response.status(201).json({newFeedback});
 });
 
 module.exports.editFeedback = catchAsync(async (request, response, next) => {
+    const id = request.params.id;
+    
+    const updatedFeedback = await Feedback.findByIdAndUpdate(id, request.body, {new: true, runValidators: true});
 
+    if(!updatedFeedback) {
+        return response.status(400).json({success: false, message: "Feedback not found"});
+    }
+
+    await updatedFeedback.save();
 });
 
 module.exports.deleteFeedback = catchAsync(async (request, response, next) => {
 
-})
+});
+
+module.exports.deleteAllFeedbacks = catchAsync(async (request, response, next) => {
+
+});
