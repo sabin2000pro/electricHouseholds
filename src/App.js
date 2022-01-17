@@ -13,6 +13,7 @@ import AdminResetPassword from './components/Admin/AdminResetPassword';
 import AdminCreateAppliance from './components/Admin/AdminCreateAppliance';
 import AdminEditAppliance from './components/Admin/AdminEditAppliance';
 import BidsSettings from './components/Admin/AdminBidsSettings';
+import Appliance from './components/Admin/Appliance';
 
 const App = () => {
 
@@ -34,6 +35,7 @@ const App = () => {
         <Route exact path = "/admin-dashboard/create-appliance" component = {AdminCreateAppliance} />
         <Route exact path = "/admin-dashboard/edit-appliance" component = {AdminEditAppliance}/>
         <Route exact path = "/admin-dashboard/bids-settings" component = {BidsSettings} />
+        <Route exact path = "/appliance/:id" component = {Appliance}/>
 
       </Router>
 
