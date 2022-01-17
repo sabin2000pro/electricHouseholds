@@ -11,6 +11,13 @@ module.exports.getAllBids = catchAsync(async (request, response, next) => {
     
      const bidData = await Bid.find();
      return response.status(ok).json(bidData);
+});
+
+module.exports.fetchSingleBid = catchAsync(async (request, response, next) => {
+    const id = request.params.id;
+    const singleBid = await Bid.findById(id);
+
+    return response.status(200).json({singleBid});
 })
 
 module.exports.createBid = catchAsync(async (request, response, next) => {

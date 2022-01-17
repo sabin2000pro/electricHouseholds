@@ -2,12 +2,13 @@ import React, {Fragment, useState, useEffect} from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types'
 
-
 const Appliance = (props) => {
+    let history = useHistory();
+    
     return (
         <Fragment>
             <div>
-                
+
             </div>
         </Fragment>
     )
