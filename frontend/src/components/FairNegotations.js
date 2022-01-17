@@ -7,12 +7,18 @@ import axios from 'axios';
 const DELAY = 1200;
 const START_TIMER = 60;
 const REFRESH_SECONDS = 30000;
+const bidData = [];
 
 const FLAGS = {
-    
+
 }
 
 const FairNegotations = (props) => {
+    let history = useHistory();
+    const [feedbackData, setFeedbackData] = useState([]);
+    const [commentsData, setCommentsData] = useState([]);
+    const [creditData, setCreditData] = useState([]);
+
     return (
         <Fragment>
             <div>
