@@ -20,7 +20,7 @@ const bidSchema = new mongoose.Schema({
         default: 0,
         required: [true, 'You must specify an opening bid'],
         min: [50, 'Minimum number of Virtual Credits must be £50'],
-        max: [100, 'Maximum number of virtual credits should be £100']
+        max: [200, 'Maximum number of virtual credits should be £100']
     },
 
     bid: {
