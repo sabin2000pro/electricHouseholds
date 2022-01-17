@@ -37,13 +37,39 @@ const FairNegotations = (props) => {
         catch(error) {
 
         }
-        
+
     }
 
     const countTotalBids = () => {
         try {
              
         }
+        
+        catch(error) {
+            if(error) {
+                return console.error(error);
+            }
+        }
+    }
+
+    const submitBidHandler = (event) => {
+        try {
+            event.preventDefault();
+
+        } 
+        
+        catch(error) {
+
+            if(error) {
+                return console.error(error);
+            }
+        }
+    }
+
+    const fetchAllBids = async () => {
+        try {
+
+        } 
         
         catch(error) {
             if(error) {
