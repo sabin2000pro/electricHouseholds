@@ -25,7 +25,9 @@ const AdminBidsSettings = () => {
         try {
             event.preventDefault();
             // Send POST request
-            const {data} = await axios.post(``);
+            const {data} = await axios.post(`http://localhost:5200/api/v1/bids/create-bid`, {nickname: enteredNickname, virtualCredits: enteredVirtualCredits, openingBid: enteredOpeningBid, username: enteredUsername, reputationPoints: enteredReputationPoints});
+            console.log(data);
+            alert('Bids Configured');
         } 
         
         catch(error) {
@@ -34,7 +36,6 @@ const AdminBidsSettings = () => {
                 return console.error(error);
             }
         }
-
     }
    
 
@@ -46,19 +47,19 @@ const AdminBidsSettings = () => {
         <section className = "section--home">
             <div className = "home--grid">
 
-    <div className = "home-text-box">
-            <h1 className = "heading--primary">Admin Bid Settings</h1>
-            <p className = "home--description">Configure the required bid settings.</p>
+        <div className = "home-text-box">
+                <h1 className = "heading--primary">Admin Bid Settings</h1>
+                <p className = "home--description">Configure the required bid settings.</p>
 
-            <a className = "btn btn--full mgr-sm" href = "/your-preferences">Start Now</a>
-            <a onClick = {logoutHandler} className = "btn btn--outline" href = "/home">Logout</a>
-
-        </div>
+                <a className = "btn btn--full mgr-sm" href = "/your-preferences">Start Now</a>
+                <a onClick = {logoutHandler} className = "btn btn--outline" href = "/home">Logout</a>
+            </div>
 
         <div className = "home-img-box">
             <img className = "home--img" alt = "Wind Turbine" src = {HomepageImg} />
         </div>
-        </div>
+    </div>
+
     </section>
 
     <section className = "section--login">
@@ -100,7 +101,7 @@ const AdminBidsSettings = () => {
                         <button className = "submit--btn" type = "submit">Configure</button>
                     </div>
 
-                    </form>
+                </form>
                 
             </RegisterCard>
             
