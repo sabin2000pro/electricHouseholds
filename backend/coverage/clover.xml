@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1642429368931" clover="3.2.0">
-  <project timestamp="1642429368931" name="All files">
+<coverage generated="1642429489167" clover="3.2.0">
+  <project timestamp="1642429489168" name="All files">
     <metrics statements="611" coveredstatements="390" conditionals="158" coveredconditionals="32" methods="75" coveredmethods="24" elements="844" coveredelements="446" complexity="0" loc="611" ncloc="611" packages="9" files="33" classes="33"/>
     <package name="controllers">
       <metrics statements="321" coveredstatements="158" conditionals="114" coveredconditionals="26" methods="49" coveredmethods="11"/>
@@ -423,26 +423,26 @@
       <metrics statements="20" coveredstatements="6" conditionals="8" coveredconditionals="0" methods="3" coveredmethods="0"/>
       <file name="protectRoutes.js" path="/app/middleware/protectRoutes.js">
         <metrics statements="20" coveredstatements="6" conditionals="8" coveredconditionals="0" methods="3" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
-        <line num="5" count="1" type="stmt"/>
-        <line num="7" count="1" type="stmt"/>
-        <line num="9" count="0" type="stmt"/>
-        <line num="11" count="0" type="cond" truecount="0" falsecount="4"/>
-        <line num="12" count="0" type="stmt"/>
-        <line num="15" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="16" count="0" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="10" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="14" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
         <line num="19" count="0" type="stmt"/>
         <line num="20" count="0" type="stmt"/>
-        <line num="21" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
         <line num="23" count="0" type="stmt"/>
-        <line num="24" count="0" type="stmt"/>
-        <line num="28" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="29" count="0" type="stmt"/>
-        <line num="34" count="1" type="stmt"/>
-        <line num="35" count="0" type="stmt"/>
-        <line num="38" count="0" type="stmt"/>
+        <line num="27" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="33" count="1" type="stmt"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="37" count="0" type="stmt"/>
       </file>
     </package>
     <package name="models">
