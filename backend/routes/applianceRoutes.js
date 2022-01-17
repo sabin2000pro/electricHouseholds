@@ -7,6 +7,6 @@ applianceRouter.route('/create-appliance').post(applianceController.createApplia
 applianceRouter.route('/edit-appliance/:id').put(applianceController.editAppliance);
 applianceRouter.route('/fetch-single-appliance/:id').get(applianceController.getApplianceByID);
 applianceRouter.route('/delete-appliances').delete(applianceController.deleteAppliances);
-applianceRouter.route('/delete-single-appliance/:id').delete(applianceController.deleteAppliance);
+applianceRouter.route('/delete-appliance/:id').delete(applianceController.deleteAppliance);
 
 module.exports = applianceRouter;

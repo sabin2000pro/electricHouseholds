@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1642431471070" clover="3.2.0">
-  <project timestamp="1642431471071" name="All files">
-    <metrics statements="611" coveredstatements="390" conditionals="158" coveredconditionals="32" methods="75" coveredmethods="24" elements="844" coveredelements="446" complexity="0" loc="611" ncloc="611" packages="9" files="33" classes="33"/>
+<coverage generated="1642432720936" clover="3.2.0">
+  <project timestamp="1642432720937" name="All files">
+    <metrics statements="612" coveredstatements="390" conditionals="158" coveredconditionals="32" methods="75" coveredmethods="24" elements="845" coveredelements="446" complexity="0" loc="612" ncloc="612" packages="9" files="33" classes="33"/>
     <package name="controllers">
-      <metrics statements="321" coveredstatements="158" conditionals="114" coveredconditionals="26" methods="49" coveredmethods="11"/>
+      <metrics statements="322" coveredstatements="158" conditionals="114" coveredconditionals="26" methods="49" coveredmethods="11"/>
       <file name="applianceController.js" path="/app/controllers/applianceController.js">
-        <metrics statements="38" coveredstatements="22" conditionals="8" coveredconditionals="1" methods="6" coveredmethods="3"/>
+        <metrics statements="39" coveredstatements="22" conditionals="8" coveredconditionals="1" methods="6" coveredmethods="3"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -40,10 +40,11 @@
         <line num="54" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="55" count="0" type="stmt"/>
         <line num="58" count="0" type="stmt"/>
-        <line num="62" count="1" type="stmt"/>
-        <line num="63" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="60" count="0" type="stmt"/>
         <line num="64" count="1" type="stmt"/>
-        <line num="65" count="1" type="stmt"/>
+        <line num="65" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="66" count="1" type="stmt"/>
+        <line num="67" count="1" type="stmt"/>
       </file>
       <file name="authController.js" path="/app/controllers/authController.js">
         <metrics statements="70" coveredstatements="50" conditionals="22" coveredconditionals="16" methods="8" coveredmethods="5"/>
