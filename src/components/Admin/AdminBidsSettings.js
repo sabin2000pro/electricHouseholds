@@ -7,12 +7,33 @@ import RegisterCard from './RegisterCard';
 const AdminBidsSettings = () => {
     let history = useHistory();
     const [enteredNickname, setEnteredNickname] = useState('');
+    const [enteredVirtualCredits, setEnteredVirtualCredits] = useState(0);
+    const [enteredOpeningBid, setEnteredOpeningBid] = useState(0);
+    const [enteredBid, setEnteredBid] = useState(0);
+    const [enteredUsername, setEnteredUsername] = useState('');
+    const [enteredReputationPoints, setEnteredReputationPoints] = useState(0);
+    const [formValid, setFormValid] = useState(true);
 
     const logoutHandler = () => { // Logout Handler Function to logout admins
         localStorage.removeItem("authToken"); // Remove auth token from local storage
         history.push('/admin-login'); // Redirect to Login
         
         return window.location.reload(false);
+    }
+
+    const bidHandler = async (event) => {
+        try {
+
+        } 
+        
+        catch(error) {
+            
+            if(error) {
+
+            }
+
+        }
+
     }
    
 
