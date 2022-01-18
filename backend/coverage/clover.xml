@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1642516932981" clover="3.2.0">
-  <project timestamp="1642516932982" name="All files">
+<coverage generated="1642516971551" clover="3.2.0">
+  <project timestamp="1642516971552" name="All files">
     <metrics statements="626" coveredstatements="376" conditionals="166" coveredconditionals="25" methods="77" coveredmethods="21" elements="869" coveredelements="422" complexity="0" loc="626" ncloc="626" packages="9" files="33" classes="33"/>
     <package name="controllers">
       <metrics statements="327" coveredstatements="148" conditionals="118" coveredconditionals="20" methods="51" coveredmethods="10"/>
@@ -460,30 +460,30 @@
         <line num="3" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
         <line num="6" count="1" type="stmt"/>
-        <line num="32" count="1" type="stmt"/>
-        <line num="52" count="1" type="stmt"/>
-        <line num="54" count="1" type="cond" truecount="1" falsecount="1"/>
-        <line num="55" count="0" type="stmt"/>
-        <line num="59" count="1" type="stmt"/>
-        <line num="60" count="1" type="stmt"/>
+        <line num="34" count="1" type="stmt"/>
+        <line num="54" count="1" type="stmt"/>
+        <line num="56" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="57" count="0" type="stmt"/>
+        <line num="61" count="1" type="stmt"/>
         <line num="62" count="1" type="stmt"/>
-        <line num="65" count="1" type="stmt"/>
-        <line num="66" count="1" type="cond" truecount="1" falsecount="1"/>
-        <line num="67" count="0" type="stmt"/>
-        <line num="70" count="1" type="stmt"/>
-        <line num="71" count="1" type="stmt"/>
-        <line num="74" count="1" type="stmt"/>
-        <line num="75" count="1" type="stmt"/>
-        <line num="78" count="1" type="stmt"/>
-        <line num="79" count="0" type="stmt"/>
+        <line num="64" count="1" type="stmt"/>
+        <line num="67" count="1" type="stmt"/>
+        <line num="68" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="69" count="0" type="stmt"/>
+        <line num="72" count="1" type="stmt"/>
+        <line num="73" count="1" type="stmt"/>
+        <line num="76" count="1" type="stmt"/>
+        <line num="77" count="1" type="stmt"/>
+        <line num="80" count="1" type="stmt"/>
         <line num="81" count="0" type="stmt"/>
-        <line num="82" count="0" type="stmt"/>
+        <line num="83" count="0" type="stmt"/>
         <line num="84" count="0" type="stmt"/>
-        <line num="85" count="0" type="stmt"/>
-        <line num="88" count="1" type="stmt"/>
-        <line num="89" count="1" type="stmt"/>
-        <line num="92" count="1" type="stmt"/>
+        <line num="86" count="0" type="stmt"/>
+        <line num="87" count="0" type="stmt"/>
+        <line num="90" count="1" type="stmt"/>
+        <line num="91" count="1" type="stmt"/>
         <line num="94" count="1" type="stmt"/>
+        <line num="96" count="1" type="stmt"/>
       </file>
       <file name="applianceModel.js" path="/app/models/applianceModel.js">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
