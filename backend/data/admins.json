@@ -4,5 +4,54 @@
         "emailAddress": "admin1@root.com",
         "password": "root",
         "confirmPassword": "root"
+    },
+
+    {
+        "username": "admin2",
+        "emailAddress": "admin2@root.com",
+        "password": "root",
+        "confirmPassword": "root"
+    },
+
+    {
+        "username": "admin3",
+        "emailAddress": "admin3@root.com",
+        "password": "root",
+        "confirmPassword": "root"
+    },
+
+    {
+        "username": "admin4",
+        "emailAddress": "admin4@root.com",
+        "password": "root",
+        "confirmPassword": "root"
+    },
+
+    {
+        "username": "admin5",
+        "emailAddress": "admin5@root.com",
+        "password": "root",
+        "confirmPassword": "root"
+    },
+
+    {
+        "username": "admin6",
+        "emailAddress": "admin6@root.com",
+        "password": "root",
+        "confirmPassword": "root"
+    },
+
+    {
+        "username": "admin7",
+        "emailAddress": "admin7@root.com",
+        "password": "root",
+        "confirmPassword": "root"
+    },
+
+    {
+        "username": "admin8",
+        "emailAddress": "admin8@root.com",
+        "password": "root",
+        "confirmPassword": "root"
     }
 ]

@@ -94,5 +94,4 @@ adminSchema.methods.generateResetPasswordToken = function() {
 }
 
 const Admin = mongoose.model('Admin', adminSchema); // Turn the schema into a model
-
 module.exports = Admin; // Export the Admin model
