@@ -7,7 +7,6 @@ const morgan = require('morgan');
 const xss = require('xss-clean');
 const cors = require('cors');
 const csrf = require('csurf');
-const csrfProtection = csrf({ cookie: true })
 const cookieParser = require('cookie-parser');
 const nocache = require('nocache');
 const app = express();
@@ -67,6 +66,7 @@ const server = app.listen(port, (err) => { // Creates a server
     }
 });
 
+// Handle server crashes
 process.on('uncaughtException', (err, promise) => {
     console.log(err);
 
@@ -75,11 +75,13 @@ process.on('uncaughtException', (err, promise) => {
     });
 })
 
-// Add an app.all() to handle 404 routes
+// Handle 404 Routes
 app.all('*', (request, response, next) => {
-    response.status(404).json({status: 'Fail', message: 'The route you requested is not valid'});
-    res.cookie('XSRF-TOKEN', req.csrfToken())
-    return next();
+    if(request.method === 'GET') {
+        response.status(404).json({status: 'Fail', message: 'The route you requested is not valid'});
+        res.cookie('XSRF-TOKEN', req.csrfToken())
+        return next();
+    }
 });
 
 
