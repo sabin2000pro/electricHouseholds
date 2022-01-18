@@ -31,7 +31,6 @@ app.use(mongoSanitize());
 app.use(xss());
 app.use(helmet());
 app.use(cors());
-app.use(morgan('dev'));
 app.use(cookieParser());
 app.use(nocache());
 app.use(express.json());
@@ -47,6 +46,10 @@ app.use('/api/v1/reviews', reviewRoutes);
 app.use('/api/v1/contacts', contactRoutes);
 app.use('/api/v1/bids', bidRoutes);
 app.use('/api/v1/feedback', feedbackRoutes);
+
+if(process.env.NODE_ENV === 'development') {
+    app.use(morgan('dev'));
+}
 
 
 // Create Server to listen for incoming requests

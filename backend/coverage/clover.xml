@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1642517260688" clover="3.2.0">
-  <project timestamp="1642517260689" name="All files">
-    <metrics statements="626" coveredstatements="376" conditionals="166" coveredconditionals="25" methods="77" coveredmethods="21" elements="869" coveredelements="422" complexity="0" loc="626" ncloc="626" packages="9" files="33" classes="33"/>
+<coverage generated="1642517413621" clover="3.2.0">
+  <project timestamp="1642517413621" name="All files">
+    <metrics statements="627" coveredstatements="376" conditionals="168" coveredconditionals="26" methods="77" coveredmethods="21" elements="872" coveredelements="423" complexity="0" loc="627" ncloc="627" packages="9" files="33" classes="33"/>
     <package name="controllers">
       <metrics statements="327" coveredstatements="148" conditionals="118" coveredconditionals="20" methods="51" coveredmethods="10"/>
       <file name="applianceController.js" path="/app/controllers/applianceController.js">
@@ -667,9 +667,9 @@
       </file>
     </package>
     <package name="server">
-      <metrics statements="59" coveredstatements="49" conditionals="8" coveredconditionals="2" methods="4" coveredmethods="2"/>
+      <metrics statements="60" coveredstatements="49" conditionals="10" coveredconditionals="3" methods="4" coveredmethods="2"/>
       <file name="server.js" path="/app/server/server.js">
-        <metrics statements="59" coveredstatements="49" conditionals="8" coveredconditionals="2" methods="4" coveredmethods="2"/>
+        <metrics statements="60" coveredstatements="49" conditionals="10" coveredconditionals="3" methods="4" coveredmethods="2"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -683,8 +683,7 @@
         <line num="11" count="1" type="stmt"/>
         <line num="12" count="1" type="stmt"/>
         <line num="13" count="1" type="stmt"/>
-        <line num="14" count="1" type="stmt"/>
-        <line num="17" count="1" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
         <line num="18" count="1" type="stmt"/>
         <line num="19" count="1" type="stmt"/>
         <line num="20" count="1" type="stmt"/>
@@ -693,7 +692,7 @@
         <line num="23" count="1" type="stmt"/>
         <line num="24" count="1" type="stmt"/>
         <line num="25" count="1" type="stmt"/>
-        <line num="29" count="1" type="stmt"/>
+        <line num="26" count="1" type="stmt"/>
         <line num="30" count="1" type="stmt"/>
         <line num="31" count="1" type="stmt"/>
         <line num="32" count="1" type="stmt"/>
@@ -711,24 +710,26 @@
         <line num="46" count="1" type="stmt"/>
         <line num="47" count="1" type="stmt"/>
         <line num="48" count="1" type="stmt"/>
-        <line num="52" count="1" type="stmt"/>
-        <line num="53" count="1" type="stmt"/>
-        <line num="55" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="50" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="51" count="0" type="stmt"/>
         <line num="56" count="1" type="stmt"/>
-        <line num="60" count="0" type="stmt"/>
-        <line num="66" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="67" count="0" type="stmt"/>
-        <line num="73" count="1" type="stmt"/>
-        <line num="75" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="76" count="0" type="stmt"/>
+        <line num="57" count="1" type="stmt"/>
+        <line num="59" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="60" count="1" type="stmt"/>
+        <line num="64" count="0" type="stmt"/>
+        <line num="70" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="71" count="0" type="stmt"/>
+        <line num="77" count="1" type="stmt"/>
+        <line num="79" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="80" count="0" type="stmt"/>
-        <line num="81" count="0" type="stmt"/>
-        <line num="86" count="1" type="stmt"/>
-        <line num="87" count="1" type="cond" truecount="1" falsecount="1"/>
-        <line num="88" count="0" type="stmt"/>
-        <line num="89" count="0" type="stmt"/>
-        <line num="90" count="0" type="stmt"/>
-        <line num="94" count="1" type="stmt"/>
+        <line num="84" count="0" type="stmt"/>
+        <line num="85" count="0" type="stmt"/>
+        <line num="90" count="1" type="stmt"/>
+        <line num="91" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="92" count="0" type="stmt"/>
+        <line num="93" count="0" type="stmt"/>
+        <line num="94" count="0" type="stmt"/>
+        <line num="98" count="1" type="stmt"/>
       </file>
     </package>
     <package name="utils">
