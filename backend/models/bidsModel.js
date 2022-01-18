@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const bidSchema = new mongoose.Schema({
 
-    nickname: {
+    nickname: { // The nickname of the bidding schema
         type: String,
         required: [true, 'Please specify a nickname for the bid settings']
     },
@@ -15,7 +15,7 @@ const bidSchema = new mongoose.Schema({
         max: [100, 'Maximum number of virtual credits should be £100']
     },
 
-    openingBid: { // The opening bid
+    openingBid: { // The opening bid field
         type: Number,
         default: 0,
         required: [true, 'You must specify an opening bid'],
