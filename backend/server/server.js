@@ -11,6 +11,7 @@ const cookieParser = require('cookie-parser');
 const nocache = require('nocache');
 const app = express();
 const port = process.env.PORT;
+
 const connectDB = require('../database/db');
 
 // Import the Routes Here
@@ -53,7 +54,7 @@ const server = app.listen(port, (err) => {
     try {
 
         if(!err) { // If no error occurred
-            return console.log(`Listening for requests on port ${port}`);
+            return console.log(`Listening for requests on port ${port} in environment ${process.env.NODE_ENV}`);
         }
 
         else {
