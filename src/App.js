@@ -15,7 +15,7 @@ import AdminEditAppliance from './components/Admin/AdminEditAppliance';
 import BidsSettings from './components/Admin/AdminBidsSettings';
 import Appliance from './components/Admin/Appliance';
 
-const App = () => {
+const App = () => { // Main app component
 
   return (
 
