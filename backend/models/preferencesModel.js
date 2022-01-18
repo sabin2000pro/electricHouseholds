@@ -15,30 +15,20 @@ const preferencesSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Please choose the appliance you want to run']
     },
-
-    image: {
+    
+    firstPreference: {
         type: String,
-        required: [true, 'Please submit image URL of the appliance you would like to run']
+        required: [true, 'Please submit first timeslot preference']
     },
 
-    earlyMorningslot: {
+    secondPreference: {
         type: String,
-        required: [true, 'Please submit early morning timeslot for when you want to run your appliance between 00:00-05:00AM']
+        required: [true, 'Please submit your second timeslot preference']
     },
 
-    lateMorningslot: {
+    thirdPreference: {
         type: String,
-        required: [true, 'Please enter a late morning slot between 06:00AM - 11:00AM']
-    },
-
-    afternoonSlot: {
-        type: String,
-        required: [true, 'Please enter an afternoon slot between 12:00PM and 17:00PM']
-    },
-
-    eveningSlot: {
-        type: String,
-        required: [true, 'Please enter an evening slot between 18:00PM - 23:00PM']
+        required: [true, 'Please submit your third timeslot preference']
     }
 });
 
