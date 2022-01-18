@@ -19,7 +19,9 @@ const adminSchema = new mongoose.Schema({
     
     password: {
         type: String,
-        required: [true, 'Please specify password']
+        required: [true, 'Please specify password'],
+        min: [4, 'Passowrd length must be at LEAST 4 characters'],
+        max: [15, 'Password lenght must be a MAX of 15 characters']
     },
 
     confirmPassword: {
