@@ -5,8 +5,8 @@ const rateLimit = require('express-rate-limit');
 
 const applianceLimiter = rateLimit({
     windowMs: 40 * 40 * 1000,
-    max: 3,
-    message: "Too many register account requests coming from this IP address. Try again after 30 minutes. Only 3 per 30 minutes"
+    max: 10,
+    message: "Too many appliance requests coming from this IP address. Try again after 30 minutes. Only 10 per 30 minutes"
 });
 
 applianceRouter.route('/fetch-appliances').get(applianceController.getAllAppliances);
