@@ -8,14 +8,9 @@ import axios from 'axios';
 
 const AdminCreateAppliance = (props) => {
     const [enteredName, setEnteredName] = useState('');
-    const [nameValid, setNameValid] = useState('');
     const [enteredImage, setEnteredImage] = useState('');
-    const [imageValid, setImageValid] = useState('');
-    
-    const [enteredDescription, setEnteredDescription] = useState('');
-    const [descriptionValid, setDescriptionValid] = useState('');
-    const [formValid, setFormValid] = useState(true);
 
+    const [enteredDescription, setEnteredDescription] = useState('');
     let history = useHistory();
 
     const logoutHandler = () => { // Logout Handler Function to logout admins
