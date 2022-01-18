@@ -5,14 +5,6 @@ import RegisterCard from '../Admin/RegisterCard';
 import axios from 'axios';
 
 
-let IMG_HEIGHT = 100;
-let IMG_WIDTH = 100;
-
-const FLAGS = {
-    IMG_HEIGHT: IMG_HEIGHT,
-    IMG_WIDTH: IMG_WIDTH
-}
-
 let DEFAULT_TEXT = {
     preferenceHeader: 'Your Preferences'
 }
@@ -27,6 +19,11 @@ let otherPreferences = [
   
   ];
 
+  const generalPreferences = [
+      {
+          
+      }
+  ]
 
 const CreatePreference = (props) => {
     let history = useHistory();
@@ -203,28 +200,29 @@ const CreatePreference = (props) => {
         <label className = "issue--lbl" htmlFor = "issue">Appliance</label>
 
             <select onChange = {(e) => {setChosenAppliance(e.target.value)}} value = {chosenAppliance} className = "box">
+
                 {appliances.map((appliance, key) => {
                     return <option key = {key}>{appliance.name}</option>
                 })}
+
             </select>
         </div>
 
         <div className = "morningslot--box">
             <label className = "morning--lbl">First Preference</label>
+
             <select onChange = {(e) => {setChosenFirstPreference(e.target.value)}} value = {chosenFirstPreference} className = "box">
                 <option>06:00-07:00</option>
-                <option>07:00-08:00</option>
-                <option>09:00-10:00</option>
-                <option>11:00-12:00</option>
-                <option>13:00-14:00</option>
-                <option>15:00-16:00</option>
-                <option>17:00-18:00</option>
-                <option>17:00-18:00</option>
-                <option>18:00-19:00</option>
-                <option>20:00-21:00</option>
+                    <option>07:00-08:00</option>
+                    <option>09:00-10:00</option>
+                    <option>11:00-12:00</option>
+                    <option>13:00-14:00</option>
+                    <option>15:00-16:00</option>
+                    <option>17:00-18:00</option>
+                    <option>18:00-19:00</option>
+                    <option>20:00-21:00</option>
                 <option>22:00-23:00</option>
             </select>
-
     </div>
 
         <div className = "latemorning--box">
@@ -237,7 +235,6 @@ const CreatePreference = (props) => {
                 <option>11:00-12:00</option>
                 <option>13:00-14:00</option>
                 <option>15:00-16:00</option>
-                <option>17:00-18:00</option>
                 <option>17:00-18:00</option>
                 <option>18:00-19:00</option>
                 <option>20:00-21:00</option>
