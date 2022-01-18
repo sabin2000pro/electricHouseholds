@@ -19,5 +19,6 @@ authRouter.route('/forgot-password').post(mainAuthLimiter, authController.forgot
 authRouter.route('/admin/reset-password/:resetToken').put(mainAuthLimiter, authController.resetAdminPassword);
 authRouter.route('/fetch-admins').get(authController.fetchAllAdmins);
 authRouter.route('/me').get(authMiddleware.protect, authController.getMe);
+authRouter.route('/delete-admins').delete(authMiddleware.protect, authController.deleteAllAdmins);
 
 module.exports = authRouter; // Export router to be used in the server
