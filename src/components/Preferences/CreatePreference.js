@@ -68,6 +68,18 @@ const CreatePreference = (props) => {
         }
     }
 
+    const fetchAllAppliances = async () => {
+        try {
+
+        } 
+        
+        catch(error) {
+            if(error) {
+                return console.error(error);
+            }
+        }
+    }
+
     const fetchAllPreferences = async () => {
         try {
 
@@ -120,7 +132,6 @@ const CreatePreference = (props) => {
             </select>
         </div>
 
-
         <div className = "morningslot--box">
             <label className = "morning--lbl">First Preference</label>
             <select onChange = {(e) => {setChosenFirstPreference(e.target.value)}} value = {chosenFirstPreference} className = "box">
@@ -136,16 +147,43 @@ const CreatePreference = (props) => {
                 <option>20:00-21:00</option>
                 <option>22:00-23:00</option>
             </select>
-        </div>
+
+    </div>
 
         <div className = "latemorning--box">
             <label className = "password--lbl">Second Preference</label>
-            <input value = {chosenSecondPreference} onChange = {(e) => {setChosenSecondPreference(e.target.value)}} placeholder = "Enter your second Preference" required id = "password" type = "text"/>
+
+            <select onChange = {(e) => {setChosenSecondPreference(e.target.value)}} value = {chosenSecondPreference} className = "box">
+                <option>06:00-07:00</option>
+                <option>07:00-08:00</option>
+                <option>09:00-10:00</option>
+                <option>11:00-12:00</option>
+                <option>13:00-14:00</option>
+                <option>15:00-16:00</option>
+                <option>17:00-18:00</option>
+                <option>17:00-18:00</option>
+                <option>18:00-19:00</option>
+                <option>20:00-21:00</option>
+                <option>22:00-23:00</option>
+            </select>
+
         </div>
 
         <div className = "afternoon--box">
             <label className = "password--lbl">Third Preference</label>
-            <input value = {chosenThirdPreference} onChange = {(e) => {setChosenThirdPreference(e.target.value)}} placeholder = "Enter your third Preference" required id = "thirdpreference" type = "text"/>
+            <select onChange = {(e) => {setChosenThirdPreference(e.target.value)}} value = {chosenThirdPreference} className = "box">
+                <option>06:00-07:00</option>
+                <option>07:00-08:00</option>
+                <option>09:00-10:00</option>
+                <option>11:00-12:00</option>
+                <option>13:00-14:00</option>
+                <option>15:00-16:00</option>
+                <option>17:00-18:00</option>
+                <option>17:00-18:00</option>
+                <option>18:00-19:00</option>
+                <option>20:00-21:00</option>
+                <option>22:00-23:00</option>
+            </select>
         </div>
 
         
@@ -177,10 +215,6 @@ const CreatePreference = (props) => {
                     <h2 className = "appliance--heading">Appliance : {JSON.stringify(theData.appliance, null).toString().replaceAll("\"", "")}</h2>
 
                     <button className = "negotiate--btn">Negotiate Timeslots</button>
-
-                        <div>
-
-                         </div>
 
                     </div>
                 </div>
