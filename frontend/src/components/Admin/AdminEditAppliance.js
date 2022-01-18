@@ -33,7 +33,9 @@ const AdminEditAppliance = (props) => {
             return await axios.get(`http://localhost:5200/api/v1/appliances/fetch-appliances`).then(response => {
                 const applianceData = response.data.appliances;
                 setAppliances(applianceData);
+
                 console.log(`Appliance Data : ${JSON.stringify(applianceData)}`);
+                
             }).catch(err => {
                 if(err) {
                     return console.error(err);
