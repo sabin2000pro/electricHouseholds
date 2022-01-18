@@ -52,11 +52,22 @@ const CreatePreference = (props) => {
 
         try {
             e.preventDefault();
+
+            // Validate Preferences
+
+            if(chosenFirstPreference === chosenSecondPreference) {
+                alert('You cannot run appliance at the same time');
+            }
+
             const {data} = await axios.post(`http://localhost:5200/api/v1/preferences/create-preference`, {username: enteredUsername, appliance: chosenAppliance, firstPreference: chosenFirstPreference, secondPreference: chosenSecondPreference , thirdPreference: chosenThirdPreference});
+            console.log(data);
+            
             setPreferenceSubmitted(true);
             alert('Preference Created');
 
-            return history.push('/'); // Redirect user back home
+        
+
+            return history.push('/home'); // Redirect user back home
         } 
         
         catch(err) {
