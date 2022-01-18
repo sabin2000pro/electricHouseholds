@@ -1,9 +1,8 @@
-import React, {useState, useReducer, Fragment, useEffect} from 'react';
+import React, {useState, Fragment, useEffect} from 'react';
 import './CreatePreference.css';
 import {useHistory} from 'react-router-dom';
 import RegisterCard from '../Admin/RegisterCard';
 import axios from 'axios';
-import {FaSearch} from 'react-icons/fa';
 
 
 let IMG_HEIGHT = 100;
@@ -133,9 +132,25 @@ const CreatePreference = (props) => {
         } 
         
         catch(err) {
+            
             if(err) {
                 return console.error(err);
             }
+
+        }
+    }
+
+    const generateRandomTimeslots = () => {
+        try {
+
+        } 
+        
+        catch(error) {
+        
+            if(error) {
+                return console.error(error);
+            }
+
         }
     }
 
