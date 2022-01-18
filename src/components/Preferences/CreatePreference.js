@@ -23,16 +23,15 @@ const CreatePreference = (props) => {
     const [enteredUsername, setUsername] = useState("");
     const [usernameValid, setUsernameValid] = useState(true);
 
-    const [chosenAppliance, setAppliance] = useState("");
+    const [chosenAppliance, setChosenAppliance] = useState("");
     const [applianceValid, setApplianceValid] = useState(true);
     const [savingDataMsg, setSavingDataMsg] = useState(false);
     const [chosenImage, setImage] = useState("");
     const [imageValid, setImageValid] = useState(true);
 
-    const [chosenEarlyMorningSlot, setEarlyMorningSlot] = useState("");
-    const [chosenLateMorningSlot, setLateMorningSlot] = useState("");
-    const [chosenAfternoonSlot, setAfternoonSlot] = useState("");
-    const [chosenEveningSlot, setEveningSlot] = useState("");
+    const [chosenFirstPreference, setChosenFirstPreference] = useState("");
+    const [chosenSecondPreference, setChosenSecondPreference] = useState("");
+    const [chosenThirdPreference, setChosenThirdPreference] = useState("");
 
     const [appliances, setAppliances] = useState([]); // Array of appliances
     const [preferences, setPreferences] = useState([]);
@@ -48,15 +47,15 @@ const CreatePreference = (props) => {
     const [gamingConsoleChosen, setGamingConsoleChosen] = useState(false);
     const [preferencesBtnClicked, setPreferencesBtnClicked] = useState(false);
     const [preferenceSubmitted, setPreferenceSubmitted] = useState(false);
-    const [hideSpinner, setHideSpinner] = useState(false);
-    const [timeoutStart, setTimeoutStart] = useState(false);
 
     const preferencesSubmitHandler = async (e) => {
 
         try {
             e.preventDefault();
-            const {data} = await axios.post(`http://localhost:5200/api/v1/preferences/create-preference`, {username: enteredUsername, appliance: chosenAppliance, image: chosenImage, earlyMorningslot: chosenEarlyMorningSlot, lateMorningslot: chosenLateMorningSlot , afternoonSlot: chosenAfternoonSlot, eveningSlot: chosenEveningSlot});
+            const {data} = await axios.post(`http://localhost:5200/api/v1/preferences/create-preference`, {username: enteredUsername, appliance: chosenAppliance, firstPreference: chosenFirstPreference, secondPreference: chosenSecondPreference , thirdPreference: chosenThirdPreference});
             setPreferenceSubmitted(true);
+
+            alert('Preference Created');
         } 
         
         catch(err) {
@@ -94,19 +93,6 @@ const CreatePreference = (props) => {
         }
     }
 
-    const deletePreference = async (id) => { // Deletes a preference
-        try {
-            return await axios.delete(`http://localhost:5200/api/v1/preferences/delete-preference/${id}`, {id: id});
-        } 
-        
-        catch(err) {
-
-            if(err) {
-                return console.error(err);
-            }
-        }
-    };
-
     return (
 
        <Fragment>
@@ -126,42 +112,29 @@ const CreatePreference = (props) => {
         <div className = "issueType--box">
         <label className = "issue--lbl" htmlFor = "issue">Appliance</label>
 
-            <select onChange = {(e) => {setAppliance(e.target.value)}} value = {chosenAppliance} className = "box">
+            <select onChange = {(e) => {setChosenAppliance(e.target.value)}} value = {chosenAppliance} className = "box">
                 <option>Washing Machine</option>
                 <option>Tumble Drier</option>
-                <option>Kettle</option>
-                <option>TV</option>
-                <option>Lights</option>
                 <option>Dish Washer</option>
-                <option>Shower</option>
-                <option>Gaming Console</option>
             </select>
         </div>
 
-        <div className = "img--box">
-            <label className = "img--lbl">Image</label>
-            <input value = {chosenImage} onChange = {(e) => {setImage(e.target.value)}} placeholder = "Enter Image URL" required id = "image" type = "text"/>
-        </div>
 
         <div className = "morningslot--box">
-            <label className = "morning--lbl">Morning Slot</label>
-            <input value = {chosenEarlyMorningSlot} onChange = {(e) => {setEarlyMorningSlot(e.target.value)}} placeholder = "Enter your desired Morning Slot" required id = "morningslot" type = "text"/>
+            <label className = "morning--lbl">First Preference</label>
+            <input value = {chosenFirstPreference} onChange = {(e) => {setChosenFirstPreference(e.target.value)}} placeholder = "Enter your first Preference" required id = "morningslot" type = "text"/>
         </div>
 
         <div className = "latemorning--box">
-            <label className = "password--lbl">Late Morning Slot</label>
-            <input value = {chosenLateMorningSlot} onChange = {(e) => {setLateMorningSlot(e.target.value)}} placeholder = "Enter your second Morning Slot" required id = "password" type = "text"/>
+            <label className = "password--lbl">Second Preference</label>
+            <input value = {chosenSecondPreference} onChange = {(e) => {setChosenSecondPreference(e.target.value)}} placeholder = "Enter your second Preference" required id = "password" type = "text"/>
         </div>
 
         <div className = "afternoon--box">
-            <label className = "password--lbl">Afternoon Slot</label>
-            <input value = {chosenAfternoonSlot} onChange = {(e) => {setAfternoonSlot(e.target.value)}} placeholder = "Enter your desired Afternoon Slot" required id = "afternoonSlot" type = "text"/>
+            <label className = "password--lbl">Third Preference</label>
+            <input value = {chosenThirdPreference} onChange = {(e) => {setChosenThirdPreference(e.target.value)}} placeholder = "Enter your third Preference" required id = "thirdpreference" type = "text"/>
         </div>
 
-        <div className = "eveningslot--box">
-            <label className = "password--lbl">Evening Slot</label>
-            <input value = {chosenEveningSlot} onChange = {(e) => {setEveningSlot(e.target.value)}} placeholder = "Enter your desired Evening Slot" required id = "eveningslot" type = "text"/>
-        </div>
         
         <div className = "submit--container">
             <button className = "login--btn" type = "submit">Submit</button>
@@ -189,22 +162,11 @@ const CreatePreference = (props) => {
 
                     <h2 className = "appliance--heading">Username : {JSON.stringify(theData.username, null).toString().replaceAll("\"", "")}</h2>
                     <h2 className = "appliance--heading">Appliance : {JSON.stringify(theData.appliance, null).toString().replaceAll("\"", "")}</h2>
-                    <h2 className = "appliance--heading"><img className = "appliance--img" src = {theData.image} alt = "Appliance" /></h2>
-                    <h2 className = "appliance--heading">Early Morning Slot : {JSON.stringify(theData.earlyMorningslot, null).toString().replaceAll("\"", "")}</h2>
-                    <h2 className = "appliance--heading">Late Morning Slot : {JSON.stringify(theData.lateMorningslot, null).toString().replaceAll("\"", "")}</h2>
-                    <h2 className = "appliance--heading">Afternoon Slot : {JSON.stringify(theData.afternoonSlot, null).toString().replaceAll("\"", "")}</h2>
-                    <h2 className = "appliance--heading">Evening Slot : {JSON.stringify(theData.eveningSlot, null).toString().replaceAll("\"", "")}</h2>
 
-                    <button className = "negotiate--btn">Negotiate Preference</button>
-                    <button className = "negotiate--btn">View Preference</button>
+                    <button className = "negotiate--btn">Negotiate Timeslots</button>
 
-                        <p className = "generic--text">Not happy with your timeslot? Modify it</p>
-
-                        <button type = "submit">Edit Now</button>
                         <div>
 
-                        <h2 className = "delete--header">No longer need it ? Delete your preference</h2>
-                            <button className = "delete--btn" onClick = {() => deletePreference(theData._id)} type = "submit">Delete</button>
                          </div>
 
                     </div>

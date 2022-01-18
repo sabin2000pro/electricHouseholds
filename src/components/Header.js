@@ -74,7 +74,6 @@ const Header = (props) => { // Header Component
 
                         <li><a className = "main-nav--link" href = "/admin-dashboard">Admin Dashboard</a></li>
                         <li><a className = "main-nav--link" href = "/admin-dashboard/create-appliance">Create Appliance</a></li>
-                        <li><a className = "main-nav--link" href = "/admin-dashboard/edit-appliance/:id">Edit Appliance</a></li>
                         <li><a className = "main-nav--link" href = "/admin-dashboard/bids-settings">Bids Settings</a></li>
                 </ul>
             </nav>
