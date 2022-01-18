@@ -1,6 +1,13 @@
 const express = require('express');
 const applianceRouter = express.Router();
 const applianceController = require('../controllers/applianceController');
+const rateLimit = require('express-rate-limit');
+
+const applianceLimiter = rateLimit({
+    windowMs: 40 * 40 * 1000,
+    max: 3,
+    message: "Too many register account requests coming from this IP address. Try again after 30 minutes. Only 3 per 30 minutes"
+});
 
 applianceRouter.route('/fetch-appliances').get(applianceController.getAllAppliances);
 applianceRouter.route('/create-appliance').post(applianceController.createAppliance);
@@ -9,4 +16,4 @@ applianceRouter.route('/fetch-single-appliance/:id').get(applianceController.get
 applianceRouter.route('/delete-appliances').delete(applianceController.deleteAppliances);
 applianceRouter.route('/delete-appliance/:id').delete(applianceController.deleteAppliance);
 
-module.exports = applianceRouter;
+module.exports = applianceRouter; // Export the appliance router

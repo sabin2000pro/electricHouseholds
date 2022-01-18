@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1642515579490" clover="3.2.0">
-  <project timestamp="1642515579490" name="All files">
-    <metrics statements="620" coveredstatements="393" conditionals="158" coveredconditionals="28" methods="77" coveredmethods="25" elements="855" coveredelements="446" complexity="0" loc="620" ncloc="620" packages="9" files="33" classes="33"/>
+<coverage generated="1642515626069" clover="3.2.0">
+  <project timestamp="1642515626069" name="All files">
+    <metrics statements="622" coveredstatements="395" conditionals="158" coveredconditionals="28" methods="77" coveredmethods="25" elements="857" coveredelements="448" complexity="0" loc="622" ncloc="622" packages="9" files="33" classes="33"/>
     <package name="controllers">
       <metrics statements="325" coveredstatements="158" conditionals="112" coveredconditionals="21" methods="51" coveredmethods="11"/>
       <file name="applianceController.js" path="/app/controllers/applianceController.js">
@@ -541,19 +541,21 @@
       </file>
     </package>
     <package name="routes">
-      <metrics statements="78" coveredstatements="78" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <metrics statements="80" coveredstatements="80" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="applianceRoutes.js" path="/app/routes/applianceRoutes.js">
-        <metrics statements="10" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <metrics statements="12" coveredstatements="12" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
-        <line num="5" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
         <line num="6" count="1" type="stmt"/>
-        <line num="7" count="1" type="stmt"/>
-        <line num="8" count="1" type="stmt"/>
-        <line num="9" count="1" type="stmt"/>
-        <line num="10" count="1" type="stmt"/>
         <line num="12" count="1" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="17" count="1" type="stmt"/>
+        <line num="19" count="1" type="stmt"/>
       </file>
       <file name="authRoutes.js" path="/app/routes/authRoutes.js">
         <metrics statements="14" coveredstatements="14" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>

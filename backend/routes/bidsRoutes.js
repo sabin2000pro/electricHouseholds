@@ -4,9 +4,9 @@ const rateLimit = require('express-rate-limit');
 const bidsController = require('../controllers/bidsController'); // Import the bids controller
 
 const bidLimiter = rateLimit({
-    windowMs: 60 * 60 * 1000,
+    windowMs: 40 * 40 * 1000,
     max: 50,
-    message: "Too many bids coming from this IP address. Try again after 1 hour. Only 50 per hour"
+    message: "Too many bids coming from this IP address. Try again after 30 minutes. Only 50 per 30 minutes"
 });
 
 bidRouter.route('/fetch-bids').get(bidLimiter, bidsController.getAllBids);
