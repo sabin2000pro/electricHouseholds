@@ -69,14 +69,14 @@ const FairNegotations = (props) => {
     const fetchAllBids = async () => {
         try {
 
-            return await axios.get(``).then(response => {
-                
+         return await axios.get(``).then(response => {
+
 
             }).catch(err => {
 
-                if(err) {
-                    return console.error(err);
-                }
+            if(err) {
+                return console.error(err);
+            }
 
             })
         } 

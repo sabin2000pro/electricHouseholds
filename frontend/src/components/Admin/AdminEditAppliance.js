@@ -8,10 +8,11 @@ import axios from 'axios';
 const AdminEditAppliance = (props) => {
     let history = useHistory();
     let location = useLocation();
-    const {name, image, description} = location.state.appliance; // extract the location state and store the data in the input fields for modification
+    const {_id} = location.state.appliance;
+
     const [editedName, setEditedName] = useState('');
     const [editedImage, setEditedImage] = useState('');
-    const [editedDescription, setEditedDescription] = useState('');
+    const [newDescription, setEditedDescription] = useState('');
     const [formValid, setFormValid] = useState(true);
     const [appliances, setAppliances] = useState([]);
     const [appliancesFetched, setAppliancesFetched] = useState(false);
@@ -21,43 +22,42 @@ const AdminEditAppliance = (props) => {
         history.push('/admin-login'); // Redirect to Login
         
         return window.location.reload(false);
-    }
+    };
 
     useEffect(() => {
         return fetchApplianceData();
     }, []);
 
-
-    const fetchApplianceData = async () => { // Routine to fetch the available appliances from the backend database
+    const fetchApplianceData = async () => {
         try {
-            
-           return await axios.get(`http://localhost:5200/api/v1/appliances/fetch-appliances`).then(response => {
-               const allAppliances = response.data.appliances;
-               setAppliances(allAppliances);
-               setAppliancesFetched(!appliancesFetched);
-               console.log(allAppliances);
-           });
-
+            return await axios.get(`http://localhost:5200/api/v1/appliances/fetch-appliances`).then(response => {
+                const applianceData = response.data.appliances;
+                setAppliances(applianceData);
+                console.log(`Appliance Data : ${JSON.stringify(applianceData)}`);
+            }).catch(err => {
+                if(err) {
+                    return console.error(err);
+                }
+            })
         } 
-        
-        catch(err) {
 
-            if(err) {
-                return console.error(err);
+        catch(error) {
+
+            if(error) {
+                return console.error(error);
             }
         }
 
     }
 
-
-    const editApplianceHandler = async (id) => {
+    const editDescription = (id) => {
         try {
-            await axios.put(`http://localhost:/5200/api/v1/appliances/edit-appliance/${id}`, {id: id});
 
-             return setTimeout(() => {
-                window.location.reload(false)
-            }, 3000);
-
+          axios.put(`http://localhost:5200/api/v1/appliances/edit-appliance/${id}`, {id: id, newDescription: newDescription}).then(data => {
+              console.log(data);
+          });
+          console.log(`Appliance Updated`);
+          return history.push('/home');
         } 
         
         catch(error) {
@@ -70,7 +70,7 @@ const AdminEditAppliance = (props) => {
 
     return (
         <Fragment>
-        <Header />
+             <Header />
           
           <section className = "section--home">
               <div className = "home--grid">
@@ -93,43 +93,39 @@ const AdminEditAppliance = (props) => {
 
       </section>
 
-      <section className = "section--login">
+        <section className = "section--login">
 
-        <div className = "container grid grid--2-cols">
+    <div className = "container grid grid--2-cols">
+           
+            <RegisterCard>
+            <h1 className = "heading--primary login">Edit Appliance</h1>
 
-                <RegisterCard>
-                    <h1 className = "heading--primary login">Edit Your Appliance</h1>
+            <form className = "login--form">
 
-                    <form onChange = {editApplianceHandler} className = "login--form">
+            <div className = "appliancedescription--box">
+                <label className = "description--lbl">New Description</label>
+                <input value = {newDescription} onChange = {(e) => {setEditedDescription(e.target.value)}} placeholder = "New Appliance Description" required id = "description" type = "text"/>
+            </div>
 
-            
-                    <div className = "appliancename--box">
-                        <label className = "name--lbl">New Name</label>
-                        <input value = {name} placeholder = "New Appliance Name" type = "text"/>
-                    </div>
+            <button onClick = {() => editDescription(_id)} className = "submit--btn" type = "button">Edit</button>
+            </form>
 
-                    <div className = "applianceimage--box">
-                        <label className = "image--lbl">New Image</label>
-                        <input value = {image} placeholder = "New Appliance Image URL" required id = "applianceurl" type = "text"/>
-                    </div>
 
-                    <div className = "appliancedescription--box">
-                        <label className = "description--lbl">New Description</label>
-                        <input value = {description} placeholder = "New Appliance Description" required id = "description" type = "text"/>
-                    </div>
-                    
-                    <div className = "submit--container">
-                        <button className = "submit--btn" type = "submit">Submit</button>
-                    </div>
+</RegisterCard>
+            </div>
+    
 
-                    </form>
-                
-            </RegisterCard>
-            
-        </div>    
-    </section>
+</section>
+    
+
+    <footer className = "footer">
+        <ul className = "footer--items">
+            <li className = "footer--item">Copyright All Rights Reserved - eHouseholds Sabin Constantin Lungu - 2021</li>
+        </ul>
+    </footer>
   
 </Fragment>
+
     )
 }
 

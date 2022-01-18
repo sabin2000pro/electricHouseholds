@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">56.41% </span>
+                <span class="strong">52.38% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>22/39</span>
+                <span class='fraction'>22/42</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">37.5% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>3/6</span>
+                <span class='fraction'>3/8</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">56.41% </span>
+                <span class="strong">52.38% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>22/39</span>
+                <span class='fraction'>22/42</span>
             </div>
         
             
@@ -132,7 +132,11 @@
 <a name='L67'></a><a href='#L67'>67</a>
 <a name='L68'></a><a href='#L68'>68</a>
 <a name='L69'></a><a href='#L69'>69</a>
-<a name='L70'></a><a href='#L70'>70</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L70'></a><a href='#L70'>70</a>
+<a name='L71'></a><a href='#L71'>71</a>
+<a name='L72'></a><a href='#L72'>72</a>
+<a name='L73'></a><a href='#L73'>73</a>
+<a name='L74'></a><a href='#L74'>74</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -171,13 +175,17 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -239,17 +247,21 @@ module.exports.getApplianceByID = catchAsync(<span class="fstat-no" title="funct
 });
 &nbsp;
 module.exports.editAppliance = catchAsync(<span class="fstat-no" title="function not covered" >as</span>ync (request, response, next) =&gt; {
-    const id = <span class="cstat-no" title="statement not covered" >request.params.id;</span>
+    const newDescription = <span class="cstat-no" title="statement not covered" >request.body.newDescription;</span>
+    const id = <span class="cstat-no" title="statement not covered" >request.body.id;</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    if(!id) {</span>
 <span class="cstat-no" title="statement not covered" >        return response.status(404).json({status: "Fail", message: "No Appliance found with that ID"});</span>
     }
 &nbsp;
-    const updatedAppliance = <span class="cstat-no" title="statement not covered" >await Appliance.findByIdAndUpdate(id, request.body);</span>
-<span class="cstat-no" title="statement not covered" >    await updatedAppliance.save();</span>
-<span class="cstat-no" title="statement not covered" >    return response.status(200).json("Appliance Updated");</span>
+<span class="cstat-no" title="statement not covered" >    await Appliance.findById(id, <span class="fstat-no" title="function not covered" >(e</span>rror, updatedAppliance) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        updatedAppliance.description = newDescription;</span>
+<span class="cstat-no" title="statement not covered" >        updatedAppliance.save();</span>
+    }).clone().catch(<span class="fstat-no" title="function not covered" >er</span>r =&gt; {<span class="cstat-no" title="statement not covered" >console.log(err)}</span>);
+    
+<span class="cstat-no" title="statement not covered" >    return response.status(200).send("Appliance Updated");</span>
 &nbsp;
-});
+})
 &nbsp;
 module.exports.deleteAppliance = catchAsync(<span class="fstat-no" title="function not covered" >as</span>ync (request, response, next) =&gt; {
     const id = <span class="cstat-no" title="statement not covered" >request.params.id;</span>
@@ -277,7 +289,7 @@ module.exports.deleteAppliances = catchAsync(async (request, response, next) =&g
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Mon Jan 17 2022 15:18:39 GMT+0000 (Coordinated Universal Time)
+                at Tue Jan 18 2022 10:31:05 GMT+0000 (Coordinated Universal Time)
             </div>
         <script src="../prettify.js"></script>
         <script>

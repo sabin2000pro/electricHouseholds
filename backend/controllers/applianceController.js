@@ -36,17 +36,21 @@ module.exports.getApplianceByID = catchAsync(async (request, response, next) => 
 });
 
 module.exports.editAppliance = catchAsync(async (request, response, next) => {
-    const id = request.params.id;
+    const newDescription = request.body.newDescription;
+    const id = request.body.id;
 
     if(!id) {
         return response.status(404).json({status: "Fail", message: "No Appliance found with that ID"});
     }
 
-    const updatedAppliance = await Appliance.findByIdAndUpdate(id, request.body);
-    await updatedAppliance.save();
-    return response.status(200).json("Appliance Updated");
+    await Appliance.findById(id, (error, updatedAppliance) => {
+        updatedAppliance.description = newDescription;
+        updatedAppliance.save();
+    }).clone().catch(err => {console.log(err)});
+    
+    return response.status(200).send("Appliance Updated");
 
-});
+})
 
 module.exports.deleteAppliance = catchAsync(async (request, response, next) => {
     const id = request.params.id;
