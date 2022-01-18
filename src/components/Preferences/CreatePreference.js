@@ -68,9 +68,17 @@ const CreatePreference = (props) => {
         }
     }
 
+    useEffect(() => {
+        return fetchAllAppliances();
+    }, []);
+
     const fetchAllAppliances = async () => {
         try {
-
+            return await axios.get(`http://localhost:5200/api/v1/appliances/fetch-appliances`).then(response => {
+                const allAppliances = response.data.appliances;
+                setAppliances(allAppliances);
+                console.log(allAppliances);
+            })
         } 
         
         catch(error) {
