@@ -5,6 +5,7 @@
   "main": "./server.js",
   "scripts": {
     "start": "nodemon ./server/server.js",
+    "start:prod": "node ./server/server.js",
     "test": "jest --watchAll --coverage",
     "import": "node helpers/seedTimeslots.js --import",
     "delete": "node helpers/seedTimeslots.js --delete"
