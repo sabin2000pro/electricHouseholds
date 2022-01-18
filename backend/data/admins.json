@@ -1,5 +1,8 @@
 [
     {
-        ""
+        "username": "admin1",
+        "emailAddress": "admin1@root.com",
+        "password": "root",
+        "confirmPassword": "root"
     }
 ]
