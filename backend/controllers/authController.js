@@ -147,6 +147,12 @@ module.exports.deleteAdminAccount = catchAsync(async (request, response, next) =
 
 });
 
+module.exports.deleteAllAdmins = catchAsync(async(request, response, next) => {
+    if(request.method === 'DELETE') {
+        
+    }
+});
+
 // @Description: Registers a New Admin on the application
 // @Access Type: Private Access
 

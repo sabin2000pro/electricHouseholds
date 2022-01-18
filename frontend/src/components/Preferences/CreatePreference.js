@@ -4,11 +4,11 @@ import {useHistory} from 'react-router-dom';
 import RegisterCard from '../Admin/RegisterCard';
 import axios from 'axios';
 
-
 let DEFAULT_TEXT = {
     preferenceHeader: 'Your Preferences'
 }
 
+// Fake other household preferences
 let otherPreferences = [
 
     {
@@ -19,11 +19,6 @@ let otherPreferences = [
   
   ];
 
-  const generalPreferences = [
-      {
-          
-      }
-  ]
 
 const CreatePreference = (props) => {
     let history = useHistory();
