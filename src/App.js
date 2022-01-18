@@ -23,9 +23,9 @@ const App = () => {
 
       <Router>
         <Route exact path = '/home' component={Homepage} />
-        <Route exact path = '/admin-register' component = {AdminRegister}/>
+        <Route exact path = '/api/v1/client/admin-register' component = {AdminRegister}/>
         <Route exact path = '/your-preferences' component = {PreferencesHome}/>
-        <Route exact path = '/admin-login' component = {AdminLogin}/>
+        <Route exact path = '/api/v1/client/admin-login' component = {AdminLogin}/>
 
         <Route exact path = '/admin-dashboard' component = {AdminDashboard}/>
         <Route exact path = '/contact-us' component = {ContactUs} />
