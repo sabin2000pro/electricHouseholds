@@ -17,6 +17,17 @@ let DEFAULT_TEXT = {
     preferenceHeader: 'Your Preferences'
 }
 
+let otherPreferences = [
+
+    {
+      firstOtherPreference: ["06:00-07:00", "08:00-09:00" ,"10:00-11:00","12:00-13:00","14:00-15:00AM", "16:00-17:00AM", "18:00-19:00AM", "20:00-21:00AM", "22:00-23:00"],
+      secondOtherPreference: ["06:00-07:00", "08:00-09:00" ,"10:00-11:00","12:00-13:00","14:00-15:00AM", "16:00-17:00AM", "18:00-19:00AM", "20:00-21:00AM", "22:00-23:00"],
+      thirdOtherPreference: ["06:00-07:00", "08:00-09:00" ,"10:00-11:00","12:00-13:00","14:00-15:00AM", "16:00-17:00AM", "18:00-19:00AM", "20:00-21:00AM", "22:00-23:00"],
+    }
+  
+  ];
+
+
 const CreatePreference = (props) => {
     let history = useHistory();
     const [enteredUsername, setUsername] = useState("");
@@ -27,6 +38,9 @@ const CreatePreference = (props) => {
     const [savingDataMsg, setSavingDataMsg] = useState(false);
     const [chosenImage, setImage] = useState("");
     const [imageValid, setImageValid] = useState(true);
+    const [otherFirstPref, setOtherFirstPref] = useState('');
+    const [otherSecondPref, setOtherSecondPref] = useState('');
+    const [otherThirdPref, setOtherThirdPref] = useState('');
 
     const [chosenFirstPreference, setChosenFirstPreference] = useState("");
     const [chosenSecondPreference, setChosenSecondPreference] = useState("");
@@ -102,7 +116,13 @@ const CreatePreference = (props) => {
             return await axios.get(`http://localhost:5200/api/v1/appliances/fetch-appliances`).then(response => {
                 const allAppliances = response.data.appliances;
                 setAppliances(allAppliances);
-                console.log(allAppliances);
+                console.log(appliances);
+
+            }).catch(err => {
+
+                if(err) {
+                    console.log(err);
+                }
             })
         } 
         
@@ -121,6 +141,9 @@ const CreatePreference = (props) => {
                 const allPreferences = response.data.allPreferences;
                 setPreferences(allPreferences);
                 setPreferencesBtnClicked(!preferencesBtnClicked);
+                console.log(preferences);
+
+                return generateRandomTimeslots();
 
             }).catch(err => {
 
@@ -142,7 +165,13 @@ const CreatePreference = (props) => {
 
     const generateRandomTimeslots = () => {
         try {
-
+            let firstOtherPrefIndex = otherPreferences[0].firstOtherPreference;
+            let secondOtherPrefIndex = otherPreferences[0].secondOtherPreference
+            let thirdOtherPrefIndex = otherPreferences[0].thirdOtherPreference;
+        
+            setOtherFirstPref(firstOtherPrefIndex[Math.floor(Math.random() * firstOtherPrefIndex.length)]); 
+            setOtherSecondPref(secondOtherPrefIndex[Math.floor(Math.random() * secondOtherPrefIndex.length)]);
+            setOtherThirdPref(thirdOtherPrefIndex[Math.floor(Math.random() * thirdOtherPrefIndex.length)]);
         } 
         
         catch(error) {
@@ -260,7 +289,9 @@ const CreatePreference = (props) => {
                     <div className = "preferences--card">
 
                     <h2 className = "appliance--heading">Username : {JSON.stringify(theData.username, null).toString().replaceAll("\"", "")}</h2>
-                    <h2 className = "appliance--heading">Appliance : {JSON.stringify(theData.appliance, null).toString().replaceAll("\"", "")}</h2>
+                    <h2 className = "appliance--heading">First Random Slot : {JSON.stringify(otherFirstPref, null).toString().replaceAll("\"", "")}</h2>
+                    <h2 className = "appliance--heading">Second Random Slot : {JSON.stringify(otherSecondPref, null).toString().replaceAll("\"", "")}</h2>
+                    <h2 className = "appliance--heading">Third Random Slot : {JSON.stringify(otherThirdPref, null).toString().replaceAll("\"", "")}</h2>
 
                     <button className = "negotiate--btn">Negotiate Timeslots</button>
 
