@@ -56,17 +56,24 @@ const CreatePreference = (props) => {
             // Validate Preferences
 
             if(chosenFirstPreference === chosenSecondPreference) {
-                alert('You cannot run appliance at the same time');
+                alert('You cannot run your appliance at the same time');
+                
+                return setTimeout(() => {
+                    return window.location.reload(false);
+                }, 1500);
+            }
+
+            else if(chosenSecondPreference === chosenThirdPreference) {
+                alert('You cannot run your appliance at the same time');
             }
 
             const {data} = await axios.post(`http://localhost:5200/api/v1/preferences/create-preference`, {username: enteredUsername, appliance: chosenAppliance, firstPreference: chosenFirstPreference, secondPreference: chosenSecondPreference , thirdPreference: chosenThirdPreference});
             console.log(data);
-            
+
             setPreferenceSubmitted(true);
             alert('Preference Created');
 
         
-
             return history.push('/home'); // Redirect user back home
         } 
         
