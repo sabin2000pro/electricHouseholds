@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1642508170276" clover="3.2.0">
-  <project timestamp="1642508170277" name="All files">
-    <metrics statements="615" coveredstatements="390" conditionals="156" coveredconditionals="28" methods="77" coveredmethods="24" elements="848" coveredelements="442" complexity="0" loc="615" ncloc="615" packages="9" files="33" classes="33"/>
+<coverage generated="1642508184460" clover="3.2.0">
+  <project timestamp="1642508184460" name="All files">
+    <metrics statements="615" coveredstatements="391" conditionals="156" coveredconditionals="28" methods="77" coveredmethods="24" elements="848" coveredelements="443" complexity="0" loc="615" ncloc="615" packages="9" files="33" classes="33"/>
     <package name="controllers">
-      <metrics statements="325" coveredstatements="158" conditionals="112" coveredconditionals="22" methods="51" coveredmethods="11"/>
+      <metrics statements="325" coveredstatements="159" conditionals="112" coveredconditionals="22" methods="51" coveredmethods="11"/>
       <file name="applianceController.js" path="/app/controllers/applianceController.js">
-        <metrics statements="42" coveredstatements="22" conditionals="8" coveredconditionals="1" methods="8" coveredmethods="3"/>
+        <metrics statements="42" coveredstatements="23" conditionals="8" coveredconditionals="1" methods="8" coveredmethods="3"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -21,7 +21,7 @@
         <line num="18" count="1" type="stmt"/>
         <line num="20" count="1" type="stmt"/>
         <line num="21" count="1" type="stmt"/>
-        <line num="23" count="0" type="stmt"/>
+        <line num="23" count="1" type="stmt"/>
         <line num="26" count="1" type="stmt"/>
         <line num="27" count="0" type="stmt"/>
         <line num="29" count="0" type="cond" truecount="0" falsecount="2"/>
@@ -487,8 +487,8 @@
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
+        <line num="21" count="1" type="stmt"/>
         <line num="22" count="1" type="stmt"/>
-        <line num="23" count="1" type="stmt"/>
       </file>
       <file name="bidsModel.js" path="/app/models/bidsModel.js">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
