@@ -11,7 +11,6 @@ module.exports.getAllAppliances = catchAsync(async (request, response, next) => 
 
     const appliances = await Appliance.find();
     return response.status(ok).json({appliances}); // Return all the appliances in JSON format
-
 });
 
 module.exports.createAppliance = catchAsync(async (request, response, next) => {
