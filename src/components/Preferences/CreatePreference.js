@@ -54,8 +54,9 @@ const CreatePreference = (props) => {
             e.preventDefault();
             const {data} = await axios.post(`http://localhost:5200/api/v1/preferences/create-preference`, {username: enteredUsername, appliance: chosenAppliance, firstPreference: chosenFirstPreference, secondPreference: chosenSecondPreference , thirdPreference: chosenThirdPreference});
             setPreferenceSubmitted(true);
-
             alert('Preference Created');
+
+            return history.push('/'); // Redirect user back home
         } 
         
         catch(err) {
@@ -133,10 +134,9 @@ const CreatePreference = (props) => {
         <label className = "issue--lbl" htmlFor = "issue">Appliance</label>
 
             <select onChange = {(e) => {setChosenAppliance(e.target.value)}} value = {chosenAppliance} className = "box">
-                <option>Washing Machine</option>
-                <option>Tumble Drier</option>
-                <option>Dish Washer</option>
-                <option>Electric Heater</option>
+                {appliances.map((appliance, key) => {
+                    return <option key = {key}>{appliance.name}</option>
+                })}
             </select>
         </div>
 
