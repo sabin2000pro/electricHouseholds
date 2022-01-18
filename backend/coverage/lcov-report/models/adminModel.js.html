@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">75.86% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>29/29</span>
+                <span class='fraction'>22/29</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>4/4</span>
+                <span class='fraction'>2/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">83.33% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>6/6</span>
+                <span class='fraction'>5/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">75.86% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>29/29</span>
+                <span class='fraction'>22/29</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -209,8 +209,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -221,8 +221,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -234,13 +234,13 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -302,8 +302,8 @@ const adminSchema = new mongoose.Schema({
 &nbsp;
 adminSchema.pre('save', async function(next) {
 &nbsp;
-    if(!this.isModified('password')) { // If password is not already modified
-        return next(); // Call next middleware
+    <span class="missing-if-branch" title="if path not taken" >I</span>if(!this.isModified('password')) { // If password is not already modified
+<span class="cstat-no" title="statement not covered" >        return next(); </span>// Call next middleware
     }
 &nbsp;
     // Generate salt
@@ -314,8 +314,8 @@ adminSchema.pre('save', async function(next) {
 });
 &nbsp;
 adminSchema.pre('save', async function(next) {
-    if(!this.isModified('password')) {
-        return next();
+    <span class="missing-if-branch" title="if path not taken" >I</span>if(!this.isModified('password')) {
+<span class="cstat-no" title="statement not covered" >        return next();</span>
     }
 &nbsp;
     this.passwordChangedt = Date.now() - 1500;
@@ -326,14 +326,14 @@ adminSchema.methods.compareLoginPasswords = async function(enteredPassword) {
     return await bcrypt.compare(enteredPassword, this.password);
 };
 &nbsp;
-adminSchema.methods.getResetPasswordToken = function() { // Get the reset password token
-    let method = 'sha256'; // Method Type
+adminSchema.methods.getResetPasswordToken = <span class="fstat-no" title="function not covered" >fu</span>nction() { // Get the reset password token
+    let method = <span class="cstat-no" title="statement not covered" >'sha256';</span> // Method Type
 &nbsp;
-    const resetToken = crypto.randomBytes(20).toString("hex"); // Create the reset token
-    this.passwordResetToken = crypto.createHash(method).update(resetToken).digest('hex');
+    const resetToken = <span class="cstat-no" title="statement not covered" >crypto.randomBytes(20).toString("hex");</span> // Create the reset token
+<span class="cstat-no" title="statement not covered" >    this.passwordResetToken = crypto.createHash(method).update(resetToken).digest('hex');</span>
 &nbsp;
-    this.passwordResetExpires = Date.now() + 10 * (60 * 1000); // 1 minute before expiration
-    return resetToken; // Return the reset token
+<span class="cstat-no" title="statement not covered" >    this.passwordResetExpires = Date.now() + 10 * (60 * 1000); </span>// 1 minute before expiration
+<span class="cstat-no" title="statement not covered" >    return resetToken; </span>// Return the reset token
 };
 &nbsp;
 adminSchema.methods.generateResetPasswordToken = function() {
@@ -349,7 +349,7 @@ module.exports = Admin; // Export the Admin model</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Tue Jan 18 2022 14:21:07 GMT+0000 (Coordinated Universal Time)
+                at Tue Jan 18 2022 14:31:06 GMT+0000 (Coordinated Universal Time)
             </div>
         <script src="../prettify.js"></script>
         <script>

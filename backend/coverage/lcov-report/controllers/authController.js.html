@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">70% </span>
+                <span class="strong">55.71% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>49/70</span>
+                <span class='fraction'>39/70</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">68.18% </span>
+                <span class="strong">59.09% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>15/22</span>
+                <span class='fraction'>13/22</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">62.5% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>5/8</span>
+                <span class='fraction'>4/8</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">70% </span>
+                <span class="strong">55.71% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>49/70</span>
+                <span class='fraction'>39/70</span>
             </div>
         
             
@@ -266,25 +266,25 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -402,26 +402,26 @@ module.exports.getMe = catchAsync(<span class="fstat-no" title="function not cov
 <span class="cstat-no" title="statement not covered" >    return response.status(200).json({success: true, data: admin});</span>
 })
 &nbsp;
-module.exports.forgotPassword = catchAsync(async (request, response, next) =&gt; { // Forgot Password Handler
-    const {emailAddress} = request.body;
-    const admin = await Admin.findOne({emailAddress});
+module.exports.forgotPassword = catchAsync(<span class="fstat-no" title="function not covered" >as</span>ync (request, response, next) =&gt; { // Forgot Password Handler
+    const {emailAddress} = <span class="cstat-no" title="statement not covered" >request.body;</span>
+    const admin = <span class="cstat-no" title="statement not covered" >await Admin.findOne({emailAddress});</span>
 &nbsp;
-    if(!admin) {
-        return response.status(notFound).json({status: "Fail", message: "No admin found with that e-mail address"});
+<span class="cstat-no" title="statement not covered" >    if(!admin) {</span>
+<span class="cstat-no" title="statement not covered" >        return response.status(notFound).json({status: "Fail", message: "No admin found with that e-mail address"});</span>
     }
 &nbsp;
-    const resetToken = admin.getResetPasswordToken(); // Get the password reset token
-    const resetPasswordURL = `http://localhost:3000/admin/reset-password/${resetToken}`;
-    await admin.save();
+    const resetToken = <span class="cstat-no" title="statement not covered" >admin.getResetPasswordToken();</span> // Get the password reset token
+    const resetPasswordURL = <span class="cstat-no" title="statement not covered" >`http://localhost:3000/admin/reset-password/${resetToken}`;</span>
+<span class="cstat-no" title="statement not covered" >    await admin.save();</span>
 &nbsp;
-    const resetMessage = `&lt;h1&gt; You have requested a new password reset&lt;/h1&gt;
+    const resetMessage = <span class="cstat-no" title="statement not covered" >`&lt;h1&gt; You have requested a new password reset&lt;/h1&gt;</span>
             &lt;p&gt; Please go to this link to reset your password &lt;/p&gt;
             &lt;a href = ${resetPasswordURL} clicktracking = off&gt;${resetPasswordURL}&lt;/a&gt;`
 &nbsp;
     
     // Send e-mail
-    await sendEmail({to: admin.emailAddress, subject: 'Password Reset Request', text: resetMessage});
-    return response.status(ok).json({success: true, data: "E-mail sent"});
+<span class="cstat-no" title="statement not covered" >    await sendEmail({to: admin.emailAddress, subject: 'Password Reset Request', text: resetMessage});</span>
+<span class="cstat-no" title="statement not covered" >    return response.status(ok).json({success: true, data: "E-mail sent"});</span>
 &nbsp;
 });
 &nbsp;
@@ -481,7 +481,7 @@ const sendToken = (admin, status, response) =&gt; { // Sends back the JWT token
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Tue Jan 18 2022 14:21:07 GMT+0000 (Coordinated Universal Time)
+                at Tue Jan 18 2022 14:31:06 GMT+0000 (Coordinated Universal Time)
             </div>
         <script src="../prettify.js"></script>
         <script>

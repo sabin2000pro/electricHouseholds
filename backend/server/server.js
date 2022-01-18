@@ -6,7 +6,7 @@ const helmet = require('helmet');
 const morgan = require('morgan');
 const xss = require('xss-clean');
 const cors = require('cors');
-const csrf = require('csurf');
+const csurf = require('csurf');
 const cookieParser = require('cookie-parser');
 const nocache = require('nocache');
 const app = express();
@@ -36,6 +36,7 @@ app.use(nocache());
 app.use(express.json());
 connectDB();
 
+// Mount the routes
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/appliances', applianceRoutes);
 app.use('/api/v1/preferences', preferenceRoutes);
@@ -46,7 +47,9 @@ app.use('/api/v1/contacts', contactRoutes);
 app.use('/api/v1/bids', bidRoutes);
 app.use('/api/v1/feedback', feedbackRoutes);
 
-const server = app.listen(port, (err) => { // Creates a server
+
+// Create Server to listen for incoming requests
+const server = app.listen(port, (err) => {
     try {
 
         if(!err) { // If no error occurred
@@ -58,9 +61,9 @@ const server = app.listen(port, (err) => { // Creates a server
         }
     } 
     
-    catch(err) { // Catch error if arises
+    catch(error) { // Catch error if arises
 
-        if(err) {
+        if(error) {
             return console.error(err);
         }
     }
@@ -68,9 +71,13 @@ const server = app.listen(port, (err) => { // Creates a server
 
 // Handle server crashes
 process.on('uncaughtException', (err, promise) => {
-    console.log(err);
+    
+    if(err) {
+        return console.error(err);
+    }
 
-    server.close(() => {
+    // Close the server by exiting the process
+    return server.close(() => {
         return process.exit(1);
     });
 })
@@ -83,6 +90,5 @@ app.all('*', (request, response, next) => {
         return next();
     }
 });
-
 
 module.exports = server; // Export server as a module to be reused
