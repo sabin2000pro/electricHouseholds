@@ -137,7 +137,7 @@ const AdminLogin = (props) => { // Admin Login Component
                     </div>
                     
                     <p className = "already--text">Forgot your password?</p>
-                    <Link className = "link--to" to = '/admin-forgotpassword'>Reset Here!</Link>
+                    <Link className = "link--to" to = '/api/v1/auth/client/admin-forgotpassword'>Reset Here!</Link>
 
                     <div className = "submit--container">
                         <button className = "login--btn" type = "submit">Login</button>

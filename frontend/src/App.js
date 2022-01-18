@@ -30,9 +30,9 @@ const App = () => { // Main app component
         <Route exact path = '/admin-dashboard' component = {AdminDashboard}/>
         <Route exact path = '/contact-us' component = {ContactUs} />
         <Route exact path = '/fair-negotiations' component = {AlgorithmsHome} />
-        <Route exact path = "/admin-forgotpassword" component = {AdminForgotPasswordHome}/>
+        <Route exact path = "/api/v1/auth/client/admin-forgotpassword" component = {AdminForgotPasswordHome}/>
         <Route exact path = "/admin/reset-password/:resetToken" component = {AdminResetPassword} />
-        <Route exact path = "/admin-dashboard/create-appliance" component = {AdminCreateAppliance} />
+        <Route exact path = "/api/v1/auth/client/admin-dashboard/create-appliance" component = {AdminCreateAppliance} />
         <Route exact path = "/admin-dashboard/edit-appliance/:id" component = {AdminEditAppliance}/>
         <Route exact path = "/admin-dashboard/bids-settings" component = {BidsSettings} />
         <Route exact path = "/appliance/:id" component = {Appliance}/>
