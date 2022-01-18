@@ -7,7 +7,7 @@ module.exports.protect = catchAsync(async (request, response, next) => {
     let token;
     const authHeader = request.headers.authorization;
 
-    if(authHeader && authHeader.startsWith('Bearer')) {
+    if(authHeader && authHeader.startsWith('Bearer')) { // if the auth header starts with Bearer ...
         token = authHeader.split(' ')[1]; // Turn it into an array
     }
 
@@ -24,12 +24,14 @@ module.exports.protect = catchAsync(async (request, response, next) => {
     } 
     
     catch(err) {
+
         if(err) {
             return next(new ErrorResponse(`Invalid Token.`, 401));
         }
     }
 });
 
+// Middleware Function to restrict acess (RBAC) to specific users
 module.exports.restrictTo = (...roles) => {
     return (request, response, next) => {
         
