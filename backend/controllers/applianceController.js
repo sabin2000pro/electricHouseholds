@@ -15,9 +15,9 @@ module.exports.getAllAppliances = catchAsync(async (request, response, next) => 
 });
 
 module.exports.createAppliance = catchAsync(async (request, response, next) => {
-    const {name, image, description} = request.body;
+    const {name, description} = request.body;
 
-    const newAppliance = new Appliance({name, image, description}); // Create a new Appliance Instance
+    const newAppliance = new Appliance({name, description}); // Create a new Appliance Instance
     await newAppliance.save();
 
     return response.status(201).json({newAppliance});

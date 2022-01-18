@@ -6,11 +6,6 @@ const applianceSchema = new mongoose.Schema({ // Appliance Schema
         required: [true, 'You must specify the appliace name you want to create']
     },
 
-    image: {
-        type: String,
-        required: [true, 'Please specify the Image URL for the appliance']
-    },
-
     description: {
         type: String,
         required: [true, 'Please specify a description for your appliance']
