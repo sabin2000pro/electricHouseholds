@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">53.48% </span>
+                <span class="strong">52.27% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>23/43</span>
+                <span class='fraction'>23/44</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">10% </span>
+                <span class="strong">8.33% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>1/10</span>
+                <span class='fraction'>1/12</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">53.48% </span>
+                <span class="strong">52.27% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>23/43</span>
+                <span class='fraction'>23/44</span>
             </div>
         
             
@@ -139,7 +139,11 @@
 <a name='L74'></a><a href='#L74'>74</a>
 <a name='L75'></a><a href='#L75'>75</a>
 <a name='L76'></a><a href='#L76'>76</a>
-<a name='L77'></a><a href='#L77'>77</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L77'></a><a href='#L77'>77</a>
+<a name='L78'></a><a href='#L78'>78</a>
+<a name='L79'></a><a href='#L79'>79</a>
+<a name='L80'></a><a href='#L80'>80</a>
+<a name='L81'></a><a href='#L81'>81</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -172,6 +176,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -187,11 +194,9 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -213,6 +218,9 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const Appliance = require('../models/applianceModel');
@@ -233,55 +241,59 @@ module.exports.getAllAppliances = catchAsync(async (request, response, next) =&g
 module.exports.createAppliance = catchAsync(async (request, response, next) =&gt; {
     const {name, description} = request.body;
 &nbsp;
-    const newAppliance = new Appliance({name, description}); // Create a new Appliance Instance
+    if(request.method === 'POST') {
+        const newAppliance = new Appliance({name, description}); // Create a new Appliance Instance
     await newAppliance.save();
 &nbsp;
     return response.status(created).json({newAppliance});
-});
+    }
+    <span class="fstat-no" title="function not covered" ></span>
+});<span class="cstat-no" title="statement not covered" ></span>
 &nbsp;
-module.exports.getApplianceByID = catchAsync(<span class="fstat-no" title="function not covered" >as</span>ync (request, response, next) =&gt; {
-    const id = <span class="cstat-no" title="statement not covered" >request.params.id;</span>
+modu<span class="cstat-no" title="statement not covered" >le.exports.getApplianceByID = catchAsync(async (request, response, next) =&gt; {</span>
+    cons<span class="cstat-no" title="statement not covered" >t id = request.params.id;</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    if(!id) { // If no ID present</span>
+    if(!id) { // If no ID present
 <span class="cstat-no" title="statement not covered" >        return response.status(notFound).json({status: "Fail", message: "No Appliance found with that ID"});</span>
+    }<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" ></span>
+    if(request.method === 'GET') {
+        const appliance = await Appliance.findById(id);
+        return response.status(ok).json({appliance});
     }
 &nbsp;
-    const appliance = <span class="cstat-no" title="statement not covered" >await Appliance.findById(id);</span>
-<span class="cstat-no" title="statement not covered" >    return response.status(ok).json({appliance});</span>
+<span class="fstat-no" title="function not covered" ></span>
+});<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" ></span>
+module.exports.editAppliance = catchAsync(async (request, response, next) =&gt; {
+<span class="cstat-no" title="statement not covered" >    const newDescription = request.body.newDescription;</span>
+    cons<span class="cstat-no" title="statement not covered" >t id = request.body.id;</span>
 &nbsp;
-});
-&nbsp;
-module.exports.editAppliance = catchAsync(<span class="fstat-no" title="function not covered" >as</span>ync (request, response, next) =&gt; {
-    const newDescription = <span class="cstat-no" title="statement not covered" >request.body.newDescription;</span>
-    const id = <span class="cstat-no" title="statement not covered" >request.body.id;</span>
-&nbsp;
-<span class="cstat-no" title="statement not covered" >    if(!id) {</span>
+    if(!id) {
 <span class="cstat-no" title="statement not covered" >        return response.status(notFound).json({status: "Fail", message: "No Appliance found with that ID"});</span>
+    }<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ></span></span>
+<span class="cstat-no" title="statement not covered" ></span>
+    if(reque<span class="cstat-no" title="statement not covered" >st.method === 'PUT') {</span>
+        await Appliance.f<span class="fstat-no" title="function not covered" >in</span>dById(<span class="cstat-no" title="statement not covered" >id, (error, updat</span>edAppliance) =&gt; {
+            updatedAppliance.description = newDescription;
+<span class="cstat-no" title="statement not covered" >            updatedAppliance.save();</span>
+        }).clone().catch(err =&gt; {console.log(err)});
+        
+        return response.status(200).send("Appliance Updated");
     }
+<span class="fstat-no" title="function not covered" ></span>
+});<span class="cstat-no" title="statement not covered" ></span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    await Appliance.findById(id, <span class="fstat-no" title="function not covered" >(e</span>rror, updatedAppliance) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >        updatedAppliance.description = newDescription;</span>
-<span class="cstat-no" title="statement not covered" >        updatedAppliance.save();</span>
-    }).clone().catch(<span class="fstat-no" title="function not covered" >er</span>r =&gt; {<span class="cstat-no" title="statement not covered" >console.log(err)}</span>);
-    
-<span class="cstat-no" title="statement not covered" >    return response.status(200).send("Appliance Updated");</span>
-<span class="cstat-no" title="statement not covered" >    if(request.method === 'PUT') {</span>
+modu<span class="cstat-no" title="statement not covered" >le.exports.deleteAppliance = catchAsync(async (request, response, next) =&gt; {</span>
+    cons<span class="cstat-no" title="statement not covered" >t id = request.params.id;</span>
 &nbsp;
+    if(!id) {
+<span class="cstat-no" title="statement not covered" >        return response.status(404).json({s</span>tatus: "Fail", message: "No Appliance found with that ID"});
     }
+<span class="cstat-no" title="statement not covered" ></span>
+    await Appliance.findByIdAndDelete(id);
 &nbsp;
-&nbsp;
-})
-&nbsp;
-module.exports.deleteAppliance = catchAsync(<span class="fstat-no" title="function not covered" >as</span>ync (request, response, next) =&gt; {
-    const id = <span class="cstat-no" title="statement not covered" >request.params.id;</span>
-&nbsp;
-<span class="cstat-no" title="statement not covered" >    if(!id) {</span>
-<span class="cstat-no" title="statement not covered" >        return response.status(404).json({status: "Fail", message: "No Appliance found with that ID"});</span>
-    }
-&nbsp;
-<span class="cstat-no" title="statement not covered" >    await Appliance.findByIdAndDelete(id);</span>
-&nbsp;
-<span class="cstat-no" title="statement not covered" >    return response.status(noContent).json("Appliance deleted");</span>
+    return response.status(noContent).json("Appliance deleted");
 &nbsp;
 });
 &nbsp;
@@ -298,7 +310,7 @@ module.exports.deleteAppliances = catchAsync(async (request, response, next) =&g
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Tue Jan 18 2022 14:33:09 GMT+0000 (Coordinated Universal Time)
+                at Tue Jan 18 2022 14:36:17 GMT+0000 (Coordinated Universal Time)
             </div>
         <script src="../prettify.js"></script>
         <script>

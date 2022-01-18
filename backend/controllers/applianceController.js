@@ -16,10 +16,12 @@ module.exports.getAllAppliances = catchAsync(async (request, response, next) => 
 module.exports.createAppliance = catchAsync(async (request, response, next) => {
     const {name, description} = request.body;
 
-    const newAppliance = new Appliance({name, description}); // Create a new Appliance Instance
-    await newAppliance.save();
-
-    return response.status(created).json({newAppliance});
+    if(request.method === 'POST') {
+        const newAppliance = new Appliance({name, description}); // Create a new Appliance Instance
+        await newAppliance.save();
+        return response.status(created).json({newAppliance});
+    }
+    
 });
 
 module.exports.getApplianceByID = catchAsync(async (request, response, next) => {
@@ -29,8 +31,11 @@ module.exports.getApplianceByID = catchAsync(async (request, response, next) => 
         return response.status(notFound).json({status: "Fail", message: "No Appliance found with that ID"});
     }
 
-    const appliance = await Appliance.findById(id);
-    return response.status(ok).json({appliance});
+    if(request.method === 'GET') {
+        const appliance = await Appliance.findById(id);
+        return response.status(ok).json({appliance});
+    }
+
 
 });
 
