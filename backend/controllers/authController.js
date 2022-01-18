@@ -11,14 +11,12 @@ const forbidden = 403;
 const notFound = 404;
 const serverError = 500;
 
-/**
- * Description
- * @param {request, response, next}
- * @description: Request parameter used for the client to send a request to the server. Stores HTTP method data. Response object returns a response to the user
- * @returns JSON Web Token
- */
 
-module.exports.registerAdmin = catchAsync(async (request, response, next ) => { // Exported Register Admin Middleware Function
+// @Route: POST /api/v1/auth/register
+// @Description: Registers a New Admin on the application
+// @Access Type: Private Access
+
+module.exports.registerAdmin = catchAsync(async (request, response, next ) => {
     const {username, emailAddress, password, confirmPassword} = request.body;
 
     if(!username || !emailAddress || !password || !confirmPassword) {
@@ -32,6 +30,10 @@ module.exports.registerAdmin = catchAsync(async (request, response, next ) => { 
 
     return sendToken(newAdmin, created, response); // Send the JWT Token
 });
+
+// @Route: POST /api/v1/auth/register
+// @Description: Registers a New Admin on the application
+// @Access Type: Private Access
 
 module.exports.loginAdmin = catchAsync(async (request, response, next) => { // Controller Function to Login Admin
     const {emailAddress, password} = request.body;
@@ -57,11 +59,18 @@ module.exports.loginAdmin = catchAsync(async (request, response, next) => { // C
 
 });
 
-// Middleware Routine to get the currently logged in Admin
+// @Route: POST /api/v1/auth/register
+// @Description: Registers a New Admin on the application
+// @Access Type: Private Access
+
 module.exports.getMe = catchAsync(async (request, response, next) => {
     const admin = await Admin.findById(request.admin.id);
     return response.status(200).json({success: true, data: admin});
 })
+
+// @Route: POST /api/v1/auth/register
+// @Description: Registers a New Admin on the application
+// @Access Type: Private Access
 
 module.exports.forgotPassword = catchAsync(async (request, response, next) => { // Forgot Password Handler
     const {emailAddress} = request.body;
@@ -76,8 +85,8 @@ module.exports.forgotPassword = catchAsync(async (request, response, next) => { 
     await admin.save();
 
     const resetMessage = `<h1> You have requested a new password reset</h1>
-            <p> Please go to this link to reset your password </p>
-            <a href = ${resetPasswordURL} clicktracking = off>${resetPasswordURL}</a>`
+        <p> Please go to this link to reset your password </p>
+        <a href = ${resetPasswordURL} clicktracking = off>${resetPasswordURL}</a>`
 
     
     // Send e-mail
@@ -85,6 +94,10 @@ module.exports.forgotPassword = catchAsync(async (request, response, next) => { 
     return response.status(ok).json({success: true, data: "E-mail sent"});
 
 });
+
+// @Route: POST /api/v1/auth/register
+// @Description: Registers a New Admin on the application
+// @Access Type: Private Access
 
 module.exports.resetAdminPassword = catchAsync(async (request, response, next) => {
     const resetToken = request.params.resetToken; // Extract the reset token
@@ -103,8 +116,11 @@ module.exports.resetAdminPassword = catchAsync(async (request, response, next) =
 
         await admin.save(); 
         return response.status(200).json({success: true, data: "Password Reset Success"});
+});
 
-})
+// @Route: POST /api/v1/auth/register
+// @Description: Registers a New Admin on the application
+// @Access Type: Private Access
 
 module.exports.fetchAllAdmins = catchAsync(async (request, response, next) => {
     
@@ -114,6 +130,10 @@ module.exports.fetchAllAdmins = catchAsync(async (request, response, next) => {
         return response.status(ok).json(allAdmins);
     }
 });
+
+// @Route: POST /api/v1/auth/register
+// @Description: Registers a New Admin on the application
+// @Access Type: Private Access
 
 module.exports.deleteAdminAccount = catchAsync(async (request, response, next) => {
     const id = request.params.id;
@@ -126,6 +146,9 @@ module.exports.deleteAdminAccount = catchAsync(async (request, response, next) =
     return response.status(204).json("Admin Account Deleted");
 
 });
+
+// @Description: Registers a New Admin on the application
+// @Access Type: Private Access
 
 const sendToken = (admin, status, response) => { // Sends back the JWT token
      const token = admin.generateResetPasswordToken();

@@ -5,7 +5,6 @@ const created = 201;
 const deleted = 204;
 const notFound = 404;
 const badRequest = 400;
-const serverError = 500;
 
 module.exports.getAllAppliances = catchAsync(async (request, response, next) => {
 
@@ -36,7 +35,6 @@ module.exports.getApplianceByID = catchAsync(async (request, response, next) => 
         return response.status(ok).json({appliance});
     }
 
-
 });
 
 module.exports.editAppliance = catchAsync(async (request, response, next) => {
@@ -53,7 +51,7 @@ module.exports.editAppliance = catchAsync(async (request, response, next) => {
             updatedAppliance.save();
         }).clone().catch(err => {console.log(err)});
         
-        return response.status(200).send("Appliance Updated");
+        return response.status(ok).send("Appliance Updated");
     }
 
 });
@@ -62,7 +60,7 @@ module.exports.deleteAppliance = catchAsync(async (request, response, next) => {
     const id = request.params.id;
 
     if(!id) {
-        return response.status(404).json({status: "Fail", message: "No Appliance found with that ID"});
+        return response.status(notFound).json({status: "Fail", message: "No Appliance found with that ID"});
     }
 
     await Appliance.findByIdAndDelete(id);
@@ -74,6 +72,6 @@ module.exports.deleteAppliance = catchAsync(async (request, response, next) => {
 module.exports.deleteAppliances = catchAsync(async (request, response, next) => {
     if(request.method === 'DELETE') {
         await Appliance.deleteMany();
-        return response.status(204).json("Appliances deleted");
+        return response.status(noContent).json("Appliances deleted");
     }
 })
