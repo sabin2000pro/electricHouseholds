@@ -116,13 +116,26 @@ const CreatePreference = (props) => {
                 <option>Washing Machine</option>
                 <option>Tumble Drier</option>
                 <option>Dish Washer</option>
+                <option>Electric Heater</option>
             </select>
         </div>
 
 
         <div className = "morningslot--box">
             <label className = "morning--lbl">First Preference</label>
-            <input value = {chosenFirstPreference} onChange = {(e) => {setChosenFirstPreference(e.target.value)}} placeholder = "Enter your first Preference" required id = "morningslot" type = "text"/>
+            <select onChange = {(e) => {setChosenFirstPreference(e.target.value)}} value = {chosenFirstPreference} className = "box">
+                <option>06:00-07:00</option>
+                <option>07:00-08:00</option>
+                <option>09:00-10:00</option>
+                <option>11:00-12:00</option>
+                <option>13:00-14:00</option>
+                <option>15:00-16:00</option>
+                <option>17:00-18:00</option>
+                <option>17:00-18:00</option>
+                <option>18:00-19:00</option>
+                <option>20:00-21:00</option>
+                <option>22:00-23:00</option>
+            </select>
         </div>
 
         <div className = "latemorning--box">

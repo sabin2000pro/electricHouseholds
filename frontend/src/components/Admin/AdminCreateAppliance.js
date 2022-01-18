@@ -79,15 +79,9 @@ const AdminCreateAppliance = (props) => {
 
                     <form onSubmit = {createApplianceSubmitHandler} className = "login--form">
 
-                    
                     <div className = "appliancename--box">
                         <label className = "name--lbl">Name</label>
                         <input value = {enteredName} onChange = {(e) => {setEnteredName(e.target.value)}} placeholder = "Enter Appliance Name" type = "text"/>
-                    </div>
-
-                    <div className = "applianceimage--box">
-                        <label className = "image--lbl">Image</label>
-                        <input value = {enteredImage} onChange = {(e) => {setEnteredImage(e.target.value)}} placeholder = "Enter Appliance Image URL" required id = "applianceurl" type = "text"/>
                     </div>
 
                     <div className = "appliancedescription--box">

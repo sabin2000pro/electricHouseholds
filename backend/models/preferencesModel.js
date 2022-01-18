@@ -15,7 +15,7 @@ const preferencesSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Please choose the appliance you want to run']
     },
-    
+
     firstPreference: {
         type: String,
         required: [true, 'Please submit first timeslot preference']
@@ -23,7 +23,7 @@ const preferencesSchema = new mongoose.Schema({
 
     secondPreference: {
         type: String,
-        required: [true, 'Please submit your second timeslot preference']
+        required: [true, 'Please submit your fsecond timeslot preference']
     },
 
     thirdPreference: {
