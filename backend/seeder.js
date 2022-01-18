@@ -14,16 +14,19 @@ mongoose.connect(DB_URL, {
     
 });
 
-
 const admins = JSON.parse(fs.readFileSync(path.join(`${__dirname}/data/admins.json`), 'utf-8'));
 
 
 const importData = async () => {
     try {
         // Load JSON file into the DB model
+        await Admin.create(admins);
+        console.log(`Admin data imported to DB success`);
+        return process.exit();
     } 
     
     catch(error) {
+
         if(error) {
             errPresent = true;
             return console.error(error);
@@ -47,9 +50,9 @@ const removeData = async () => {
 
 // Command Line Arguments for manipulating data
 if(process.argv[2] === '--import') {
-
+    return importData();
 };
 
 if(process.argv[2] === '--delete') {
-
+    return removeData();
 }
