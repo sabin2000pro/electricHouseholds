@@ -73,6 +73,7 @@ adminSchema.pre('save', async function(next) {
     return next();
 })
 
+// Comapares entered password and the one in the database before logging in
 adminSchema.methods.compareLoginPasswords = async function(enteredPassword) {
     return await bcrypt.compare(enteredPassword, this.password);
 };
@@ -87,6 +88,7 @@ adminSchema.methods.getResetPasswordToken = function() { // Get the reset passwo
     return resetToken; // Return the reset token
 };
 
+// Generates a unique JWT token for verifying the admin identity
 adminSchema.methods.generateResetPasswordToken = function() {
     return jwt.sign({id: this._id}, process.env.JWT_SECRET, {expiresIn: process.env.JWT_EXPIRES_IN});
 }
