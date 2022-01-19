@@ -89,7 +89,7 @@ const AdminDashboard = (props) => { // Admin Dashboard Component
         <div className = "home-img-box">
             <img className = "home--img" alt = "Wind Turbine" src = {HomepageImg} />
         </div>
-</div>
+    </div>
 
     </section>
 

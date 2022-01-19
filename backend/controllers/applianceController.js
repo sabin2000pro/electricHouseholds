@@ -7,7 +7,6 @@ const notFound = 404;
 const badRequest = 400;
 
 module.exports.getAllAppliances = catchAsync(async (request, response, next) => {
-
     const appliances = await Appliance.find();
     return response.status(ok).json({appliances}); // Return all the appliances in JSON format
 });
@@ -64,7 +63,6 @@ module.exports.deleteAppliance = catchAsync(async (request, response, next) => {
     }
 
     await Appliance.findByIdAndDelete(id);
-
     return response.status(noContent).json("Appliance deleted");
 
 });

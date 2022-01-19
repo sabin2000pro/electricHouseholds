@@ -15,6 +15,7 @@ mongoose.connect(DB_URL, {
 });
 
 const admins = JSON.parse(fs.readFileSync(path.join(`${__dirname}/data/admins.json`), 'utf-8'));
+const preferences = JSON.parse(fs.readFileSync(path.join(`${__dirname}/data/preferences.json`, 'utf-8')));
 
 
 const importData = async () => {
