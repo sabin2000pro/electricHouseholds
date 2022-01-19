@@ -1,5 +1,25 @@
 [
     {
-        
+        "username": "testuser123",
+        "appliance": "Washing Machine",
+        "firstPreference": "09:00-10:00",
+        "secondPreference": "14:00-15:00",
+        "thirdPreference": "19:00-20:00" 
+    },
+
+    {
+        "username": "user09",
+        "appliance": "Tumble Dryer",
+        "firstPreference": "11:00-12:00",
+        "secondPreference": "14:00-15:00",
+        "thirdPreference": "20:00-21:00" 
+    },
+
+    {
+        "username": "user08",
+        "appliance": "Electric Heater",
+        "firstPreference": "04:00-05:00",
+        "secondPreference": "12:00-13:00",
+        "thirdPreference": "21:00-22:00" 
     }
 ]
