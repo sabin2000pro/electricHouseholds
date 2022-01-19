@@ -37,6 +37,7 @@
     "hpp": "^0.2.3",
     "nocache": "^3.0.1",
     "nodemailer": "^6.7.2",
+    "slugify": "^1.6.5",
     "socket.io": "^4.4.0",
     "supertest": "^6.1.6",
     "uuidv1": "^1.6.14",

@@ -37,13 +37,20 @@ const importData = async () => {
 const removeData = async () => {
     try {
 
+        await Admin.remove();
+        console.log(`Data removed success`);
+
+        process.exit(1);
+
     } 
     
     catch(error) {
+
         if(error) {
             errPresent = true;
             return console.error(error);
         }
+
     }
 }
 
