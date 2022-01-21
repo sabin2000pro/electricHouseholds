@@ -29,6 +29,11 @@
   
   .modal__content {
     padding: 1rem;
+    text-align: center;
+    color: red;
+    font-size: 20px;
+    font-weight: 600;
+    margin-top: 20px;
   }
   
   .modal__actions {
