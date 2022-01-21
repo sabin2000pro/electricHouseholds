@@ -110,6 +110,7 @@ const CreatePreference = (props) => {
         try {
             return await axios.get(`http://localhost:5200/api/v1/appliances/fetch-appliances`).then(response => {
                 const allAppliances = response.data.appliances;
+
                 setAppliances(allAppliances);
                 console.log(appliances);
 
@@ -132,8 +133,12 @@ const CreatePreference = (props) => {
         try {
 
             return await axios.get(`http://localhost:5200/api/v1/preferences/fetch-preferences`).then(response => {
-
                 const allPreferences = response.data.allPreferences;
+                const length = response.data.allPreferences.length;
+                if(length === 0) {
+                    return setModalShown({title: "Preferences", message: "No preferences found"});
+
+                }
                 setPreferences(allPreferences);
                 setPreferencesBtnClicked(!preferencesBtnClicked);
                 console.log(preferences);
@@ -274,8 +279,6 @@ const CreatePreference = (props) => {
         <div className = "viewcontainer--btn">
             <button onClick = {fetchAllPreferences} className = "viewpreferences--btn">View All Preferences</button>
         </div> 
-
-        {preferences.length === 0 ? <p className = "no--preferences">No preferences found</p> : null}
 
         <section>
 
