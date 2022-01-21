@@ -6,6 +6,7 @@ import './AdminDashboard.css';
 import HomepageImg from '../images/homepage/homepageimg.jpg';
 import '../Home/Homepage.css';
 import axios from 'axios';
+import Modal from '../../UI/Modal';
 
 const AdminDashboard = (props) => { // Admin Dashboard Component
     let history = useHistory();
@@ -79,6 +80,7 @@ const AdminDashboard = (props) => { // Admin Dashboard Component
         <div className = "home-text-box">
 
         <h1 className = "heading--primary">Your Admin Dashboard</h1>
+
         <p className = "home--description">Welcome to your Admin Dashboard. Here you will be able to view all of the electrical appliances available that users can submit their preferences for. You have the option to search for appliances if there are too many as well.</p>
 
         <button onClick = {fetchApplianceData} className = "btn btn--full mgr-sm" href = "#">View Appliances</button>

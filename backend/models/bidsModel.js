@@ -3,14 +3,12 @@ const mongoose = require('mongoose');
 const bidSchema = new mongoose.Schema({
 
     nickname: { // The nickname of the bidding schema
-        type: String,
-        required: [true, 'Please specify a nickname for the bid settings']
+        type: String
     },
 
     virtualCredits: {
         type: Number,
         default: 0,
-        required: [true, 'You must specify how many Virtual Credits should be assigned by default'],
         min: [50, 'Minimum number of Virtual Credits must be £50'],
         max: [100, 'Maximum number of virtual credits should be £100']
     },
@@ -18,9 +16,8 @@ const bidSchema = new mongoose.Schema({
     openingBid: { // The opening bid field
         type: Number,
         default: 0,
-        required: [true, 'You must specify an opening bid'],
-        min: [50, 'Minimum number of Virtual Credits must be £50'],
-        max: [200, 'Maximum number of virtual credits should be £100']
+        min: [50, 'Minimum opening bid should be  be £50'],
+        max: [200, 'Maximum opening bid should be £200']
     },
 
     bid: {
@@ -37,7 +34,6 @@ const bidSchema = new mongoose.Schema({
     reputationPoints: {
         type: Number,
         default: 0,
-        required: [true, 'Please specify number of Reputation Points you want to alocate'],
         minlength: [5, 'You can allocate a minimum of 5 reputation points'],
         maxlength: [10, 'You can allocate a maximum of 10 social exchange reputation points to be used']
     }

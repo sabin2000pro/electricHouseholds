@@ -5,6 +5,7 @@ import Header from '../Header';
 import HomepageImg from '../../components/images/homepage/homepageimg.jpg';
 import RegisterCard from './RegisterCard';
 import axios from 'axios';
+import Modal from '../../UI/Modal';
 
 const AdminLogin = (props) => { // Admin Login Component
     let history = useHistory();
@@ -13,6 +14,7 @@ const AdminLogin = (props) => { // Admin Login Component
     const [enteredPassword, setPassword] = useState('');
     const [passwordValid, setPasswordValid] = useState(true); 
     const [formValid, setFormValid] = useState(true);
+    const [modalShown, setModalShown] = useState();
     
     useEffect(() => {
         const authToken = localStorage.getItem("authToken");
@@ -26,6 +28,10 @@ const AdminLogin = (props) => { // Admin Login Component
          }
     }
 
+    const modalHandler = () => {
+        setModalShown(null);
+    }
+
     const missingEmail = <p className = "err-msg">Invalid E-mail Address</p>
     const notFound = <p className = "err-msg">Account not found</p>
     const passwordInvalid = <p className = "err-msg">Password Invalid</p>
@@ -36,12 +42,14 @@ const AdminLogin = (props) => { // Admin Login Component
             e.preventDefault();
 
             if(!enteredEmail || !enteredPassword) {
+                setModalShown({title: 'Invalid Credentials', message: 'Check your e-mail and password'});
                 setFormValid(false);
                 setEmailAddress("");
                 setPassword("");
             }
 
             if(enteredEmail.trim().length < 3 || enteredEmail.trim().length === 0) {
+                setModalShown({title: 'Invalid E-mail Address', message: 'Re-Enter E-mail'});
                 setFormValid(false);
                 setEmailAddress("");
             }
@@ -119,7 +127,8 @@ const AdminLogin = (props) => { // Admin Login Component
     <section className = "section--login">
 
         <div className = "container grid grid--2-cols">
-
+                {modalShown && <Modal title = {modalShown.title} message = {modalShown.message} />}
+                
                 <RegisterCard>
                     <h1 className = "heading--primary login">Admin Login</h1>
                     <form onSubmit = {loginHandler} className = "login--form">
@@ -133,7 +142,7 @@ const AdminLogin = (props) => { // Admin Login Component
 
                     <div className = "password--box">
                         <label className = "password--lbl">Password</label>
-                        <input onBlur = {blurHandler} value = {enteredPassword} onChange = {(e) => {setPassword(e.target.value)}} placeholder = "Enter your Password" required id = "password" type = "password"/>
+                        <input onBlur = {blurHandler} value = {enteredPassword} onChange = {(e) => {setPassword(e.target.value)}} placeholder = "Enter your Password" id = "password" type = "password"/>
                     </div>
                     
                     <p className = "already--text">Forgot your password?</p>
