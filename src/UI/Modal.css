@@ -36,6 +36,17 @@
     display: flex;
     justify-content: flex-end;
   }
+
+  .modal__btn {
+    background-color: lightgreen;
+    border-radius: 200px;
+    font-size: 18px;
+    padding: 8px 16px;
+    width: 100px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+  }
   
   @media (min-width: 768px) {
     .modal {
