@@ -1,6 +1,6 @@
 import React, {useState, Fragment, useEffect} from 'react';
 import './CreatePreference.css';
-import {useHistory} from 'react-router-dom';
+import {useHistory, Link} from 'react-router-dom';
 import RegisterCard from '../Admin/RegisterCard';
 import axios from 'axios';
 
@@ -12,9 +12,9 @@ let DEFAULT_TEXT = {
 let otherPreferences = [
 
     {
-      firstOtherPreference: ["06:00-07:00", "08:00-09:00" ,"10:00-11:00","12:00-13:00","14:00-15:00AM", "16:00-17:00AM", "18:00-19:00AM", "20:00-21:00AM", "22:00-23:00"],
-      secondOtherPreference: ["06:00-07:00", "08:00-09:00" ,"10:00-11:00","12:00-13:00","14:00-15:00AM", "16:00-17:00AM", "18:00-19:00AM", "20:00-21:00AM", "22:00-23:00"],
-      thirdOtherPreference: ["06:00-07:00", "08:00-09:00" ,"10:00-11:00","12:00-13:00","14:00-15:00AM", "16:00-17:00AM", "18:00-19:00AM", "20:00-21:00AM", "22:00-23:00"],
+      firstOtherPreference: ["06:00-07:00", "08:00-09:00" ,"10:00-11:00","12:00-13:00","14:00-15:00", "16:00-17:00", "18:00-19:00", "20:00-21:00", "22:00-23:00"],
+      secondOtherPreference: ["06:00-07:00", "08:00-09:00" ,"10:00-11:00","12:00-13:00","14:00-15:00", "16:00-17:00", "18:00-19:00", "20:00-21:00", "22:00-23:00"],
+      thirdOtherPreference: ["06:00-07:00", "08:00-09:00" ,"10:00-11:00","12:00-13:00","14:00-15:00", "16:00-17:00", "18:00-19:00", "20:00-21:00", "22:00-23:00"],
     }
   
   ];
@@ -276,16 +276,19 @@ const CreatePreference = (props) => {
 
             {preferencesBtnClicked && preferences.map((data, key) => {
                 const theData = data;
+                console.log(theData);
 
                 return <div key = {key}>
                     <div className = "preferences--card">
 
                     <h2 className = "appliance--heading">Username : {JSON.stringify(theData.username, null).toString().replaceAll("\"", "")}</h2>
+                    <h2 className = "appliance--heading">Your Preference 1 : {JSON.stringify(theData.firstPreference, null).toString().replaceAll("\"", "")}</h2>
+                    <h2 className = "appliance--heading">Random Allocations</h2>
                     <h2 className = "appliance--heading">First Random Slot : {JSON.stringify(otherFirstPref, null).toString().replaceAll("\"", "")}</h2>
                     <h2 className = "appliance--heading">Second Random Slot : {JSON.stringify(otherSecondPref, null).toString().replaceAll("\"", "")}</h2>
                     <h2 className = "appliance--heading">Third Random Slot : {JSON.stringify(otherThirdPref, null).toString().replaceAll("\"", "")}</h2>
 
-                    <button className = "negotiate--btn">Negotiate Timeslots</button>
+                    <Link className = "negotiate--btn" to = {{pathname: `/fair-negotiations`, state: {preferences}} }>Negotiate Preference</Link>
 
                     </div>
                 </div>
