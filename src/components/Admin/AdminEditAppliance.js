@@ -30,6 +30,7 @@ const AdminEditAppliance = (props) => {
 
     const fetchApplianceData = async () => {
         try {
+            
             return await axios.get(`http://localhost:5200/api/v1/appliances/fetch-appliances`).then(response => {
                 const applianceData = response.data.appliances;
                 setAppliances(applianceData);
