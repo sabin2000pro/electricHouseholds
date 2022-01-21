@@ -16,7 +16,7 @@ const Modal = (props) => {
     </div>
 
     <footer className = "modal__actions">
-    <button>OK</button>
+    <button className = "modal__btn">OK</button>
     </footer>
 
             </ModalCard>
