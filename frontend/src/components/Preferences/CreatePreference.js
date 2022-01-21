@@ -64,11 +64,7 @@ const CreatePreference = (props) => {
             // Validate Preferences
 
             if(chosenFirstPreference === chosenSecondPreference) {
-                setModalShown({title: 'Preference Error', message: "Invalid First Preference"});
-                
-                return setTimeout(() => {
-                    return window.location.reload(false);
-                }, 1500);
+                return setModalShown({title: 'Preference Error', message: "Invalid First Preference"});
             }
 
             else if(chosenSecondPreference === chosenThirdPreference) {
@@ -188,7 +184,7 @@ const CreatePreference = (props) => {
 
            <section className = "section--yourpreferences">
            <div className = "container grid grid--2-cols">
-           {modalShown && <Modal title = {modalShown.title} message = {modalShown.message}/>  }
+           {modalShown && <Modal title = {modalShown.title} message = {modalShown.message} onClick = {modalHandler}/>  }
 
         <RegisterCard>
             <h1 className = "heading--primary login">{DEFAULT_TEXT.preferenceHeader}</h1>

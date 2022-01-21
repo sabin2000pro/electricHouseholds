@@ -4,7 +4,7 @@ import './Modal.css';
 
 const Modal = (props) => {
     return (
-        <div className = "backdrop">
+        <div className = "backdrop" onClick = {props.onClick}>
             <ModalCard className = "modal">
 
             <header className = "modal__header">
