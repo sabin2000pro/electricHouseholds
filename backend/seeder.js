@@ -6,6 +6,7 @@ const dotenv = require('dotenv');
 dotenv.config({path: 'config.env'});
 const DB_URL = process.env.DB_CONN_URL;
 const Admin = require('./models/adminModel');
+const Appliance = require('./models/applianceModel');
 
 let errPresent;
 
@@ -15,14 +16,14 @@ mongoose.connect(DB_URL, {
 });
 
 const admins = JSON.parse(fs.readFileSync(path.join(`${__dirname}/data/admins.json`), 'utf-8'));
-const preferences = JSON.parse(fs.readFileSync(path.join(`${__dirname}/data/preferences.json`, 'utf-8')));
-
+const appliances = JSON.parse(fs.readFileSync(path.join(`${__dirname}/data/appliances.json`)));
 
 const importData = async () => {
     try {
         // Load JSON file into the DB model
         await Admin.create(admins);
-        console.log(`Admin data imported to DB success`);
+        await Appliance.create(appliances);
+        console.log(`Data imported to DB success`);
         return process.exit();
     } 
     
@@ -39,8 +40,8 @@ const removeData = async () => {
     try {
 
         await Admin.remove();
+        await Appliance.remove();
         console.log(`Data removed success`);
-
         process.exit(1);
 
     } 

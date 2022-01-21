@@ -89,6 +89,7 @@ process.on('uncaughtException', (err, promise) => {
 // Handle 404 Routes
 app.all('*', (request, response, next) => {
     if(request.method === 'GET') {
+        
         response.status(404).json({status: 'Fail', message: 'The route you requested is not valid'});
         res.cookie('XSRF-TOKEN', req.csrfToken())
         return next();
