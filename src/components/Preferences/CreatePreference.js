@@ -54,6 +54,7 @@ const CreatePreference = (props) => {
     const [gamingConsoleChosen, setGamingConsoleChosen] = useState(false);
     const [preferencesBtnClicked, setPreferencesBtnClicked] = useState(false);
     const [preferenceSubmitted, setPreferenceSubmitted] = useState(false);
+    const [modalShown, setModalShown] = useState();
 
     const preferencesSubmitHandler = async (e) => {
 
@@ -63,7 +64,7 @@ const CreatePreference = (props) => {
             // Validate Preferences
 
             if(chosenFirstPreference === chosenSecondPreference) {
-                alert('You cannot run your appliance at the same time');
+                setModalShown({title: 'Preference Error', message: "Invalid First Preference"});
                 
                 return setTimeout(() => {
                     return window.location.reload(false);
@@ -71,11 +72,11 @@ const CreatePreference = (props) => {
             }
 
             else if(chosenSecondPreference === chosenThirdPreference) {
-                alert('You cannot run your appliance at the same time');
+                return setModalShown({title: 'Preference Error', message: "Invalid Second Preference"});
             }
 
             else if(chosenFirstPreference === chosenThirdPreference) {
-                alert('You cannot run your appliance at the same time');
+                return setModalShown({title: 'Preference Error', message: "Invalid Third Preference"});
             }
 
             else {
@@ -99,6 +100,10 @@ const CreatePreference = (props) => {
             }
 
         }
+    }
+
+    const modalHandler = () => {
+        setModalShown(null);
     }
 
     useEffect(() => {
@@ -181,9 +186,9 @@ const CreatePreference = (props) => {
 
        <Fragment>
 
-       <Modal title = "Hi" message = "Hi"/>
            <section className = "section--yourpreferences">
            <div className = "container grid grid--2-cols">
+           {modalShown && <Modal title = {modalShown.title} message = {modalShown.message}/>  }
 
         <RegisterCard>
             <h1 className = "heading--primary login">{DEFAULT_TEXT.preferenceHeader}</h1>
