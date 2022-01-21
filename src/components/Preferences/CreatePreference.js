@@ -3,6 +3,8 @@ import './CreatePreference.css';
 import {useHistory, Link} from 'react-router-dom';
 import RegisterCard from '../Admin/RegisterCard';
 import axios from 'axios';
+import Modal from '../../UI/Modal';
+import ModalCard from '../../UI/ModalCard';
 
 let DEFAULT_TEXT = {
     preferenceHeader: 'Your Preferences'
@@ -178,6 +180,8 @@ const CreatePreference = (props) => {
     return (
 
        <Fragment>
+
+       <Modal title = "Hi" message = "Hi"/>
            <section className = "section--yourpreferences">
            <div className = "container grid grid--2-cols">
 
@@ -283,6 +287,10 @@ const CreatePreference = (props) => {
 
                     <h2 className = "appliance--heading">Username : {JSON.stringify(theData.username, null).toString().replaceAll("\"", "")}</h2>
                     <h2 className = "appliance--heading">Your Preference 1 : {JSON.stringify(theData.firstPreference, null).toString().replaceAll("\"", "")}</h2>
+                    <h2 className = "appliance--heading">Your Preference 2 : {JSON.stringify(theData.secondPreference, null).toString().replaceAll("\"", "")}</h2>
+                    <h2 className = "appliance--heading">Your Preference 3 : {JSON.stringify(theData.thirdPreference, null).toString().replaceAll("\"", "")}</h2>
+
+
                     <h2 className = "appliance--heading">Random Allocations</h2>
                     <h2 className = "appliance--heading">First Random Slot : {JSON.stringify(otherFirstPref, null).toString().replaceAll("\"", "")}</h2>
                     <h2 className = "appliance--heading">Second Random Slot : {JSON.stringify(otherSecondPref, null).toString().replaceAll("\"", "")}</h2>
