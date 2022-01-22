@@ -157,7 +157,7 @@ const CreatePreference = (props) => {
                 generateRandomTimeslots();
 
                 return setTimeout(() => {
-                    {!preferenceSubmitted && setModalShown({title: "Are you happy with your preferences?", commentTitle: "Comment Title: ", commentUsername: "Username: ", commentReason: "Reason: ", showInputs: true, showSubmitBtn: true})};
+                    {!preferenceSubmitted && setModalShown({title: "Are you happy with your preferences?", commentTitle: "Comment Title: ", commentUsername: "Username: ", commentReason: "Reason: ", commentDescription: "Description: ", showInputs: true, showSubmitBtn: true})};
                 }, 2000);
 
             }).catch(err => {
@@ -313,7 +313,7 @@ const CreatePreference = (props) => {
 
            <section className = "section--yourpreferences">
            <div className = "container grid grid--2-cols">
-           {modalShown && <Modal showSubmitBtn = {modalShown.showSubmitBtn} showDefaultBtn = {modalShown.showDefaultBtn} onChange = {commentInputsHandler} onBtnClick = {modalHandler} onSubmitBtnClick = {commentFormHandler} showInputs = {modalShown.showInputs} title = {modalShown.title} message = {modalShown.message} commentTitle = {modalShown.commentTitle} commentUsername = {modalShown.commentUsername} commentReason = {modalShown.commentReason} /> }
+           {modalShown && <Modal showSubmitBtn = {modalShown.showSubmitBtn} showDefaultBtn = {modalShown.showDefaultBtn} onChange = {commentInputsHandler} onBtnClick = {modalHandler} onSubmitBtnClick = {commentFormHandler} showInputs = {modalShown.showInputs} title = {modalShown.title} message = {modalShown.message} commentTitle = {modalShown.commentTitle} commentUsername = {modalShown.commentUsername} commentReason = {modalShown.commentReason} commentDescription = {modalShown.commentDescription} /> }
 
         <RegisterCard>
             <h1 className = "heading--primary login">{DEFAULT_TEXT.preferenceHeader}</h1>
