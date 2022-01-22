@@ -53,6 +53,9 @@ const CreatePreference = (props) => {
     const [enteredCommentDescription, setEnteredCommentDescription] = useState('');
 
     const [enteredCommentTitleValid, setEnteredCommentTitleValid] = useState(true);
+    const [enteredCommentUsernameValid, setEnteredCommentUsernameValid] = useState(true);
+    const [enteredCommentReasonValid, setEnteredCommentReasonValid] = useState(true);
+    const [enteredCommentDescriptionValid, setEnteredCommentDescriptionValid] = useState(true);
 
 
     const preferencesSubmitHandler = async (e) => {
@@ -245,9 +248,14 @@ const CreatePreference = (props) => {
             event.preventDefault();
             console.log(enteredCommentTitle);
 
+            if(!validateCommentTitle()) {
+                return alert(`Invalid Comment Title`);
+            }
 
-            validateCommentTitle();
-            validateCommentUsername();
+            if(!validateCommentUsername()) {
+
+            }
+
             validateCommentDescription();
         } 
         
