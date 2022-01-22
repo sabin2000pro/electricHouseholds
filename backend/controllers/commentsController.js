@@ -8,11 +8,11 @@ const serverError = 500;
 module.exports.createComment = catchAsync(async (request, response, next) => {
 
     if(request.method === 'POST') {
-        const {comment, username} = request.body;
-        const newComment = await Comment({comment, username});
+        const {title, username, reason, description} = request.body;
+        const newComment = await Comment({title, username, reason, description});
         await newComment.save();
 
-        return response.status(201).json({newComment});
+        return response.status(created).json({newComment});
     }
 
 });
@@ -38,7 +38,7 @@ module.exports.editComment = catchAsync(async (request, response, next) => {
     const id = request.params.id;
 
     if(!id) {
-        return response.status(404).json({status: "Fail", message: "Comment not found with that ID"})
+        return response.status(notFound).json({status: "Fail", message: "Comment not found with that ID"})
     }
 
     if(request.method === 'PUT') {
