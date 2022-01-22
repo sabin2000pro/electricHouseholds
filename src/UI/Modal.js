@@ -1,8 +1,10 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import ModalCard from './ModalCard';
 import './Modal.css';
 
 const Modal = (props) => {
+    const [title, setTitle] = useState('');
+
     return (
         <div className = "backdrop" onClick = {props.onClick}>
             <ModalCard className = "modal">
@@ -17,9 +19,19 @@ const Modal = (props) => {
 
     <div>
         <form>
-            <label htmlFor = "username">{props.inputUser}</label>
-            
+            <div className = "title">
+                <label htmlFor = "title">{props.inputTitle}</label>
+                {props.showForm && undefined}
+                {props.showInputs && <input type = "text"/>}
+            </div>
+
+            <div className = "username__container">
+                <label htmlFor = "username">{props.inputUsername}</label>
+                {props.showForm && undefined}
+                {props.showInputs && <input type = "text"/>}
+            </div>
         </form>
+
     </div>
 
     <footer className = "modal__actions">
