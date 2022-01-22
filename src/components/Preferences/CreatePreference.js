@@ -197,7 +197,7 @@ const CreatePreference = (props) => {
         try {
             // Prevent form resubmission
             event.preventDefault();
-            {modalShown && setModalShown(null)}
+            {!modalShown && setModalShown(null)}
 
             console.log(`In the comment handler`);
 
