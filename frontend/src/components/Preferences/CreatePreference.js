@@ -88,7 +88,7 @@ const CreatePreference = (props) => {
                 setFormValid(true);
 
                 setTimeout(() => {
-                    {!preferenceSubmitted && setModalShown({title: "Are you happy with your preferences?", inputTitle: "Title: ", inputUsername: "Username: ", showInputs: true})};
+                    {!preferenceSubmitted && setModalShown({title: "Are you happy with your preferences?", commentTitle: "Comment Title: ", commentUsername: "Username: ", commentReason: "Reason: ", showInputs: true})};
                 }, 2000);
 
             }
@@ -106,7 +106,7 @@ const CreatePreference = (props) => {
     }
 
     const modalHandler = () => {
-        setModalShown(null);
+        {!modalShown && setModalShown(null)}
     }
 
     useEffect(() => {
@@ -194,9 +194,15 @@ const CreatePreference = (props) => {
         try {
             // Prevent form resubmission
             event.preventDefault();
+            {modalShown && setModalShown(null)}
+
+            // Validate Input Fields
+
+            // Send POST request
         } 
         
         catch(error) {
+            
             if(error) {
                 return console.error(error);
             }
@@ -210,7 +216,7 @@ const CreatePreference = (props) => {
 
            <section className = "section--yourpreferences">
            <div className = "container grid grid--2-cols">
-           {modalShown && <Modal onChange = {commentFormHandler} showInputs = {modalShown.showInputs} title = {modalShown.title} message = {modalShown.message} inputTitle = {modalShown.inputTitle} inputUsername = {modalShown.inputUsername} onClick = {modalHandler}/>  }
+           {modalShown && <Modal btnClick = {commentFormHandler} onChange = {commentFormHandler} showInputs = {modalShown.showInputs} title = {modalShown.title} message = {modalShown.message} commentTitle = {modalShown.commentTitle} commentUsername = {modalShown.commentUsername} commentReason = {modalShown.commentReason} onClick = {modalHandler}/>  }
 
         <RegisterCard>
             <h1 className = "heading--primary login">{DEFAULT_TEXT.preferenceHeader}</h1>
