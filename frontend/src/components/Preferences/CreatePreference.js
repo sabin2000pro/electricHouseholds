@@ -46,6 +46,7 @@ const CreatePreference = (props) => {
     const [preferencesBtnClicked, setPreferencesBtnClicked] = useState(false);
     const [preferenceSubmitted, setPreferenceSubmitted] = useState(false);
     const [modalShown, setModalShown] = useState();
+    const [showForm, setShowForm] = useState(true);
 
     const preferencesSubmitHandler = async (e) => {
 
@@ -56,21 +57,26 @@ const CreatePreference = (props) => {
 
             if(enteredUsername.trim().length === 0) {
                 setUsernameValid(false);
+                setShowForm(false);
+
                 return setModalShown({title: 'Username Error', message: "Username Cannot be blank."});
             };
 
             if(chosenFirstPreference === chosenSecondPreference) {
                 setFormValid(false);
+                setShowForm(false);
                 return setModalShown({title: 'Preference Error', message: "Invalid First Preference"});
             }
 
             else if(chosenSecondPreference === chosenThirdPreference) {
                 setFormValid(false);
+                setShowForm(false);
                 return setModalShown({title: 'Preference Error', message: "Invalid Second Preference"});
             }
 
             else if(chosenFirstPreference === chosenThirdPreference) {
                 setFormValid(false);
+                setShowForm(false);
                 return setModalShown({title: 'Preference Error', message: "Invalid Third Preference"});
             }
 
@@ -78,13 +84,12 @@ const CreatePreference = (props) => {
                 const {data} = await axios.post(`http://localhost:5200/api/v1/preferences/create-preference`, {username: enteredUsername, appliance: chosenAppliance, firstPreference: chosenFirstPreference, secondPreference: chosenSecondPreference , thirdPreference: chosenThirdPreference}); 
                 console.log(`Data : ${data}`);
 
-                setModalShown({title: 'Preferences', message: 'Your Preferences Have Been Submitted'});
+                setModalShown({title: 'Preferences', message: 'Your Preferences Have Been Submitted', showForm: false});
                 setPreferenceSubmitted(true);
-
                 setFormValid(true);
 
                 setTimeout(() => {
-                    {!preferenceSubmitted && setModalShown({title: "Comment", message : "Leave your comment below", inputUser: "Test Username Here"})};
+                    {!preferenceSubmitted && setModalShown({title: "Are you happy with your preferences?", inputTitle: "Title: ", inputUsername: "Username: ", showInputs: true})};
                 }, 2000);
 
             }
@@ -103,20 +108,6 @@ const CreatePreference = (props) => {
 
     const modalHandler = () => {
         setModalShown(null);
-    }
-
-    const commentSubmitHandler = (event) => {
-        try {
-
-        } 
-        
-        catch(error) {
-            if(error) {
-                return console.error(error);
-            }
-
-        }
-        
     }
 
     useEffect(() => {
@@ -206,7 +197,7 @@ const CreatePreference = (props) => {
 
            <section className = "section--yourpreferences">
            <div className = "container grid grid--2-cols">
-           {modalShown && <Modal title = {modalShown.title} message = {modalShown.message} inputUser = {modalShown.inputUser} onClick = {modalHandler}/>  }
+           {modalShown && <Modal showInputs = {modalShown.showInputs} title = {modalShown.title} message = {modalShown.message} inputTitle = {modalShown.inputTitle} inputUsername = {modalShown.inputUsername} onClick = {modalHandler}/>  }
 
         <RegisterCard>
             <h1 className = "heading--primary login">{DEFAULT_TEXT.preferenceHeader}</h1>
