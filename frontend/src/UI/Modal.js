@@ -15,11 +15,19 @@ const Modal = (props) => {
         <p>{props.message}</p>
     </div>
 
+    <div>
+        <form>
+            <label htmlFor = "username">{props.inputUser}</label>
+            
+        </form>
+    </div>
+
     <footer className = "modal__actions">
+
     <button className = "modal__btn">OK</button>
     </footer>
 
-            </ModalCard>
+         </ModalCard>
         </div>
     )
 }

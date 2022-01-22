@@ -14,6 +14,7 @@ import AdminCreateAppliance from './components/Admin/AdminCreateAppliance';
 import AdminEditAppliance from './components/Admin/AdminEditAppliance';
 import BidsSettings from './components/Admin/AdminBidsSettings';
 import Appliance from './components/Admin/Appliance';
+import FairNegotiations from './components/FairNegotations';
 
 const App = () => { // Main app component
 
@@ -36,6 +37,7 @@ const App = () => { // Main app component
         <Route exact path = "/admin-dashboard/edit-appliance/:id" component = {AdminEditAppliance}/>
         <Route exact path = "/admin-dashboard/bids-settings" component = {BidsSettings} />
         <Route exact path = "/appliance/:id" component = {Appliance}/>
+        <Route exact path = "/fair-negotiations" component = {FairNegotiations}/>
 
       </Router>
 

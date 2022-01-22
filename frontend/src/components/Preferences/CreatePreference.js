@@ -5,6 +5,7 @@ import RegisterCard from '../Admin/RegisterCard';
 import axios from 'axios';
 import Modal from '../../UI/Modal';
 import ModalCard from '../../UI/ModalCard';
+import CreateComment from '../Comments/CreateComment';
 
 let DEFAULT_TEXT = {
     preferenceHeader: 'Your Preferences'
@@ -64,26 +65,33 @@ const CreatePreference = (props) => {
             // Validate Preferences
 
             if(chosenFirstPreference === chosenSecondPreference) {
+                setFormValid(false);
                 return setModalShown({title: 'Preference Error', message: "Invalid First Preference"});
             }
 
             else if(chosenSecondPreference === chosenThirdPreference) {
+                setFormValid(false);
                 return setModalShown({title: 'Preference Error', message: "Invalid Second Preference"});
             }
 
             else if(chosenFirstPreference === chosenThirdPreference) {
+                setFormValid(false);
                 return setModalShown({title: 'Preference Error', message: "Invalid Third Preference"});
             }
 
             else {
-                const {data} = await axios.post(`http://localhost:5200/api/v1/preferences/create-preference`, {username: enteredUsername, appliance: chosenAppliance, firstPreference: chosenFirstPreference, secondPreference: chosenSecondPreference , thirdPreference: chosenThirdPreference});
-                console.log(data);
-    
-                setPreferenceSubmitted(true);
-                alert('Preference Created');
+                const {data} = await axios.post(`http://localhost:5200/api/v1/preferences/create-preference`, {username: enteredUsername, appliance: chosenAppliance, firstPreference: chosenFirstPreference, secondPreference: chosenSecondPreference , thirdPreference: chosenThirdPreference}); 
+                console.log(`Data : ${data}`);
+                   
                 setModalShown({title: 'Preferences', message: 'Your Preferences Have Been Submitted'});
-            
-                return history.push('/home'); // Redirect user back home
+                setPreferenceSubmitted(true);
+
+                setFormValid(true);
+
+              setTimeout(() => {
+                 {!preferenceSubmitted && setModalShown({title: "Comment", message : "Leave your comment below", inputUser: "Test Username Here"})};
+              }, 2000);
+
             }
           
         } 
@@ -189,7 +197,7 @@ const CreatePreference = (props) => {
 
            <section className = "section--yourpreferences">
            <div className = "container grid grid--2-cols">
-           {modalShown && <Modal title = {modalShown.title} message = {modalShown.message} onClick = {modalHandler}/>  }
+           {modalShown && <Modal title = {modalShown.title} message = {modalShown.message} inputUser = {modalShown.inputUser} onClick = {modalHandler}/>  }
 
         <RegisterCard>
             <h1 className = "heading--primary login">{DEFAULT_TEXT.preferenceHeader}</h1>
@@ -284,7 +292,6 @@ const CreatePreference = (props) => {
 
             {preferencesBtnClicked && preferences.map((data, key) => {
                 const theData = data;
-                console.log(theData);
 
                 return <div key = {key}>
                     <div className = "preferences--card">
