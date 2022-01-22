@@ -197,19 +197,58 @@ const CreatePreference = (props) => {
         }
     }
 
-   
+   const commentInputsHandler = (event) => {
+        setEnteredCommentTitle(event.target.value);
+        setEnteredCommentUsername(event.target.value);
+        setEnteredCommentDescription(event.target.value);
+   }
+
+   const validateCommentTitle = function() {
+    try {
+        return enteredCommentTitle.trim().length !== 0;
+    } 
+    
+    catch(error) {
+
+        if(error) {
+            return console.error(error);
+        }
+
+    }
+   }
+
+   const validateCommentUsername = function() {
+        try {
+            return enteredCommentUsername.trim().length !== 0;
+        } 
+        
+        catch(error) {
+            return console.error(error);
+
+        }
+   } 
+
+   const validateCommentDescription = function() {
+        try {
+            return enteredCommentDescription.trim().length !== 0;
+        } 
+        
+        catch(error) {
+            return console.error(error);
+
+        }
+   }
 
     const commentFormHandler = (event) => {
         try {
             // Prevent form resubmission
             event.preventDefault();
-            setEnteredCommentTitle(event.target.value);
-            setEnteredCommentUsername(event.target.value);
-            setEnteredCommentDescription(event.target.value);
+            console.log(enteredCommentTitle);
 
-            if(enteredCommentTitle.trim().length === 0) {
-                alert(`Invalid Comment Title`);
-            }
+
+            validateCommentTitle();
+            validateCommentUsername();
+            validateCommentDescription();
         } 
         
         catch(error) {
@@ -227,7 +266,7 @@ const CreatePreference = (props) => {
 
            <section className = "section--yourpreferences">
            <div className = "container grid grid--2-cols">
-           {modalShown && <Modal showSubmitBtn = {modalShown.showSubmitBtn} showDefaultBtn = {modalShown.showDefaultBtn} onChange = {commentFormHandler} onBtnClick = {modalHandler} onSubmitBtnClick = {commentFormHandler} showInputs = {modalShown.showInputs} title = {modalShown.title} message = {modalShown.message} commentTitle = {modalShown.commentTitle} commentUsername = {modalShown.commentUsername} commentReason = {modalShown.commentReason} /> }
+           {modalShown && <Modal showSubmitBtn = {modalShown.showSubmitBtn} showDefaultBtn = {modalShown.showDefaultBtn} onChange = {commentInputsHandler} onBtnClick = {modalHandler} onSubmitBtnClick = {commentFormHandler} showInputs = {modalShown.showInputs} title = {modalShown.title} message = {modalShown.message} commentTitle = {modalShown.commentTitle} commentUsername = {modalShown.commentUsername} commentReason = {modalShown.commentReason} /> }
 
         <RegisterCard>
             <h1 className = "heading--primary login">{DEFAULT_TEXT.preferenceHeader}</h1>
@@ -338,7 +377,6 @@ const CreatePreference = (props) => {
                     <h2 className = "appliance--heading">Your Preference 2 : {JSON.stringify(theData.secondPreference, null).toString().replaceAll("\"", "")}</h2>
                     <h2 className = "appliance--heading">Your Preference 3 : {JSON.stringify(theData.thirdPreference, null).toString().replaceAll("\"", "")}</h2>
 
-
                     <h2 className = "appliance--heading">Random Allocations</h2>
                     <h2 className = "appliance--heading">First Random Slot : {JSON.stringify(otherFirstPref, null).toString().replaceAll("\"", "")}</h2>
                     <h2 className = "appliance--heading">Second Random Slot : {JSON.stringify(otherSecondPref, null).toString().replaceAll("\"", "")}</h2>
@@ -352,9 +390,8 @@ const CreatePreference = (props) => {
 
         </section>
 
-</section>
-
-        </Fragment>
+    </section>
+</Fragment>
     )
 }
 
