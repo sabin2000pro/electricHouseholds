@@ -21,7 +21,6 @@ let otherPreferences = [
   
   ];
 
-
 const CreatePreference = (props) => {
     const [enteredUsername, setUsername] = useState("");
     const [usernameValid, setUsernameValid] = useState(true);
@@ -238,7 +237,7 @@ const CreatePreference = (props) => {
         </div>
 
         <div className = "issueType--box">
-        <label className = "issue--lbl" htmlFor = "issue">Appliance</label>
+          <label className = "issue--lbl" htmlFor = "issue">Appliance</label>
 
             <select onChange = {(e) => {setChosenAppliance(e.target.value)}} value = {chosenAppliance} className = "box">
 
@@ -253,7 +252,7 @@ const CreatePreference = (props) => {
             <label className = "morning--lbl">First Preference</label>
 
             <select onChange = {(e) => {setChosenFirstPreference(e.target.value)}} value = {chosenFirstPreference} className = "box">
-               <option>06:00-07:00</option>
+                <option>06:00-07:00</option>
                 <option>07:00-08:00</option>
                 <option>09:00-10:00</option>
                 <option>11:00-12:00</option>
