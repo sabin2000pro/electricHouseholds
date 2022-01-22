@@ -1,6 +1,5 @@
 import React, {useState, useEffect, Fragment, useRef} from 'react';
 import {useHistory, useLocation} from 'react-router-dom';
-import Header from './Header';
 import RegisterCard from './Admin/RegisterCard';
 import axios from 'axios';
 
@@ -106,7 +105,7 @@ const FairNegotations = (props) => {
     return (
         <Fragment>
             <div>
-
+                <button>English Auction Algorithm</button>
             </div>
         </Fragment>
     )

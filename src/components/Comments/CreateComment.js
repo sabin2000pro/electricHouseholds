@@ -1,10 +1,13 @@
-import React from 'react'
+import React, {useState, Fragment} from 'react';
+import axios from 'axios';
 
-const CreateComment = () => {
+const CreateComment = (props) => {
     return (
-        <div>
-            
-        </div>
+        <Fragment>
+            <div>
+
+            </div>
+        </Fragment>
     )
 }
 
