@@ -197,16 +197,14 @@ const CreatePreference = (props) => {
         }
     }
 
+   
+
     const commentFormHandler = (event) => {
         try {
             // Prevent form resubmission
             event.preventDefault();
-            alert('Data Submitted');
-
-            setTimeout(() => {
-                {modalShown && setModalShown(null)}
-            }, 900);
-
+            setEnteredCommentTitle(event.target.value);
+            console.log(enteredCommentTitle);
         } 
         
         catch(error) {
@@ -224,7 +222,7 @@ const CreatePreference = (props) => {
 
            <section className = "section--yourpreferences">
            <div className = "container grid grid--2-cols">
-           {modalShown && <Modal showSubmitBtn = {modalShown.showSubmitBtn} showDefaultBtn = {modalShown.showDefaultBtn} onBtnClick = {modalHandler} onSubmitBtnClick = {commentFormHandler} onChange = {commentFormHandler} showInputs = {modalShown.showInputs} title = {modalShown.title} message = {modalShown.message} commentTitle = {modalShown.commentTitle} commentUsername = {modalShown.commentUsername} commentReason = {modalShown.commentReason} /> }
+           {modalShown && <Modal showSubmitBtn = {modalShown.showSubmitBtn} showDefaultBtn = {modalShown.showDefaultBtn} onChange = {commentFormHandler} onBtnClick = {modalHandler} onSubmitBtnClick = {commentFormHandler} showInputs = {modalShown.showInputs} title = {modalShown.title} message = {modalShown.message} commentTitle = {modalShown.commentTitle} commentUsername = {modalShown.commentUsername} commentReason = {modalShown.commentReason} /> }
 
         <RegisterCard>
             <h1 className = "heading--primary login">{DEFAULT_TEXT.preferenceHeader}</h1>
