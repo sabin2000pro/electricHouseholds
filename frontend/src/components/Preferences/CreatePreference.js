@@ -42,11 +42,12 @@ const CreatePreference = (props) => {
     const [formValid, setFormValid] = useState(true);
     const [washingMachineChosen, setWashingMachineChosen] = useState(false);
     const [tumbleDrierChosen, setTumbleDrierChosen] = useState(false);
-    const [dishWasherChosen, setDishWasherChosen] = useState(false);
+    const [electricHeaterChosen, setElectricHeaterChosen] = useState(false);
     const [preferencesBtnClicked, setPreferencesBtnClicked] = useState(false);
     const [preferenceSubmitted, setPreferenceSubmitted] = useState(false);
     const [modalShown, setModalShown] = useState();
     const [showForm, setShowForm] = useState(true);
+    const [showOkBtn, setShowOkBtn] = useState(true);
 
     const preferencesSubmitHandler = async (e) => {
 
@@ -86,9 +87,10 @@ const CreatePreference = (props) => {
                 setModalShown({title: 'Preferences', message: 'Your Preferences Have Been Submitted', showForm: false});
                 setPreferenceSubmitted(true);
                 setFormValid(true);
+                setShowOkBtn(false);
 
                 setTimeout(() => {
-                    {!preferenceSubmitted && setModalShown({title: "Are you happy with your preferences?", commentTitle: "Comment Title: ", commentUsername: "Username: ", commentReason: "Reason: ", showInputs: true})};
+                    {!preferenceSubmitted && setModalShown({title: "Are you happy with your preferences?", commentTitle: "Comment Title: ", commentUsername: "Username: ", commentReason: "Reason: ", showInputs: true, showOkBtn: true})};
                 }, 2000);
 
             }
@@ -106,7 +108,7 @@ const CreatePreference = (props) => {
     }
 
     const modalHandler = () => {
-        {!modalShown && setModalShown(null)}
+        {modalShown && setModalShown(null)}
     }
 
     useEffect(() => {
@@ -142,10 +144,11 @@ const CreatePreference = (props) => {
             return await axios.get(`http://localhost:5200/api/v1/preferences/fetch-preferences`).then(response => {
                 const allPreferences = response.data.allPreferences;
                 const length = response.data.allPreferences.length;
+
                 if(length === 0) {
                     return setModalShown({title: "Preferences", message: "No preferences found"});
-
                 }
+                
                 setPreferences(allPreferences);
                 setPreferencesBtnClicked(!preferencesBtnClicked);
                 console.log(preferences);
@@ -196,13 +199,15 @@ const CreatePreference = (props) => {
             event.preventDefault();
             {modalShown && setModalShown(null)}
 
+            console.log(`In the comment handler`);
+
             // Validate Input Fields
 
             // Send POST request
         } 
         
         catch(error) {
-            
+
             if(error) {
                 return console.error(error);
             }
@@ -216,7 +221,7 @@ const CreatePreference = (props) => {
 
            <section className = "section--yourpreferences">
            <div className = "container grid grid--2-cols">
-           {modalShown && <Modal btnClick = {commentFormHandler} onChange = {commentFormHandler} showInputs = {modalShown.showInputs} title = {modalShown.title} message = {modalShown.message} commentTitle = {modalShown.commentTitle} commentUsername = {modalShown.commentUsername} commentReason = {modalShown.commentReason} onClick = {modalHandler}/>  }
+           {modalShown && <Modal showOkBtn = {modalShown.showOkBtn} onBtnClick = {commentFormHandler} onChange = {commentFormHandler} showInputs = {modalShown.showInputs} title = {modalShown.title} message = {modalShown.message} commentTitle = {modalShown.commentTitle} commentUsername = {modalShown.commentUsername} commentReason = {modalShown.commentReason} /> }
 
         <RegisterCard>
             <h1 className = "heading--primary login">{DEFAULT_TEXT.preferenceHeader}</h1>
