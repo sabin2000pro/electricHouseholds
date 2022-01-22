@@ -28,9 +28,6 @@ const CreatePreference = (props) => {
 
     const [chosenAppliance, setChosenAppliance] = useState("");
     const [applianceValid, setApplianceValid] = useState(true);
-    const [savingDataMsg, setSavingDataMsg] = useState(false);
-    const [chosenImage, setImage] = useState("");
-    const [imageValid, setImageValid] = useState(true);
     const [otherFirstPref, setOtherFirstPref] = useState('');
     const [otherSecondPref, setOtherSecondPref] = useState('');
     const [otherThirdPref, setOtherThirdPref] = useState('');
@@ -45,10 +42,7 @@ const CreatePreference = (props) => {
     const [formValid, setFormValid] = useState(true);
     const [washingMachineChosen, setWashingMachineChosen] = useState(false);
     const [tumbleDrierChosen, setTumbleDrierChosen] = useState(false);
-    const [lightsChosen, setLightsChosen] = useState(false);
     const [dishWasherChosen, setDishWasherChosen] = useState(false);
-    const [showerChosen, setShowerChosen] = useState(false);
-    const [gamingConsoleChosen, setGamingConsoleChosen] = useState(false);
     const [preferencesBtnClicked, setPreferencesBtnClicked] = useState(false);
     const [preferenceSubmitted, setPreferenceSubmitted] = useState(false);
     const [modalShown, setModalShown] = useState();
@@ -89,9 +83,9 @@ const CreatePreference = (props) => {
 
                 setFormValid(true);
 
-              setTimeout(() => {
-                {!preferenceSubmitted && setModalShown({title: "Comment", message : "Leave your comment below", inputUser: "Test Username Here"})};
-              }, 2000);
+                setTimeout(() => {
+                    {!preferenceSubmitted && setModalShown({title: "Comment", message : "Leave your comment below", inputUser: "Test Username Here"})};
+                }, 2000);
 
             }
           
@@ -118,12 +112,11 @@ const CreatePreference = (props) => {
         
         catch(error) {
             if(error) {
-
+                return console.error(error);
             }
 
         }
-
-
+        
     }
 
     useEffect(() => {
