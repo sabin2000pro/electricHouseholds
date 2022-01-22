@@ -253,16 +253,19 @@ const CreatePreference = (props) => {
             <label className = "morning--lbl">First Preference</label>
 
             <select onChange = {(e) => {setChosenFirstPreference(e.target.value)}} value = {chosenFirstPreference} className = "box">
-                <option>06:00-07:00</option>
-                    <option>07:00-08:00</option>
-                    <option>09:00-10:00</option>
-                    <option>11:00-12:00</option>
-                    <option>13:00-14:00</option>
-                    <option>15:00-16:00</option>
-                    <option>17:00-18:00</option>
-                    <option>18:00-19:00</option>
-                    <option>20:00-21:00</option>
+               <option>06:00-07:00</option>
+                <option>07:00-08:00</option>
+                <option>09:00-10:00</option>
+                <option>11:00-12:00</option>
+                <option>13:00-14:00</option>
+                <option>15:00-16:00</option>
+                <option>17:00-18:00</option>
+                <option>18:00-19:00</option>
+                <option>20:00-21:00</option>
                 <option>22:00-23:00</option>
+                <option>00:00-01:00</option>
+                <option>02:00-03:00</option>
+                <option>04:00-05:00</option>
             </select>
     </div>
 
