@@ -1,12 +1,10 @@
 /* eslint-disable no-lone-blocks */
 import React, {useState, Fragment, useEffect} from 'react';
 import './CreatePreference.css';
-import {useHistory, Link} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import RegisterCard from '../Admin/RegisterCard';
 import axios from 'axios';
 import Modal from '../../UI/Modal';
-import ModalCard from '../../UI/ModalCard';
-import CreateComment from '../Comments/CreateComment';
 
 let DEFAULT_TEXT = {
     preferenceHeader: 'Your Preferences'
@@ -47,8 +45,6 @@ const CreatePreference = (props) => {
     const [formValid, setFormValid] = useState(true);
     const [washingMachineChosen, setWashingMachineChosen] = useState(false);
     const [tumbleDrierChosen, setTumbleDrierChosen] = useState(false);
-    const [kettleChosen, setKettleChosen] = useState(false);
-    const [tvChosen, setTvChosen] = useState(false);
     const [lightsChosen, setLightsChosen] = useState(false);
     const [dishWasherChosen, setDishWasherChosen] = useState(false);
     const [showerChosen, setShowerChosen] = useState(false);
@@ -65,8 +61,9 @@ const CreatePreference = (props) => {
             // Validate Preferences
 
             if(enteredUsername.trim().length === 0) {
-                
-            }
+                setUsernameValid(false);
+                return setModalShown({title: 'Username Error', message: "Username Cannot be blank."});
+            };
 
             if(chosenFirstPreference === chosenSecondPreference) {
                 setFormValid(false);
@@ -96,8 +93,6 @@ const CreatePreference = (props) => {
                 {!preferenceSubmitted && setModalShown({title: "Comment", message : "Leave your comment below", inputUser: "Test Username Here"})};
               }, 2000);
 
-              return window.location.reload(false);
-
             }
           
         } 
@@ -114,6 +109,21 @@ const CreatePreference = (props) => {
 
     const modalHandler = () => {
         setModalShown(null);
+    }
+
+    const commentSubmitHandler = (event) => {
+        try {
+
+        } 
+        
+        catch(error) {
+            if(error) {
+
+            }
+
+        }
+
+
     }
 
     useEffect(() => {
@@ -279,7 +289,6 @@ const CreatePreference = (props) => {
             </select>
         </div>
 
-        
         <div className = "submit--container">
             <button className = "login--btn" type = "submit">Submit</button>
         </div>
