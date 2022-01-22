@@ -25,7 +25,6 @@ let otherPreferences = [
 const CreatePreference = (props) => {
     const [enteredUsername, setUsername] = useState("");
     const [usernameValid, setUsernameValid] = useState(true);
-
     const [chosenAppliance, setChosenAppliance] = useState("");
     const [applianceValid, setApplianceValid] = useState(true);
     const [otherFirstPref, setOtherFirstPref] = useState('');
@@ -48,6 +47,14 @@ const CreatePreference = (props) => {
     const [modalShown, setModalShown] = useState();
     const [showForm, setShowForm] = useState(true);
     const [showOkBtn, setShowOkBtn] = useState(true);
+
+    const [enteredCommentTitle, setEnteredCommentTitle] = useState('');
+    const [enteredCommentUsername, setEnteredCommentUsername] = useState('');
+    const [enteredCommentReason, setEnteredCommentReason] = useState('');
+    const [enteredCommentDescription, setEnteredCommentDescription] = useState('');
+    
+    const [enteredCommentTitleValid, setEnteredCommentTitleValid] = useState(true);
+
 
     const preferencesSubmitHandler = async (e) => {
 
@@ -88,9 +95,6 @@ const CreatePreference = (props) => {
                 setPreferenceSubmitted(true);
                 setFormValid(true);
                 setShowOkBtn(false);
-
-                
-
             }
           
         } 
@@ -119,7 +123,6 @@ const CreatePreference = (props) => {
                 const allAppliances = response.data.appliances;
 
                 setAppliances(allAppliances);
-                console.log(appliances);
 
             }).catch(err => {
 
@@ -130,6 +133,7 @@ const CreatePreference = (props) => {
         } 
         
         catch(error) {
+
             if(error) {
                 return console.error(error);
             }
@@ -154,7 +158,7 @@ const CreatePreference = (props) => {
                 generateRandomTimeslots();
 
                 return setTimeout(() => {
-                    {!preferenceSubmitted && setModalShown({title: "Are you happy with your preferences?", commentTitle: "Comment Title: ", commentUsername: "Username: ", commentReason: "Reason: ", showInputs: true, showOkBtn: true})};
+                    {!preferenceSubmitted && setModalShown({title: "Are you happy with your preferences?", commentTitle: "Comment Title: ", commentUsername: "Username: ", commentReason: "Reason: ", showInputs: true, showSubmitBtn: true})};
                 }, 2000);
 
             }).catch(err => {
@@ -199,15 +203,12 @@ const CreatePreference = (props) => {
         try {
             // Prevent form resubmission
             event.preventDefault();
-            {!modalShown && setModalShown(null)}
+            alert('Data Submitted');
 
             setTimeout(() => {
-                {modalShown && setModalShown(null)};
-                alert(`In the comment handler form`);
-            }, 5)
-            // Validate Input Fields
+                {modalShown && setModalShown(null)}
+            }, 900);
 
-            // Send POST request
         } 
         
         catch(error) {
@@ -225,7 +226,7 @@ const CreatePreference = (props) => {
 
            <section className = "section--yourpreferences">
            <div className = "container grid grid--2-cols">
-           {modalShown && <Modal showDefaultBtn = {modalShown.showDefaultBtn} onBtnClick = {modalHandler} onChange = {commentFormHandler} showInputs = {modalShown.showInputs} title = {modalShown.title} message = {modalShown.message} commentTitle = {modalShown.commentTitle} commentUsername = {modalShown.commentUsername} commentReason = {modalShown.commentReason} /> }
+           {modalShown && <Modal showSubmitBtn = {modalShown.showSubmitBtn} showDefaultBtn = {modalShown.showDefaultBtn} onBtnClick = {modalHandler} onSubmitBtnClick = {commentFormHandler} onChange = {commentFormHandler} showInputs = {modalShown.showInputs} title = {modalShown.title} message = {modalShown.message} commentTitle = {modalShown.commentTitle} commentUsername = {modalShown.commentUsername} commentReason = {modalShown.commentReason} /> }
 
         <RegisterCard>
             <h1 className = "heading--primary login">{DEFAULT_TEXT.preferenceHeader}</h1>

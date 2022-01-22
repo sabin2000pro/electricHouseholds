@@ -41,6 +41,7 @@ const Modal = (props) => {
 
     <footer className = "modal__actions">
         {props.showDefaultBtn && <button onClick = {props.onBtnClick} className = "modal__btn">OK</button>}
+        {props.showSubmitBtn && <button onClick = {props.onSubmitBtnClick} className = "modal__btn">Submit</button>}
     </footer>
 
          </ModalCard>
