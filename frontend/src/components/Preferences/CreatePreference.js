@@ -207,9 +207,9 @@ const CreatePreference = (props) => {
             setEnteredCommentUsername(event.target.value);
             setEnteredCommentDescription(event.target.value);
 
-            console.log(`Title: ${enteredCommentTitle}`);
-            console.log(`Reason: ${enteredCommentReason}`);
-
+            if(enteredCommentTitle.trim().length === 0) {
+                alert(`Invalid Comment Title`);
+            }
         } 
         
         catch(error) {
