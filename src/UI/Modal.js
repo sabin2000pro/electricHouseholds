@@ -1,9 +1,8 @@
-import React, {useState, useEffect} from 'react';
+import React, {} from 'react';
 import ModalCard from './ModalCard';
 import './Modal.css';
 
 const Modal = (props) => {
-    const [title, setTitle] = useState('');
 
     return (
         <div className = "backdrop" onClick = {props.onClick}>
@@ -22,7 +21,7 @@ const Modal = (props) => {
             <div className = "title">
                 <label htmlFor = "title">{props.inputTitle}</label>
                 {props.showForm && undefined}
-                {props.showInputs && <input type = "text"/>}
+                {props.showInputs && <input type = "text" value = {props.title} onChange = {props.onChange}/>}
             </div>
 
             <div className = "username__container">
