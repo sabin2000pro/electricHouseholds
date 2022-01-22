@@ -2,22 +2,22 @@ const mongoose = require('mongoose');
 
 const commentSchema = new mongoose.Schema({ // The Comment Model Schema
     
-    title: {
+    commentTitle: {
         type: String,
         required: [true, 'You must provide a comment']
     },
 
-    username: {
+    commentUsername: {
         type: String,
         required: [true, 'Please specify username']
     },
 
-    reason: {
+    commentReason: {
         type: String,
         required: [true, 'Please describe the reason']
     },
 
-    description: {
+    commentDescription: {
         type: String,
         required: [true, 'Please provide comment description']
     },
