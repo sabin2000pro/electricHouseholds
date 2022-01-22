@@ -81,7 +81,7 @@ const CreatePreference = (props) => {
     
                 setPreferenceSubmitted(true);
                 alert('Preference Created');
-    
+                setModalShown({title: 'Preferences', message: 'Your Preferences Have Been Submitted'});
             
                 return history.push('/home'); // Redirect user back home
             }
