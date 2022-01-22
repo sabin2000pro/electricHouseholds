@@ -9,10 +9,6 @@ const START_TIMER = 60;
 const REFRESH_SECONDS = 30000;
 const bidData = [];
 
-const FLAGS = {
-
-}
-
 const FairNegotations = (props) => {
     let history = useHistory();
     const [feedbackData, setFeedbackData] = useState([]);
@@ -25,7 +21,9 @@ const FairNegotations = (props) => {
         } 
         
         catch(error) {
-
+            if(error) {
+                return console.error(error);
+            }
         }
     };
 
@@ -35,7 +33,9 @@ const FairNegotations = (props) => {
         } 
         
         catch(error) {
-
+            if(error) {
+                return console.error(error);
+            }
         }
 
     }
@@ -77,8 +77,7 @@ const FairNegotations = (props) => {
             if(err) {
                 return console.error(err);
             }
-
-            })
+            });
         } 
         
         catch(error) {
@@ -100,15 +99,9 @@ const FairNegotations = (props) => {
         }
     }
 
-    const handleRandomAlgorithm = () => {
-
-    };
-
     const handleEnglishAuctionAlgorithm = () => {
 
     };
-
-
 
     return (
         <Fragment>
@@ -119,4 +112,4 @@ const FairNegotations = (props) => {
     )
 }
 
-export default FairNegotations
+export default FairNegotations // Export Component
