@@ -52,7 +52,7 @@ const CreatePreference = (props) => {
     const [enteredCommentUsername, setEnteredCommentUsername] = useState('');
     const [enteredCommentReason, setEnteredCommentReason] = useState('');
     const [enteredCommentDescription, setEnteredCommentDescription] = useState('');
-    
+
     const [enteredCommentTitleValid, setEnteredCommentTitleValid] = useState(true);
 
 
@@ -127,7 +127,7 @@ const CreatePreference = (props) => {
             }).catch(err => {
 
                 if(err) {
-                    console.log(err);
+                    return console.error(err);
                 }
             })
         } 
@@ -153,8 +153,6 @@ const CreatePreference = (props) => {
                 
                 setPreferences(allPreferences);
                 setPreferencesBtnClicked(!preferencesBtnClicked);
-                console.log(preferences);
-
                 generateRandomTimeslots();
 
                 return setTimeout(() => {
@@ -181,6 +179,7 @@ const CreatePreference = (props) => {
 
     const generateRandomTimeslots = () => {
         try {
+
             let firstOtherPrefIndex = otherPreferences[0].firstOtherPreference;
             let secondOtherPrefIndex = otherPreferences[0].secondOtherPreference
             let thirdOtherPrefIndex = otherPreferences[0].thirdOtherPreference;
@@ -281,6 +280,9 @@ const CreatePreference = (props) => {
                 <option>18:00-19:00</option>
                 <option>20:00-21:00</option>
                 <option>22:00-23:00</option>
+                <option>00:00-01:00</option>
+                <option>02:00-03:00</option>
+                <option>04:00-05:00</option>
             </select>
 
         </div>
@@ -295,10 +297,12 @@ const CreatePreference = (props) => {
                 <option>13:00-14:00</option>
                 <option>15:00-16:00</option>
                 <option>17:00-18:00</option>
-                <option>17:00-18:00</option>
                 <option>18:00-19:00</option>
                 <option>20:00-21:00</option>
                 <option>22:00-23:00</option>
+                <option>00:00-01:00</option>
+                <option>02:00-03:00</option>
+                <option>04:00-05:00</option>
             </select>
         </div>
 
