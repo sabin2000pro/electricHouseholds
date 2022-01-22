@@ -23,6 +23,8 @@ let otherPreferences = [
 
 const CreatePreference = (props) => {
     const [enteredUsername, setUsername] = useState("");
+    const [diffSearch, setDiffSearch] = useState(false);
+    const [searchTerm, setSearchTerm] = useState("");
     const [usernameValid, setUsernameValid] = useState(true);
     const [chosenAppliance, setChosenAppliance] = useState("");
     const [applianceValid, setApplianceValid] = useState(true);
@@ -264,15 +266,22 @@ const CreatePreference = (props) => {
                 return alert(`Invalid Comment Title`);
             }
 
-            if(!validateCommentUsername()) {
-
+            else if(!validateCommentUsername()) {
+                return alert(`Invalid Comment Username`);
             }
 
-            if(!validateCommentDescription()) {
-
+            else if(!validateCommentReason()) {
+                return alert(`Invalid Comment Reason`);
             }
 
-            validateCommentDescription();
+            else if(validateCommentDescription()) {
+                return alert(`Invalid Comment Description`);
+            }
+
+            else {
+                // Send POST request
+            }
+
         } 
         
         catch(error) {
