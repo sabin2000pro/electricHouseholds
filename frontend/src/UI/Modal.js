@@ -27,13 +27,14 @@ const Modal = (props) => {
             <div className = "username__container">
                 <label htmlFor = "username">{props.commentUsername}</label>
                 {props.showForm && undefined}
-                {props.showInputs && <input type = "text"/>}
+                {props.showInputs && <input type = "text" onChange = {(e) => {props.onChange(e)}} />}
+
             </div>
 
             <div className = "reason__container">
                 <label htmlFor = "reason">{props.commentReason}</label>
                 {props.showForm && undefined}
-                {props.showInputs && <input type = "text"/>}
+                {props.showInputs && <input type = "text" onChange = {(e) => {props.onChange(e)}} />}
             </div>
         </form>
 
