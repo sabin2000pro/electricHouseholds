@@ -36,6 +36,15 @@ const Modal = (props) => {
                 {props.showForm && undefined}
                 {props.showInputs && <input type = "text" onChange = {(event) => {props.onChange(event)}} />}
             </div>
+
+            <div className = "description__container">
+                <label htmlFor = "description">{props.commentDescription}</label>
+                {props.showForm && undefined}
+                {props.showInputs && <input type = "text" onChange = {(event) => {props.onChange(event)}} />}
+            </div>
+
+
+
         </form>
 
     </div>
