@@ -64,11 +64,9 @@ const CreatePreference = (props) => {
             e.preventDefault();
 
             // Validate Preferences
-
             if(enteredUsername.trim().length === 0) {
                 setUsernameValid(false);
                 setShowForm(false);
-
                 return setModalShown({title: 'Username Error', message: "Username Cannot be blank."});
             };
 
@@ -226,10 +224,24 @@ const CreatePreference = (props) => {
         } 
         
         catch(error) {
+            setEnteredCommentUsernameValid(false);
             return console.error(error);
 
         }
    } 
+
+   const validateCommentReason = function() {
+       try {
+
+       }
+       
+       catch(error) {
+            if(error) {
+                setEnteredCommentReasonValid(false);
+                return console.error(error);
+            }
+       }
+   }
 
    const validateCommentDescription = function() {
         try {
@@ -240,7 +252,7 @@ const CreatePreference = (props) => {
             return console.error(error);
 
         }
-   }
+   };
 
     const commentFormHandler = (event) => {
         try {
@@ -253,6 +265,10 @@ const CreatePreference = (props) => {
             }
 
             if(!validateCommentUsername()) {
+
+            }
+
+            if(!validateCommentDescription()) {
 
             }
 
