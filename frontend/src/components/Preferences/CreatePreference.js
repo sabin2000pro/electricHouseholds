@@ -59,7 +59,6 @@ const CreatePreference = (props) => {
     const [enteredCommentReasonValid, setEnteredCommentReasonValid] = useState(true);
     const [enteredCommentDescriptionValid, setEnteredCommentDescriptionValid] = useState(true);
 
-
     const preferencesSubmitHandler = async (e) => {
 
         try {
@@ -200,10 +199,20 @@ const CreatePreference = (props) => {
         }
     }
 
-   const commentInputsHandler = (event) => {
-        setEnteredCommentTitle(event.target.value);
-        setEnteredCommentUsername(event.target.value);
-        setEnteredCommentDescription(event.target.value);
+   const commentInputsHandler = async (event) => {
+       try {
+            setEnteredCommentTitle(event.target.value);
+            setEnteredCommentUsername(event.target.value);
+            setEnteredCommentDescription(event.target.value);
+            return await axios.post(`http://localhost:5200/api/v1/comments/create-comment`, {});
+       } 
+       
+       catch(error) {
+            if(error) {
+                return console.error(error);
+            }
+       }
+       
    }
 
    const validateCommentTitle = function() {
@@ -239,6 +248,7 @@ const CreatePreference = (props) => {
        }
        
        catch(error) {
+
             if(error) {
                 setEnteredCommentReasonValid(false);
                 return console.error(error);
@@ -262,11 +272,10 @@ const CreatePreference = (props) => {
         try {
             // Prevent form resubmission
             event.preventDefault();
-            console.log(enteredCommentTitle);
 
             if(!validateCommentTitle()) {
                 alert(`Invalid Comment Title`);
-                setEnteredCommentTitle('');
+                return setEnteredCommentTitle(" ");
             }
 
             else if(!validateCommentUsername()) {
@@ -283,7 +292,8 @@ const CreatePreference = (props) => {
             }
 
             else {
-                // Send POST request
+                
+                alert(`Comment Data Saved to DB`);
             }
 
         } 
