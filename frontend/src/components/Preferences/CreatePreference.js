@@ -204,7 +204,12 @@ const CreatePreference = (props) => {
             // Prevent form resubmission
             event.preventDefault();
             setEnteredCommentTitle(event.target.value);
-            console.log(enteredCommentTitle);
+            setEnteredCommentUsername(event.target.value);
+            setEnteredCommentDescription(event.target.value);
+
+            console.log(`Title: ${enteredCommentTitle}`);
+            console.log(`Reason: ${enteredCommentReason}`);
+
         } 
         
         catch(error) {
