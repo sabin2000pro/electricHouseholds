@@ -203,8 +203,8 @@ const CreatePreference = (props) => {
        try {
             setEnteredCommentTitle(event.target.value);
             setEnteredCommentUsername(event.target.value);
+            setEnteredCommentReason(event.target.value);
             setEnteredCommentDescription(event.target.value);
-            return await axios.post(`http://localhost:5200/api/v1/comments/create-comment`, {});
        } 
        
        catch(error) {
@@ -217,7 +217,7 @@ const CreatePreference = (props) => {
 
    const validateCommentTitle = function() {
     try {
-        return enteredCommentTitle.trim().length === 0 && !isNaN(enteredCommentTitle);
+        return enteredCommentTitle.trim().length !== 0;
     } 
     
     catch(error) {
@@ -243,8 +243,7 @@ const CreatePreference = (props) => {
 
    const validateCommentReason = function() {
        try {
-            const invalidData = /^[^\\\/&]*$/;
-            return enteredCommentReason.match(invalidData) || enteredCommentReason.trim().length === 0;
+        return enteredCommentReason.trim().length !== 0;
        }
        
        catch(error) {
@@ -258,7 +257,7 @@ const CreatePreference = (props) => {
 
    const validateCommentDescription = function() {
         try {
-            return enteredCommentDescription.trim().length === 0;
+            return enteredCommentDescription.trim().length !== 0;
         } 
         
         catch(error) {
@@ -268,33 +267,22 @@ const CreatePreference = (props) => {
         }
    };
 
-    const commentFormHandler = (event) => {
+    const commentFormHandler = async (event) => {
         try {
             // Prevent form resubmission
             event.preventDefault();
 
             if(!validateCommentTitle()) {
                 alert(`Invalid Comment Title`);
-                return setEnteredCommentTitle(" ");
             }
 
-            else if(!validateCommentUsername()) {
-                alert(`Invalid Comment Username`);
-                setEnteredCommentUsername('');
-            }
+           
 
-            else if(!validateCommentReason()) {
-                return alert(`Invalid Comment Reason`);
-            }
-
-            else if(validateCommentDescription()) {
-                return alert(`Invalid Comment Description`);
-            }
-
-            else {
+                console.log(`Entered Title : ${enteredCommentTitle}`);
+                console.log(`Entered Username : ${enteredCommentUsername}`);
                 
-                alert(`Comment Data Saved to DB`);
-            }
+            return await axios.post(`http://localhost:5200/api/v1/comments/create-comment`, {commentTitle: enteredCommentTitle, commentUsername: enteredCommentUsername, commentReason: enteredCommentReason, commentDescription: enteredCommentDescription});
+            
 
         } 
         
