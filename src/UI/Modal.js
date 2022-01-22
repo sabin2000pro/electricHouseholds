@@ -18,14 +18,20 @@ const Modal = (props) => {
 
     <div>
         <form>
-            <div className = "title">
-                <label htmlFor = "title">{props.inputTitle}</label>
+            <div className = "title__container">
+                <label htmlFor = "title">{props.commentTitle}</label>
                 {props.showForm && undefined}
-                {props.showInputs && <input type = "text" value = {props.title} onChange = {props.onChange}/>}
+                {props.showInputs && <input type = "text" onChange = {props.onChange}/>}
             </div>
 
             <div className = "username__container">
-                <label htmlFor = "username">{props.inputUsername}</label>
+                <label htmlFor = "username">{props.commentUsername}</label>
+                {props.showForm && undefined}
+                {props.showInputs && <input type = "text"/>}
+            </div>
+
+            <div className = "reason__container">
+                <label htmlFor = "reason">{props.commentReason}</label>
                 {props.showForm && undefined}
                 {props.showInputs && <input type = "text"/>}
             </div>
@@ -35,7 +41,7 @@ const Modal = (props) => {
 
     <footer className = "modal__actions">
 
-    <button className = "modal__btn">OK</button>
+    <button onClick = {props.btnClick} className = "modal__btn">OK</button>
     </footer>
 
          </ModalCard>
