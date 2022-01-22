@@ -190,13 +190,27 @@ const CreatePreference = (props) => {
         }
     }
 
+    const commentFormHandler = (event) => {
+        try {
+            // Prevent form resubmission
+            event.preventDefault();
+        } 
+        
+        catch(error) {
+            if(error) {
+                return console.error(error);
+            }
+        }
+
+    }
+
     return (
 
        <Fragment>
 
            <section className = "section--yourpreferences">
            <div className = "container grid grid--2-cols">
-           {modalShown && <Modal showInputs = {modalShown.showInputs} title = {modalShown.title} message = {modalShown.message} inputTitle = {modalShown.inputTitle} inputUsername = {modalShown.inputUsername} onClick = {modalHandler}/>  }
+           {modalShown && <Modal onChange = {commentFormHandler} showInputs = {modalShown.showInputs} title = {modalShown.title} message = {modalShown.message} inputTitle = {modalShown.inputTitle} inputUsername = {modalShown.inputUsername} onClick = {modalHandler}/>  }
 
         <RegisterCard>
             <h1 className = "heading--primary login">{DEFAULT_TEXT.preferenceHeader}</h1>
