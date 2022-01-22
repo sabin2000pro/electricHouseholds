@@ -1,3 +1,4 @@
+/* eslint-disable no-lone-blocks */
 import React, {useState, Fragment, useEffect} from 'react';
 import './CreatePreference.css';
 import {useHistory, Link} from 'react-router-dom';
@@ -24,7 +25,6 @@ let otherPreferences = [
 
 
 const CreatePreference = (props) => {
-    let history = useHistory();
     const [enteredUsername, setUsername] = useState("");
     const [usernameValid, setUsernameValid] = useState(true);
 
@@ -64,6 +64,10 @@ const CreatePreference = (props) => {
 
             // Validate Preferences
 
+            if(enteredUsername.trim().length === 0) {
+                
+            }
+
             if(chosenFirstPreference === chosenSecondPreference) {
                 setFormValid(false);
                 return setModalShown({title: 'Preference Error', message: "Invalid First Preference"});
@@ -82,15 +86,17 @@ const CreatePreference = (props) => {
             else {
                 const {data} = await axios.post(`http://localhost:5200/api/v1/preferences/create-preference`, {username: enteredUsername, appliance: chosenAppliance, firstPreference: chosenFirstPreference, secondPreference: chosenSecondPreference , thirdPreference: chosenThirdPreference}); 
                 console.log(`Data : ${data}`);
-                   
+
                 setModalShown({title: 'Preferences', message: 'Your Preferences Have Been Submitted'});
                 setPreferenceSubmitted(true);
 
                 setFormValid(true);
 
               setTimeout(() => {
-                 {!preferenceSubmitted && setModalShown({title: "Comment", message : "Leave your comment below", inputUser: "Test Username Here"})};
+                {!preferenceSubmitted && setModalShown({title: "Comment", message : "Leave your comment below", inputUser: "Test Username Here"})};
               }, 2000);
+
+              return window.location.reload(false);
 
             }
           
