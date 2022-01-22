@@ -208,7 +208,7 @@ const CreatePreference = (props) => {
 
    const validateCommentTitle = function() {
     try {
-        return enteredCommentTitle.trim().length !== 0;
+        return enteredCommentTitle.trim().length === 0 && !isNaN(enteredCommentTitle);
     } 
     
     catch(error) {
@@ -234,7 +234,8 @@ const CreatePreference = (props) => {
 
    const validateCommentReason = function() {
        try {
-
+            const invalidData = /^[^\\\/&]*$/;
+            return enteredCommentReason.match(invalidData) || enteredCommentReason.trim().length === 0;
        }
        
        catch(error) {
@@ -247,10 +248,11 @@ const CreatePreference = (props) => {
 
    const validateCommentDescription = function() {
         try {
-            return enteredCommentDescription.trim().length !== 0;
+            return enteredCommentDescription.trim().length === 0;
         } 
         
         catch(error) {
+            setEnteredCommentDescriptionValid(false);
             return console.error(error);
 
         }
@@ -263,11 +265,13 @@ const CreatePreference = (props) => {
             console.log(enteredCommentTitle);
 
             if(!validateCommentTitle()) {
-                return alert(`Invalid Comment Title`);
+                alert(`Invalid Comment Title`);
+                setEnteredCommentTitle('');
             }
 
             else if(!validateCommentUsername()) {
-                return alert(`Invalid Comment Username`);
+                alert(`Invalid Comment Username`);
+                setEnteredCommentUsername('');
             }
 
             else if(!validateCommentReason()) {
