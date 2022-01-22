@@ -84,14 +84,12 @@ const CreatePreference = (props) => {
             else {
                 await axios.post(`http://localhost:5200/api/v1/preferences/create-preference`, {username: enteredUsername, appliance: chosenAppliance, firstPreference: chosenFirstPreference, secondPreference: chosenSecondPreference , thirdPreference: chosenThirdPreference}); 
 
-                setModalShown({title: 'Preferences', message: 'Your Preferences Have Been Submitted', showForm: false});
+                setModalShown({title: 'Preferences', message: 'Your Preferences Have Been Submitted', showForm: false, showDefaultBtn: true});
                 setPreferenceSubmitted(true);
                 setFormValid(true);
                 setShowOkBtn(false);
 
-                setTimeout(() => {
-                    {!preferenceSubmitted && setModalShown({title: "Are you happy with your preferences?", commentTitle: "Comment Title: ", commentUsername: "Username: ", commentReason: "Reason: ", showInputs: true, showOkBtn: true})};
-                }, 2000);
+                
 
             }
           
@@ -153,7 +151,11 @@ const CreatePreference = (props) => {
                 setPreferencesBtnClicked(!preferencesBtnClicked);
                 console.log(preferences);
 
-                return generateRandomTimeslots();
+                generateRandomTimeslots();
+
+                return setTimeout(() => {
+                    {!preferenceSubmitted && setModalShown({title: "Are you happy with your preferences?", commentTitle: "Comment Title: ", commentUsername: "Username: ", commentReason: "Reason: ", showInputs: true, showOkBtn: true})};
+                }, 2000);
 
             }).catch(err => {
 
@@ -199,8 +201,10 @@ const CreatePreference = (props) => {
             event.preventDefault();
             {!modalShown && setModalShown(null)}
 
-            console.log(`In the comment handler`);
-
+            setTimeout(() => {
+                {modalShown && setModalShown(null)};
+                alert(`In the comment handler form`);
+            }, 5)
             // Validate Input Fields
 
             // Send POST request
@@ -221,7 +225,7 @@ const CreatePreference = (props) => {
 
            <section className = "section--yourpreferences">
            <div className = "container grid grid--2-cols">
-           {modalShown && <Modal showOkBtn = {modalShown.showOkBtn} onBtnClick = {commentFormHandler} onChange = {commentFormHandler} showInputs = {modalShown.showInputs} title = {modalShown.title} message = {modalShown.message} commentTitle = {modalShown.commentTitle} commentUsername = {modalShown.commentUsername} commentReason = {modalShown.commentReason} /> }
+           {modalShown && <Modal showDefaultBtn = {modalShown.showDefaultBtn} onBtnClick = {modalHandler} onChange = {commentFormHandler} showInputs = {modalShown.showInputs} title = {modalShown.title} message = {modalShown.message} commentTitle = {modalShown.commentTitle} commentUsername = {modalShown.commentUsername} commentReason = {modalShown.commentReason} /> }
 
         <RegisterCard>
             <h1 className = "heading--primary login">{DEFAULT_TEXT.preferenceHeader}</h1>
