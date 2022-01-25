@@ -30,16 +30,20 @@ module.exports.createBot = catchAsync(async (request, response, next) => {
     const newBot = new Bot({name, virtualCredits, type});
     await newBot.save();
 
-    return response.status(201).json({newBot});
+    return response.status(created).json({newBot});
 
 });
 
 module.exports.editBot = catchAsync(async (request, response, next) => {
+    const id = request.params.id;
 
+    if(request.method === 'PUT') {
+       const editedBot = await Bot.findByIdAndUpdate(id, request.body, {new: true, runValidators: true});
+    }
 });
 
 module.exports.deleteBot = catchAsync(async (request, response, next) => {
     if(request.method === 'DELETE') {
-        
+
     }
 });
