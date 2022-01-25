@@ -207,6 +207,11 @@ const FairNegotations = (props) => {
 
             // Send POST request to the back-end server
             const {data} = await axios.post(``);
+
+            // If no data found
+            if(!data) {
+                return alert(`No data could be submitted`);
+            }
         }
         
         catch(error) {
@@ -222,10 +227,13 @@ const FairNegotations = (props) => {
     const validateFeedback = function() {
         try {
 
-        } catch(error) {
+        }
+        
+        catch(error) {
 
             if(error) {
-                return console.error(error);
+                console.error(error);
+                throw new Error(error);
             }
 
         }
