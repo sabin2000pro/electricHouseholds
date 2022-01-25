@@ -90,9 +90,10 @@ const CreatePreference = (props) => {
             }
 
             else {
-                await axios.post(`http://localhost:5200/api/v1/preferences/create-preference`, {username: enteredUsername, appliance: chosenAppliance, firstPreference: chosenFirstPreference, secondPreference: chosenSecondPreference , thirdPreference: chosenThirdPreference}); 
 
+                await axios.post(`http://localhost:5200/api/v1/preferences/create-preference`, {username: enteredUsername, appliance: chosenAppliance, firstPreference: chosenFirstPreference, secondPreference: chosenSecondPreference , thirdPreference: chosenThirdPreference}); 
                 setModalShown({title: 'Preferences', message: 'Your Preferences Have Been Submitted', showForm: false, showDefaultBtn: true});
+
                 setPreferenceSubmitted(true);
                 setFormValid(true);
                 setShowOkBtn(false);
@@ -178,10 +179,10 @@ const CreatePreference = (props) => {
         }
     }
 
+    // Fair Negotiation Algorithm 1 Implementation
     const generateRandomTimeslots = () => {
 
         try {
-
             let firstOtherPrefIndex = otherPreferences[0].firstOtherPreference;
             let secondOtherPrefIndex = otherPreferences[0].secondOtherPreference
             let thirdOtherPrefIndex = otherPreferences[0].thirdOtherPreference;
@@ -194,9 +195,9 @@ const CreatePreference = (props) => {
         catch(error) {
         
             if(error) {
-                return console.error(error);
+                console.error(error);
+                throw new Error(error);
             }
-
         }
     }
 
@@ -210,8 +211,10 @@ const CreatePreference = (props) => {
        } 
        
        catch(error) {
+
             if(error) {
-                return console.error(error);
+                console.error(error);
+                throw new Error(error);
             }
        }
        
@@ -278,18 +281,17 @@ const CreatePreference = (props) => {
             if(!validateCommentTitle()) {
                 alert(`Invalid Comment Title`);
             }
-
            
          await axios.post(`http://localhost:5200/api/v1/comments/create-comment`, {commentTitle: enteredCommentTitle, commentUsername: enteredCommentUsername, commentReason: enteredCommentReason, commentDescription: enteredCommentDescription});
-         alert('Done');
-
          return window.location.reload(false);
+
         } 
         
         catch(error) {
 
             if(error) {
-                return console.error(error);
+             console.error(error);
+                throw new Error(error);
             }
         }
 
@@ -368,7 +370,9 @@ const CreatePreference = (props) => {
 
         <div className = "afternoon--box">
             <label className = "password--lbl">Third Preference</label>
+            
             <select onChange = {(e) => {setChosenThirdPreference(e.target.value)}} value = {chosenThirdPreference} className = "box">
+
                 <option>06:00-07:00</option>
                 <option>07:00-08:00</option>
                 <option>09:00-10:00</option>
