@@ -191,7 +191,7 @@ const FairNegotations = (props) => {
         } 
         
         catch(error) {
-            
+
             if(error) {
                 return console.error(error);
             }
@@ -260,12 +260,14 @@ const FairNegotations = (props) => {
 
     return (
         <React.Fragment>
-            <div className = "english--acution">
+        <section className = "section--login">
 
+        <div className = "container grid grid--2-cols">
                 <button>English Auction Algorithm</button>
-            </div>
-            
-           
+                <button>Social Exchange</button>
+        </div>
+
+</section>
         </React.Fragment>
     )
 }
