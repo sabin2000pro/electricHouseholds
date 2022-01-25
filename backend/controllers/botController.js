@@ -24,10 +24,14 @@ module.exports.createBot = catchAsync(async (request, response, next) => {
     const {name, virtualCredits, type} = request.body;
 
     if(!name || !virtualCredits || !type) {
-
+        return response.status(404).json({status: "Fail", message: "Could not create bot. Invalid entries"});
     };
 
-    
+    const newBot = new Bot({name, virtualCredits, type});
+    await newBot.save();
+
+    return response.status(201).json({newBot});
+
 });
 
 module.exports.editBot = catchAsync(async (request, response, next) => {
@@ -35,5 +39,7 @@ module.exports.editBot = catchAsync(async (request, response, next) => {
 });
 
 module.exports.deleteBot = catchAsync(async (request, response, next) => {
-    
+    if(request.method === 'DELETE') {
+        
+    }
 });
