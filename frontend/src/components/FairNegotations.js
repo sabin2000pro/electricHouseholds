@@ -29,6 +29,7 @@ const FairNegotations = (props) => {
     const [maxBidFound, setMaxBidFound] = useState(false);
     const [minBidFound, setMinBidFound] = useState(false);
     const [bidsCounted, setBidsCounted] = useState(false);
+    const [joinedLiveAuction, setJoinedLiveAuction] = useState(false);
 
     // Used as the countdown timer by using refs.
     const useInterval = (callback, delay) => {
@@ -179,6 +180,10 @@ const FairNegotations = (props) => {
     const submitFeedbackHandler = async (event) => {
         try {
             const {data} = await axios.post(``);
+
+            if(!data) {
+
+            }
         }
         
         catch(error) {
@@ -199,7 +204,7 @@ const FairNegotations = (props) => {
             if(error) {
                 return console.error(error);
             }
-            
+
         }
     }
 
