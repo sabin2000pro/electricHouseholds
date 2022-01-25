@@ -15,6 +15,7 @@ import AdminEditAppliance from './components/Admin/AdminEditAppliance';
 import BidsSettings from './components/Admin/AdminBidsSettings';
 import Appliance from './components/Admin/Appliance';
 import FairNegotiations from './components/FairNegotations';
+import BotSettings from './components/AIBot/BotSettings';
 
 const App = () => { // Main app component
 
@@ -36,6 +37,7 @@ const App = () => { // Main app component
         <Route exact path = "/api/v1/auth/client/admin-dashboard/create-appliance" component = {AdminCreateAppliance} />
         <Route exact path = "/admin-dashboard/edit-appliance/:id" component = {AdminEditAppliance}/>
         <Route exact path = "/admin-dashboard/bids-settings" component = {BidsSettings} />
+        <Route exact path = "/admin-dashboard/api/v1/bot-settings" component = {BotSettings} />
         <Route exact path = "/appliance/:id" component = {Appliance}/>
         <Route exact path = "/fair-negotiations" component = {FairNegotiations}/>
 
