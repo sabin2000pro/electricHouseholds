@@ -205,7 +205,8 @@ const FairNegotations = (props) => {
         try {
             event.preventDefault();
 
-            await axios.post(``);
+            // Send POST request to the back-end server
+            const {data} = await axios.post(``);
         }
         
         catch(error) {
