@@ -12,7 +12,7 @@ const BotSchema = new mongoose.Schema({
     type: {
         enum: ['Low', 'Medium', 'Intense']
     }
-
+    
 });
 
 const Bot = mongoose.Model('Bot', BotSchema);
