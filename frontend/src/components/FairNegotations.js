@@ -25,6 +25,8 @@ const FairNegotations = (props) => {
     const [enteredBid, setEnteredBid] = useState('');
     const [bidValid, setBidValid] = useState(false);
     const [bidSubmitted, setBidSubmitted] = useState(false);
+    const [feedbackFormValid, setFeedbackFormValid] = useState(false);
+    const [feedbackFormSubmitted, setFeedbackFormSubmitted] = useState(false);
 
     // Used as the countdown timer by using refs.
     const useInterval = (callback, delay) => {
@@ -58,6 +60,7 @@ const FairNegotations = (props) => {
         return fetchAllBids();
       }, []);
 
+      // Routine used to join the live auction algorithm based on the back-end web sockets
       const joinLiveAuction = function() {
           try {
 
@@ -152,7 +155,9 @@ const FairNegotations = (props) => {
         } 
         
         catch(error) {
+            if(error) {
 
+            }
         }
     }
 
