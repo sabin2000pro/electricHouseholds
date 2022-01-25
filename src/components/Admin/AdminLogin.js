@@ -16,6 +16,7 @@ const AdminLogin = (props) => { // Admin Login Component
     const [formValid, setFormValid] = useState(true);
     const [modalShown, setModalShown] = useState();
     
+    // Used to fetch the authentication token
     useEffect(() => {
         const authToken = localStorage.getItem("authToken");
         return checkToken(authToken);
@@ -48,6 +49,7 @@ const AdminLogin = (props) => { // Admin Login Component
                 setPassword("");
             }
 
+            // Validate the entered E-mail
             if(enteredEmail.trim().length < 3 || enteredEmail.trim().length === 0) {
                 setModalShown({title: 'Invalid E-mail Address', message: 'Re-Enter E-mail'});
                 setFormValid(false);
@@ -66,6 +68,10 @@ const AdminLogin = (props) => { // Admin Login Component
             }
 
             const {data} = await axios.post(`http://localhost:5200/api/v1/auth/login-admin`, {emailAddress: enteredEmail, password: enteredPassword}); // Send off a POST request to the backend
+
+            if(!data) {
+                alert('No data found!. Only a placeholder')
+            }
 
             const authorizationToken = data.token; // Extract the token
             localStorage.setItem("authToken", authorizationToken);
