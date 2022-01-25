@@ -44,8 +44,7 @@ const FairNegotations = (props) => {
     const [minBidFound, setMinBidFound] = useState(false);
     const [biddingStarted, setBiddingStarted] = useState(false);
     const [bidsCounted, setBidsCounted] = useState(false);
-    const [joinedLiveAuction, setJoinedLiveAuction] = useState(false);
-    const [englishAuctionChosen, setEnglishAuctionChosen] = useState(false);
+    const [auctionChosen, setAuctionChosen] = useState(false);
     const [socialExchangeChosen, setSocialExchangeChosen] = useState(false);
 
     const [botTurn, setBotTurn] = useState(false);
@@ -89,7 +88,7 @@ const FairNegotations = (props) => {
 
       // Routine that toggles between true / false if the english auction algorithm is chosen
       const chosenEnglishAuctionHandler = function() {
-          return setEnglishAuctionChosen(!englishAuctionChosen);
+          return setAuctionChosen(!auctionChosen);
       };
       
       const chosenSocialExchangeHandler = function() {
@@ -182,6 +181,7 @@ const FairNegotations = (props) => {
     // This routine is used to fetch all the bids that have been placed thus far. Sends a GET request to the back-end.
     const fetchAllBids = async () => {
         try {
+            
             // Send GET request to fetch all bids here
         } 
         
@@ -286,17 +286,27 @@ const FairNegotations = (props) => {
 
     return (
         <React.Fragment>
-         <section className = "section--login">
+    <section className = "section--login">
+
           <h1 className = "fn--heading">Choose Your Desired Algorithm Below</h1>
 
         <div className = "container grid grid--2-cols">
-            <button onClick = {chosenEnglishAuctionHandler} className = "auction--btn">English Auction Algorithm</button>
+            <button onClick = {chosenEnglishAuctionHandler} className = "auction--btn">Auction Algorithm</button>
             <button onClick = {chosenSocialExchangeHandler} className = "social--btn">Social Exchange Algorithm</button>
         </div>
 
+        {auctionChosen ? 
+       <div>
+            <h1 style = {{textAlign: 'center', marginTop: '100px'}}>Opening Bid: </h1>
+            <h1 style = {{textAlign: 'center', marginTop: '120px'}}>Chosen Appliance: </h1>
+            <h1 style = {{textAlign: 'center', marginTop: '120px'}}>Preference 1</h1>
+        </div>
+        : null}
+
+
+
         
 
-     
     </section>
 
     <footer className = "footer">
