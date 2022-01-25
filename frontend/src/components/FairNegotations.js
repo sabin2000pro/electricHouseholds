@@ -28,10 +28,12 @@ const FairNegotations = (props) => {
     const [enteredFeedbackUsername, setEnteredFeedbackUsername] = useState("");
     const [enteredFeedbackEmailAddress, setEnteredFeedbackEmailAddress] = useState("");
     const [chosenFeedbackFeeling, setChosenFeedbackFeeling] = useState("");
+    const [enteredFeedbackDescription, setEnteredFeedbackDescription] = useState('');
     const [feedbackFormValid, setFeedbackFormValid] = useState(false);
     const [feedbackFormSubmitted, setFeedbackFormSubmitted] = useState(false);
     const [maxBidFound, setMaxBidFound] = useState(false);
     const [minBidFound, setMinBidFound] = useState(false);
+    const [biddingStarted, setBiddingStarted] = useState(false);
     const [bidsCounted, setBidsCounted] = useState(false);
     const [joinedLiveAuction, setJoinedLiveAuction] = useState(false);
     const [englishAuctionChosen, setEnglishAuctionChosen] = useState(false);
@@ -69,8 +71,13 @@ const FairNegotations = (props) => {
         return fetchAllBids();
       }, []);
 
-      const englishAuctionHandler = function() {
+      // Routine that toggles between true / false if the english auction algorithm is chosen
+      const chosenEnglishAuctionHandler = function() {
           return setEnglishAuctionChosen(!englishAuctionChosen);
+      };
+      
+      const chosenSocialExchangeHandler = function() {
+          return setSocialExchangeChosen(!socialExchangeChosen);
       }
 
       // Routine used to join the live auction algorithm based on the back-end web sockets
@@ -89,7 +96,10 @@ const FairNegotations = (props) => {
 
     const findMinBid = (bid) => {
         try {
+            let minBid = bid;
 
+
+            return minBid;
         } 
         
         catch(error) {
@@ -221,9 +231,9 @@ const FairNegotations = (props) => {
         }
     }
 
-    const editFeedback = async (event) => {
+    const editFeedback = (id) => {
         try {
-
+            // Sends a PUT request to the back-end that updates the feedback if the user is not happy with it
         } 
         
         catch(error) {
