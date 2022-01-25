@@ -129,7 +129,6 @@ const AdminLogin = (props) => { // Admin Login Component
             </div>
     </section>
 
-
     <section className = "section--login">
 
         <div className = "container grid grid--2-cols">
