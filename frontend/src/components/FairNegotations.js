@@ -20,13 +20,15 @@ const FairNegotations = (props) => {
     let location = useLocation();
 
     const [feedbackData, setFeedbackData] = useState([]);
-    const [commentsData, setCommentsData] = useState([]);
     const [creditData, setCreditData] = useState([]);
     const [enteredBid, setEnteredBid] = useState('');
     const [bidValid, setBidValid] = useState(false);
     const [bidSubmitted, setBidSubmitted] = useState(false);
     const [feedbackFormValid, setFeedbackFormValid] = useState(false);
     const [feedbackFormSubmitted, setFeedbackFormSubmitted] = useState(false);
+    const [maxBidFound, setMaxBidFound] = useState(false);
+    const [minBidFound, setMinBidFound] = useState(false);
+    const [bidsCounted, setBidsCounted] = useState(false);
 
     // Used as the countdown timer by using refs.
     const useInterval = (callback, delay) => {
@@ -67,6 +69,7 @@ const FairNegotations = (props) => {
           } 
           
           catch(error) {
+
             if(error) {
                 return console.error(error);
             }
@@ -92,6 +95,7 @@ const FairNegotations = (props) => {
         } 
         
         catch(error) {
+
             if(error) {
                 return console.error(error);
             }
@@ -106,6 +110,7 @@ const FairNegotations = (props) => {
         }
         
         catch(error) {
+
             if(error) {
                 return console.error(error);
             }
@@ -113,9 +118,17 @@ const FairNegotations = (props) => {
     }
 
     // This routine is used to submit a bid that has been placed by sending a POST request to the back-end.
-    const submitBidHandler = (event) => {
+    const submitBidHandler = async (event) => {
         try {
             event.preventDefault();
+
+            const {data} = await axios.post(``);
+
+            if(!data) {
+
+            }
+
+
         } 
         
         catch(error) {
@@ -151,12 +164,12 @@ const FairNegotations = (props) => {
     // This routine acts as an AI bot that randomly places a BID after a user does, or after a certain amount of time
     const placeRandomBid = function() {
         try {
-
+            // Code here for the AI bot that generates a random bid
         } 
         
         catch(error) {
             if(error) {
-
+                return console.error(error);
             }
         }
     }
@@ -171,8 +184,22 @@ const FairNegotations = (props) => {
         catch(error) {
             if(error) {
                 console.log(`An error occurred : ${error}`);
+                setFeedbackFormValid(false);
                 return console.error(error);
             }
+        }
+    };
+
+    // Routine used to validate the feedback submitted by the user
+    const validateFeedback = function() {
+        try {
+
+        } catch(error) {
+
+            if(error) {
+                return console.error(error);
+            }
+            
         }
     }
 
@@ -182,7 +209,9 @@ const FairNegotations = (props) => {
         } 
         
         catch(error) {
-
+            if(error) {
+                return console.error(error);
+            }
         }
     }
 
