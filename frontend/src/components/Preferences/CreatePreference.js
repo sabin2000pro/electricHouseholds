@@ -370,7 +370,7 @@ const CreatePreference = (props) => {
 
         <div className = "afternoon--box">
             <label className = "password--lbl">Third Preference</label>
-            
+
             <select onChange = {(e) => {setChosenThirdPreference(e.target.value)}} value = {chosenThirdPreference} className = "box">
 
                 <option>06:00-07:00</option>
@@ -392,8 +392,7 @@ const CreatePreference = (props) => {
         <div className = "submit--container">
             <button className = "login--btn" type = "submit">Submit</button>
         </div>
-    
-        </form>
+    </form>
 
     </RegisterCard>
 
@@ -407,6 +406,10 @@ const CreatePreference = (props) => {
 
             {preferencesBtnClicked && preferences.map((data, key) => {
                 const theData = data;
+
+                if(!theData) {
+                    return console.log(`No data found`);
+                }
 
                 return <div key = {key}>
                     <div className = "preferences--card">
