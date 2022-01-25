@@ -27,6 +27,7 @@ module.exports.fetchOpeningBid = catchAsync(async (request, response, next) => {
     return response.status(200).json({openingBid: bidData.openingBid});
 });
 
+// @ Middleware Function Description: Used to create a bid by allowing a POST request to the server
 module.exports.createBid = catchAsync(async (request, response, next) => {
    
        const {nickname, virtualCredits, openingBid, username, reputationPoints} = request.body;
@@ -39,7 +40,7 @@ module.exports.createBid = catchAsync(async (request, response, next) => {
         await newBid.save(); // Save the new bid data to the database.
 
         return response.status(created).json({newBid});
-    })
+})
 
 module.exports.editBids = catchAsync(async(request, response, next) => {
     const id = request.params.id;

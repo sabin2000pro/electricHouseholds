@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1643104552874" clover="3.2.0">
-  <project timestamp="1643104552875" name="All files">
+<coverage generated="1643104825127" clover="3.2.0">
+  <project timestamp="1643104825127" name="All files">
     <metrics statements="631" coveredstatements="370" conditionals="170" coveredconditionals="25" methods="78" coveredmethods="18" elements="879" coveredelements="413" complexity="0" loc="631" ncloc="631" packages="9" files="33" classes="33"/>
     <package name="controllers">
       <metrics statements="331" coveredstatements="144" conditionals="120" coveredconditionals="19" methods="52" coveredmethods="9"/>
@@ -149,26 +149,26 @@
         <line num="24" count="0" type="stmt"/>
         <line num="25" count="0" type="stmt"/>
         <line num="27" count="0" type="stmt"/>
-        <line num="30" count="1" type="stmt"/>
-        <line num="32" count="0" type="stmt"/>
-        <line num="34" count="0" type="cond" truecount="0" falsecount="7"/>
-        <line num="35" count="0" type="stmt"/>
-        <line num="38" count="0" type="stmt"/>
+        <line num="31" count="1" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="35" count="0" type="cond" truecount="0" falsecount="7"/>
+        <line num="36" count="0" type="stmt"/>
         <line num="39" count="0" type="stmt"/>
-        <line num="41" count="0" type="stmt"/>
-        <line num="44" count="1" type="stmt"/>
-        <line num="45" count="0" type="stmt"/>
-        <line num="47" count="0" type="stmt"/>
+        <line num="40" count="0" type="stmt"/>
+        <line num="42" count="0" type="stmt"/>
+        <line num="45" count="1" type="stmt"/>
+        <line num="46" count="0" type="stmt"/>
         <line num="48" count="0" type="stmt"/>
-        <line num="50" count="0" type="stmt"/>
-        <line num="53" count="1" type="stmt"/>
-        <line num="54" count="0" type="stmt"/>
-        <line num="56" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="57" count="0" type="stmt"/>
-        <line num="62" count="1" type="stmt"/>
-        <line num="64" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="65" count="0" type="stmt"/>
+        <line num="49" count="0" type="stmt"/>
+        <line num="51" count="0" type="stmt"/>
+        <line num="54" count="1" type="stmt"/>
+        <line num="55" count="0" type="stmt"/>
+        <line num="57" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="58" count="0" type="stmt"/>
+        <line num="63" count="1" type="stmt"/>
+        <line num="65" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="66" count="0" type="stmt"/>
+        <line num="67" count="0" type="stmt"/>
       </file>
       <file name="commentsController.js" path="/app/controllers/commentsController.js">
         <metrics statements="39" coveredstatements="12" conditionals="16" coveredconditionals="0" methods="6" coveredmethods="0"/>
