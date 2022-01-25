@@ -271,10 +271,11 @@ const FairNegotations = (props) => {
     return (
         <React.Fragment>
          <section className = "section--login">
+          <h1 className = "fn--heading">Choose Your Desired Algorithm Below</h1>
 
         <div className = "container grid grid--2-cols">
-                <button className = "auction--btn">English Auction Algorithm</button>
-                <button className = "social--btn">Social Exchange Algorithm</button>
+            <button onClick = {chosenEnglishAuctionHandler} className = "auction--btn">English Auction Algorithm</button>
+            <button onClick = {chosenSocialExchangeHandler} className = "social--btn">Social Exchange Algorithm</button>
         </div>
 
     </section>
