@@ -10,9 +10,53 @@ const bidData = [];
 
 const FairNegotations = (props) => {
     let history = useHistory();
+    let location = useLocation();
+
     const [feedbackData, setFeedbackData] = useState([]);
     const [commentsData, setCommentsData] = useState([]);
     const [creditData, setCreditData] = useState([]);
+    const [enteredBid, setEnteredBid] = useState('');
+    const [bidValid, setBidValid] = useState(false);
+    const [bidSubmitted, setBidSubmitted] = useState(false);
+
+    // Used as the countdown timer by using refs.
+    const useInterval = (callback, delay) => {
+        const savedCallback = useRef();
+    
+        useEffect(() => {
+          savedCallback.current = callback;
+        }, [callback]);
+    
+        useEffect(() => {
+    
+          const tick = () => {
+            return savedCallback.current();
+          };
+    
+          if (delay !== null) {
+            let id = setInterval(tick, delay); // Set the interval delay with a unique ID
+                return () => clearInterval(id); // Clear out field
+          }
+    
+        }, [delay]);
+      };
+
+      // Side-Effect hook used to fetch all the bid data
+      useEffect(() => {
+        return fetchAllBids();
+      }, []);
+
+      const joinLiveAuction = function() {
+          try {
+
+          } 
+          
+          catch(error) {
+            if(error) {
+                return console.error(error);
+            }
+          }
+      }
 
     const findMinBid = (bid) => {
         try {
@@ -26,6 +70,7 @@ const FairNegotations = (props) => {
         }
     };
 
+    // Finding Max Algorithm that is used to count the largest bid placed
     const findMaxBid = () => {
         try {
 
@@ -39,6 +84,7 @@ const FairNegotations = (props) => {
 
     }
 
+    // Counting Occurences algorithm that counts the number of bids that have been placed.
     const countTotalBids = () => {
         try {
              
@@ -51,10 +97,10 @@ const FairNegotations = (props) => {
         }
     }
 
+    // This routine is used to submit a bid that has been placed by sending a POST request to the back-end.
     const submitBidHandler = (event) => {
         try {
             event.preventDefault();
-
         } 
         
         catch(error) {
@@ -65,6 +111,7 @@ const FairNegotations = (props) => {
         }
     }
 
+    // This routine is used to fetch all the bids that have been placed thus far. Sends a GET request to the back-end.
     const fetchAllBids = async () => {
         try {
 
@@ -84,23 +131,33 @@ const FairNegotations = (props) => {
                 return console.error(error);
             }
         }
-    }
-
-    const submitFeedbackHandler = () => {
+    }   
+    
+    // This routine acts as an AI bot that randomly places a BID after a user does, or after a certain amount of time
+    const placeRandomBid = function() {
         try {
 
         } 
         
         catch(error) {
+
+        }
+    }
+
+    // Routine used to submit feedback by the user. This routine will handle a POST request
+
+    const submitFeedbackHandler = async (event) => {
+        try {
+
+        }
+        
+        catch(error) {
             if(error) {
+                console.log(`An error occurred : ${error}`);
                 return console.error(error);
             }
         }
     }
-
-    const handleEnglishAuctionAlgorithm = () => {
-
-    };
 
     return (
         <Fragment>
