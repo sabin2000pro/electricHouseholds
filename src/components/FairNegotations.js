@@ -90,7 +90,8 @@ const FairNegotations = (props) => {
           catch(error) {
 
             if(error) {
-                return console.error(error);
+                console.error(error);
+                throw new Error(error);
             }
           }
       };
@@ -99,7 +100,6 @@ const FairNegotations = (props) => {
         try {
             let minBid = bid;
 
-
             return minBid;
         } 
         
@@ -107,7 +107,9 @@ const FairNegotations = (props) => {
 
             if(error) {
                 setMinBidFound(false);
-                return console.error(error);
+                console.error(error);
+
+                throw new Error(error);
             }
         }
     };
@@ -122,7 +124,9 @@ const FairNegotations = (props) => {
 
             if(error) {
                 setMaxBidFound(false);
-                return console.error(error);
+                console.error(error);
+                
+                throw new Error(error);
             }
         }
 
