@@ -6,14 +6,15 @@ import axios from 'axios';
 const DELAY = 1200;
 const START_TIMER = 60;
 const REFRESH_SECONDS = 30000;
-const bidData = [];
 
 const FLAGS = {
     DEFAULT: 0,
     DELAY: DELAY,
     START_TIMER: START_TIMER,
     REFRESH_SECONDS: REFRESH_SECONDS
-  }
+}
+
+const bidData = []; // Array that stores the bid data
 
 const FairNegotations = (props) => {
     let history = useHistory();
@@ -24,6 +25,9 @@ const FairNegotations = (props) => {
     const [enteredBid, setEnteredBid] = useState('');
     const [bidValid, setBidValid] = useState(false);
     const [bidSubmitted, setBidSubmitted] = useState(false);
+    const [enteredFeedbackUsername, setEnteredFeedbackUsername] = useState("");
+    const [enteredFeedbackEmailAddress, setEnteredFeedbackEmailAddress] = useState("");
+    const [chosenFeedbackFeeling, setChosenFeedbackFeeling] = useState("");
     const [feedbackFormValid, setFeedbackFormValid] = useState(false);
     const [feedbackFormSubmitted, setFeedbackFormSubmitted] = useState(false);
     const [maxBidFound, setMaxBidFound] = useState(false);
@@ -65,6 +69,10 @@ const FairNegotations = (props) => {
         return fetchAllBids();
       }, []);
 
+      const englishAuctionHandler = function() {
+          return setEnglishAuctionChosen(!englishAuctionChosen);
+      }
+
       // Routine used to join the live auction algorithm based on the back-end web sockets
       const joinLiveAuction = function() {
           try {
@@ -87,6 +95,7 @@ const FairNegotations = (props) => {
         catch(error) {
 
             if(error) {
+                setMinBidFound(false);
                 return console.error(error);
             }
         }
@@ -101,6 +110,7 @@ const FairNegotations = (props) => {
         catch(error) {
 
             if(error) {
+                setMaxBidFound(false);
                 return console.error(error);
             }
         }
@@ -241,11 +251,14 @@ const FairNegotations = (props) => {
     }
 
     return (
-        <Fragment>
-            <div>
+        <React.Fragment>
+            <div className = "english--acution">
+
                 <button>English Auction Algorithm</button>
             </div>
-        </Fragment>
+            
+           
+        </React.Fragment>
     )
 }
 
