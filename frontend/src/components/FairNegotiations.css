@@ -1,15 +1,23 @@
 .auction--btn {
-    width: 30%;
+    width: 50%;
     align-content: center;
     margin-left: 300px;
     border-radius: 200px;
     border: none;
     padding: 12px 24px;
+    cursor: pointer;
+    background-color: lightgreen;
+    font-weight: 600;
+    font-size: 18px;
 }
 
 .social--btn {
-    width: 30%;
+    width: 50%;
     margin-left: 200px;
     border-radius: 200px;
     border: none;
+    background-color: lightgreen;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer
 }
