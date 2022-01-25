@@ -27,6 +27,7 @@ const FairNegotations = (props) => {
     const [enteredBid, setEnteredBid] = useState('');
     const [bidValid, setBidValid] = useState(false);
     const [bidSubmitted, setBidSubmitted] = useState(false);
+    const [bidsFound, setBidsFound] = useState(false);
     const [enteredFeedbackUsername, setEnteredFeedbackUsername] = useState("");
     const [enteredFeedbackEmailAddress, setEnteredFeedbackEmailAddress] = useState("");
     const [chosenFeedbackFeeling, setChosenFeedbackFeeling] = useState("");
@@ -40,6 +41,9 @@ const FairNegotations = (props) => {
     const [joinedLiveAuction, setJoinedLiveAuction] = useState(false);
     const [englishAuctionChosen, setEnglishAuctionChosen] = useState(false);
     const [socialExchangeChosen, setSocialExchangeChosen] = useState(false);
+
+    const [botTurn, setBotTurn] = useState(false);
+    const [userTurn, setUserTurn] = useState(false);
 
     // Used as the countdown timer by using refs.
     const useInterval = (callback, delay) => {
@@ -82,21 +86,6 @@ const FairNegotations = (props) => {
           return setSocialExchangeChosen(!socialExchangeChosen);
       }
 
-      // Routine used to join the live auction algorithm based on the back-end web sockets
-      const joinLiveAuction = function() {
-          try {
-
-          } 
-          
-          catch(error) {
-
-            if(error) {
-                console.error(error);
-                throw new Error(error);
-            }
-          }
-      };
-
     const findMinBid = (bid) => {
         try {
             let minBid = bid;
@@ -107,6 +96,7 @@ const FairNegotations = (props) => {
         catch(error) {
 
             if(error) {
+
                 setMinBidFound(false);
                 console.error(error);
 
@@ -152,13 +142,6 @@ const FairNegotations = (props) => {
     const submitBidHandler = async (event) => {
         try {
             event.preventDefault();
-
-            const {data} = await axios.post(``);
-
-            if(!data) {
-
-            }
-
         } 
         
         catch(error) {
@@ -180,6 +163,7 @@ const FairNegotations = (props) => {
 
             if(error) {
                 console.error(error);
+
                 throw new Error(error);
             }
         }
@@ -194,7 +178,8 @@ const FairNegotations = (props) => {
         catch(error) {
 
             if(error) {
-                return console.error(error);
+                console.error(error);
+                throw new Error(error);
             }
         }
     }
@@ -216,6 +201,7 @@ const FairNegotations = (props) => {
         
         catch(error) {
             if(error) {
+
                 console.log(`An error occurred : ${error}`);
                 setFeedbackFormValid(false);
                 return console.error(error);
@@ -283,7 +269,7 @@ const FairNegotations = (props) => {
         </div>
 
         <div className = "live--auction">
-            
+
         </div>
 
     </section>

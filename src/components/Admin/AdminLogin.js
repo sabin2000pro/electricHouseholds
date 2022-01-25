@@ -96,7 +96,9 @@ const AdminLogin = (props) => { // Admin Login Component
             if(error) {
 
                 setFormValid(false);
-                return console.log(error);
+                console.error(error);
+
+                throw new Error(error);
             }
         }  
     }
@@ -170,7 +172,7 @@ const AdminLogin = (props) => { // Admin Login Component
                 <ul className = "footer--items">
                     <li className = "footer--item">Copyright All Rights Reserved - eHouseholds Sabin Constantin Lungu - 2021</li>
                 </ul>
-            </footer>
+        </footer>
 
     </Fragment>
 
