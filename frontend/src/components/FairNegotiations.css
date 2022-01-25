@@ -1,0 +1,15 @@
+.auction--btn {
+    width: 30%;
+    align-content: center;
+    margin-left: 300px;
+    border-radius: 200px;
+    border: none;
+    padding: 12px 24px;
+}
+
+.social--btn {
+    width: 30%;
+    margin-left: 200px;
+    border-radius: 200px;
+    border: none;
+}

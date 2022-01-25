@@ -3,6 +3,7 @@ import {useHistory, useLocation} from 'react-router-dom';
 import RegisterCard from './Admin/RegisterCard';
 import axios from 'axios';
 import ModalCard from '../UI/ModalCard';
+import './FairNegotiations.css';
 
 const DELAY = 1200;
 const START_TIMER = 60;
@@ -260,14 +261,14 @@ const FairNegotations = (props) => {
 
     return (
         <React.Fragment>
-        <section className = "section--login">
+         <section className = "section--login">
 
         <div className = "container grid grid--2-cols">
-                <button>English Auction Algorithm</button>
-                <button>Social Exchange</button>
+                <button className = "auction--btn">English Auction Algorithm</button>
+                <button className = "social--btn">Social Exchange Algorithm</button>
         </div>
 
-</section>
+    </section>
         </React.Fragment>
     )
 }
