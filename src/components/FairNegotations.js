@@ -88,6 +88,7 @@ const FairNegotations = (props) => {
 
     const findMinBid = (bid) => {
         try {
+
             let minBid = bid;
 
             return minBid;
@@ -108,6 +109,7 @@ const FairNegotations = (props) => {
     // Finding Max Algorithm that is used to count the largest bid placed
     const findMaxBid = () => {
         try {
+            
             let maxBid = 0;
         } 
         
