@@ -2,6 +2,7 @@ import React, {useState, useEffect, Fragment, useRef} from 'react';
 import {useHistory, useLocation} from 'react-router-dom';
 import RegisterCard from './Admin/RegisterCard';
 import axios from 'axios';
+import ModalCard from '../UI/ModalCard';
 
 const DELAY = 1200;
 const START_TIMER = 60;
@@ -152,13 +153,13 @@ const FairNegotations = (props) => {
 
             }
 
-
         } 
         
         catch(error) {
 
             if(error) {
-                return console.error(error);
+                console.error(error);
+                throw new Error(error);
             }
         }
     }
@@ -170,8 +171,10 @@ const FairNegotations = (props) => {
         } 
         
         catch(error) {
+
             if(error) {
-                return console.error(error);
+                console.error(error);
+                throw new Error(error);
             }
         }
     }   
@@ -193,11 +196,9 @@ const FairNegotations = (props) => {
 
     const submitFeedbackHandler = async (event) => {
         try {
-            const {data} = await axios.post(``);
+            event.preventDefault();
 
-            if(!data) {
-
-            }
+            await axios.post(``);
         }
         
         catch(error) {
