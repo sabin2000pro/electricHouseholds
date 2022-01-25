@@ -30,6 +30,8 @@ const FairNegotations = (props) => {
     const [minBidFound, setMinBidFound] = useState(false);
     const [bidsCounted, setBidsCounted] = useState(false);
     const [joinedLiveAuction, setJoinedLiveAuction] = useState(false);
+    const [englishAuctionChosen, setEnglishAuctionChosen] = useState(false);
+    const [socialExchangeChosen, setSocialExchangeChosen] = useState(false);
 
     // Used as the countdown timer by using refs.
     const useInterval = (callback, delay) => {
@@ -83,6 +85,7 @@ const FairNegotations = (props) => {
         } 
         
         catch(error) {
+
             if(error) {
                 return console.error(error);
             }
@@ -92,7 +95,7 @@ const FairNegotations = (props) => {
     // Finding Max Algorithm that is used to count the largest bid placed
     const findMaxBid = () => {
         try {
-
+            let maxBid = 0;
         } 
         
         catch(error) {
@@ -220,12 +223,16 @@ const FairNegotations = (props) => {
         }
     }
 
-    const socialExchangeHandler = async (event) => {
-        try {
+    useEffect(() => {
+        return socialExchangeHandler();
+    }, []);
 
+    const socialExchangeHandler = () => {
+        try {
         } 
         
         catch(error) {
+
             if(error) {
                 return console.error(error);
             }
