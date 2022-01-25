@@ -28,6 +28,7 @@ const FairNegotations = (props) => {
     let history = useHistory();
     let location = useLocation();
 
+    const [auctionStarted, setAuctionStarted] = useState(false);
     const [feedbackData, setFeedbackData] = useState([]);
     const [creditData, setCreditData] = useState([]);
     const [enteredBid, setEnteredBid] = useState('');
@@ -49,6 +50,10 @@ const FairNegotations = (props) => {
 
     const [botTurn, setBotTurn] = useState(false);
     const [userTurn, setUserTurn] = useState(false);
+
+    const beginLiveAuctionHandler = function() {
+
+    }
 
     // Used as the countdown timer by using refs.
     const useInterval = (callback, delay) => {
@@ -181,7 +186,7 @@ const FairNegotations = (props) => {
     // This routine is used to fetch all the bids that have been placed thus far. Sends a GET request to the back-end.
     const fetchAllBids = async () => {
         try {
-            
+
             // Send GET request to fetch all bids here
         } 
         
@@ -296,16 +301,11 @@ const FairNegotations = (props) => {
         </div>
 
         {auctionChosen ? 
-       <div>
-            <h1 style = {{textAlign: 'center', marginTop: '100px'}}>Opening Bid: </h1>
-            <h1 style = {{textAlign: 'center', marginTop: '120px'}}>Chosen Appliance: </h1>
-            <h1 style = {{textAlign: 'center', marginTop: '120px'}}>Preference 1</h1>
-        </div>
+             <div>
+                <button onClick = {beginLiveAuctionHandler} style = {{marginLeft: '950px', marginTop: '100px'}}>Begin Live Auction</button>
+            </div>
         : null}
 
-
-
-        
 
     </section>
 
