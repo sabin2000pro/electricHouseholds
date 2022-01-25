@@ -24,7 +24,11 @@
 
 .fn--heading {
     text-align: center;
-    margin-bottom: 100px;
+    margin-bottom: 120px;
     color: black;
     font-size: 28px;
+}
+
+.live--auction {
+    margin-top: 200px;
 }

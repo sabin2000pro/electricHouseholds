@@ -245,8 +245,11 @@ const FairNegotations = (props) => {
         } 
         
         catch(error) {
+
             if(error) {
-                return console.error(error);
+
+                console.error(error);
+                throw new Error(error);
             }
         }
     }
@@ -262,7 +265,8 @@ const FairNegotations = (props) => {
         catch(error) {
 
             if(error) {
-                return console.error(error);
+                console.error(error);
+                throw new Error(error);
             }
         }
 
@@ -278,7 +282,17 @@ const FairNegotations = (props) => {
             <button onClick = {chosenSocialExchangeHandler} className = "social--btn">Social Exchange Algorithm</button>
         </div>
 
+        <div className = "live--auction">
+            
+        </div>
+
     </section>
+
+    <footer className = "footer">
+                <ul className = "footer--items">
+                    <li className = "footer--item">Copyright All Rights Reserved - eHouseholds Sabin Constantin Lungu - 2021</li>
+                </ul>
+    </footer>
         </React.Fragment>
     )
 }
