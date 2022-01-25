@@ -166,16 +166,7 @@ const FairNegotations = (props) => {
     // This routine is used to fetch all the bids that have been placed thus far. Sends a GET request to the back-end.
     const fetchAllBids = async () => {
         try {
-
-         return await axios.get(``).then(response => {
-
-
-            }).catch(err => {
-
-            if(err) {
-                return console.error(err);
-            }
-            });
+            // Send GET request to fetch all bids here
         } 
         
         catch(error) {
