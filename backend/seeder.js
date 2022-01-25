@@ -62,6 +62,7 @@ if(process.argv[2] === '--import') {
     return importData();
 };
 
+// Command Line Arguments for Removing Data with --delete flag
 if(process.argv[2] === '--delete') {
     return removeData();
 }

@@ -157,7 +157,7 @@ const CreatePreference = (props) => {
                 generateRandomTimeslots();
 
                 return setTimeout(() => {
-                    {!preferenceSubmitted && setModalShown({title: "Are you happy with your preferences?", commentTitle: "Comment Title: ", commentUsername: "Username: ", commentReason: "Reason: ", commentDescription: "Description: ", showInputs: true, showSubmitBtn: true})};
+                    {!preferenceSubmitted && setModalShown({title: "Are you happy with your preferences?", commTitle: "Comment Title: ", username: "Username: ", reason: "Reason: ", description: "Description: ", showInputs: true, showSubmitBtn: true})};
                 }, 2000);
 
             }).catch(err => {
@@ -179,6 +179,7 @@ const CreatePreference = (props) => {
     }
 
     const generateRandomTimeslots = () => {
+
         try {
 
             let firstOtherPrefIndex = otherPreferences[0].firstOtherPreference;
@@ -187,7 +188,7 @@ const CreatePreference = (props) => {
         
             setOtherFirstPref(firstOtherPrefIndex[Math.floor(Math.random() * firstOtherPrefIndex.length)]); 
             setOtherSecondPref(secondOtherPrefIndex[Math.floor(Math.random() * secondOtherPrefIndex.length)]);
-            setOtherThirdPref(thirdOtherPrefIndex[Math.floor(Math.random() * thirdOtherPrefIndex.length)]);
+            return setOtherThirdPref(thirdOtherPrefIndex[Math.floor(Math.random() * thirdOtherPrefIndex.length)]);
         } 
         
         catch(error) {
@@ -199,7 +200,8 @@ const CreatePreference = (props) => {
         }
     }
 
-   const commentInputsHandler = async (event) => {
+   const commentInputsHandler = (event) => {
+
        try {
             setEnteredCommentTitle(event.target.value);
             setEnteredCommentUsername(event.target.value);
@@ -216,6 +218,7 @@ const CreatePreference = (props) => {
    }
 
    const validateCommentTitle = function() {
+
     try {
         return enteredCommentTitle.trim().length !== 0;
     } 
@@ -230,6 +233,7 @@ const CreatePreference = (props) => {
    }
 
    const validateCommentUsername = function() {
+
         try {
             return enteredCommentUsername.trim().length !== 0;
         } 
@@ -237,7 +241,6 @@ const CreatePreference = (props) => {
         catch(error) {
             setEnteredCommentUsernameValid(false);
             return console.error(error);
-
         }
    } 
 
@@ -277,13 +280,10 @@ const CreatePreference = (props) => {
             }
 
            
+         await axios.post(`http://localhost:5200/api/v1/comments/create-comment`, {commentTitle: enteredCommentTitle, commentUsername: enteredCommentUsername, commentReason: enteredCommentReason, commentDescription: enteredCommentDescription});
+         alert('Done');
 
-                console.log(`Entered Title : ${enteredCommentTitle}`);
-                console.log(`Entered Username : ${enteredCommentUsername}`);
-                
-            return await axios.post(`http://localhost:5200/api/v1/comments/create-comment`, {commentTitle: enteredCommentTitle, commentUsername: enteredCommentUsername, commentReason: enteredCommentReason, commentDescription: enteredCommentDescription});
-            
-
+         return window.location.reload(false);
         } 
         
         catch(error) {
@@ -301,7 +301,7 @@ const CreatePreference = (props) => {
 
            <section className = "section--yourpreferences">
            <div className = "container grid grid--2-cols">
-           {modalShown && <Modal showSubmitBtn = {modalShown.showSubmitBtn} showDefaultBtn = {modalShown.showDefaultBtn} onChange = {commentInputsHandler} onBtnClick = {modalHandler} onSubmitBtnClick = {commentFormHandler} showInputs = {modalShown.showInputs} title = {modalShown.title} message = {modalShown.message} commentTitle = {modalShown.commentTitle} commentUsername = {modalShown.commentUsername} commentReason = {modalShown.commentReason} commentDescription = {modalShown.commentDescription} /> }
+           {modalShown && <Modal showSubmitBtn = {modalShown.showSubmitBtn} showDefaultBtn = {modalShown.showDefaultBtn} changeHandler = {commentInputsHandler} onBtnClick = {modalHandler} onSubmitBtnClick = {commentFormHandler} showInputs = {modalShown.showInputs} title = {modalShown.title} message = {modalShown.message} commTitle = {modalShown.commTitle} username = {modalShown.username} reason = {modalShown.reason} description = {modalShown.description} /> }
 
         <RegisterCard>
             <h1 className = "heading--primary login">{DEFAULT_TEXT.preferenceHeader}</h1>
