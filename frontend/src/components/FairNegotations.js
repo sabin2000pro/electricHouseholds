@@ -170,7 +170,8 @@ const FairNegotations = (props) => {
     }
 
     // This routine is used to submit a bid that has been placed by sending a POST request to the back-end.
-    const submitBidHandler = async (event) => {
+    const submitUserBidHandler = async (event) => {
+
         try {
             event.preventDefault();
         } 

@@ -15,6 +15,11 @@ const BotSchema = new mongoose.Schema({
     type: {
         type: String,
         enum: ['Low', 'Medium', 'Intense']
+    },
+
+    bidRange: {
+        type: String,
+        enum: ["0-10", "15-20", "30-50"]
     }
 
 });
