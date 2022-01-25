@@ -47,3 +47,7 @@ module.exports.deleteBot = catchAsync(async (request, response, next) => {
 
     }
 });
+
+module.exports.deleteAllBots = catchAsync(async (request, response, next) => {
+
+});

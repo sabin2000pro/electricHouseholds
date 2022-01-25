@@ -12,8 +12,8 @@ const BotSchema = new mongoose.Schema({
     type: {
         enum: ['Low', 'Medium', 'Intense']
     }
-    
+
 });
 
-const Bot = mongoose.Model('Bot', BotSchema);
+const Bot = mongoose.model('Bot', BotSchema);
 module.exports = Bot; // Exports the bot model
