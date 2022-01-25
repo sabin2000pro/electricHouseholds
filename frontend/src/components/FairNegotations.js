@@ -8,6 +8,13 @@ const START_TIMER = 60;
 const REFRESH_SECONDS = 30000;
 const bidData = [];
 
+const FLAGS = {
+    DEFAULT: 0,
+    DELAY: DELAY,
+    START_TIMER: START_TIMER,
+    REFRESH_SECONDS: REFRESH_SECONDS
+  }
+
 const FairNegotations = (props) => {
     let history = useHistory();
     let location = useLocation();
@@ -41,6 +48,11 @@ const FairNegotations = (props) => {
         }, [delay]);
       };
 
+      // Invoke above routine
+      useInterval(() => {
+
+      });
+
       // Side-Effect hook used to fetch all the bid data
       useEffect(() => {
         return fetchAllBids();
@@ -56,7 +68,7 @@ const FairNegotations = (props) => {
                 return console.error(error);
             }
           }
-      }
+      };
 
     const findMinBid = (bid) => {
         try {
@@ -148,7 +160,7 @@ const FairNegotations = (props) => {
 
     const submitFeedbackHandler = async (event) => {
         try {
-
+            const {data} = await axios.post(``);
         }
         
         catch(error) {
@@ -157,6 +169,29 @@ const FairNegotations = (props) => {
                 return console.error(error);
             }
         }
+    }
+
+    const editFeedback = async (event) => {
+        try {
+
+        } 
+        
+        catch(error) {
+
+        }
+    }
+
+    const socialExchangeHandler = async (event) => {
+        try {
+
+        } 
+        
+        catch(error) {
+            if(error) {
+                return console.error(error);
+            }
+        }
+
     }
 
     return (
