@@ -39,15 +39,25 @@ module.exports.editBot = catchAsync(async (request, response, next) => {
 
     if(request.method === 'PUT') {
        const editedBot = await Bot.findByIdAndUpdate(id, request.body, {new: true, runValidators: true});
+       await editedBot.save();
     }
+
 });
 
 module.exports.deleteBot = catchAsync(async (request, response, next) => {
-    if(request.method === 'DELETE') {
+    const id = request.params.id;
 
-    }
+    if(request.method === 'DELETE') {
+        await Bot.findByIdAndDelete(id);
+        return response.status(204).json({status: "Success", message: "Bot deleted success"});
+    }  
+
+
 });
 
 module.exports.deleteAllBots = catchAsync(async (request, response, next) => {
-
+    if(request.method === 'DELETE') {
+        await Bot.deleteMany();
+        return response.status(204).json("Bots Deleted");
+    }
 });
