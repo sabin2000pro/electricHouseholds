@@ -29,6 +29,7 @@ const FairNegotations = (props) => {
     let location = useLocation();
 
     const [auctionStarted, setAuctionStarted] = useState(false);
+    const [counter, setCounter] = useState(0);
     const [feedbackData, setFeedbackData] = useState([]);
     const [creditData, setCreditData] = useState([]);
     const [enteredBid, setEnteredBid] = useState('');
@@ -52,7 +53,7 @@ const FairNegotations = (props) => {
     const [userTurn, setUserTurn] = useState(false);
 
     const beginLiveAuctionHandler = function() {
-
+        return setAuctionStarted(!auctionStarted);
     }
 
     // Used as the countdown timer by using refs.
@@ -306,6 +307,9 @@ const FairNegotations = (props) => {
             </div>
         : null}
 
+        {auctionStarted ? <div>
+            <h1 style = {{textAlign: 'center', marginTop: '30px'}}>Auction Starts in... {}</h1>
+        </div> : undefined}
 
     </section>
 
