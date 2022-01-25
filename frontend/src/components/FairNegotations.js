@@ -14,6 +14,12 @@ const FLAGS = {
     DELAY: DELAY,
     START_TIMER: START_TIMER,
     REFRESH_SECONDS: REFRESH_SECONDS
+};
+
+const BOT_TYPES = {
+    DEFAULT: 'Low',
+    MEDIUM: "Medium",
+    INTENSE: "Intense"
 }
 
 const bidData = []; // Array that stores the bid data
@@ -77,6 +83,10 @@ const FairNegotations = (props) => {
         return fetchAllBids();
       }, []);
 
+      useEffect(() => {
+        return fetchBotData();
+      }, [])
+
       // Routine that toggles between true / false if the english auction algorithm is chosen
       const chosenEnglishAuctionHandler = function() {
           return setEnglishAuctionChosen(!englishAuctionChosen);
@@ -84,6 +94,20 @@ const FairNegotations = (props) => {
       
       const chosenSocialExchangeHandler = function() {
           return setSocialExchangeChosen(!socialExchangeChosen);
+      }
+
+      const fetchBotData = function() {
+          try {
+
+          } 
+          
+          catch(error) {
+
+            if(error) {
+
+            }
+          }
+
       }
 
     const findMinBid = (bid) => {
@@ -109,7 +133,7 @@ const FairNegotations = (props) => {
     // Finding Max Algorithm that is used to count the largest bid placed
     const findMaxBid = () => {
         try {
-            
+
             let maxBid = 0;
         } 
         
@@ -270,17 +294,16 @@ const FairNegotations = (props) => {
             <button onClick = {chosenSocialExchangeHandler} className = "social--btn">Social Exchange Algorithm</button>
         </div>
 
-        <div className = "live--auction">
+        
 
-        </div>
-
+     
     </section>
 
     <footer className = "footer">
                 <ul className = "footer--items">
                     <li className = "footer--item">Copyright All Rights Reserved - eHouseholds Sabin Constantin Lungu - 2021</li>
                 </ul>
-    </footer>
+      </footer>
         </React.Fragment>
     )
 }

@@ -5,7 +5,7 @@ const created = 201;
 const noContent = 204;
 
 module.exports.getAllBots = catchAsync(async(request, response, next) => {
-
+    
 });
 
 module.exports.getSingleBot = catchAsync(async(request, response, next) => {
