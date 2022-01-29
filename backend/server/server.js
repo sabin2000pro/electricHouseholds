@@ -25,6 +25,7 @@ const reviewRoutes = require('../routes/reviews/reviewRoutes');
 const contactRoutes = require('../routes/contactRoutes');
 const feedbackRoutes = require('../routes/feedbackRoutes');
 const botRoutes = require('../routes/botRoutes');
+const creditRoutes = require('../routes/creditRoutes');
 
 // Middlewares
 app.use(mongoSanitize());
@@ -47,6 +48,7 @@ app.use('/api/v1/contacts', contactRoutes);
 app.use('/api/v1/bids', bidRoutes);
 app.use('/api/v1/feedback', feedbackRoutes);
 app.use('/api/v1/bot', botRoutes);
+app.use('/api/v1/credits', creditRoutes);
 
 if(process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'));
