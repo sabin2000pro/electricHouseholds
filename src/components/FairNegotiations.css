@@ -52,15 +52,30 @@
 }
 
 .first--pref {
-    margin-bottom: 100px;
+    margin-bottom: 150px;
+    font-size: 29px;
 }
 
 .second--pref {
     margin-bottom: 150px;
+    font-size: 29px;
 }
 
-
 .third--pref {
-   font-size: 26px;
    margin-bottom: 100px;
+   font-size: 29px;
+}
+
+.username--box input {
+    margin-right: 97px;
+    margin-bottom: 10px;
+}
+
+.bid--box input {
+    margin-right: 185px;
+    margin-bottom: 5px;
+}
+
+.submit-bid--container {
+    margin-left: -180px;
 }

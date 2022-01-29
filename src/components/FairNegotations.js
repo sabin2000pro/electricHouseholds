@@ -1,5 +1,5 @@
 import React, {useState, useEffect, Fragment, useRef} from 'react';
-import {useHistory, useLocation} from 'react-router-dom';
+import {useLocation} from 'react-router-dom';
 import RegisterCard from './Admin/RegisterCard';
 import axios from 'axios';
 import ModalCard from '../UI/ModalCard';
@@ -32,7 +32,7 @@ const FairNegotations = (props) => {
     const [auctionStarted, setAuctionStarted] = useState(false);
     const [roundNumber, setRoundNumber] = useState(1);
     const [timerRunning, setTimerRunning] = useState(false);
-    const [seconds, setSeconds] = useState(10);
+    const [seconds, setSeconds] = useState(90);
     const [startTimer, setStartTimer] = useState(START_TIMER);
     const [showStartText, setShowStartText] = useState(true);
     const [startTimerShown, setStartTimerShown] = useState(false);
@@ -74,7 +74,7 @@ const FairNegotations = (props) => {
 
     const handleCounterReset = () => {
         setTimerRunning(null);
-        setSeconds(10);
+        setSeconds(90);
     }
 
     const useInterval = (callback, delay) => {
@@ -88,7 +88,7 @@ const FairNegotations = (props) => {
             }
 
            else if(timerRunning === null) {
-               setSeconds(10);
+               setSeconds(90);
            }
         }, [callback, timerRunning]);
     
@@ -109,6 +109,8 @@ const FairNegotations = (props) => {
       };
     
       useInterval(() => {
+
+
         try {
             setSeconds(seconds - 1);
     
@@ -131,6 +133,7 @@ const FairNegotations = (props) => {
               setRoundTwoOver(true);
               return handleCounterReset();
           }
+
 
         } 
         
@@ -238,6 +241,7 @@ const FairNegotations = (props) => {
     // Finding Max Algorithm that is used to count the largest bid placed
     const findMaxBid = () => {
         try {
+
         let maxBid = FLAGS.DEFAULT;
 
         for (let i = FLAGS.DEFAULT; i < bidData.length; i++) {
@@ -295,14 +299,14 @@ const FairNegotations = (props) => {
     }
 
     // This routine is used to submit a bid that has been placed by sending a POST request to the back-end.
-    const submitUserBidHandler = async (event) => {
+    const submitBidHandler = async (event) => {
 
         try {
             event.preventDefault();
-
-            const {data} = await axios.post(`http://localhost:5200/api/v1/bids/create-bid`)
+            const {data} = await axios.post(`http://localhost:5200/api/v1/bids/create-bid`, {username: enteredUsername, bid: enteredBid});
+            alert(`User Bid Submitted`);
+           
             console.log(data);
-
         } 
         
         catch(error) {
@@ -383,6 +387,7 @@ const FairNegotations = (props) => {
         catch(error) {
 
             if(error) {
+
                 console.error(error);
                 throw new Error(error);
             }
@@ -436,14 +441,10 @@ const FairNegotations = (props) => {
             <h1>Bidding Seconds Remaining: {seconds}</h1>
             <h1>Current Round Number : {roundNumber}</h1>
 
-            {userBidData.map((data, key) => {
-                const theData = data;
-                return <h1 key = {theData._id}>User Available Virtual Credits : {theData.virtualCredits}</h1>
-            })}
-
+         
             <h2>Your Chosen Appliance : {appliance}</h2>
 
-            {mainRoundOver ? <h1 className = "first--pref">Your First Chosen Preference : {firstPreference}</h1> : null }
+            {!mainRoundOver ? <h1 className = "first--pref">Your First Chosen Preference : {firstPreference}</h1> : null }
 
             {roundOneOver && roundNumber === 2 ?<h1 className = "second--pref">Your Second Chosen Preference: {secondPreference}</h1> : null }
             {roundNumber === 3 ? <h1 className = "third--pref">Your Third Chosen Preference: {thirdPreference}</h1> : null}
@@ -451,18 +452,22 @@ const FairNegotations = (props) => {
             <div className = "container grid grid--2-cols">
 
                 <RegisterCard>
-                    <h1 className = "heading--primary login">Submit Hid Below</h1>
+                    <h1 className = "heading--primary login">Submit Bid</h1>
 
-                    <form className = "login--form" onSubmit = {submitUserBidHandler} method = "POST">
+                    <form className = "login--form" onSubmit = {submitBidHandler} method = "POST">
 
-                    <div className = "email--box">
-                            <label className = "email--lbl">Username</label>
+                    <div className = "username--box">
+                            <label className = "username--lbl">Username</label>
                             <input value = {enteredUsername} onChange = {(e) => {setEnteredUsername(e.target.value)}} placeholder = "Enter Username" type = "text"/>
                         </div>
 
-                     <div className = "bot--box">
-                        <label className = "bot--lbl">Desired Bid</label>
+                     <div className = "bid--box">
+                        <label className = "bid--lbl">Desired Bid</label>
                         <input value = {enteredBid} onChange = {(e) => {setEnteredBid(e.target.value)}} placeholder = "Enter Your Desired Bid Amount" id = "bid" type = "text"/>
+                    </div>
+
+                    <div className = "submit-bid--container">
+                        <button className = "login--btn" type = "submit">Submit</button>
                     </div>
 
 
