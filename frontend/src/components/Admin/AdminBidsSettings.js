@@ -1,18 +1,15 @@
 import React, {Fragment, useState} from 'react';
 import Header from '../Header';
 import './AdminBidsSettings.css';
-import {useHistory, useLocation} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 import HomepageImg from '../images/homepage/homepageimg.jpg';
 import RegisterCard from './RegisterCard';
 import axios from 'axios';
 
 const AdminBidsSettings = () => {
     let history = useHistory();
-    const [enteredNickname, setEnteredNickname] = useState('');
-    const [enteredVirtualCredits, setEnteredVirtualCredits] = useState(0);
-    const [enteredOpeningBid, setEnteredOpeningBid] = useState(0);
-    const [enteredUsername, setEnteredUsername] = useState('');
-    const [enteredReputationPoints, setEnteredReputationPoints] = useState(0);
+    const [enteredOpeningBid, setEnteredOpeningBid] = useState('');
+    const [enteredVirtualCredits, setEnteredVirtualCredits] = useState('');
     const [formValid, setFormValid] = useState(true);
 
     const logoutHandler = () => { // Logout Handler Function to logout admins
@@ -26,15 +23,12 @@ const AdminBidsSettings = () => {
         try {
             event.preventDefault();
             // Send POST request
-            const {data} = await axios.post(`http://localhost:5200/api/v1/bids/create-bid`, {nickname: enteredNickname, virtualCredits: enteredVirtualCredits, openingBid: enteredOpeningBid, username: enteredUsername, reputationPoints: enteredReputationPoints});
+            const {data} = await axios.post(`http://localhost:5200/api/v1/bids/create-bid`, {openingBid: enteredOpeningBid, virtualCredits: enteredVirtualCredits});
             console.log(data);
-            alert('Bids Configured');
+            alert('Credits Configured');
 
             // Clear Fields
-            setEnteredNickname("");
             setEnteredVirtualCredits("");
-            setEnteredUsername("");
-            setEnteredReputationPoints('');
             setEnteredOpeningBid('');
 
             setFormValid(true);
@@ -84,30 +78,16 @@ const AdminBidsSettings = () => {
 
                     
                     <div className = "nickname--box">
-                        <label className = "name--lbl">Nickname</label>
-                        <input value = {enteredNickname} onChange = {(e) => {setEnteredNickname(e.target.value)}} placeholder = "Enter Bid Nickname" type = "text"/>
+                        <label className = "name--lbl">Opening Bid</label>
+                        <input value = {enteredOpeningBid} onChange = {(e) => {setEnteredOpeningBid(e.target.value)}} placeholder = "Enter Opening Bid" type = "text"/>
                     </div>
 
                     <div className = "credits--box">
-                        <label className = "image--lbl">Credits</label>
+                        <label className = "image--lbl">Virtual Credits</label>
                         <input value = {enteredVirtualCredits} onChange = {(e) => {setEnteredVirtualCredits(e.target.value)}} placeholder = "Enter Virtual Credits" required id = "virtual_credits" type = "number"/>
                     </div>
 
-                    <div className = "openingbid--box">
-                        <label className = "description--lbl">Opening Bid</label>
-                        <input value = {enteredOpeningBid} onChange = {(e) => {setEnteredOpeningBid(e.target.value)}} placeholder = "Enter Opening Bid" required id = "openingbid" type = "number"/>
-                    </div>
-
-                    <div className = "username--box">
-                        <label className = "description--lbl">Username</label>
-                        <input value = {enteredUsername} onChange = {(e) => {setEnteredUsername(e.target.value)}} placeholder = "Enter Your Username" required id = "username" type = "text"/>
-                    </div>
-
-                    <div className = "reputation--box">
-                        <label className = "description--lbl">Reputation Points</label>
-                        <input value = {enteredReputationPoints} onChange = {(e) => {setEnteredReputationPoints(e.target.value)}} placeholder = "Enter Reputation Points" required id = "reputation_points" type = "number"/>
-                    </div>
-                    
+                
                     <div className = "submit--container">
                         <button className = "submit--btn" type = "submit">Configure</button>
                     </div>
