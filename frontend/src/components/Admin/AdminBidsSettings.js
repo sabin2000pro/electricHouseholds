@@ -22,7 +22,7 @@ const AdminBidsSettings = () => {
         return window.location.reload(false);
     }
 
-    const bidSubmitHandler = async (event) => {
+    const creditSubmitHandler = async (event) => {
         try {
             event.preventDefault();
             // Send POST request
@@ -59,8 +59,8 @@ const AdminBidsSettings = () => {
             <div className = "home--grid">
 
         <div className = "home-text-box">
-                <h1 className = "heading--primary">Admin Bid Settings</h1>
-                <p className = "home--description">Configure the required bid settings.</p>
+                <h1 className = "heading--primary">Admin Credits Settings</h1>
+                <p className = "home--description">Configure the Virtual Credit Settings.</p>
 
                 <a className = "btn btn--full mgr-sm" href = "/your-preferences">Start Now</a>
                 <a onClick = {logoutHandler} className = "btn btn--outline" href = "/home">Logout</a>
@@ -78,9 +78,9 @@ const AdminBidsSettings = () => {
         <div className = "container grid grid--2-cols">
 
                 <RegisterCard>
-                    <h1 className = "heading--primary login">Configure Bid Settings</h1>
+                    <h1 className = "heading--primary login">Configure Credits Settings</h1>
 
-                    <form onSubmit = {bidSubmitHandler} className = "login--form">
+                    <form onSubmit = {creditSubmitHandler} className = "login--form">
 
                     
                     <div className = "nickname--box">
