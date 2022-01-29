@@ -67,6 +67,7 @@ const FairNegotations = (props) => {
     const [mainRoundOver, setMainRoundOver] = useState(false);
     const [roundOneOver, setRoundOneOver] = useState(true);
     const [roundTwoOver, setRoundTwoOver] = useState(false);
+    const [creditData, setCreditData] = useState([]);
 
     const beginLiveAuctionHandler = function() {
          
@@ -157,6 +158,10 @@ const FairNegotations = (props) => {
       }, []);
 
       useEffect(() => {
+        return fetchCreditData();
+      }, [])
+
+      useEffect(() => {
         return fetchBotData();
       }, []);
 
@@ -172,6 +177,34 @@ const FairNegotations = (props) => {
       const chosenSocialExchangeHandler = function() {
           return setSocialExchangeChosen(!socialExchangeChosen);
       }
+
+      const fetchCreditData = async () => {
+        try {
+
+            return await axios.get(`http://localhost:5200/api/v1/credits/get-credits`).then(response => {
+                const credits = response.data.allCredits;
+
+                setCreditData(credits);
+                console.log(credits);
+
+            }).catch(error => {
+
+                if(error) {
+
+                    return console.error(error);
+                }
+            })
+        } 
+        
+        catch(error) {
+            if(error) {
+                console.error(error);
+
+                return console.error(error);
+            }
+        }
+    }
+
 
       const fetchUserBidData = async function() {
             try {
@@ -440,6 +473,21 @@ const FairNegotations = (props) => {
         
         <div>
             <h1>Bidding Seconds Remaining: {seconds}</h1>
+
+
+            {creditData.map((credit, key) => {
+                const credits = credit;
+
+                return <div key = {key}>
+
+                <h1 >Your Virtual Credits : {credits.virtualCredits}</h1>
+                <h1 >Opening Bid: {credits.openingBid}</h1>
+
+                </div>
+               
+
+            })}
+
             <h1>Current Round Number : {roundNumber}</h1>
 
          
@@ -478,9 +526,6 @@ const FairNegotations = (props) => {
             </div>
 
         </div> 
-           
-        
-
            
     </div>
     
