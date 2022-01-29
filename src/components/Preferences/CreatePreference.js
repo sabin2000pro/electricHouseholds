@@ -392,6 +392,7 @@ const CreatePreference = (props) => {
         <div className = "submit--container">
             <button className = "login--btn" type = "submit">Submit</button>
         </div>
+        
     </form>
 
     </RegisterCard>
