@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1643480927144" clover="3.2.0">
-  <project timestamp="1643480927146" name="All files">
+<coverage generated="1643482509212" clover="3.2.0">
+  <project timestamp="1643482509213" name="All files">
     <metrics statements="681" coveredstatements="402" conditionals="183" coveredconditionals="25" methods="84" coveredmethods="20" elements="948" coveredelements="447" complexity="0" loc="681" ncloc="681" packages="9" files="36" classes="36"/>
     <package name="controllers">
       <metrics statements="366" coveredstatements="159" conditionals="133" coveredconditionals="19" methods="58" coveredmethods="10"/>
@@ -545,8 +545,8 @@
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
-        <line num="27" count="1" type="stmt"/>
         <line num="28" count="1" type="stmt"/>
+        <line num="29" count="1" type="stmt"/>
       </file>
       <file name="commentsModel.js" path="/app/models/commentsModel.js">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
