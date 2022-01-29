@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom';
 import RegisterCard from '../Admin/RegisterCard';
 import axios from 'axios';
 import Modal from '../../UI/Modal';
+import FairNegotiations from '../FairNegotations';
 
 let DEFAULT_TEXT = {
     preferenceHeader: 'Your Preferences'
@@ -59,6 +60,8 @@ const CreatePreference = (props) => {
     const [enteredCommentReasonValid, setEnteredCommentReasonValid] = useState(true);
     const [enteredCommentDescriptionValid, setEnteredCommentDescriptionValid] = useState(true);
 
+    const [creditData, setCreditData] = useState([]);
+
     const preferencesSubmitHandler = async (e) => {
 
         try {
@@ -111,7 +114,9 @@ const CreatePreference = (props) => {
         }
     }
 
-    
+
+
+
     const modalHandler = () => {
         {modalShown && setModalShown(null)}
     }
@@ -127,6 +132,7 @@ const CreatePreference = (props) => {
 
             return await axios.get(`http://localhost:5200/api/v1/appliances/fetch-appliances`).then(response => {
                 const allAppliances = response.data.appliances;
+                
 
                 setAppliances(allAppliances);
 
@@ -307,7 +313,10 @@ const CreatePreference = (props) => {
 
        <Fragment>
 
+
            <section className = "section--yourpreferences">
+
+
            <div className = "container grid grid--2-cols">
            {modalShown && <Modal onClick = {modalHandler} showSubmitBtn = {modalShown.showSubmitBtn} showDefaultBtn = {modalShown.showDefaultBtn} changeHandler = {commentInputsHandler} onBtnClick = {modalHandler} onSubmitBtnClick = {commentFormHandler} showInputs = {modalShown.showInputs} title = {modalShown.title} message = {modalShown.message} commTitle = {modalShown.commTitle} username = {modalShown.username} reason = {modalShown.reason} description = {modalShown.description} /> }
 
@@ -411,6 +420,7 @@ const CreatePreference = (props) => {
 
         <section>
 
+       
             {preferencesBtnClicked && preferences.map((preference, key) => {
                 const theData = preference;
 
@@ -431,11 +441,15 @@ const CreatePreference = (props) => {
                     <h2 className = "appliance--heading">Second Random Slot : {JSON.stringify(otherSecondPref, null).toString().replaceAll("\"", "")}</h2>
                     <h2 className = "appliance--heading">Third Random Slot : {JSON.stringify(otherThirdPref, null).toString().replaceAll("\"", "")}</h2>
 
+                   
+
                     <Link className = "negotiate--btn" to = {{pathname: `/fair-negotiations/${preference._id}`, state: {preference}} }>Negotiate Preference</Link>
 
                     </div>
                 </div>
             })};
+
+           
 
         </section>
 
