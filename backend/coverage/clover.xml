@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1643489924574" clover="3.2.0">
-  <project timestamp="1643489924575" name="All files">
-    <metrics statements="677" coveredstatements="397" conditionals="171" coveredconditionals="25" methods="84" coveredmethods="18" elements="932" coveredelements="440" complexity="0" loc="677" ncloc="677" packages="9" files="36" classes="36"/>
+<coverage generated="1643492317097" clover="3.2.0">
+  <project timestamp="1643492317098" name="All files">
+    <metrics statements="677" coveredstatements="402" conditionals="171" coveredconditionals="25" methods="84" coveredmethods="20" elements="932" coveredelements="447" complexity="0" loc="677" ncloc="677" packages="9" files="36" classes="36"/>
     <package name="controllers">
-      <metrics statements="362" coveredstatements="155" conditionals="121" coveredconditionals="19" methods="58" coveredmethods="9"/>
+      <metrics statements="362" coveredstatements="159" conditionals="121" coveredconditionals="19" methods="58" coveredmethods="10"/>
       <file name="applianceController.js" path="/app/controllers/applianceController.js">
         <metrics statements="44" coveredstatements="23" conditionals="14" coveredconditionals="2" methods="8" coveredmethods="3"/>
         <line num="1" count="1" type="stmt"/>
@@ -52,7 +52,7 @@
         <line num="73" count="1" type="stmt"/>
       </file>
       <file name="authController.js" path="/app/controllers/authController.js">
-        <metrics statements="74" coveredstatements="35" conditionals="24" coveredconditionals="12" methods="9" coveredmethods="3"/>
+        <metrics statements="74" coveredstatements="39" conditionals="24" coveredconditionals="12" methods="9" coveredmethods="4"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -71,7 +71,7 @@
         <line num="23" count="1" type="stmt"/>
         <line num="26" count="1" type="stmt"/>
         <line num="27" count="1" type="stmt"/>
-        <line num="31" count="0" type="stmt"/>
+        <line num="31" count="1" type="stmt"/>
         <line num="38" count="1" type="stmt"/>
         <line num="39" count="3" type="stmt"/>
         <line num="41" count="3" type="cond" truecount="4" falsecount="0"/>
@@ -124,9 +124,9 @@
         <line num="153" count="0" type="stmt"/>
         <line num="154" count="0" type="stmt"/>
         <line num="161" count="1" type="stmt"/>
-        <line num="162" count="0" type="stmt"/>
-        <line num="165" count="0" type="stmt"/>
-        <line num="169" count="0" type="stmt"/>
+        <line num="162" count="1" type="stmt"/>
+        <line num="165" count="1" type="stmt"/>
+        <line num="169" count="1" type="stmt"/>
       </file>
       <file name="bidsController.js" path="/app/controllers/bidsController.js">
         <metrics statements="37" coveredstatements="15" conditionals="4" coveredconditionals="0" methods="7" coveredmethods="0"/>
@@ -490,9 +490,9 @@
       </file>
     </package>
     <package name="models">
-      <metrics statements="65" coveredstatements="56" conditionals="4" coveredconditionals="2" methods="6" coveredmethods="3"/>
+      <metrics statements="65" coveredstatements="57" conditionals="4" coveredconditionals="2" methods="6" coveredmethods="4"/>
       <file name="adminModel.js" path="/app/models/adminModel.js">
-        <metrics statements="29" coveredstatements="20" conditionals="4" coveredconditionals="2" methods="6" coveredmethods="3"/>
+        <metrics statements="29" coveredstatements="21" conditionals="4" coveredconditionals="2" methods="6" coveredmethods="4"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -519,7 +519,7 @@
         <line num="87" count="0" type="stmt"/>
         <line num="88" count="0" type="stmt"/>
         <line num="92" count="1" type="stmt"/>
-        <line num="93" count="0" type="stmt"/>
+        <line num="93" count="1" type="stmt"/>
         <line num="96" count="1" type="stmt"/>
         <line num="97" count="1" type="stmt"/>
       </file>
