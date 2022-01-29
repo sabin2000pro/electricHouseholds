@@ -304,13 +304,10 @@ const FairNegotations = (props) => {
 
         {auctionChosen ? 
              <div>
-                <button onClick = {beginLiveAuctionHandler} style = {{marginLeft: '950px', marginTop: '100px'}}>Begin Live Auction</button>
+                <button className = "start--auction" onClick = {beginLiveAuctionHandler} >Begin Live Auction</button>
             </div>
         : null}
 
-        {auctionStarted ? <div>
-            <h1 style = {{textAlign: 'center', marginTop: '30px'}}>Auction Starts in... {}</h1>
-        </div> : undefined}
 
     </section>
 

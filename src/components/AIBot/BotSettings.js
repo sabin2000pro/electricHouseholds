@@ -4,8 +4,9 @@
     import Header from '../Header';
     import {Link} from 'react-router-dom';
     import HomepageImg from '../images/homepage/homepageimg.jpg';
+    import axios from 'axios';
 
-    const BotSettings = (props) => {
+const BotSettings = (props) => {
         const [enteredBotName, setEnteredBotName] = useState('');
         const [enteredVirtualCredits, setEnteredVirtualCredits] = useState('');
         const [enteredBotType, setChosenBotType] = useState('');
@@ -14,6 +15,16 @@
         const submitBotHandler = async (event) => {
             try {
                 event.preventDefault();
+
+                await axios.post(`http://localhost:5200/api/v1/bot/create-bot`, {name: enteredBotName, virtualCredits: enteredVirtualCredits, type: enteredBotType, bidRange: enteredBidRange});
+                alert(`Bot Data Configured`);
+
+                setEnteredBotName("");
+                setEnteredVirtualCredits("");
+                setChosenBotType("");
+                setEnteredBidRange("");
+
+                return window.location.reload(false);
                 
             } 
             
@@ -28,6 +39,7 @@
         }
 
     return  <Fragment>
+
     <Header />
 
     <section className = "section--home">
@@ -43,11 +55,11 @@
         <a className = "btn btn--outline" href = "/about-us">Logout</a>
     </div>
 
-    <div className = "home-img-box">
-        <img className = "home--img" alt = "Wind Turbing Image" src = {HomepageImg} />
-    </div>
+        <div className = "home-img-box">
+            <img className = "home--img" alt = "Wind Turbing Image" src = {HomepageImg} />
+        </div>
 
-    </div>
+        </div>
 </section>
 
     <section className = "section--login">
@@ -57,29 +69,28 @@
                 <RegisterCard>
                     <h1 className = "heading--primary login">Configure Bot Settings</h1>
 
-                    <form  className = "login--form">
+                    <form onSubmit = {submitBotHandler} className = "login--form">
     
                         <div className = "email--box">
                             <label className = "email--lbl">Name</label>
-                            <input placeholder = "Enter Bot Name" type = "text"/>
+                            <input value = {enteredBotName} onChange = {(e) => setEnteredBotName(e.target.value)} placeholder = "Enter Bot Name" type = "text"/>
                         </div>
 
-                        <div className = "password--box">
-                            <label className = "password--lbl">Credits</label>
-                            <input placeholder = "Enter Bot Credits" id = "credits" type = "text"/>
+                        <div className = "bot--box">
+                            <label className = "bot--lbl">Credits</label>
+                            <input value = {enteredVirtualCredits} onChange = {(e) => setEnteredVirtualCredits(e.target.value)} placeholder = "Enter Bot Credits" id = "credits" type = "text"/>
                         </div>
 
-                        <div className = "password--box">
-                            <label className = "password--lbl">Type</label>
-                            <input placeholder = "Enter Bot Type" id = "type" type = "text"/>
+                        <div className = "type--box">
+                            <label className = "type--lbl">Type</label>
+                            <input value = {enteredBotType} onChange = {(e) => setChosenBotType(e.target.value)} placeholder = "Enter Bot Type" id = "type" type = "text"/>
                         </div>
 
-                        <div className = "password--box">
-                            <label className = "password--lbl">Bid Range</label>
-                            <input placeholder = "Enter Bid Range" id = "password" type = "password"/>
+                        <div className = "range--box">
+                            <label className = "range--lbl">Bid Range</label>
+                            <input value = {enteredBidRange} onChange = {(e) => setEnteredBidRange(e.target.value)} placeholder = "Enter Bid Range" id = "range" type = "text"/>
                         </div>
                 
-
                         <div className = "submit--container">
                             <button className = "login--btn" type = "submit">Submit</button>
                         </div>
