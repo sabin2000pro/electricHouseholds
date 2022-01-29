@@ -37,8 +37,8 @@ module.exports.getPreferenceByID = catchAsync(async (request, response, next) =>
 module.exports.fetchAllPreferences = catchAsync(async (request, response, next) => {
 
     if(request.method === 'GET') {
-        const allPreferences = await Preference.find();
-        return response.status(200).json({allPreferences});
+        const preferences = await Preference.find();
+        return response.status(200).json({preferences});
     }
 
 });

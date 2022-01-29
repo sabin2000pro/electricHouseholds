@@ -31,7 +31,7 @@ const App = () => { // Main app component
 
         <Route exact path = '/admin-dashboard' component = {AdminDashboard}/>
         <Route exact path = '/contact-us' component = {ContactUs} />
-        <Route exact path = '/fair-negotiations' component = {AlgorithmsHome} />
+        <Route exact path = '/fair-negotiations/:id' component = {AlgorithmsHome} />
         <Route exact path = "/api/v1/auth/client/admin-forgotpassword" component = {AdminForgotPasswordHome}/>
         <Route exact path = "/admin/reset-password/:resetToken" component = {AdminResetPassword} />
         <Route exact path = "/api/v1/auth/client/admin-dashboard/create-appliance" component = {AdminCreateAppliance} />
@@ -39,7 +39,7 @@ const App = () => { // Main app component
         <Route exact path = "/admin-dashboard/bids-settings" component = {BidsSettings} />
         <Route exact path = "/admin-dashboard/api/v1/bot-settings" component = {BotSettings} />
         <Route exact path = "/appliance/:id" component = {Appliance}/>
-        <Route exact path = "/fair-negotiations" component = {FairNegotiations}/>
+        <Route exact path = "/fair-negotiations/:id" component = {FairNegotiations}/>
 
       </Router>
 

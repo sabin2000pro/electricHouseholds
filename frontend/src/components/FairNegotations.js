@@ -25,8 +25,9 @@ const BOT_TYPES = {
 const bidData = []; // Array that stores the bid data
 
 const FairNegotations = (props) => {
-    let history = useHistory();
     let location = useLocation();
+
+    const {appliance, firstPreference, secondPreference, thirdPreference} = location.state.preference;
 
     const [auctionStarted, setAuctionStarted] = useState(false);
     const [counter, setCounter] = useState(FLAGS.DEFAULT);
@@ -124,7 +125,6 @@ const FairNegotations = (props) => {
       const fetchBotData = async function() {
 
           try {
-             const {data} = await axios.get(`http://localhost:5200/api/v1/bot/get-bots`);
           } 
           
           catch(error) {
@@ -282,21 +282,6 @@ const FairNegotations = (props) => {
         }
     }
 
-    const editFeedback = (id) => {
-        try {
-            // Sends a PUT request to the back-end that updates the feedback if the user is not happy with it
-        } 
-        
-        catch(error) {
-
-            if(error) {
-
-                console.error(error);
-                throw new Error(error);
-            }
-        }
-    }
-
     useEffect(() => {
         return socialExchangeHandler();
     }, []);
@@ -327,6 +312,8 @@ const FairNegotations = (props) => {
         </div>
 
         <h1>Seconds : {seconds}</h1>
+        <h1>Your First Preference : {firstPreference}</h1>
+        <h2>Your Chosen Appliance : {appliance}</h2>
 
         {auctionChosen ? 
              <div>
@@ -340,7 +327,7 @@ const FairNegotations = (props) => {
     <footer className = "footer">
                 <ul className = "footer--items">
                     <li className = "footer--item">Copyright All Rights Reserved - eHouseholds Sabin Constantin Lungu - 2021</li>
-                </ul>
+            </ul>
       </footer>
 
 
