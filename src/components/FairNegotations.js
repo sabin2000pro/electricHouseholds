@@ -196,6 +196,7 @@ const FairNegotations = (props) => {
             })
         } 
         
+
         catch(error) {
             if(error) {
                 console.error(error);
@@ -356,7 +357,7 @@ const FairNegotations = (props) => {
     const fetchAllBids = async () => {
         try {
 
-            // Send GET request to fetch all bids here and display them in a list
+            
         } 
         
         catch(error) {
@@ -526,8 +527,11 @@ const FairNegotations = (props) => {
             </div>
 
         </div> 
+        <button className = "allbids--btn">View All Bids</button>
+
            
     </div>
+
     
 : undefined}
 
