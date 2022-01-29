@@ -63,9 +63,9 @@ const FairNegotations = (props) => {
     const [enteredUsername, setEnteredUsername] = useState('');
     const [enteredBid, setEnteredBid] = useState('');
     const [counterError, setCounterError] = useState(false);
+    const [mainRoundOver, setMainRoundOver] = useState(false);
     const [roundOneOver, setRoundOneOver] = useState(true);
     const [roundTwoOver, setRoundTwoOver] = useState(false);
-    const [roundThreeOver, setRoundThreeOver] = useState(false);
 
     const beginLiveAuctionHandler = function() {
          
@@ -118,7 +118,7 @@ const FairNegotations = (props) => {
           };
 
           if(roundNumber === 1 && seconds < 0) {
-           
+            setMainRoundOver(true);
             return handleCounterReset();
           }
 
@@ -443,9 +443,10 @@ const FairNegotations = (props) => {
 
             <h2>Your Chosen Appliance : {appliance}</h2>
 
-            <h1 className = "first--pref">Your First Chosen Preference : {firstPreference}</h1>
+            {mainRoundOver ? <h1 className = "first--pref">Your First Chosen Preference : {firstPreference}</h1> : null }
+
             {roundOneOver && roundNumber === 2 ?<h1 className = "second--pref">Your Second Chosen Preference: {secondPreference}</h1> : null }
-            {roundTwoOver && roundNumber === 3 ? <h1 className = "third--pref">Your Third Chosen Preference: {thirdPreference}</h1> : null}
+            {roundNumber === 3 ? <h1 className = "third--pref">Your Third Chosen Preference: {thirdPreference}</h1> : null}
         
             <div className = "container grid grid--2-cols">
 
