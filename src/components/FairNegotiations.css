@@ -51,6 +51,15 @@
     margin-top: 100px;
 }
 
-.third--pref {
+.first--pref {
     margin-bottom: 100px;
+}
+
+.second--pref {
+    margin-bottom: 150px;
+}
+
+
+.third--pref {
+   font-size: 26px;
 }
