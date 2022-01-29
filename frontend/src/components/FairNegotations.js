@@ -339,7 +339,15 @@ const FairNegotations = (props) => {
         try {
             event.preventDefault();
             const {data} = await axios.post(`http://localhost:5200/api/v1/bids/create-bid`, {username: enteredUsername, bid: enteredBid});
-            alert(`User Bid Submitted`);
+
+            if(!isNaN(enteredUsername)) {
+                alert('No integers please');
+            }
+
+            else {
+                alert(`User Bid Submitted`);
+            }
+
            
             console.log(data);
         } 
