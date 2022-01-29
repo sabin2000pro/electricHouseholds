@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1643484717199" clover="3.2.0">
-  <project timestamp="1643484717200" name="All files">
-    <metrics statements="681" coveredstatements="397" conditionals="183" coveredconditionals="25" methods="84" coveredmethods="18" elements="948" coveredelements="440" complexity="0" loc="681" ncloc="681" packages="9" files="36" classes="36"/>
+<coverage generated="1643489327146" clover="3.2.0">
+  <project timestamp="1643489327146" name="All files">
+    <metrics statements="679" coveredstatements="397" conditionals="176" coveredconditionals="25" methods="84" coveredmethods="18" elements="939" coveredelements="440" complexity="0" loc="679" ncloc="679" packages="9" files="36" classes="36"/>
     <package name="controllers">
-      <metrics statements="366" coveredstatements="155" conditionals="133" coveredconditionals="19" methods="58" coveredmethods="9"/>
+      <metrics statements="364" coveredstatements="155" conditionals="126" coveredconditionals="19" methods="58" coveredmethods="9"/>
       <file name="applianceController.js" path="/app/controllers/applianceController.js">
         <metrics statements="44" coveredstatements="23" conditionals="14" coveredconditionals="2" methods="8" coveredmethods="3"/>
         <line num="1" count="1" type="stmt"/>
@@ -129,7 +129,7 @@
         <line num="169" count="0" type="stmt"/>
       </file>
       <file name="bidsController.js" path="/app/controllers/bidsController.js">
-        <metrics statements="39" coveredstatements="15" conditionals="11" coveredconditionals="0" methods="7" coveredmethods="0"/>
+        <metrics statements="37" coveredstatements="15" conditionals="4" coveredconditionals="0" methods="7" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -151,24 +151,22 @@
         <line num="27" count="0" type="stmt"/>
         <line num="31" count="1" type="stmt"/>
         <line num="33" count="0" type="stmt"/>
-        <line num="35" count="0" type="cond" truecount="0" falsecount="7"/>
         <line num="36" count="0" type="stmt"/>
+        <line num="37" count="0" type="stmt"/>
         <line num="39" count="0" type="stmt"/>
-        <line num="40" count="0" type="stmt"/>
-        <line num="42" count="0" type="stmt"/>
-        <line num="45" count="1" type="stmt"/>
+        <line num="42" count="1" type="stmt"/>
+        <line num="43" count="0" type="stmt"/>
+        <line num="45" count="0" type="stmt"/>
         <line num="46" count="0" type="stmt"/>
         <line num="48" count="0" type="stmt"/>
-        <line num="49" count="0" type="stmt"/>
-        <line num="51" count="0" type="stmt"/>
-        <line num="54" count="1" type="stmt"/>
+        <line num="51" count="1" type="stmt"/>
+        <line num="52" count="0" type="stmt"/>
+        <line num="54" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="55" count="0" type="stmt"/>
-        <line num="57" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="58" count="0" type="stmt"/>
-        <line num="63" count="1" type="stmt"/>
-        <line num="65" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="66" count="0" type="stmt"/>
-        <line num="67" count="0" type="stmt"/>
+        <line num="60" count="1" type="stmt"/>
+        <line num="62" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="63" count="0" type="stmt"/>
+        <line num="64" count="0" type="stmt"/>
       </file>
       <file name="botController.js" path="/app/controllers/botController.js">
         <metrics statements="35" coveredstatements="11" conditionals="13" coveredconditionals="0" methods="6" coveredmethods="0"/>
@@ -538,8 +536,8 @@
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
-        <line num="43" count="1" type="stmt"/>
-        <line num="44" count="1" type="stmt"/>
+        <line num="31" count="1" type="stmt"/>
+        <line num="32" count="1" type="stmt"/>
       </file>
       <file name="botModel.js" path="/app/models/botModel.js">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>

@@ -10,7 +10,7 @@ const notFound = 404;
 module.exports.getAllBids = catchAsync(async (request, response, next) => {
     
      const bidData = await Bid.find();
-     return response.status(ok).json(bidData);
+     return response.status(ok).json({bidData});
 });
 
 module.exports.fetchSingleBid = catchAsync(async (request, response, next) => {
@@ -30,13 +30,10 @@ module.exports.fetchOpeningBid = catchAsync(async (request, response, next) => {
 // @ Middleware Function Description: Used to create a bid by allowing a POST request to the server
 module.exports.createBid = catchAsync(async (request, response, next) => {
    
-       const {nickname, virtualCredits, openingBid, username, reputationPoints} = request.body;
+       const {nickname, bid, virtualCredits, openingBid, username, reputationPoints} = request.body;
 
-       if(!nickname || !virtualCredits || !openingBid || !username || !reputationPoints) {
-           return response.status(notFound).json({status: 'Fail', message: 'Invalid Bid Entries'});
-        }
-
-        const newBid = await Bid.create({nickname, virtualCredits, openingBid, username, reputationPoints});
+      
+        const newBid = await Bid.create({nickname, bid, virtualCredits, openingBid, username, reputationPoints});
         await newBid.save(); // Save the new bid data to the database.
 
         return response.status(created).json({newBid});
