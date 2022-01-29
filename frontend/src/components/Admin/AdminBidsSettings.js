@@ -23,7 +23,7 @@ const AdminBidsSettings = () => {
         try {
             event.preventDefault();
             // Send POST request
-            const {data} = await axios.post(`http://localhost:5200/api/v1/bids/create-bid`, {openingBid: enteredOpeningBid, virtualCredits: enteredVirtualCredits});
+            const {data} = await axios.post(`http://localhost:5200/api/v1/credits/create-credits`, {openingBid: enteredOpeningBid, virtualCredits: enteredVirtualCredits});
             console.log(data);
             alert('Credits Configured');
 

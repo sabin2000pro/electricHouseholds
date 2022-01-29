@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for routes/authRoutes.js</title>
+    <title>Code coverage report for routes/creditRoutes.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../prettify.css" />
     <link rel="stylesheet" href="../base.css" />
@@ -19,13 +19,13 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../index.html">All files</a> / <a href="index.html">routes</a> authRoutes.js</h1>
+        <h1><a href="../index.html">All files</a> / <a href="index.html">routes</a> creditRoutes.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>14/14</span>
+                <span class='fraction'>7/7</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>14/14</span>
+                <span class='fraction'>7/7</span>
             </div>
         
             
@@ -71,68 +71,23 @@
 <a name='L6'></a><a href='#L6'>6</a>
 <a name='L7'></a><a href='#L7'>7</a>
 <a name='L8'></a><a href='#L8'>8</a>
-<a name='L9'></a><a href='#L9'>9</a>
-<a name='L10'></a><a href='#L10'>10</a>
-<a name='L11'></a><a href='#L11'>11</a>
-<a name='L12'></a><a href='#L12'>12</a>
-<a name='L13'></a><a href='#L13'>13</a>
-<a name='L14'></a><a href='#L14'>14</a>
-<a name='L15'></a><a href='#L15'>15</a>
-<a name='L16'></a><a href='#L16'>16</a>
-<a name='L17'></a><a href='#L17'>17</a>
-<a name='L18'></a><a href='#L18'>18</a>
-<a name='L19'></a><a href='#L19'>19</a>
-<a name='L20'></a><a href='#L20'>20</a>
-<a name='L21'></a><a href='#L21'>21</a>
-<a name='L22'></a><a href='#L22'>22</a>
-<a name='L23'></a><a href='#L23'>23</a>
-<a name='L24'></a><a href='#L24'>24</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<a name='L9'></a><a href='#L9'>9</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">const express = require('express');
-const rateLimit = require('express-rate-limit');
-const authRouter = express.Router();
-const authController = require('../controllers/authController');
-const authMiddleware = require('../middleware/protectRoutes');
+const creditRouter = express.Router();
+const creditController = require('../controllers/creditController');
 &nbsp;
-const mainAuthLimiter = rateLimit({ // Rate limit middleware to prevent request spamming. RETURNS 429 Too many requests status code
-    windowMs: 60 * 60 * 1000, // Every 1 hour
-	max: 5, // Limit each IP to 3 reset password requests per `window` (here, per 1 hour)
-	message: 'Too many AUTH requests coming from this IP, please try again after an hour',
-	standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
-	legacyHeaders: false, // Disable the `X-RateLimit-*` headers
-});
+creditRouter.route('/create-credits').post(creditController.createCredits);
+creditRouter.route('/get-credits').get(creditController.getAllCredits);
+creditRouter.route('/delete-credits').delete(creditController.deleteCredits);
 &nbsp;
-&nbsp;
-authRouter.route('/register-admin').post(mainAuthLimiter, authController.registerAdmin);
-authRouter.route('/login-admin').post(mainAuthLimiter, authController.loginAdmin);
-authRouter.route('/forgot-password').post(mainAuthLimiter, authController.forgotPassword);
-authRouter.route('/admin/reset-password/:resetToken').put(mainAuthLimiter, authController.resetAdminPassword);
-authRouter.route('/fetch-admins').get(authController.fetchAllAdmins);
-authRouter.route('/me').get(authMiddleware.protect, authController.getMe);
-authRouter.route('/delete-admins').delete(authMiddleware.protect, authController.deleteAllAdmins);
-&nbsp;
-module.exports = authRouter; // Export router to be used in the server</pre></td></tr></table></pre>
+module.exports = creditRouter;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->

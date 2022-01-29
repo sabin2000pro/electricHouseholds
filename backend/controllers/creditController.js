@@ -15,3 +15,8 @@ module.exports.createCredits = catchAsync(async (request, response, next) => {
 module.exports.deleteCredits = catchAsync(async (request, response, next) => {
 
 });
+
+module.exports.getAllCredits = catchAsync(async (request, response, next) => {
+    const allCredits = await Credit.find();
+    return response.status(200).json({allCredits});
+})
