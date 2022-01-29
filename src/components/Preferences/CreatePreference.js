@@ -146,16 +146,17 @@ const CreatePreference = (props) => {
         try {
 
             return await axios.get(`http://localhost:5200/api/v1/preferences/fetch-preferences`).then(response => {
-                const allPreferences = response.data.allPreferences;
-                const length = response.data.allPreferences.length;
+                const allPreferences = response.data.preferences;
+                const length = response.data.preferences.length;
+
+                setPreferences(allPreferences);
+                setPreferencesBtnClicked(!preferencesBtnClicked);
+                generateRandomTimeslots();
 
                 if(length === 0) {
                     return setModalShown({title: "Preferences", message: "No preferences found"});
                 }
-                
-                setPreferences(allPreferences);
-                setPreferencesBtnClicked(!preferencesBtnClicked);
-                generateRandomTimeslots();
+        
 
                 return setTimeout(() => {
                     {!preferenceSubmitted && setModalShown({title: "Are you happy with your preferences?", commTitle: "Comment Title: ", username: "Username: ", reason: "Reason: ", description: "Description: ", showInputs: true, showSubmitBtn: true})};
@@ -405,8 +406,8 @@ const CreatePreference = (props) => {
 
         <section>
 
-            {preferencesBtnClicked && preferences.map((data, key) => {
-                const theData = data;
+            {preferencesBtnClicked && preferences.map((preference, key) => {
+                const theData = preference;
 
                 if(!theData) {
                     return console.log(`No data found`);
@@ -425,7 +426,7 @@ const CreatePreference = (props) => {
                     <h2 className = "appliance--heading">Second Random Slot : {JSON.stringify(otherSecondPref, null).toString().replaceAll("\"", "")}</h2>
                     <h2 className = "appliance--heading">Third Random Slot : {JSON.stringify(otherThirdPref, null).toString().replaceAll("\"", "")}</h2>
 
-                    <Link className = "negotiate--btn" to = {{pathname: `/fair-negotiations`, state: {preferences}} }>Negotiate Preference</Link>
+                    <Link className = "negotiate--btn" to = {{pathname: `/fair-negotiations/${preference._id}`, state: {preference}} }>Negotiate Preference</Link>
 
                     </div>
                 </div>
