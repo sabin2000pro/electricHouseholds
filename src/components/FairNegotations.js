@@ -29,7 +29,8 @@ const FairNegotations = (props) => {
     let location = useLocation();
 
     const [auctionStarted, setAuctionStarted] = useState(false);
-    const [counter, setCounter] = useState(0);
+    const [counter, setCounter] = useState(FLAGS.DEFAULT);
+    const [seconds, setSeconds] = useState(10);
     const [feedbackData, setFeedbackData] = useState([]);
     const [creditData, setCreditData] = useState([]);
     const [enteredBid, setEnteredBid] = useState('');
@@ -48,6 +49,7 @@ const FairNegotations = (props) => {
     const [bidsCounted, setBidsCounted] = useState(false);
     const [auctionChosen, setAuctionChosen] = useState(false);
     const [socialExchangeChosen, setSocialExchangeChosen] = useState(false);
+    const [botData, setBotData] = useState([]);
 
     const [botTurn, setBotTurn] = useState(false);
     const [userTurn, setUserTurn] = useState(false);
@@ -56,32 +58,50 @@ const FairNegotations = (props) => {
         return setAuctionStarted(!auctionStarted);
     }
 
-    // Used as the countdown timer by using refs.
     const useInterval = (callback, delay) => {
         const savedCallback = useRef();
     
-        useEffect(() => {
+        useEffect(() => { // Hook to to set the current callback
           savedCallback.current = callback;
         }, [callback]);
     
         useEffect(() => {
     
-          const tick = () => {
+          const counterTick = () => {
             return savedCallback.current();
           };
     
           if (delay !== null) {
-            let id = setInterval(tick, delay); // Set the interval delay with a unique ID
-                return () => clearInterval(id); // Clear out field
+
+            let timer = setInterval(counterTick, delay); // Set the interval delay with a unique ID
+            return () => clearInterval(timer); // Clear out field
+
           }
     
-        }, [delay]);
+        }, [FLAGS.DELAY]);
       };
-
-      // Invoke above routine
+    
       useInterval(() => {
+        try {
 
-      });
+          setSeconds(seconds - 1);
+    
+          if (seconds === 0) { // When the timer is up
+            
+            return setSeconds(seconds);
+
+          }
+        } 
+        
+        catch (error) {
+    
+          if (error) {
+            throw new Error(error);
+          }
+    
+        }
+      }, FLAGS.DELAY);
+   
 
       // Side-Effect hook used to fetch all the bid data
       useEffect(() => {
@@ -101,16 +121,20 @@ const FairNegotations = (props) => {
           return setSocialExchangeChosen(!socialExchangeChosen);
       }
 
-      const fetchBotData = function() {
-          try {
+      const fetchBotData = async function() {
 
+          try {
+             const {data} = await axios.get(`http://localhost:5200/api/v1/bot/get-bots`);
           } 
           
           catch(error) {
 
             if(error) {
 
+                console.error(error);
+                throw new Error(error);
             }
+
           }
 
       }
@@ -302,6 +326,8 @@ const FairNegotations = (props) => {
             <button onClick = {chosenSocialExchangeHandler} className = "social--btn">Social Exchange Algorithm</button>
         </div>
 
+        <h1>Seconds : {seconds}</h1>
+
         {auctionChosen ? 
              <div>
                 <button className = "start--auction" onClick = {beginLiveAuctionHandler} >Begin Live Auction</button>
@@ -316,6 +342,8 @@ const FairNegotations = (props) => {
                     <li className = "footer--item">Copyright All Rights Reserved - eHouseholds Sabin Constantin Lungu - 2021</li>
                 </ul>
       </footer>
+
+
         </React.Fragment>
     )
 }
