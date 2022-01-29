@@ -21,13 +21,9 @@ module.exports.getSingleBot = catchAsync(async(request, response, next) => {
 });
 
 module.exports.createBot = catchAsync(async (request, response, next) => {
-    const {name, virtualCredits, type} = request.body;
+    const {name, botCredits, type} = request.body;
 
-    if(!name || !virtualCredits || !type) {
-        return response.status(404).json({status: "Fail", message: "Could not create bot. Invalid entries"});
-    };
-
-    const newBot = new Bot({name, virtualCredits, type});
+    const newBot = new Bot({name, botCredits, type});
     await newBot.save();
 
     return response.status(created).json({newBot});

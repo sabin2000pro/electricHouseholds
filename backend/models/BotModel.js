@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
 
 const BotSchema = new mongoose.Schema({
-    
+
     name: {
         type: String
     },
 
-    virtualCredits: {
+    botCredits: {
         type: String,
         default: 0,
         min: [10, 'Bot must have at least £10 in Virtual Credits to Bid'],

@@ -31,7 +31,6 @@ const FairNegotations = (props) => {
 
     const [auctionStarted, setAuctionStarted] = useState(false);
     const [roundNumber, setRoundNumber] = useState(1);
-    const [counter, setCounter] = useState(FLAGS.DEFAULT);
     const [timerRunning, setTimerRunning] = useState(false);
     const [seconds, setSeconds] = useState(10);
     const [feedbackData, setFeedbackData] = useState([]);
@@ -60,6 +59,10 @@ const FairNegotations = (props) => {
     
     const [enteredUsername, setEnteredUsername] = useState('');
     const [enteredBid, setEnteredBid] = useState('');
+    const [counterError, setCounterError] = useState(false);
+    const [roundOneOver, setRoundOneOver] = useState(false);
+    const [roundTwoOver, setRoundTwoOver] = useState(false);
+    const [roundThreeOver, setRoundThreeOver] = useState(false);
 
     const beginLiveAuctionHandler = function() {
         return setAuctionStarted(!auctionStarted);
@@ -124,6 +127,9 @@ const FairNegotations = (props) => {
         catch (error) {
     
           if (error) {
+              console.error(error);
+              setCounterError(true);
+
             throw new Error(error);
           }
     
@@ -155,6 +161,7 @@ const FairNegotations = (props) => {
 
       const fetchUserBidData = async function() {
             try {
+
                 return await axios.get(`http://localhost:5200/api/v1/bids/fetch-bids`).then(response => {
                     const allBids = response.data.bidData;
                     setUserBidData(allBids);
@@ -168,6 +175,7 @@ const FairNegotations = (props) => {
             } 
             
             catch(error) {
+
                 if(error) {
                     return console.error(error);
                 }
@@ -178,7 +186,10 @@ const FairNegotations = (props) => {
       const fetchBotData = async function() {
 
           try {
-
+            return await axios.get(`http://localhost:5200/api/v1/bot/get-bots`).then(response => {
+                const botData = response.data.allBots;
+                console.log(botData);
+            })
           } 
           
           catch(error) {
@@ -254,8 +265,12 @@ const FairNegotations = (props) => {
                 }
 
             });
-       
-           return `Current Total Bids : ${bidCounter}`;
+            
+            setBidsCounted(true);
+            
+            if(bidsCounted) {
+                return `Current Total Bids : ${bidCounter}`;
+            }
         }
         
         catch(error) {
@@ -398,7 +413,6 @@ const FairNegotations = (props) => {
 
         {auctionChosen ?
             <div className = "appliance--data">
-            
             <button className = "start--auction" onClick = {beginLiveAuctionHandler} >Begin Live Auction</button>
         </div>
      : null}
