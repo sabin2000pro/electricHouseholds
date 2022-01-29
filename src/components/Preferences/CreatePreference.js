@@ -111,16 +111,20 @@ const CreatePreference = (props) => {
         }
     }
 
+    
     const modalHandler = () => {
         {modalShown && setModalShown(null)}
     }
+
 
     useEffect(() => {
         return fetchAllAppliances();
     }, []);
 
+
     const fetchAllAppliances = async () => {
         try {
+
             return await axios.get(`http://localhost:5200/api/v1/appliances/fetch-appliances`).then(response => {
                 const allAppliances = response.data.appliances;
 
@@ -184,6 +188,7 @@ const CreatePreference = (props) => {
     const generateRandomTimeslots = () => {
 
         try {
+
             let firstOtherPrefIndex = otherPreferences[0].firstOtherPreference;
             let secondOtherPrefIndex = otherPreferences[0].secondOtherPreference
             let thirdOtherPrefIndex = otherPreferences[0].thirdOtherPreference;

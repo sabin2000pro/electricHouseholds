@@ -30,13 +30,13 @@ const FairNegotations = (props) => {
     const {appliance, firstPreference, secondPreference, thirdPreference} = location.state.preference;
 
     const [auctionStarted, setAuctionStarted] = useState(false);
+    const [roundNumber, setRoundNumber] = useState(1);
     const [counter, setCounter] = useState(FLAGS.DEFAULT);
+    const [timerRunning, setTimerRunning] = useState(false);
     const [seconds, setSeconds] = useState(10);
     const [feedbackData, setFeedbackData] = useState([]);
     const [creditData, setCreditData] = useState([]);
-    const [enteredBid, setEnteredBid] = useState('');
     const [bidValid, setBidValid] = useState(false);
-    const [bidSubmitted, setBidSubmitted] = useState(false);
     const [bidsFound, setBidsFound] = useState(false);
     const [enteredFeedbackUsername, setEnteredFeedbackUsername] = useState("");
     const [enteredFeedbackEmailAddress, setEnteredFeedbackEmailAddress] = useState("");
@@ -51,20 +51,39 @@ const FairNegotations = (props) => {
     const [auctionChosen, setAuctionChosen] = useState(false);
     const [socialExchangeChosen, setSocialExchangeChosen] = useState(false);
     const [botData, setBotData] = useState([]);
+    const [userBidData, setUserBidData] = useState([]);
+    const [timeUp, setTimeUp] = useState(false);
+    const [bidSubmitted, setBidSubmitted] = useState(false);
 
     const [botTurn, setBotTurn] = useState(false);
     const [userTurn, setUserTurn] = useState(false);
+    
+    const [enteredUsername, setEnteredUsername] = useState('');
+    const [enteredBid, setEnteredBid] = useState('');
 
     const beginLiveAuctionHandler = function() {
         return setAuctionStarted(!auctionStarted);
+    }
+
+    const handleCounterReset = () => {
+        setTimerRunning(null);
+        setSeconds(10);
     }
 
     const useInterval = (callback, delay) => {
         const savedCallback = useRef();
     
         useEffect(() => { // Hook to to set the current callback
-          savedCallback.current = callback;
-        }, [callback]);
+            setTimerRunning(true);
+
+            if(timerRunning) {
+                savedCallback.current = callback;
+            }
+
+           else if(timerRunning === null) {
+               setSeconds(10);
+           }
+        }, [callback, timerRunning]);
     
         useEffect(() => {
     
@@ -85,13 +104,21 @@ const FairNegotations = (props) => {
       useInterval(() => {
         try {
 
-          setSeconds(seconds - 1);
+            setSeconds(seconds - 1);
     
           if (seconds === 0) { // When the timer is up
-            
-            return setSeconds(seconds);
-
+            setRoundNumber(roundNumber + 1);
+            return handleCounterReset();
           }
+
+          if(roundNumber === 1 && seconds < 0) {
+            return handleCounterReset();
+          }
+
+          if(roundNumber === 2 && seconds < 0) {
+              return handleCounterReset();
+          }
+
         } 
         
         catch (error) {
@@ -111,7 +138,11 @@ const FairNegotations = (props) => {
 
       useEffect(() => {
         return fetchBotData();
-      }, [])
+      }, []);
+
+      useEffect(() => {
+          return fetchUserBidData();
+      }, []);
 
       // Routine that toggles between true / false if the english auction algorithm is chosen
       const chosenEnglishAuctionHandler = function() {
@@ -122,9 +153,32 @@ const FairNegotations = (props) => {
           return setSocialExchangeChosen(!socialExchangeChosen);
       }
 
+      const fetchUserBidData = async function() {
+            try {
+                return await axios.get(`http://localhost:5200/api/v1/bids/fetch-bids`).then(response => {
+                    const allBids = response.data.bidData;
+                    setUserBidData(allBids);
+
+                }).catch(err => {
+
+                    if(err) {
+                        return console.error(err);
+                    }
+                })
+            } 
+            
+            catch(error) {
+                if(error) {
+                    return console.error(error);
+                }
+            }
+
+      }
+
       const fetchBotData = async function() {
 
           try {
+
           } 
           
           catch(error) {
@@ -162,8 +216,17 @@ const FairNegotations = (props) => {
     // Finding Max Algorithm that is used to count the largest bid placed
     const findMaxBid = () => {
         try {
+        let maxBid = FLAGS.DEFAULT;
 
-            let maxBid = 0;
+        for (let i = FLAGS.DEFAULT; i < bidData.length; i++) {
+            const currentBid = parseInt(bidData[i].bid);
+
+        if (currentBid > maxBid) {
+            maxBid = currentBid;
+        }
+    }
+        return `Current Highest Bid ${maxBid}`;
+
         } 
         
         catch(error) {
@@ -181,12 +244,24 @@ const FairNegotations = (props) => {
     // Counting Occurences algorithm that counts the number of bids that have been placed.
     const countTotalBids = () => {
         try {
-             
+
+            let bidCounter = FLAGS.DEFAULT;
+
+            bidData.forEach((value) => {
+                
+                if(value.hasOwnProperty('bid')) {
+                    bidCounter++;
+                }
+
+            });
+       
+           return `Current Total Bids : ${bidCounter}`;
         }
         
         catch(error) {
 
             if(error) {
+
                 console.error(error);
                 throw new Error(error);
             }
@@ -198,6 +273,10 @@ const FairNegotations = (props) => {
 
         try {
             event.preventDefault();
+
+            const {data} = await axios.post(`http://localhost:5200/api/v1/bids/create-bid`)
+            console.log(data);
+
         } 
         
         catch(error) {
@@ -228,7 +307,9 @@ const FairNegotations = (props) => {
     
     // This routine acts as an AI bot that randomly places a BID after a user does, or after a certain amount of time
     const placeRandomBid = function() {
+
         try {
+
             // Code here for the AI bot that generates a random bid
         } 
         
@@ -247,7 +328,6 @@ const FairNegotations = (props) => {
         try {
             event.preventDefault();
 
-            // Send POST request to the back-end server
             const {data} = await axios.post(``);
 
             // If no data found
@@ -257,6 +337,7 @@ const FairNegotations = (props) => {
         }
         
         catch(error) {
+
             if(error) {
 
                 console.log(`An error occurred : ${error}`);
@@ -268,6 +349,7 @@ const FairNegotations = (props) => {
 
     // Routine used to validate the feedback submitted by the user
     const validateFeedback = function() {
+
         try {
 
         }
@@ -287,12 +369,14 @@ const FairNegotations = (props) => {
     }, []);
 
     const socialExchangeHandler = () => {
+
         try {
         } 
         
         catch(error) {
 
             if(error) {
+
                 console.error(error);
                 throw new Error(error);
             }
@@ -302,6 +386,7 @@ const FairNegotations = (props) => {
 
     return (
         <React.Fragment>
+
     <section className = "section--login">
 
           <h1 className = "fn--heading">Choose Your Desired Algorithm Below</h1>
@@ -311,26 +396,64 @@ const FairNegotations = (props) => {
             <button onClick = {chosenSocialExchangeHandler} className = "social--btn">Social Exchange Algorithm</button>
         </div>
 
-        <h1>Seconds : {seconds}</h1>
-        <h1>Your First Preference : {firstPreference}</h1>
-        <h2>Your Chosen Appliance : {appliance}</h2>
+        {auctionChosen ?
+            <div className = "appliance--data">
+            
+            <button className = "start--auction" onClick = {beginLiveAuctionHandler} >Begin Live Auction</button>
+        </div>
+     : null}
 
-        {auctionChosen ? 
-             <div>
-                <button className = "start--auction" onClick = {beginLiveAuctionHandler} >Begin Live Auction</button>
+     {auctionStarted ? 
+        <div className = "appliance--data">
+
+         <h1>Bidding Seconds Remaining: {seconds}</h1>
+            <h1>Current Round Number : {roundNumber}</h1>
+
+            {userBidData.map((data, key) => {
+                const theData = data;
+                return <h1 key = {theData._id}>User Available Virtual Credits : {theData.virtualCredits}</h1>
+            })}
+
+            <h2>Your Chosen Appliance : {appliance}</h2>
+            <h1>Your First Chosen Preference : {firstPreference}</h1>
+            <h1>Your Second Chosen Preference: {secondPreference}</h1>
+            <h1 className = "third--pref">Your Third Chosen Preference: {thirdPreference}</h1>
+
+            <div className = "container grid grid--2-cols">
+                
+                <RegisterCard>
+                    <h1 className = "heading--primary login">Submit Bid Below</h1>
+
+            <form className = "login--form" method = "POST" onSubmit = {submitUserBidHandler}>
+
+                 <div className = "email--box">
+                            <label className = "email--lbl">Name</label>
+                            <input placeholder = "Enter Bot Name" type = "text"/>
+                        </div>
+
+                     <div className = "bot--box">
+                        <label className = "bot--lbl">Credits</label>
+                        <input placeholder = "Enter Bot Credits" id = "credits" type = "text"/>
+
+                    </div>
+            </form>
+
+            </RegisterCard>
+
             </div>
-        : null}
-
-
+    </div>
+    
+: undefined}
     </section>
+
 
     <footer className = "footer">
                 <ul className = "footer--items">
-                    <li className = "footer--item">Copyright All Rights Reserved - eHouseholds Sabin Constantin Lungu - 2021</li>
+                <li className = "footer--item">Copyright All Rights Reserved - eHouseholds Sabin Constantin Lungu - 2021</li>
             </ul>
       </footer>
 
-
+    
         </React.Fragment>
     )
 }
