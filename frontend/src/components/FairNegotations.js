@@ -63,9 +63,9 @@ const FairNegotations = (props) => {
     const [enteredUsername, setEnteredUsername] = useState('');
     const [enteredBid, setEnteredBid] = useState('');
     const [counterError, setCounterError] = useState(false);
-    const [roundOne, setRoundOne] = useState(false);
-    const [roundTwo, setRoundTwo] = useState(false);
-    const [roundThree, setRoundThree] = useState(false);
+    const [roundOneOver, setRoundOneOver] = useState(true);
+    const [roundTwoOver, setRoundTwoOver] = useState(false);
+    const [roundThreeOver, setRoundThreeOver] = useState(false);
 
     const beginLiveAuctionHandler = function() {
          
@@ -117,14 +117,18 @@ const FairNegotations = (props) => {
             return handleCounterReset();
           };
 
-
           if(roundNumber === 1 && seconds < 0) {
-              setRoundOne(true);
+           
             return handleCounterReset();
           }
 
           if(roundNumber === 2 && seconds < 0) {
-              setRoundTwo(true);
+              setRoundOneOver(true);
+              return handleCounterReset();
+          }
+
+          if(roundNumber === 3 && seconds < 0) {
+              setRoundTwoOver(true);
               return handleCounterReset();
           }
 
@@ -427,7 +431,6 @@ const FairNegotations = (props) => {
      {auctionStarted ? 
         <div className = "appliance--data">
 
-
         
         <div>
             <h1>Bidding Seconds Remaining: {seconds}</h1>
@@ -439,10 +442,11 @@ const FairNegotations = (props) => {
             })}
 
             <h2>Your Chosen Appliance : {appliance}</h2>
-            <h1>Your First Chosen Preference : {firstPreference}</h1>
-            <h1>Your Second Chosen Preference: {secondPreference}</h1>
-            <h1 className = "third--pref">Your Third Chosen Preference: {thirdPreference}</h1>
 
+            <h1 className = "first--pref">Your First Chosen Preference : {firstPreference}</h1>
+            {roundOneOver && roundNumber === 2 ?<h1 className = "second--pref">Your Second Chosen Preference: {secondPreference}</h1> : null }
+            {roundTwoOver && roundNumber === 3 ? <h1 className = "third--pref">Your Third Chosen Preference: {thirdPreference}</h1> : null}
+        
             <div className = "container grid grid--2-cols">
 
                 <RegisterCard>
