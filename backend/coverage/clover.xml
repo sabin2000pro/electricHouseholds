@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1643125961476" clover="3.2.0">
-  <project timestamp="1643125961477" name="All files">
-    <metrics statements="682" coveredstatements="397" conditionals="183" coveredconditionals="25" methods="84" coveredmethods="18" elements="949" coveredelements="440" complexity="0" loc="682" ncloc="682" packages="9" files="36" classes="36"/>
+<coverage generated="1643480651292" clover="3.2.0">
+  <project timestamp="1643480651295" name="All files">
+    <metrics statements="681" coveredstatements="397" conditionals="183" coveredconditionals="25" methods="84" coveredmethods="18" elements="948" coveredelements="440" complexity="0" loc="681" ncloc="681" packages="9" files="36" classes="36"/>
     <package name="controllers">
       <metrics statements="366" coveredstatements="155" conditionals="133" coveredconditionals="19" methods="58" coveredmethods="9"/>
       <file name="applianceController.js" path="/app/controllers/applianceController.js">
@@ -545,8 +545,8 @@
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
-        <line num="22" count="1" type="stmt"/>
-        <line num="23" count="1" type="stmt"/>
+        <line num="27" count="1" type="stmt"/>
+        <line num="28" count="1" type="stmt"/>
       </file>
       <file name="commentsModel.js" path="/app/models/commentsModel.js">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
@@ -729,9 +729,9 @@
       </file>
     </package>
     <package name="server">
-      <metrics statements="62" coveredstatements="51" conditionals="10" coveredconditionals="3" methods="4" coveredmethods="2"/>
+      <metrics statements="61" coveredstatements="51" conditionals="10" coveredconditionals="3" methods="4" coveredmethods="2"/>
       <file name="server.js" path="/app/server/server.js">
-        <metrics statements="62" coveredstatements="51" conditionals="10" coveredconditionals="3" methods="4" coveredmethods="2"/>
+        <metrics statements="61" coveredstatements="51" conditionals="10" coveredconditionals="3" methods="4" coveredmethods="2"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -792,8 +792,7 @@
         <line num="92" count="1" type="cond" truecount="1" falsecount="1"/>
         <line num="94" count="0" type="stmt"/>
         <line num="95" count="0" type="stmt"/>
-        <line num="96" count="0" type="stmt"/>
-        <line num="100" count="1" type="stmt"/>
+        <line num="99" count="1" type="stmt"/>
       </file>
     </package>
     <package name="utils">
