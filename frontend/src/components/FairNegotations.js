@@ -63,9 +63,9 @@ const FairNegotations = (props) => {
     const [enteredUsername, setEnteredUsername] = useState('');
     const [enteredBid, setEnteredBid] = useState('');
     const [counterError, setCounterError] = useState(false);
-    const [roundOneOver, setRoundOneOver] = useState(false);
-    const [roundTwoOver, setRoundTwoOver] = useState(false);
-    const [roundThreeOver, setRoundThreeOver] = useState(false);
+    const [roundOne, setRoundOne] = useState(false);
+    const [roundTwo, setRoundTwo] = useState(false);
+    const [roundThree, setRoundThree] = useState(false);
 
     const beginLiveAuctionHandler = function() {
          
@@ -119,10 +119,12 @@ const FairNegotations = (props) => {
 
 
           if(roundNumber === 1 && seconds < 0) {
+              setRoundOne(true);
             return handleCounterReset();
           }
 
           if(roundNumber === 2 && seconds < 0) {
+              setRoundTwo(true);
               return handleCounterReset();
           }
 
