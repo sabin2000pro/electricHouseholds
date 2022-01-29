@@ -79,3 +79,8 @@
 .submit-bid--container {
     margin-left: -180px;
 }
+
+.allbids--btn {
+    padding: 12px 24px;
+    background-color: lightgreen;
+}
