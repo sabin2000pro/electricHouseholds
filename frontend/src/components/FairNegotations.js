@@ -36,8 +36,6 @@ const FairNegotations = (props) => {
     const [startTimer, setStartTimer] = useState(START_TIMER);
     const [showStartText, setShowStartText] = useState(true);
     const [startTimerShown, setStartTimerShown] = useState(false);
-    const [feedbackData, setFeedbackData] = useState([]);
-    const [creditData, setCreditData] = useState([]);
     const [bidValid, setBidValid] = useState(false);
     const [bidsFound, setBidsFound] = useState(false);
     const [enteredFeedbackUsername, setEnteredFeedbackUsername] = useState("");
@@ -52,6 +50,7 @@ const FairNegotations = (props) => {
     const [bidsCounted, setBidsCounted] = useState(false);
     const [auctionChosen, setAuctionChosen] = useState(false);
     const [socialExchangeChosen, setSocialExchangeChosen] = useState(false);
+    const [feedbackData, setFeedbackData] = useState([]);
     const [botData, setBotData] = useState([]);
     const [userBidData, setUserBidData] = useState([]);
     const [timeUp, setTimeUp] = useState(false);
@@ -59,6 +58,8 @@ const FairNegotations = (props) => {
 
     const [botTurn, setBotTurn] = useState(false);
     const [userTurn, setUserTurn] = useState(false);
+    const [userTurnOver, setUserTurnOver] = useState(false);
+    const [botTurnOver, setBotTurnOver] = useState(false);
     
     const [enteredUsername, setEnteredUsername] = useState('');
     const [enteredBid, setEnteredBid] = useState('');
@@ -322,7 +323,7 @@ const FairNegotations = (props) => {
     const fetchAllBids = async () => {
         try {
 
-            // Send GET request to fetch all bids here
+            // Send GET request to fetch all bids here and display them in a list
         } 
         
         catch(error) {
