@@ -1,53 +1,104 @@
-import React, {useEffect, useState, Fragment} from 'react';
-import RegisterCard from '../Admin/RegisterCard';
-import ModalCard from '../../UI/ModalCard';
-import Header from '../Header';
-import HomepageImg from '../images/homepage/homepageimg.jpg';
+    import React, {useEffect, useState, Fragment} from 'react';
+    import RegisterCard from '../Admin/RegisterCard';
+    import ModalCard from '../../UI/ModalCard';
+    import Header from '../Header';
+    import {Link} from 'react-router-dom';
+    import HomepageImg from '../images/homepage/homepageimg.jpg';
 
-const BotSettings = (props) => {
-    const [enteredBotName, setEnteredBotName] = useState('');
-    const [enteredVirtualCredits, setEnteredVirtualCredits] = useState('');
-    const [chosenBotType, setChosenBotType] = useState('');
+    const BotSettings = (props) => {
+        const [enteredBotName, setEnteredBotName] = useState('');
+        const [enteredVirtualCredits, setEnteredVirtualCredits] = useState('');
+        const [enteredBotType, setChosenBotType] = useState('');
+        const [enteredBidRange, setEnteredBidRange] = useState('');
 
-    const submitBotHandler = async (event) => {
-        try {
+        const submitBotHandler = async (event) => {
+            try {
+                event.preventDefault();
+                
+            } 
+            
+            catch(error) {
 
-        } 
-        
-        catch(error) {
-            if(error) {
-                console.log(error);
-                throw new Error(error);
+
+                if(error) {
+                    console.log(error);
+                    throw new Error(error);
+                }
             }
         }
-    }
 
-  return  <Fragment>
-  <Header />
+    return  <Fragment>
+    <Header />
 
-<section className = "section--home">
-      <div className = "home--grid">
+    <section className = "section--home">
+        <div className = "home--grid">
 
-     <div className = "home-text-box">
-
-
-       <h1 className = "heading--primary">AI Bot Settings Panel</h1>
-      <p className = "home--description">In this dashboard panel, you will be able to configure various AI Bot settings such as the number of Virtual Credits the AI bot can bid. You can create up to three types of AI bots, low bidding bots, medium and high intensity bots.</p>
-
-      
-      <a className = "btn btn--outline" href = "/about-us">Logout</a>
-  </div>
-
-  <div className = "home-img-box">
-      <img className = "home--img" alt = "Wind Turbing Image" src = {HomepageImg} />
-  </div>
-</div>
+        <div className = "home-text-box">
 
 
+        <h1 className = "heading--primary">AI Bot Settings Panel</h1>
+        <p className = "home--description">In this dashboard panel, you will be able to configure various AI Bot settings such as the number of Virtual Credits the AI bot can bid. You can create up to three types of AI bots, low bidding bots, medium and high intensity bots.</p>
 
+        
+        <a className = "btn btn--outline" href = "/about-us">Logout</a>
+    </div>
+
+    <div className = "home-img-box">
+        <img className = "home--img" alt = "Wind Turbing Image" src = {HomepageImg} />
+    </div>
+
+    </div>
 </section>
 
-</Fragment>
-};
+    <section className = "section--login">
 
-export default BotSettings; // Export the Bot Settings Component
+            <div className = "container grid grid--2-cols">
+                
+                <RegisterCard>
+                    <h1 className = "heading--primary login">Configure Bot Settings</h1>
+
+                    <form  className = "login--form">
+    
+                        <div className = "email--box">
+                            <label className = "email--lbl">Name</label>
+                            <input placeholder = "Enter Bot Name" type = "text"/>
+                        </div>
+
+                        <div className = "password--box">
+                            <label className = "password--lbl">Credits</label>
+                            <input placeholder = "Enter Bot Credits" id = "credits" type = "text"/>
+                        </div>
+
+                        <div className = "password--box">
+                            <label className = "password--lbl">Type</label>
+                            <input placeholder = "Enter Bot Type" id = "type" type = "text"/>
+                        </div>
+
+                        <div className = "password--box">
+                            <label className = "password--lbl">Bid Range</label>
+                            <input placeholder = "Enter Bid Range" id = "password" type = "password"/>
+                        </div>
+                
+
+                        <div className = "submit--container">
+                            <button className = "login--btn" type = "submit">Submit</button>
+                        </div>
+
+                        </form>
+                    
+                </RegisterCard>
+                
+            </div>    
+        </section>
+
+            <footer className = "footer">
+                    <ul className = "footer--items">
+                        <li className = "footer--item">Copyright All Rights Reserved - eHouseholds Sabin Constantin Lungu - 2021</li>
+                    </ul>
+            </footer>
+
+    </Fragment>
+
+    };
+
+    export default BotSettings; // Export the Bot Settings Component
