@@ -6,7 +6,7 @@ import ModalCard from '../UI/ModalCard';
 import './FairNegotiations.css';
 
 const DELAY = 1200;
-const START_TIMER = 60;
+const START_TIMER = 5;
 const REFRESH_SECONDS = 30000;
 
 const FLAGS = {
@@ -33,6 +33,9 @@ const FairNegotations = (props) => {
     const [roundNumber, setRoundNumber] = useState(1);
     const [timerRunning, setTimerRunning] = useState(false);
     const [seconds, setSeconds] = useState(10);
+    const [startTimer, setStartTimer] = useState(START_TIMER);
+    const [showStartText, setShowStartText] = useState(true);
+    const [startTimerShown, setStartTimerShown] = useState(false);
     const [feedbackData, setFeedbackData] = useState([]);
     const [creditData, setCreditData] = useState([]);
     const [bidValid, setBidValid] = useState(false);
@@ -65,6 +68,7 @@ const FairNegotations = (props) => {
     const [roundThreeOver, setRoundThreeOver] = useState(false);
 
     const beginLiveAuctionHandler = function() {
+         
         return setAuctionStarted(!auctionStarted);
     }
 
@@ -106,13 +110,13 @@ const FairNegotations = (props) => {
     
       useInterval(() => {
         try {
-
             setSeconds(seconds - 1);
     
           if (seconds === 0) { // When the timer is up
             setRoundNumber(roundNumber + 1);
             return handleCounterReset();
-          }
+          };
+
 
           if(roundNumber === 1 && seconds < 0) {
             return handleCounterReset();
@@ -188,6 +192,7 @@ const FairNegotations = (props) => {
           try {
             return await axios.get(`http://localhost:5200/api/v1/bot/get-bots`).then(response => {
                 const botData = response.data.allBots;
+                setBotData(botData);
                 console.log(botData);
             })
           } 
@@ -420,7 +425,10 @@ const FairNegotations = (props) => {
      {auctionStarted ? 
         <div className = "appliance--data">
 
-         <h1>Bidding Seconds Remaining: {seconds}</h1>
+
+        
+        <div>
+            <h1>Bidding Seconds Remaining: {seconds}</h1>
             <h1>Current Round Number : {roundNumber}</h1>
 
             {userBidData.map((data, key) => {
@@ -434,32 +442,38 @@ const FairNegotations = (props) => {
             <h1 className = "third--pref">Your Third Chosen Preference: {thirdPreference}</h1>
 
             <div className = "container grid grid--2-cols">
-                
+
                 <RegisterCard>
-                    <h1 className = "heading--primary login">Submit Bid Below</h1>
+                    <h1 className = "heading--primary login">Submit Hid Below</h1>
 
-            <form className = "login--form" method = "POST" onSubmit = {submitUserBidHandler}>
+                    <form className = "login--form" onSubmit = {submitUserBidHandler} method = "POST">
 
-                 <div className = "email--box">
-                            <label className = "email--lbl">Name</label>
-                            <input placeholder = "Enter Bot Name" type = "text"/>
+                    <div className = "email--box">
+                            <label className = "email--lbl">Username</label>
+                            <input value = {enteredUsername} onChange = {(e) => {setEnteredUsername(e.target.value)}} placeholder = "Enter Username" type = "text"/>
                         </div>
 
                      <div className = "bot--box">
-                        <label className = "bot--lbl">Credits</label>
-                        <input placeholder = "Enter Bot Credits" id = "credits" type = "text"/>
-
+                        <label className = "bot--lbl">Desired Bid</label>
+                        <input value = {enteredBid} onChange = {(e) => {setEnteredBid(e.target.value)}} placeholder = "Enter Your Desired Bid Amount" id = "bid" type = "text"/>
                     </div>
-            </form>
 
-            </RegisterCard>
 
+                    </form>
+
+                </RegisterCard>
             </div>
+
+        </div> 
+           
+        
+
+           
     </div>
     
 : undefined}
-    </section>
 
+</section>
 
     <footer className = "footer">
                 <ul className = "footer--items">
