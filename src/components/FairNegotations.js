@@ -523,9 +523,10 @@ const FairNegotations = (props) => {
             
             console.log(`Virtual Credits Credits Left : ${creditsLeft}`);
 
-             const {data} = await axios.put(`http://localhost:5200/api/v1/credits/create-credits`, {creditsLeft: creditsLeft});
-             console.log(data);
-            
+            creditData.map((credit, key) => {
+               const {_id} = credit;
+               return updateNewBid(_id);
+            })
 
             if(enteredBid > newResult) {
                 alert(`You do not have enough credits`);
@@ -547,6 +548,18 @@ const FairNegotations = (props) => {
 
             if(error) {
                 return console.error(error);
+            }
+        }
+    }
+
+    const updateNewBid = async function(_id) {
+        try {
+            
+        } 
+        
+        catch(err) {
+            if(err) {
+                return console.error(err);
             }
         }
     }
