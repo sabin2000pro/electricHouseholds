@@ -373,9 +373,15 @@ const FairNegotations = (props) => {
                 console.log(`The credit data before submiossion below`);
 
                 response.data.allCredits.forEach((creditVal) => {
-                    const {openingBid} = creditVal;
+                    const {openingBid, virtualCredits} = creditVal;
+
                     console.log(`Opening bid BELOW`);
                     console.log(openingBid);
+
+                    if(!openingBid || !virtualCredits) {
+                        console.log(`Could not find opening bid or virtual credits`);
+                    }
+                    
                 })
 
             }).catch(err => {
