@@ -41,6 +41,7 @@ const FairNegotations = (props) => {
     const [timerRunning, setTimerRunning] = useState(false);
     const [seconds, setSeconds] = useState(20);
     const [minBid, setMinBid] = useState(null);
+    const [numOfBids, setNumOfBids] = useState(0);
     const [startTimer, setStartTimer] = useState(START_TIMER);
     const [startTimerShown, setStartTimerShown] = useState(false);
     const [bidValid, setBidValid] = useState(false);
@@ -70,7 +71,7 @@ const FairNegotations = (props) => {
     const [botTurnOver, setBotTurnOver] = useState(false);
     
     const [enteredUsername, setEnteredUsername] = useState('');
-    const [enteredBid, setEnteredBid] = useState('');
+    const [bid, setBid] = useState('');
     const [counterError, setCounterError] = useState(false);
     const [mainRoundOver, setMainRoundOver] = useState(false);
     const [roundOneOver, setRoundOneOver] = useState(true);
@@ -186,7 +187,7 @@ const FairNegotations = (props) => {
 
       function clearFields() {
         setEnteredUsername("");
-        setEnteredBid("");
+        setBid("");
       }
 
 
@@ -342,10 +343,8 @@ const FairNegotations = (props) => {
     };
 
     // Finding Max Algorithm that is used to count the largest bid placed
-    const findMaxBid = () => {
-        try {
-
-        let maxBid = FLAGS.DEFAULT;
+    const findMaxBid = () => { // Finds the maximum bid placed
+        let maxBid = 0;
 
         for (let i = FLAGS.DEFAULT; i < bidData.length; i++) {
             const currentBid = parseInt(bidData[i].bid);
@@ -354,25 +353,10 @@ const FairNegotations = (props) => {
             maxBid = currentBid;
         }
     }
+        return `Current Highest Bid ${maxBid}`;
+    };
 
-    setMaxBidFound(true);
-      if(maxBidFound) {
-        return `Current Highest Bid User IS :  ${maxBid}`;
-      }
 
-        } 
-        
-        catch(error) {
-
-            if(error) {
-                setMaxBidFound(false);
-                console.error(error);
-                
-                throw new Error(error);
-            }
-        }
-
-    }
 
     // Counting Occurences algorithm that counts the number of bids that have been placed.
     const countTotalBids = () => {
@@ -384,21 +368,19 @@ const FairNegotations = (props) => {
                 
                 if(value.hasOwnProperty('bid')) {
                     bidCounter++;
+                    
                 }
 
             });
             
-            setBidsCounted(true);
+             return `Current Total Bids : ${bidCounter}`;
             
-            if(bidsCounted) {
-                return `Current Total Bids : ${bidCounter}`;
-            }
         }
         
         catch(error) {
 
             if(error) {
-                setBidsCounted(false);
+                
                 console.error(error);
                 throw new Error(error);
             }
@@ -476,24 +458,19 @@ const FairNegotations = (props) => {
  
              if(bidValid) {
  
-                 await axios.post(`http://localhost:5200/api/v1/bids/create-bid`, {username: enteredUsername, bid: enteredBid}).then(response => {
+                 await axios.post(`http://localhost:5200/api/v1/bids/create-bid`, {username: enteredUsername, bid: bid}).then(response => {
                      const newBidData = response.data;
                      setBids(newBidData);
 
-                     console.log(`User has submitted bid of : ${enteredBid}`);
-                     bidData.push({enteredUsername, enteredBid});
+                     console.log(`User has submitted bid of : ${bid}`);
+                     bidData.push({enteredUsername, bid});
 
                      console.log(`Data inside bid data below`)
-
-                     bidData.map((data, key) => {
-                         console.log(data);
-                     })
-
-                     const smallestBid = findMinBid(enteredBid);
+                     const smallestBid = findMinBid(bid);
                      setBidSubmitted(true);
 
                      // After submitting user bid. Subtract Virtual Credits Available from the Entered bid
-                     handleBidSubmission(enteredBid, virtualCredits);
+                     handleBidSubmission(bid, virtualCredits);
 
                      return smallestBid;
  
@@ -513,13 +490,13 @@ const FairNegotations = (props) => {
         }
     }
 
-    const handleBidSubmission = async function(enteredBid, virtualCredits) {
+    const handleBidSubmission = async function(bid, virtualCredits) {
         try {
               
             setEnteredUsername("");
-            setEnteredBid("");
+            setBid("");
 
-            let creditsLeft = virtualCredits - enteredBid;
+            let creditsLeft = virtualCredits - bid;
             let newResult = creditsLeft;
             virtualCredits = newResult;
             
@@ -535,7 +512,7 @@ const FairNegotations = (props) => {
                      }, 3000);
                 } 
 
-                if(enteredBid > virtualCredits) {
+                if(bid > virtualCredits) {
                    return setTimeout(() => {
                        alert(`This is NOTTT POSSIBLE`);
                        return window.location.reload(false);
@@ -671,6 +648,7 @@ const FairNegotations = (props) => {
     }
 
     return (
+
         <React.Fragment>
 
     <section className = "section--login">
@@ -693,7 +671,8 @@ const FairNegotations = (props) => {
 
         <div>
             <h1>Bidding Seconds Remaining: {seconds}</h1>
-
+            <h1>{findMaxBid()}</h1>
+            <h1>Number of Bids : {countTotalBids()}</h1>
 
             {creditData.map((credit, key) => {
                 const credits = credit;
@@ -727,7 +706,7 @@ const FairNegotations = (props) => {
 
                      <div className = "bid--box">
                         <label className = "bid--lbl">Desired Bid</label>
-                        <input value = {enteredBid} onChange = {(e) => {setEnteredBid(e.target.value)}} placeholder = "Enter Your Desired Bid Amount" id = "bid" type = "text"/>
+                        <input value = {bid} onChange = {(e) => {setBid(e.target.value)}} placeholder = "Enter Your Desired Bid Amount" id = "bid" type = "text"/>
                     </div>
 
                     <div className = "submit-bid--container">
@@ -742,6 +721,8 @@ const FairNegotations = (props) => {
         </div> 
 
         <button onClick = {fetchAllBids} className = "allbids--btn">View All Bids</button>
+            <h1>Number of bids : {numOfBids}</h1>
+
 
         {bidData.map((vals, key) => {
 
