@@ -44,6 +44,7 @@ const FairNegotations = (props) => {
     const [startTimer, setStartTimer] = useState(START_TIMER);
     const [startTimerShown, setStartTimerShown] = useState(false);
     const [bidValid, setBidValid] = useState(false);
+    const [updatedNewBid, setUpdatedNewBid] = useState(false);
     const [clearedBids, setClearedBids] = useState(false);
     const [creditsSubtracted, setCreditsSubtracted] = useState(false);
     const [bidsFound, setBidsFound] = useState(false);
@@ -546,14 +547,17 @@ const FairNegotations = (props) => {
 
     const updateNewBid = function(_id, virtualCredits) {
         try {
-            axios.put(`http://localhost:5200/api/v1/credits/update-credits/${_id}`, {_id: _id, virtualCredits: virtualCredits}).then(data => {console.log(data)}).catch(err => {console.log(err)});
 
+            axios.put(`http://localhost:5200/api/v1/credits/update-credits/${_id}`, {_id: _id, virtualCredits: virtualCredits}).then(data => {console.log(data)}).catch(err => {console.log(err)});
+            setUpdatedNewBid(true);
             alert(`Updated Data Virutal Cerdits`)
          } 
         
          catch(err) {
+
            if(err) {
-                return console.error(err);
+                console.error(err);
+                throw new Error(err);
             }
         }
      }
@@ -683,7 +687,7 @@ const FairNegotations = (props) => {
 
                 return <div key = {key}>
 
-                <h1 >Your Virtual Credits : {credits.virtualCredits}</h1>
+                <h1 >Your Virtual Credits : {updatedNewBid ? credits.virtualCredits : credits.virtualCredits}</h1>
                 <h1 >Opening Bid: {credits.openingBid}</h1>
 
                 </div>
