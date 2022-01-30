@@ -34,6 +34,7 @@ const FairNegotations = (props) => {
     const [roundNumber, setRoundNumber] = useState(1);
     const [timerRunning, setTimerRunning] = useState(false);
     const [seconds, setSeconds] = useState(90);
+    const [minBid, setMinBid] = useState(null);
     const [startTimer, setStartTimer] = useState(START_TIMER);
     const [showStartText, setShowStartText] = useState(true);
     const [startTimerShown, setStartTimerShown] = useState(false);
@@ -267,10 +268,10 @@ const FairNegotations = (props) => {
 
       }
 
-    const findMinBid = (bid) => {
+    const findMinBid = (minBid) => {
         try {
 
-            let smallestBid = bid;
+            let smallestBid = minBid;
 
             for(let i = 0; i < bidData.length; i++) { // Loop through the bids
                 const currentBid = bidData[i].bid;
@@ -441,6 +442,12 @@ const FairNegotations = (props) => {
 
                      console.log(`User has submitted bid of : ${enteredBid}`);
                      bidData.push({enteredUsername, enteredBid});
+
+                     console.log(`Data inside bid data below`)
+
+                     bidData.map((data, key) => {
+                         console.log(data);
+                     })
 
                      const minBid = findMinBid(enteredBid);
                      setBidSubmitted(true);
@@ -650,6 +657,15 @@ const FairNegotations = (props) => {
         </div> 
 
         <button onClick = {fetchAllBids} className = "allbids--btn">View All Bids</button>
+
+        {bidData.map((vals, key) => {
+            
+            return <div key = {key}>
+
+                <h2>Bid : {vals.enteredBid} placed by : {vals.enteredUsername}</h2>
+            </div>
+
+        })}
 
     </div>
 
