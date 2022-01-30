@@ -7,7 +7,6 @@ import ModalCard from '../UI/ModalCard';
 import './FairNegotiations.css';
 import PropTypes from 'prop-types'
 
-
 const DELAY = 1200;
 const START_TIMER = 5;
 const REFRESH_SECONDS = 30000;
@@ -26,6 +25,7 @@ const BOT_TYPES = {
 }
 
 const bidData = []; // Array that stores the bid data
+const botBidData = [];
 
 const FairNegotations = (props) => {
 
@@ -43,6 +43,7 @@ const FairNegotations = (props) => {
     const [startTimerShown, setStartTimerShown] = useState(false);
     const [bidValid, setBidValid] = useState(false);
     const [clearedBids, setClearedBids] = useState(false);
+    const [creditsSubtracted, setCreditsSubtracted] = useState(false);
     const [bidsFound, setBidsFound] = useState(false);
     const [enteredFeedbackUsername, setEnteredFeedbackUsername] = useState("");
     const [enteredFeedbackEmailAddress, setEnteredFeedbackEmailAddress] = useState("");
@@ -511,17 +512,31 @@ const FairNegotations = (props) => {
         try {
 
             console.log(`Credits Left : ${virtualCredits - enteredBid}`);
-            const creditsLeft = virtualCredits - enteredBid;
+                let remainingCredits = virtualCredits - enteredBid;
+                const indexOfBid = bidData.indexOf(enteredBid);
+                console.log(`Index of BID : ${indexOfBid}`);
+                console.log(`Remaining Credits : ${remainingCredits}`);
+                // Delete bids from array and re-submit everytime
 
-            if(creditsLeft === 0) {
+                for(let i = 0; i < bidData.length; i++) {
+                    let index = bidData.indexOf(enteredBid);
 
-               setTimeout(() => {
-                    alert(`You have no more credits left USER`);
-                    return window.location.reload(false);
+                    if(index === -1) {
+                        return;
+                    }
 
-               }, 3000);
-            }
+                    bidData.splice(index, 1);
+                    console.log(`Removed data from BID DATA ARRAY : ${bidData}`);
+                }
 
+                if(virtualCredits === 0) {
+
+                    return setTimeout(() => {
+                           alert(`You have no more credits left USER`);
+                           return window.location.reload(false);
+       
+                      }, 3000);
+                    } 
            
         } 
         
