@@ -687,7 +687,8 @@ const FairNegotations = (props) => {
 
                 return <div key = {key}>
 
-                <h1 >Your Virtual Credits : {updatedNewBid ? credits.virtualCredits : credits.virtualCredits}</h1>
+                <h1 >Your Virtual Credits : {credits.virtualCredits}</h1>
+                <h1>You have : {updatedNewBid ? credits.virtualCredits : undefined}</h1>
                 <h1 >Opening Bid: {credits.openingBid}</h1>
 
                 </div>
