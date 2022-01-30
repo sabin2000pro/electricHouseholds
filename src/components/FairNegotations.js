@@ -438,12 +438,7 @@ const FairNegotations = (props) => {
 
     const submitBid = async function(openingBid, virtualCredits) {
         try {
-            console.log(`The opening bid is : ${openingBid}`);
-            console.log(`The user has ${virtualCredits} VC left`);
-
-            if(virtualCredits > openingBid) {
-                alert(`There cannot be more Virtual Credits than the opening bid`);
-            }
+          
 
             if(enteredUsername.trim().length === 0) {
                 setBidValid(false);
