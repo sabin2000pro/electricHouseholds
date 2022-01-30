@@ -28,17 +28,19 @@ const FairNegotations = (props) => {
 
     let location = useLocation();
     let history = useHistory();
+
     const {appliance, firstPreference, secondPreference, thirdPreference} = location.state.preference;
 
     const [auctionStarted, setAuctionStarted] = useState(false);
     const [roundNumber, setRoundNumber] = useState(1);
     const [timerRunning, setTimerRunning] = useState(false);
-    const [seconds, setSeconds] = useState(90);
+    const [seconds, setSeconds] = useState(20);
     const [minBid, setMinBid] = useState(null);
     const [startTimer, setStartTimer] = useState(START_TIMER);
     const [showStartText, setShowStartText] = useState(true);
     const [startTimerShown, setStartTimerShown] = useState(false);
     const [bidValid, setBidValid] = useState(false);
+    const [clearedBids, setClearedBids] = useState(false);
     const [bidsFound, setBidsFound] = useState(false);
     const [enteredFeedbackUsername, setEnteredFeedbackUsername] = useState("");
     const [enteredFeedbackEmailAddress, setEnteredFeedbackEmailAddress] = useState("");
@@ -79,7 +81,7 @@ const FairNegotations = (props) => {
 
     const handleCounterReset = () => {
         setTimerRunning(null);
-        setSeconds(90);
+        return setSeconds(20);
     }
 
     const useInterval = (callback, delay) => {
@@ -93,7 +95,7 @@ const FairNegotations = (props) => {
             }
 
            else if(timerRunning === null) {
-               setSeconds(90);
+               return setSeconds(20);
            }
 
         }, [callback, timerRunning]);
@@ -122,25 +124,41 @@ const FairNegotations = (props) => {
           if (seconds === 0) { // When the timer is up
 
             setRoundNumber(roundNumber + 1);
+            setClearedBids(true);
+
+            clearFields();
             return handleCounterReset();
           };
 
           if(roundNumber === 1 && seconds < 0) {
 
             setMainRoundOver(true);
+            setClearedBids(true);
+
+            // Clear Input FIelds
             return handleCounterReset();
           }
 
           if(roundNumber === 2 && seconds < 0) {
 
               setRoundOneOver(true);
+              setClearedBids(true);
+
+              clearFields();
               return handleCounterReset();
           }
 
           if(roundNumber === 3 && seconds < 0) {
 
               setRoundTwoOver(true);
-              return handleCounterReset();
+              setClearedBids(true);
+
+              // Clear Input Fields
+             clearFields();
+
+              if(roundTwoOver && clearedBids) {
+                return handleCounterReset();
+              }
           }
 
         } 
@@ -157,7 +175,12 @@ const FairNegotations = (props) => {
     
         }
       }, FLAGS.DELAY);
-   
+
+      function clearFields() {
+        setEnteredUsername("");
+        setEnteredBid("");
+      }
+
 
       // Side-Effect hook used to fetch all the bid data
       useEffect(() => {
@@ -225,7 +248,13 @@ const FairNegotations = (props) => {
 
                 return await axios.get(`http://localhost:5200/api/v1/bids/fetch-bids`).then(response => {
                     const allBids = response.data.bidData;
+
+                    if(!allBids) {
+                        return alert(`Could not find any bid data`);
+                    }
+
                     setUserBidData(allBids);
+                    setBidsFound(true);
 
                 }).catch(err => {
 
@@ -238,6 +267,9 @@ const FairNegotations = (props) => {
             catch(error) {
 
                 if(error) {
+                    setBidsFound(false);
+
+
                     return console.error(error);
                 }
             }
@@ -449,13 +481,13 @@ const FairNegotations = (props) => {
                          console.log(data);
                      })
 
-                     const minBid = findMinBid(enteredBid);
+                     const smallestBid = findMinBid(enteredBid);
                      setBidSubmitted(true);
 
                      // After submitting user bid. Subtract Virtual Credits Available from the Entered bid
                      handleBidSubmission(enteredBid, virtualCredits);
 
-                     return minBid;
+                     return smallestBid;
  
                  }).catch(error => {
  
@@ -648,8 +680,7 @@ const FairNegotations = (props) => {
                         <button className = "login--btn" type = "submit">Submit</button>
                     </div>
 
-
-                    </form>
+                </form>
 
                 </RegisterCard>
             </div>
@@ -659,13 +690,15 @@ const FairNegotations = (props) => {
         <button onClick = {fetchAllBids} className = "allbids--btn">View All Bids</button>
 
         {bidData.map((vals, key) => {
-            
+
             return <div key = {key}>
 
-                <h2>Bid : {vals.enteredBid} placed by : {vals.enteredUsername}</h2>
+                <h2>Round 1 Bids : {vals.enteredBid} placed by : {vals.enteredUsername}</h2>
             </div>
-
         })}
+
+
+
 
     </div>
 
