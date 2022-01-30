@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useRef} from 'react';
-import {useLocation} from 'react-router-dom';
+import {useLocation, useHistory} from 'react-router-dom';
 import RegisterCard from './Admin/RegisterCard';
 import axios from 'axios';
 import ModalCard from '../UI/ModalCard';
@@ -25,7 +25,9 @@ const BOT_TYPES = {
 const bidData = []; // Array that stores the bid data
 
 const FairNegotations = (props) => {
+
     let location = useLocation();
+    let history = useHistory();
     const {appliance, firstPreference, secondPreference, thirdPreference} = location.state.preference;
 
     const [auctionStarted, setAuctionStarted] = useState(false);
@@ -66,6 +68,7 @@ const FairNegotations = (props) => {
     const [mainRoundOver, setMainRoundOver] = useState(false);
     const [roundOneOver, setRoundOneOver] = useState(true);
     const [roundTwoOver, setRoundTwoOver] = useState(false);
+    const [bids, setBids] = useState([]);
     const [creditData, setCreditData] = useState([]);
 
     const beginLiveAuctionHandler = function() {
@@ -244,6 +247,7 @@ const FairNegotations = (props) => {
       const fetchBotData = async function() {
 
           try {
+
             return await axios.get(`http://localhost:5200/api/v1/bot/get-bots`).then(response => {
                 const theBotData = response.data.allBots;
 
@@ -296,7 +300,7 @@ const FairNegotations = (props) => {
         if (currentBid > maxBid) {
             maxBid = currentBid;
         }
-    }
+      }
         return `Current Highest Bid ${maxBid}`;
 
         } 
@@ -360,7 +364,21 @@ const FairNegotations = (props) => {
             }
 
             if(bidValid) {
-                await axios.post(`http://localhost:5200/api/v1/bids/create-bid`, {username: enteredUsername, bid: enteredBid});
+                await axios.post(`http://localhost:5200/api/v1/bids/create-bid`, {username: enteredUsername, bid: enteredBid}).then(response => {
+                    const newBidData = response.data;
+                    setBids(newBidData);
+
+                    bidData.push({enteredUsername, enteredBid});
+                    const minBid = findMinBid(enteredBid);
+
+                    return minBid;
+
+                }).catch(error => {
+                    if(error) {
+                        return console.error(error);
+                    }
+                })
+
                 alert(`Bid Submitted`);
             }
            
