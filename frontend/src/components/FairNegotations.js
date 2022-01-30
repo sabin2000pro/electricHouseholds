@@ -513,7 +513,6 @@ const FairNegotations = (props) => {
     const handleBidSubmission = async function(enteredBid, virtualCredits) {
         try {
               
-            console.log(`You have ${virtualCredits} VC left`);
             setEnteredUsername("");
             setEnteredBid("");
 
@@ -521,12 +520,8 @@ const FairNegotations = (props) => {
             let newResult = creditsLeft;
             virtualCredits = newResult;
             
-            console.log(`Virtual Credits Credits Left : ${virtualCredits}`);
-
             creditData.map((credit, key) => {
                const {_id} = credit;
-               console.log(_id);
-               console.log(`Inside VC: ${virtualCredits}`);
               return updateNewBid(_id, virtualCredits);
             });
 
@@ -537,7 +532,7 @@ const FairNegotations = (props) => {
                            return window.location.reload(false);
        
                       }, 3000);
-                    } 
+                 } 
            
         } 
         
