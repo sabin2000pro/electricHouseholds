@@ -410,7 +410,8 @@ const FairNegotations = (props) => {
 
     const submitBid = async function(openingBid, virtualCredits) {
         try {
-            console.log(`Inside submit BID : ${openingBid}`);
+            console.log(`The opening bid is : ${openingBid}`);
+            console.log(`The user has ${virtualCredits} VC left`);
 
             if(enteredUsername.trim().length === 0) {
                 setBidValid(false);
@@ -431,11 +432,7 @@ const FairNegotations = (props) => {
                      const minBid = findMinBid(enteredBid);
  
                      setBidSubmitted(true);
- 
-                 
-                     // Fetch the Bid Data to subtract the Virtual Credits from the Entered Bid by user
- 
-                      
+
                      return minBid;
  
                  }).catch(error => {
