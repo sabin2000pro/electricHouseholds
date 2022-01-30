@@ -46,6 +46,7 @@ const FairNegotations = (props) => {
     const [bidValid, setBidValid] = useState(false);
     const [updatedNewBid, setUpdatedNewBid] = useState(false);
     const [clearedBids, setClearedBids] = useState(false);
+    const [outOfCredits, setOutOfCredits] = useState(false);
     const [creditsSubtracted, setCreditsSubtracted] = useState(false);
     const [bidsFound, setBidsFound] = useState(false);
     const [enteredFeedbackUsername, setEnteredFeedbackUsername] = useState("");
@@ -60,12 +61,9 @@ const FairNegotations = (props) => {
     const [bidsCounted, setBidsCounted] = useState(false);
     const [auctionChosen, setAuctionChosen] = useState(false);
     const [socialExchangeChosen, setSocialExchangeChosen] = useState(false);
-    const [feedbackData, setFeedbackData] = useState([]);
-    const [botData, setBotData] = useState([]);
-    const [userBidData, setUserBidData] = useState([]);
     const [timeUp, setTimeUp] = useState(false);
     const [bidSubmitted, setBidSubmitted] = useState(false);
-
+    
     const [botTurn, setBotTurn] = useState(false);
     const [userTurn, setUserTurn] = useState(false);
     const [userTurnOver, setUserTurnOver] = useState(false);
@@ -77,7 +75,11 @@ const FairNegotations = (props) => {
     const [mainRoundOver, setMainRoundOver] = useState(false);
     const [roundOneOver, setRoundOneOver] = useState(true);
     const [roundTwoOver, setRoundTwoOver] = useState(false);
+    
+    const [feedbackData, setFeedbackData] = useState([]);
     const [bids, setBids] = useState([]);
+    const [botData, setBotData] = useState([]);
+    const [userBidData, setUserBidData] = useState([]);
     const [creditData, setCreditData] = useState([]);
     const [creditsFetched, setCreditsFetched] = useState(false);
 
@@ -522,19 +524,29 @@ const FairNegotations = (props) => {
             virtualCredits = newResult;
             
             creditData.map((credit, key) => {
-               const {_id} = credit;
+               const {_id} = credit; // Extract ID
+
+               if(virtualCredits === 0) {
+
+                return setTimeout(() => {
+                        alert(`You have no more credits left USER`);
+                       return window.location.reload(false);
+      
+                     }, 3000);
+                } 
+
+                if(enteredBid > virtualCredits) {
+                   return setTimeout(() => {
+                       alert(`This is NOTTT POSSIBLE`);
+                       return window.location.reload(false);
+
+                   }, 2000)
+                }
+
               return updateNewBid(_id, virtualCredits);
             });
 
-             if(virtualCredits === 0) {
-
-                    return setTimeout(() => {
-                           alert(`You have no more credits left USER`);
-                           return window.location.reload(false);
-       
-                      }, 3000);
-                 } 
-           
+            
         } 
         
         catch(error) {
@@ -682,23 +694,24 @@ const FairNegotations = (props) => {
         <div>
             <h1>Bidding Seconds Remaining: {seconds}</h1>
 
+
             {creditData.map((credit, key) => {
                 const credits = credit;
 
                 return <div key = {key}>
 
-                <h1 >Virtual Credits Remaining: {updatedNewBid ? credits.virtualCredits : credits.virtualCredits}</h1>
+                <h1>User Virtual Credits Remaining: {updatedNewBid ? credits.virtualCredits : credits.virtualCredits}</h1>
                 <h1 >Opening Bid: {credits.openingBid}</h1>
                 </div>
             })}
 
             <h1>Current Round Number : {roundNumber}</h1>
-            <h2>Your Chosen Appliance : {appliance}</h2>
+            <h2>User's Desired Appliance : {appliance}</h2>
 
-            {!mainRoundOver ? <h1 className = "first--pref">Your First Chosen Preference : {firstPreference}</h1> : null }
+            {!mainRoundOver ? <h1 className = "first--pref">User's First Chosen Preference : {firstPreference}</h1> : null }
 
-            {roundOneOver && roundNumber === 2 ?<h1 className = "second--pref">Your Second Chosen Preference: {secondPreference}</h1> : null }
-            {roundNumber === 3 ? <h1 className = "third--pref">Your Third Chosen Preference: {thirdPreference}</h1> : null}
+            {roundOneOver && roundNumber === 2 ?<h1 className = "second--pref">User's Second Chosen Preference: {secondPreference}</h1> : null }
+            {roundNumber === 3 ? <h1 className = "third--pref">User's Third Chosen Preference: {thirdPreference}</h1> : null}
         
             <div className = "container grid grid--2-cols">
 
