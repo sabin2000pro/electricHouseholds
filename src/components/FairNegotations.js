@@ -2,8 +2,11 @@ import React, {useState, useEffect, useRef} from 'react';
 import {useLocation, useHistory} from 'react-router-dom';
 import RegisterCard from './Admin/RegisterCard';
 import axios from 'axios';
+import {Spinner} from 'react-bootstrap';
 import ModalCard from '../UI/ModalCard';
 import './FairNegotiations.css';
+import PropTypes from 'prop-types'
+
 
 const DELAY = 1200;
 const START_TIMER = 5;
