@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1643569224456" clover="3.2.0">
-  <project timestamp="1643569224458" name="All files">
-    <metrics statements="703" coveredstatements="422" conditionals="171" coveredconditionals="25" methods="87" coveredmethods="20" elements="961" coveredelements="467" complexity="0" loc="703" ncloc="703" packages="9" files="39" classes="39"/>
+<coverage generated="1643575579610" clover="3.2.0">
+  <project timestamp="1643575579611" name="All files">
+    <metrics statements="707" coveredstatements="419" conditionals="171" coveredconditionals="25" methods="89" coveredmethods="18" elements="967" coveredelements="462" complexity="0" loc="707" ncloc="707" packages="9" files="39" classes="39"/>
     <package name="controllers">
-      <metrics statements="375" coveredstatements="166" conditionals="121" coveredconditionals="19" methods="61" coveredmethods="10"/>
+      <metrics statements="379" coveredstatements="164" conditionals="121" coveredconditionals="19" methods="63" coveredmethods="9"/>
       <file name="applianceController.js" path="/app/controllers/applianceController.js">
         <metrics statements="44" coveredstatements="23" conditionals="14" coveredconditionals="2" methods="8" coveredmethods="3"/>
         <line num="1" count="1" type="stmt"/>
@@ -52,7 +52,7 @@
         <line num="73" count="1" type="stmt"/>
       </file>
       <file name="authController.js" path="/app/controllers/authController.js">
-        <metrics statements="74" coveredstatements="39" conditionals="24" coveredconditionals="12" methods="9" coveredmethods="4"/>
+        <metrics statements="74" coveredstatements="35" conditionals="24" coveredconditionals="12" methods="9" coveredmethods="3"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -71,7 +71,7 @@
         <line num="23" count="1" type="stmt"/>
         <line num="26" count="1" type="stmt"/>
         <line num="27" count="1" type="stmt"/>
-        <line num="31" count="1" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
         <line num="38" count="1" type="stmt"/>
         <line num="39" count="3" type="stmt"/>
         <line num="41" count="3" type="cond" truecount="4" falsecount="0"/>
@@ -124,9 +124,9 @@
         <line num="153" count="0" type="stmt"/>
         <line num="154" count="0" type="stmt"/>
         <line num="161" count="1" type="stmt"/>
-        <line num="162" count="1" type="stmt"/>
-        <line num="165" count="1" type="stmt"/>
-        <line num="169" count="1" type="stmt"/>
+        <line num="162" count="0" type="stmt"/>
+        <line num="165" count="0" type="stmt"/>
+        <line num="169" count="0" type="stmt"/>
       </file>
       <file name="bidsController.js" path="/app/controllers/bidsController.js">
         <metrics statements="37" coveredstatements="15" conditionals="4" coveredconditionals="0" methods="7" coveredmethods="0"/>
@@ -290,7 +290,7 @@
         <line num="71" count="0" type="stmt"/>
       </file>
       <file name="creditController.js" path="/app/controllers/creditController.js">
-        <metrics statements="13" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0"/>
+        <metrics statements="17" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -304,6 +304,10 @@
         <line num="19" count="1" type="stmt"/>
         <line num="20" count="0" type="stmt"/>
         <line num="21" count="0" type="stmt"/>
+        <line num="24" count="1" type="stmt"/>
+        <line num="28" count="1" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
       </file>
       <file name="feedbackController.js" path="/app/controllers/feedbackController.js">
         <metrics statements="29" coveredstatements="13" conditionals="8" coveredconditionals="0" methods="6" coveredmethods="0"/>
@@ -506,9 +510,9 @@
       </file>
     </package>
     <package name="models">
-      <metrics statements="69" coveredstatements="61" conditionals="4" coveredconditionals="2" methods="6" coveredmethods="4"/>
+      <metrics statements="69" coveredstatements="60" conditionals="4" coveredconditionals="2" methods="6" coveredmethods="3"/>
       <file name="adminModel.js" path="/app/models/adminModel.js">
-        <metrics statements="29" coveredstatements="21" conditionals="4" coveredconditionals="2" methods="6" coveredmethods="4"/>
+        <metrics statements="29" coveredstatements="20" conditionals="4" coveredconditionals="2" methods="6" coveredmethods="3"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -535,7 +539,7 @@
         <line num="87" count="0" type="stmt"/>
         <line num="88" count="0" type="stmt"/>
         <line num="92" count="1" type="stmt"/>
-        <line num="93" count="1" type="stmt"/>
+        <line num="93" count="0" type="stmt"/>
         <line num="96" count="1" type="stmt"/>
         <line num="97" count="1" type="stmt"/>
       </file>
@@ -578,8 +582,8 @@
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
-        <line num="16" count="1" type="stmt"/>
-        <line num="17" count="1" type="stmt"/>
+        <line num="18" count="1" type="stmt"/>
+        <line num="19" count="1" type="stmt"/>
       </file>
       <file name="feedbackModel.js" path="/app/models/feedbackModel.js">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
@@ -830,7 +834,7 @@
       <metrics statements="11" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="2"/>
       <file name="catchAsync.js" path="/app/utils/catchAsync.js">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
-        <line num="1" count="64" type="stmt"/>
+        <line num="1" count="66" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
       </file>
       <file name="errorResponse.js" path="/app/utils/errorResponse.js">

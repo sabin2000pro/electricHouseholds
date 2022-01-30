@@ -4,15 +4,34 @@ const ok = 200;
 const created = 201;
 
 module.exports.createCredits = catchAsync(async (request, response, next) => {
-    const {openingBid, virtualCredits} = request.body;
+    const {openingBid, virtualCredits, creditsLeft} = request.body;
 
-    const newCredit = new Credit({openingBid, virtualCredits});
+    const newCredit = new Credit({openingBid, virtualCredits, creditsLeft});
     await newCredit.save();
 
     return response.status(201).json("Credits Created");
 });
 
 module.exports.deleteCredits = catchAsync(async (request, response, next) => {
+
+});
+
+module.exports.deleteCreditByID = catchAsync(async (request, response, next) => {
+    const id = request.params.id;
+
+    if(request.method === 'DELETE') {
+        await Credit.findByIdAndDelete(id);
+
+        return response.status(204).json("Credit Deleted");
+    }
+})
+
+module.exports.getCreditByID = catchAsync(async (request, response, next) => {
+    const credit = await Credit.findById(request.params.id);
+    return response.status(200).json({credit});
+});
+
+module.exports.updateCredits = catchAsync(async (request, response, next) => {
 
 });
 

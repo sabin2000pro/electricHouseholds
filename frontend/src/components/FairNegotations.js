@@ -24,8 +24,10 @@ const BOT_TYPES = {
     INTENSE: "Intense"
 }
 
-const bidData = []; // Array that stores the bid data
+let bidData = []; // Array that stores the bid data
 const botBidData = [];
+const newCredits = [];
+
 
 const FairNegotations = (props) => {
 
@@ -508,28 +510,29 @@ const FairNegotations = (props) => {
         }
     }
 
-    const handleBidSubmission = function(enteredBid, virtualCredits) {
+    const handleBidSubmission = async function(enteredBid, virtualCredits) {
         try {
+              
+            console.log(`You have ${virtualCredits} VC left`);
+            setEnteredUsername("");
+            setEnteredBid("");
 
-            console.log(`Credits Left : ${virtualCredits - enteredBid}`);
-                let remainingCredits = virtualCredits - enteredBid;
-                const indexOfBid = bidData.indexOf(enteredBid);
-                console.log(`Index of BID : ${indexOfBid}`);
-                console.log(`Remaining Credits : ${remainingCredits}`);
-                // Delete bids from array and re-submit everytime
+            let creditsLeft = virtualCredits - enteredBid;
+            let newResult = creditsLeft;
+            creditsLeft = newResult;
+            
+            console.log(`Virtual Credits Credits Left : ${creditsLeft}`);
 
-                for(let i = 0; i < bidData.length; i++) {
-                    let index = bidData.indexOf(enteredBid);
+             const {data} = await axios.put(`http://localhost:5200/api/v1/credits/create-credits`, {creditsLeft: creditsLeft});
+             console.log(data);
+            
 
-                    if(index === -1) {
-                        return;
-                    }
+            if(enteredBid > newResult) {
+                alert(`You do not have enough credits`);
+                return clearFields();
+            }
 
-                    bidData.splice(index, 1);
-                    console.log(`Removed data from BID DATA ARRAY : ${bidData}`);
-                }
-
-                if(virtualCredits === 0) {
+             if(virtualCredits === 0) {
 
                     return setTimeout(() => {
                            alert(`You have no more credits left USER`);
