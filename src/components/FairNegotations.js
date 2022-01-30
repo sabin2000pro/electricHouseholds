@@ -70,6 +70,7 @@ const FairNegotations = (props) => {
     const [roundTwoOver, setRoundTwoOver] = useState(false);
     const [bids, setBids] = useState([]);
     const [creditData, setCreditData] = useState([]);
+    const [creditsFetched, setCreditsFetched] = useState(false);
 
     const beginLiveAuctionHandler = function() {
         return setAuctionStarted(!auctionStarted);
@@ -208,7 +209,6 @@ const FairNegotations = (props) => {
             })
         } 
         
-
         catch(error) {
 
             if(error) {
@@ -270,7 +270,7 @@ const FairNegotations = (props) => {
 
     const findMinBid = (bid) => {
         try {
-            
+
             let smallestBid = bid;
 
             for(let i = 0; i < bidData.length; i++) { // Loop through the bids
@@ -362,6 +362,32 @@ const FairNegotations = (props) => {
         try {
             event.preventDefault();
 
+            await axios.get(`http://localhost:5200/api/v1/credits/get-credits`).then(response => {
+                const theCreditData = response.data.allCredits;
+                setCreditData(theCreditData);
+
+                if(!theCreditData) {
+                    return console.log(`No credit data found`);
+                }
+
+                console.log(`The credit data before submiossion below`);
+
+                response.data.allCredits.forEach((creditVal) => {
+                    const {openingBid} = creditVal;
+                    console.log(`Opening bid BELOW`);
+                    console.log(openingBid);
+                })
+
+            }).catch(err => {
+
+                if(err) {
+
+                    setCreditsFetched(false);
+                    return console.error(err);
+                }
+            })
+
+
            if(enteredUsername.trim().length === 0) {
                setBidValid(false);
                alert(`Cannot leave username field blank`);
@@ -372,6 +398,7 @@ const FairNegotations = (props) => {
             }
 
             if(bidValid) {
+
                 await axios.post(`http://localhost:5200/api/v1/bids/create-bid`, {username: enteredUsername, bid: enteredBid}).then(response => {
                     const newBidData = response.data;
                     setBids(newBidData);
@@ -379,9 +406,17 @@ const FairNegotations = (props) => {
                     bidData.push({enteredUsername, enteredBid});
                     const minBid = findMinBid(enteredBid);
 
+                    setBidSubmitted(true);
+
+                    
+
+                    // Fetch the Bid Data to subtract the Virtual Credits from the Entered Bid by user
+
+                     
                     return minBid;
 
                 }).catch(error => {
+
                     if(error) {
                         return console.error(error);
                     }
@@ -404,7 +439,7 @@ const FairNegotations = (props) => {
     // This routine is used to fetch all the bids that have been placed thus far. Sends a GET request to the back-end.
     const fetchAllBids = async () => {
         try {
-
+            console.log(`All bids here`);
         } 
         
         catch(error) {
@@ -521,7 +556,6 @@ const FairNegotations = (props) => {
         <div>
             <h1>Bidding Seconds Remaining: {seconds}</h1>
 
-
             {creditData.map((credit, key) => {
                 const credits = credit;
 
@@ -571,7 +605,8 @@ const FairNegotations = (props) => {
             </div>
 
         </div> 
-        <button className = "allbids--btn">View All Bids</button>
+
+        <button onClick = {fetchAllBids} className = "allbids--btn">View All Bids</button>
 
     </div>
 
