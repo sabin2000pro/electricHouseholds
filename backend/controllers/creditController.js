@@ -33,6 +33,15 @@ module.exports.getCreditByID = catchAsync(async (request, response, next) => {
 
 module.exports.updateCredits = catchAsync(async (request, response, next) => {
 
+    const virtualCredits = request.body.virtualCredits;    
+    const id = request.params.id;
+
+    await Credit.findById(id, (err, updatedVirtualCredits) => {
+        updatedVirtualCredits.virtualCredits = virtualCredits;
+        updatedVirtualCredits.save();
+        return response.status(200).json("Virtual Credits Updated");
+    }).clone().catch(err => {console.log(err)});
+
 });
 
 module.exports.getAllCredits = catchAsync(async (request, response, next) => {
