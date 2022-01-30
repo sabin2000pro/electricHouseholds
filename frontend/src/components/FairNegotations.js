@@ -356,13 +356,11 @@ const FairNegotations = (props) => {
         return `Current Highest Bid ${maxBid}`;
     };
 
-
-
     // Counting Occurences algorithm that counts the number of bids that have been placed.
     const countTotalBids = () => {
         try {
 
-            let bidCounter = FLAGS.DEFAULT;
+            let bidCounter = 0
 
             bidData.forEach((value) => {
                 
@@ -672,7 +670,7 @@ const FairNegotations = (props) => {
         <div>
             <h1>Bidding Seconds Remaining: {seconds}</h1>
             <h1>{findMaxBid()}</h1>
-            <h1>Number of Bids : {countTotalBids()}</h1>
+            <h1>{countTotalBids()}</h1>
 
             {creditData.map((credit, key) => {
                 const credits = credit;
@@ -719,10 +717,6 @@ const FairNegotations = (props) => {
             </div>
 
         </div> 
-
-        <button onClick = {fetchAllBids} className = "allbids--btn">View All Bids</button>
-            <h1>Number of bids : {numOfBids}</h1>
-
 
         {bidData.map((vals, key) => {
 
