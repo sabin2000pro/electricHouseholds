@@ -687,16 +687,12 @@ const FairNegotations = (props) => {
 
                 return <div key = {key}>
 
-                <h1 >Your Virtual Credits : {credits.virtualCredits}</h1>
-                <h1>You have : {updatedNewBid ? credits.virtualCredits : undefined}</h1>
+                <h1 >Virtual Credits Remaining: {updatedNewBid ? credits.virtualCredits : credits.virtualCredits}</h1>
                 <h1 >Opening Bid: {credits.openingBid}</h1>
-
                 </div>
             })}
 
             <h1>Current Round Number : {roundNumber}</h1>
-
-         
             <h2>Your Chosen Appliance : {appliance}</h2>
 
             {!mainRoundOver ? <h1 className = "first--pref">Your First Chosen Preference : {firstPreference}</h1> : null }
