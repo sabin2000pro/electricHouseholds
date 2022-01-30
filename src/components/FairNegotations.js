@@ -427,10 +427,12 @@ const FairNegotations = (props) => {
                  await axios.post(`http://localhost:5200/api/v1/bids/create-bid`, {username: enteredUsername, bid: enteredBid}).then(response => {
                      const newBidData = response.data;
                      setBids(newBidData);
+
+                     console.log(`User has submitted bid of : ${enteredBid}`);
+
  
                      bidData.push({enteredUsername, enteredBid});
                      const minBid = findMinBid(enteredBid);
- 
                      setBidSubmitted(true);
 
                      return minBid;
