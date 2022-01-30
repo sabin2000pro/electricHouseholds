@@ -519,19 +519,16 @@ const FairNegotations = (props) => {
 
             let creditsLeft = virtualCredits - enteredBid;
             let newResult = creditsLeft;
-            creditsLeft = newResult;
+            virtualCredits = newResult;
             
-            console.log(`Virtual Credits Credits Left : ${creditsLeft}`);
+            console.log(`Virtual Credits Credits Left : ${virtualCredits}`);
 
             creditData.map((credit, key) => {
                const {_id} = credit;
-               return updateNewBid(_id);
-            })
-
-            if(enteredBid > newResult) {
-                alert(`You do not have enough credits`);
-                return clearFields();
-            }
+               console.log(_id);
+               console.log(`Inside VC: ${virtualCredits}`);
+              return updateNewBid(_id, virtualCredits);
+            });
 
              if(virtualCredits === 0) {
 
@@ -552,17 +549,19 @@ const FairNegotations = (props) => {
         }
     }
 
-    const updateNewBid = async function(_id) {
+    const updateNewBid = function(_id, virtualCredits) {
         try {
-            
-        } 
+            axios.put(`http://localhost:5200/api/v1/credits/update-credits/${_id}`, {_id: _id, virtualCredits: virtualCredits}).then(data => {console.log(data)}).catch(err => {console.log(err)});
+
+            alert(`Updated Data Virutal Cerdits`)
+         } 
         
-        catch(err) {
-            if(err) {
+         catch(err) {
+           if(err) {
                 return console.error(err);
             }
         }
-    }
+     }
 
     // This routine is used to fetch all the bids that have been placed thus far. Sends a GET request to the back-end.
     const fetchAllBids = async () => {
