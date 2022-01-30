@@ -537,11 +537,11 @@ const FairNegotations = (props) => {
         }
     }   
     
-    // This routine acts as an AI bot that randomly places a BID after a user does, or after a certain amount of time
-    const placeRandomBid = function() {
+    // This routine acts as an AI bot that randomly places a BID after a user does, or after a certain amount of time. The BOT will send a POST request to the server with the bid data. Once it is the bots turn, the user input fields.
+    // User input fields gets disabled (readonly) and after 5 seconds, the bot randomly places a certain amount of bids between a range, depending on the type of bot which will be fetched from the backend
+    const botPlaceRandomBid = async function() {
 
         try {
-
             // Code here for the AI bot that generates a random bid
         } 
         
