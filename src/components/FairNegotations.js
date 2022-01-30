@@ -40,7 +40,6 @@ const FairNegotations = (props) => {
     const [seconds, setSeconds] = useState(20);
     const [minBid, setMinBid] = useState(null);
     const [startTimer, setStartTimer] = useState(START_TIMER);
-    const [showStartText, setShowStartText] = useState(true);
     const [startTimerShown, setStartTimerShown] = useState(false);
     const [bidValid, setBidValid] = useState(false);
     const [clearedBids, setClearedBids] = useState(false);
@@ -510,7 +509,20 @@ const FairNegotations = (props) => {
 
     const handleBidSubmission = function(enteredBid, virtualCredits) {
         try {
-            console.log(`Inside the handle bid submission function with the user entered BID : ${enteredBid}`);
+
+            console.log(`Credits Left : ${virtualCredits - enteredBid}`);
+            const creditsLeft = virtualCredits - enteredBid;
+
+            if(creditsLeft === 0) {
+
+               setTimeout(() => {
+                    alert(`You have no more credits left USER`);
+                    return window.location.reload(false);
+
+               }, 3000);
+            }
+
+           
         } 
         
         catch(error) {
@@ -699,9 +711,6 @@ const FairNegotations = (props) => {
                 <h2>Round 1 Bids : {vals.enteredBid} placed by : {vals.enteredUsername}</h2>
             </div>
         })}
-
-
-
 
     </div>
 
