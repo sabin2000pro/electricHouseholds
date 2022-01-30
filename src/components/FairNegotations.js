@@ -381,7 +381,9 @@ const FairNegotations = (props) => {
                     if(!openingBid || !virtualCredits) {
                         console.log(`Could not find opening bid or virtual credits`);
                     }
-                    
+
+                    return submitBid(openingBid, virtualCredits);
+
                 })
 
             }).catch(err => {
@@ -393,43 +395,7 @@ const FairNegotations = (props) => {
                 }
             })
 
-
-           if(enteredUsername.trim().length === 0) {
-               setBidValid(false);
-               alert(`Cannot leave username field blank`);
-           }
-
-            else {
-                setBidValid(true);
-            }
-
-            if(bidValid) {
-
-                await axios.post(`http://localhost:5200/api/v1/bids/create-bid`, {username: enteredUsername, bid: enteredBid}).then(response => {
-                    const newBidData = response.data;
-                    setBids(newBidData);
-
-                    bidData.push({enteredUsername, enteredBid});
-                    const minBid = findMinBid(enteredBid);
-
-                    setBidSubmitted(true);
-
-                    
-
-                    // Fetch the Bid Data to subtract the Virtual Credits from the Entered Bid by user
-
-                     
-                    return minBid;
-
-                }).catch(error => {
-
-                    if(error) {
-                        return console.error(error);
-                    }
-                })
-
-                alert(`Bid Submitted`);
-            }
+           
            
         } 
         
@@ -439,6 +405,52 @@ const FairNegotations = (props) => {
                 console.error(error);
                 throw new Error(error);
             }
+        }
+    }
+
+    const submitBid = async function(openingBid, virtualCredits) {
+        try {
+            console.log(`Inside submit BID : ${openingBid}`);
+
+            if(enteredUsername.trim().length === 0) {
+                setBidValid(false);
+                alert(`Cannot leave username field blank`);
+            }
+ 
+             else {
+                 setBidValid(true);
+             }
+ 
+             if(bidValid) {
+ 
+                 await axios.post(`http://localhost:5200/api/v1/bids/create-bid`, {username: enteredUsername, bid: enteredBid}).then(response => {
+                     const newBidData = response.data;
+                     setBids(newBidData);
+ 
+                     bidData.push({enteredUsername, enteredBid});
+                     const minBid = findMinBid(enteredBid);
+ 
+                     setBidSubmitted(true);
+ 
+                 
+                     // Fetch the Bid Data to subtract the Virtual Credits from the Entered Bid by user
+ 
+                      
+                     return minBid;
+ 
+                 }).catch(error => {
+ 
+                     if(error) {
+                         return console.error(error);
+                     }
+                 })
+ 
+                 alert(`Bid Submitted`);
+             }
+        } 
+        
+        catch(error) {
+
         }
     }
 
