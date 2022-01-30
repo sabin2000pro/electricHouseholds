@@ -39,7 +39,7 @@ const FairNegotations = (props) => {
     const [auctionStarted, setAuctionStarted] = useState(false);
     const [roundNumber, setRoundNumber] = useState(1);
     const [timerRunning, setTimerRunning] = useState(false);
-    const [seconds, setSeconds] = useState(20);
+    const [seconds, setSeconds] = useState(100);
     const [minBid, setMinBid] = useState(null);
     const [numOfBids, setNumOfBids] = useState(0);
     const [startTimer, setStartTimer] = useState(START_TIMER);
@@ -90,7 +90,7 @@ const FairNegotations = (props) => {
 
     const handleCounterReset = () => {
         setTimerRunning(null);
-        return setSeconds(20);
+        return setSeconds(100);
     }
 
     const useInterval = (callback, delay) => {
@@ -104,7 +104,7 @@ const FairNegotations = (props) => {
             }
 
            else if(timerRunning === null) {
-               return setSeconds(20);
+               return setSeconds(100);
            }
 
         }, [callback, timerRunning]);
@@ -502,16 +502,8 @@ const FairNegotations = (props) => {
                         alert(`You have no more credits left USER`);
                        return window.location.reload(false);
       
-                     }, 3000);
+                     }, 0);
                 } 
-
-                if(bid > virtualCredits) {
-                   return setTimeout(() => {
-                       alert(`This is NOTTT POSSIBLE`);
-                       return window.location.reload(false);
-
-                   }, 2000)
-                }
 
               return updateNewBid(_id, virtualCredits);
             });
@@ -717,7 +709,7 @@ const FairNegotations = (props) => {
 
             return <div key = {key}>
 
-                <h2>Round 1 Bids : {vals.enteredBid} placed by : {vals.enteredUsername}</h2>
+                <h2>Round 1 Bids : {vals.bid} placed by : {vals.enteredUsername}</h2>
             </div>
         })}
 
