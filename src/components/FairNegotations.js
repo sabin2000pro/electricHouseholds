@@ -142,7 +142,6 @@ const FairNegotations = (props) => {
               return handleCounterReset();
           }
 
-
         } 
         
         catch (error) {
@@ -280,8 +279,13 @@ const FairNegotations = (props) => {
                     smallestBid = currentBid;
                 }
             }
+
+            setMinBidFound(true);
+
+            if(minBidFound) {
+                return smallestBid;
+            }
     
-            return smallestBid;
         } 
         
         catch(error) {
@@ -308,8 +312,12 @@ const FairNegotations = (props) => {
         if (currentBid > maxBid) {
             maxBid = currentBid;
         }
+    }
+
+    setMaxBidFound(true);
+      if(maxBidFound) {
+        return `Current Highest Bid User IS :  ${maxBid}`;
       }
-        return `Current Highest Bid ${maxBid}`;
 
         } 
         
@@ -365,6 +373,7 @@ const FairNegotations = (props) => {
             await axios.get(`http://localhost:5200/api/v1/credits/get-credits`).then(response => {
                 const theCreditData = response.data.allCredits;
                 setCreditData(theCreditData);
+                setCreditsFetched(true);
 
                 if(!theCreditData) {
                     return console.log(`No credit data found`);
@@ -395,8 +404,6 @@ const FairNegotations = (props) => {
                 }
             })
 
-           
-           
         } 
         
         catch(error) {
@@ -412,6 +419,10 @@ const FairNegotations = (props) => {
         try {
             console.log(`The opening bid is : ${openingBid}`);
             console.log(`The user has ${virtualCredits} VC left`);
+
+            if(virtualCredits > openingBid) {
+                alert(`There cannot be more Virtual Credits than the opening bid`);
+            }
 
             if(enteredUsername.trim().length === 0) {
                 setBidValid(false);
@@ -429,11 +440,13 @@ const FairNegotations = (props) => {
                      setBids(newBidData);
 
                      console.log(`User has submitted bid of : ${enteredBid}`);
-
- 
                      bidData.push({enteredUsername, enteredBid});
+
                      const minBid = findMinBid(enteredBid);
                      setBidSubmitted(true);
+
+                     // After submitting user bid. Subtract Virtual Credits Available from the Entered bid
+                     handleBidSubmission(enteredBid, virtualCredits);
 
                      return minBid;
  
@@ -450,6 +463,19 @@ const FairNegotations = (props) => {
         
         catch(error) {
 
+        }
+    }
+
+    const handleBidSubmission = function(enteredBid, virtualCredits) {
+        try {
+            console.log(`Inside the handle bid submission function with the user entered BID : ${enteredBid}`);
+        } 
+        
+        catch(error) {
+
+            if(error) {
+                return console.error(error);
+            }
         }
     }
 
