@@ -1,4 +1,4 @@
-import React, {useState, useEffect, Fragment, useRef} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import {useLocation} from 'react-router-dom';
 import RegisterCard from './Admin/RegisterCard';
 import axios from 'axios';
@@ -26,7 +26,6 @@ const bidData = []; // Array that stores the bid data
 
 const FairNegotations = (props) => {
     let location = useLocation();
-
     const {appliance, firstPreference, secondPreference, thirdPreference} = location.state.preference;
 
     const [auctionStarted, setAuctionStarted] = useState(false);
@@ -70,7 +69,6 @@ const FairNegotations = (props) => {
     const [creditData, setCreditData] = useState([]);
 
     const beginLiveAuctionHandler = function() {
-         
         return setAuctionStarted(!auctionStarted);
     }
 
@@ -92,6 +90,7 @@ const FairNegotations = (props) => {
            else if(timerRunning === null) {
                setSeconds(90);
            }
+
         }, [callback, timerRunning]);
     
         useEffect(() => {
@@ -112,26 +111,29 @@ const FairNegotations = (props) => {
     
       useInterval(() => {
 
-
         try {
             setSeconds(seconds - 1);
     
           if (seconds === 0) { // When the timer is up
+
             setRoundNumber(roundNumber + 1);
             return handleCounterReset();
           };
 
           if(roundNumber === 1 && seconds < 0) {
+
             setMainRoundOver(true);
             return handleCounterReset();
           }
 
           if(roundNumber === 2 && seconds < 0) {
+
               setRoundOneOver(true);
               return handleCounterReset();
           }
 
           if(roundNumber === 3 && seconds < 0) {
+
               setRoundTwoOver(true);
               return handleCounterReset();
           }
@@ -142,6 +144,7 @@ const FairNegotations = (props) => {
         catch (error) {
     
           if (error) {
+
               console.error(error);
               setCounterError(true);
 
@@ -184,8 +187,14 @@ const FairNegotations = (props) => {
             return await axios.get(`http://localhost:5200/api/v1/credits/get-credits`).then(response => {
                 const credits = response.data.allCredits;
 
-                setCreditData(credits);
-                console.log(credits);
+                if(!credits) {
+                    console.log(`Could not find any credit data`);
+                }
+
+                else {
+                    setCreditData(credits);
+                    console.log(credits);
+                }
 
             }).catch(error => {
 
@@ -198,6 +207,7 @@ const FairNegotations = (props) => {
         
 
         catch(error) {
+
             if(error) {
                 console.error(error);
 
@@ -235,8 +245,9 @@ const FairNegotations = (props) => {
 
           try {
             return await axios.get(`http://localhost:5200/api/v1/bot/get-bots`).then(response => {
-                const botData = response.data.allBots;
-                setBotData(botData);
+                const theBotData = response.data.allBots;
+
+                setBotData(theBotData);
                 console.log(botData);
             })
           } 
@@ -326,7 +337,7 @@ const FairNegotations = (props) => {
         catch(error) {
 
             if(error) {
-
+                setBidsCounted(false);
                 console.error(error);
                 throw new Error(error);
             }
@@ -338,18 +349,21 @@ const FairNegotations = (props) => {
 
         try {
             event.preventDefault();
-            const {data} = await axios.post(`http://localhost:5200/api/v1/bids/create-bid`, {username: enteredUsername, bid: enteredBid});
 
-            if(!isNaN(enteredUsername)) {
-                alert('No integers please');
-            }
+           if(enteredUsername.trim().length === 0) {
+               setBidValid(false);
+               alert(`Cannot leave username field blank`);
+           }
 
             else {
-                alert(`User Bid Submitted`);
+                setBidValid(true);
             }
 
+            if(bidValid) {
+                await axios.post(`http://localhost:5200/api/v1/bids/create-bid`, {username: enteredUsername, bid: enteredBid});
+                alert(`Bid Submitted`);
+            }
            
-            console.log(data);
         } 
         
         catch(error) {
@@ -365,7 +379,6 @@ const FairNegotations = (props) => {
     const fetchAllBids = async () => {
         try {
 
-            
         } 
         
         catch(error) {
@@ -479,7 +492,6 @@ const FairNegotations = (props) => {
      {auctionStarted ? 
         <div className = "appliance--data">
 
-        
         <div>
             <h1>Bidding Seconds Remaining: {seconds}</h1>
 
@@ -493,8 +505,6 @@ const FairNegotations = (props) => {
                 <h1 >Opening Bid: {credits.openingBid}</h1>
 
                 </div>
-               
-
             })}
 
             <h1>Current Round Number : {roundNumber}</h1>
@@ -537,10 +547,8 @@ const FairNegotations = (props) => {
         </div> 
         <button className = "allbids--btn">View All Bids</button>
 
-           
     </div>
 
-    
 : undefined}
 
 </section>
@@ -551,8 +559,7 @@ const FairNegotations = (props) => {
             </ul>
       </footer>
 
-    
-        </React.Fragment>
+</React.Fragment>
     )
 }
 
