@@ -270,10 +270,18 @@ const FairNegotations = (props) => {
 
     const findMinBid = (bid) => {
         try {
+            
+            let smallestBid = bid;
 
-            let minBid = bid;
-
-            return minBid;
+            for(let i = 0; i < bidData.length; i++) { // Loop through the bids
+                const currentBid = bidData[i].bid;
+    
+                if(currentBid <= smallestBid) {
+                    smallestBid = currentBid;
+                }
+            }
+    
+            return smallestBid;
         } 
         
         catch(error) {
