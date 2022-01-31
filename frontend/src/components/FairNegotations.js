@@ -440,6 +440,12 @@ const FairNegotations = (props) => {
         }
     }
 
+    function reloadPage() {
+        setTimeout(() => {
+            return window.location.reload(false);
+        }, 1000);
+    }
+
     const submitBid = async function(openingBid, virtualCredits) {
 
         try {
@@ -453,32 +459,34 @@ const FairNegotations = (props) => {
             if(enteredUsername.match(specialCharsRegex)) {
                 alert(`Special characters for username not allowed`);
                 clearFields();
-
                 setBidValid(false);
 
-                return setTimeout(() => {
-                    return window.location.reload(false);
-                }, 2000);
+                return reloadPage();
             }
 
            else if(enteredUsername.trim().length === 0) {
                 setBidValid(false);
                 alert(`Cannot leave username field blank`);
+                clearFields();
+
+                return reloadPage();
             }
 
             else if(bid.trim().length === 0) {
                 setBidValid(false);
                 alert(`Cannot leave the bid field empty`);
 
-                return clearFields();
+                clearFields();
+                return reloadPage();
             }
 
             else if(isNaN(convertedBid)) {
                 setBidValid(false);
-
                 alert(`Bid must be a number`);
 
-                return clearFields();
+                clearFields();
+
+                return reloadPage();
             }
 
            
