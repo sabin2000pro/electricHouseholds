@@ -4,9 +4,9 @@ import RegisterCard from './Admin/RegisterCard';
 import axios from 'axios';
 import './FairNegotiations.css';
 
-const DELAY = 1200;
-const START_TIMER = 5;
-const REFRESH_SECONDS = 30000;
+let DELAY = 1200;
+let START_TIMER = 100;
+let REFRESH_SECONDS = 30000;
 
 const FLAGS = {
     DEFAULT: 0,
@@ -33,9 +33,9 @@ const FairNegotations = (props) => {
     const [auctionStarted, setAuctionStarted] = useState(false);
     const [roundNumber, setRoundNumber] = useState(1);
     const [timerRunning, setTimerRunning] = useState(false);
-    const [seconds, setSeconds] = useState(100);
+    const [seconds, setSeconds] = useState(START_TIMER);
     const [minBid, setMinBid] = useState(null);
-    const [numOfBids, setNumOfBids] = useState(0);
+    const [numOfBids, setNumOfBids] = useState(FLAGS.DEFAULT);
     const [startTimer, setStartTimer] = useState(START_TIMER);
     const [startTimerShown, setStartTimerShown] = useState(false);
     const [bidValid, setBidValid] = useState(false);
@@ -313,8 +313,7 @@ const FairNegotations = (props) => {
                             alert(`No BOT with that ID found`);
                         }
                         
-                      
-                    return botPlaceRandomBid(_id, name, botCredits, type);
+                        return botPlaceRandomBid(_id, name, botCredits, type);
 
                     });
 
@@ -381,8 +380,8 @@ const FairNegotations = (props) => {
         return `Current Highest Bid ${maxBid}`;
     };
 
-    // Counting Occurences algorithm that counts the number of bids that have been placed.
     const countTotalBids = () => {
+
         try {
 
             let bidCounter = 0
@@ -391,19 +390,16 @@ const FairNegotations = (props) => {
                 
                 if(value.hasOwnProperty('bid')) {
                     bidCounter++;
-                    
                 }
 
             });
             
              return `Current Total Bids : ${bidCounter}`;
-            
         }
         
         catch(error) {
 
             if(error) {
-                
                 console.error(error);
                 throw new Error(error);
             }
@@ -433,12 +429,15 @@ const FairNegotations = (props) => {
                         console.log(`Could not find opening bid or virtual credits`);
                     }
 
-                    return submitBid(openingBid, virtualCredits);
+                    else {
+                        return submitBid(openingBid, virtualCredits);
+                    }
                 });
 
             }).catch(err => {
 
                 if(err) {
+
                     setCreditsFetched(false);
                     console.error(err);
                     throw new Error(err);
@@ -456,7 +455,7 @@ const FairNegotations = (props) => {
     }
 
     function reloadPage() {
-        setTimeout(() => {
+        return setTimeout(() => {
             return window.location.reload(false);
         }, 1000);
     }
@@ -482,8 +481,8 @@ const FairNegotations = (props) => {
            else if(enteredUsername.trim().length === 0) {
                 setBidValid(false);
                 alert(`Cannot leave username field blank`);
-                clearFields();
 
+                clearFields();
                 return reloadPage();
             }
 
@@ -502,7 +501,6 @@ const FairNegotations = (props) => {
                 clearFields();
                 return reloadPage();
             }
-
            
              else {
                  setBidValid(true);
@@ -536,7 +534,7 @@ const FairNegotations = (props) => {
                      }
                  })
  
-                 alert(`Bid Submitted`);
+                 return alert(`Bid Submitted`);
              }
         } 
         
@@ -567,20 +565,24 @@ const FairNegotations = (props) => {
                const {_id} = credit; // Extract ID
 
                if(virtualCredits === 0) {
+                   setOutOfCredits(true);
 
-                return setTimeout(() => {
-                    alert(`You have no more credits left USER`);
-                    // Stop the bidding by setting the timer to 0 and emptying the bid data array of the user
-                    // Reload the page
-                    setSeconds(0);
-                    bidData = [];
-                    return window.location.reload(false);
-      
-                     }, 0);
-                } 
+                   if(outOfCredits) {
 
-              return updateNewBid(_id, virtualCredits);
+                        return setTimeout(() => {
+                            alert(`You have no more credits left USER`);
+                            setSeconds(0);
 
+                            bidData = [];
+                            return window.location.reload(false);
+            
+                            }, 0);
+                        } 
+                   }
+
+                   else {
+                        return updateNewBid(_id, virtualCredits);
+                   }
             });
         } 
         
@@ -639,9 +641,9 @@ const FairNegotations = (props) => {
             const parsedBotCredits = parseInt(botCredits); // Convert the bot credits to an integer
             const theBotTypes = [BOT_TYPES.DEFAULT, BOT_TYPES.MEDIUM, BOT_TYPES.INTENSE];
 
-            console.log(`Bot ID ${_id} with ${name} and ${parsedBotCredits} Virtual Credits left to bid and the type of bot : ${type}`);
+
+
             // Code here for the AI bot that generates a random bid after the user turn is over
-            // 1. Fetch the Bot Data from the array by looping over it
             // 2. Store the bot data from backend in an array by looping (foreach) and pushing the data into a new array
             // 3. Randomly generate one of the three bots for the user to bid against
             // 4. Use switch / case statements. Determine if it's a low bot then randomly generate a bid between the specified range
@@ -749,7 +751,6 @@ const FairNegotations = (props) => {
             <h1>{findMaxBid()}</h1>
             <h1>{countTotalBids()}</h1>
             
-
             {creditData.map((credit, key) => {
                 const credits = credit;
 
@@ -807,6 +808,9 @@ const FairNegotations = (props) => {
 
 : undefined}
 
+        {mainRoundOver ? <h1>{`${findMaxBid()} the user receives the timeslot`}</h1>
+: undefined}
+
 </section>
 
         <section className = "section--login"></section>
@@ -821,31 +825,31 @@ const FairNegotations = (props) => {
 
                     <h1 className = "heading--primary login">Leave your Feedback</h1>
                         <label className = "username--lbl">Username</label>
-                        <input placeholder = "Enter Username" type = "text"/>
+                        <input value = {enteredFeedbackUsername} onChange = {(event) => {setEnteredFeedbackUsername(event.target.value)}} placeholder = "Enter Username" type = "text"/>
                     </div>
 
                     <div className = "emailAddress--box">
                         <label className = "emailAddress--lbl">E-mail Address</label>
-                        <input placeholder = "Enter Your Desired Bid Amount" id = "bid" type = "text"/>
+                        <input value = {enteredFeedbackEmailAddress} onChange = {(event) => {setEnteredFeedbackEmailAddress(event.target.value)}} placeholder = "Enter Your E-mail Address" id = "email" type = "text"/>
                     </div>
 
                     <div className = "feeling--box">
-                        <label className = "feeling--lbl">Feedback Feeling Bid</label>
-                        <input placeholder = "Enter Your Desired Bid Amount" id = "bid" type = "text"/>
+                        <label className = "feeling--lbl">Feedback Feeling</label>
+                        <input placeholder = "Enter Your Desired Bid Amount" id = "feeling" type = "text"/>
                     </div>
 
                     <div className = "description--box">
                         <label className = "description--lbl">Feedback Description</label>
-                        <input placeholder = "Enter Your Desired Bid Amount" id = "bid" type = "text"/>
+                        <input value = {enteredFeedbackDescription} onChange = {(event) => {setEnteredFeedbackDescription(event.target.value)}} placeholder = "Enter Your Feedback Description" id = "description" type = "text"/>
                     </div>
 
                     <div className = "submit-bid--container">
                         <button className = "login--btn" type = "submit">Submit</button>
                     </div>
 
+
                 </form>
         </RegisterCard>
-
     </div>
 
     <footer className = "footer">
