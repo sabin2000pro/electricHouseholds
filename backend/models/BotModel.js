@@ -8,9 +8,7 @@ const BotSchema = new mongoose.Schema({
 
     botCredits: {
         type: String,
-        default: 0,
-        min: [10, 'Bot must have at least £10 in Virtual Credits to Bid'],
-        max: [50, 'Bot must have at least £50 in Virtual Credits to Bid']
+        default: 0
     },
 
     type: {
