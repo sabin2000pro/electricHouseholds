@@ -124,9 +124,11 @@ const FairNegotations = (props) => {
         }, [FLAGS.DELAY]);
       };
     
+      // Starts the countdown
       useInterval(() => {
 
         try {
+
             setSeconds(seconds - 1);
     
           if (seconds === 0) { // When the timer is up
@@ -135,7 +137,12 @@ const FairNegotations = (props) => {
             setClearedBids(true);
 
             clearFields();
-            return handleCounterReset();
+            setTimeUp(true);
+
+            if(timeUp) { // if the time is up for round 1
+                return handleCounterReset();
+            }
+
           };
 
           if(roundNumber === 1 && seconds < 0) {
@@ -404,9 +411,7 @@ const FairNegotations = (props) => {
                     return console.log(`No credit data found`);
                 }
 
-                console.log(`The credit data before submiossion below`);
-
-                response.data.allCredits.forEach((creditVal) => {
+                return response.data.allCredits.forEach((creditVal) => {
                     const {openingBid, virtualCredits} = creditVal;
 
                     console.log(`Opening bid BELOW`);
@@ -417,15 +422,14 @@ const FairNegotations = (props) => {
                     }
 
                     return submitBid(openingBid, virtualCredits);
-
-                })
+                });
 
             }).catch(err => {
 
                 if(err) {
-
                     setCreditsFetched(false);
-                    return console.error(err);
+                    console.error(err);
+                    throw new Error(err);
                 }
             })
 
@@ -442,10 +446,18 @@ const FairNegotations = (props) => {
 
     const submitBid = async function(openingBid, virtualCredits) {
         try {
+            
           
             if(enteredUsername.trim().length === 0) {
                 setBidValid(false);
                 alert(`Cannot leave username field blank`);
+            }
+
+            else if(bid.trim().length === 0) {
+                setBidValid(false);
+                alert(`Cannot leave the bid field empty`);
+
+                return clearFields();
             }
  
              else {
@@ -456,6 +468,11 @@ const FairNegotations = (props) => {
  
                  await axios.post(`http://localhost:5200/api/v1/bids/create-bid`, {username: enteredUsername, bid: bid}).then(response => {
                      const newBidData = response.data;
+
+                     if(!newBidData) {
+                        alert(`No data found regarding bids`);
+                     }
+                    
                      setBids(newBidData);
 
                      bidData.push({enteredUsername, bid});
@@ -537,7 +554,7 @@ const FairNegotations = (props) => {
          catch(err) {
 
            if(err) {
-               
+
                 console.error(err);
                 throw new Error(err);
             }
@@ -584,6 +601,7 @@ const FairNegotations = (props) => {
 
     const submitFeedbackHandler = async (event) => {
         try {
+
             event.preventDefault();
             const {data} = await axios.post(``);
 
