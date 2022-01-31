@@ -308,7 +308,7 @@ const FairNegotations = (props) => {
                         console.log(val);
 
                         if(!_id || !name || !botCredits || !type) { // If data is not valid
-                            
+
                         }
 
                         return botPlaceRandomBid(_id, name, botCredits, type);
@@ -425,10 +425,7 @@ const FairNegotations = (props) => {
 
                 return response.data.allCredits.forEach((creditVal) => {
                     const {openingBid, virtualCredits} = creditVal;
-
-                    console.log(`Opening bid BELOW`);
-                    console.log(openingBid);
-
+                    
                     if(!openingBid || !virtualCredits) {
                         console.log(`Could not find opening bid or virtual credits`);
                     }
