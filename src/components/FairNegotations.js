@@ -34,7 +34,6 @@ const FairNegotations = (props) => {
     let history = useHistory();
 
     const {appliance, firstPreference, secondPreference, thirdPreference} = location.state.preference;
-
     const [auctionStarted, setAuctionStarted] = useState(false);
     const [roundNumber, setRoundNumber] = useState(1);
     const [timerRunning, setTimerRunning] = useState(false);
@@ -598,8 +597,11 @@ const FairNegotations = (props) => {
         try {
             // Code here for the AI bot that generates a random bid
             // 1. Fetch the Bot Data from backend
-            // 2. Store the bot data from backend in an array
-            // 3.
+            // 2. Store the bot data from backend in an array by looping (foreach) and pushing the data into a new array
+            // 3. Randomly generate one of the three bots for the user to bid against
+            // 4. Use switch / case statements. Determine if it's a low bot then randomly generate a bid between the specified range
+
+
         } 
         
         catch(error) {
