@@ -1,11 +1,10 @@
 import React, {useState, useEffect, useRef} from 'react';
-import {useLocation, useHistory} from 'react-router-dom';
+import {useLocation} from 'react-router-dom';
 import RegisterCard from './Admin/RegisterCard';
 import axios from 'axios';
 import {Spinner} from 'react-bootstrap';
 import ModalCard from '../UI/ModalCard';
 import './FairNegotiations.css';
-import PropTypes from 'prop-types'
 
 const DELAY = 1200;
 const START_TIMER = 5;
@@ -31,7 +30,6 @@ const newCredits = [];
 const FairNegotations = (props) => {
 
     let location = useLocation();
-    let history = useHistory();
 
     const {appliance, firstPreference, secondPreference, thirdPreference} = location.state.preference;
     const [auctionStarted, setAuctionStarted] = useState(false);
@@ -62,7 +60,7 @@ const FairNegotations = (props) => {
     const [socialExchangeChosen, setSocialExchangeChosen] = useState(false);
     const [timeUp, setTimeUp] = useState(false);
     const [bidSubmitted, setBidSubmitted] = useState(false);
-    
+
     const [botTurn, setBotTurn] = useState(false);
     const [userTurn, setUserTurn] = useState(false);
     const [userTurnOver, setUserTurnOver] = useState(false);
@@ -74,7 +72,7 @@ const FairNegotations = (props) => {
     const [mainRoundOver, setMainRoundOver] = useState(false);
     const [roundOneOver, setRoundOneOver] = useState(true);
     const [roundTwoOver, setRoundTwoOver] = useState(false);
-    
+
     const [feedbackData, setFeedbackData] = useState([]);
     const [bids, setBids] = useState([]);
     const [botData, setBotData] = useState([]);
@@ -166,13 +164,12 @@ const FairNegotations = (props) => {
 
               setRoundTwoOver(true);
               setClearedBids(true);
-
-              // Clear Input Fields
-             clearFields();
+              clearFields();
 
               if(roundTwoOver && clearedBids) {
                 return handleCounterReset();
               }
+
           }
 
         } 
@@ -188,13 +185,14 @@ const FairNegotations = (props) => {
           }
     
         }
+
       }, FLAGS.DELAY);
+
 
       function clearFields() {
         setEnteredUsername("");
         setBid("");
       }
-
 
       // Side-Effect hook used to fetch all the bid data
       useEffect(() => {
@@ -486,7 +484,6 @@ const FairNegotations = (props) => {
                      }
                     
                      setBids(newBidData);
-
                      bidData.push({enteredUsername, bid});
 
                      const smallestBid = findMinBid(bid);
@@ -511,6 +508,11 @@ const FairNegotations = (props) => {
         
         catch(error) {
 
+            if(error) {
+                console.error(error);
+
+                throw new Error(error);
+            }
         }
     }
 
@@ -556,7 +558,7 @@ const FairNegotations = (props) => {
         try {
 
             if(!virtualCredits || !_id) {
-                alert(`Invalid data  to update`)
+                alert(`Invalid data to update`)
             }
 
             axios.put(`http://localhost:5200/api/v1/credits/update-credits/${_id}`, {_id: _id, virtualCredits: virtualCredits}).then(data => {console.log(data)}).catch(err => {console.log(err)});
@@ -576,6 +578,7 @@ const FairNegotations = (props) => {
 
     // This routine is used to fetch all the bids that have been placed thus far. Sends a GET request to the back-end.
     const fetchAllBids = async () => {
+
         try {
             console.log(`All bids here`);
         } 
@@ -595,12 +598,14 @@ const FairNegotations = (props) => {
     const botPlaceRandomBid = async function() {
 
         try {
-            // Code here for the AI bot that generates a random bid
+            // Code here for the AI bot that generates a random bid after the user turn is over
             // 1. Fetch the Bot Data from backend
             // 2. Store the bot data from backend in an array by looping (foreach) and pushing the data into a new array
             // 3. Randomly generate one of the three bots for the user to bid against
             // 4. Use switch / case statements. Determine if it's a low bot then randomly generate a bid between the specified range
-
+            // 5. If the user turn is over, transmit a POST request to the server by randomly placing bids by the bot
+            // 6. If the bot has placed a bid, set a timeout of 3 seconds and set user turn to true
+            // 7.
 
         } 
         
@@ -755,12 +760,15 @@ const FairNegotations = (props) => {
                 <h2>Round 1 Bids : £{vals.bid} placed by : {vals.enteredUsername}</h2>
             </div>
         })}
-
     </div>
 
-
-
 : undefined}
+
+<div className = "container grid grid--2-cols">
+    <RegisterCard></RegisterCard>
+
+</div>
+
 
 </section>
 
