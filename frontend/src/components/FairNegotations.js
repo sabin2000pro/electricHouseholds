@@ -277,26 +277,44 @@ const FairNegotations = (props) => {
 
                 if(error) {
                     setBidsFound(false);
-
-
-                    return console.error(error);
+                    console.error(error);
+                    
+                    throw new Error(error);
                 }
             }
-
       }
 
+      // Fetches the AI bot data from the backend
       const fetchBotData = async function() {
           try {
 
             return await axios.get(`http://localhost:5200/api/v1/bot/get-bots`).then(response => {
                 const theBotData = response.data.allBots;
 
+                if(!theBotData) { // if no bot data is found
+                    alert(`No bot data found unfortunately!`)
+                }
+
                 setBotData(theBotData);
 
                  return response.data.allBots.forEach((botDataVal) => {
-                     const {name, botCredits, type} = botDataVal;
-                     console.log(`Bot type : ${type} with name : ${name} and credits available : ${botCredits}`);
-                    // Store the bot data in an array
+                    const {name, botCredits, type} = botDataVal;
+
+                    botBidData.push({name, botCredits, type});
+                   
+                    return botBidData.forEach((val) => {
+                        // Destructure vaclues
+                        const {_id, name, botCredits, type} = val;
+                        console.log(val);
+
+                        if(!_id || !name || !botCredits || !type) { // If data is not valid
+                            
+                        }
+
+                        return botPlaceRandomBid(_id, name, botCredits, type);
+
+                    });
+
                 });
             })
           } 
@@ -613,9 +631,10 @@ const FairNegotations = (props) => {
     
     // This routine acts as an AI bot that randomly places a BID after a user does, or after a certain amount of time. The BOT will send a POST request to the server with the bid data. Once it is the bots turn, the user input fields.
     // User input fields gets disabled (readonly) and after 5 seconds, the bot randomly places a certain amount of bids between a range, depending on the type of bot which will be fetched from the backend
-    const botPlaceRandomBid = async function() {
+    const botPlaceRandomBid = async function(_id, botName, credits, type) {
 
         try {
+            console.log(`The BOTTT NAMES ARE : ${botName} with ${credits} Virtual Credits left to bid`);
             // Code here for the AI bot that generates a random bid after the user turn is over
             // 1. Fetch the Bot Data from backend
             // 2. Store the bot data from backend in an array by looping (foreach) and pushing the data into a new array
