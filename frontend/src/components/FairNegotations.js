@@ -452,7 +452,6 @@ const FairNegotations = (props) => {
 
             // If user places a bid > opening bid
 
-
             if(enteredUsername.trim().length === 0) {
                 setBidValid(false);
                 alert(`Cannot leave username field blank`);
@@ -465,14 +464,15 @@ const FairNegotations = (props) => {
                 return clearFields();
             }
 
-            if(isNaN(convertedBid)) {
+            else if(isNaN(convertedBid)) {
                 setBidValid(false);
 
                 alert(`Bid must be a number`);
 
                 return clearFields();
             }
-       
+
+           
              else {
                  setBidValid(true);
              }
@@ -517,6 +517,7 @@ const FairNegotations = (props) => {
 
     const handleBidSubmission = async function(bid, virtualCredits) {
         try {
+
             setEnteredUsername("");
             setBid("");
 
@@ -749,11 +750,13 @@ const FairNegotations = (props) => {
 
             return <div key = {key}>
 
-                <h2>Round 1 Bids : {vals.bid} placed by : {vals.enteredUsername}</h2>
+                <h2>Round 1 Bids : £{vals.bid} placed by : {vals.enteredUsername}</h2>
             </div>
         })}
 
     </div>
+
+
 
 : undefined}
 
