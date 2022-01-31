@@ -2,8 +2,6 @@ import React, {useState, useEffect, useRef} from 'react';
 import {useLocation} from 'react-router-dom';
 import RegisterCard from './Admin/RegisterCard';
 import axios from 'axios';
-import {Spinner} from 'react-bootstrap';
-import ModalCard from '../UI/ModalCard';
 import './FairNegotiations.css';
 
 const DELAY = 1200;
@@ -788,18 +786,35 @@ const FairNegotations = (props) => {
         <section className = "section--login"></section>
 
         <div className = "container grid grid--2-cols">
+
             <RegisterCard>
+
                 <form className = "login--form" method = "POST">
                 
                 <div className = "username--box">
+
                     <h1 className = "heading--primary login">Leave your Feedback</h1>
                         <label className = "username--lbl">Username</label>
-                        <input value = {enteredUsername} onChange = {(e) => {setEnteredUsername(e.target.value)}} placeholder = "Enter Username" type = "text"/>
+                        <input placeholder = "Enter Username" type = "text"/>
                     </div>
 
                     <div className = "emailAddress--box">
-                        <label className = "bid--lbl">Desired Bid</label>
-                        <input value = {bid} onChange = {(e) => {setBid(e.target.value)}} placeholder = "Enter Your Desired Bid Amount" id = "bid" type = "text"/>
+                        <label className = "emailAddress--lbl">E-mail Address</label>
+                        <input placeholder = "Enter Your Desired Bid Amount" id = "bid" type = "text"/>
+                    </div>
+
+                    <div className = "feeling--box">
+                        <label className = "feeling--lbl">Feedback Feeling Bid</label>
+                        <input placeholder = "Enter Your Desired Bid Amount" id = "bid" type = "text"/>
+                    </div>
+
+                    <div className = "description--box">
+                        <label className = "description--lbl">Feedback Description</label>
+                        <input placeholder = "Enter Your Desired Bid Amount" id = "bid" type = "text"/>
+                    </div>
+
+                    <div className = "submit-bid--container">
+                        <button className = "login--btn" type = "submit">Submit</button>
                     </div>
 
 
@@ -812,7 +827,7 @@ const FairNegotations = (props) => {
                 <ul className = "footer--items">
                 <li className = "footer--item">Copyright All Rights Reserved - eHouseholds Sabin Constantin Lungu - 2021</li>
             </ul>
-      </footer>
+    </footer>
 
 </React.Fragment>
     )
