@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useRef} from 'react';
-import {useLocation} from 'react-router-dom';
+import {useLocation, useHistory} from 'react-router-dom';
 import RegisterCard from './Admin/RegisterCard';
 import axios from 'axios';
 import './FairNegotiations.css';
@@ -27,8 +27,9 @@ const botBidData = [];
 const FairNegotations = (props) => {
 
     let location = useLocation();
-
+    let history = useHistory();
     const {appliance, firstPreference, secondPreference, thirdPreference} = location.state.preference;
+
     const [auctionStarted, setAuctionStarted] = useState(false);
     const [roundNumber, setRoundNumber] = useState(1);
     const [timerRunning, setTimerRunning] = useState(false);
@@ -51,8 +52,6 @@ const FairNegotations = (props) => {
     const [feedbackFormSubmitted, setFeedbackFormSubmitted] = useState(false);
     const [maxBidFound, setMaxBidFound] = useState(false);
     const [minBidFound, setMinBidFound] = useState(false);
-    const [biddingStarted, setBiddingStarted] = useState(false);
-    const [bidsCounted, setBidsCounted] = useState(false);
     const [auctionChosen, setAuctionChosen] = useState(false);
     const [socialExchangeChosen, setSocialExchangeChosen] = useState(false);
     const [timeUp, setTimeUp] = useState(false);
@@ -168,7 +167,6 @@ const FairNegotations = (props) => {
               }
 
           }
-
         } 
         
         catch (error) {
@@ -253,6 +251,7 @@ const FairNegotations = (props) => {
 
 
       const fetchUserBidData = async function() {
+
             try {
 
                 return await axios.get(`http://localhost:5200/api/v1/bids/fetch-bids`).then(response => {
@@ -298,20 +297,22 @@ const FairNegotations = (props) => {
                 setBotData(theBotData);
 
                  return response.data.allBots.forEach((botDataVal) => {
-                    const {name, botCredits, type} = botDataVal;
+                    const {_id, name, botCredits, type} = botDataVal;
 
-                    botBidData.push({name, botCredits, type});
+                    botBidData.push({_id, name, botCredits, type});
                    
                     return botBidData.forEach((val) => {
-                        // Destructure vaclues
-                        const {_id, name, botCredits, type} = val;
+                        // Destructure values
                         console.log(val);
 
-                        if(!_id || !name || !botCredits || !type) { // If data is not valid
+                        const {_id, name, botCredits, type} = val;
 
+                        if(!_id) {
+                            alert(`No BOT with that ID found`);
                         }
-
-                        return botPlaceRandomBid(_id, name, botCredits, type);
+                        
+                      
+                    return botPlaceRandomBid(_id, name, botCredits, type);
 
                     });
 
@@ -548,6 +549,7 @@ const FairNegotations = (props) => {
     }
 
     const handleBidSubmission = async function(bid, virtualCredits) {
+
         try {
 
             setEnteredUsername("");
@@ -586,6 +588,7 @@ const FairNegotations = (props) => {
         }
     }
 
+    // Routine that updates the number of virtual credits left
     const updateNewBid = function(_id, virtualCredits) {
 
         try {
@@ -626,14 +629,15 @@ const FairNegotations = (props) => {
         }
     }   
     
-    // This routine acts as an AI bot that randomly places a BID after a user does, or after a certain amount of time. The BOT will send a POST request to the server with the bid data. Once it is the bots turn, the user input fields.
-    // User input fields gets disabled (readonly) and after 5 seconds, the bot randomly places a certain amount of bids between a range, depending on the type of bot which will be fetched from the backend
-    const botPlaceRandomBid = async function(_id, botName, credits, type) {
+    const botPlaceRandomBid = async function(_id, name, botCredits, type) {
 
         try {
-            console.log(`The BOTTT NAMES ARE : ${botName} with ${credits} Virtual Credits left to bid`);
+
+            const parsedCredits = parseInt(botCredits); // Convert the bot credits to an integer
+
+            console.log(`Bot ID ${_id} with ${name} and ${parsedCredits} Virtual Credits left to bid and the type of bot : ${type}`);
             // Code here for the AI bot that generates a random bid after the user turn is over
-            // 1. Fetch the Bot Data from backend
+            // 1. Fetch the Bot Data from the array by looping over it
             // 2. Store the bot data from backend in an array by looping (foreach) and pushing the data into a new array
             // 3. Randomly generate one of the three bots for the user to bid against
             // 4. Use switch / case statements. Determine if it's a low bot then randomly generate a bid between the specified range
@@ -662,6 +666,7 @@ const FairNegotations = (props) => {
             if(!data) {
                 return alert(`No data could be submitted`);
             }
+
         }
         
         catch(error) {
@@ -739,6 +744,7 @@ const FairNegotations = (props) => {
 
             <h1>{findMaxBid()}</h1>
             <h1>{countTotalBids()}</h1>
+            
 
             {creditData.map((credit, key) => {
                 const credits = credit;
