@@ -633,9 +633,10 @@ const FairNegotations = (props) => {
 
         try {
 
-            const parsedCredits = parseInt(botCredits); // Convert the bot credits to an integer
+            const parsedBotCredits = parseInt(botCredits); // Convert the bot credits to an integer
+            const theBotTypes = [BOT_TYPES.DEFAULT, BOT_TYPES.MEDIUM, BOT_TYPES.INTENSE];
 
-            console.log(`Bot ID ${_id} with ${name} and ${parsedCredits} Virtual Credits left to bid and the type of bot : ${type}`);
+            console.log(`Bot ID ${_id} with ${name} and ${parsedBotCredits} Virtual Credits left to bid and the type of bot : ${type}`);
             // Code here for the AI bot that generates a random bid after the user turn is over
             // 1. Fetch the Bot Data from the array by looping over it
             // 2. Store the bot data from backend in an array by looping (foreach) and pushing the data into a new array
