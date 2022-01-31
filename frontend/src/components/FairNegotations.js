@@ -625,7 +625,7 @@ const FairNegotations = (props) => {
             // 4. Use switch / case statements. Determine if it's a low bot then randomly generate a bid between the specified range
             // 5. If the user turn is over, transmit a POST request to the server by randomly placing bids by the bot
             // 6. If the bot has placed a bid, set a timeout of 3 seconds and set user turn to true
-        } 
+        }
         
         catch(error) {
 
@@ -722,6 +722,7 @@ const FairNegotations = (props) => {
 
         <div>
             <h1>Bidding Seconds Remaining: {seconds}</h1>
+
             <h1>{findMaxBid()}</h1>
             <h1>{countTotalBids()}</h1>
 
@@ -782,13 +783,30 @@ const FairNegotations = (props) => {
 
 : undefined}
 
-<div className = "container grid grid--2-cols">
-    <RegisterCard></RegisterCard>
-
-</div>
-
-
 </section>
+
+        <section className = "section--login"></section>
+
+        <div className = "container grid grid--2-cols">
+            <RegisterCard>
+                <form className = "login--form" method = "POST">
+                
+                <div className = "username--box">
+                    <h1 className = "heading--primary login">Leave your Feedback</h1>
+                        <label className = "username--lbl">Username</label>
+                        <input value = {enteredUsername} onChange = {(e) => {setEnteredUsername(e.target.value)}} placeholder = "Enter Username" type = "text"/>
+                    </div>
+
+                    <div className = "emailAddress--box">
+                        <label className = "bid--lbl">Desired Bid</label>
+                        <input value = {bid} onChange = {(e) => {setBid(e.target.value)}} placeholder = "Enter Your Desired Bid Amount" id = "bid" type = "text"/>
+                    </div>
+
+
+                </form>
+        </RegisterCard>
+
+    </div>
 
     <footer className = "footer">
                 <ul className = "footer--items">

@@ -14,7 +14,7 @@ const feedbackSchema = new mongoose.Schema({ // The Feedback Mongoos Schema
 
     feedbackFeeling: {
         type: String,
-        default: 'veryhappy',
+        enum: ['Happy', 'Unhappy', 'Satisfied', 'Neutral', 'Very Happy'],
         required: [true, 'You must specify a feeling']
     },
 
