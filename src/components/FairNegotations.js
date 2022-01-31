@@ -425,7 +425,7 @@ const FairNegotations = (props) => {
 
                 return response.data.allCredits.forEach((creditVal) => {
                     const {openingBid, virtualCredits} = creditVal;
-                    
+
                     if(!openingBid || !virtualCredits) {
                         console.log(`Could not find opening bid or virtual credits`);
                     }
@@ -441,7 +441,6 @@ const FairNegotations = (props) => {
                     throw new Error(err);
                 }
             })
-
         } 
         
         catch(error) {
@@ -464,7 +463,7 @@ const FairNegotations = (props) => {
         try {
 
             const convertedBid = parseInt(bid);
-            let specialCharsRegex = /[\!\@\#\$\%\^\&\*\)\(\+\=\.\<\>\{\}\[\]\:\;\'\"\|\~\`\_\-]/g
+            let specialCharsRegex = /[\!\@\#\$\%\^\&\*\)\(\+\=\.\<\>\{\}\[\]\:\;\'\"\|\~\`\_\-]/g;
 
             // If user places a bid > opening bid
             // If the username matches one of the special chars (not allowed)
@@ -498,7 +497,6 @@ const FairNegotations = (props) => {
                 alert(`Bid must be a number`);
 
                 clearFields();
-
                 return reloadPage();
             }
 
@@ -558,6 +556,8 @@ const FairNegotations = (props) => {
             let creditsLeft = virtualCredits - bid;
             let newResult = creditsLeft;
             virtualCredits = newResult;
+
+            // Get the virtual credits left for the bot
             
             creditData.map((credit, key) => {
 
