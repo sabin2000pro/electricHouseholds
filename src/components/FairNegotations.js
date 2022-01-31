@@ -28,7 +28,6 @@ let bidData = []; // Array that stores the bid data
 const botBidData = [];
 const newCredits = [];
 
-
 const FairNegotations = (props) => {
 
     let location = useLocation();
@@ -286,14 +285,18 @@ const FairNegotations = (props) => {
       }
 
       const fetchBotData = async function() {
-
           try {
 
             return await axios.get(`http://localhost:5200/api/v1/bot/get-bots`).then(response => {
                 const theBotData = response.data.allBots;
 
                 setBotData(theBotData);
-                console.log(botData);
+
+                 return response.data.allBots.forEach((botDataVal) => {
+                     const {name, botCredits, type} = botDataVal;
+                     console.log(`Bot type : ${type} with name : ${name} and credits available : ${botCredits}`);
+                    // Store the bot data in an array
+                });
             })
           } 
           
@@ -393,6 +396,7 @@ const FairNegotations = (props) => {
 
             await axios.get(`http://localhost:5200/api/v1/credits/get-credits`).then(response => {
                 const theCreditData = response.data.allCredits;
+
                 setCreditData(theCreditData);
                 setCreditsFetched(true);
 
@@ -439,7 +443,6 @@ const FairNegotations = (props) => {
     const submitBid = async function(openingBid, virtualCredits) {
         try {
           
-
             if(enteredUsername.trim().length === 0) {
                 setBidValid(false);
                 alert(`Cannot leave username field blank`);
@@ -455,10 +458,8 @@ const FairNegotations = (props) => {
                      const newBidData = response.data;
                      setBids(newBidData);
 
-                     console.log(`User has submitted bid of : ${bid}`);
                      bidData.push({enteredUsername, bid});
 
-                     console.log(`Data inside bid data below`)
                      const smallestBid = findMinBid(bid);
                      setBidSubmitted(true);
 
@@ -470,7 +471,8 @@ const FairNegotations = (props) => {
                  }).catch(error => {
  
                      if(error) {
-                         return console.error(error);
+                        console.error(error);
+                        throw new Error(error);
                      }
                  })
  
@@ -485,7 +487,6 @@ const FairNegotations = (props) => {
 
     const handleBidSubmission = async function(bid, virtualCredits) {
         try {
-              
             setEnteredUsername("");
             setBid("");
 
@@ -494,6 +495,7 @@ const FairNegotations = (props) => {
             virtualCredits = newResult;
             
             creditData.map((credit, key) => {
+
                const {_id} = credit; // Extract ID
 
                if(virtualCredits === 0) {
@@ -506,30 +508,36 @@ const FairNegotations = (props) => {
                 } 
 
               return updateNewBid(_id, virtualCredits);
-            });
 
-            
+            });
         } 
         
         catch(error) {
 
             if(error) {
-                return console.error(error);
+                console.error(error);
+                throw new Error(error);
             }
         }
     }
 
     const updateNewBid = function(_id, virtualCredits) {
+
         try {
+
+            if(!virtualCredits || !_id) {
+                alert(`Invalid data  to update`)
+            }
 
             axios.put(`http://localhost:5200/api/v1/credits/update-credits/${_id}`, {_id: _id, virtualCredits: virtualCredits}).then(data => {console.log(data)}).catch(err => {console.log(err)});
             setUpdatedNewBid(true);
-            alert(`Updated Data Virutal Cerdits`)
+            alert(`Updated Data Virutal Cerdits`);
          } 
         
          catch(err) {
 
            if(err) {
+               
                 console.error(err);
                 throw new Error(err);
             }
@@ -558,6 +566,9 @@ const FairNegotations = (props) => {
 
         try {
             // Code here for the AI bot that generates a random bid
+            // 1. Fetch the Bot Data from backend
+            // 2. Store the bot data from backend in an array
+            // 3.
         } 
         
         catch(error) {
@@ -574,7 +585,6 @@ const FairNegotations = (props) => {
     const submitFeedbackHandler = async (event) => {
         try {
             event.preventDefault();
-
             const {data} = await axios.post(``);
 
             // If no data found
@@ -586,10 +596,9 @@ const FairNegotations = (props) => {
         catch(error) {
 
             if(error) {
-
-                console.log(`An error occurred : ${error}`);
                 setFeedbackFormValid(false);
-                return console.error(error);
+                console.error(error);
+                throw new Error(error);
             }
         }
     };
