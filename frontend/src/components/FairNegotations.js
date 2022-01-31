@@ -25,7 +25,6 @@ const BOT_TYPES = {
 
 let bidData = []; // Array that stores the bid data
 const botBidData = [];
-const newCredits = [];
 
 const FairNegotations = (props) => {
 
@@ -444,12 +443,25 @@ const FairNegotations = (props) => {
     const submitBid = async function(openingBid, virtualCredits) {
 
         try {
-            // used for string validation
+
             const convertedBid = parseInt(bid);
+            let specialCharsRegex = /^[a-zA-Z0-9!@#\$%\^\&*\)\(+=._-]+$/g;
 
             // If user places a bid > opening bid
+            // If the username matches one of the special chars (not allowed)
 
-            if(enteredUsername.trim().length === 0) {
+            if(enteredUsername.match(specialCharsRegex)) {
+                alert(`Special characters for username not allowed`);
+                clearFields();
+
+                setBidValid(false);
+
+                return setTimeout(() => {
+                    return window.location.reload(false);
+                }, 2000);
+            }
+
+           else if(enteredUsername.trim().length === 0) {
                 setBidValid(false);
                 alert(`Cannot leave username field blank`);
             }
@@ -605,8 +617,6 @@ const FairNegotations = (props) => {
             // 4. Use switch / case statements. Determine if it's a low bot then randomly generate a bid between the specified range
             // 5. If the user turn is over, transmit a POST request to the server by randomly placing bids by the bot
             // 6. If the bot has placed a bid, set a timeout of 3 seconds and set user turn to true
-            // 7.
-
         } 
         
         catch(error) {
