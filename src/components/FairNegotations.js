@@ -445,7 +445,7 @@ const FairNegotations = (props) => {
         try {
 
             const convertedBid = parseInt(bid);
-            let specialCharsRegex = /^[a-zA-Z0-9!@#\$%\^\&*\)\(+=._-]+$/g;
+            let specialCharsRegex = /[\!\@\#\$\%\^\&\*\)\(\+\=\.\<\>\{\}\[\]\:\;\'\"\|\~\`\_\-]/g
 
             // If user places a bid > opening bid
             // If the username matches one of the special chars (not allowed)
