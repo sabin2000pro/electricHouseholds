@@ -42,6 +42,7 @@ const FairNegotations = (props) => {
     const [updatedNewBid, setUpdatedNewBid] = useState(false);
     const [clearedBids, setClearedBids] = useState(false);
     const [outOfCredits, setOutOfCredits] = useState(false);
+    const [userInputDisabled, setUserInputDisabled] = useState(false);
     const [creditsSubtracted, setCreditsSubtracted] = useState(false);
     const [bidsFound, setBidsFound] = useState(false);
     const [enteredFeedbackUsername, setEnteredFeedbackUsername] = useState("");
@@ -220,6 +221,7 @@ const FairNegotations = (props) => {
 
             return await axios.get(`http://localhost:5200/api/v1/credits/get-credits`).then(response => {
                 const credits = response.data.allCredits;
+                setCreditsFetched(true);
 
                 if(!credits) {
                     console.log(`Could not find any credit data`);
@@ -233,8 +235,8 @@ const FairNegotations = (props) => {
             }).catch(error => {
 
                 if(error) {
-
-                    return console.error(error);
+                     console.error(error.response.data);
+                     throw new Error(error);
                 }
             })
         } 
@@ -244,7 +246,7 @@ const FairNegotations = (props) => {
             if(error) {
                 console.error(error);
 
-                return console.error(error);
+                throw new Error(error);
             }
         }
     }
@@ -549,7 +551,6 @@ const FairNegotations = (props) => {
     }
 
     const handleBidSubmission = async function(bid, virtualCredits) {
-
         try {
 
             setEnteredUsername("");
@@ -568,8 +569,12 @@ const FairNegotations = (props) => {
                if(virtualCredits === 0) {
 
                 return setTimeout(() => {
-                        alert(`You have no more credits left USER`);
-                       return window.location.reload(false);
+                    alert(`You have no more credits left USER`);
+                    // Stop the bidding by setting the timer to 0 and emptying the bid data array of the user
+                    // Reload the page
+                    setSeconds(0);
+                    bidData = [];
+                    return window.location.reload(false);
       
                      }, 0);
                 } 
@@ -582,7 +587,7 @@ const FairNegotations = (props) => {
         catch(error) {
 
             if(error) {
-                console.error(error);
+                console.error(error.response.data);
                 throw new Error(error);
             }
         }
@@ -605,8 +610,7 @@ const FairNegotations = (props) => {
          catch(err) {
 
            if(err) {
-
-                console.error(err);
+            console.error(err.response.data);
                 throw new Error(err);
             }
         }
@@ -622,8 +626,7 @@ const FairNegotations = (props) => {
         catch(error) {
 
             if(error) {
-                console.error(error);
-
+                console.error(error.response.data);
                 throw new Error(error);
             }
         }
