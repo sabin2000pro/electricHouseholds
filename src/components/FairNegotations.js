@@ -817,7 +817,6 @@ const FairNegotations = (props) => {
                         <button className = "login--btn" type = "submit">Submit</button>
                     </div>
 
-
                 </form>
         </RegisterCard>
 
