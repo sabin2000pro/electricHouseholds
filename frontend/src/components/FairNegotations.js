@@ -22,6 +22,7 @@ const BOT_TYPES = {
 }
 
 let bidData = []; // Array that stores the bid data
+
 const botBidData = [];
 
 const FairNegotations = (props) => {
@@ -296,7 +297,8 @@ const FairNegotations = (props) => {
 
                 setBotData(theBotData);
 
-                 return response.data.allBots.forEach((botDataVal) => {
+                 return response.data.allBots.forEach((botDataVal) => { // For every bot in the array
+
                     const {_id, name, botCredits, type} = botDataVal;
 
                     botBidData.push({_id, name, botCredits, type});
@@ -489,6 +491,9 @@ const FairNegotations = (props) => {
                     window.location.reload(false);
                     bidData = [];
 
+                    // User can't participate anymore
+                    // Redirect user to final screen to show all the results
+
                     setSeconds(FLAGS.DEFAULT);
 
                 }, 1000);
@@ -499,7 +504,7 @@ const FairNegotations = (props) => {
         catch(error) {
 
             if(error) {
-                
+
                 const someErrMsg = error.response.data;
                 console.error(someErrMsg);
 
@@ -673,6 +678,32 @@ const FairNegotations = (props) => {
 
             const parsedBotCredits = parseInt(botCredits); // Convert the bot credits to an integer
             const theBotTypes = [BOT_TYPES.DEFAULT, BOT_TYPES.MEDIUM, BOT_TYPES.INTENSE];
+            const botNames = [name];
+            const botCredits = [botCredits];
+            const botTypes = [type];
+
+            console.log(`Bot names : ${botNames}`);
+            console.log(botTypes);
+
+            let lowBotAvg = botCredits * 0.10;
+            let mediumBotAvg = botCredits * 0.50;
+            let intenseBotAvg = botCredits;
+
+
+            // After user placed a bid
+            // Set a time out of 5 seconds -> then set a boolean flag (userTurn = false) THEN botTurn = true
+            // START BOT BID -> Loop through the bot array
+            // Get type of the BOT
+            // Place of the
+            // If user turn is false && bot turn is TRUE
+            // Loop through the entire bot data array
+            // Extract the type of bot present
+            // Switch / Case -> determine what type of bot is now
+            // Invoke a routine that checks, IF the bot type in the array DEFAULT (LOW)
+            // Generate a random bid BETWEEN the specified range (0-10)
+            // Else if type of bot medium then generate a random bid using math.random between the range specified
+            // Else if type of bot is BOT_TYPES.INTENSE - place all the bids
+            // Otherwise throw an error if the types are not in the array
 
 
             // Code here for the AI bot that generates a random bid after the user turn is over
@@ -698,7 +729,7 @@ const FairNegotations = (props) => {
         try {
 
             event.preventDefault();
-            const {data} = await axios.post(``);
+            const {data} = await axios.post(`http://localhost:5200/api/v1`);
 
             // If no data found
             if(!data) {
@@ -845,7 +876,7 @@ const FairNegotations = (props) => {
 
             <RegisterCard>
 
-                <form className = "login--form" method = "POST">
+                <form onSubmit = {submitFeedbackHandler} className = "login--form" method = "POST">
 
                 <h1 className = "feedback--heading">Leave your Feedback</h1>
                 
