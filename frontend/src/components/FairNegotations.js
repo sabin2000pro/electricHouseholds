@@ -714,8 +714,11 @@ const FairNegotations = (props) => {
                         alert(`Bot turn starting now`);
 
                         for(const [key, value] of Object.entries(allLowBotData)) {
-                            console.log(`Bot keys : ${key}`);
-                            console.log(`Values : ${value}`);
+
+                            const {name, type} = allLowBotData;
+
+                            console.log(`Bot name looped over : ${name}`);
+                            console.log(`Bot type looped over : ${type}`);
                         }
 
                     }, 2000); 
@@ -731,7 +734,7 @@ const FairNegotations = (props) => {
             // Get type of the BOT
             // Place of the
             // If user turn is false && bot turn is TRUE
-            // Loop through the entire bot data array
+            // Loop through the entire low, medium and intense object of bots
             // Extract the type of bot present
             // Switch / Case -> determine what type of bot is now
             // Invoke a routine that checks, IF the bot type in the array DEFAULT (LOW)
