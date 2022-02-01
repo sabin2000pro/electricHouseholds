@@ -677,13 +677,10 @@ const FairNegotations = (props) => {
         try {
 
             const parsedBotCredits = parseInt(botCredits); // Convert the bot credits to an integer
-            const theBotTypes = [BOT_TYPES.DEFAULT, BOT_TYPES.MEDIUM, BOT_TYPES.INTENSE];
-            const botNames = [name];
-            const botCredits = [botCredits];
+            const allBotCredits = [parsedBotCredits];
+            
             const botTypes = [type];
-
-            console.log(`Bot names : ${botNames}`);
-            console.log(botTypes);
+            const botNames = [name];
 
             let lowBotAvg = botCredits * 0.10;
             let mediumBotAvg = botCredits * 0.50;
