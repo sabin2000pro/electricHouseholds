@@ -140,7 +140,6 @@ const AdminLogin = (props) => { // Admin Login Component
                     <h1 className = "heading--primary login">Admin Login</h1>
                     <form onSubmit = {loginHandler} className = "login--form">
 
-                    
                     <div className = "email--box">
                         <label className = "email--lbl">E-mail</label>
                         <input onBlur = {blurHandler} value = {enteredEmail} onChange = {(e) => {setEmailAddress(e.target.value)}} placeholder = "Enter your E-mail" type = "email"/>

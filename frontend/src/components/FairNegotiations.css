@@ -22,6 +22,14 @@
     cursor: pointer
 }
 
+.bid--header {
+    margin-bottom: 50px;
+    margin-top: 50px;
+    font-size: 34px;
+    color: white;
+    margin-left: 70px;
+}
+
 .fn--heading {
     text-align: center;
     margin-bottom: 120px;
@@ -61,6 +69,18 @@
     font-size: 29px;
 }
 
+
+.bid--container input {
+    margin-right: 140px;
+    margin-bottom: 50px;
+    margin-top: 50px;
+}
+
+.bid--lbl {
+    margin-right: -100px;
+    margin-top: 50px;
+}
+
 .third--pref {
    margin-bottom: 100px;
    font-size: 29px;
@@ -73,14 +93,22 @@
 
 .bid--box input {
     margin-right: 185px;
-    margin-bottom: 5px;
+    margin-bottom: -50px;
 }
 
 .submit-bid--container {
     margin-left: -180px;
+    margin-bottom: -30px;
 }
 
 .allbids--btn {
     padding: 12px 24px;
     background-color: lightgreen;
+}
+
+.submit--btn {
+    margin-right: 50px;
+    text-align: center;
+    padding-left: -30px;
+    background-color: green;
 }
