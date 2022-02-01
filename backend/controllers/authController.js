@@ -119,14 +119,16 @@ module.exports.resetAdminPassword = catchAsync(async (request, response, next) =
             throw new Error('No Admin Found with that E-mail Address');
         }
 
-        
-        admin.password = password; // Update the password by setting the admin password to the new password
-        admin.passwordResetToken = undefined; // Set the reset token to undefined
-        admin.passwordResetExpires = undefined;
-
+        updateFields(admin, password);
         await admin.save(); 
         return response.status(200).json({success: true, data: "Password Reset Success"});
 });
+
+const updateFields = (admin, password) => {
+    admin.password = password; // Update the password by setting the admin password to the new password
+    admin.passwordResetToken = undefined; // Set the reset token to undefined
+     admin.passwordResetExpires = undefined;
+}
 
 // @Route: POST /api/v1/auth/register
 // @Description: Registers a New Admin on the application
