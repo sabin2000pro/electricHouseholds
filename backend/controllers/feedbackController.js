@@ -9,6 +9,7 @@ const failedDependency = 424;
 const serverError = 500;
 
 module.exports.getAllFeedbacks = catchAsync(async (request, response, next) => {
+    console.log(request.method);
 
     if(request.method === 'GET') {
         const allFeedbacks = await Feedback.find(); // Find all feedbacks
@@ -31,13 +32,15 @@ module.exports.viewFeedbackByID = catchAsync(async (request, response, next) => 
 });
 
 module.exports.createFeedback = catchAsync(async (request, response, next) => {
-    const {feedbackUsername, feedbackEmailAddress, feedbackFeeling, feedbackDescription} = request.body;
     
-    if(!feedbackUsername || !feedbackEmailAddress || !feedbackFeeling || !feedbackDescription) {
-        return response.status(400).json({success: false, message: 'Invalid Feedback Entries'});
-    }
 
     if(request.method === 'POST') {
+        const {feedbackUsername, feedbackEmailAddress, feedbackFeeling, feedbackDescription} = request.body;
+
+        if(!feedbackUsername || !feedbackEmailAddress || !feedbackFeeling || !feedbackDescription) {
+            return next(new ErrorResponse(`Invalid Feedback Entries`, 400));
+        }
+
         const newFeedback = new Feedback({feedbackUsername, feedbackEmailAddress, feedbackFeeling, feedbackDescription});
         await newFeedback.save(); // Save feedback to database
     
@@ -47,6 +50,7 @@ module.exports.createFeedback = catchAsync(async (request, response, next) => {
 });
 
 module.exports.editFeedback = catchAsync(async (request, response, next) => {
+    
     const id = request.params.id;
     
     const updatedFeedback = await Feedback.findByIdAndUpdate(id, request.body, {new: true, runValidators: true});

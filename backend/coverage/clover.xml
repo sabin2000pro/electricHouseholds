@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1643711867945" clover="3.2.0">
-  <project timestamp="1643711867945" name="All files">
-    <metrics statements="730" coveredstatements="423" conditionals="187" coveredconditionals="25" methods="92" coveredmethods="18" elements="1009" coveredelements="466" complexity="0" loc="730" ncloc="730" packages="9" files="39" classes="39"/>
+<coverage generated="1643711919071" clover="3.2.0">
+  <project timestamp="1643711919072" name="All files">
+    <metrics statements="731" coveredstatements="423" conditionals="187" coveredconditionals="25" methods="92" coveredmethods="18" elements="1010" coveredelements="466" complexity="0" loc="731" ncloc="731" packages="9" files="39" classes="39"/>
     <package name="controllers">
-      <metrics statements="402" coveredstatements="168" conditionals="137" coveredconditionals="19" methods="66" coveredmethods="9"/>
+      <metrics statements="403" coveredstatements="168" conditionals="137" coveredconditionals="19" methods="66" coveredmethods="9"/>
       <file name="applianceController.js" path="/app/controllers/applianceController.js">
         <metrics statements="44" coveredstatements="23" conditionals="14" coveredconditionals="2" methods="8" coveredmethods="3"/>
         <line num="1" count="1" type="stmt"/>
@@ -325,7 +325,7 @@
         <line num="49" count="0" type="stmt"/>
       </file>
       <file name="feedbackController.js" path="/app/controllers/feedbackController.js">
-        <metrics statements="37" coveredstatements="15" conditionals="18" coveredconditionals="0" methods="6" coveredmethods="0"/>
+        <metrics statements="38" coveredstatements="15" conditionals="18" coveredconditionals="0" methods="6" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -336,10 +336,11 @@
         <line num="8" count="1" type="stmt"/>
         <line num="9" count="1" type="stmt"/>
         <line num="11" count="1" type="stmt"/>
-        <line num="13" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="15" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="16" count="0" type="stmt"/>
-        <line num="19" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="14" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="17" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="18" count="0" type="stmt"/>
         <line num="21" count="0" type="stmt"/>
         <line num="26" count="1" type="stmt"/>
         <line num="29" count="0" type="stmt"/>
@@ -354,15 +355,15 @@
         <line num="43" count="0" type="stmt"/>
         <line num="45" count="0" type="stmt"/>
         <line num="50" count="1" type="stmt"/>
-        <line num="51" count="0" type="stmt"/>
-        <line num="53" count="0" type="stmt"/>
-        <line num="55" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="56" count="0" type="stmt"/>
-        <line num="59" count="0" type="stmt"/>
-        <line num="62" count="1" type="stmt"/>
-        <line num="63" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="70" count="1" type="stmt"/>
-        <line num="71" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="52" count="0" type="stmt"/>
+        <line num="54" count="0" type="stmt"/>
+        <line num="56" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="57" count="0" type="stmt"/>
+        <line num="60" count="0" type="stmt"/>
+        <line num="63" count="1" type="stmt"/>
+        <line num="64" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="71" count="1" type="stmt"/>
+        <line num="72" count="0" type="cond" truecount="0" falsecount="2"/>
       </file>
       <file name="preferencesController.js" path="/app/controllers/preferencesController.js">
         <metrics statements="48" coveredstatements="24" conditionals="23" coveredconditionals="5" methods="7" coveredmethods="3"/>
