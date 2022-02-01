@@ -641,27 +641,22 @@ const FairNegotations = (props) => {
             setUpdatedNewBid(true);
             alert(`Updated Data Virutal Credits`);
 
-            // BLUR THE USER INPUT FIELD
             const [lowBotData, mediumBotData, intenseBotData] = botBidData;  
-            processBotDataBeforeTurn(lowBotData, mediumBotData, intenseBotData);  
-            
-            
-        
+            return processBotDataBeforeTurn(lowBotData, mediumBotData, intenseBotData);  
         }
         
          catch(err) {
 
            if(err) {
+            const theErr = err.response.data;
 
-            console.error(err.response.data);
+            console.error(theErr);
                 throw new Error(err);
             }
         }
      } 
 
      const processBotDataBeforeTurn = function(lowBotData, mediumBotData, intenseBotData) {
-         console.log(`1. Inside the process bot before turn function`);
-
         return botPlaceRandomBid(lowBotData, mediumBotData, intenseBotData);
      }
 
@@ -698,7 +693,7 @@ const FairNegotations = (props) => {
 
             if(!userInputDisabled && botTurn && !userTurn) {
                 setTimeout(() => {
-                    
+
                     handleInputBlur();
 
                     alert(`Bots turn starting soon...`);
@@ -766,8 +761,9 @@ const FairNegotations = (props) => {
         } 
         
         catch(err) {
-            if(err) {
 
+            if(err) {
+                const theErr = err.message;
             }
         }
     }
@@ -789,7 +785,7 @@ const FairNegotations = (props) => {
             console.log(data);
 
             alert(`Feedback Submitted Success`);
-            // If no data found
+           
             if(!data) {
                 return alert(`No data could be submitted`);
             }
