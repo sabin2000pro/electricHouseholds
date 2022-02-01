@@ -12,8 +12,7 @@ const preferencesSchema = new mongoose.Schema({
     },
 
     appliance: {
-        type: String,
-        required: [true, 'Please choose the appliance you want to run']
+        type: String
     },
 
     firstPreference: {

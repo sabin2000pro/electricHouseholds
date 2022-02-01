@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1643750562007" clover="3.2.0">
-  <project timestamp="1643750562008" name="All files">
-    <metrics statements="748" coveredstatements="426" conditionals="197" coveredconditionals="25" methods="93" coveredmethods="18" elements="1038" coveredelements="469" complexity="0" loc="748" ncloc="748" packages="9" files="39" classes="39"/>
+<coverage generated="1643755257289" clover="3.2.0">
+  <project timestamp="1643755257290" name="All files">
+    <metrics statements="746" coveredstatements="431" conditionals="190" coveredconditionals="23" methods="93" coveredmethods="20" elements="1029" coveredelements="474" complexity="0" loc="746" ncloc="746" packages="9" files="39" classes="39"/>
     <package name="controllers">
-      <metrics statements="418" coveredstatements="169" conditionals="147" coveredconditionals="19" methods="67" coveredmethods="9"/>
+      <metrics statements="416" coveredstatements="173" conditionals="140" coveredconditionals="17" methods="67" coveredmethods="10"/>
       <file name="applianceController.js" path="/app/controllers/applianceController.js">
         <metrics statements="44" coveredstatements="23" conditionals="14" coveredconditionals="2" methods="8" coveredmethods="3"/>
         <line num="1" count="1" type="stmt"/>
@@ -52,7 +52,7 @@
         <line num="73" count="1" type="stmt"/>
       </file>
       <file name="authController.js" path="/app/controllers/authController.js">
-        <metrics statements="82" coveredstatements="36" conditionals="30" coveredconditionals="12" methods="10" coveredmethods="3"/>
+        <metrics statements="82" coveredstatements="39" conditionals="30" coveredconditionals="12" methods="10" coveredmethods="4"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -71,7 +71,7 @@
         <line num="23" count="1" type="stmt"/>
         <line num="26" count="1" type="stmt"/>
         <line num="27" count="1" type="stmt"/>
-        <line num="31" count="0" type="stmt"/>
+        <line num="31" count="1" type="stmt"/>
         <line num="38" count="1" type="stmt"/>
         <line num="39" count="3" type="stmt"/>
         <line num="41" count="3" type="cond" truecount="4" falsecount="0"/>
@@ -133,8 +133,8 @@
         <line num="167" count="0" type="stmt"/>
         <line num="168" count="0" type="stmt"/>
         <line num="175" count="1" type="stmt"/>
-        <line num="176" count="0" type="stmt"/>
-        <line num="177" count="0" type="stmt"/>
+        <line num="176" count="1" type="stmt"/>
+        <line num="177" count="1" type="stmt"/>
       </file>
       <file name="bidsController.js" path="/app/controllers/bidsController.js">
         <metrics statements="37" coveredstatements="15" conditionals="4" coveredconditionals="0" methods="7" coveredmethods="0"/>
@@ -381,7 +381,7 @@
         <line num="87" count="0" type="stmt"/>
       </file>
       <file name="preferencesController.js" path="/app/controllers/preferencesController.js">
-        <metrics statements="48" coveredstatements="24" conditionals="23" coveredconditionals="5" methods="7" coveredmethods="3"/>
+        <metrics statements="46" coveredstatements="25" conditionals="16" coveredconditionals="3" methods="7" coveredmethods="3"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -392,44 +392,42 @@
         <line num="8" count="1" type="stmt"/>
         <line num="10" count="1" type="stmt"/>
         <line num="11" count="2" type="stmt"/>
-        <line num="13" count="2" type="cond" truecount="3" falsecount="4"/>
+        <line num="13" count="2" type="cond" truecount="1" falsecount="1"/>
         <line num="14" count="2" type="stmt"/>
-        <line num="17" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="18" count="0" type="stmt"/>
-        <line num="19" count="0" type="stmt"/>
-        <line num="21" count="0" type="stmt"/>
-        <line num="26" count="1" type="stmt"/>
-        <line num="27" count="0" type="stmt"/>
-        <line num="29" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="15" count="2" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="22" count="1" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="25" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
         <line num="30" count="0" type="stmt"/>
-        <line num="33" count="0" type="stmt"/>
-        <line num="34" count="0" type="stmt"/>
+        <line num="33" count="1" type="stmt"/>
+        <line num="35" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="36" count="1" type="stmt"/>
         <line num="37" count="1" type="stmt"/>
-        <line num="39" count="1" type="cond" truecount="1" falsecount="1"/>
-        <line num="40" count="1" type="stmt"/>
-        <line num="41" count="1" type="stmt"/>
-        <line num="46" count="1" type="stmt"/>
-        <line num="47" count="0" type="stmt"/>
+        <line num="42" count="1" type="stmt"/>
+        <line num="43" count="0" type="stmt"/>
+        <line num="45" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="46" count="0" type="stmt"/>
         <line num="49" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="50" count="0" type="stmt"/>
-        <line num="53" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="54" count="0" type="stmt"/>
-        <line num="55" count="0" type="stmt"/>
-        <line num="57" count="0" type="stmt"/>
-        <line num="62" count="1" type="stmt"/>
-        <line num="63" count="0" type="stmt"/>
+        <line num="51" count="0" type="stmt"/>
+        <line num="53" count="0" type="stmt"/>
+        <line num="58" count="1" type="stmt"/>
+        <line num="59" count="0" type="stmt"/>
+        <line num="61" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="62" count="0" type="stmt"/>
         <line num="65" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="66" count="0" type="stmt"/>
-        <line num="69" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="70" count="0" type="stmt"/>
-        <line num="71" count="0" type="stmt"/>
+        <line num="67" count="0" type="stmt"/>
+        <line num="72" count="1" type="stmt"/>
+        <line num="73" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="75" count="1" type="stmt"/>
         <line num="76" count="1" type="stmt"/>
-        <line num="77" count="1" type="cond" truecount="1" falsecount="1"/>
-        <line num="79" count="1" type="stmt"/>
         <line num="80" count="1" type="stmt"/>
-        <line num="84" count="1" type="stmt"/>
-        <line num="86" count="0" type="stmt"/>
-        <line num="87" count="0" type="stmt"/>
+        <line num="82" count="0" type="stmt"/>
+        <line num="83" count="0" type="stmt"/>
       </file>
       <file name="timeslotsController.js" path="/app/controllers/timeslotsController.js">
         <metrics statements="18" coveredstatements="8" conditionals="4" coveredconditionals="0" methods="3" coveredmethods="0"/>
@@ -549,9 +547,9 @@
       </file>
     </package>
     <package name="models">
-      <metrics statements="69" coveredstatements="60" conditionals="4" coveredconditionals="2" methods="6" coveredmethods="3"/>
+      <metrics statements="69" coveredstatements="61" conditionals="4" coveredconditionals="2" methods="6" coveredmethods="4"/>
       <file name="adminModel.js" path="/app/models/adminModel.js">
-        <metrics statements="29" coveredstatements="20" conditionals="4" coveredconditionals="2" methods="6" coveredmethods="3"/>
+        <metrics statements="29" coveredstatements="21" conditionals="4" coveredconditionals="2" methods="6" coveredmethods="4"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -578,7 +576,7 @@
         <line num="87" count="0" type="stmt"/>
         <line num="88" count="0" type="stmt"/>
         <line num="92" count="1" type="stmt"/>
-        <line num="93" count="0" type="stmt"/>
+        <line num="93" count="1" type="stmt"/>
         <line num="96" count="1" type="stmt"/>
         <line num="97" count="1" type="stmt"/>
       </file>
@@ -635,8 +633,8 @@
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="3" count="1" type="stmt"/>
         <line num="5" count="1" type="stmt"/>
+        <line num="34" count="1" type="stmt"/>
         <line num="35" count="1" type="stmt"/>
-        <line num="36" count="1" type="stmt"/>
       </file>
       <file name="reviewsModel.js" path="/app/models/reviewsModel.js">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>

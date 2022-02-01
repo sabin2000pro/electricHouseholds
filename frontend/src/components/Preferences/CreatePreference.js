@@ -67,7 +67,6 @@ const CreatePreference = (props) => {
     const [lastApplianceData, setLastApplianceData] = useState([]);
 
     const [nextApplianceDataInserted, setNextApplianceDataInserted] = useState(false);
-    const [lastApplianceDataInserted, setLastApplianceDataInserted] = useState(false);
 
     const preferencesSubmitHandler = async (e) => {
 
@@ -126,6 +125,7 @@ const CreatePreference = (props) => {
     // Function to process user preference.
     const processPreference = async () => { 
         let prefSubmitted;   
+        console.log(chosenAppliance);
        const {data} = await axios.post(`http://localhost:5200/api/v1/preferences/create-preference`, {username: enteredUsername, appliance: chosenAppliance, firstPreference: chosenFirstPreference, secondPreference: chosenSecondPreference , thirdPreference: chosenThirdPreference}); 
        setModalShown({title: 'Preferences', message: 'Your Preferences Have Been Submitted', showForm: false, showDefaultBtn: true});
 
@@ -136,11 +136,13 @@ const CreatePreference = (props) => {
             console.log(applianceTypeChosen);
             setUsername("");
             setChosenAppliance("");
+            setChosenFirstPreference("");
+            setChosenSecondPreference("");
+            setChosenThirdPreference("");
+
        }
               
        setTimeout(() => {
-            alert(`One second, we are gettng you to submit your next preferences for next appliance`);
-            console.log(`Inside process preferences...`);
 
             return processNextAppliance(applianceTypeChosen, prefSubmitted);
            
@@ -201,15 +203,14 @@ const CreatePreference = (props) => {
                         const lastAppliance = applianceNames.slice(-1)[0];
                         const applianceIndexes = applianceNames.indexOf(nextApplianceAvailable);
 
+
                         if(applianceIndexes < applianceNames.length - 1) {
 
                         firstApplianceData.push(firstAppliance);
                         nextApplianceData.push(nextApplianceAvailable);
-                        lastApplianceData.push(lastAppliance);
 
                         setNextApplianceData(nextApplianceData);
                         setNextApplianceDataInserted(true);
-                        setLastApplianceDataInserted(true);
 
                          setTimeout(() => { 
 
@@ -433,18 +434,23 @@ const CreatePreference = (props) => {
           <label className = "issue--lbl" htmlFor = "issue">Appliance</label>
 
           {!nextApplianceDataInserted ?  <select onChange = {(e) => {setChosenAppliance(e.target.value)}} value = {chosenAppliance} className = "box">
+          <option>Select Appliance</option>
 
-{appliances.map((appliance, key) => {
-    return <option key = {key}>{appliance.name}</option>
-})}
 
-</select> : nextApplianceData.map((nextAppliance, key) => {
-    return <select key = {key} onChange = {(e) => {setChosenAppliance(e.target.value)}} value = {chosenAppliance} className = "box">
-        <option key = {key}>{nextAppliance}</option>
+        {appliances.map((appliance, key) => {
+            return <option key = {key}>{appliance.name}</option>
+        })}
+
+        </select> : nextApplianceData.map((nextAppliance, key) => {
+
+                return <select key = {key} onChange = {(e) => {setChosenAppliance(e.target.value)}} value = {chosenAppliance} className = "box">
+            
+                <option>Select Appliance</option>
+                <option key = {key}>{nextAppliance}</option>
+            
+            </select>
+            })}
         
-    </select>
-}) }
-
          
         </div>
 
