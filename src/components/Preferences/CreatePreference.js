@@ -93,12 +93,14 @@ const CreatePreference = (props) => {
 
             else {
 
-                await axios.post(`http://localhost:5200/api/v1/preferences/create-preference`, {username: enteredUsername, appliance: chosenAppliance, firstPreference: chosenFirstPreference, secondPreference: chosenSecondPreference , thirdPreference: chosenThirdPreference}); 
-                setModalShown({title: 'Preferences', message: 'Your Preferences Have Been Submitted', showForm: false, showDefaultBtn: true});
+                processPreference();
 
                 setPreferenceSubmitted(true);
                 setFormValid(true);
                 setShowOkBtn(false);
+
+                // NOW after user submits their first preference.
+                // Take the next prefernce in the drop down menu and get the user to submit preferences for that
             }
           
         } 
@@ -113,6 +115,15 @@ const CreatePreference = (props) => {
         }
     }
 
+    const processPreference = async () => {
+        await axios.post(`http://localhost:5200/api/v1/preferences/create-preference`, {username: enteredUsername, appliance: chosenAppliance, firstPreference: chosenFirstPreference, secondPreference: chosenSecondPreference , thirdPreference: chosenThirdPreference}); 
+       setModalShown({title: 'Preferences', message: 'Your Preferences Have Been Submitted', showForm: false, showDefaultBtn: true});
+
+       setTimeout(() => {
+            alert(`One second, we are gettng you to submit your next preferences for next appliance`);
+       }, 2000);
+    }
+    
     const modalHandler = () => {
         {modalShown && setModalShown(null)}
     }
