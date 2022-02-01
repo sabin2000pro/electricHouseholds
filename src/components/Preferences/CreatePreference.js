@@ -387,7 +387,6 @@ const CreatePreference = (props) => {
             <label className = "password--lbl">Third Preference</label>
 
             <select onChange = {(e) => {setChosenThirdPreference(e.target.value)}} value = {chosenThirdPreference} className = "box">
-
                 <option>06:00-07:00</option>
                 <option>07:00-08:00</option>
                 <option>09:00-10:00</option>
@@ -440,8 +439,6 @@ const CreatePreference = (props) => {
                     <h2 className = "appliance--heading">First Random Slot : {JSON.stringify(otherFirstPref, null).toString().replaceAll("\"", "")}</h2>
                     <h2 className = "appliance--heading">Second Random Slot : {JSON.stringify(otherSecondPref, null).toString().replaceAll("\"", "")}</h2>
                     <h2 className = "appliance--heading">Third Random Slot : {JSON.stringify(otherThirdPref, null).toString().replaceAll("\"", "")}</h2>
-
-                   
 
                     <Link className = "negotiate--btn" to = {{pathname: `/fair-negotiations/${preference._id}`, state: {preference}} }>Negotiate Preference</Link>
 

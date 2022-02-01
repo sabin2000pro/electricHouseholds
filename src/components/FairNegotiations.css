@@ -96,9 +96,10 @@
     margin-bottom: -50px;
 }
 
-.submit-bid--container {
-    margin-left: -180px;
-    margin-bottom: -30px;
+.submit-bid--container button {
+    margin-left: 150px;
+    margin-bottom: 50px;
+    margin-top: 10px;
 }
 
 .allbids--btn {
@@ -126,4 +127,18 @@
 .emailAddress--box {
     margin-bottom: 30px;
     margin-left: -80px;
+}
+
+.feeling--box {
+    margin-left: -106px;
+    margin-bottom: 50px;
+    margin-top: 50px;
+}
+
+.feedback--heading {
+    text-align: center;
+    color: white;
+    margin-left: 300px;
+    margin-top: 40px;
+    font-size: 38px;
 }
