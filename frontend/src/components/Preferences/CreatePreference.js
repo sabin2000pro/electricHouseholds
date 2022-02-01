@@ -10,10 +10,6 @@ let DEFAULT_TEXT = {
     preferenceHeader: 'Your Preferences'
 }
 
-let lastApplianceFound;
-let firstApplianceFound = false;
-let nextApplianceFound;
-
 const applianceNames = [];
 // Fake other household preferences
 let otherPreferences = [
@@ -69,6 +65,9 @@ const CreatePreference = (props) => {
     const [firstApplianceData, setFirstApplianceData] = useState([]);
     const [nextApplianceData, setNextApplianceData] = useState([]);
     const [lastApplianceData, setLastApplianceData] = useState([]);
+
+    const [nextApplianceDataInserted, setNextApplianceDataInserted] = useState(false);
+    const [lastApplianceDataInserted, setLastApplianceDataInserted] = useState(false);
 
     const preferencesSubmitHandler = async (e) => {
 
@@ -196,21 +195,21 @@ const CreatePreference = (props) => {
 
                     setTimeout(() => {
                         const firstAppliance = applianceNames[i];
-
+                        const appliancesPresent = applianceNames.length;
+                        
                         const nextApplianceAvailable = applianceNames[i + 1];
                         const lastAppliance = applianceNames.slice(-1)[0];
                         const applianceIndexes = applianceNames.indexOf(nextApplianceAvailable);
 
-                        if(prefSubmitted) {
+                        if(applianceIndexes < applianceNames.length - 1) {
 
                         firstApplianceData.push(firstAppliance);
-                        lastApplianceData.unshift(lastAppliance);
+                        nextApplianceData.push(nextApplianceAvailable);
+                        lastApplianceData.push(lastAppliance);
 
-                        console.log(lastApplianceData);
-                        }
-
-                        
-                      if(applianceIndexes < applianceNames.length - 1) {
+                        setNextApplianceData(nextApplianceData);
+                        setNextApplianceDataInserted(true);
+                        setLastApplianceDataInserted(true);
 
                          setTimeout(() => { 
 
@@ -222,15 +221,14 @@ const CreatePreference = (props) => {
                                 console.log(`Appliance chosen not found in this array`);
                             }
                            
-                         }, 2000)
+                         }, 1500)
                       }
 
-                    }, 2000);
-                    
-                   
+                    }, 1500);
+                      
                 }
      
-            }, 3000)
+            }, 2000)
 
             // 1. Reload page after 3 seconds
             // 2. Clear All Input Fields
@@ -434,13 +432,20 @@ const CreatePreference = (props) => {
         <div className = "issueType--box">
           <label className = "issue--lbl" htmlFor = "issue">Appliance</label>
 
-            <select onChange = {(e) => {setChosenAppliance(e.target.value)}} value = {chosenAppliance} className = "box">
+          {!nextApplianceDataInserted ?  <select onChange = {(e) => {setChosenAppliance(e.target.value)}} value = {chosenAppliance} className = "box">
 
-                {appliances.map((appliance, key) => {
-                    return <option key = {key}>{appliance.name}</option>
-                })}
+{appliances.map((appliance, key) => {
+    return <option key = {key}>{appliance.name}</option>
+})}
 
-            </select>
+</select> : nextApplianceData.map((nextAppliance, key) => {
+    return <select key = {key} onChange = {(e) => {setChosenAppliance(e.target.value)}} value = {chosenAppliance} className = "box">
+        <option key = {key}>{nextAppliance}</option>
+        
+    </select>
+}) }
+
+         
         </div>
 
         <div className = "morningslot--box">
