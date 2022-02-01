@@ -114,9 +114,6 @@ const CreatePreference = (props) => {
         }
     }
 
-
-
-
     const modalHandler = () => {
         {modalShown && setModalShown(null)}
     }
@@ -133,7 +130,6 @@ const CreatePreference = (props) => {
             return await axios.get(`http://localhost:5200/api/v1/appliances/fetch-appliances`).then(response => {
                 const allAppliances = response.data.appliances;
                 
-
                 setAppliances(allAppliances);
 
             }).catch(err => {
@@ -166,7 +162,6 @@ const CreatePreference = (props) => {
                 if(length === 0) {
                     return setModalShown({title: "Preferences", message: "No preferences found"});
                 }
-        
 
                 return setTimeout(() => {
                     {!preferenceSubmitted && setModalShown({title: "Are you happy with your preferences?", commTitle: "Comment Title: ", username: "Username: ", reason: "Reason: ", description: "Description: ", showInputs: true, showSubmitBtn: true})};
@@ -175,7 +170,9 @@ const CreatePreference = (props) => {
             }).catch(err => {
 
                 if(err) {
-                    return console.error(err);
+                    console.error(err);
+                    throw new Error(err);
+
                 }
 
             })
