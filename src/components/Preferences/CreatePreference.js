@@ -66,6 +66,9 @@ const CreatePreference = (props) => {
     const [enteredCommentDescriptionValid, setEnteredCommentDescriptionValid] = useState(true);
 
     const [creditData, setCreditData] = useState([]);
+    const [firstApplianceData, setFirstApplianceData] = useState([]);
+    const [nextApplianceData, setNextApplianceData] = useState([]);
+    const [lastApplianceData, setLastApplianceData] = useState([]);
 
     const preferencesSubmitHandler = async (e) => {
 
@@ -198,6 +201,15 @@ const CreatePreference = (props) => {
                         const lastAppliance = applianceNames.slice(-1)[0];
                         const applianceIndexes = applianceNames.indexOf(nextApplianceAvailable);
 
+                        if(prefSubmitted) {
+
+                        firstApplianceData.push(firstAppliance);
+                        lastApplianceData.unshift(lastAppliance);
+
+                        console.log(lastApplianceData);
+                        }
+
+                        
                       if(applianceIndexes < applianceNames.length - 1) {
 
                          setTimeout(() => { 
