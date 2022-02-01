@@ -116,11 +116,17 @@ const CreatePreference = (props) => {
     }
 
     const processPreference = async () => {
-        await axios.post(`http://localhost:5200/api/v1/preferences/create-preference`, {username: enteredUsername, appliance: chosenAppliance, firstPreference: chosenFirstPreference, secondPreference: chosenSecondPreference , thirdPreference: chosenThirdPreference}); 
+    
+       await axios.post(`http://localhost:5200/api/v1/preferences/create-preference`, {username: enteredUsername, appliance: chosenAppliance, firstPreference: chosenFirstPreference, secondPreference: chosenSecondPreference , thirdPreference: chosenThirdPreference}); 
        setModalShown({title: 'Preferences', message: 'Your Preferences Have Been Submitted', showForm: false, showDefaultBtn: true});
 
        setTimeout(() => {
             alert(`One second, we are gettng you to submit your next preferences for next appliance`);
+
+            preferences.push({chosenAppliance, chosenFirstPreference, chosenSecondPreference, chosenThirdPreference});
+
+            console.log(`New prefrences : `);
+            console.log(preferences);
        }, 2000);
     }
     
