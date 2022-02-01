@@ -702,6 +702,8 @@ const FairNegotations = (props) => {
 
                     alert(`Bots turn starting soon...`);
 
+
+
                 }, 2000);
             }
 
@@ -796,6 +798,7 @@ const FairNegotations = (props) => {
     }
 
     const findMaxBidBetween = function() {
+        
         try {
 
             let userMaxBid = 0;
