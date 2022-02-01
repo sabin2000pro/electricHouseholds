@@ -696,29 +696,26 @@ const FairNegotations = (props) => {
            // If there are bot data present
            if((sizeOfLow && sizeOfMedium && sizeOfIntense) > 0) {
 
-            if(!userTurn) {
-                console.log(`User turn is over`);
-            }
- 
-            if(botTurn) {
-                console.log(`IT IS THE FUCKING BOTS TURN NOW `);
-            }
- 
-            if(!userInputDisabled) {
+            if(!userInputDisabled && botTurn && !userTurn) {
                 setTimeout(() => {
+                    
                     handleInputBlur();
 
                     alert(`Bots turn starting soon...`);
 
                     setTimeout(() => {
                         alert(`Bot turn starting now`);
-                        console.log(`Low Bot Object Keys : `);
+
+                        console.log(`Number of low bots in the object : `);
 
                         for(const [key, value] of Object.entries(allLowBotData)) {
-                            const {name, botCredits, type} = allLowBotData;
-                            console.log(name, botCredits, type);
-                            
-                           
+
+                            const {name, botCredits, type, numberOfBots} = allLowBotData;
+                            console.log(numberOfBots);
+
+                            if(name !== undefined && type === 'Low') {
+                                return processLowBotBids();
+                            }
                         }
 
                     }, 2000); 
@@ -726,7 +723,6 @@ const FairNegotations = (props) => {
 
                 }, 2000);
             }
-
             
          }
 
@@ -762,6 +758,18 @@ const FairNegotations = (props) => {
             }
     
       }
+    }
+
+    const processLowBotBids = function() {
+        try {
+
+        } 
+        
+        catch(err) {
+            if(err) {
+
+            }
+        }
     }
 
     function handleNewTurn() {
