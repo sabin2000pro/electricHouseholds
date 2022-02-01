@@ -486,10 +486,11 @@ const FairNegotations = (props) => {
                 
                 return setTimeout(() => {
                     window.location.reload(false);
-
                     bidData = [];
 
-                return setSeconds(FLAGS.DEFAULT);
+                    setSeconds(FLAGS.DEFAULT);
+
+                    // Reset the Virtual Credits Back To 200
 
                 }, 1000);
             }
@@ -499,7 +500,9 @@ const FairNegotations = (props) => {
         catch(error) {
 
             if(error) {
-                return console.error(error);
+                console.error(error);
+
+                throw new Error(error);
             }
         }
     }
@@ -842,11 +845,13 @@ const FairNegotations = (props) => {
             <RegisterCard>
 
                 <form className = "login--form" method = "POST">
-                
-                <div className = "username--box">
 
-                    <h1 className = "heading--primary login">Leave your Feedback</h1>
-                        <label className = "username--lbl">Username</label>
+                <h1 className = "heading--primary login">Leave your Feedback</h1>
+
+                
+                <div className = "feedback--box">
+
+                        <label className = "feedbackusername--lbl">Username</label>
                         <input value = {enteredFeedbackUsername} onChange = {(event) => {setEnteredFeedbackUsername(event.target.value)}} placeholder = "Enter Username" type = "text"/>
                     </div>
 
