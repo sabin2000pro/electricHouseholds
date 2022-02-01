@@ -695,9 +695,9 @@ const FairNegotations = (props) => {
             let intenseBotBidAvg = parsedIntenseBotCredits;
  
             console.log(`User entered bid before : ${bid}`);
-            console.log(userTurn);
-            console.log(botTurn);
-           }
+            console.log(`User turn ? ${userTurn}`);
+            console.log(`Bot Turn ? ${botTurn}`);
+         }
 
             // After user placed a bid
             // Set a time out of 5 seconds -> then set a boolean flag (userTurn = false) THEN botTurn = true
@@ -736,6 +736,7 @@ const FairNegotations = (props) => {
     }
 
     function handleNewTurn() {
+
         setUserTurn(false);
         setBotTurn(true);
     }
@@ -747,8 +748,10 @@ const FairNegotations = (props) => {
 
             event.preventDefault();
             
-            const {data} = await axios.post(`http://localhost:5200/api/v1`);
+            const {data} = await axios.post(`http://localhost:5200/api/v1/feedback/create-feedback`, {feedbackUsername: enteredFeedbackUsername, feedbackEmailAddress: enteredFeedbackEmailAddress, feedbackFeeling: chosenFeedbackFeeling, feedbackDescription: enteredFeedbackDescription});
+            console.log(data);
 
+            alert(`Feedback Submitted Success`);
             // If no data found
             if(!data) {
                 return alert(`No data could be submitted`);
@@ -870,7 +873,7 @@ const FairNegotations = (props) => {
                     <form className = "login--form" onSubmit = {submitBidHandler} method = "POST">
 
                     <div className = "bid--container">
-                    
+
                         <label className = "bid--lbl">Bid</label>
 
                         {userInputDisabled ? 
