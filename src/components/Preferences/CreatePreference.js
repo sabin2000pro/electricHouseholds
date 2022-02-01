@@ -10,6 +10,10 @@ let DEFAULT_TEXT = {
     preferenceHeader: 'Your Preferences'
 }
 
+let lastApplianceFound;
+let firstApplianceFound = false;
+let nextApplianceFound;
+
 const applianceNames = [];
 // Fake other household preferences
 let otherPreferences = [
@@ -28,6 +32,7 @@ const CreatePreference = (props) => {
     const [searchTerm, setSearchTerm] = useState("");
     const [usernameValid, setUsernameValid] = useState(true);
     const [chosenAppliance, setChosenAppliance] = useState("");
+    const [nextApplianceFound, setNextApplianceFound] = useState(false);
     const [applianceValid, setApplianceValid] = useState(true);
     const [otherFirstPref, setOtherFirstPref] = useState('');
     const [otherSecondPref, setOtherSecondPref] = useState('');
@@ -117,20 +122,25 @@ const CreatePreference = (props) => {
     }
 
     // Function to process user preference.
-    const processPreference = async () => {    
+    const processPreference = async () => { 
+        let prefSubmitted;   
        const {data} = await axios.post(`http://localhost:5200/api/v1/preferences/create-preference`, {username: enteredUsername, appliance: chosenAppliance, firstPreference: chosenFirstPreference, secondPreference: chosenSecondPreference , thirdPreference: chosenThirdPreference}); 
        setModalShown({title: 'Preferences', message: 'Your Preferences Have Been Submitted', showForm: false, showDefaultBtn: true});
 
-       const selectedAppliance = data.newPreference.appliance;
-       applianceNames.push(selectedAppliance);
+       const applianceTypeChosen = data.newPreference.appliance;
+       prefSubmitted = true;
 
-       const [firstAppliance, secondAppliance, thirdAppliance] = applianceNames;
-       
+       if(prefSubmitted) {
+            console.log(applianceTypeChosen);
+            setUsername("");
+            setChosenAppliance("");
+       }
+              
        setTimeout(() => {
             alert(`One second, we are gettng you to submit your next preferences for next appliance`);
             console.log(`Inside process preferences...`);
 
-            return processNextAppliance(firstAppliance, secondAppliance, thirdAppliance);
+            return processNextAppliance(applianceTypeChosen);
            
        }, 2000);
 
@@ -157,7 +167,6 @@ const CreatePreference = (props) => {
                     applianceNames.push(name);
                 })
 
-              
             }).catch(err => {
 
                 if(err) {
@@ -175,12 +184,48 @@ const CreatePreference = (props) => {
         }
     }
 
-    const processNextAppliance = async (firstAppliance, secondAppliance, thirdAppliance) => {
+    const processNextAppliance = async (applianceTypeChosen) => {
         try {
-            console.log(`You have submitted for`);
-            console.log(firstAppliance);
 
-            // Reload page
+            console.log(`Your appliance type chosen MAN`)
+            console.log(applianceTypeChosen);
+
+            setTimeout(() => {
+
+                for(let i = 0; i < applianceNames.length - 1; i++) {
+
+                    setTimeout(() => {
+                        const firstAppliance = applianceNames[i];
+
+                        const nextApplianceAvailable = applianceNames[i + 1];
+                        const lastAppliance = applianceNames.slice(-1)[0];
+                        const applianceIndexes = applianceNames.indexOf(nextApplianceAvailable);
+
+                      if(applianceIndexes < applianceNames.length - 1) {
+
+                         setTimeout(() => {   
+                             console.log(firstAppliance);
+                             console.log(nextApplianceAvailable);  
+                             console.log(lastAppliance);                         
+                                // Reload Page
+                            // Set the drop down field value of appliance to nextApplianceAvailable + 1
+                            
+                           
+                         }, 2000)
+                      }
+
+                    }, 2000);
+                    
+                   
+                }
+     
+            }, 3000)
+
+            // 1. Reload page after 3 seconds
+            // 2. Clear All Input Fields
+            // 3. Get user to submit the second preference by changing the current value of the Appliance to secondAppliance based on a flag
+            // 4. User submits the second preference = TRUE ?
+            // 5. NOW reload page and get user to submit third appliance
         } 
         
         catch(err) {
@@ -464,7 +509,6 @@ const CreatePreference = (props) => {
 
         <section>
 
-       
             {preferencesBtnClicked && preferences.map((preference, key) => {
                 const theData = preference;
 
@@ -490,8 +534,6 @@ const CreatePreference = (props) => {
                     </div>
                 </div>
             })};
-
-           
 
         </section>
 
