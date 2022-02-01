@@ -64,9 +64,9 @@ module.exports.loginAdmin = catchAsync(async (request, response, next) => { // C
 // @Access Type: Private Access
 
 module.exports.getMe = catchAsync(async (request, response, next) => {
+    const method = request.method;
 
-    
-    if(request.method === 'GET') {
+    if(method === 'GET') {
         const adminId = request.admin.id;
 
         if(!adminId) {
@@ -76,8 +76,6 @@ module.exports.getMe = catchAsync(async (request, response, next) => {
         const admin = await Admin.findById(adminId);
         return response.status(200).json({success: true, data: admin});
     }
-
-   
 })
 
 // @Route: POST /api/v1/auth/register
