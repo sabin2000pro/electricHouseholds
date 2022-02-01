@@ -304,9 +304,7 @@ const FairNegotations = (props) => {
                     botBidData.push({_id, name, botCredits, type});
                    
                     return botBidData.forEach((val) => {
-                        // Destructure values
-                        console.log(val);
-
+                        
                         const {_id, name, botCredits, type} = val;
 
                         if(!_id) {
@@ -640,7 +638,6 @@ const FairNegotations = (props) => {
 
             const parsedBotCredits = parseInt(botCredits); // Convert the bot credits to an integer
             const theBotTypes = [BOT_TYPES.DEFAULT, BOT_TYPES.MEDIUM, BOT_TYPES.INTENSE];
-
 
 
             // Code here for the AI bot that generates a random bid after the user turn is over
