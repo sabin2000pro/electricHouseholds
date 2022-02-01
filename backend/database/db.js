@@ -5,6 +5,7 @@ const connectDB = async () => { // Method to connect to the MongoDB database
     try {
 
         return await mongoose.connect(DB_CONN_URL).then(conn => {
+            
             if(conn.connection) {
 
                 return console.log(`Connected to DB success`);
@@ -19,7 +20,7 @@ const connectDB = async () => { // Method to connect to the MongoDB database
     catch(err) {
 
         if(err) {
-            return console.log(err);
+            return console.error(err);
         }
         
     }
