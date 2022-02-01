@@ -78,10 +78,6 @@ const FairNegotations = (props) => {
     const [creditData, setCreditData] = useState([]);
     const [creditsFetched, setCreditsFetched] = useState(false);
 
-    const [lowBotData, setLowBotData] = useState([]);
-    const [mediumBotData, setMediumBodData] = useState([]);
-    const [intenseBotData, setIntenseBotData] = useState([]);
-
     const beginLiveAuctionHandler = function() {
         return setAuctionStarted(!auctionStarted);
     }
@@ -665,11 +661,14 @@ const FairNegotations = (props) => {
     const botPlaceRandomBid = async function(lowBotData, mediumBotData, intenseBotData) {
 
         try {
-            console.log(`2. Now in the Bot Place Random Bid Function`);
-
            const {...allLowBotData} = lowBotData;
            const {...allMediumBotData} = mediumBotData;
            const {...allIntenseBotData} = intenseBotData;
+           
+           const sizeOfLow = Object.keys(allLowBotData).length;
+           const sizeOfMedium = Object.keys(allMediumBotData).length;
+           const sizeOfIntense = Object.keys(allIntenseBotData).length;
+
 
            const parsedLowBotCredits = parseInt(allLowBotData.botCredits);
            const parsedMediumBotCredits = parseInt(allMediumBotData.botCredits);
@@ -678,6 +677,10 @@ const FairNegotations = (props) => {
            let lowBotBidAvg = parsedLowBotCredits * 0.10;
            let mediumBotBidAvg = parsedMediumBotCredits * 0.50;
            let intenseBotBidAvg = parsedIntenseBotCredits;
+
+           console.log(`User entered bid before : ${bid}`);
+           console.log(userTurn);
+           console.log(botTurn);
 
           
             // After user placed a bid
