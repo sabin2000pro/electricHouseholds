@@ -6,6 +6,8 @@ import RegisterCard from './RegisterCard';
 import './AdminCreateAppliance.css';
 import axios from 'axios';
 
+let REDIRECT_SECONDS = 1500;
+
 const AdminCreateAppliance = (props) => {
     const [enteredName, setEnteredName] = useState('');
     const [enteredImage, setEnteredImage] = useState('');
@@ -16,13 +18,12 @@ const AdminCreateAppliance = (props) => {
     const logoutHandler = () => { // Logout Handler Function to logout admins
         localStorage.removeItem("authToken"); // Remove auth token from local storage
         return history.push('/home'); // Redirect user  back home
-        
     }
 
     function redirectHome() {
         return setTimeout(() => {
-            return 
-        }, 1500);
+            return history.push('/admin-dashboard');
+        }, REDIRECT_SECONDS);
     }
 
     const createApplianceSubmitHandler = async (e) => {
