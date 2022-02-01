@@ -8,8 +8,8 @@ const Modal = (props) => {
         <div className = "backdrop" onClick = {props.onClick}>
             <ModalCard className = "modal">
             <header className = "modal__header">
-            
         <h2>{props.title}</h2>
+        
     </header>
 
     <div className = "modal__content">
@@ -19,14 +19,18 @@ const Modal = (props) => {
     <div>
         <form onSubmit = {props.onSubmitBtnClick}>
             <div className = "title__container">
+
                 <label htmlFor = "title">{props.commTitle}</label>
                 {props.showForm && undefined}
+
                 {props.showInputs && <input type = "text" onChange = {(event) => {props.changeHandler(event)}} />}
             </div>
 
             <div className = "username__container">
+
                 <label htmlFor = "username">{props.username}</label>
                 {props.showForm && undefined}
+
                 {props.showInputs && <input type = "text" onChange = {(event) => {props.changeHandler(event)}} />}
 
             </div>
