@@ -50,16 +50,20 @@ module.exports.createFeedback = catchAsync(async (request, response, next) => {
 });
 
 module.exports.editFeedback = catchAsync(async (request, response, next) => {
-    
-    const id = request.params.id;
-    
-    const updatedFeedback = await Feedback.findByIdAndUpdate(id, request.body, {new: true, runValidators: true});
 
-    if(!updatedFeedback) {
-        return response.status(400).json({success: false, message: "Feedback not found"});
+    if(request.method === 'PUT') {
+        const id = request.params.id;
+        const body = request.body;
+
+        const updatedFeedback = await Feedback.findByIdAndUpdate(id, body, {new: true, runValidators: true});
+
+        if(!updatedFeedback) {
+            return response.status(400).json({success: false, message: "Feedback not found"});
+        }
+
+        await updatedFeedback.save();
     }
-
-    await updatedFeedback.save();
+    
 });
 
 module.exports.deleteFeedback = catchAsync(async (request, response, next) => {
@@ -68,6 +72,7 @@ module.exports.deleteFeedback = catchAsync(async (request, response, next) => {
         const id = request.params.id;
 
         if(!id) {
+            return next(new ErrorResponse(`No feedback found with that ID`, notFound));
 
         }
     }
