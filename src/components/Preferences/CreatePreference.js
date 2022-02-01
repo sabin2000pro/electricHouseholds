@@ -143,7 +143,8 @@ const CreatePreference = (props) => {
         catch(error) {
 
             if(error) {
-                return console.error(error);
+                console.error(error);
+                throw new Error(error);
             }
         }
     }
