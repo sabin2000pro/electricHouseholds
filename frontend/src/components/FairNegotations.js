@@ -300,21 +300,7 @@ const FairNegotations = (props) => {
                  return response.data.allBots.forEach((botDataVal) => { // For every bot in the array
 
                     const {_id, name, botCredits, type} = botDataVal;
-
                     botBidData.push({_id, name, botCredits, type});
-                   
-                    return botBidData.forEach((val) => {
-                        
-                        const {_id, name, botCredits, type} = val;
-
-                        if(!_id) {
-                            alert(`No BOT with that ID found`);
-                        }
-                        
-                        return botPlaceRandomBid(_id, name, botCredits, type);
-
-                    });
-
                 });
             })
           } 
@@ -644,6 +630,13 @@ const FairNegotations = (props) => {
             axios.put(`http://localhost:5200/api/v1/credits/update-credits/${_id}`, {_id: _id, virtualCredits: virtualCredits}).then(data => {console.log(data)}).catch(err => {console.log(err)});
             setUpdatedNewBid(true);
             alert(`Updated Data Virutal Cerdits`);
+
+            // Loop through the bot bid data
+            console.log(`Inside the update new bid bot data loop`);
+
+            botBidData.forEach((botData) => {
+                console.log(botData);
+            })
            
          } 
         
@@ -678,14 +671,13 @@ const FairNegotations = (props) => {
 
             const parsedBotCredits = parseInt(botCredits); // Convert the bot credits to an integer
             const allBotCredits = [parsedBotCredits];
-            
+
             const botTypes = [type];
             const botNames = [name];
 
             let lowBotAvg = botCredits * 0.10;
             let mediumBotAvg = botCredits * 0.50;
             let intenseBotAvg = botCredits;
-
 
             // After user placed a bid
             // Set a time out of 5 seconds -> then set a boolean flag (userTurn = false) THEN botTurn = true
@@ -714,8 +706,9 @@ const FairNegotations = (props) => {
         catch(error) {
 
             if(error) {
-                console.error(error);
-                throw new Error(error);
+                const someErrMsg = error.message;
+                console.error(someErrMsg);
+                throw new Error(someErrMsg);
             }
         }
     }
@@ -726,6 +719,7 @@ const FairNegotations = (props) => {
         try {
 
             event.preventDefault();
+            
             const {data} = await axios.post(`http://localhost:5200/api/v1`);
 
             // If no data found
