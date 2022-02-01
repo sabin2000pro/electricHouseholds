@@ -2,6 +2,7 @@
     import RegisterCard from '../Admin/RegisterCard';
     import ModalCard from '../../UI/ModalCard';
     import Header from '../Header';
+    import './BotSettings.css'
     import {Link} from 'react-router-dom';
     import HomepageImg from '../images/homepage/homepageimg.jpg';
     import axios from 'axios';
@@ -80,29 +81,36 @@ const BotSettings = (props) => {
     
                         <div className = "email--box">
                             <label className = "email--lbl">Name</label>
-                            <input value = {enteredBotName} onChange = {(e) => setEnteredBotName(e.target.value)} placeholder = "Enter Bot Name" type = "text"/>
+                            <input value = {enteredBotName} onChange = {(event) => setEnteredBotName(event.target.value)} placeholder = "Enter Bot Name" type = "text"/>
                         </div>
 
                         <div className = "bot--box">
                             <label className = "bot--lbl">Credits</label>
-                            <input value = {enteredVirtualCredits} onChange = {(e) => setEnteredVirtualCredits(e.target.value)} placeholder = "Enter Bot Credits" id = "credits" type = "text"/>
+                            <input value = {enteredVirtualCredits} onChange = {(event) => setEnteredVirtualCredits(event.target.value)} placeholder = "Enter Bot Credits" id = "credits" type = "text"/>
                         </div>
 
                         <div className = "type--box">
                             <label className = "type--lbl">Type</label>
-                            <input value = {enteredBotType} onChange = {(e) => setChosenBotType(e.target.value)} placeholder = "Enter Bot Type" id = "type" type = "text"/>
+                            <input value = {enteredBotType} onChange = {(event) => setChosenBotType(event.target.value)} placeholder = "Enter Bot Type" id = "type" type = "text"/>
                         </div>
 
                         <div className = "range--box">
                             <label className = "range--lbl">Bid Range</label>
-                            <input value = {enteredBidRange} onChange = {(e) => setEnteredBidRange(e.target.value)} placeholder = "Enter Bid Range" id = "range" type = "text"/>
+                            <input value = {enteredBidRange} onChange = {(event) => setEnteredBidRange(event.target.value)} placeholder = "Enter Bid Range" id = "range" type = "text"/>
                         </div>
 
-                        <select className = "box">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                        </select>
+                        <div className = "botcounter--box">
+
+                        <label className = "botcounter--lbl">Number of Bots</label>
+
+                            <select onChange = {(event) => {setEnteredBotNumber(event.target.value)}} className = "box">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                        </div>
                 
                         <div className = "submit--container">
                             <button className = "login--btn" type = "submit">Submit</button>
