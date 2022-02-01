@@ -6,7 +6,6 @@ const helmet = require('helmet');
 const morgan = require('morgan');
 const xss = require('xss-clean');
 const cors = require('cors');
-const csurf = require('csurf');
 const cookieParser = require('cookie-parser');
 const nocache = require('nocache');
 const app = express();
@@ -91,6 +90,7 @@ process.on('uncaughtException', (err, promise) => {
 
 // Handle 404 Routes
 app.all('*', (request, response, next) => {
+    
     if(request.method === 'GET') {
         
         response.status(404).json({status: 'Fail', message: 'The route you requested is not valid'});

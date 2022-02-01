@@ -4,17 +4,26 @@ const ok = 200;
 const created = 201;
 const noContent = 204;
 const notFound = 404;
+const failedDependency = 424;
 const serverError = 500;
 
 module.exports.getAllFeedbacks = catchAsync(async (request, response, next) => {
-    const allFeedbacks = await Feedback.find();
-    return response.status(200).json({allFeedbacks});
+    const allFeedbacks = await Feedback.find(); // Find all feedbacks
+
+    if(!allFeedbacks) {
+
+    }
+
+    if(request.method === 'GET') {
+        return response.status(ok).json({allFeedbacks});
+    }
+
 });
 
 module.exports.viewFeedbackByID = catchAsync(async (request, response, next) => {
     const id = request.params.id;
     const feedback = await Feedback.findById(id);
-    return response.status(200).json({feedback});
+    return response.status(ok).json({feedback});
 });
 
 module.exports.createFeedback = catchAsync(async (request, response, next) => {
@@ -24,10 +33,13 @@ module.exports.createFeedback = catchAsync(async (request, response, next) => {
         return response.status(400).json({success: false, message: 'Invalid Feedback Entries'});
     }
 
-    const newFeedback = new Feedback({feedbackUsername, feedbackEmailAddress, feedbackFeeling, feedbackDescription});
-    await newFeedback.save();
+    if(request.method === 'POST') {
+        const newFeedback = new Feedback({feedbackUsername, feedbackEmailAddress, feedbackFeeling, feedbackDescription});
+        await newFeedback.save(); // Save feedback to database
+    
+        return response.status(created).json({newFeedback});
+    }
 
-    return response.status(201).json({newFeedback});
 });
 
 module.exports.editFeedback = catchAsync(async (request, response, next) => {
@@ -43,9 +55,15 @@ module.exports.editFeedback = catchAsync(async (request, response, next) => {
 });
 
 module.exports.deleteFeedback = catchAsync(async (request, response, next) => {
+    if(request.method !== 'DELETE') {
 
+    }
+
+    
 });
 
 module.exports.deleteAllFeedbacks = catchAsync(async (request, response, next) => {
+    if(request.method === 'DELETE') {
 
+    }
 });
