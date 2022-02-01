@@ -473,40 +473,11 @@ const FairNegotations = (props) => {
         }
     }
 
-    const removeBidContents = async () => {
-
-        try {
-            await axios.delete(`http://localhost:5200/api/v1/bids/delete-bids`).then(response => {
-               console.log(response);
-
-            }).catch(someError => {
-
-                if(someError) {
-
-                    console.error(someError);
-                    throw new Error(someError);
-                }
-            })
-        } 
-        
-        catch(err) {
-
-            if(err) {
-
-                const errMsg = err.response.data;
-                console.error(errMsg);
-
-                throw new Error(errMsg);
-            }
-        }
-    }
-
     const processNullCredits = async (convertedBid, virtualCredits) => {
         try {
 
             if(handleInvalidBidSubmission(convertedBid, virtualCredits)) {
                 // Invoke routine to remove all of the bids from the database
-                return removeBidContents();
             }
 
             if(virtualCredits <= FLAGS.DEFAULT) {
@@ -514,11 +485,11 @@ const FairNegotations = (props) => {
                 clearFields();
 
                 return setTimeout(() => {
+                 // DELETE Bids from the backend and array indirectly by sending a DELETE request
                     window.location.reload(false);
                     bidData = [];
 
                     setSeconds(FLAGS.DEFAULT);
-                    return removeBidContents();
 
                 }, 1000);
             }
@@ -528,9 +499,11 @@ const FairNegotations = (props) => {
         catch(error) {
 
             if(error) {
-                console.error(error);
+                
+                const someErrMsg = error.response.data;
+                console.error(someErrMsg);
 
-                throw new Error(error);
+                throw new Error(someErrMsg);
             }
         }
     }
