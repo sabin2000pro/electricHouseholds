@@ -16,6 +16,7 @@ import BidsSettings from './components/Admin/AdminBidsSettings';
 import Appliance from './components/Admin/Appliance';
 import FairNegotiations from './components/FairNegotations';
 import BotSettings from './components/AIBot/BotSettings';
+import ResultsScreen from './components/ResultsScreen';
 
 const App = () => { // Main app component
 
@@ -40,6 +41,7 @@ const App = () => { // Main app component
         <Route exact path = "/admin-dashboard/api/v1/bot-settings" component = {BotSettings} />
         <Route exact path = "/appliance/:id" component = {Appliance}/>
         <Route exact path = "/fair-negotiations/:id" component = {FairNegotiations}/>
+        <Route exact path = "/results" component = {ResultsScreen} />
 
       </Router>
 
