@@ -715,10 +715,10 @@ const FairNegotations = (props) => {
                         console.log(`Low Bot Object Keys : `);
 
                         for(const [key, value] of Object.entries(allLowBotData)) {
-
-                            const {name, type, botCredits} = allLowBotData;
-                            console.log(botCredits);
-
+                            const {name, botCredits, type} = allLowBotData;
+                            console.log(name, botCredits, type);
+                            
+                           
                         }
 
                     }, 2000); 
