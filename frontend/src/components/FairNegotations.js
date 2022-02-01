@@ -326,7 +326,6 @@ const FairNegotations = (props) => {
             }
 
           }
-
       }
 
     const findMinBid = (minBid) => {
@@ -362,7 +361,6 @@ const FairNegotations = (props) => {
         }
     };
 
-    // Finding Max Algorithm that is used to count the largest bid placed
     const findMaxBid = () => { // Finds the maximum bid placed
         let maxBid = 0;
 
@@ -428,6 +426,7 @@ const FairNegotations = (props) => {
                     else {
                         return submitBid(openingBid, virtualCredits);
                     }
+
                 });
 
             }).catch(err => {
@@ -451,6 +450,7 @@ const FairNegotations = (props) => {
     }
 
     function reloadPage() {
+
         return setTimeout(() => {
             return window.location.reload(false);
         }, 1000);
@@ -516,13 +516,13 @@ const FairNegotations = (props) => {
         catch(err) {
 
             if(err) {
+                console.error(err);
 
-                return console.error(err);
+                throw new Error(err);
             }
         }
 
     }
-    
 
     const submitBid = async function(openingBid, virtualCredits) {
 
@@ -536,10 +536,10 @@ const FairNegotations = (props) => {
                 
                 window.location.reload(false);
                 clearFields();
-                setSeconds(0);
+                setSeconds(FLAGS.DEFAULT);
             }
 
-            if(bid.trim().length === 0) {
+            if(bid.trim().length === FLAGS.DEFAULT) {
                 setBidValid(false);
                 alert(`Cannot leave the bid field empty`);
 
@@ -612,7 +612,7 @@ const FairNegotations = (props) => {
 
             // Get the virtual credits left for the bot
             
-            creditData.map((credit, key) => {
+            creditData.map((credit) => {
 
                const {_id} = credit; // Extract ID
 
@@ -846,8 +846,7 @@ const FairNegotations = (props) => {
 
                 <form className = "login--form" method = "POST">
 
-                <h1 className = "heading--primary login">Leave your Feedback</h1>
-
+                <h1 className = "feedback--heading">Leave your Feedback</h1>
                 
                 <div className = "feedback--box">
 
@@ -862,15 +861,15 @@ const FairNegotations = (props) => {
 
                     <div className = "feeling--box">
                         <label className = "feeling--lbl">Feedback Feeling</label>
-                        <input placeholder = "Enter Your Desired Bid Amount" id = "feeling" type = "text"/>
+                        <input placeholder = "Enter Your Feeling" id = "feeling" type = "text"/>
                     </div>
 
-                    <div className = "description--box">
-                        <label className = "description--lbl">Feedback Description</label>
-                        <input value = {enteredFeedbackDescription} onChange = {(event) => {setEnteredFeedbackDescription(event.target.value)}} placeholder = "Enter Your Feedback Description" id = "description" type = "text"/>
+                    <div className = "description--box med-left">
+                        <label>Description</label>
+                        <input value = {enteredFeedbackDescription} onChange = {(event) => {setEnteredFeedbackDescription(event.target.value)}} placeholder = "Enter Description" id = "description" type = "text"/>
                     </div>
 
-                    <div className = "submit-bid--container">
+                    <div className = "submit--container">
                         <button className = "login--btn" type = "submit">Submit</button>
                     </div>
 
