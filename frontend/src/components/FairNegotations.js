@@ -78,6 +78,10 @@ const FairNegotations = (props) => {
     const [creditData, setCreditData] = useState([]);
     const [creditsFetched, setCreditsFetched] = useState(false);
 
+    const [lowBotData, setLowBotData] = useState([]);
+    const [mediumBotData, setMediumBodData] = useState([]);
+    const [intenseBotData, setIntenseBotData] = useState([]);
+
     const beginLiveAuctionHandler = function() {
         return setAuctionStarted(!auctionStarted);
     }
@@ -295,8 +299,7 @@ const FairNegotations = (props) => {
                     botBidData.push({_id, name, botCredits, type, numberOfBots});
                 });     
 
-                const [lowBotData, mediumBotData, intenseBotData] = botBidData;                
-                return processBotDataBeforeTurn(lowBotData, mediumBotData, intenseBotData);
+                
 
             });
 
@@ -617,7 +620,6 @@ const FairNegotations = (props) => {
 
                const {_id} = credit; // Extract ID
                 return updateNewBid(_id, virtualCredits);
-                
             });
         } 
         
@@ -637,9 +639,10 @@ const FairNegotations = (props) => {
 
             axios.put(`http://localhost:5200/api/v1/credits/update-credits/${_id}`, {_id: _id, virtualCredits: virtualCredits}).then(data => {console.log(data)}).catch(err => {console.log(err)});
             setUpdatedNewBid(true);
-            alert(`Updated Data Virutal Credits`)
-            
-            return handleNewTurn();
+            alert(`Updated Data Virutal Credits`);
+
+            const [lowBotData, mediumBotData, intenseBotData] = botBidData;  
+            return processBotDataBeforeTurn(lowBotData, mediumBotData, intenseBotData);            
            
         }
         
@@ -654,12 +657,16 @@ const FairNegotations = (props) => {
      } 
 
      const processBotDataBeforeTurn = function(lowBotData, mediumBotData, intenseBotData) {
+         console.log(`1. Inside the process bot before turn function`);
+
         return botPlaceRandomBid(lowBotData, mediumBotData, intenseBotData);
      }
 
     const botPlaceRandomBid = async function(lowBotData, mediumBotData, intenseBotData) {
 
         try {
+            console.log(`2. Now in the Bot Place Random Bid Function`);
+
            const {...allLowBotData} = lowBotData;
            const {...allMediumBotData} = mediumBotData;
            const {...allIntenseBotData} = intenseBotData;
@@ -712,9 +719,6 @@ const FairNegotations = (props) => {
     function handleNewTurn() {
         setUserTurn(false);
         setBotTurn(true);
-
-        console.log(`User turn ? ${userTurn}`);
-        console.log(`Now is it the bots turn ? ${botTurn}`);
     }
 
     // Routine used to submit feedback by the user. This routine will handle a POST request
