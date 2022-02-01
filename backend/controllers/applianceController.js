@@ -2,7 +2,7 @@ const Appliance = require('../models/applianceModel');
 const catchAsync = require('../utils/catchAsync');
 const ok = 200;
 const created = 201;
-const deleted = 204;
+const noContent = 204;
 const notFound = 404;
 const badRequest = 400;
 

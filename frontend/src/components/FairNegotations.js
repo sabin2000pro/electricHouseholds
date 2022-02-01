@@ -473,7 +473,11 @@ const FairNegotations = (props) => {
         }
     }
 
-    const processNullCredits = (convertedBid, virtualCredits) => {
+    const removeBidContents = async () => {
+
+    }
+
+    const processNullCredits = async (convertedBid, virtualCredits) => {
         try {
 
             if(handleInvalidBidSubmission(convertedBid, virtualCredits)) {
@@ -483,15 +487,15 @@ const FairNegotations = (props) => {
             if(virtualCredits <= FLAGS.DEFAULT) {
                 alert(`You are out of credits. STOP`);
                 clearFields();
-                
+
                 return setTimeout(() => {
+                 // DELETE Bids from the backend and array indirectly by sending a DELETE request
+               
+
                     window.location.reload(false);
                     bidData = [];
 
                     setSeconds(FLAGS.DEFAULT);
-
-                    // Reset the Virtual Credits Back To 200
-
                 }, 1000);
             }
         } 
