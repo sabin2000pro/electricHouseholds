@@ -22,13 +22,13 @@ const BOT_TYPES = {
 }
 
 let bidData = []; // Array that stores the bid data
-
 const botBidData = [];
 
 const FairNegotations = (props) => {
 
     let location = useLocation();
     let history = useHistory();
+
     const {username, appliance, firstPreference, secondPreference, thirdPreference} = location.state.preference;
 
     const [auctionStarted, setAuctionStarted] = useState(false);
@@ -61,6 +61,7 @@ const FairNegotations = (props) => {
 
     const [botTurn, setBotTurn] = useState(false);
     const [userTurn, setUserTurn] = useState(false);
+
     const [userTurnOver, setUserTurnOver] = useState(false);
     const [botTurnOver, setBotTurnOver] = useState(false);
     
@@ -122,7 +123,6 @@ const FairNegotations = (props) => {
       useInterval(() => {
 
         try {
-
             setSeconds(seconds - 1);
     
           if (seconds === 0) { // When the timer is up
@@ -136,7 +136,6 @@ const FairNegotations = (props) => {
             if(timeUp) { // if the time is up for round 1
                 return handleCounterReset();
             }
-
           };
 
           if(roundNumber === 1 && seconds < 0) {
@@ -185,6 +184,7 @@ const FairNegotations = (props) => {
       }, FLAGS.DELAY);
 
 
+      // Clears the input field
       function clearFields() {
         setBid("");
       }
@@ -245,8 +245,7 @@ const FairNegotations = (props) => {
         }
     }
 
-
-      const fetchUserBidData = async function() {
+    const fetchUserBidData = async function() {
 
             try {
 
@@ -353,8 +352,9 @@ const FairNegotations = (props) => {
         if (currentBid > maxBid) {
             maxBid = currentBid;
         }
+
     }
-        return `Current Highest Bid ${maxBid}`;
+        return `Current Highest User Bid ${maxBid}`;
     };
 
     const countTotalBids = () => {
@@ -729,6 +729,18 @@ const FairNegotations = (props) => {
                 console.error(error);
                 throw new Error(error);
             }
+
+        }
+    }
+
+    const findMaxBidBetween = function() {
+        try {
+
+            let userMaxBid = 0;
+            let bidMaxBid = 0;
+        } 
+        
+        catch(err) {
 
         }
     }
