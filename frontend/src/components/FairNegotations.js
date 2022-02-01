@@ -672,6 +672,10 @@ const FairNegotations = (props) => {
            let mediumBotBidAvg = parsedMediumBotCredits * 0.50;
            let intenseBotBidAvg = parsedIntenseBotCredits;
 
+            handleNewTurn();
+            console.log(`User turn ? ${userTurn}`);
+
+          
             // After user placed a bid
             // Set a time out of 5 seconds -> then set a boolean flag (userTurn = false) THEN botTurn = true
             // START BOT BID -> Loop through the bot array
@@ -704,7 +708,14 @@ const FairNegotations = (props) => {
 
                 throw new Error(someErrMsg);
             }
-        }
+      
+      
+      }
+    }
+
+    function handleNewTurn() {
+        setUserTurn(false);
+        setBotTurn(true);
     }
 
     // Routine used to submit feedback by the user. This routine will handle a POST request
