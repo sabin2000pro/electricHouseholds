@@ -573,7 +573,7 @@ const FairNegotations = (props) => {
                      setBidSubmitted(true);
 
                      // After submitting user bid. Subtract Virtual Credits Available from the Entered bid
-                     handleBidSubmission(bid, virtualCredits);
+                     handleBidSubmission(convertedBid, virtualCredits);
                      return smallestBid;
  
                  }).catch(error => {
@@ -598,7 +598,7 @@ const FairNegotations = (props) => {
         }
     }
 
-    const handleBidSubmission = async function(bid, virtualCredits) {
+    const handleBidSubmission = async function(convertedBid, virtualCredits) {
         try {
         
             clearFields();
