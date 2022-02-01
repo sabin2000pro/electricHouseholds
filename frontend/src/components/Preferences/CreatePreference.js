@@ -67,6 +67,7 @@ const CreatePreference = (props) => {
     const [lastApplianceData, setLastApplianceData] = useState([]);
 
     const [nextApplianceDataInserted, setNextApplianceDataInserted] = useState(false);
+    const [lastApplianceDataInserted, setLastApplianceDataInserted] = useState(true);
 
     const preferencesSubmitHandler = async (e) => {
 
@@ -203,14 +204,17 @@ const CreatePreference = (props) => {
                         const lastAppliance = applianceNames.slice(-1)[0];
                         const applianceIndexes = applianceNames.indexOf(nextApplianceAvailable);
 
-
                         if(applianceIndexes < applianceNames.length - 1) {
 
                         firstApplianceData.push(firstAppliance);
                         nextApplianceData.push(nextApplianceAvailable);
+                        lastApplianceData.push(lastAppliance)
 
                         setNextApplianceData(nextApplianceData);
                         setNextApplianceDataInserted(true);
+
+                        setLastApplianceData(lastApplianceData);
+                        setLastApplianceDataInserted(true);
 
                          setTimeout(() => { 
 
