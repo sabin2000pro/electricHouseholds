@@ -609,7 +609,7 @@ const FairNegotations = (props) => {
         
             clearFields();
 
-            let creditsLeft = virtualCredits - bid;
+            let creditsLeft = virtualCredits - convertedBid;
             let newResult = creditsLeft;
             virtualCredits = newResult;
             
@@ -664,12 +664,13 @@ const FairNegotations = (props) => {
            const {...allMediumBotData} = mediumBotData;
            const {...allIntenseBotData} = intenseBotData;
 
-           console.log(`Out of curiosity. Is it the bot turn ? `);
-           console.log(botTurn);
-           
            const parsedLowBotCredits = parseInt(allLowBotData.botCredits);
-           console.log(parsedLowBotCredits);
+           const parsedMediumBotCredits = parseInt(allMediumBotData.botCredits);
+           const parsedIntenseBotCredits = parseInt(allIntenseBotData.botCredits);
 
+           let lowBotBidAvg = parsedLowBotCredits * 0.10;
+           let mediumBotBidAvg = parsedMediumBotCredits * 0.50;
+           let intenseBotBidAvg = parsedIntenseBotCredits;
 
             // After user placed a bid
             // Set a time out of 5 seconds -> then set a boolean flag (userTurn = false) THEN botTurn = true
