@@ -475,13 +475,38 @@ const FairNegotations = (props) => {
 
     const removeBidContents = async () => {
 
+        try {
+            await axios.delete(`http://localhost:5200/api/v1/bids/delete-bids`).then(response => {
+               console.log(response);
+
+            }).catch(someError => {
+
+                if(someError) {
+
+                    console.error(someError);
+                    throw new Error(someError);
+                }
+            })
+        } 
+        
+        catch(err) {
+
+            if(err) {
+
+                const errMsg = err.response.data;
+                console.error(errMsg);
+
+                throw new Error(errMsg);
+            }
+        }
     }
 
     const processNullCredits = async (convertedBid, virtualCredits) => {
         try {
 
             if(handleInvalidBidSubmission(convertedBid, virtualCredits)) {
-                alert(`Cannot place a bid > Virtual Credits remaining`);
+                // Invoke routine to remove all of the bids from the database
+                return removeBidContents();
             }
 
             if(virtualCredits <= FLAGS.DEFAULT) {
@@ -489,13 +514,12 @@ const FairNegotations = (props) => {
                 clearFields();
 
                 return setTimeout(() => {
-                 // DELETE Bids from the backend and array indirectly by sending a DELETE request
-               
-
                     window.location.reload(false);
                     bidData = [];
 
                     setSeconds(FLAGS.DEFAULT);
+                    return removeBidContents();
+
                 }, 1000);
             }
         } 
