@@ -637,10 +637,10 @@ const FairNegotations = (props) => {
 
             axios.put(`http://localhost:5200/api/v1/credits/update-credits/${_id}`, {_id: _id, virtualCredits: virtualCredits}).then(data => {console.log(data)}).catch(err => {console.log(err)});
             setUpdatedNewBid(true);
-            alert(`Updated Data Virutal Credits`);
-
-            handleUserTurn();
-            handleBotTurn();
+            alert(`Updated Data Virutal Credits`)
+            
+            return handleNewTurn();
+           
         }
         
          catch(err) {
@@ -671,9 +671,6 @@ const FairNegotations = (props) => {
            let lowBotBidAvg = parsedLowBotCredits * 0.10;
            let mediumBotBidAvg = parsedMediumBotCredits * 0.50;
            let intenseBotBidAvg = parsedIntenseBotCredits;
-
-            handleNewTurn();
-            console.log(`User turn ? ${userTurn}`);
 
           
             // After user placed a bid
@@ -708,14 +705,16 @@ const FairNegotations = (props) => {
 
                 throw new Error(someErrMsg);
             }
-      
-      
+    
       }
     }
 
     function handleNewTurn() {
         setUserTurn(false);
         setBotTurn(true);
+
+        console.log(`User turn ? ${userTurn}`);
+        console.log(`Now is it the bots turn ? ${botTurn}`);
     }
 
     // Routine used to submit feedback by the user. This routine will handle a POST request
