@@ -480,7 +480,7 @@ const FairNegotations = (props) => {
                 alert(`Cannot place a bid > Virtual Credits remaining`);
             }
 
-            if(virtualCredits <= 0) {
+            if(virtualCredits <= FLAGS.DEFAULT) {
                 alert(`You are out of credits. STOP`);
                 clearFields();
                 
@@ -489,7 +489,8 @@ const FairNegotations = (props) => {
 
                     bidData = [];
 
-                setSeconds(0);
+                return setSeconds(FLAGS.DEFAULT);
+
                 }, 1000);
             }
         } 
