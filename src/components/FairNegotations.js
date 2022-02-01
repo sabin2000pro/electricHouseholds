@@ -678,35 +678,20 @@ const FairNegotations = (props) => {
            const sizeOfMedium = Object.keys(allMediumBotData).length;
            const sizeOfIntense = Object.keys(allIntenseBotData).length;
 
-           if(!userTurn) {
-               console.log(`User turn is over`);
-           }
+           const parsedLowBotCredits = parseInt(allLowBotData.botCredits);
+           const parsedMediumBotCredits = parseInt(allMediumBotData.botCredits);
+           const parsedIntenseBotCredits = parseInt(allIntenseBotData.botCredits);
 
-           if(botTurn) {
-               console.log(`IT IS THE FUCKING BOTS TURN NOW `);
-           }
-
-           if(!userInputDisabled) {
-               setTimeout(() => {
-                   return handleInputBlur();
-               })
-           }
-           
+           let lowBotBidAvg = parsedLowBotCredits * 0.10;
+           let mediumBotBidAvg = parsedMediumBotCredits * 0.50;
+           let intenseBotBidAvg = parsedIntenseBotCredits;
 
            // If there are bot data present
            if((sizeOfLow && sizeOfMedium && sizeOfIntense) > 0) {
 
-            const parsedLowBotCredits = parseInt(allLowBotData.botCredits);
-            const parsedMediumBotCredits = parseInt(allMediumBotData.botCredits);
-            const parsedIntenseBotCredits = parseInt(allIntenseBotData.botCredits);
+           
  
-            let lowBotBidAvg = parsedLowBotCredits * 0.10;
-            let mediumBotBidAvg = parsedMediumBotCredits * 0.50;
-            let intenseBotBidAvg = parsedIntenseBotCredits;
-
-            
- 
-            
+           
          }
 
             // Set a time out of 5 seconds -> then set a boolean flag (userTurn = false) THEN botTurn = true
