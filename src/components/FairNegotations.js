@@ -672,6 +672,10 @@ const FairNegotations = (props) => {
            const {...allLowBotData} = lowBotData;
            const {...allMediumBotData} = mediumBotData;
            const {...allIntenseBotData} = intenseBotData;
+
+           console.log(allLowBotData);
+           console.log(allMediumBotData);
+           console.log(allIntenseBotData);
            
            const sizeOfLow = Object.keys(allLowBotData).length;
            const sizeOfMedium = Object.keys(allMediumBotData).length;
@@ -684,6 +688,10 @@ const FairNegotations = (props) => {
            let lowBotBidAvg = parsedLowBotCredits * 0.10;
            let mediumBotBidAvg = parsedMediumBotCredits * 0.50;
            let intenseBotBidAvg = parsedIntenseBotCredits;
+
+           const lowBotCounter = parseInt(allLowBotData.numberOfBots);
+           console.log(`Number of low bots : `);
+           console.log(lowBotCounter);
 
            // If there are bot data present
            if((sizeOfLow && sizeOfMedium && sizeOfIntense) > 0) {
@@ -702,7 +710,16 @@ const FairNegotations = (props) => {
 
                     alert(`Bots turn starting soon...`);
 
+                    setTimeout(() => {
+                        alert(`Bot turn starting now`);
 
+                        for(const [key, value] of Object.entries(allLowBotData)) {
+                            console.log(`Bot keys : ${key}`);
+                            console.log(`Values : ${value}`);
+                        }
+
+                    }, 2000); 
+                    
 
                 }, 2000);
             }
@@ -710,8 +727,7 @@ const FairNegotations = (props) => {
             
          }
 
-            // Set a time out of 5 seconds -> then set a boolean flag (userTurn = false) THEN botTurn = true
-            // START BOT BID -> Loop through the bot array
+         // START BOT BID -> Loop through the bot array
             // Get type of the BOT
             // Place of the
             // If user turn is false && bot turn is TRUE
@@ -798,7 +814,7 @@ const FairNegotations = (props) => {
     }
 
     const findMaxBidBetween = function() {
-        
+
         try {
 
             let userMaxBid = 0;
@@ -806,7 +822,10 @@ const FairNegotations = (props) => {
         } 
         
         catch(err) {
-
+            if(err) {
+                const maxErrMsg = err.message;
+                console.log(maxErrMsg);
+            }
         }
     }
 
@@ -817,6 +836,7 @@ const FairNegotations = (props) => {
     const socialExchangeHandler = () => {
 
         try {
+            // 3rd Algorithm
         } 
         
         catch(error) {
