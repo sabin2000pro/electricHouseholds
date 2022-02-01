@@ -12,6 +12,7 @@ const BotSettings = (props) => {
         const [enteredVirtualCredits, setEnteredVirtualCredits] = useState('');
         const [enteredBotType, setChosenBotType] = useState('');
         const [enteredBidRange, setEnteredBidRange] = useState('');
+        const [enteredBotNumber, setEnteredBotNumber] = useState('');
 
         const [formValid, setFormValid] = useState(true);
 
@@ -20,7 +21,7 @@ const BotSettings = (props) => {
             try {
                 event.preventDefault();
 
-                await axios.post(`http://localhost:5200/api/v1/bot/create-bot`, {name: enteredBotName, virtualCredits: enteredVirtualCredits, type: enteredBotType, bidRange: enteredBidRange});
+                await axios.post(`http://localhost:5200/api/v1/bot/create-bot`, {name: enteredBotName, virtualCredits: enteredVirtualCredits, type: enteredBotType, bidRange: enteredBidRange, numberOfBots: enteredBotNumber});
                 alert(`Bot Data Configured`);
 
                 setEnteredBotName("");
@@ -35,8 +36,6 @@ const BotSettings = (props) => {
                     return window.location.reload(false);
 
                 }
-
-                
             } 
             
             catch(error) {
@@ -57,10 +56,8 @@ const BotSettings = (props) => {
 
         <div className = "home-text-box">
 
-
         <h1 className = "heading--primary">AI Bot Settings Panel</h1>
         <p className = "home--description">In this dashboard panel, you will be able to configure various AI Bot settings such as the number of Virtual Credits the AI bot can bid. You can create up to three types of AI bots, low bidding bots, medium and high intensity bots.</p>
-
         
         <a className = "btn btn--outline" href = "/about-us">Logout</a>
     </div>
@@ -100,12 +97,18 @@ const BotSettings = (props) => {
                             <label className = "range--lbl">Bid Range</label>
                             <input value = {enteredBidRange} onChange = {(e) => setEnteredBidRange(e.target.value)} placeholder = "Enter Bid Range" id = "range" type = "text"/>
                         </div>
+
+                        <select className = "box">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                        </select>
                 
                         <div className = "submit--container">
                             <button className = "login--btn" type = "submit">Submit</button>
                         </div>
 
-                        </form>
+                    </form>
                     
                 </RegisterCard>
                 
