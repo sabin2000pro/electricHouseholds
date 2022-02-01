@@ -555,7 +555,6 @@ const FairNegotations = (props) => {
                 setBidValid(true);
                 handleUserTurn();
                 handleBotTurn();
-        
             }
 
              if(bidValid) {
@@ -689,9 +688,24 @@ const FairNegotations = (props) => {
            // If there are bot data present
            if((sizeOfLow && sizeOfMedium && sizeOfIntense) > 0) {
 
-           
+            if(!userTurn) {
+                console.log(`User turn is over`);
+            }
  
-           
+            if(botTurn) {
+                console.log(`IT IS THE FUCKING BOTS TURN NOW `);
+            }
+ 
+            if(!userInputDisabled) {
+                setTimeout(() => {
+                    handleInputBlur();
+
+                    alert(`Bots turn starting soon...`);
+
+                }, 2000);
+            }
+
+            
          }
 
             // Set a time out of 5 seconds -> then set a boolean flag (userTurn = false) THEN botTurn = true
