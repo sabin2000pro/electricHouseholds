@@ -43,7 +43,7 @@ const FairNegotations = (props) => {
     const [updatedNewBid, setUpdatedNewBid] = useState(false);
     const [clearedBids, setClearedBids] = useState(false);
     const [outOfCredits, setOutOfCredits] = useState(false);
-    const [userInputDisabled, setUserInputDisabled] = useState(false);
+    let [userInputDisabled, setUserInputDisabled] = useState(false);
     const [creditsSubtracted, setCreditsSubtracted] = useState(false);
     const [bidsFound, setBidsFound] = useState(false);
     const [enteredFeedbackUsername, setEnteredFeedbackUsername] = useState("");
@@ -550,13 +550,11 @@ const FairNegotations = (props) => {
                 clearFields();
                 return reloadPage();
             }
+
+            else {
+                setBidValid(true);
+            }
            
-             else {
-                handleBidValidity();
-                handleUserTurn();
-                handleBotTurn();
-             }
- 
              if(bidValid) {
  
                  await axios.post(`http://localhost:5200/api/v1/bids/create-bid`, {bid: bid}).then(response => {
@@ -571,6 +569,8 @@ const FairNegotations = (props) => {
 
                      const smallestBid = findMinBid(bid);
                      handleBidSubmission(convertedBid, virtualCredits);
+
+                     
 
                      return smallestBid;
  
@@ -637,9 +637,18 @@ const FairNegotations = (props) => {
             setUpdatedNewBid(true);
             alert(`Updated Data Virutal Credits`);
 
+            handleBidValidity();
+                 handleUserTurn();
+                    handleBotTurn();
+                    handleBlurInput();
+                    
+
+            // BLUR THE USER INPUT FIELD
             const [lowBotData, mediumBotData, intenseBotData] = botBidData;  
-            return processBotDataBeforeTurn(lowBotData, mediumBotData, intenseBotData);            
-           
+            processBotDataBeforeTurn(lowBotData, mediumBotData, intenseBotData);  
+            
+            
+        
         }
         
          catch(err) {
@@ -651,6 +660,12 @@ const FairNegotations = (props) => {
             }
         }
      } 
+
+     function handleBlurInput() {
+        setUserInputDisabled(true);
+        console.log(`User input disabled`);
+        console.log(userInputDisabled);
+     }
 
      const processBotDataBeforeTurn = function(lowBotData, mediumBotData, intenseBotData) {
          console.log(`1. Inside the process bot before turn function`);
@@ -855,8 +870,12 @@ const FairNegotations = (props) => {
                     <form className = "login--form" onSubmit = {submitBidHandler} method = "POST">
 
                     <div className = "bid--container">
-                        <label className = "bid--lbl">Bid</label>
+                        {userInputDisabled ? 
+                        <input value = {bid} onChange = {(event) => {setBid(event.target.value)}} placeholder = "Enter your Bid" id = "bid" type = "hidden" /> :
+
                         <input value = {bid} onChange = {(event) => {setBid(event.target.value)}} placeholder = "Enter your Bid" id = "bid" type = "text"/>
+
+}
                     </div>
 
                     <div className = "submit-bid--container">
