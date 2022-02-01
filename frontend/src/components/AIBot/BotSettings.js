@@ -7,12 +7,16 @@
     import axios from 'axios';
 
 const BotSettings = (props) => {
+
         const [enteredBotName, setEnteredBotName] = useState('');
         const [enteredVirtualCredits, setEnteredVirtualCredits] = useState('');
         const [enteredBotType, setChosenBotType] = useState('');
         const [enteredBidRange, setEnteredBidRange] = useState('');
 
+        const [formValid, setFormValid] = useState(true);
+
         const submitBotHandler = async (event) => {
+
             try {
                 event.preventDefault();
 
@@ -21,15 +25,21 @@ const BotSettings = (props) => {
 
                 setEnteredBotName("");
                 setEnteredVirtualCredits("");
+
                 setChosenBotType("");
                 setEnteredBidRange("");
 
-                return window.location.reload(false);
+                setFormValid(true);
+
+                if(formValid) {
+                    return window.location.reload(false);
+
+                }
+
                 
             } 
             
             catch(error) {
-
 
                 if(error) {
                     console.log(error);

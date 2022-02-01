@@ -19,6 +19,11 @@ const BotSchema = new mongoose.Schema({
     bidRange: {
         type: String,
         enum: ["0-10", "15-20", "30-50"]
+    },
+
+    numberOfBots: { // The number of bots the user decides to choose
+        type: String,
+        default: 0
     }
 
 });
