@@ -115,6 +115,7 @@ const CreatePreference = (props) => {
         }
     }
 
+    // Function to process user preference.
     const processPreference = async () => {
     
        await axios.post(`http://localhost:5200/api/v1/preferences/create-preference`, {username: enteredUsername, appliance: chosenAppliance, firstPreference: chosenFirstPreference, secondPreference: chosenSecondPreference , thirdPreference: chosenThirdPreference}); 
