@@ -457,9 +457,10 @@ const FairNegotations = (props) => {
     }
 
     const processOpeningBid = function(openingBid, convertedBid) {
+
         try {
 
-           return convertedBid > openingBid;
+           return convertedBid === openingBid;
         }
         
         catch(err) {
@@ -472,14 +473,48 @@ const FairNegotations = (props) => {
         }
     }
 
+    const processNullCredits = (bid, virtualCredits) => {
+        try {
+
+            handleInvalidBidSubmission(bid, virtualCredits);
+
+            if(virtualCredits <= 0) {
+                alert(`You are out of credits. STOP`);
+                clearFields();
+                
+                return setTimeout(() => {
+                    window.location.reload(false);
+
+                    bidData = [];
+
+                setSeconds(0);
+                }, 1000);
+            }
+        } 
+        
+        catch(error) {
+
+            if(error) {
+                return console.error(error);
+            }
+        }
+    }
+
+    const handleInvalidBidSubmission = function(bid, virtualCredits) {
+
+    }
+    
+
     const submitBid = async function(openingBid, virtualCredits) {
 
         try {
 
             const convertedBid = parseInt(bid);
+            processNullCredits(bid, virtualCredits);
 
+            
             if(processOpeningBid(openingBid, convertedBid)) {
-                alert(`Entered bid cannot be greater than the opening bid`);
+                alert(`Entered bid cannot be the same as the opening bid`);
                 
                 window.location.reload(false);
                 clearFields();
@@ -495,7 +530,7 @@ const FairNegotations = (props) => {
             }
 
             else if(isNaN(convertedBid)) {
-                
+
                 setBidValid(false);
                 alert(`Bid must be a number`);
 
@@ -564,21 +599,7 @@ const FairNegotations = (props) => {
 
                const {_id} = credit; // Extract ID
 
-               if(virtualCredits === 0) {
-                setOutOfCredits(true);
-
-                if(outOfCredits) {
-
-                     return setTimeout(() => {
-                         alert(`You have no more credits left USER`);
-                         bidData = [];
-                         window.location.reload(false);
-                         setSeconds(0);
-                         }, 0);
-                     } 
-                }
-
-            return updateNewBid(_id, virtualCredits);
+                return updateNewBid(_id, virtualCredits);
                    
             });
         } 
