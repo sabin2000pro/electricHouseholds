@@ -38,7 +38,9 @@ const AdminForgotPassword = ({match}) => { // Forgot Password Component
         catch(err) {
     
             if(err) {
-                return console.log(err);
+                console.error(err);
+
+                throw new Error(err);
             }
     
         }
