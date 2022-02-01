@@ -473,10 +473,12 @@ const FairNegotations = (props) => {
         }
     }
 
-    const processNullCredits = (bid, virtualCredits) => {
+    const processNullCredits = (convertedBid, virtualCredits) => {
         try {
 
-            handleInvalidBidSubmission(bid, virtualCredits);
+            if(handleInvalidBidSubmission(convertedBid, virtualCredits)) {
+                alert(`Cannot place a bid > Virtual Credits remaining`);
+            }
 
             if(virtualCredits <= 0) {
                 alert(`You are out of credits. STOP`);
@@ -491,6 +493,7 @@ const FairNegotations = (props) => {
                 }, 1000);
             }
         } 
+
         
         catch(error) {
 
@@ -500,7 +503,19 @@ const FairNegotations = (props) => {
         }
     }
 
-    const handleInvalidBidSubmission = function(bid, virtualCredits) {
+    const handleInvalidBidSubmission = function(convertedBid, virtualCredits) {
+        try {
+
+            return (convertedBid > virtualCredits);
+        } 
+        
+        catch(err) {
+
+            if(err) {
+
+                return console.error(err);
+            }
+        }
 
     }
     
@@ -510,7 +525,7 @@ const FairNegotations = (props) => {
         try {
 
             const convertedBid = parseInt(bid);
-            processNullCredits(bid, virtualCredits);
+            processNullCredits(convertedBid, virtualCredits);
 
             if(processOpeningBid(openingBid, convertedBid)) {
                 alert(`Entered bid cannot be the same as the opening bid`);
