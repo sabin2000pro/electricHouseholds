@@ -712,13 +712,13 @@ const FairNegotations = (props) => {
 
                     setTimeout(() => {
                         alert(`Bot turn starting now`);
+                        console.log(`Low Bot Object Keys : `);
 
                         for(const [key, value] of Object.entries(allLowBotData)) {
 
-                            const {name, type} = allLowBotData;
+                            const {name, type, botCredits} = allLowBotData;
+                            console.log(botCredits);
 
-                            console.log(`Bot name looped over : ${name}`);
-                            console.log(`Bot type looped over : ${type}`);
                         }
 
                     }, 2000); 
