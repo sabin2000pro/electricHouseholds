@@ -28,7 +28,7 @@ const FairNegotations = (props) => {
 
     let location = useLocation();
     let history = useHistory();
-    const {appliance, firstPreference, secondPreference, thirdPreference} = location.state.preference;
+    const {username, appliance, firstPreference, secondPreference, thirdPreference} = location.state.preference;
 
     const [auctionStarted, setAuctionStarted] = useState(false);
     const [roundNumber, setRoundNumber] = useState(1);
@@ -63,7 +63,6 @@ const FairNegotations = (props) => {
     const [userTurnOver, setUserTurnOver] = useState(false);
     const [botTurnOver, setBotTurnOver] = useState(false);
     
-    const [enteredUsername, setEnteredUsername] = useState('');
     const [bid, setBid] = useState('');
     const [counterError, setCounterError] = useState(false);
     const [mainRoundOver, setMainRoundOver] = useState(false);
@@ -186,7 +185,6 @@ const FairNegotations = (props) => {
 
 
       function clearFields() {
-        setEnteredUsername("");
         setBid("");
       }
 
@@ -468,23 +466,7 @@ const FairNegotations = (props) => {
             // If user places a bid > opening bid
             // If the username matches one of the special chars (not allowed)
 
-            if(enteredUsername.match(specialCharsRegex)) {
-                alert(`Special characters for username not allowed`);
-                clearFields();
-                setBidValid(false);
-
-                return reloadPage();
-            }
-
-           else if(enteredUsername.trim().length === 0) {
-                setBidValid(false);
-                alert(`Cannot leave username field blank`);
-
-                clearFields();
-                return reloadPage();
-            }
-
-            else if(bid.trim().length === 0) {
+            if(bid.trim().length === 0) {
                 setBidValid(false);
                 alert(`Cannot leave the bid field empty`);
 
@@ -506,7 +488,7 @@ const FairNegotations = (props) => {
  
              if(bidValid) {
  
-                 await axios.post(`http://localhost:5200/api/v1/bids/create-bid`, {username: enteredUsername, bid: bid}).then(response => {
+                 await axios.post(`http://localhost:5200/api/v1/bids/create-bid`, {bid: bid}).then(response => {
                      const newBidData = response.data;
 
                      if(!newBidData) {
@@ -514,7 +496,7 @@ const FairNegotations = (props) => {
                      }
                     
                      setBids(newBidData);
-                     bidData.push({enteredUsername, bid});
+                     bidData.push({bid});
 
                      const smallestBid = findMinBid(bid);
                      setBidSubmitted(true);
@@ -549,7 +531,6 @@ const FairNegotations = (props) => {
     const handleBidSubmission = async function(bid, virtualCredits) {
         try {
 
-            setEnteredUsername("");
             setBid("");
 
             let creditsLeft = virtualCredits - bid;
@@ -769,18 +750,13 @@ const FairNegotations = (props) => {
             <div className = "container grid grid--2-cols">
 
                 <RegisterCard>
-                    <h1 className = "heading--primary login">Submit Bid</h1>
+                    <h1 className = "bid--header">Submit Bid</h1>
 
                     <form className = "login--form" onSubmit = {submitBidHandler} method = "POST">
 
-                    <div className = "username--box">
-                            <label className = "username--lbl">Username</label>
-                            <input value = {enteredUsername} onChange = {(e) => {setEnteredUsername(e.target.value)}} placeholder = "Enter Username" type = "text"/>
-                        </div>
-
-                     <div className = "bid--box">
-                        <label className = "bid--lbl">Desired Bid</label>
-                        <input value = {bid} onChange = {(e) => {setBid(e.target.value)}} placeholder = "Enter Your Desired Bid Amount" id = "bid" type = "text"/>
+                    <div className = "bid--container">
+                        <label className = "bid--lbl">Bid</label>
+                        <input value = {bid} onChange = {(event) => {setBid(event.target.value)}} placeholder = "Enter your Bid" id = "bid" type = "text"/>
                     </div>
 
                     <div className = "submit-bid--container">
@@ -798,7 +774,7 @@ const FairNegotations = (props) => {
 
             return <div key = {key}>
 
-                <h2>Round 1 Bids : £{vals.bid} placed by : {vals.enteredUsername}</h2>
+                <h2>Round 1 Bids : £{vals.bid} placed by : {username}</h2>
             </div>
         })}
     </div>
