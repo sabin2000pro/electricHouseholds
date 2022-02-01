@@ -112,3 +112,18 @@
     padding-left: -30px;
     background-color: green;
 }
+
+.feedback--box {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-left: -30px;
+}
+
+.feedbackusername--lbl {
+    margin-bottom: 30px;
+}
+
+.emailAddress--box {
+    margin-bottom: 30px;
+    margin-left: -80px;
+}
