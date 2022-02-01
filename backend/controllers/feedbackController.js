@@ -1,5 +1,6 @@
 const Feedback = require('../models/feedbackModel');
 const catchAsync = require('../utils/catchAsync');
+const ErrorResponse = require('../utils/errorResponse');
 const ok = 200;
 const created = 201;
 const noContent = 204;
@@ -8,19 +9,22 @@ const failedDependency = 424;
 const serverError = 500;
 
 module.exports.getAllFeedbacks = catchAsync(async (request, response, next) => {
-    const allFeedbacks = await Feedback.find(); // Find all feedbacks
-
-    if(!allFeedbacks) {
-
-    }
 
     if(request.method === 'GET') {
+        const allFeedbacks = await Feedback.find(); // Find all feedbacks
+
+        if(!allFeedbacks) {
+            return next(new ErrorResponse(`No Feedbacks found`, 404));
+        }
+        
         return response.status(ok).json({allFeedbacks});
     }
-
+   
 });
 
 module.exports.viewFeedbackByID = catchAsync(async (request, response, next) => {
+    // Check for invalid method
+
     const id = request.params.id;
     const feedback = await Feedback.findById(id);
     return response.status(ok).json({feedback});
