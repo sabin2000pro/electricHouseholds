@@ -23,7 +23,7 @@ const BOT_TYPES = {
 }
 
 let bidData = []; // Array that stores the bid data
-const botBidData = [];
+let botBidData = [];
 
 const FairNegotations = (props) => {
 
@@ -281,7 +281,6 @@ const FairNegotations = (props) => {
       // Fetches the AI bot data from the backend
       const fetchBotData = async function() {
           try {
-
             return await axios.get(`http://localhost:5200/api/v1/bot/get-bots`).then(response => {
                 const theBotData = response.data.allBots;
 
@@ -291,12 +290,16 @@ const FairNegotations = (props) => {
 
                 setBotData(theBotData);
 
-                 return response.data.allBots.forEach((botDataVal) => { // For every bot in the array
-
+                  response.data.allBots.forEach((botDataVal) => { // For every bot in the array
                     const {_id, name, botCredits, type} = botDataVal;
                     botBidData.push({_id, name, botCredits, type});
-                });
-            })
+                });     
+
+                const [lowBot, mediumBot, intenseBot] = botBidData;                
+                return processBotDataBeforeTurn(lowBot, mediumBot, intenseBot);
+
+            });
+
           } 
           
           catch(error) {
@@ -463,7 +466,6 @@ const FairNegotations = (props) => {
 
                 return setTimeout(() => {
                     window.location.reload(false);
-
                 }, 2000);
             }
     
@@ -516,7 +518,7 @@ const FairNegotations = (props) => {
     }
 
     function handleBidValidity() {
-        setBidValid(true);
+       return setBidValid(true);
     }
 
     const submitBid = async function(openingBid, virtualCredits) {
@@ -524,7 +526,6 @@ const FairNegotations = (props) => {
         try {
 
             const convertedBid = parseInt(bid);
-            processNullCredits(convertedBid, virtualCredits);
 
             if(processOpeningBid(openingBid, convertedBid)) {
                 alert(`Entered bid cannot be the same as the opening bid`);
@@ -534,7 +535,7 @@ const FairNegotations = (props) => {
                 setSeconds(FLAGS.DEFAULT);
             }
 
-            if(bid.trim().length === FLAGS.DEFAULT) {
+           else if(bid.trim().length === FLAGS.DEFAULT) {
                 setBidValid(false);
                 alert(`Cannot leave the bid field empty`);
 
@@ -554,6 +555,7 @@ const FairNegotations = (props) => {
              else {
                 handleBidValidity();
                 handleUserTurn();
+                handleBotTurn();
              }
  
              if(bidValid) {
@@ -581,7 +583,7 @@ const FairNegotations = (props) => {
                      }
                  })
  
-                }
+            }
         } 
         
         catch(error) {
@@ -599,14 +601,7 @@ const FairNegotations = (props) => {
     }
 
     function handleBotTurn() {
-        console.log(`Bid valid ? ${bidValid}`);
-        console.log(`Is it the user turn ? ${userTurn}`);
-
-        if(userTurn === false) {
-             setBotTurn(true);
-             console.log(`Is it THE BOTS TURN NOW ???? ${botTurn}`);
-        }
-
+        return setBotTurn(true);        
     }
 
     const handleBidSubmission = async function(convertedBid, virtualCredits) {
@@ -642,15 +637,8 @@ const FairNegotations = (props) => {
 
             axios.put(`http://localhost:5200/api/v1/credits/update-credits/${_id}`, {_id: _id, virtualCredits: virtualCredits}).then(data => {console.log(data)}).catch(err => {console.log(err)});
             setUpdatedNewBid(true);
-            alert(`Updated Data Virutal Credits`);
-
-            handleBotTurn();                   
-
-            botBidData.forEach((botData) => {
-                console.log(botData);
-            })
-           
-         } 
+            alert(`Updated Data Virutal Credits`)
+        }
         
          catch(err) {
 
@@ -660,19 +648,18 @@ const FairNegotations = (props) => {
             }
         }
      } 
-    
-    const botPlaceRandomBid = async function(_id, name, botCredits, type) {
+
+     const processBotDataBeforeTurn = function(lowBot, mediumBot, intenseBot) {
+        return botPlaceRandomBid(lowBot, mediumBot, intenseBot);
+     }
+
+    const botPlaceRandomBid = async function(lowBot, mediumBot, intenseBot) {
 
         try {
-
-            const parsedBotCredits = parseInt(botCredits); // Convert the bot credits to an integer
-            const allBotCredits = [parsedBotCredits];
-            const botTypes = [type];
-            const botNames = [name];
-
-            let lowBotAvg = botCredits * 0.10;
-            let mediumBotAvg = botCredits * 0.50;
-            let intenseBotAvg = botCredits;
+            console.log(lowBot);
+            const {name} = lowBot;
+            console.log(name);
+          
 
             // After user placed a bid
             // Set a time out of 5 seconds -> then set a boolean flag (userTurn = false) THEN botTurn = true
@@ -703,6 +690,7 @@ const FairNegotations = (props) => {
             if(error) {
                 const someErrMsg = error.message;
                 console.error(someErrMsg);
+                
                 throw new Error(someErrMsg);
             }
         }
