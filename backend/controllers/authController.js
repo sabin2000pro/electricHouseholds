@@ -106,10 +106,11 @@ module.exports.resetAdminPassword = catchAsync(async (request, response, next) =
     const passwordResetToken = crypto.createHash("sha256").update(resetToken).digest('hex'); // Create reset password token
     const admin = await Admin.findOne({passwordResetToken, passwordResetExpires: {$gt: Date.now()}});
 
-        if(!admin) {
+        if(!admin) { // If no admin found
             throw new Error('No Admin Found with that E-mail Address');
         }
 
+        
         admin.password = password; // Update the password by setting the admin password to the new password
         admin.passwordResetToken = undefined; // Set the reset token to undefined
         admin.passwordResetExpires = undefined;
@@ -126,7 +127,6 @@ module.exports.fetchAllAdmins = catchAsync(async (request, response, next) => {
     
     if(request.method === 'GET') {
         const allAdmins = await Admin.find();
-
         return response.status(ok).json(allAdmins);
     }
 });
@@ -136,15 +136,18 @@ module.exports.fetchAllAdmins = catchAsync(async (request, response, next) => {
 // @Access Type: Private Access
 
 module.exports.deleteAdminAccount = catchAsync(async (request, response, next) => {
-    const id = request.params.id;
 
-    if(!id) {
-        return response.status(404).json({status: "Fail", message: "Admin with that ID not found"})
-    }
+    if(method === 'DELETE') {
+        const method = request.method;
+        const id = request.params.id;
 
-    await Admin.findByIdAndDelete(id);
-    return response.status(204).json("Admin Account Deleted");
-
+        if(!id) {
+            return response.status(404).json({status: "Fail", message: "Admin with that ID not found"})
+        }
+    
+        await Admin.findByIdAndDelete(id);
+        return response.status(204).json("Admin Account Deleted");
+    }   
 });
 
 module.exports.deleteAllAdmins = catchAsync(async(request, response, next) => {
@@ -160,11 +163,5 @@ module.exports.deleteAllAdmins = catchAsync(async(request, response, next) => {
 
 const sendToken = (admin, status, response) => { // Sends back the JWT token
      const token = admin.generateResetPasswordToken();
-
-     // LATER - Send the JWT in a cookie too to enhance security
-     const options = {
-         
-     }
-
      return response.status(status).json({token});
 }
