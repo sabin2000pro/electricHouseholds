@@ -140,7 +140,7 @@ const CreatePreference = (props) => {
             alert(`One second, we are gettng you to submit your next preferences for next appliance`);
             console.log(`Inside process preferences...`);
 
-            return processNextAppliance(applianceTypeChosen);
+            return processNextAppliance(applianceTypeChosen, prefSubmitted);
            
        }, 2000);
 
@@ -184,11 +184,8 @@ const CreatePreference = (props) => {
         }
     }
 
-    const processNextAppliance = async (applianceTypeChosen) => {
+    const processNextAppliance = async (applianceTypeChosen, prefSubmitted) => {
         try {
-
-            console.log(`Your appliance type chosen MAN`)
-            console.log(applianceTypeChosen);
 
             setTimeout(() => {
 
@@ -203,13 +200,15 @@ const CreatePreference = (props) => {
 
                       if(applianceIndexes < applianceNames.length - 1) {
 
-                         setTimeout(() => {   
-                             console.log(firstAppliance);
-                             console.log(nextApplianceAvailable);  
-                             console.log(lastAppliance);                         
-                                // Reload Page
-                            // Set the drop down field value of appliance to nextApplianceAvailable + 1
-                            
+                         setTimeout(() => { 
+
+                            if(applianceNames.includes(applianceTypeChosen)) {
+                                console.log(`The type of appliance submitted is found in the array`);
+                            }
+
+                            if(!applianceNames.includes(applianceTypeChosen)) {
+                                console.log(`Appliance chosen not found in this array`);
+                            }
                            
                          }, 2000)
                       }
