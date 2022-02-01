@@ -934,7 +934,7 @@ const FairNegotations = (props) => {
 
                     <div className = "feeling--box">
                         <label className = "feeling--lbl">Feedback Feeling</label>
-                        <input placeholder = "Enter Your Feeling" id = "feeling" type = "text"/>
+                        <input value = {chosenFeedbackFeeling} onChange = {(event) => {setChosenFeedbackFeeling(event.target.value)}} placeholder = "Enter Your Feeling" id = "feeling" type = "text"/>
                     </div>
 
                     <div className = "description--box med-left">
