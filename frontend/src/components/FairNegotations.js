@@ -3,6 +3,7 @@ import {useLocation, useHistory} from 'react-router-dom';
 import RegisterCard from './Admin/RegisterCard';
 import axios from 'axios';
 import './FairNegotiations.css';
+import ResultsScreen from '../components/ResultsScreen';
 
 let DELAY = 1200;
 let START_TIMER = 100;
@@ -30,7 +31,6 @@ const FairNegotations = (props) => {
     let history = useHistory();
 
     const {username, appliance, firstPreference, secondPreference, thirdPreference} = location.state.preference;
-
     const [auctionStarted, setAuctionStarted] = useState(false);
     const [roundNumber, setRoundNumber] = useState(1);
     const [timerRunning, setTimerRunning] = useState(false);
@@ -60,7 +60,7 @@ const FairNegotations = (props) => {
     const [bidSubmitted, setBidSubmitted] = useState(false);
 
     const [botTurn, setBotTurn] = useState(false);
-    const [userTurn, setUserTurn] = useState(false);
+    const [userTurn, setUserTurn] = useState(true);
 
     const [userTurnOver, setUserTurnOver] = useState(false);
     const [botTurnOver, setBotTurnOver] = useState(false);
@@ -460,32 +460,36 @@ const FairNegotations = (props) => {
         try {
 
             if(handleInvalidBidSubmission(convertedBid, virtualCredits)) {
-                // Invoke routine to remove all of the bids from the database
-            }
-
-            if(virtualCredits <= FLAGS.DEFAULT) {
-                alert(`You are out of credits. STOP`);
-                clearFields();
 
                 return setTimeout(() => {
-                 // DELETE Bids from the backend and array indirectly by sending a DELETE request
                     window.location.reload(false);
-                    bidData = [];
 
-                    // User can't participate anymore
-                    // Redirect user to final screen to show all the results
+                }, 2000);
+            }
+    
+           else if(virtualCredits < FLAGS.DEFAULT) {
+                alert(`You are out of credits. STOP`);
+                setOutOfCredits(true);
 
+                clearFields();
+
+                return setTimeout(() => {                 
                     setSeconds(FLAGS.DEFAULT);
+            
+                    return history.push("/results");
 
                 }, 1000);
             }
-        } 
 
-        
+            else {
+                // Otherwise reload page
+            }
+
+        }
+
         catch(error) {
 
             if(error) {
-
                 const someErrMsg = error.response.data;
                 console.error(someErrMsg);
 
@@ -509,6 +513,10 @@ const FairNegotations = (props) => {
             }
         }
 
+    }
+
+    function handleBidValidity() {
+        setBidValid(true);
     }
 
     const submitBid = async function(openingBid, virtualCredits) {
@@ -544,7 +552,8 @@ const FairNegotations = (props) => {
             }
            
              else {
-                 setBidValid(true);
+                handleBidValidity();
+                handleUserTurn();
              }
  
              if(bidValid) {
@@ -560,10 +569,8 @@ const FairNegotations = (props) => {
                      bidData.push({bid});
 
                      const smallestBid = findMinBid(bid);
-                     setBidSubmitted(true);
-
-                     // After submitting user bid. Subtract Virtual Credits Available from the Entered bid
                      handleBidSubmission(convertedBid, virtualCredits);
+
                      return smallestBid;
  
                  }).catch(error => {
@@ -574,8 +581,7 @@ const FairNegotations = (props) => {
                      }
                  })
  
-                // Write some code for bot turn
-             }
+                }
         } 
         
         catch(error) {
@@ -586,6 +592,21 @@ const FairNegotations = (props) => {
                 throw new Error(error);
             }
         }
+    }
+
+    function handleUserTurn() {
+        return setUserTurn(false);
+    }
+
+    function handleBotTurn() {
+        console.log(`Bid valid ? ${bidValid}`);
+        console.log(`Is it the user turn ? ${userTurn}`);
+
+        if(userTurn === false) {
+             setBotTurn(true);
+             console.log(`Is it THE BOTS TURN NOW ???? ${botTurn}`);
+        }
+
     }
 
     const handleBidSubmission = async function(convertedBid, virtualCredits) {
@@ -600,9 +621,8 @@ const FairNegotations = (props) => {
             creditData.map((credit) => {
 
                const {_id} = credit; // Extract ID
-
                 return updateNewBid(_id, virtualCredits);
-                   
+                
             });
         } 
         
@@ -622,10 +642,9 @@ const FairNegotations = (props) => {
 
             axios.put(`http://localhost:5200/api/v1/credits/update-credits/${_id}`, {_id: _id, virtualCredits: virtualCredits}).then(data => {console.log(data)}).catch(err => {console.log(err)});
             setUpdatedNewBid(true);
-
             alert(`Updated Data Virutal Credits`);
 
-            console.log(`Inside the update new bid bot data loop`);
+            handleBotTurn();                   
 
             botBidData.forEach((botData) => {
                 console.log(botData);
@@ -883,7 +902,6 @@ const FairNegotations = (props) => {
                     <div className = "submit--container">
                         <button className = "login--btn" type = "submit">Submit</button>
                     </div>
-
 
                 </form>
         </RegisterCard>
