@@ -669,20 +669,21 @@ const FairNegotations = (props) => {
            const sizeOfMedium = Object.keys(allMediumBotData).length;
            const sizeOfIntense = Object.keys(allIntenseBotData).length;
 
+           if((sizeOfLow && sizeOfMedium && sizeOfIntense) > 0) {
 
-           const parsedLowBotCredits = parseInt(allLowBotData.botCredits);
-           const parsedMediumBotCredits = parseInt(allMediumBotData.botCredits);
-           const parsedIntenseBotCredits = parseInt(allIntenseBotData.botCredits);
+            const parsedLowBotCredits = parseInt(allLowBotData.botCredits);
+            const parsedMediumBotCredits = parseInt(allMediumBotData.botCredits);
+            const parsedIntenseBotCredits = parseInt(allIntenseBotData.botCredits);
+ 
+            let lowBotBidAvg = parsedLowBotCredits * 0.10;
+            let mediumBotBidAvg = parsedMediumBotCredits * 0.50;
+            let intenseBotBidAvg = parsedIntenseBotCredits;
+ 
+            console.log(`User entered bid before : ${bid}`);
+            console.log(userTurn);
+            console.log(botTurn);
+           }
 
-           let lowBotBidAvg = parsedLowBotCredits * 0.10;
-           let mediumBotBidAvg = parsedMediumBotCredits * 0.50;
-           let intenseBotBidAvg = parsedIntenseBotCredits;
-
-           console.log(`User entered bid before : ${bid}`);
-           console.log(userTurn);
-           console.log(botTurn);
-
-          
             // After user placed a bid
             // Set a time out of 5 seconds -> then set a boolean flag (userTurn = false) THEN botTurn = true
             // START BOT BID -> Loop through the bot array
