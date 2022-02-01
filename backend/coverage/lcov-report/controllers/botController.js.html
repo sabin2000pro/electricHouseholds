@@ -25,14 +25,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">33.33% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>11/33</span>
+                <span class='fraction'>12/36</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/8</span>
+                <span class='fraction'>0/12</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">33.33% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>11/33</span>
+                <span class='fraction'>12/36</span>
             </div>
         
             
@@ -121,11 +121,18 @@
 <a name='L56'></a><a href='#L56'>56</a>
 <a name='L57'></a><a href='#L57'>57</a>
 <a name='L58'></a><a href='#L58'>58</a>
-<a name='L59'></a><a href='#L59'>59</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L59'></a><a href='#L59'>59</a>
+<a name='L60'></a><a href='#L60'>60</a>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -133,30 +140,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -167,9 +158,30 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -184,31 +196,37 @@ const catchAsync = require('../utils/catchAsync');
 const ok = 200;
 const created = 201;
 const noContent = 204;
+const notFound = 404;
 &nbsp;
 module.exports.getAllBots = catchAsync(<span class="fstat-no" title="function not covered" >as</span>ync(request, response, next) =&gt; {
     const allBots = <span class="cstat-no" title="statement not covered" >await Bot.find();</span>
-<span class="cstat-no" title="statement not covered" >    return response.status(200).json({allBots});</span>
+<span class="cstat-no" title="statement not covered" >    return response.status(ok).json({allBots});</span>
 });
 &nbsp;
 module.exports.getSingleBot = catchAsync(<span class="fstat-no" title="function not covered" >as</span>ync(request, response, next) =&gt; {
-    const id = <span class="cstat-no" title="statement not covered" >request.params.id;</span>
-    const bot = <span class="cstat-no" title="statement not covered" >await Bot.findById(id);</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    if(!bot) {</span>
-<span class="cstat-no" title="statement not covered" >        return response.status(404).json({status: "Fail", message: 'Bot not found'});</span>
+<span class="cstat-no" title="statement not covered" >    if(request.method === 'GET') {</span>
+        const id = <span class="cstat-no" title="statement not covered" >request.params.id;</span>
+        const bot = <span class="cstat-no" title="statement not covered" >await Bot.findById(id);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return response.status(ok).json({bot});</span>
     }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    return response.status(200).json({bot});</span>
+<span class="cstat-no" title="statement not covered" >    if(!bot) {</span>
+<span class="cstat-no" title="statement not covered" >        return response.status(notFound).json({status: "Fail", message: 'Bot not found'});</span>
+    }
+&nbsp;
 });
 &nbsp;
 module.exports.createBot = catchAsync(<span class="fstat-no" title="function not covered" >as</span>ync (request, response, next) =&gt; {
-    const {name, botCredits, type} = <span class="cstat-no" title="statement not covered" >request.body;</span>
+    const {name, botCredits, type, numberOfBots} = <span class="cstat-no" title="statement not covered" >request.body;</span>
 &nbsp;
-    const newBot = <span class="cstat-no" title="statement not covered" >new Bot({name, botCredits, type});</span>
-<span class="cstat-no" title="statement not covered" >    await newBot.save();</span>
+<span class="cstat-no" title="statement not covered" >    if(request.method === 'POST') {</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    return response.status(created).json({newBot});</span>
-&nbsp;
+        const newBot = <span class="cstat-no" title="statement not covered" >new Bot({name, botCredits, type, numberOfBots});</span>
+<span class="cstat-no" title="statement not covered" >        await newBot.save();</span>
+<span class="cstat-no" title="statement not covered" >        return response.status(created).json({newBot});</span>
+    }
 });
 &nbsp;
 module.exports.editBot = catchAsync(<span class="fstat-no" title="function not covered" >as</span>ync (request, response, next) =&gt; {
@@ -225,17 +243,17 @@ module.exports.deleteBot = catchAsync(<span class="fstat-no" title="function not
     const id = <span class="cstat-no" title="statement not covered" >request.params.id;</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    if(request.method === 'DELETE') {</span>
-<span class="cstat-no" title="statement not covered" >        await Bot.findByIdAndDelete(id);</span>
-<span class="cstat-no" title="statement not covered" >        return response.status(204).json({status: "Success", message: "Bot deleted success"});</span>
-    }  
 &nbsp;
+<span class="cstat-no" title="statement not covered" >        await Bot.findByIdAndDelete(id);</span>
+<span class="cstat-no" title="statement not covered" >        return response.status(noContent).json({status: "Success", message: "Bot deleted success"});</span>
+    }  
 &nbsp;
 });
 &nbsp;
 module.exports.deleteAllBots = catchAsync(<span class="fstat-no" title="function not covered" >as</span>ync (request, response, next) =&gt; {
 <span class="cstat-no" title="statement not covered" >    if(request.method === 'DELETE') {</span>
 <span class="cstat-no" title="statement not covered" >        await Bot.deleteMany();</span>
-<span class="cstat-no" title="statement not covered" >        return response.status(204).json("Bots Deleted");</span>
+<span class="cstat-no" title="statement not covered" >        return response.status(noContent).json("Bots Deleted");</span>
     }
 });</pre></td></tr></table></pre>
 
@@ -244,7 +262,7 @@ module.exports.deleteAllBots = catchAsync(<span class="fstat-no" title="function
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Mon Jan 31 2022 12:18:41 GMT+0000 (Coordinated Universal Time)
+                at Tue Feb 01 2022 08:38:28 GMT+0000 (Coordinated Universal Time)
             </div>
         <script src="../prettify.js"></script>
         <script>
