@@ -553,8 +553,11 @@ const FairNegotations = (props) => {
 
             else {
                 setBidValid(true);
+                handleUserTurn();
+                handleBotTurn();
+        
             }
-           
+
              if(bidValid) {
  
                  await axios.post(`http://localhost:5200/api/v1/bids/create-bid`, {bid: bid}).then(response => {
@@ -566,12 +569,9 @@ const FairNegotations = (props) => {
                     
                      setBids(newBidData);
                      bidData.push({bid});
-
                      const smallestBid = findMinBid(bid);
                      handleBidSubmission(convertedBid, virtualCredits);
-
                      
-
                      return smallestBid;
  
                  }).catch(error => {
@@ -599,9 +599,14 @@ const FairNegotations = (props) => {
         return setUserTurn(false);
     }
 
+    function handleInputBlur() {
+        return setUserInputDisabled(true);
+    }
+
     function handleBotTurn() {
         return setBotTurn(true);        
     }
+
 
     const handleBidSubmission = async function(convertedBid, virtualCredits) {
         try {
@@ -637,12 +642,6 @@ const FairNegotations = (props) => {
             setUpdatedNewBid(true);
             alert(`Updated Data Virutal Credits`);
 
-            handleBidValidity();
-                 handleUserTurn();
-                    handleBotTurn();
-                    handleBlurInput();
-                    
-
             // BLUR THE USER INPUT FIELD
             const [lowBotData, mediumBotData, intenseBotData] = botBidData;  
             processBotDataBeforeTurn(lowBotData, mediumBotData, intenseBotData);  
@@ -661,12 +660,6 @@ const FairNegotations = (props) => {
         }
      } 
 
-     function handleBlurInput() {
-        setUserInputDisabled(true);
-        console.log(`User input disabled`);
-        console.log(userInputDisabled);
-     }
-
      const processBotDataBeforeTurn = function(lowBotData, mediumBotData, intenseBotData) {
          console.log(`1. Inside the process bot before turn function`);
 
@@ -676,6 +669,7 @@ const FairNegotations = (props) => {
     const botPlaceRandomBid = async function(lowBotData, mediumBotData, intenseBotData) {
 
         try {
+            
            const {...allLowBotData} = lowBotData;
            const {...allMediumBotData} = mediumBotData;
            const {...allIntenseBotData} = intenseBotData;
@@ -684,6 +678,22 @@ const FairNegotations = (props) => {
            const sizeOfMedium = Object.keys(allMediumBotData).length;
            const sizeOfIntense = Object.keys(allIntenseBotData).length;
 
+           if(!userTurn) {
+               console.log(`User turn is over`);
+           }
+
+           if(botTurn) {
+               console.log(`IT IS THE FUCKING BOTS TURN NOW `);
+           }
+
+           if(!userInputDisabled) {
+               setTimeout(() => {
+                   return handleInputBlur();
+               })
+           }
+           
+
+           // If there are bot data present
            if((sizeOfLow && sizeOfMedium && sizeOfIntense) > 0) {
 
             const parsedLowBotCredits = parseInt(allLowBotData.botCredits);
@@ -693,13 +703,12 @@ const FairNegotations = (props) => {
             let lowBotBidAvg = parsedLowBotCredits * 0.10;
             let mediumBotBidAvg = parsedMediumBotCredits * 0.50;
             let intenseBotBidAvg = parsedIntenseBotCredits;
+
+            
  
-            console.log(`User entered bid before : ${bid}`);
-            console.log(`User turn ? ${userTurn}`);
-            console.log(`Bot Turn ? ${botTurn}`);
+            
          }
 
-            // After user placed a bid
             // Set a time out of 5 seconds -> then set a boolean flag (userTurn = false) THEN botTurn = true
             // START BOT BID -> Loop through the bot array
             // Get type of the BOT
