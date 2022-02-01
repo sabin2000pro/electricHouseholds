@@ -65,6 +65,11 @@ module.exports.editFeedback = catchAsync(async (request, response, next) => {
 module.exports.deleteFeedback = catchAsync(async (request, response, next) => {
     if(request.method !== 'DELETE') {
 
+        const id = request.params.id;
+
+        if(!id) {
+
+        }
     }
 
     
@@ -72,6 +77,8 @@ module.exports.deleteFeedback = catchAsync(async (request, response, next) => {
 
 module.exports.deleteAllFeedbacks = catchAsync(async (request, response, next) => {
     if(request.method === 'DELETE') {
+        await Feedback.deleteMany();
 
+        return response.status(noContent).json({status: 'success', data: {} });
     }
 });
