@@ -15,20 +15,17 @@ const AdminCreateAppliance = (props) => {
 
     const logoutHandler = () => { // Logout Handler Function to logout admins
         localStorage.removeItem("authToken"); // Remove auth token from local storage
-        history.push('/admin-login'); // Redirect to Login
+        return history.push('/home'); // Redirect user  back home
         
-        return window.location.reload(false);
     }
 
     const createApplianceSubmitHandler = async (e) => {
         try {
             e.preventDefault();
             
-            // Send Post Request using axios
             const {data} = await axios.post(`http://localhost:5200/api/v1/appliances/create-appliance`, {name: enteredName, image: enteredImage, description: enteredDescription});
-            console.log(data);
 
-            alert('Appliance Created');
+            // 
 
         } 
         
@@ -54,7 +51,7 @@ const AdminCreateAppliance = (props) => {
           <p className = "home--description">Welcome to your Admin Dashboard. Here you will be able to view all of the electrical appliances available that users can submit their preferences for. You have the option to search for appliances if there are too many as well.</p>
   
           <a className = "btn btn--full mgr-sm" href = "/admin-dashboard">Admin Home</a>
-          <a onClick = {logoutHandler} className = "btn btn--outline" href = "/admin-login">Logout</a>
+          <a onClick = {logoutHandler} className = "btn btn--outline" href = "/home">Logout</a>
   
           </div>
   
