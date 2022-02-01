@@ -637,7 +637,10 @@ const FairNegotations = (props) => {
 
             axios.put(`http://localhost:5200/api/v1/credits/update-credits/${_id}`, {_id: _id, virtualCredits: virtualCredits}).then(data => {console.log(data)}).catch(err => {console.log(err)});
             setUpdatedNewBid(true);
-            alert(`Updated Data Virutal Credits`)
+            alert(`Updated Data Virutal Credits`);
+
+            handleUserTurn();
+            handleBotTurn();
         }
         
          catch(err) {
@@ -660,9 +663,13 @@ const FairNegotations = (props) => {
            const {...allLowBotData} = lowBotData;
            const {...allMediumBotData} = mediumBotData;
            const {...allIntenseBotData} = intenseBotData;
+
+           console.log(`Out of curiosity. Is it the bot turn ? `);
+           console.log(botTurn);
            
            const parsedLowBotCredits = parseInt(allLowBotData.botCredits);
            console.log(parsedLowBotCredits);
+
 
             // After user placed a bid
             // Set a time out of 5 seconds -> then set a boolean flag (userTurn = false) THEN botTurn = true
