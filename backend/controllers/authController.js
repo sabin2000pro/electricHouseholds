@@ -64,9 +64,20 @@ module.exports.loginAdmin = catchAsync(async (request, response, next) => { // C
 // @Access Type: Private Access
 
 module.exports.getMe = catchAsync(async (request, response, next) => {
-    console.log(request.admin.id);
-    const admin = await Admin.findById(request.admin.id);
-    return response.status(200).json({success: true, data: admin});
+
+    
+    if(request.method === 'GET') {
+        const adminId = request.admin.id;
+
+        if(!adminId) {
+            return next(new ErrorResponse(`Could not find curently logged in ADMIN`, 404));
+        }
+
+        const admin = await Admin.findById(adminId);
+        return response.status(200).json({success: true, data: admin});
+    }
+
+   
 })
 
 // @Route: POST /api/v1/auth/register
