@@ -291,12 +291,12 @@ const FairNegotations = (props) => {
                 setBotData(theBotData);
 
                   response.data.allBots.forEach((botDataVal) => { // For every bot in the array
-                    const {_id, name, botCredits, type} = botDataVal;
-                    botBidData.push({_id, name, botCredits, type});
+                    const {_id, name, botCredits, type, numberOfBots} = botDataVal;
+                    botBidData.push({_id, name, botCredits, type, numberOfBots});
                 });     
 
-                const [lowBot, mediumBot, intenseBot] = botBidData;                
-                return processBotDataBeforeTurn(lowBot, mediumBot, intenseBot);
+                const [lowBotData, mediumBotData, intenseBotData] = botBidData;                
+                return processBotDataBeforeTurn(lowBotData, mediumBotData, intenseBotData);
 
             });
 
@@ -643,23 +643,26 @@ const FairNegotations = (props) => {
          catch(err) {
 
            if(err) {
+
             console.error(err.response.data);
                 throw new Error(err);
             }
         }
      } 
 
-     const processBotDataBeforeTurn = function(lowBot, mediumBot, intenseBot) {
-        return botPlaceRandomBid(lowBot, mediumBot, intenseBot);
+     const processBotDataBeforeTurn = function(lowBotData, mediumBotData, intenseBotData) {
+        return botPlaceRandomBid(lowBotData, mediumBotData, intenseBotData);
      }
 
-    const botPlaceRandomBid = async function(lowBot, mediumBot, intenseBot) {
+    const botPlaceRandomBid = async function(lowBotData, mediumBotData, intenseBotData) {
 
         try {
-            console.log(lowBot);
-            const {name} = lowBot;
-            console.log(name);
-          
+           const {...allLowBotData} = lowBotData;
+           const {...allMediumBotData} = mediumBotData;
+           const {...allIntenseBotData} = intenseBotData;
+           
+           const parsedLowBotCredits = parseInt(allLowBotData.botCredits);
+           console.log(parsedLowBotCredits);
 
             // After user placed a bid
             // Set a time out of 5 seconds -> then set a boolean flag (userTurn = false) THEN botTurn = true
@@ -690,7 +693,7 @@ const FairNegotations = (props) => {
             if(error) {
                 const someErrMsg = error.message;
                 console.error(someErrMsg);
-                
+
                 throw new Error(someErrMsg);
             }
         }
