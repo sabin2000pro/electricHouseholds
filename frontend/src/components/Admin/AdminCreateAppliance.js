@@ -19,20 +19,30 @@ const AdminCreateAppliance = (props) => {
         
     }
 
+    function redirectHome() {
+        return setTimeout(() => {
+            return 
+        }, 1500);
+    }
+
     const createApplianceSubmitHandler = async (e) => {
         try {
+
             e.preventDefault();
             
             const {data} = await axios.post(`http://localhost:5200/api/v1/appliances/create-appliance`, {name: enteredName, image: enteredImage, description: enteredDescription});
+            console.log(data);
 
-            // 
-
+            return redirectHome();
         } 
         
         catch(error) {
 
             if(error) {
-                return console.error(error);
+                const someError = error.response.data;
+                console.log(someError);
+
+                throw new Error(someError);
             }
         }
     }
