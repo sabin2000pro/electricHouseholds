@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1643730083840" clover="3.2.0">
-  <project timestamp="1643730083841" name="All files">
-    <metrics statements="748" coveredstatements="426" conditionals="197" coveredconditionals="25" methods="93" coveredmethods="18" elements="1038" coveredelements="469" complexity="0" loc="748" ncloc="748" packages="9" files="39" classes="39"/>
+<coverage generated="1643745946155" clover="3.2.0">
+  <project timestamp="1643745946156" name="All files">
+    <metrics statements="748" coveredstatements="430" conditionals="197" coveredconditionals="25" methods="93" coveredmethods="20" elements="1038" coveredelements="475" complexity="0" loc="748" ncloc="748" packages="9" files="39" classes="39"/>
     <package name="controllers">
-      <metrics statements="418" coveredstatements="169" conditionals="147" coveredconditionals="19" methods="67" coveredmethods="9"/>
+      <metrics statements="418" coveredstatements="172" conditionals="147" coveredconditionals="19" methods="67" coveredmethods="10"/>
       <file name="applianceController.js" path="/app/controllers/applianceController.js">
         <metrics statements="44" coveredstatements="23" conditionals="14" coveredconditionals="2" methods="8" coveredmethods="3"/>
         <line num="1" count="1" type="stmt"/>
@@ -52,7 +52,7 @@
         <line num="73" count="1" type="stmt"/>
       </file>
       <file name="authController.js" path="/app/controllers/authController.js">
-        <metrics statements="82" coveredstatements="36" conditionals="30" coveredconditionals="12" methods="10" coveredmethods="3"/>
+        <metrics statements="82" coveredstatements="39" conditionals="30" coveredconditionals="12" methods="10" coveredmethods="4"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -71,7 +71,7 @@
         <line num="23" count="1" type="stmt"/>
         <line num="26" count="1" type="stmt"/>
         <line num="27" count="1" type="stmt"/>
-        <line num="31" count="0" type="stmt"/>
+        <line num="31" count="1" type="stmt"/>
         <line num="38" count="1" type="stmt"/>
         <line num="39" count="3" type="stmt"/>
         <line num="41" count="3" type="cond" truecount="4" falsecount="0"/>
@@ -133,8 +133,8 @@
         <line num="167" count="0" type="stmt"/>
         <line num="168" count="0" type="stmt"/>
         <line num="175" count="1" type="stmt"/>
-        <line num="176" count="0" type="stmt"/>
-        <line num="177" count="0" type="stmt"/>
+        <line num="176" count="1" type="stmt"/>
+        <line num="177" count="1" type="stmt"/>
       </file>
       <file name="bidsController.js" path="/app/controllers/bidsController.js">
         <metrics statements="37" coveredstatements="15" conditionals="4" coveredconditionals="0" methods="7" coveredmethods="0"/>
@@ -549,9 +549,9 @@
       </file>
     </package>
     <package name="models">
-      <metrics statements="69" coveredstatements="60" conditionals="4" coveredconditionals="2" methods="6" coveredmethods="3"/>
+      <metrics statements="69" coveredstatements="61" conditionals="4" coveredconditionals="2" methods="6" coveredmethods="4"/>
       <file name="adminModel.js" path="/app/models/adminModel.js">
-        <metrics statements="29" coveredstatements="20" conditionals="4" coveredconditionals="2" methods="6" coveredmethods="3"/>
+        <metrics statements="29" coveredstatements="21" conditionals="4" coveredconditionals="2" methods="6" coveredmethods="4"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -578,7 +578,7 @@
         <line num="87" count="0" type="stmt"/>
         <line num="88" count="0" type="stmt"/>
         <line num="92" count="1" type="stmt"/>
-        <line num="93" count="0" type="stmt"/>
+        <line num="93" count="1" type="stmt"/>
         <line num="96" count="1" type="stmt"/>
         <line num="97" count="1" type="stmt"/>
       </file>

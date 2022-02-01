@@ -10,6 +10,7 @@ let DEFAULT_TEXT = {
     preferenceHeader: 'Your Preferences'
 }
 
+const applianceNames = [];
 // Fake other household preferences
 let otherPreferences = [
 
@@ -116,39 +117,47 @@ const CreatePreference = (props) => {
     }
 
     // Function to process user preference.
-    const processPreference = async () => {
-    
-       await axios.post(`http://localhost:5200/api/v1/preferences/create-preference`, {username: enteredUsername, appliance: chosenAppliance, firstPreference: chosenFirstPreference, secondPreference: chosenSecondPreference , thirdPreference: chosenThirdPreference}); 
+    const processPreference = async () => {    
+       const {data} = await axios.post(`http://localhost:5200/api/v1/preferences/create-preference`, {username: enteredUsername, appliance: chosenAppliance, firstPreference: chosenFirstPreference, secondPreference: chosenSecondPreference , thirdPreference: chosenThirdPreference}); 
        setModalShown({title: 'Preferences', message: 'Your Preferences Have Been Submitted', showForm: false, showDefaultBtn: true});
 
+       const selectedAppliance = data.newPreference.appliance;
+       applianceNames.push(selectedAppliance);
+
+       const [firstAppliance, secondAppliance, thirdAppliance] = applianceNames;
+       
        setTimeout(() => {
             alert(`One second, we are gettng you to submit your next preferences for next appliance`);
+            console.log(`Inside process preferences...`);
 
-            preferences.push({chosenAppliance, chosenFirstPreference, chosenSecondPreference, chosenThirdPreference});
-
-            console.log(`New prefrences : `);
-            console.log(preferences);
+            return processNextAppliance(firstAppliance, secondAppliance, thirdAppliance);
+           
        }, 2000);
+
     }
     
     const modalHandler = () => {
         {modalShown && setModalShown(null)}
     }
 
-
     useEffect(() => {
         return fetchAllAppliances();
     }, []);
-
 
     const fetchAllAppliances = async () => {
         try {
 
             return await axios.get(`http://localhost:5200/api/v1/appliances/fetch-appliances`).then(response => {
                 const allAppliances = response.data.appliances;
-                
+               
                 setAppliances(allAppliances);
 
+                response.data.appliances.forEach((appl) => {
+                    const {name} = appl;
+                    applianceNames.push(name);
+                })
+
+              
             }).catch(err => {
 
                 if(err) {
@@ -166,16 +175,37 @@ const CreatePreference = (props) => {
         }
     }
 
+    const processNextAppliance = async (firstAppliance, secondAppliance, thirdAppliance) => {
+        try {
+            console.log(`You have submitted for`);
+            console.log(firstAppliance);
+
+            // Reload page
+        } 
+        
+        catch(err) {
+
+            if(err) {
+                console.error(err);
+            }
+        }
+    }
+
     const fetchAllPreferences = async () => {
         try {
 
             return await axios.get(`http://localhost:5200/api/v1/preferences/fetch-preferences`).then(response => {
                 const allPreferences = response.data.preferences;
+                console.log(`All your preferences`);
+
+                console.log(allPreferences);
                 const length = response.data.preferences.length;
 
                 setPreferences(allPreferences);
                 setPreferencesBtnClicked(!preferencesBtnClicked);
                 generateRandomTimeslots();
+
+                preferences.push(allPreferences);
 
                 if(length === 0) {
                     return setModalShown({title: "Preferences", message: "No preferences found"});
