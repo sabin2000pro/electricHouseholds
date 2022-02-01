@@ -64,6 +64,7 @@ module.exports.loginAdmin = catchAsync(async (request, response, next) => { // C
 // @Access Type: Private Access
 
 module.exports.getMe = catchAsync(async (request, response, next) => {
+    console.log(request.admin.id);
     const admin = await Admin.findById(request.admin.id);
     return response.status(200).json({success: true, data: admin});
 })
@@ -89,7 +90,6 @@ module.exports.forgotPassword = catchAsync(async (request, response, next) => { 
         <a href = ${resetPasswordURL} clicktracking = off>${resetPasswordURL}</a>`
 
     
-    // Send e-mail
     await sendEmail({to: admin.emailAddress, subject: 'Password Reset Request', text: resetMessage});
     return response.status(ok).json({success: true, data: "E-mail sent"});
 
