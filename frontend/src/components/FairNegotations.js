@@ -512,7 +512,6 @@ const FairNegotations = (props) => {
             const convertedBid = parseInt(bid);
             processNullCredits(bid, virtualCredits);
 
-            
             if(processOpeningBid(openingBid, convertedBid)) {
                 alert(`Entered bid cannot be the same as the opening bid`);
                 
@@ -569,7 +568,6 @@ const FairNegotations = (props) => {
                      }
                  })
  
-
                 // Write some code for bot turn
              }
         } 
@@ -586,8 +584,8 @@ const FairNegotations = (props) => {
 
     const handleBidSubmission = async function(bid, virtualCredits) {
         try {
-
-            setBid("");
+        
+            clearFields();
 
             let creditsLeft = virtualCredits - bid;
             let newResult = creditsLeft;
