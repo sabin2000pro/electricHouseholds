@@ -870,7 +870,11 @@ const FairNegotations = (props) => {
                     <form className = "login--form" onSubmit = {submitBidHandler} method = "POST">
 
                     <div className = "bid--container">
+                    
+                        <label className = "bid--lbl">Bid</label>
+
                         {userInputDisabled ? 
+                        
                         <input value = {bid} onChange = {(event) => {setBid(event.target.value)}} placeholder = "Enter your Bid" id = "bid" type = "hidden" /> :
 
                         <input value = {bid} onChange = {(event) => {setBid(event.target.value)}} placeholder = "Enter your Bid" id = "bid" type = "text"/>
