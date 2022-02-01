@@ -189,11 +189,6 @@ const FairNegotations = (props) => {
         setBid("");
       }
 
-      // Side-Effect hook used to fetch all the bid data
-      useEffect(() => {
-        return fetchAllBids();
-      }, []);
-
       useEffect(() => {
         return fetchCreditData();
       }, [])
@@ -601,8 +596,6 @@ const FairNegotations = (props) => {
             let creditsLeft = virtualCredits - bid;
             let newResult = creditsLeft;
             virtualCredits = newResult;
-
-            // Get the virtual credits left for the bot
             
             creditData.map((credit) => {
 
@@ -629,9 +622,9 @@ const FairNegotations = (props) => {
 
             axios.put(`http://localhost:5200/api/v1/credits/update-credits/${_id}`, {_id: _id, virtualCredits: virtualCredits}).then(data => {console.log(data)}).catch(err => {console.log(err)});
             setUpdatedNewBid(true);
-            alert(`Updated Data Virutal Cerdits`);
 
-            // Loop through the bot bid data
+            alert(`Updated Data Virutal Credits`);
+
             console.log(`Inside the update new bid bot data loop`);
 
             botBidData.forEach((botData) => {
@@ -647,23 +640,7 @@ const FairNegotations = (props) => {
                 throw new Error(err);
             }
         }
-     }
-
-    // This routine is used to fetch all the bids that have been placed thus far. Sends a GET request to the back-end.
-    const fetchAllBids = async () => {
-
-        try {
-            console.log(`All bids here`);
-        } 
-        
-        catch(error) {
-
-            if(error) {
-                console.error(error.response.data);
-                throw new Error(error);
-            }
-        }
-    }   
+     } 
     
     const botPlaceRandomBid = async function(_id, name, botCredits, type) {
 
@@ -671,7 +648,6 @@ const FairNegotations = (props) => {
 
             const parsedBotCredits = parseInt(botCredits); // Convert the bot credits to an integer
             const allBotCredits = [parsedBotCredits];
-
             const botTypes = [type];
             const botNames = [name];
 
