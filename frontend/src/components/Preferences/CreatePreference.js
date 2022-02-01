@@ -5,7 +5,6 @@ import {Link} from 'react-router-dom';
 import RegisterCard from '../Admin/RegisterCard';
 import axios from 'axios';
 import Modal from '../../UI/Modal';
-import FairNegotiations from '../FairNegotations';
 
 let DEFAULT_TEXT = {
     preferenceHeader: 'Your Preferences'
