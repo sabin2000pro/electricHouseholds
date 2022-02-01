@@ -456,15 +456,35 @@ const FairNegotations = (props) => {
         }, 1000);
     }
 
+    const processOpeningBid = function(openingBid, convertedBid) {
+        try {
+
+           return convertedBid > openingBid;
+        }
+        
+        catch(err) {
+
+            if(err) {
+                console.error(err);
+
+                throw new Error(err);
+            }
+        }
+    }
+
     const submitBid = async function(openingBid, virtualCredits) {
 
         try {
 
             const convertedBid = parseInt(bid);
-            let specialCharsRegex = /[\!\@\#\$\%\^\&\*\)\(\+\=\.\<\>\{\}\[\]\:\;\'\"\|\~\`\_\-]/g;
 
-            // If user places a bid > opening bid
-            // If the username matches one of the special chars (not allowed)
+            if(processOpeningBid(openingBid, convertedBid)) {
+                alert(`Entered bid cannot be greater than the opening bid`);
+                
+                window.location.reload(false);
+                clearFields();
+                setSeconds(0);
+            }
 
             if(bid.trim().length === 0) {
                 setBidValid(false);
@@ -475,6 +495,7 @@ const FairNegotations = (props) => {
             }
 
             else if(isNaN(convertedBid)) {
+                
                 setBidValid(false);
                 alert(`Bid must be a number`);
 
@@ -503,7 +524,6 @@ const FairNegotations = (props) => {
 
                      // After submitting user bid. Subtract Virtual Credits Available from the Entered bid
                      handleBidSubmission(bid, virtualCredits);
-
                      return smallestBid;
  
                  }).catch(error => {
@@ -514,7 +534,8 @@ const FairNegotations = (props) => {
                      }
                  })
  
-                 return alert(`Bid Submitted`);
+
+                // Write some code for bot turn
              }
         } 
         
@@ -544,24 +565,21 @@ const FairNegotations = (props) => {
                const {_id} = credit; // Extract ID
 
                if(virtualCredits === 0) {
-                   setOutOfCredits(true);
+                setOutOfCredits(true);
 
-                   if(outOfCredits) {
+                if(outOfCredits) {
 
-                        return setTimeout(() => {
-                            alert(`You have no more credits left USER`);
-                            setSeconds(0);
+                     return setTimeout(() => {
+                         alert(`You have no more credits left USER`);
+                         bidData = [];
+                         window.location.reload(false);
+                         setSeconds(0);
+                         }, 0);
+                     } 
+                }
 
-                            bidData = [];
-                            return window.location.reload(false);
-            
-                            }, 0);
-                        } 
-                   }
-
-                   else {
-                        return updateNewBid(_id, virtualCredits);
-                   }
+            return updateNewBid(_id, virtualCredits);
+                   
             });
         } 
         
@@ -579,13 +597,10 @@ const FairNegotations = (props) => {
 
         try {
 
-            if(!virtualCredits || !_id) {
-                alert(`Invalid data to update`)
-            }
-
             axios.put(`http://localhost:5200/api/v1/credits/update-credits/${_id}`, {_id: _id, virtualCredits: virtualCredits}).then(data => {console.log(data)}).catch(err => {console.log(err)});
             setUpdatedNewBid(true);
             alert(`Updated Data Virutal Cerdits`);
+           
          } 
         
          catch(err) {
@@ -773,7 +788,6 @@ const FairNegotations = (props) => {
         {bidData.map((vals, key) => {
 
             return <div key = {key}>
-
                 <h2>Round 1 Bids : £{vals.bid} placed by : {username}</h2>
             </div>
         })}
