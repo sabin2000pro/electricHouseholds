@@ -893,9 +893,8 @@ const FairNegotations = (props) => {
     const processMediumBotBids = async function(convertedBotBid, name, type, mediumBotCreditsLeft) {
         return await axios.post(`http://localhost:5200/api/v1/bids/create-bid`, {bid: convertedBotBid, username: name, botType: type, creditsLeft: mediumBotCreditsLeft}).then(response => {
 
-            alert(`DONE FOR MEDIUM BOTS`);
 
-            const data = response.data;
+            const data = response.data.newBid;
             console.log(data);
 
            
