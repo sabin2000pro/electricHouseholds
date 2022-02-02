@@ -754,6 +754,12 @@ const FairNegotations = (props) => {
                         let randBid = Math.floor(Math.random() * lowBotBidAvg);
                         let lowBotCreditsLeft = parsedLowBotCredits - randBid;
                         let newLowCredits = lowBotCreditsLeft;
+                        
+                        // If there are more than 1 low bot, find the combined bids
+                        if(numberOfLowBots > 1) {
+                            let lowBidTotal = randBid++;
+                            console.log(lowBidTotal);
+                        }
 
                         lowBotCreditsLeft = newLowCredits;
                         convertedBotBid = randBid;
