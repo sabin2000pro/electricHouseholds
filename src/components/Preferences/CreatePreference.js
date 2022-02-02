@@ -64,8 +64,10 @@ const CreatePreference = (props) => {
 
     const [creditData, setCreditData] = useState([]);
     const [firstApplianceData, setFirstApplianceData] = useState([]);
+
     const [nextApplianceData, setNextApplianceData] = useState([]);
     const [lastApplianceData, setLastApplianceData] = useState([]);
+    const [chosenNextAppliance, setChosenNextAppliance] = useState('');
 
     const [nextApplianceDataInserted, setNextApplianceDataInserted] = useState(false);
     const [lastApplianceDataInserted, setLastApplianceDataInserted] = useState(false);
@@ -125,18 +127,23 @@ const CreatePreference = (props) => {
     }
 
     // Function to process user preference.
-    const processPreference = async () => { 
+    const processPreference = async (nextApplianceAvailable) => { 
+
         let prefSubmitted;   
         
-       const {data} = await axios.post(`http://localhost:5200/api/v1/preferences/create-preference`, {username: enteredUsername, appliance: chosenAppliance, firstPreference: chosenFirstPreference, secondPreference: chosenSecondPreference , thirdPreference: chosenThirdPreference}); 
+       const {data} = await axios.post(`http://localhost:5200/api/v1/preferences/create-preference`, {username: enteredUsername, appliance: chosenAppliance, nextAppliance: chosenNextAppliance,  firstPreference: chosenFirstPreference, secondPreference: chosenSecondPreference , thirdPreference: chosenThirdPreference}); 
        setModalShown({title: 'Preferences', message: 'Your Preferences Have Been Submitted', showForm: false, showDefaultBtn: true});
+
+       console.log(data);
 
        const applianceTypeChosen = data.newPreference.appliance;
        prefSubmitted = true;
 
        if(prefSubmitted) {
-            console.log(applianceTypeChosen);
+
+           // console.log(applianceTypeChosen);
             setUsername("");
+
             setChosenAppliance("");
             setChosenFirstPreference("");
             setChosenSecondPreference("");
@@ -145,7 +152,6 @@ const CreatePreference = (props) => {
        }
               
        setTimeout(() => {
-
             return processNextAppliance(applianceTypeChosen, prefSubmitted);
            
        }, 2000);
@@ -164,6 +170,7 @@ const CreatePreference = (props) => {
         try {
 
             return await axios.get(`http://localhost:5200/api/v1/appliances/fetch-appliances`).then(response => {
+
                 const allAppliances = response.data.appliances;
                
                 setAppliances(allAppliances);
@@ -171,7 +178,8 @@ const CreatePreference = (props) => {
                 response.data.appliances.forEach((appl) => {
                     const {name} = appl;
                     applianceNames.push(name);
-                })
+                });
+
 
             }).catch(err => {
 
@@ -191,6 +199,7 @@ const CreatePreference = (props) => {
     }
 
     const processNextAppliance = async (applianceTypeChosen, prefSubmitted) => {
+
         try {
 
             setTimeout(() => {
@@ -205,27 +214,30 @@ const CreatePreference = (props) => {
                         const applianceIndexes = applianceNames.indexOf(nextApplianceAvailable);
 
                         if(applianceIndexes < applianceNames.length - 1) {
+                            let nextApplianceObj = {nextApplianceAvailable};
+                            console.log(nextApplianceObj);
+                            
+                            firstApplianceData.push(firstAppliance);
+                            nextApplianceData.push(nextApplianceObj);
+                            lastApplianceData.push(lastAppliance);
 
-                        firstApplianceData.push(firstAppliance);
-                        nextApplianceData.push(nextApplianceAvailable);
-                        lastApplianceData.push(lastAppliance);
-
-                        setNextApplianceData(nextApplianceData);
-                        setNextApplianceDataInserted(true);
-
-                        setLastApplianceData(lastApplianceData);
-                        setLastApplianceDataInserted(true);
-
-
+                            
+                            
+                            setNextApplianceDataInserted(true);
+                            setLastApplianceData(lastApplianceData);
+                            setLastApplianceDataInserted(true);
+                            
+                        // Process next appliance and submit it to the database by sending POST request
                          setTimeout(() => { 
 
                             if(applianceNames.includes(applianceTypeChosen)) {
-                                console.log(`The type of appliance submitted is found in the array`);
+                                
                             }
 
                             if(!applianceNames.includes(applianceTypeChosen)) {
                                 console.log(`Appliance chosen not found in this array`);
                             }
+
                            
                          }, 1500)
                       }
@@ -233,7 +245,12 @@ const CreatePreference = (props) => {
                     }, 1500);
                       
                 }
-     
+
+                
+
+               
+               
+
             }, 2000)
 
             // 1. Reload page after 3 seconds
@@ -250,6 +267,8 @@ const CreatePreference = (props) => {
             }
         }
     }
+
+   
 
     const fetchAllPreferences = async () => {
         try {
@@ -323,6 +342,7 @@ const CreatePreference = (props) => {
        try {
             setEnteredCommentTitle(event.target.value);
             setEnteredCommentUsername(event.target.value);
+            
             setEnteredCommentReason(event.target.value);
             setEnteredCommentDescription(event.target.value);
        } 
@@ -346,6 +366,7 @@ const CreatePreference = (props) => {
     catch(error) {
 
         if(error) {
+
             return console.error(error);
         }
 
@@ -366,7 +387,7 @@ const CreatePreference = (props) => {
 
    const validateCommentReason = function() {
        try {
-        return enteredCommentReason.trim().length !== 0;
+            return enteredCommentReason.trim().length !== 0;
        }
        
        catch(error) {
@@ -379,14 +400,15 @@ const CreatePreference = (props) => {
    }
 
    const validateCommentDescription = function() {
+
         try {
             return enteredCommentDescription.trim().length !== 0;
         } 
         
         catch(error) {
+
             setEnteredCommentDescriptionValid(false);
             return console.error(error);
-
         }
    };
 
@@ -418,7 +440,6 @@ const CreatePreference = (props) => {
 
        <Fragment>
 
-
            <section className = "section--yourpreferences">
 
            <div className = "container grid grid--2-cols">
@@ -437,28 +458,27 @@ const CreatePreference = (props) => {
         <div className = "issueType--box">
           <label className = "issue--lbl" htmlFor = "issue">Appliance</label>
 
-          {!nextApplianceDataInserted ?  <select onChange = {(e) => {setChosenAppliance(e.target.value)}} value = {chosenAppliance} className = "box">
+        {!nextApplianceDataInserted ?  <select onChange = {(e) => {setChosenAppliance(e.target.value)}} value = {chosenAppliance} className = "box">
           <option>Select Appliance</option>
 
             {appliances.map((appliance, key) => {
                 return <option key = {key}>{appliance.name}</option>
-            })}
+            })};
 
-        </select> : nextApplianceData.map((nextAppliance, key) => {
-
-                return <select key = {key} onChange = {(e) => {setChosenAppliance(e.target.value)}} value = {chosenAppliance} className = "box">
+        </select> : nextApplianceData.map((theNextOne, key) => {
+            const {nextApplianceAvailable} = theNextOne;
+                
+                return <select key = {key} onChange = {(e) => {setChosenNextAppliance(e.target.value)}} value = {chosenNextAppliance} className = "box">
             
-                <option>Select Appliance</option>
-                <option key = {key}>{nextAppliance}</option>
-
+                <option value>Select Appliance</option>
+                <option key = {key}>{nextApplianceAvailable}</option>
             
             </select>
         })};
-
-
-        </div>
+     </div>
 
         <div className = "morningslot--box">
+
             <label className = "morning--lbl">First Preference</label>
 
             <select onChange = {(e) => {setChosenFirstPreference(e.target.value)}} value = {chosenFirstPreference} className = "box">
@@ -517,6 +537,7 @@ const CreatePreference = (props) => {
                 <option>02:00-03:00</option>
                 <option>04:00-05:00</option>
             </select>
+
         </div>
 
         <div className = "submit--container">
@@ -534,7 +555,7 @@ const CreatePreference = (props) => {
         </div> 
 
         <section>
-
+         
             {preferencesBtnClicked && preferences.map((preference, key) => {
                 const theData = preference;
 
@@ -546,7 +567,9 @@ const CreatePreference = (props) => {
                     <div className = "preferences--card">
 
                     <h2 className = "appliance--heading">Username : {JSON.stringify(theData.username, null).toString().replaceAll("\"", "")}</h2>
-                    <h2 className = "appliance--heading">Chosen Appliance : {JSON.stringify(theData.appliance, null).toString().replaceAll("\"", "")}</h2>
+                    <h2 className = "appliance--heading">Initial Appliance : {JSON.stringify(theData.appliance, null).toString().replaceAll("\"", "")}</h2>
+                    
+                    <h2 className = "appliance--heading">Next Appliance : {JSON.stringify(theData.nextAppliance, null).toString().replaceAll("\"", "")}</h2>
 
                     <h2 className = "appliance--heading">Your Preference 1 : {JSON.stringify(theData.firstPreference, null).toString().replaceAll("\"", "")}</h2>
                     <h2 className = "appliance--heading">Your Preference 2 : {JSON.stringify(theData.secondPreference, null).toString().replaceAll("\"", "")}</h2>
@@ -556,12 +579,16 @@ const CreatePreference = (props) => {
                     <h2 className = "appliance--heading">First Random Slot : {JSON.stringify(otherFirstPref, null).toString().replaceAll("\"", "")}</h2>
                     <h2 className = "appliance--heading">Second Random Slot : {JSON.stringify(otherSecondPref, null).toString().replaceAll("\"", "")}</h2>
                     <h2 className = "appliance--heading">Third Random Slot : {JSON.stringify(otherThirdPref, null).toString().replaceAll("\"", "")}</h2>
-
+                    
+               
                     <Link className = "negotiate--btn" to = {{pathname: `/fair-negotiations/${preference._id}`, state: {preference}} }>Negotiate Preference</Link>
-
+                    
                     </div>
                 </div>
+
+          
             })};
+       
 
         </section>
 
