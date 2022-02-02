@@ -697,11 +697,10 @@ const FairNegotations = (props) => {
            let mediumBotBidAvg = parsedMediumBotCredits * 0.50;
            let intenseBotBidAvg = parsedIntenseBotCredits;
 
-
-           botBidData.push(lowBotCounter);
            console.log(`Number of low bots : `);
            console.log(lowBotCounter);
 
+        
            // If there are bot data present
            if((sizeOfLow && sizeOfMedium && sizeOfIntense) > 0) {
 
@@ -718,6 +717,7 @@ const FairNegotations = (props) => {
                         console.log(`Number of low bots in the object : `);
 
                         for(const [key, value] of Object.entries(allLowBotData)) {
+
                             const {name, botCredits, type, numberOfBots} = allLowBotData;
                             console.log(numberOfBots);
 
@@ -727,7 +727,8 @@ const FairNegotations = (props) => {
                         }
 
                     }, 2000); 
-                    
+
+                    return processRemainingBotData(allMediumBotData, allIntenseBotData);
 
                 }, 2000);
             }
@@ -764,8 +765,14 @@ const FairNegotations = (props) => {
 
                 throw new Error(someErrMsg);
             }
-    
       }
+    }
+
+    const processRemainingBotData = function(allMediumBotData, allIntenseBotData) {
+        console.log(`Inside process remaining bot data`);
+
+        console.log(allMediumBotData);
+        
     }
 
     const processLowBotBids = function() {
