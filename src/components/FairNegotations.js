@@ -696,6 +696,16 @@ const FairNegotations = (props) => {
            const {...allMediumBotData} = mediumBotData;
            const {...allIntenseBotData} = intenseBotData;
 
+           // Go through every bot data 
+           for(const [lowBotKeys, value] of Object.entries(allLowBotData)) {
+
+           }
+
+           for(const [mediumBotKeys, value] of Object.entries(allMediumBotData)) {
+
+           }
+
+
            let convertedBotBid = parseInt(bid);
            
            const sizeOfLow = Object.keys(allLowBotData).length;
