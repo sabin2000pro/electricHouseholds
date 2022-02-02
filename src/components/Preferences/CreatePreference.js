@@ -67,7 +67,7 @@ const CreatePreference = (props) => {
     const [lastApplianceData, setLastApplianceData] = useState([]);
 
     const [nextApplianceDataInserted, setNextApplianceDataInserted] = useState(false);
-    const [lastApplianceDataInserted, setLastApplianceDataInserted] = useState(true);
+    const [lastApplianceDataInserted, setLastApplianceDataInserted] = useState(false);
 
     const preferencesSubmitHandler = async (e) => {
 

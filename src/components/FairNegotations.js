@@ -24,6 +24,7 @@ const BOT_TYPES = {
 
 let bidData = []; // Array that stores the bid data
 let botBidData = [];
+let botMaxBids = [];
 
 const FairNegotations = (props) => {
 
@@ -568,6 +569,7 @@ const FairNegotations = (props) => {
                     
                      setBids(newBidData);
                      bidData.push({bid});
+
                      const smallestBid = findMinBid(bid);
                      handleBidSubmission(convertedBid, virtualCredits);
                      
@@ -667,6 +669,7 @@ const FairNegotations = (props) => {
            const {...allLowBotData} = lowBotData;
            const {...allMediumBotData} = mediumBotData;
            const {...allIntenseBotData} = intenseBotData;
+           const convertedBotBid = parseInt(bid);
 
            console.log(allLowBotData);
            console.log(allMediumBotData);
@@ -680,6 +683,14 @@ const FairNegotations = (props) => {
            const parsedMediumBotCredits = parseInt(allMediumBotData.botCredits);
            const parsedIntenseBotCredits = parseInt(allIntenseBotData.botCredits);
 
+           let lowBotCreditsLeft = parsedLowBotCredits;
+           let newLowCredits = lowBotCreditsLeft;
+           lowBotCreditsLeft = newLowCredits;
+
+           let mediumBotCreditsLeft = parsedMediumBotCredits;
+
+
+          
            let lowBotBidAvg = parsedLowBotCredits * 0.10;
            let mediumBotBidAvg = parsedMediumBotCredits * 0.50;
            let intenseBotBidAvg = parsedIntenseBotCredits;
