@@ -992,7 +992,7 @@ const FairNegotations = (props) => {
                         
                         <input value = {bid} onChange = {(event) => {setBid(event.target.value)}} placeholder = "Enter your Bid" id = "bid" type = "text"/>
 
-}
+            }
                     </div>
 
                     <div className = "submit-bid--container">
