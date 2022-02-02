@@ -94,41 +94,21 @@ const BotSettings = (props) => {
                             <input value = {enteredBotType} onChange = {(event) => setChosenBotType(event.target.value)} placeholder = "Enter Bot Type" id = "type" type = "text"/>
                         </div>
 
-                        
+                      
+
                         <div className = "botcounter--box">
 
-                        <label className = "botcounter--lbl">Low Bots</label>
+                        <label className = "botcounter--lbl">Number of Bots</label>
 
                             <select onChange = {(event) => {setEnteredBotNumber(event.target.value)}} className = "box">
-                                <option>1</option>
-                                <option>2</option>
+                                <option value = {1}>1</option>
+                                <option value = {2}>2</option>
                                 <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
                             </select>
                         </div>
-
-                        <div className = "botcounter--box">
-
-                    <label className = "botcounter--lbl">Medium Bots</label>
-
-                        <select onChange = {(event) => {setEnteredBotNumber(event.target.value)}} className = "box">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                        </select>
-                    </div>
-
-                    <div className = "botcounter--box">
-
-                    <label className = "botcounter--lbl">Intense Bots</label>
-
-                        <select onChange = {(event) => {setEnteredBotNumber(event.target.value)}} className = "box">
-                            <option> 1</option>
-                            <option>2</option>
-                            <option>3</option>
-                           
-                        </select>
-                    </div>
-                                    
+                
                         <div className = "submit--container">
                             <button className = "login--btn" type = "submit">Submit</button>
                         </div>
