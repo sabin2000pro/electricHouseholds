@@ -198,8 +198,7 @@ const CreatePreference = (props) => {
 
                     setTimeout(() => {
                         const firstAppliance = applianceNames[i];
-                        const appliancesPresent = applianceNames.length;
-                        
+
                         const nextApplianceAvailable = applianceNames[i + 1];
                         const lastAppliance = applianceNames.slice(-1)[0];
                         const applianceIndexes = applianceNames.indexOf(nextApplianceAvailable);
@@ -419,6 +418,7 @@ const CreatePreference = (props) => {
 
 
            <section className = "section--yourpreferences">
+           
 
 
            <div className = "container grid grid--2-cols">
