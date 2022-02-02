@@ -821,7 +821,7 @@ const FairNegotations = (props) => {
                             const {name, type, botCredits} = allMediumBotData;
   
                                 let mediumBotRandomBids = Math.floor(Math.random() * mediumBotBidAvg);
-;                               let mediumBotCreditsRemaining = parsedMediumBotCredits - mediumBotRandomBids;
+                              let mediumBotCreditsRemaining = parsedMediumBotCredits - mediumBotRandomBids;
 
                                 let mediumBotCreditsLeft = mediumBotCreditsRemaining;
                                 convertedBotBid = mediumBotRandomBids;

@@ -215,14 +215,12 @@ const CreatePreference = (props) => {
 
                         if(applianceIndexes < applianceNames.length - 1) {
                             let nextApplianceObj = {nextApplianceAvailable};
-                            console.log(nextApplianceObj);
+                            let lastApplianceObj = {lastAppliance};
                             
                             firstApplianceData.push(firstAppliance);
                             nextApplianceData.push(nextApplianceObj);
                             lastApplianceData.push(lastAppliance);
 
-                            
-                            
                             setNextApplianceDataInserted(true);
                             setLastApplianceData(lastApplianceData);
                             setLastApplianceDataInserted(true);
