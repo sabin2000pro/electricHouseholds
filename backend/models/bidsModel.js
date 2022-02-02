@@ -10,6 +10,10 @@ const bidSchema = new mongoose.Schema({
 
     username: {
         type: String
+    },
+
+    creditsLeft: {
+        type: String
     }
 
 });

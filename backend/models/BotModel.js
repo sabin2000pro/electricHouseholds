@@ -19,12 +19,7 @@ const BotSchema = new mongoose.Schema({
     numberOfBots: { // The number of bots the user decides to choose
         type: String,
         default: 0
-    },
-
-    creditsLeft: {
-        type: String
     }
-
 });
 
 const Bot = mongoose.model('Bot', BotSchema);

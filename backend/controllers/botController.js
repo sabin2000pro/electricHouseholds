@@ -30,7 +30,7 @@ module.exports.createBot = catchAsync(async (request, response, next) => {
 
     if(request.method === 'POST') {
 
-        const newBot = new Bot({name, botCredits, type, numberOfBots});
+        const newBot = new Bot({name, botCredits, type, numberOfBots, creditsLeft});
         await newBot.save();
         return response.status(created).json({newBot});
     }

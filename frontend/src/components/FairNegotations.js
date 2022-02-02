@@ -815,10 +815,9 @@ const FairNegotations = (props) => {
                                // eslint-disable-next-line no-loop-func
                                setTimeout(() => {
                     
-                            
                                 if(mediumBotRandomBids !== 0) {
                                 
-                                  return processMediumBotBids(mediumBotRandomBids, name, type)
+                                  return processMediumBotBids(mediumBotRandomBids, name, type, mediumBotCreditsLeft)
                                 }
                                     
                                }, 2000)
@@ -891,9 +890,9 @@ const FairNegotations = (props) => {
         }
     }
 
-    const processMediumBotBids = async function(convertedBotBid, name, type) {
-        await axios.post(`http://localhost:5200/api/v1/bids/create-bid`, {bid: convertedBotBid, username: name, type: type}).then(response => {
-            
+    const processMediumBotBids = async function(convertedBotBid, name, type, mediumBotCreditsLeft) {
+        return await axios.post(`http://localhost:5200/api/v1/bids/create-bid`, {bid: convertedBotBid, username: name, botType: type, creditsLeft: mediumBotCreditsLeft}).then(response => {
+
             alert(`DONE FOR MEDIUM BOTS`);
 
             const data = response.data;
