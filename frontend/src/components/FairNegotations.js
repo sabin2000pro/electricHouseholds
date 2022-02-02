@@ -27,7 +27,7 @@ import ResultsScreen from '../components/ResultsScreen';
             // 6. If the bot has placed a bid, set a timeout of 3 seconds and set user turn to true
 
 let DELAY = 1200;
-let START_TIMER = 100;
+let START_TIMER = 15;
 let REFRESH_SECONDS = 30000;
 
 const FLAGS = {
@@ -56,7 +56,7 @@ const FairNegotations = (props) => {
     let location = useLocation();
     let history = useHistory();
 
-    const {username, appliance, firstPreference, secondPreference, thirdPreference, nextAppliance} = location.state.preference;
+    let {username, appliance, firstPreference, secondPreference, thirdPreference, nextAppliance} = location.state.preference;
 
     const [auctionStarted, setAuctionStarted] = useState(false);
     const [roundNumber, setRoundNumber] = useState(1);
@@ -104,6 +104,7 @@ const FairNegotations = (props) => {
     const [lowBotBids, setLowBotBids] = useState([]);
     const [mediumBotBids, setMediumBotBids] = useState([]);
     const [intenseBotBids, setIntenseBotBids] = useState([]);
+    const [theNextAppliance, setTheNextAppliance] = useState('');
 
     const beginLiveAuctionHandler = function() {
         return setAuctionStarted(!auctionStarted);
@@ -770,11 +771,12 @@ const FairNegotations = (props) => {
                            
                             setTimeout(() => {
 
-                                window.location.reload(false);
                                 setRoundOneOver(true);
-                                setSeconds(0);
+                                setSeconds(300);
                                 setRoundNumber(roundNumber + 1); // Start next round;
-
+                                setTheNextAppliance(nextAppliance);
+                               
+                        
                                 // Send PUT request to reset virtual credits back to initial value
                                 // Get the next appliance
 
@@ -811,8 +813,6 @@ const FairNegotations = (props) => {
 
                       setTimeout(() => {
 
-                          console.log(`Going to compare user bid to medium bot bid`);
-
                         for(let index = 0; index < bidData.length; index++) {
                            const userBid = parseInt(bidData[index].bid);
                            
@@ -820,7 +820,7 @@ const FairNegotations = (props) => {
 
                             const {name, type, botCredits} = allMediumBotData;
   
-                                let mediumBotRandomBids = Math.floor(Math.random() * mediumBotBidAvg);
+                            let mediumBotRandomBids = Math.floor(Math.random() * mediumBotBidAvg);
                               let mediumBotCreditsRemaining = parsedMediumBotCredits - mediumBotRandomBids;
 
                                 let mediumBotCreditsLeft = mediumBotCreditsRemaining;
@@ -1096,7 +1096,7 @@ const FairNegotations = (props) => {
 
             <h1>Current Round Number : {roundNumber}</h1>
             <h2>User's Initial Appliance : {appliance}</h2>
-            {mainRoundOver &&  <h2>Next Appliance: {nextAppliance}</h2> }
+            {roundOneOver ? undefined : <h2>Next Appliance: {theNextAppliance}</h2>}
            
 
             {!mainRoundOver ? <h1 className = "first--pref">User's First Chosen Preference : {firstPreference}</h1> : null }
