@@ -802,29 +802,24 @@ const FairNegotations = (props) => {
                       setTimeout(() => {
                         
                         for(let i = 0; i < numberOfMediumBots; i++) {
+
                             const {name, type, botCredits} = allMediumBotData;
-
-                            if(type === BOT_TYPES.MEDIUM && botCredits > 0 && name != null) {
-
-                               setTimeout(() => {
-                            
+  
                                 let mediumBotRandomBids = Math.floor(Math.random() * mediumBotBidAvg);
 ;                               let mediumBotCreditsRemaining = parsedMediumBotCredits - mediumBotRandomBids;
                                 let mediumBotCreditsLeft = mediumBotCreditsRemaining;
+                                convertedBotBid = mediumBotRandomBids;
 
-                                console.log(`Bot ${name} ${type} number  has ${botCredits} credits initially and placed a bid of ${mediumBotRandomBids} `);
-                                console.log(mediumBotCreditsLeft);
+                            if(type === BOT_TYPES.MEDIUM && botCredits > 0 && name != null) {
 
+                               // eslint-disable-next-line no-loop-func
+                               setTimeout(() => {
+                    
                             
-                                if(mediumBotCreditsLeft === 0) {
-                                    // In the event that medium bots run out of credits
-                                }
-
-                                 if(mediumBotCreditsLeft > 0) {
+                                if(mediumBotRandomBids !== 0) {
                                 
-                                    // If the medium bots still has more than 0 credits left
+                                  return processMediumBotBids(mediumBotRandomBids, name, type)
                                 }
-
                                     
                                }, 2000)
 
@@ -860,10 +855,10 @@ const FairNegotations = (props) => {
       }
     }
 
-    const processLowBotBid = async function(convertedBotBid, lowBotPlacedBid, name) {
+    const processLowBotBid = async function(mediumBotRandomBids, lowBotPlacedBid, name) {
         try {
 
-           await axios.post(`http://localhost:5200/api/v1/bids/create-bid`, {bid: convertedBotBid, username: name}).then(response => {
+           await axios.post(`http://localhost:5200/api/v1/bids/create-bid`, {bid: mediumBotRandomBids, username: name}).then(response => {
              
            if(lowBotPlacedBid) {
               console.log(response.data);
@@ -896,8 +891,22 @@ const FairNegotations = (props) => {
         }
     }
 
-    const processMediumBotBids = async function(convertedBotBid, mediumBotPlacedBid, name) {
-        
+    const processMediumBotBids = async function(convertedBotBid, name, type) {
+        await axios.post(`http://localhost:5200/api/v1/bids/create-bid`, {bid: convertedBotBid, username: name, type: type}).then(response => {
+            
+            alert(`DONE FOR MEDIUM BOTS`);
+
+            const data = response.data;
+            console.log(data);
+
+           
+        }).catch(err => {  
+
+            if(err) {
+
+                console.log(err.response.data);
+         }
+        })
     }
 
     const handleBiddingAggressiveness = function(lowBotBidAvg, mediumBotBidAvg, intenseBotBidAvg) {
