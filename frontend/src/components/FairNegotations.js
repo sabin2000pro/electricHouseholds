@@ -804,16 +804,23 @@ const FairNegotations = (props) => {
            await axios.post(`http://localhost:5200/api/v1/bids/create-bid`, {bid: convertedBotBid, username: name}).then(response => {
              
            if(lowBotPlacedBid) {
-              
+              console.log(response.data);
+
                const bid = response.data.newBid.bid;
-               allBotBids.push(bid);
+               const username = response.data.newBid.username;
+
+               allBotBids.push(bid, username);
+
+               console.log(allBotBids);
            }
                
 
            }).catch(err => {
-               
+
                if(err) {
                    console.log(err);
+
+                   throw new Error(err);
                }
            })
 
@@ -1022,6 +1029,13 @@ const FairNegotations = (props) => {
             return <div key = {key}>
                 <h2>Round 1 Bids : £{vals.bid} placed by : {username}</h2>
             </div>
+        })}
+
+        {allBotBids.map((botBid, key) => {
+            return <div key = {key}>
+                <h2>Bot: {botBid}</h2>
+            </div>
+
         })}
     </div>
 
