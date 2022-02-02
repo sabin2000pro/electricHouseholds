@@ -8,10 +8,10 @@ const notFound = 404;
 const serverError = 500;
 
 module.exports.createPreference = catchAsync(async (request, response, next) => {
-    const {username, appliance, firstPreference, secondPreference, thirdPreference} = request.body;
-    
+    const {username, appliance, firstPreference, secondPreference, thirdPreference, nextAppliance} = request.body;
+
     if(request.method === 'POST') { // If there is a POST request -> create the preference
-        const newPreference = new Preference({username, appliance, firstPreference, secondPreference, thirdPreference});
+        const newPreference = new Preference({username, appliance, firstPreference, secondPreference, thirdPreference, nextAppliance});
         await newPreference.save();
         
         return response.status(ok).json({newPreference});

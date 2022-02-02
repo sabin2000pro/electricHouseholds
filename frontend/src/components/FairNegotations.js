@@ -55,7 +55,8 @@ const FairNegotations = (props) => {
 
     let location = useLocation();
     let history = useHistory();
-    const {username, appliance, firstPreference, secondPreference, thirdPreference} = location.state.preference;
+
+    const {username, appliance, firstPreference, secondPreference, thirdPreference, nextAppliance} = location.state.preference;
 
     const [auctionStarted, setAuctionStarted] = useState(false);
     const [roundNumber, setRoundNumber] = useState(1);
@@ -767,7 +768,6 @@ const FairNegotations = (props) => {
                         // Check to see if the low bot bid is > users
                         if(randBid > theUserBid) {
                            
-
                             setTimeout(() => {
 
                                 window.location.reload(false);
@@ -810,23 +810,35 @@ const FairNegotations = (props) => {
                     }
 
                       setTimeout(() => {
-                        
+
+                          console.log(`Going to compare user bid to medium bot bid`);
+
+                        for(let index = 0; index < bidData.length; index++) {
+                           const userBid = parseInt(bidData[index].bid);
+                           
                         for(let i = 0; i < numberOfMediumBots; i++) {
 
                             const {name, type, botCredits} = allMediumBotData;
   
                                 let mediumBotRandomBids = Math.floor(Math.random() * mediumBotBidAvg);
 ;                               let mediumBotCreditsRemaining = parsedMediumBotCredits - mediumBotRandomBids;
+
                                 let mediumBotCreditsLeft = mediumBotCreditsRemaining;
                                 convertedBotBid = mediumBotRandomBids;
 
-                            if(type === BOT_TYPES.MEDIUM && botCredits > 0 && name != null) {
+                                // Check first to see if the user bid placed is < than any of the Medium Bot Bids
+                                if(userBid < mediumBotRandomBids) {
 
-                               // eslint-disable-next-line no-loop-func
+                                    console.log(`Current round number : ${roundNumber}`)
+                                    displayWinner();
+
+                                }
+
+                            if(type === BOT_TYPES.MEDIUM && botCredits > 0 && name != null && userBid > mediumBotRandomBids) {
+                              
                                setTimeout(() => {
                     
                                 if(mediumBotRandomBids !== 0) {
-                                
                                   return processMediumBotBids(mediumBotRandomBids, name, type, mediumBotCreditsLeft)
                                 }
                                     
@@ -834,9 +846,12 @@ const FairNegotations = (props) => {
 
                             }
                         }
+                    }
 
                         
-                      }, 2000);
+                    }, 2000);
+
+                      // NOW 
 
                     }, 2000); 
 
@@ -862,6 +877,10 @@ const FairNegotations = (props) => {
       finally {
           return console.log(`Error here processed gfracefully`);
       }
+    }
+
+    const displayWinner = () => { // Displays who the winner of Round 1 is
+
     }
 
     const processLowBotBid = async function(mediumBotRandomBids, lowBotPlacedBid, name) {
@@ -909,15 +928,15 @@ const FairNegotations = (props) => {
             const mediumBids = response.data.newBid.bid;
             const creditsLeft = parseInt(response.data.newBid.creditsLeft);
 
-            console.log(data);
-            console.log(mediumBids);
-            console.log(creditsLeft);
+            // Check to see if there is data present
+            if(data) {
+
+            }
 
            
         }).catch(err => {  
 
             if(err) {
-
                 console.log(err.response.data);
          }
         })
@@ -1038,9 +1057,10 @@ const FairNegotations = (props) => {
 
     <section className = "section--login">
 
+       
           <h1 className = "fn--heading">Choose Your Desired Algorithm Below</h1>
-        
 
+         
         <div className = "container grid grid--2-cols">
             <button onClick = {chosenEnglishAuctionHandler} className = "auction--btn">Auction Algorithm</button>
             <button onClick = {chosenSocialExchangeHandler} className = "social--btn">Social Exchange Algorithm</button>
@@ -1056,8 +1076,10 @@ const FairNegotations = (props) => {
         <div className = "appliance--data">
 
         <div>
+
             <h1>Username: {username} </h1>
             <h1>Bidding Seconds Remaining: {seconds}</h1>
+
 
             <h1>{findMaxBid()}</h1>
             <h1>{countTotalBids()}</h1>
@@ -1069,17 +1091,18 @@ const FairNegotations = (props) => {
 
                 <h1>User Virtual Credits Remaining: {updatedNewBid ? credits.virtualCredits : credits.virtualCredits}</h1>
                 <h1 >Opening Bid: {credits.openingBid}</h1>
-                </div>
+            </div>
             })}
 
             <h1>Current Round Number : {roundNumber}</h1>
-            <h2>User's Desired Appliance : {appliance}</h2>
+            <h2>User's Initial Appliance : {appliance}</h2>
+            {mainRoundOver &&  <h2>Next Appliance: {nextAppliance}</h2> }
+           
 
             {!mainRoundOver ? <h1 className = "first--pref">User's First Chosen Preference : {firstPreference}</h1> : null }
 
             {roundOneOver && roundNumber === 2 ?<h1 className = "second--pref">User's Second Chosen Preference: {secondPreference}</h1> : null }
             {roundNumber === 3 ? <h1 className = "third--pref">User's Third Chosen Preference: {thirdPreference}</h1> : null}
-
         
             <div className = "container grid grid--2-cols">
 
@@ -1090,11 +1113,9 @@ const FairNegotations = (props) => {
 
                     <div className = "bid--container">
 
-                        
                     <label className = "bid--lbl">Bid</label>
                         {userInputDisabled ? 
                     
-                        
                         <input value = {bid} onChange = {(event) => {setBid(event.target.value)}} placeholder = "Enter your Bid" id = "bid" type = "hidden" /> :
                         
                         <input value = {bid} onChange = {(event) => {setBid(event.target.value)}} placeholder = "Enter your Bid" id = "bid" type = "text"/>
@@ -1120,13 +1141,14 @@ const FairNegotations = (props) => {
             </div>
         })}
 
-        {allBotBids.map((botBid, key) => {
-            return <div key = {key}>
-                <h2>Bot: {botBid}</h2>
-            </div>
+            {allBotBids.map((botBid, key) => {
 
-        })}
-    </div>
+                return <div key = {key}>
+                    <h2>Bot: {botBid}</h2>
+                </div>
+
+            })}
+        </div>
 
 : undefined}
 
@@ -1135,13 +1157,13 @@ const FairNegotations = (props) => {
 
 </section>
 
-        <section className = "section--login"></section>
+     <section className = "section--login"></section>
 
         <div className = "container grid grid--2-cols">
 
             <RegisterCard>
 
-                <form onSubmit = {submitFeedbackHandler} className = "login--form" method = "POST">
+            <form onSubmit = {submitFeedbackHandler} className = "login--form" method = "POST">
 
                 <h1 className = "feedback--heading">Leave your Feedback</h1>
                 
@@ -1169,8 +1191,8 @@ const FairNegotations = (props) => {
                     <div className = "submit--container">
                         <button className = "login--btn" type = "submit">Submit</button>
                     </div>
-
                 </form>
+
         </RegisterCard>
     </div>
 

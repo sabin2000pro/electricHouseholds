@@ -28,7 +28,12 @@ const preferencesSchema = new mongoose.Schema({
     thirdPreference: {
         type: String,
         required: [true, 'Please submit your third timeslot preference']
+    },
+
+    nextAppliance: {
+        type: String
     }
+    
 });
 
 const Preference = mongoose.model('Preference', preferencesSchema);

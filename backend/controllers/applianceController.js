@@ -12,10 +12,10 @@ module.exports.getAllAppliances = catchAsync(async (request, response, next) => 
 });
 
 module.exports.createAppliance = catchAsync(async (request, response, next) => {
-    const {name, description} = request.body;
+    const {name, description, nextAppliance} = request.body;
 
     if(request.method === 'POST') {
-        const newAppliance = new Appliance({name, description}); // Create a new Appliance Instance
+        const newAppliance = new Appliance({name, description, nextAppliance}); // Create a new Appliance Instance
         await newAppliance.save();
         return response.status(created).json({newAppliance});
     }
