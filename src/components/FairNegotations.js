@@ -687,6 +687,7 @@ const FairNegotations = (props) => {
         return botPlaceRandomBid(lowBotData, mediumBotData, intenseBotData);
      }
 
+
     const botPlaceRandomBid = async function(lowBotData, mediumBotData, intenseBotData) {
 
         try {
@@ -695,16 +696,6 @@ const FairNegotations = (props) => {
            const {...allLowBotData} = lowBotData;
            const {...allMediumBotData} = mediumBotData;
            const {...allIntenseBotData} = intenseBotData;
-
-           // Go through every bot data 
-           for(const [lowBotKeys, value] of Object.entries(allLowBotData)) {
-
-           }
-
-           for(const [mediumBotKeys, value] of Object.entries(allMediumBotData)) {
-
-           }
-
 
            let convertedBotBid = parseInt(bid);
            
@@ -738,7 +729,6 @@ const FairNegotations = (props) => {
 
            console.log(`Array of intense bots`);
            console.log(theIntenseBots);
-         
          
            if((sizeOfLow && sizeOfMedium && sizeOfIntense) > 0) {
 
@@ -806,26 +796,41 @@ const FairNegotations = (props) => {
                           
                         }
                       }
+
                     }
 
                       setTimeout(() => {
                         
                         for(let i = 0; i < numberOfMediumBots; i++) {
-                            console.log(numberOfMediumBots);
-
                             const {name, type, botCredits} = allMediumBotData;
 
                             if(type === BOT_TYPES.MEDIUM && botCredits > 0 && name != null) {
 
                                setTimeout(() => {
+                                   let tempArray = [];
 
                                 let mediumBotRandomBids = Math.floor(Math.random() * mediumBotBidAvg);
 ;                               let mediumBotCreditsRemaining = parsedMediumBotCredits - mediumBotRandomBids;
                                 let mediumBotCreditsLeft = mediumBotCreditsRemaining;
 
-                                console.log(`Medium bots placed `);
-                                console.log(mediumBotRandomBids);
+                                tempArray.push(mediumBotRandomBids);
 
+                                console.log(tempArray);
+                                console.log('Last value in temp array');
+
+                                const lastVal = tempArray.slice(-1)[0];
+                                console.log(lastVal);
+
+                                if(numberOfMediumBots > 0) {
+
+                                    let totalMediumBids = mediumBotRandomBids;
+                                    totalMediumBids = totalMediumBids + 1;
+
+                                   
+
+
+                                }
+        
                                 if(mediumBotCreditsLeft === 0) {
                                     // In the event that medium bots run out of credits
                                 }
@@ -834,13 +839,16 @@ const FairNegotations = (props) => {
                                         // If the medium bots still has more than 0 credits left
                                 }
 
-                                
                                     
                                }, 2000)
 
                             }
+
+                          
                             
                         }
+
+                      
 
                       }, 2000);
 
