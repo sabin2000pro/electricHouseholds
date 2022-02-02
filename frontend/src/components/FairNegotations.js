@@ -706,6 +706,8 @@ const FairNegotations = (props) => {
            const parsedIntenseBotCredits = parseInt(allIntenseBotData.botCredits);
 
            const numberOfLowBots = parseInt(allLowBotData.numberOfBots);
+           const numberOfMediumBots = parseInt(allMediumBotData.numberOfBots);
+           const numberOfIntenseBots = parseInt(allIntenseBotData.numberOfBots);
 
            let mediumBotCreditsLeft = parsedMediumBotCredits - convertedBotBid;
            let newMediumCredits = mediumBotCreditsLeft;
@@ -737,11 +739,7 @@ const FairNegotations = (props) => {
                 for(let k = 0; k < bidData.length; k++) {
                        const userBidVal = bidData[k].bid;
                        const theUserBid = parseInt(userBidVal);
-
-                       console.log(theUserBid);
-
-                      
-                        
+                       
                         // Loop through the number of low bots available
                       for(let i = 0; i < numberOfLowBots; i++) {
                           const {name} = allLowBotData;
@@ -753,6 +751,15 @@ const FairNegotations = (props) => {
 
                         lowBotCreditsLeft = newLowCredits;
                         convertedBotBid = randBid;
+
+                        // Check to see if the low bot bid is > users
+                        if(randBid > theUserBid) {
+                            console.log(`The Low Bot placed a larger bid`);
+                        }
+
+                        if(randBid < theUserBid) {
+                            console.log(`The Low Bot placed a smaller bid`);
+                        }
 
                         if(randBid === 0) { // If the random low bot bid is 0
                             setTimeout(() => {
@@ -780,7 +787,9 @@ const FairNegotations = (props) => {
                     }
 
                       setTimeout(() => {
-                          alert(`Now it's the mediium bots turn...`);
+                          // Now write code for the Medium Bot.
+                          console.log(`number of medium bots`);
+                          console.log()
                       })
 
                     }, 2000); 
