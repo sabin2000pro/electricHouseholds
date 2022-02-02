@@ -787,10 +787,27 @@ const FairNegotations = (props) => {
                     }
 
                       setTimeout(() => {
-                          // Now write code for the Medium Bot.
-                          console.log(`number of medium bots`);
-                          console.log()
-                      })
+                        // Loop over medium bots
+                        for(let i = 0; i < numberOfMediumBots; i++) {
+                            const {name, type, botCredits} = allMediumBotData;
+
+                            // If the type is MEDIUM Bot and has > 0 credits. Start to place 2 random bids of given average
+                            if(type === BOT_TYPES.MEDIUM && botCredits > 0 && name != null) {
+
+                               setTimeout(() => {
+                                    let mediumBotRandomBid = Math.floor(Math.random() * mediumBotBidAvg);
+                                    let mediumBotCreditsRemaining = parsedMediumBotCredits - mediumBotRandomBid;
+                                    let mediumBotCreditsLeft = mediumBotCreditsRemaining;
+
+                                    console.log(`The medium bots have : ${mediumBotCreditsLeft} to lose if they are the biggest ones`);
+                                    
+                               }, 2000)
+
+                            }
+                            
+                        }
+
+                      }, 2000);
 
                     }, 2000); 
 
