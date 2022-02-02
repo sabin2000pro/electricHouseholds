@@ -5,6 +5,27 @@ import axios from 'axios';
 import './FairNegotiations.css';
 import ResultsScreen from '../components/ResultsScreen';
 
+       // START BOT BID -> Loop through the bot array
+            // Get type of the BOT
+            // Place of the
+            // If user turn is false && bot turn is TRUE
+            // Loop through the entire low, medium and intense object of bots
+            // Extract the type of bot present
+            // Switch / Case -> determine what type of bot is now
+            // Invoke a routine that checks, IF the bot type in the array DEFAULT (LOW)
+            // Generate a random bid BETWEEN the specified range (0-10)
+            // Else if type of bot medium then generate a random bid using math.random between the range specified
+            // Else if type of bot is BOT_TYPES.INTENSE - place all the bids
+            // Otherwise throw an error if the types are not in the array
+
+
+            // Code here for the AI bot that generates a random bid after the user turn is over
+            // 2. Store the bot data from backend in an array by looping (foreach) and pushing the data into a new array
+            // 3. Randomly generate one of the three bots for the user to bid against
+            // 4. Use switch / case statements. Determine if it's a low bot then randomly generate a bid between the specified range
+            // 5. If the user turn is over, transmit a POST request to the server by randomly placing bids by the bot
+            // 6. If the bot has placed a bid, set a timeout of 3 seconds and set user turn to true
+
 let DELAY = 1200;
 let START_TIMER = 100;
 let REFRESH_SECONDS = 30000;
@@ -17,7 +38,7 @@ const FLAGS = {
 };
 
 const BOT_TYPES = {
-    DEFAULT: 'Low',
+    LOW: 'Low',
     MEDIUM: "Medium",
     INTENSE: "Intense"
 }
@@ -82,6 +103,10 @@ const FairNegotations = (props) => {
     const [userBidData, setUserBidData] = useState([]);
     const [creditData, setCreditData] = useState([]);
     const [creditsFetched, setCreditsFetched] = useState(false);
+
+    const [lowBotBids, setLowBotBids] = useState([]);
+    const [mediumBotBids, setMediumBotBids] = useState([]);
+    const [intenseBotBids, setIntenseBotBids] = useState([]);
 
     const beginLiveAuctionHandler = function() {
         return setAuctionStarted(!auctionStarted);
@@ -674,12 +699,7 @@ const FairNegotations = (props) => {
            const {...allMediumBotData} = mediumBotData;
            const {...allIntenseBotData} = intenseBotData;
 
-           const convertedBotBid = parseInt(bid);
-           const lowBotCounter = parseInt(allLowBotData.numberOfBots);
-
-           console.log(allLowBotData);
-           console.log(allMediumBotData);
-           console.log(allIntenseBotData);
+           let convertedBotBid = parseInt(bid);
            
            const sizeOfLow = Object.keys(allLowBotData).length;
            const sizeOfMedium = Object.keys(allMediumBotData).length;
@@ -689,9 +709,7 @@ const FairNegotations = (props) => {
            const parsedMediumBotCredits = parseInt(allMediumBotData.botCredits);
            const parsedIntenseBotCredits = parseInt(allIntenseBotData.botCredits);
 
-           let lowBotCreditsLeft = parsedLowBotCredits - convertedBotBid;
-           let newLowCredits = lowBotCreditsLeft;
-           lowBotCreditsLeft = newLowCredits;
+           const numberOfLowBots = parseInt(allLowBotData.numberOfBots);
 
            let mediumBotCreditsLeft = parsedMediumBotCredits - convertedBotBid;
            let newMediumCredits = mediumBotCreditsLeft;
@@ -706,61 +724,54 @@ const FairNegotations = (props) => {
            }
         
            theLowBots.push(allLowBotData);
-
-           // If there are bot data present
+           console.log(`Low Bot IDS are`);
+         
            if((sizeOfLow && sizeOfMedium && sizeOfIntense) > 0) {
 
             if(!userInputDisabled && botTurn && !userTurn) {
+                
+
                 setTimeout(() => {
+
+                    for(let [key, value] of Object.entries(allLowBotData)) {
+                        const {_id, name, botCredits, type} = allLowBotData;
+                    }
 
                     handleInputBlur();
 
-                    alert(`Bots turn starting soon...`);
-
                     setTimeout(() => {
-                        alert(`Low Bot turn starting now`);
 
-                        console.log(`There are low bots in the object : `);
+                      for(let i = 0; i < numberOfLowBots; i++) {
+                          let isBetweenAvg = false;
+                        
+                        let randBid = Math.floor(Math.random() * lowBotBidAvg);
 
-                        for(const [key, value] of Object.entries(allLowBotData)) {
-                            const {name, botCredits, type, numberOfBots} = allLowBotData;
-                            
-                            
+                        let lowBotCreditsLeft = parsedLowBotCredits - randBid;
+                        let newLowCredits = lowBotCreditsLeft;
+                        lowBotCreditsLeft = newLowCredits;
+                        convertedBotBid = randBid;
 
-                            if(name !== undefined && type === 'Low') {
-                                return processLowBotBids();
+                        if(randBid >= 0 && randBid <= lowBotBidAvg) {
+                            isBetweenAvg = true;
+
+                            if(isBetweenAvg) {
+                            return processLowBotBid(convertedBotBid);
+
                             }
+                          
                         }
+            
+                      }
 
                     }, 2000); 
 
-                    return processRemainingBotData(allMediumBotData, allIntenseBotData, sizeOfMedium, parsedMediumBotCredits, mediumBotCreditsLeft);
-
+                
                 }, 2000);
             }
             
          }
 
-         // START BOT BID -> Loop through the bot array
-            // Get type of the BOT
-            // Place of the
-            // If user turn is false && bot turn is TRUE
-            // Loop through the entire low, medium and intense object of bots
-            // Extract the type of bot present
-            // Switch / Case -> determine what type of bot is now
-            // Invoke a routine that checks, IF the bot type in the array DEFAULT (LOW)
-            // Generate a random bid BETWEEN the specified range (0-10)
-            // Else if type of bot medium then generate a random bid using math.random between the range specified
-            // Else if type of bot is BOT_TYPES.INTENSE - place all the bids
-            // Otherwise throw an error if the types are not in the array
 
-
-            // Code here for the AI bot that generates a random bid after the user turn is over
-            // 2. Store the bot data from backend in an array by looping (foreach) and pushing the data into a new array
-            // 3. Randomly generate one of the three bots for the user to bid against
-            // 4. Use switch / case statements. Determine if it's a low bot then randomly generate a bid between the specified range
-            // 5. If the user turn is over, transmit a POST request to the server by randomly placing bids by the bot
-            // 6. If the bot has placed a bid, set a timeout of 3 seconds and set user turn to true
         }
         
         catch(error) {
@@ -774,8 +785,21 @@ const FairNegotations = (props) => {
       }
 
       finally {
-          alert(`Error here processed gfracefully`);
+          return console.log(`Error here processed gfracefully`);
       }
+    }
+
+    const processLowBotBid = async function(convertedBotBid) {
+        try {
+            console.log(`Inside function to send POST request`);
+
+        } 
+        
+        catch(err) {
+            if(err) {
+
+            }
+        }
     }
 
     const handleBiddingAggressiveness = function(lowBotBidAvg, mediumBotBidAvg, intenseBotBidAvg) {
@@ -797,32 +821,6 @@ const FairNegotations = (props) => {
         }
     }
 
-    const processRemainingBotData = function(allMediumBotData, allIntenseBotData, sizeOfMedium, parsedMediumBotCredits, mediumBotCreditsLeft) {
-        try {
-
-        } 
-        
-        catch(err) {
-
-        }
-
-        finally {
-            alert(`Error processed gracefully`);
-        }
-    }
-
-    const processLowBotBids = function() {
-        try {
-
-        } 
-        
-        catch(err) {
-
-            if(err) {
-                const theErr = err.message;
-            }
-        }
-    }
 
     function handleNewTurn() {
 
@@ -965,6 +963,8 @@ const FairNegotations = (props) => {
                 return <div key = {key}>
                     <h1 className = "first--pref">Low Bot Name : {lowBot.name}</h1>
                     <h1 className = "first--pref">Low Bot Credits Left : {lowBot.botCredits}</h1>
+                    <h1 className = "first--pref">Number of Low Bots : {lowBot.numberOfBots}</h1>
+
                 </div>
                    
             }) : null}
