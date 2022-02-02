@@ -16,12 +16,17 @@ const BotSchema = new mongoose.Schema({
         enum: ['Low', 'Medium', 'Intense']
     },
 
-    bidRange: {
+    lowBots: { // The number of bots the user decides to choose
         type: String,
-        enum: ["0-10", "15-20", "30-50"]
+        default: 0
     },
 
-    numberOfBots: { // The number of bots the user decides to choose
+    mediumBots: {
+        type: String,
+        default: 0
+    },
+
+    intenseBots: {
         type: String,
         default: 0
     }
