@@ -704,16 +704,9 @@ const FairNegotations = (props) => {
            if(handleBiddingAggressiveness(lowBotBidAvg, mediumBotBidAvg, intenseBotBidAvg)) {
                console.log(`Low Bot Biding Average cannot be bigger than medium and intense`);
            }
-
         
            theLowBots.push(allLowBotData);
 
-           console.log(`Every low bot`)
-           theLowBots.forEach((lowBot) => {
-               console.log(lowBot);
-           })
-
-        
            // If there are bot data present
            if((sizeOfLow && sizeOfMedium && sizeOfIntense) > 0) {
 
@@ -731,7 +724,8 @@ const FairNegotations = (props) => {
 
                         for(const [key, value] of Object.entries(allLowBotData)) {
                             const {name, botCredits, type, numberOfBots} = allLowBotData;
-                            console.log(numberOfBots);
+                            
+                            
 
                             if(name !== undefined && type === 'Low') {
                                 return processLowBotBids();
@@ -926,7 +920,7 @@ const FairNegotations = (props) => {
     <section className = "section--login">
 
           <h1 className = "fn--heading">Choose Your Desired Algorithm Below</h1>
-          <h1>Next Appliance Data</h1>
+        
 
         <div className = "container grid grid--2-cols">
             <button onClick = {chosenEnglishAuctionHandler} className = "auction--btn">Auction Algorithm</button>
