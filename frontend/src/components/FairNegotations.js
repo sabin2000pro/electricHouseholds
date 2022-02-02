@@ -807,49 +807,31 @@ const FairNegotations = (props) => {
                             if(type === BOT_TYPES.MEDIUM && botCredits > 0 && name != null) {
 
                                setTimeout(() => {
-                                   let tempArray = [];
-
+                            
                                 let mediumBotRandomBids = Math.floor(Math.random() * mediumBotBidAvg);
 ;                               let mediumBotCreditsRemaining = parsedMediumBotCredits - mediumBotRandomBids;
                                 let mediumBotCreditsLeft = mediumBotCreditsRemaining;
 
-                                tempArray.push(mediumBotRandomBids);
+                                console.log(`Bot ${name} ${type} number  has ${botCredits} credits initially and placed a bid of ${mediumBotRandomBids} `);
+                                console.log(mediumBotCreditsLeft);
 
-                                console.log(tempArray);
-                                console.log('Last value in temp array');
-
-                                const lastVal = tempArray.slice(-1)[0];
-                                console.log(lastVal);
-
-                                if(numberOfMediumBots > 0) {
-
-                                    let totalMediumBids = mediumBotRandomBids;
-                                    totalMediumBids = totalMediumBids + 1;
-
-                                   
-
-
-                                }
-        
+                            
                                 if(mediumBotCreditsLeft === 0) {
                                     // In the event that medium bots run out of credits
                                 }
 
                                  if(mediumBotCreditsLeft > 0) {
-                                        // If the medium bots still has more than 0 credits left
+                                
+                                    // If the medium bots still has more than 0 credits left
                                 }
 
                                     
                                }, 2000)
 
                             }
-
-                          
-                            
                         }
 
-                      
-
+                        
                       }, 2000);
 
                     }, 2000); 
@@ -912,6 +894,10 @@ const FairNegotations = (props) => {
                 return console.error(err);
             }
         }
+    }
+
+    const processMediumBotBids = async function(convertedBotBid, mediumBotPlacedBid, name) {
+        
     }
 
     const handleBiddingAggressiveness = function(lowBotBidAvg, mediumBotBidAvg, intenseBotBidAvg) {
