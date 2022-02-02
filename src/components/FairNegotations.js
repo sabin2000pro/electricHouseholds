@@ -382,7 +382,7 @@ const FairNegotations = (props) => {
         }
 
     }
-        return `Current Highest User Bid ${maxBid}`;
+        return `Current Highest Bid ${maxBid}`;
     };
 
     const countTotalBids = () => {
@@ -732,6 +732,16 @@ const FairNegotations = (props) => {
 
                     setTimeout(() => {
 
+                        console.log(`First val of user bid`);
+
+                for(let k = 0; k < bidData.length; k++) {
+                       const userBidVal = bidData[k].bid;
+                       const theUserBid = parseInt(userBidVal);
+
+                       console.log(theUserBid);
+
+                      
+                        
                         // Loop through the number of low bots available
                       for(let i = 0; i < numberOfLowBots; i++) {
                           const {name} = allLowBotData;
@@ -767,6 +777,7 @@ const FairNegotations = (props) => {
                           
                         }
                       }
+                    }
 
                       setTimeout(() => {
                           alert(`Now it's the mediium bots turn...`);
