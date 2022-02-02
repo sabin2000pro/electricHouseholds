@@ -45,7 +45,7 @@ const BOT_TYPES = {
 
 let bidData = []; // Array that stores the bid data
 let botBidData = [];
-let botMaxBids = [];
+let allBotBids = [];
 
 let theLowBots = [];
 let theMediumBots = [];
@@ -87,10 +87,6 @@ const FairNegotations = (props) => {
 
     const [botTurn, setBotTurn] = useState(false);
     const [userTurn, setUserTurn] = useState(true);
-
-    const [userTurnOver, setUserTurnOver] = useState(false);
-    const [botTurnOver, setBotTurnOver] = useState(false);
-    
     const [bid, setBid] = useState('');
     const [counterError, setCounterError] = useState(false);
     const [mainRoundOver, setMainRoundOver] = useState(false);
@@ -694,7 +690,7 @@ const FairNegotations = (props) => {
     const botPlaceRandomBid = async function(lowBotData, mediumBotData, intenseBotData) {
 
         try {
-            
+            let lowBotPlacedBid = false;
            const {...allLowBotData} = lowBotData;
            const {...allMediumBotData} = mediumBotData;
            const {...allIntenseBotData} = intenseBotData;
@@ -730,38 +726,51 @@ const FairNegotations = (props) => {
 
             if(!userInputDisabled && botTurn && !userTurn) {
                 
-
                 setTimeout(() => {
-
-                    for(let [key, value] of Object.entries(allLowBotData)) {
-                        const {_id, name, botCredits, type} = allLowBotData;
-                    }
 
                     handleInputBlur();
 
                     setTimeout(() => {
 
+                        // Loop through the number of low bots available
                       for(let i = 0; i < numberOfLowBots; i++) {
+                          const {name} = allLowBotData;
                           let isBetweenAvg = false;
                         
                         let randBid = Math.floor(Math.random() * lowBotBidAvg);
-
                         let lowBotCreditsLeft = parsedLowBotCredits - randBid;
                         let newLowCredits = lowBotCreditsLeft;
+
                         lowBotCreditsLeft = newLowCredits;
                         convertedBotBid = randBid;
+
+                        if(randBid === 0) { // If the random low bot bid is 0
+                            setTimeout(() => {
+                                return window.location.reload(false);
+                            }, 1000)
+                        }
 
                         if(randBid >= 0 && randBid <= lowBotBidAvg) {
                             isBetweenAvg = true;
 
                             if(isBetweenAvg) {
-                            return processLowBotBid(convertedBotBid);
+                                console.log(convertedBotBid);
 
+                                // eslint-disable-next-line no-loop-func
+                                setTimeout(() => {
+                                    lowBotPlacedBid = true;
+                                    processLowBotBid(convertedBotBid, lowBotPlacedBid, name);
+
+                                    
+                                }, 2000)
                             }
                           
                         }
-            
                       }
+
+                      setTimeout(() => {
+                          alert(`Now it's the mediium bots turn...`);
+                      })
 
                     }, 2000); 
 
@@ -789,9 +798,25 @@ const FairNegotations = (props) => {
       }
     }
 
-    const processLowBotBid = async function(convertedBotBid) {
+    const processLowBotBid = async function(convertedBotBid, lowBotPlacedBid, name) {
         try {
-            console.log(`Inside function to send POST request`);
+
+           await axios.post(`http://localhost:5200/api/v1/bids/create-bid`, {bid: convertedBotBid, username: name}).then(response => {
+             
+           if(lowBotPlacedBid) {
+              
+               const bid = response.data.newBid.bid;
+               allBotBids.push(bid);
+
+              
+           }
+               
+
+           }).catch(err => {
+               if(err) {
+                   console.log(err);
+               }
+           })
 
         } 
         
@@ -959,15 +984,6 @@ const FairNegotations = (props) => {
             {roundOneOver && roundNumber === 2 ?<h1 className = "second--pref">User's Second Chosen Preference: {secondPreference}</h1> : null }
             {roundNumber === 3 ? <h1 className = "third--pref">User's Third Chosen Preference: {thirdPreference}</h1> : null}
 
-            {!mainRoundOver ? theLowBots.map((lowBot, key) => {
-                return <div key = {key}>
-                    <h1 className = "first--pref">Low Bot Name : {lowBot.name}</h1>
-                    <h1 className = "first--pref">Low Bot Credits Left : {lowBot.botCredits}</h1>
-                    <h1 className = "first--pref">Number of Low Bots : {lowBot.numberOfBots}</h1>
-
-                </div>
-                   
-            }) : null}
         
             <div className = "container grid grid--2-cols">
 
