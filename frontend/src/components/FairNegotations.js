@@ -691,6 +691,7 @@ const FairNegotations = (props) => {
 
         try {
             let lowBotPlacedBid = false;
+            
            const {...allLowBotData} = lowBotData;
            const {...allMediumBotData} = mediumBotData;
            const {...allIntenseBotData} = intenseBotData;
@@ -715,14 +716,19 @@ const FairNegotations = (props) => {
 
            let lowBotBidAvg = parsedLowBotCredits * 0.10;
            let mediumBotBidAvg = parsedMediumBotCredits * 0.50;
-           let intenseBotBidAvg = parsedIntenseBotCredits;
+           let intenseBotBidAvg = parsedIntenseBotCredits * 0.85;
 
            if(handleBiddingAggressiveness(lowBotBidAvg, mediumBotBidAvg, intenseBotBidAvg)) {
                console.log(`Low Bot Biding Average cannot be bigger than medium and intense`);
            }
         
            theLowBots.push(allLowBotData);
-           console.log(`Low Bot IDS are`);
+           theMediumBots.push(allMediumBotData);
+           theIntenseBots.push(allIntenseBotData);
+
+           console.log(`Array of intense bots`);
+           console.log(theIntenseBots);
+         
          
            if((sizeOfLow && sizeOfMedium && sizeOfIntense) > 0) {
 
@@ -787,19 +793,32 @@ const FairNegotations = (props) => {
                     }
 
                       setTimeout(() => {
-                        // Loop over medium bots
+                        
                         for(let i = 0; i < numberOfMediumBots; i++) {
+                            console.log(numberOfMediumBots);
+
                             const {name, type, botCredits} = allMediumBotData;
 
-                            // If the type is MEDIUM Bot and has > 0 credits. Start to place 2 random bids of given average
                             if(type === BOT_TYPES.MEDIUM && botCredits > 0 && name != null) {
 
                                setTimeout(() => {
-                                    let mediumBotRandomBid = Math.floor(Math.random() * mediumBotBidAvg);
-                                    let mediumBotCreditsRemaining = parsedMediumBotCredits - mediumBotRandomBid;
-                                    let mediumBotCreditsLeft = mediumBotCreditsRemaining;
 
-                                    console.log(`The medium bots have : ${mediumBotCreditsLeft} to lose if they are the biggest ones`);
+                                let mediumBotRandomBids = Math.floor(Math.random() * mediumBotBidAvg);
+;                               let mediumBotCreditsRemaining = parsedMediumBotCredits - mediumBotRandomBids;
+                                let mediumBotCreditsLeft = mediumBotCreditsRemaining;
+
+                                console.log(`Medium bots placed `);
+                                console.log(mediumBotRandomBids);
+
+                                if(mediumBotCreditsLeft === 0) {
+                                    // In the event that medium bots run out of credits
+                                }
+
+                                 if(mediumBotCreditsLeft > 0) {
+                                        // If the medium bots still has more than 0 credits left
+                                }
+
+                                
                                     
                                }, 2000)
 
