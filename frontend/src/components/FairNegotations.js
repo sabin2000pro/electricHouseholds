@@ -669,7 +669,9 @@ const FairNegotations = (props) => {
            const {...allLowBotData} = lowBotData;
            const {...allMediumBotData} = mediumBotData;
            const {...allIntenseBotData} = intenseBotData;
+
            const convertedBotBid = parseInt(bid);
+           const lowBotCounter = parseInt(allLowBotData.numberOfBots);
 
            console.log(allLowBotData);
            console.log(allMediumBotData);
@@ -683,19 +685,20 @@ const FairNegotations = (props) => {
            const parsedMediumBotCredits = parseInt(allMediumBotData.botCredits);
            const parsedIntenseBotCredits = parseInt(allIntenseBotData.botCredits);
 
-           let lowBotCreditsLeft = parsedLowBotCredits;
+           let lowBotCreditsLeft = parsedLowBotCredits - convertedBotBid;
            let newLowCredits = lowBotCreditsLeft;
            lowBotCreditsLeft = newLowCredits;
 
-           let mediumBotCreditsLeft = parsedMediumBotCredits;
+           let mediumBotCreditsLeft = parsedMediumBotCredits - convertedBotBid;
+           let newMediumCredits = mediumBotCreditsLeft;
+           mediumBotCreditsLeft = newMediumCredits;
 
-
-          
            let lowBotBidAvg = parsedLowBotCredits * 0.10;
            let mediumBotBidAvg = parsedMediumBotCredits * 0.50;
            let intenseBotBidAvg = parsedIntenseBotCredits;
 
-           const lowBotCounter = parseInt(allLowBotData.numberOfBots);
+
+           botBidData.push(lowBotCounter);
            console.log(`Number of low bots : `);
            console.log(lowBotCounter);
 
@@ -715,7 +718,6 @@ const FairNegotations = (props) => {
                         console.log(`Number of low bots in the object : `);
 
                         for(const [key, value] of Object.entries(allLowBotData)) {
-
                             const {name, botCredits, type, numberOfBots} = allLowBotData;
                             console.log(numberOfBots);
 
