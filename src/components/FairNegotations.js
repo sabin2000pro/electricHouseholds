@@ -807,12 +807,11 @@ const FairNegotations = (props) => {
               
                const bid = response.data.newBid.bid;
                allBotBids.push(bid);
-
-              
            }
                
 
            }).catch(err => {
+               
                if(err) {
                    console.log(err);
                }
@@ -821,21 +820,22 @@ const FairNegotations = (props) => {
         } 
         
         catch(err) {
-            if(err) {
 
+            if(err) {
+                return console.error(err);
             }
         }
     }
 
     const handleBiddingAggressiveness = function(lowBotBidAvg, mediumBotBidAvg, intenseBotBidAvg) {
         try {
+
             return (lowBotBidAvg < mediumBotBidAvg) && (mediumBotBidAvg < intenseBotBidAvg) && (lowBotBidAvg < intenseBotBidAvg);
         } 
         
         catch(err) {
 
             if(err) {
-
                 console.error(err);
                 throw new Error(err);
             }
