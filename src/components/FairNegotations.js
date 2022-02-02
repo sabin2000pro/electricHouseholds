@@ -926,6 +926,7 @@ const FairNegotations = (props) => {
     <section className = "section--login">
 
           <h1 className = "fn--heading">Choose Your Desired Algorithm Below</h1>
+          <h1>Next Appliance Data</h1>
 
         <div className = "container grid grid--2-cols">
             <button onClick = {chosenEnglishAuctionHandler} className = "auction--btn">Auction Algorithm</button>
