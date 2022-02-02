@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom';
 import RegisterCard from '../Admin/RegisterCard';
 import axios from 'axios';
 import Modal from '../../UI/Modal';
+import FairNegotiations from '../FairNegotations';
 
 let DEFAULT_TEXT = {
     preferenceHeader: 'Your Preferences'
@@ -126,7 +127,7 @@ const CreatePreference = (props) => {
     // Function to process user preference.
     const processPreference = async () => { 
         let prefSubmitted;   
-        console.log(chosenAppliance);
+        
        const {data} = await axios.post(`http://localhost:5200/api/v1/preferences/create-preference`, {username: enteredUsername, appliance: chosenAppliance, firstPreference: chosenFirstPreference, secondPreference: chosenSecondPreference , thirdPreference: chosenThirdPreference}); 
        setModalShown({title: 'Preferences', message: 'Your Preferences Have Been Submitted', showForm: false, showDefaultBtn: true});
 
@@ -207,13 +208,14 @@ const CreatePreference = (props) => {
 
                         firstApplianceData.push(firstAppliance);
                         nextApplianceData.push(nextApplianceAvailable);
-                        lastApplianceData.push(lastAppliance)
+                        lastApplianceData.push(lastAppliance);
 
                         setNextApplianceData(nextApplianceData);
                         setNextApplianceDataInserted(true);
 
                         setLastApplianceData(lastApplianceData);
                         setLastApplianceDataInserted(true);
+
 
                          setTimeout(() => { 
 
@@ -418,8 +420,6 @@ const CreatePreference = (props) => {
 
 
            <section className = "section--yourpreferences">
-           
-
 
            <div className = "container grid grid--2-cols">
            {modalShown && <Modal onClick = {modalHandler} showSubmitBtn = {modalShown.showSubmitBtn} showDefaultBtn = {modalShown.showDefaultBtn} changeHandler = {commentInputsHandler} onBtnClick = {modalHandler} onSubmitBtnClick = {commentFormHandler} showInputs = {modalShown.showInputs} title = {modalShown.title} message = {modalShown.message} commTitle = {modalShown.commTitle} username = {modalShown.username} reason = {modalShown.reason} description = {modalShown.description} /> }
@@ -440,10 +440,9 @@ const CreatePreference = (props) => {
           {!nextApplianceDataInserted ?  <select onChange = {(e) => {setChosenAppliance(e.target.value)}} value = {chosenAppliance} className = "box">
           <option>Select Appliance</option>
 
-
-        {appliances.map((appliance, key) => {
-            return <option key = {key}>{appliance.name}</option>
-        })}
+            {appliances.map((appliance, key) => {
+                return <option key = {key}>{appliance.name}</option>
+            })}
 
         </select> : nextApplianceData.map((nextAppliance, key) => {
 
@@ -451,13 +450,12 @@ const CreatePreference = (props) => {
             
                 <option>Select Appliance</option>
                 <option key = {key}>{nextAppliance}</option>
+
             
             </select>
-            })}
+        })};
 
 
-        
-         
         </div>
 
         <div className = "morningslot--box">
