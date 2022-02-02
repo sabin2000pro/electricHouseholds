@@ -26,12 +26,17 @@ let bidData = []; // Array that stores the bid data
 let botBidData = [];
 let botMaxBids = [];
 
+let theLowBots = [];
+let theMediumBots = [];
+let theIntenseBots = [];
+
+
 const FairNegotations = (props) => {
 
     let location = useLocation();
     let history = useHistory();
-
     const {username, appliance, firstPreference, secondPreference, thirdPreference} = location.state.preference;
+
     const [auctionStarted, setAuctionStarted] = useState(false);
     const [roundNumber, setRoundNumber] = useState(1);
     const [timerRunning, setTimerRunning] = useState(false);
@@ -697,8 +702,14 @@ const FairNegotations = (props) => {
            let mediumBotBidAvg = parsedMediumBotCredits * 0.50;
            let intenseBotBidAvg = parsedIntenseBotCredits;
 
+           if(handleBiddingAggressiveness(lowBotBidAvg, mediumBotBidAvg, intenseBotBidAvg)) {
+               console.log(`Low Bot Biding Average cannot be bigger than medium and intense`);
+           }
+
            console.log(`Number of low bots : `);
            console.log(lowBotCounter);
+
+           theLowBots.push(allLowBotData);
 
         
            // If there are bot data present
@@ -712,12 +723,11 @@ const FairNegotations = (props) => {
                     alert(`Bots turn starting soon...`);
 
                     setTimeout(() => {
-                        alert(`Bot turn starting now`);
+                        alert(`Low Bot turn starting now`);
 
-                        console.log(`Number of low bots in the object : `);
+                        console.log(`There are low bots in the object : `);
 
                         for(const [key, value] of Object.entries(allLowBotData)) {
-
                             const {name, botCredits, type, numberOfBots} = allLowBotData;
                             console.log(numberOfBots);
 
@@ -728,7 +738,7 @@ const FairNegotations = (props) => {
 
                     }, 2000); 
 
-                    return processRemainingBotData(allMediumBotData, allIntenseBotData);
+                    return processRemainingBotData(allMediumBotData, allIntenseBotData, sizeOfMedium, parsedMediumBotCredits, mediumBotCreditsLeft);
 
                 }, 2000);
             }
@@ -766,13 +776,43 @@ const FairNegotations = (props) => {
                 throw new Error(someErrMsg);
             }
       }
+
+      finally {
+          alert(`Error here processed gfracefully`);
+      }
     }
 
-    const processRemainingBotData = function(allMediumBotData, allIntenseBotData) {
-        console.log(`Inside process remaining bot data`);
-
-        console.log(allMediumBotData);
+    const handleBiddingAggressiveness = function(lowBotBidAvg, mediumBotBidAvg, intenseBotBidAvg) {
+        try {
+            return (lowBotBidAvg < mediumBotBidAvg) && (mediumBotBidAvg < intenseBotBidAvg) && (lowBotBidAvg < intenseBotBidAvg);
+        } 
         
+        catch(err) {
+
+            if(err) {
+
+                console.error(err);
+                throw new Error(err);
+            }
+        }
+
+        finally {
+           return console.log(`Bidding Aggressiveness Errors Dealt With`);
+        }
+    }
+
+    const processRemainingBotData = function(allMediumBotData, allIntenseBotData, sizeOfMedium, parsedMediumBotCredits, mediumBotCreditsLeft) {
+        try {
+
+        } 
+        
+        catch(err) {
+
+        }
+
+        finally {
+            alert(`Error processed gracefully`);
+        }
     }
 
     const processLowBotBids = function() {
@@ -932,12 +972,13 @@ const FairNegotations = (props) => {
 
                     <div className = "bid--container">
 
-                        <label className = "bid--lbl">Bid</label>
-
+                        
+                    <label className = "bid--lbl">Bid</label>
                         {userInputDisabled ? 
+                    
                         
                         <input value = {bid} onChange = {(event) => {setBid(event.target.value)}} placeholder = "Enter your Bid" id = "bid" type = "hidden" /> :
-
+                        
                         <input value = {bid} onChange = {(event) => {setBid(event.target.value)}} placeholder = "Enter your Bid" id = "bid" type = "text"/>
 
 }
