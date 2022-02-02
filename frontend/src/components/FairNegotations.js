@@ -706,10 +706,13 @@ const FairNegotations = (props) => {
                console.log(`Low Bot Biding Average cannot be bigger than medium and intense`);
            }
 
-           console.log(`Number of low bots : `);
-           console.log(lowBotCounter);
-
+        
            theLowBots.push(allLowBotData);
+
+           console.log(`Every low bot`)
+           theLowBots.forEach((lowBot) => {
+               console.log(lowBot);
+           })
 
         
            // If there are bot data present
@@ -962,6 +965,13 @@ const FairNegotations = (props) => {
 
             {roundOneOver && roundNumber === 2 ?<h1 className = "second--pref">User's Second Chosen Preference: {secondPreference}</h1> : null }
             {roundNumber === 3 ? <h1 className = "third--pref">User's Third Chosen Preference: {thirdPreference}</h1> : null}
+
+            {!mainRoundOver ? theLowBots.map((lowBot, key) => {
+                return <div key = {key}>
+                    <h1 className = "first--pref">Low Bot Name : {lowBot.name}</h1>
+                </div>
+                   
+            }) : null}
         
             <div className = "container grid grid--2-cols">
 
