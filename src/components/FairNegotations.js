@@ -30,7 +30,6 @@ let theLowBots = [];
 let theMediumBots = [];
 let theIntenseBots = [];
 
-
 const FairNegotations = (props) => {
 
     let location = useLocation();
@@ -883,7 +882,7 @@ const FairNegotations = (props) => {
         }
     }
 
-    const findMaxBidBetween = function() {
+    const findMaxBidBetweenBotAndUser = function() {
 
         try {
 
@@ -943,6 +942,7 @@ const FairNegotations = (props) => {
         <div className = "appliance--data">
 
         <div>
+            <h1>Username: {username} </h1>
             <h1>Bidding Seconds Remaining: {seconds}</h1>
 
             <h1>{findMaxBid()}</h1>
@@ -969,6 +969,7 @@ const FairNegotations = (props) => {
             {!mainRoundOver ? theLowBots.map((lowBot, key) => {
                 return <div key = {key}>
                     <h1 className = "first--pref">Low Bot Name : {lowBot.name}</h1>
+                    <h1 className = "first--pref">Low Bot Credits Left : {lowBot.botCredits}</h1>
                 </div>
                    
             }) : null}
