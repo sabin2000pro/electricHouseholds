@@ -510,7 +510,7 @@ const FairNegotations = (props) => {
 
         try {
 
-            return !(convertedBid > virtualCredits);
+            return (convertedBid > virtualCredits);
         } 
         
         catch(err) {
@@ -638,21 +638,22 @@ const FairNegotations = (props) => {
             userCreditsLeft = {creditsLeft, openingBid};
             openingBid = userCreditsLeft;
 
-            if(!handleInvalidBidSubmission(convertedBid, virtualCredits)) {
-               return setTimeout(() => {
-                    alert(`Invalid`)
-               }, 1000);
+            if(convertedBid > virtualCredits) {
+                
+                alert(`Yoiu cannot do this`);
+                return history.push('/your-preferences')
             }
 
-
-            if(handleInvalidBidSubmission(convertedBid, virtualCredits)) {
+            if(convertedBid < virtualCredits) {
                 return creditData.map((credit) => {
 
                     const {_id} = credit; // Extract ID
                      return updateNewBid(_id, virtualCredits);
                  });
-             } 
-             }
+            }
+        }
+
+          
             
         catch(error) {
 
@@ -688,7 +689,6 @@ const FairNegotations = (props) => {
 
      const processBotDataBeforeTurn = function(lowBotData, mediumBotData, intenseBotData) {
           
-
        return botPlaceRandomBid(lowBotData, mediumBotData, intenseBotData);
      }
 
@@ -696,7 +696,7 @@ const FairNegotations = (props) => {
 
         try {
 
-           
+        
             let masterBotBids = {};
             let lowBotPlacedBid = false;
             
@@ -779,8 +779,6 @@ const FairNegotations = (props) => {
                                    allTheBidsData = [...allBotData];
 
                                     masterBotBids = {...allTheBidsData};
-                                  
-                                    console.log(`preparing to finx max value`);
                                     findMaxBetweenLowBot(allTheBidsData);
                                    
                                    break;
