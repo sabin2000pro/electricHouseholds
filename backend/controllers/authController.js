@@ -97,7 +97,6 @@ module.exports.forgotPassword = catchAsync(async (request, response, next) => { 
     const resetMessage = `<h1> You have requested a new password reset</h1>
         <p> Please go to this link to reset your password </p>
         <a href = ${resetPasswordURL} clicktracking = off>${resetPasswordURL}</a>`
-
     
     await sendEmail({to: admin.emailAddress, subject: 'Password Reset Request', text: resetMessage});
     return response.status(ok).json({success: true, data: "E-mail sent"});
