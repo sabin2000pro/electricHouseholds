@@ -467,30 +467,7 @@ const FairNegotations = (props) => {
     const processNullCredits = async (convertedBid, virtualCredits) => {
         try {
 
-            if(handleInvalidBidSubmission(convertedBid, virtualCredits)) {
-
-                return setTimeout(() => {
-                    window.location.reload(false);
-                }, 2000);
-            }
-    
-           else if(virtualCredits < FLAGS.DEFAULT) {
-                alert(`You are out of credits. STOP`);
-                setOutOfCredits(true);
-
-                clearFields();
-
-                return setTimeout(() => {                 
-                    setSeconds(FLAGS.DEFAULT);
-            
-                    return history.push("/results");
-
-                }, 1000);
-            }
-
-            else {
-                // Otherwise reload page
-            }
+           
 
         }
 
@@ -626,11 +603,17 @@ const FairNegotations = (props) => {
             userCreditsLeft = {creditsLeft, openingBid};
             openingBid = userCreditsLeft;
 
-            // Store the max user bid as the opening bid
+            if(handleInvalidBidSubmission(convertedBid, virtualCredits)) {
 
-            console.log(`opening bid : `);
-            console.log(openingBid);
+                return setTimeout(() => {
+                    clearFields();
+                         window.location.reload(false);
+                }, 1000);
+            }
 
+
+            // Check null credits remaining
+    
             return creditData.map((credit) => {
 
                const {_id} = credit; // Extract ID
@@ -651,7 +634,6 @@ const FairNegotations = (props) => {
     const updateNewBid = function(_id, virtualCredits) {
 
         try {
-
             axios.put(`http://localhost:5200/api/v1/credits/update-credits/${_id}`, {_id: _id, virtualCredits: virtualCredits}).then(data => {console.log(data)}).catch(err => {console.log(err)});
             setUpdatedNewBid(true);
             alert(`Updated Data Virutal Credits`);
@@ -910,7 +892,7 @@ const FairNegotations = (props) => {
 
                         
                     }
-                    
+
                     return processIntenseBots(allIntenseBotData, numberOfIntenseBots)
                 
 
