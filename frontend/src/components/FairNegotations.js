@@ -59,6 +59,7 @@ const FairNegotations = (props) => {
     let {username, appliance, firstPreference, secondPreference, thirdPreference, nextAppliance} = location.state.preference;
 
     const [auctionStarted, setAuctionStarted] = useState(false);
+    const [botTypes, setBotTypes] = useState({LOW: 'Low', MEDIUM: 'Medium', INTENSE: 'Intense'})
     const [roundNumber, setRoundNumber] = useState(1);
     const [timerRunning, setTimerRunning] = useState(false);
     const [seconds, setSeconds] = useState(START_TIMER);
@@ -729,10 +730,8 @@ const FairNegotations = (props) => {
            theMediumBots.push(allMediumBotData);
            theIntenseBots.push(allIntenseBotData);
 
-           console.log(`Array of intense bots`);
-           console.log(theIntenseBots);
-         
            if((sizeOfLow && sizeOfMedium && sizeOfIntense) > 0) {
+               let creditsRemainingObj = {};
 
             if(!userInputDisabled && botTurn && !userTurn) {
                 
@@ -742,20 +741,22 @@ const FairNegotations = (props) => {
 
                     setTimeout(() => {
 
-                        console.log(`First val of user bid`);
-
                 for(let k = 0; k < bidData.length; k++) {
+
                        const userBidVal = bidData[k].bid;
                        const theUserBid = parseInt(userBidVal);
                        
                         // Loop through the number of low bots available
                       for(let i = 0; i < numberOfLowBots; i++) {
+
                           const {name} = allLowBotData;
                           let isBetweenAvg = false;
                         
                         let randBid = Math.floor(Math.random() * lowBotBidAvg);
                         let lowBotCreditsLeft = parsedLowBotCredits - randBid;
                         let newLowCredits = lowBotCreditsLeft;
+
+                        creditsRemainingObj = {lowBotCreditsLeft};
                         
                         // If there are more than 1 low bot, find the combined bids
                         if(numberOfLowBots > 1) {
@@ -776,9 +777,10 @@ const FairNegotations = (props) => {
                                 setRoundNumber(roundNumber + 1); // Start next round;
                                 setTheNextAppliance(nextAppliance);
                                
-                        
                                 // Send PUT request to reset virtual credits back to initial value
                                 // Get the next appliance
+                                
+                               
 
                             }, 2000);
                           
@@ -812,6 +814,7 @@ const FairNegotations = (props) => {
                     }
 
                       setTimeout(() => {
+                          let medBotCreditsRemain = {};
 
                         for(let index = 0; index < bidData.length; index++) {
                            const userBid = parseInt(bidData[index].bid);
@@ -821,10 +824,22 @@ const FairNegotations = (props) => {
                             const {name, type, botCredits} = allMediumBotData;
   
                             let mediumBotRandomBids = Math.floor(Math.random() * mediumBotBidAvg);
-                              let mediumBotCreditsRemaining = parsedMediumBotCredits - mediumBotRandomBids;
+                                let mediumBotCreditsRemaining = parsedMediumBotCredits - mediumBotRandomBids;
 
                                 let mediumBotCreditsLeft = mediumBotCreditsRemaining;
                                 convertedBotBid = mediumBotRandomBids;
+
+                                medBotCreditsRemain = {mediumBotCreditsLeft};
+
+                                console.log(`Current bot credits remaining. That are`);
+                                console.log(creditsRemainingObj);
+
+                                console.log(`Medium bot has : `);
+                                console.log(medBotCreditsRemain);
+
+                                const combinedCredLeft = Object.assign(creditsRemainingObj, medBotCreditsRemain);
+                                console.log(`The combined credits left : `);
+                                console.log(combinedCredLeft);
 
                                 // Check first to see if the user bid placed is < than any of the Medium Bot Bids
                                 if(userBid < mediumBotRandomBids) {
@@ -834,7 +849,7 @@ const FairNegotations = (props) => {
 
                                 }
 
-                            if(type === BOT_TYPES.MEDIUM && botCredits > 0 && name != null && userBid > mediumBotRandomBids) {
+                            if(type === botTypes.MEDIUM && botCredits > 0 && name != null && userBid > mediumBotRandomBids) {
                               
                                setTimeout(() => {
                     
@@ -1096,7 +1111,7 @@ const FairNegotations = (props) => {
 
             <h1>Current Round Number : {roundNumber}</h1>
             <h2>User's Initial Appliance : {appliance}</h2>
-            {roundOneOver ? undefined : <h2>Next Appliance: {theNextAppliance}</h2>}
+            {roundOneOver && roundNumber === 2 ?  <h2>Next Appliance: {nextAppliance}</h2> :undefined }
            
 
             {!mainRoundOver ? <h1 className = "first--pref">User's First Chosen Preference : {firstPreference}</h1> : null }
