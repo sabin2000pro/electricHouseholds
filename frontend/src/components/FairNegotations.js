@@ -746,20 +746,25 @@ const FairNegotations = (props) => {
 
                         // If the USER DOES NOT PLACE A BID HIGHER THAN THE LOW BOT, START THE MEDIUM BOT
                         if(theUserBid < randBid) {
+                            const someArray = [];
 
                             alert(`You have lost the auction in the first round agafinst the low bot`);
-                            console.log(`The user has remaining credits to use: ${userCreditsLeft}`);
+                            setRoundNumber(roundNumber + 1);
+                            console.log(`The user has remaining credits to use for round: ${roundNumber} `);
 
                             for(const [userKey, userValue] of Object.entries(userCreditsLeft)) {
 
-                                const creditsLeft = userValue;
-                                console.log(creditsLeft);
+                                if(userKey !== undefined && userValue !== undefined) { // if a user key exists
+                                    const creditsLeft = userValue;
+                                    
+
+                                    console.log(creditsLeft);
+                                }
+                               
                             }
 
-                            for(const [botKey, botValue] of Object.entries(allLowBotData)) {
-
-                            }
-
+                            console.log(`The winner after ROUND 1 IS THE LOW BOT WITH BID PLACED: `);
+                            console.log(randBid);
                             return;
                         }
 
