@@ -286,35 +286,48 @@ const FairNegotations = (props) => {
 
       // Fetches the AI bot data from the backend
       const fetchBotData = async function() {
+
           try {
 
             return await axios.get(`http://localhost:5200/api/v1/bot/get-bots`).then(response => {
+                let availableTypesOfBots = [botTypes.LOW, botTypes.MEDIUM, botTypes.INTENSE];
+                let redirectPath = '/your-preferences';
 
                 const theBotData = response.data.allBots;
                 const botDataLength = response.data.allBots.length;
-                const availableTypesOfBots = response.data.allBots.type;
-
+           
                 if(botDataLength === 0) {
                     setTimeout(() => {
                         alert(`You are not allowed to start bidding because no bots are found`)
                     }, 2000)
                 }
 
-                else if(botDataLength !== 0) {
+                 if(botDataLength !== 0) {
+
                     setBotData(theBotData);
 
-                    console.log(`Logger after setting the bot data`);
-                    console.log(theBotData);
-                }
+                    for(let i = 0; i < theBotData.length - 1; i++) {
+                        const botTypes = theBotData[i].type;
 
-                else {
+                        if(!botTypes.includes(availableTypesOfBots[0]) && !botTypes.includes(availableTypesOfBots[1]) && !botTypes.includes(availableTypesOfBots[2])) {
+
+                            setTimeout(() => {
+                                alert(`We could not find one of the bots. Sorry for the incovenience`);
+                                return history.push(redirectPath);
+                            }, 2000)
+
+                        }
+                    }
+
                     return response.data.allBots.forEach((botDataVal) => { // For every bot in the array
 
                         const {_id, name, botCredits, type, numberOfBots} = botDataVal;
                         return botBidData.push({_id, name, botCredits, type, numberOfBots});
-                    });     
+                    });  
+
                 }
 
+               
             });
 
           } 
