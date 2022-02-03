@@ -219,7 +219,7 @@ const CreatePreference = (props) => {
                             
                             firstApplianceData.push(firstAppliance);
                             nextApplianceData.push(nextApplianceObj);
-                            lastApplianceData.push(lastAppliance);
+                            lastApplianceData.push(lastApplianceObj);
 
                             setNextApplianceDataInserted(true);
                             setLastApplianceData(lastApplianceData);
@@ -244,11 +244,7 @@ const CreatePreference = (props) => {
                       
                 }
 
-                
-
-               
-               
-
+            
             }, 2000)
 
             // 1. Reload page after 3 seconds
