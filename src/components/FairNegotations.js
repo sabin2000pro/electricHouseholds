@@ -4,7 +4,6 @@ import RegisterCard from './Admin/RegisterCard';
 import axios from 'axios';
 import './FairNegotiations.css';
 
-
 let DELAY = 1200;
 let START_TIMER = 60;
 let REFRESH_SECONDS = 30000;
@@ -20,12 +19,12 @@ let bidData = []; // Array that stores the bid data
 let botBidData = [];
 let allBotBids = [];
 
-let theLowBots = [];
-let theMediumBots = [];
-let theIntenseBots = [];
+let theLowBots = []; // Array of low bots
+let theMediumBots = []; // Array of medium bots
+let theIntenseBots = []; // Array of intense bots
 
-const allCombinedCreditsLeft = [];
-let allBotData = [];
+let allBotData = []; // All of the bot data after bidding
+let allTheBidsData = [];
 
 const FairNegotations = (props) => {
 
@@ -753,27 +752,24 @@ const FairNegotations = (props) => {
                         if(theUserBid < randBid) {
 
                             alert(`You have lost the auction in the first round agafinst the low bot`);
-                            setRoundNumber(roundNumber + 1);
-                            console.log(`The user has remaining credits to use for round: ${roundNumber} `);
-                          
-                            allBotData.push({...creditsRemainingObj, name});
                             
-                            allBotData.forEach((value) => {
-                                console.log(value);
-                            })
-
                             for(const [userKey, userValue] of Object.entries(userCreditsLeft)) {
 
-                                if(userKey !== undefined && userValue !== undefined && userCreditsLeft > 0) { // if a user key exists
-                                    console.log(userCreditsLeft);
-                        
+                                if(userKey !== undefined && userValue !== undefined) { // if a user key exists
+                                
+                                   allBotData.push({...creditsRemainingObj, name, theDifference, userCreditsLeft, theUserBid});
+                                   console.log(`ALL BOT DATA AFTER LOW BOT : `);
+
+                                   allTheBidsData = [...allBotData];
+                                   
+                            
+                                   // Find the maximum bid placed between the user and low bot difference
+                                   
+                                  
+                                   break;
+                                 
                                 }
-                               
                             }
-
-                            console.log(`The winner after ROUND 1 IS THE LOW BOT WITH BID PLACED: `);
-                            console.log(randBid);
-
                             // BEGIN NEXT ROUND
                            
                             setTimeout(() => {
@@ -830,13 +826,14 @@ const FairNegotations = (props) => {
                             const {name, type, botCredits} = allMediumBotData;
   
                             let mediumBotRandomBids = Math.floor(Math.random() * mediumBotBidAvg);
-                                let mediumBotCreditsRemaining = parsedMediumBotCredits - mediumBotRandomBids;
-                                let mediumBotCreditsLeft = mediumBotCreditsRemaining;
+                            let mediumBotCreditsRemaining = parsedMediumBotCredits - mediumBotRandomBids;
+                            let mediumBotCreditsLeft = mediumBotCreditsRemaining;
 
-                                convertedBotBid = mediumBotRandomBids;
-                                medBotCreditsRemain = {mediumBotCreditsLeft};
-                                let medBotDifference = parsedMediumBotCredits - medBotCreditsRemain.mediumBotCreditsLeft;
+                            convertedBotBid = mediumBotRandomBids;
+                            medBotCreditsRemain = {mediumBotCreditsLeft};
+                            let medBotDifference = parsedMediumBotCredits - medBotCreditsRemain.mediumBotCreditsLeft;
 
+                                console.log(`The Medium Bot Placed a bid of : ${mediumBotRandomBids}. You have lost against the BOT`);
                             
                                 if(mediumBotRandomBids > userBid) {
                                     console.log(`The medium bot placed a higher bid...`);
@@ -844,15 +841,24 @@ const FairNegotations = (props) => {
 
                                 if(userBid < mediumBotRandomBids) {
                                      alert(`You have now lost against the medium bot`);
+
+                                     allBotData.push({...medBotCreditsRemain, medBotDifference, userCreditsLeft, userBid});
+                                     allTheBidsData = [...allBotData, type];
+
+                                      allTheBidsData.forEach((finalData) => {
+                                    console.log(`Final Data after pushes : `);
+                                    console.log(finalData);
+                                })
+
                                     
                                      break;
                                 }
 
-                                // After losing against bot, check to see if there are any other types of bots left in the array
-                                // If no more bots after medium, reload the page and reset everything
+                               
+                                // After losing against the MEDIUM bot, check to see if there are any other types of bots left in the array
+                                // Check to see if the array includes bots of type Low, Medium or Intense. If found intense, start the intense bidding
+                                // Otherwise reload page and reset everything
                                 
-
-
                                 if(type === botTypes.MEDIUM && botCredits > 0 && name != null && (userBid > mediumBotRandomBids)) {
                               
                                     setTimeout(() => {
@@ -872,11 +878,9 @@ const FairNegotations = (props) => {
                     }
 
                     
-                     // After processing Low nad Medium Bots, store all of the data from a main big object, destructure all of its properties, put them into an array
+                     // After processing Low and Medium Bots, store all of the data from a main big object, destructure all of its properties, put them into an array
                     // Loop through the array, check to see if the name of the bots does not include any one of Low, Medium or Intense
                     // If not found, then stop the loop and show the results screen because there are no more bots to place bids
-
-
 
                     console.log(`Now processing the intense bots... Final Round`);
                     processIntenseBots(allIntenseBotData, numberOfIntenseBots)
