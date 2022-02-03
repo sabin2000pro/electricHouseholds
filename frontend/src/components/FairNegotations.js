@@ -757,6 +757,10 @@ const FairNegotations = (props) => {
                         let newLowCredits = lowBotCreditsLeft;
 
                         creditsRemainingObj = {lowBotCreditsLeft};
+                        let theDifference = allLowBotData.botCredits - creditsRemainingObj.lowBotCreditsLeft;
+
+                        console.log(`The low bot is prepared to lose the number of credits below if the highest: `);
+                        console.log(theDifference);
                         
                         // If there are more than 1 low bot, find the combined bids
                         if(numberOfLowBots > 1) {
@@ -778,14 +782,10 @@ const FairNegotations = (props) => {
                                 setTheNextAppliance(nextAppliance);
                                
                                 // Send PUT request to reset virtual credits back to initial value
-                                // Get the next appliance
-                                
-                               
 
                             }, 2000);
                           
                         }
-
 
                         if(randBid === 0) { // If the random low bot bid is 0
                             setTimeout(() => {
@@ -828,30 +828,23 @@ const FairNegotations = (props) => {
 
                                 let mediumBotCreditsLeft = mediumBotCreditsRemaining;
                                 convertedBotBid = mediumBotRandomBids;
-
                                 medBotCreditsRemain = {mediumBotCreditsLeft};
 
-                                console.log(`Current bot credits remaining. That are`);
-                                console.log(creditsRemainingObj);
-
-                                console.log(`Medium bot has : `);
-                                console.log(medBotCreditsRemain);
-
+                                let medBotDifference = parsedMediumBotCredits - medBotCreditsRemain.mediumBotCreditsLeft;
                                 const combinedCredLeft = Object.assign(creditsRemainingObj, medBotCreditsRemain);
-                                console.log(`The combined credits left : `);
-                                console.log(combinedCredLeft);
 
                                 // Check first to see if the user bid placed is < than any of the Medium Bot Bids
                                 if(userBid < mediumBotRandomBids) {
-
-                                    console.log(`Current round number : ${roundNumber}`)
-                                    displayWinner();
-
+                                    alert(`You have lost against the medium bot`);
+                                    break;   
                                 }
 
                             if(type === botTypes.MEDIUM && botCredits > 0 && name != null && userBid > mediumBotRandomBids) {
                               
                                setTimeout(() => {
+                                    // Find the maximum bid placed and show who the winner was with what bid was placed.
+                                // The highest bid placed gets the timeslot and delete it from the array and store the remaining credits left.
+
                     
                                 if(mediumBotRandomBids !== 0) {
                                   return processMediumBotBids(mediumBotRandomBids, name, type, mediumBotCreditsLeft)
