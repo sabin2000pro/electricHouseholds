@@ -25,6 +25,7 @@ let theMediumBots = [];
 let theIntenseBots = [];
 
 const allCombinedCreditsLeft = [];
+let allBotData = [];
 
 const FairNegotations = (props) => {
 
@@ -416,6 +417,7 @@ const FairNegotations = (props) => {
                     }
 
                     else {
+
                         return submitBid(openingBid, virtualCredits);
                     }
 
@@ -577,7 +579,7 @@ const FairNegotations = (props) => {
                      bidData.push({bid});
 
                      const smallestBid = findMinBid(bid);
-                     handleBidSubmission(convertedBid, virtualCredits);
+                     handleBidSubmission(convertedBid, virtualCredits, openingBid);
                      
                      return smallestBid;
  
@@ -614,7 +616,7 @@ const FairNegotations = (props) => {
         return setBotTurn(true);        
     }
 
-    const handleBidSubmission = async function(convertedBid, virtualCredits) {
+    const handleBidSubmission = async function(convertedBid, virtualCredits, openingBid) {
 
         try {
         
@@ -624,7 +626,13 @@ const FairNegotations = (props) => {
             let newResult = creditsLeft;
             virtualCredits = newResult;
         
-            userCreditsLeft = {creditsLeft};
+            userCreditsLeft = {creditsLeft, openingBid};
+            openingBid = userCreditsLeft;
+
+            // Store the max user bid as the opening bid
+
+            console.log(`opening bid : `);
+            console.log(openingBid);
 
             return creditData.map((credit) => {
 
@@ -747,12 +755,18 @@ const FairNegotations = (props) => {
                             alert(`You have lost the auction in the first round agafinst the low bot`);
                             setRoundNumber(roundNumber + 1);
                             console.log(`The user has remaining credits to use for round: ${roundNumber} `);
+                          
+                            allBotData.push({...creditsRemainingObj, name});
+                            
+                            allBotData.forEach((value) => {
+                                console.log(value);
+                            })
 
                             for(const [userKey, userValue] of Object.entries(userCreditsLeft)) {
 
-                                if(userKey !== undefined && userValue !== undefined) { // if a user key exists
-                                   
-                                   console.log(userCreditsLeft);
+                                if(userKey !== undefined && userValue !== undefined && userCreditsLeft > 0) { // if a user key exists
+                                    console.log(userCreditsLeft);
+                        
                                 }
                                
                             }
@@ -777,9 +791,7 @@ const FairNegotations = (props) => {
                             return;
                         }
 
-                     
-
-                        if(randBid === 0) { // If the random low bot bid is 0
+                        if(randBid === 0) { // If the random low bot bid is 0 reload the page
 
                             setTimeout(() => {
                                 return window.location.reload(false);
@@ -825,12 +837,20 @@ const FairNegotations = (props) => {
                                 medBotCreditsRemain = {mediumBotCreditsLeft};
                                 let medBotDifference = parsedMediumBotCredits - medBotCreditsRemain.mediumBotCreditsLeft;
 
-                                console.log(`The medium bot placed...`);
-                                console.log(mediumBotRandomBids);
-
+                            
                                 if(mediumBotRandomBids > userBid) {
                                     console.log(`The medium bot placed a higher bid...`);
                                 }
+
+                                if(userBid < mediumBotRandomBids) {
+                                     alert(`You have now lost against the medium bot`);
+                                    
+                                     break;
+                                }
+
+                                // After losing against bot, check to see if there are any other types of bots left in the array
+                                // If no more bots after medium, reload the page and reset everything
+                                
 
 
                                 if(type === botTypes.MEDIUM && botCredits > 0 && name != null && (userBid > mediumBotRandomBids)) {
@@ -856,9 +876,10 @@ const FairNegotations = (props) => {
                     // Loop through the array, check to see if the name of the bots does not include any one of Low, Medium or Intense
                     // If not found, then stop the loop and show the results screen because there are no more bots to place bids
 
+
+
                     console.log(`Now processing the intense bots... Final Round`);
                     processIntenseBots(allIntenseBotData, numberOfIntenseBots)
-     
                 
                         
                     }, 2000);

@@ -208,8 +208,8 @@ const CreatePreference = (props) => {
 
                     setTimeout(() => {
                         const firstAppliance = applianceNames[i];
-
                         const nextApplianceAvailable = applianceNames[i + 1];
+
                         const lastAppliance = applianceNames.slice(-1)[0];
                         const applianceIndexes = applianceNames.indexOf(nextApplianceAvailable);
 
