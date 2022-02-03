@@ -289,18 +289,31 @@ const FairNegotations = (props) => {
           try {
 
             return await axios.get(`http://localhost:5200/api/v1/bot/get-bots`).then(response => {
-                const theBotData = response.data.allBots;
 
-                if(!theBotData) { // if no bot data is found
-                    alert(`No bot data found unfortunately!`)
+                const theBotData = response.data.allBots;
+                const botDataLength = response.data.allBots.length;
+                const availableTypesOfBots = response.data.allBots.type;
+
+                if(botDataLength === 0) {
+                    setTimeout(() => {
+                        alert(`You are not allowed to start bidding because no bots are found`)
+                    }, 2000)
                 }
 
-                setBotData(theBotData);
+                else if(botDataLength !== 0) {
+                    setBotData(theBotData);
 
-                  return response.data.allBots.forEach((botDataVal) => { // For every bot in the array
-                    const {_id, name, botCredits, type, numberOfBots} = botDataVal;
-                    botBidData.push({_id, name, botCredits, type, numberOfBots});
-                });     
+                    console.log(`Logger after setting the bot data`);
+                    console.log(theBotData);
+                }
+
+                else {
+                    return response.data.allBots.forEach((botDataVal) => { // For every bot in the array
+
+                        const {_id, name, botCredits, type, numberOfBots} = botDataVal;
+                        return botBidData.push({_id, name, botCredits, type, numberOfBots});
+                    });     
+                }
 
             });
 
@@ -464,11 +477,9 @@ const FairNegotations = (props) => {
         }
     }
 
-    const processNullCredits = async (convertedBid, virtualCredits) => {
+    const processNullCredits = (virtualCredits) => {
         try {
-
-           
-
+            return virtualCredits !== 0;
         }
 
         catch(error) {
@@ -485,7 +496,7 @@ const FairNegotations = (props) => {
     const handleInvalidBidSubmission = function(convertedBid, virtualCredits) {
         try {
 
-            return (convertedBid > virtualCredits);
+            return !(convertedBid > virtualCredits);
         } 
         
         catch(err) {
@@ -590,6 +601,16 @@ const FairNegotations = (props) => {
         return setBotTurn(true);        
     }
 
+    const processLessThanCredits = function(convertedBid, userCreditsLeft) {
+        try {
+
+        } 
+        
+        catch(err) {
+
+        }
+    }
+
     const handleBidSubmission = async function(convertedBid, virtualCredits, openingBid) {
 
         try {
@@ -603,24 +624,22 @@ const FairNegotations = (props) => {
             userCreditsLeft = {creditsLeft, openingBid};
             openingBid = userCreditsLeft;
 
-            if(handleInvalidBidSubmission(convertedBid, virtualCredits)) {
-
-                return setTimeout(() => {
-                    clearFields();
-                         window.location.reload(false);
-                }, 1000);
+            if(!handleInvalidBidSubmission(convertedBid, virtualCredits)) {
+               return setTimeout(() => {
+                    alert(`Invalid`)
+               }, 1000);
             }
 
 
-            // Check null credits remaining
-    
-            return creditData.map((credit) => {
+            if(handleInvalidBidSubmission(convertedBid, virtualCredits)) {
+                return creditData.map((credit) => {
 
-               const {_id} = credit; // Extract ID
-                return updateNewBid(_id, virtualCredits);
-            });
-        } 
-        
+                    const {_id} = credit; // Extract ID
+                     return updateNewBid(_id, virtualCredits);
+                 });
+             } 
+             }
+            
         catch(error) {
 
             if(error) {
@@ -654,12 +673,16 @@ const FairNegotations = (props) => {
      } 
 
      const processBotDataBeforeTurn = function(lowBotData, mediumBotData, intenseBotData) {
-        return botPlaceRandomBid(lowBotData, mediumBotData, intenseBotData);
+          
+
+       return botPlaceRandomBid(lowBotData, mediumBotData, intenseBotData);
      }
 
     const botPlaceRandomBid = async function(lowBotData, mediumBotData, intenseBotData) {
 
         try {
+
+           
             let masterBotBids = {};
             let lowBotPlacedBid = false;
             
@@ -741,9 +764,6 @@ const FairNegotations = (props) => {
                                    allBotData.push({...creditsRemainingObj, name, theDifference, userCreditsLeft, theUserBid, type});
                                    allTheBidsData = [...allBotData];
 
-                                    console.log(`all of bidw data`)
-                                    console.log(allTheBidsData);
-
                                     masterBotBids = {...allTheBidsData};
 
                                     console.log(`Current data in the master bot bids object ...`);
@@ -765,9 +785,10 @@ const FairNegotations = (props) => {
                                 setSeconds(300);
 
                                 setRoundNumber(roundNumber + 1); // Start next round;
+
+
                                 setTheNextAppliance(nextAppliance);
                             
-                                
                                 // Send PUT request to reset virtual credits back to initial value
 
                             }, 2000);
@@ -790,17 +811,16 @@ const FairNegotations = (props) => {
 
                                 // eslint-disable-next-line no-loop-func
                                 setTimeout(() => {
-                                    lowBotPlacedBid = true;
-                                    processLowBotBid(convertedBotBid, lowBotPlacedBid, name);
 
-                
+                                    lowBotPlacedBid = true;
+                                    return processLowBotBid(convertedBotBid, lowBotPlacedBid, name);
                                 }, 2000)
                             }
-                          
+                        
                         }
                       }
 
-                    }
+                }
 
                       setTimeout(() => {
                           let medBotCreditsRemain = {};
@@ -811,6 +831,10 @@ const FairNegotations = (props) => {
                         for(let i = 0; i < numberOfMediumBots; i++) {
 
                             const {name, type, botCredits} = allMediumBotData;
+
+                            if(!name || !type || !botCredits) {
+
+                            }
   
                             let mediumBotRandomBids = Math.floor(Math.random() * mediumBotBidAvg);
                             let mediumBotCreditsRemaining = parsedMediumBotCredits - mediumBotRandomBids;
@@ -831,11 +855,7 @@ const FairNegotations = (props) => {
 
                                      allBotData.push({...medBotCreditsRemain, medBotDifference, userCreditsLeft, userBid});
                                      allTheBidsData = [...allBotData, type];
-
                                      masterBotBids = {...allTheBidsData};
-
-                                     console.log(`Now the data in master bot bids ...`);
-                                     console.log(masterBotBids);
 
                                      break;
                                 }
@@ -868,7 +888,7 @@ const FairNegotations = (props) => {
                         }
                     }
                     
-                     // After processing Low and Medium Bots, store all of the data from a main big object, destructure all of its properties, put them into an array
+                    // After processing Low and Medium Bots, store all of the data from a main big object, destructure all of its properties, put them into an array
                     // Loop through the array, check to see if the name of the bots does not include any one of Low, Medium or Intense
                     // If not found, then stop the loop and show the results screen because there are no more bots to place bids
 
@@ -893,7 +913,7 @@ const FairNegotations = (props) => {
                         
                     }
 
-                    return processIntenseBots(allIntenseBotData, numberOfIntenseBots)
+                    return processIntenseBots(allIntenseBotData, numberOfIntenseBots);
                 
 
                     }, 1300);
