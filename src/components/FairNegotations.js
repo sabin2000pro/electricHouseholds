@@ -735,7 +735,7 @@ const FairNegotations = (props) => {
                         // Loop through the number of low bots available
                       for(let i = 0; i < numberOfLowBots; i++) {
 
-                          const {name} = allLowBotData;
+                          const {name, type, botCredits} = allLowBotData;
                           let isBetweenAvg = false;
                         
                         let randBid = Math.floor(Math.random() * lowBotBidAvg);
@@ -760,7 +760,14 @@ const FairNegotations = (props) => {
                                    allBotData.push({...creditsRemainingObj, name, theDifference, userCreditsLeft, theUserBid});
                                    console.log(`ALL BOT DATA AFTER LOW BOT : `);
 
-                                   allTheBidsData = [...allBotData];
+                                   allTheBidsData = [...allBotData, type];
+                                   console.log(allTheBidsData);
+
+                                   for(let index = 0; index < allTheBidsData.length; i++) {
+                                      const theValues = allTheBidsData[index];
+
+                                      console.log(theValues);
+                                   }
                                    
                             
                                    // Find the maximum bid placed between the user and low bot difference
