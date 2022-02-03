@@ -4,26 +4,6 @@ import RegisterCard from './Admin/RegisterCard';
 import axios from 'axios';
 import './FairNegotiations.css';
 
-       // START BOT BID -> Loop through the bot array
-            // Get type of the BOT
-            // Place of the
-            // If user turn is false && bot turn is TRUE
-            // Loop through the entire low, medium and intense object of bots
-            // Extract the type of bot present
-            // Switch / Case -> determine what type of bot is now
-            // Invoke a routine that checks, IF the bot type in the array DEFAULT (LOW)
-            // Generate a random bid BETWEEN the specified range (0-10)
-            // Else if type of bot medium then generate a random bid using math.random between the range specified
-            // Else if type of bot is BOT_TYPES.INTENSE - place all the bids
-            // Otherwise throw an error if the types are not in the array
-
-
-            // Code here for the AI bot that generates a random bid after the user turn is over
-            // 2. Store the bot data from backend in an array by looping (foreach) and pushing the data into a new array
-            // 3. Randomly generate one of the three bots for the user to bid against
-            // 4. Use switch / case statements. Determine if it's a low bot then randomly generate a bid between the specified range
-            // 5. If the user turn is over, transmit a POST request to the server by randomly placing bids by the bot
-            // 6. If the bot has placed a bid, set a timeout of 3 seconds and set user turn to true
 
 let DELAY = 1200;
 let START_TIMER = 15;
@@ -43,6 +23,7 @@ let allBotBids = [];
 let theLowBots = [];
 let theMediumBots = [];
 let theIntenseBots = [];
+
 const allCombinedCreditsLeft = [];
 
 const FairNegotations = (props) => {
@@ -57,6 +38,7 @@ const FairNegotations = (props) => {
     const [roundNumber, setRoundNumber] = useState(1);
     const [timerRunning, setTimerRunning] = useState(false);
     const [seconds, setSeconds] = useState(START_TIMER);
+
     const [minBid, setMinBid] = useState(null);
     const [numOfBids, setNumOfBids] = useState(FLAGS.DEFAULT);
     const [startTimer, setStartTimer] = useState(START_TIMER);
@@ -101,6 +83,8 @@ const FairNegotations = (props) => {
     const [mediumBotBids, setMediumBotBids] = useState([]);
     const [intenseBotBids, setIntenseBotBids] = useState([]);
     const [theNextAppliance, setTheNextAppliance] = useState('');
+
+    let [userCreditsLeft, setUserCreditsLeft] = useState({});
 
     const beginLiveAuctionHandler = function() {
         return setAuctionStarted(!auctionStarted);
@@ -305,6 +289,7 @@ const FairNegotations = (props) => {
       // Fetches the AI bot data from the backend
       const fetchBotData = async function() {
           try {
+
             return await axios.get(`http://localhost:5200/api/v1/bot/get-bots`).then(response => {
                 const theBotData = response.data.allBots;
 
@@ -314,12 +299,10 @@ const FairNegotations = (props) => {
 
                 setBotData(theBotData);
 
-                  response.data.allBots.forEach((botDataVal) => { // For every bot in the array
+                  return response.data.allBots.forEach((botDataVal) => { // For every bot in the array
                     const {_id, name, botCredits, type, numberOfBots} = botDataVal;
                     botBidData.push({_id, name, botCredits, type, numberOfBots});
                 });     
-
-                
 
             });
 
@@ -631,8 +614,8 @@ const FairNegotations = (props) => {
         return setBotTurn(true);        
     }
 
-
     const handleBidSubmission = async function(convertedBid, virtualCredits) {
+
         try {
         
             clearFields();
@@ -640,8 +623,10 @@ const FairNegotations = (props) => {
             let creditsLeft = virtualCredits - convertedBid;
             let newResult = creditsLeft;
             virtualCredits = newResult;
+        
+            userCreditsLeft = {creditsLeft};
             
-            creditData.map((credit) => {
+            return creditData.map((credit) => {
 
                const {_id} = credit; // Extract ID
                 return updateNewBid(_id, virtualCredits);
@@ -713,9 +698,9 @@ const FairNegotations = (props) => {
            let newMediumCredits = mediumBotCreditsLeft;
            mediumBotCreditsLeft = newMediumCredits;
 
-           let lowBotBidAvg = parsedLowBotCredits * 0.10;
-           let mediumBotBidAvg = parsedMediumBotCredits * 0.50;
-           let intenseBotBidAvg = parsedIntenseBotCredits * 0.85;
+           let lowBotBidAvg = parsedLowBotCredits * 0.30;
+           let mediumBotBidAvg = parsedMediumBotCredits * 0.60;
+           let intenseBotBidAvg = parsedIntenseBotCredits * 0.90;
 
            if(handleBiddingAggressiveness(lowBotBidAvg, mediumBotBidAvg, intenseBotBidAvg)) {
                console.log(`Low Bot Biding Average cannot be bigger than medium and intense`);
@@ -754,13 +739,6 @@ const FairNegotations = (props) => {
                         creditsRemainingObj = {lowBotCreditsLeft};
                         let theDifference = allLowBotData.botCredits - creditsRemainingObj.lowBotCreditsLeft;
 
-                             
-                        // If there are more than 1 low bot, find the combined bids
-                        if(numberOfLowBots > 1) {
-                            let lowBidTotal = randBid++;
-                            console.log(lowBidTotal);
-                        }
-
                         lowBotCreditsLeft = newLowCredits;
                         convertedBotBid = randBid;
 
@@ -769,10 +747,16 @@ const FairNegotations = (props) => {
                            
                             setTimeout(() => {
 
-                                setRoundOneOver(true);
+                                setRoundOneOver(true); // Round 1 is over
                                 setSeconds(300);
+
                                 setRoundNumber(roundNumber + 1); // Start next round;
                                 setTheNextAppliance(nextAppliance);
+
+                                return () => {
+                                    console.log(`Gracefully quit`);
+                                    return;
+                                }
                                
                                 // Send PUT request to reset virtual credits back to initial value
 
@@ -823,11 +807,14 @@ const FairNegotations = (props) => {
 
                                 convertedBotBid = mediumBotRandomBids;
                                 medBotCreditsRemain = {mediumBotCreditsLeft};
-
                                 let medBotDifference = parsedMediumBotCredits - medBotCreditsRemain.mediumBotCreditsLeft;
 
-                                console.log(`Medium bot placed...`);
+                                console.log(`The medium bot placed...`);
                                 console.log(mediumBotRandomBids);
+
+                                if(mediumBotRandomBids > userBid) {
+                                    console.log(`The medium bot placed a higher bid...`);
+                                }
 
 
                                 if(type === botTypes.MEDIUM && botCredits > 0 && name != null && (userBid > mediumBotRandomBids)) {
@@ -848,16 +835,19 @@ const FairNegotations = (props) => {
                         }
                     }
 
-                    console.log(`Now processing the intense bots...`);
-
-                    // After processing Intense Bots, store all of the data from a main big object, destructure all of its properties, put them into an array
+                    
+                     // After processing Low nad Medium Bots, store all of the data from a main big object, destructure all of its properties, put them into an array
                     // Loop through the array, check to see if the name of the bots does not include any one of Low, Medium or Intense
                     // If not found, then stop the loop and show the results screen because there are no more bots to place bids
+
+                    console.log(`Now processing the intense bots... Final Round`);
+                    processIntenseBots(allIntenseBotData, numberOfIntenseBots)
+     
                 
                         
                     }, 2000);
 
-                      
+
 
                     }, 2000); 
 
@@ -880,7 +870,7 @@ const FairNegotations = (props) => {
       }
 
       finally {
-          return console.log(`Error here processed gfracefully`);
+          return console.log(`Error here processed gracefully`);
       }
     }
 
@@ -894,14 +884,13 @@ const FairNegotations = (props) => {
            await axios.post(`http://localhost:5200/api/v1/bids/create-bid`, {bid: mediumBotRandomBids, username: name}).then(response => {
              
            if(lowBotPlacedBid) {
-              console.log(response.data);
-
                const bid = response.data.newBid.bid;
                const username = response.data.newBid.username;
 
-               allBotBids.push(bid, username);
-              
+               if(bid != null && username != null) {
+                return allBotBids.push(bid, username);
 
+               }
            }
                
 
