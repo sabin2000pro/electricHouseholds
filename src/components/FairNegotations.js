@@ -625,7 +625,7 @@ const FairNegotations = (props) => {
             virtualCredits = newResult;
         
             userCreditsLeft = {creditsLeft};
-            
+
             return creditData.map((credit) => {
 
                const {_id} = credit; // Extract ID
@@ -679,6 +679,8 @@ const FairNegotations = (props) => {
            const {...allLowBotData} = lowBotData;
            const {...allMediumBotData} = mediumBotData;
            const {...allIntenseBotData} = intenseBotData;
+
+           
 
            let convertedBotBid = parseInt(bid);
            
@@ -742,6 +744,25 @@ const FairNegotations = (props) => {
                         lowBotCreditsLeft = newLowCredits;
                         convertedBotBid = randBid;
 
+                        // If the USER DOES NOT PLACE A BID HIGHER THAN THE LOW BOT, START THE MEDIUM BOT
+                        if(theUserBid < randBid) {
+
+                            alert(`You have lost the auction in the first round agafinst the low bot`);
+                            console.log(`The user has remaining credits to use: ${userCreditsLeft}`);
+
+                            for(const [userKey, userValue] of Object.entries(userCreditsLeft)) {
+
+                                const creditsLeft = userValue;
+                                console.log(creditsLeft);
+                            }
+
+                            for(const [botKey, botValue] of Object.entries(allLowBotData)) {
+
+                            }
+
+                            return;
+                        }
+
                         // Check to see if the low bot bid is > users
                         if(randBid > theUserBid) {
                            
@@ -752,19 +773,15 @@ const FairNegotations = (props) => {
 
                                 setRoundNumber(roundNumber + 1); // Start next round;
                                 setTheNextAppliance(nextAppliance);
-
-                                return () => {
-                                    console.log(`Gracefully quit`);
-                                    return;
-                                }
                                
+                                
                                 // Send PUT request to reset virtual credits back to initial value
 
                             }, 2000);
-                        
                         }
 
                         if(randBid === 0) { // If the random low bot bid is 0
+
                             setTimeout(() => {
                                 return window.location.reload(false);
                             }, 1000)
