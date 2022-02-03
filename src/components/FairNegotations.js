@@ -6,7 +6,7 @@ import './FairNegotiations.css';
 
 
 let DELAY = 1200;
-let START_TIMER = 15;
+let START_TIMER = 60;
 let REFRESH_SECONDS = 30000;
 
 const FLAGS = {
@@ -670,7 +670,6 @@ const FairNegotations = (props) => {
         return botPlaceRandomBid(lowBotData, mediumBotData, intenseBotData);
      }
 
-
     const botPlaceRandomBid = async function(lowBotData, mediumBotData, intenseBotData) {
 
         try {
@@ -679,8 +678,6 @@ const FairNegotations = (props) => {
            const {...allLowBotData} = lowBotData;
            const {...allMediumBotData} = mediumBotData;
            const {...allIntenseBotData} = intenseBotData;
-
-           
 
            let convertedBotBid = parseInt(bid);
            
@@ -746,7 +743,6 @@ const FairNegotations = (props) => {
 
                         // If the USER DOES NOT PLACE A BID HIGHER THAN THE LOW BOT, START THE MEDIUM BOT
                         if(theUserBid < randBid) {
-                            const someArray = [];
 
                             alert(`You have lost the auction in the first round agafinst the low bot`);
                             setRoundNumber(roundNumber + 1);
@@ -755,21 +751,16 @@ const FairNegotations = (props) => {
                             for(const [userKey, userValue] of Object.entries(userCreditsLeft)) {
 
                                 if(userKey !== undefined && userValue !== undefined) { // if a user key exists
-                                    const creditsLeft = userValue;
-                                    
-
-                                    console.log(creditsLeft);
+                                   
+                                   console.log(userCreditsLeft);
                                 }
                                
                             }
 
                             console.log(`The winner after ROUND 1 IS THE LOW BOT WITH BID PLACED: `);
                             console.log(randBid);
-                            return;
-                        }
 
-                        // Check to see if the low bot bid is > users
-                        if(randBid > theUserBid) {
+                            // BEGIN NEXT ROUND
                            
                             setTimeout(() => {
 
@@ -783,7 +774,10 @@ const FairNegotations = (props) => {
                                 // Send PUT request to reset virtual credits back to initial value
 
                             }, 2000);
+                            return;
                         }
+
+                     
 
                         if(randBid === 0) { // If the random low bot bid is 0
 
@@ -947,9 +941,6 @@ const FairNegotations = (props) => {
             if(data) {
 
             }
-
-            
-
            
         }).catch(err => {  
 
