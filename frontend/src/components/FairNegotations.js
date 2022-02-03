@@ -826,12 +826,14 @@ const FairNegotations = (props) => {
                                 medBotCreditsRemain = {mediumBotCreditsLeft};
 
                                 let medBotDifference = parsedMediumBotCredits - medBotCreditsRemain.mediumBotCreditsLeft;
-                                const combinedCredLeft = Object.assign(creditsRemainingObj, medBotCreditsRemain);
-   
-                                // Check first to see if the user bid placed is < than any of the Medium Bot Bids
+
                                 if(userBid < mediumBotRandomBids) {
-                                    alert(`You have lost against the medium bot`);
-                                    break;   
+                                    console.log(`Medoium bot placed : `);
+                                    console.log(mediumBotRandomBids);
+
+                                    alert(`You lost against the medium bot`);
+                                    break;
+                                    
                                 }
 
                             if(type === botTypes.MEDIUM && botCredits > 0 && name != null && userBid > mediumBotRandomBids) {
@@ -839,15 +841,19 @@ const FairNegotations = (props) => {
                                setTimeout(() => {
                                     // Find the maximum bid placed and show who the winner was with what bid was placed.
                                 // The highest bid placed gets the timeslot and delete it from the array and store the remaining credits left.
+                                
 
-                    
                                 if(mediumBotRandomBids !== 0) {
                                   return processMediumBotBids(mediumBotRandomBids, name, type, mediumBotCreditsLeft)
                                 }
+
+                                
                                     
                                }, 2000)
 
                             }
+
+                            
                         }
                     }
 
@@ -899,9 +905,7 @@ const FairNegotations = (props) => {
                const username = response.data.newBid.username;
 
                allBotBids.push(bid, username);
-               console.log(`All bot bids here : `);
-
-               console.log(allBotBids);
+              
 
            }
                
@@ -946,7 +950,7 @@ const FairNegotations = (props) => {
         })
     }
 
-    const processIntenseBots = async function(allIntenseBotData) {
+    const processIntenseBots = async function(allIntenseBotData, combinedCredLeft) {
         console.log(`Inside process intense bots `);
     }
 
