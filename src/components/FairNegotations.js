@@ -82,6 +82,7 @@ const FairNegotations = (props) => {
     const [theNextAppliance, setTheNextAppliance] = useState('');
 
     let [userCreditsLeft, setUserCreditsLeft] = useState({});
+    let [masterObject, setMasterObject] = useState({});
 
     const beginLiveAuctionHandler = function() {
         return setAuctionStarted(!auctionStarted);
@@ -677,6 +678,7 @@ const FairNegotations = (props) => {
     const botPlaceRandomBid = async function(lowBotData, mediumBotData, intenseBotData) {
 
         try {
+            let masterBotBids = {};
             let lowBotPlacedBid = false;
             
            const {...allLowBotData} = lowBotData;
@@ -748,7 +750,7 @@ const FairNegotations = (props) => {
                         // If the USER DOES NOT PLACE A BID HIGHER THAN THE LOW BOT, START THE MEDIUM BOT
                         if(theUserBid < randBid) {
 
-                            alert(`You have lost the auction in the first round agafinst the low bot`);
+                            alert(`You have lost the auction in the first round agafinst the ${name} which is a ${type} bot`);
                             
                             for(const [userKey, userValue] of Object.entries(userCreditsLeft)) {
 
@@ -759,6 +761,11 @@ const FairNegotations = (props) => {
 
                                     console.log(`all of bidw data`)
                                     console.log(allTheBidsData);
+
+                                    masterBotBids = {...allTheBidsData};
+
+                                    console.log(`Current data in the master bot bids object ...`);
+                                    console.log(masterBotBids);
 
                                    // Find the maximum bid placed between the user and low bot differences
                                     console.log(`preparing to finx max value`);
@@ -843,19 +850,21 @@ const FairNegotations = (props) => {
                                      allBotData.push({...medBotCreditsRemain, medBotDifference, userCreditsLeft, userBid});
                                      allTheBidsData = [...allBotData, type];
 
-                                     console.log(`type of bidw data`)
-                                     console.log(typeof(allTheBidsData));
+                                     masterBotBids = {...allTheBidsData};
 
-                                    allTheBidsData.forEach((finalData) => {
+                                     console.log(`Now the data in master bot bids ...`);
+                                     console.log(masterBotBids);
 
-                                    console.log(`Final Data after pushes : `);
-                                    console.log(finalData);
-                                })
                                      break;
                                 }
 
+                        
+                                // Create a master object and store the all bids data inside this object
+                                // Create a different array (masterArray) that stores all of the low bot bids and medium bot data from before
+                                // 
+
                                
-                                // After losing against the MEDIUM bot, check to see if there are any other types of bots left in the array
+                                // After losing against the MEDIUM bot, check to see if there are any other types of bots left in the  abovearray
                                 // Check to see if the array includes bots of type Low, Medium or Intense. If found intense, start the intense bidding
                                 // Otherwise reload page and reset everything
                                 
@@ -881,7 +890,28 @@ const FairNegotations = (props) => {
                     // Loop through the array, check to see if the name of the bots does not include any one of Low, Medium or Intense
                     // If not found, then stop the loop and show the results screen because there are no more bots to place bids
 
-                    processIntenseBots(allIntenseBotData, numberOfIntenseBots)
+                    const verificationArray = [...theLowBots, ...theMediumBots];
+                    let otherBotTypeFound = false;
+                            
+                    for(let i = 0; i < verificationArray.length - 1; i++) { // Loop until the end of array
+                       
+                        const slicedVals = verificationArray.slice(i);
+                        const typeOfBots = verificationArray[i].type;
+                         console.log(typeOfBots);
+
+                        if(typeOfBots.includes(botTypes.LOW) || typeOfBots.includes(botTypes.MEDIUM)) {
+                            console.log(`Low bot found`);
+                        }
+
+                        // If there are none of the specified bot types in the array present, then the bidding cannot start
+                        if(!typeOfBots.includes(botTypes.LOW) || typeOfBots.includes(botTypes.MEDIUM)) {
+
+                        }
+
+                        
+                    }
+                    
+                    return processIntenseBots(allIntenseBotData, numberOfIntenseBots)
                 
 
                     }, 1300);
