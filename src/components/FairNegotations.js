@@ -754,9 +754,7 @@ const FairNegotations = (props) => {
                         creditsRemainingObj = {lowBotCreditsLeft};
                         let theDifference = allLowBotData.botCredits - creditsRemainingObj.lowBotCreditsLeft;
 
-                        console.log(`The low bot is prepared to lose the number of credits below if the highest: `);
-                        console.log(theDifference);
-                        
+                             
                         // If there are more than 1 low bot, find the combined bids
                         if(numberOfLowBots > 1) {
                             let lowBidTotal = randBid++;
@@ -779,7 +777,7 @@ const FairNegotations = (props) => {
                                 // Send PUT request to reset virtual credits back to initial value
 
                             }, 2000);
-                          
+                        
                         }
 
                         if(randBid === 0) { // If the random low bot bid is 0
@@ -789,6 +787,7 @@ const FairNegotations = (props) => {
                         }
 
                         if(randBid >= 0 && randBid <= lowBotBidAvg) {
+
                             isBetweenAvg = true;
 
                             if(isBetweenAvg) {
@@ -820,45 +819,41 @@ const FairNegotations = (props) => {
   
                             let mediumBotRandomBids = Math.floor(Math.random() * mediumBotBidAvg);
                                 let mediumBotCreditsRemaining = parsedMediumBotCredits - mediumBotRandomBids;
-
                                 let mediumBotCreditsLeft = mediumBotCreditsRemaining;
+
                                 convertedBotBid = mediumBotRandomBids;
                                 medBotCreditsRemain = {mediumBotCreditsLeft};
 
                                 let medBotDifference = parsedMediumBotCredits - medBotCreditsRemain.mediumBotCreditsLeft;
 
-                                if(userBid < mediumBotRandomBids) {
-                                    console.log(`Medoium bot placed : `);
-                                    console.log(mediumBotRandomBids);
+                                console.log(`Medium bot placed...`);
+                                console.log(mediumBotRandomBids);
 
-                                    alert(`You lost against the medium bot`);
-                                    break;
-                                    
-                                }
 
-                            if(type === botTypes.MEDIUM && botCredits > 0 && name != null && userBid > mediumBotRandomBids) {
+                                if(type === botTypes.MEDIUM && botCredits > 0 && name != null && (userBid > mediumBotRandomBids)) {
                               
-                               setTimeout(() => {
-                                    // Find the maximum bid placed and show who the winner was with what bid was placed.
-                                // The highest bid placed gets the timeslot and delete it from the array and store the remaining credits left.
-                                
+                                    setTimeout(() => {
+                                     // Find the maximum bid placed and show who the winner was with what bid was placed.
+                                     // The highest bid placed gets the timeslot and delete it from the array and store the remaining credits left.
+                                     
+                                     if(mediumBotRandomBids !== 0 && !(userBid) < mediumBotRandomBids) {
+                                        return processMediumBotBids(mediumBotRandomBids, name, type, mediumBotCreditsLeft);
 
-                                if(mediumBotRandomBids !== 0) {
-                                  return processMediumBotBids(mediumBotRandomBids, name, type, mediumBotCreditsLeft)
+                                     }
+     
+                                    }, 2000)
+     
                                 }
-
-                                
-                                    
-                               }, 2000)
-
-                            }
-
-                            
+     
                         }
                     }
 
-                    return processIntenseBots(allIntenseBotData);
+                    console.log(`Now processing the intense bots...`);
 
+                    // After processing Intense Bots, store all of the data from a main big object, destructure all of its properties, put them into an array
+                    // Loop through the array, check to see if the name of the bots does not include any one of Low, Medium or Intense
+                    // If not found, then stop the loop and show the results screen because there are no more bots to place bids
+                
                         
                     }, 2000);
 
@@ -930,6 +925,7 @@ const FairNegotations = (props) => {
     }
 
     const processMediumBotBids = async function(convertedBotBid, name, type, mediumBotCreditsLeft) {
+
         return await axios.post(`http://localhost:5200/api/v1/bids/create-bid`, {bid: convertedBotBid, username: name, botType: type, creditsLeft: mediumBotCreditsLeft}).then(response => {
 
             const data = response.data.newBid;
@@ -941,6 +937,8 @@ const FairNegotations = (props) => {
 
             }
 
+            
+
            
         }).catch(err => {  
 
@@ -950,7 +948,7 @@ const FairNegotations = (props) => {
         })
     }
 
-    const processIntenseBots = async function(allIntenseBotData, combinedCredLeft) {
+    const processIntenseBots = async function(allIntenseBotData) {
         console.log(`Inside process intense bots `);
     }
 
