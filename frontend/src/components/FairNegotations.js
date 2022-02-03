@@ -3,7 +3,6 @@ import {useLocation, useHistory} from 'react-router-dom';
 import RegisterCard from './Admin/RegisterCard';
 import axios from 'axios';
 import './FairNegotiations.css';
-import ResultsScreen from '../components/ResultsScreen';
 
        // START BOT BID -> Loop through the bot array
             // Get type of the BOT
@@ -37,12 +36,6 @@ const FLAGS = {
     REFRESH_SECONDS: REFRESH_SECONDS
 };
 
-const BOT_TYPES = {
-    LOW: 'Low',
-    MEDIUM: "Medium",
-    INTENSE: "Intense"
-}
-
 let bidData = []; // Array that stores the bid data
 let botBidData = [];
 let allBotBids = [];
@@ -50,6 +43,7 @@ let allBotBids = [];
 let theLowBots = [];
 let theMediumBots = [];
 let theIntenseBots = [];
+const allCombinedCreditsLeft = [];
 
 const FairNegotations = (props) => {
 
@@ -80,6 +74,7 @@ const FairNegotations = (props) => {
     const [enteredFeedbackDescription, setEnteredFeedbackDescription] = useState('');
     const [feedbackFormValid, setFeedbackFormValid] = useState(false);
     const [feedbackFormSubmitted, setFeedbackFormSubmitted] = useState(false);
+
     const [maxBidFound, setMaxBidFound] = useState(false);
     const [minBidFound, setMinBidFound] = useState(false);
     const [auctionChosen, setAuctionChosen] = useState(false);
@@ -804,7 +799,7 @@ const FairNegotations = (props) => {
                                     lowBotPlacedBid = true;
                                     processLowBotBid(convertedBotBid, lowBotPlacedBid, name);
 
-                                    
+                
                                 }, 2000)
                             }
                           
@@ -832,7 +827,7 @@ const FairNegotations = (props) => {
 
                                 let medBotDifference = parsedMediumBotCredits - medBotCreditsRemain.mediumBotCreditsLeft;
                                 const combinedCredLeft = Object.assign(creditsRemainingObj, medBotCreditsRemain);
-
+   
                                 // Check first to see if the user bid placed is < than any of the Medium Bot Bids
                                 if(userBid < mediumBotRandomBids) {
                                     alert(`You have lost against the medium bot`);
@@ -856,10 +851,12 @@ const FairNegotations = (props) => {
                         }
                     }
 
+                    return processIntenseBots(allIntenseBotData);
+
                         
                     }, 2000);
 
-                      // NOW 
+                      
 
                     }, 2000); 
 
@@ -868,7 +865,6 @@ const FairNegotations = (props) => {
             }
             
          }
-
 
         }
         
@@ -948,6 +944,10 @@ const FairNegotations = (props) => {
                 console.log(err.response.data);
          }
         })
+    }
+
+    const processIntenseBots = async function(allIntenseBotData) {
+        console.log(`Inside process intense bots `);
     }
 
     const handleBiddingAggressiveness = function(lowBotBidAvg, mediumBotBidAvg, intenseBotBidAvg) {
