@@ -30,7 +30,6 @@ const FairNegotations = (props) => {
 
     let location = useLocation();
     let history = useHistory();
-
     let {username, appliance, firstPreference, secondPreference, thirdPreference, nextAppliance} = location.state.preference;
 
     const [auctionStarted, setAuctionStarted] = useState(false);
@@ -67,6 +66,7 @@ const FairNegotations = (props) => {
     const [botTurn, setBotTurn] = useState(false);
     const [userTurn, setUserTurn] = useState(true);
     const [bid, setBid] = useState('');
+
     const [counterError, setCounterError] = useState(false);
     const [mainRoundOver, setMainRoundOver] = useState(false);
     const [roundOneOver, setRoundOneOver] = useState(true);
@@ -78,10 +78,7 @@ const FairNegotations = (props) => {
     const [userBidData, setUserBidData] = useState([]);
     const [creditData, setCreditData] = useState([]);
     const [creditsFetched, setCreditsFetched] = useState(false);
-
-    const [lowBotBids, setLowBotBids] = useState([]);
-    const [mediumBotBids, setMediumBotBids] = useState([]);
-    const [intenseBotBids, setIntenseBotBids] = useState([]);
+   
     const [theNextAppliance, setTheNextAppliance] = useState('');
 
     let [userCreditsLeft, setUserCreditsLeft] = useState({});
@@ -735,7 +732,7 @@ const FairNegotations = (props) => {
                         // Loop through the number of low bots available
                       for(let i = 0; i < numberOfLowBots; i++) {
 
-                          const {name, type, botCredits} = allLowBotData;
+                          const {name, type} = allLowBotData;
                           let isBetweenAvg = false;
                         
                         let randBid = Math.floor(Math.random() * lowBotBidAvg);
@@ -757,22 +754,16 @@ const FairNegotations = (props) => {
 
                                 if(userKey !== undefined && userValue !== undefined) { // if a user key exists
                                 
-                                   allBotData.push({...creditsRemainingObj, name, theDifference, userCreditsLeft, theUserBid});
-                                   console.log(`ALL BOT DATA AFTER LOW BOT : `);
+                                   allBotData.push({...creditsRemainingObj, name, theDifference, userCreditsLeft, theUserBid, type});
+                                   allTheBidsData = [...allBotData];
 
-                                   allTheBidsData = [...allBotData, type];
-                                   console.log(allTheBidsData);
+                                    console.log(`all of bidw data`)
+                                    console.log(allTheBidsData);
 
-                                   for(let index = 0; index < allTheBidsData.length; i++) {
-                                      const theValues = allTheBidsData[index];
-
-                                      console.log(theValues);
-                                   }
+                                   // Find the maximum bid placed between the user and low bot differences
+                                    console.log(`preparing to finx max value`);
+                                    findMaxBetweenLowBot(allTheBidsData);
                                    
-                            
-                                   // Find the maximum bid placed between the user and low bot difference
-                                   
-                                  
                                    break;
                                  
                                 }
@@ -786,7 +777,7 @@ const FairNegotations = (props) => {
 
                                 setRoundNumber(roundNumber + 1); // Start next round;
                                 setTheNextAppliance(nextAppliance);
-                               
+                            
                                 
                                 // Send PUT request to reset virtual credits back to initial value
 
@@ -852,12 +843,14 @@ const FairNegotations = (props) => {
                                      allBotData.push({...medBotCreditsRemain, medBotDifference, userCreditsLeft, userBid});
                                      allTheBidsData = [...allBotData, type];
 
-                                      allTheBidsData.forEach((finalData) => {
+                                     console.log(`type of bidw data`)
+                                     console.log(typeof(allTheBidsData));
+
+                                    allTheBidsData.forEach((finalData) => {
+
                                     console.log(`Final Data after pushes : `);
                                     console.log(finalData);
                                 })
-
-                                    
                                      break;
                                 }
 
@@ -883,24 +876,21 @@ const FairNegotations = (props) => {
      
                         }
                     }
-
                     
                      // After processing Low and Medium Bots, store all of the data from a main big object, destructure all of its properties, put them into an array
                     // Loop through the array, check to see if the name of the bots does not include any one of Low, Medium or Intense
                     // If not found, then stop the loop and show the results screen because there are no more bots to place bids
 
-                    console.log(`Now processing the intense bots... Final Round`);
                     processIntenseBots(allIntenseBotData, numberOfIntenseBots)
                 
-                        
-                    }, 2000);
+
+                    }, 1300);
 
 
-
-                    }, 2000); 
+                }, 1300); 
 
                 
-                }, 2000);
+                }, 1300);
             }
             
          }
@@ -920,6 +910,22 @@ const FairNegotations = (props) => {
       finally {
           return console.log(`Error here processed gracefully`);
       }
+    }
+
+    const findMaxBetweenLowBot = function() {
+        let maxBidBetween = 0;
+
+        for(let i = 0; i < allTheBidsData.length; i++) {
+            const lowBotBid = parseInt(allTheBidsData[i].theDifference);
+            
+            
+            if(lowBotBid > maxBidBetween) {
+
+                maxBidBetween = lowBotBid;
+            }
+
+           return maxBidBetween;
+        }
     }
 
     const displayWinner = () => { // Displays who the winner of Round 1 is
@@ -984,6 +990,7 @@ const FairNegotations = (props) => {
 
     const processIntenseBots = async function(allIntenseBotData) {
         console.log(`Inside process intense bots `);
+    
     }
 
     const handleBiddingAggressiveness = function(lowBotBidAvg, mediumBotBidAvg, intenseBotBidAvg) {
@@ -1124,8 +1131,8 @@ const FairNegotations = (props) => {
             <h1>Username: {username} </h1>
             <h1>Bidding Seconds Remaining: {seconds}</h1>
 
-
             <h1>{findMaxBid()}</h1>
+            <h1>Low Bot Largest Bid : {findMaxBetweenLowBot()}</h1>
             <h1>{countTotalBids()}</h1>
             
             {creditData.map((credit, key) => {
