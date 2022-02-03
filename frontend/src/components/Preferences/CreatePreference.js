@@ -221,6 +221,10 @@ const CreatePreference = (props) => {
                             nextApplianceData.push(nextApplianceObj);
                             lastApplianceData.push(lastApplianceObj);
 
+                            console.log(`Your last available appliance : `);
+
+                            console.log(lastApplianceData);
+
                             setNextApplianceDataInserted(true);
                             setLastApplianceData(lastApplianceData);
                             setLastApplianceDataInserted(true);
