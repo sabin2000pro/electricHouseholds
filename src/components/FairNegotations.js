@@ -859,7 +859,7 @@ const FairNegotations = (props) => {
                             medBotCreditsRemain = {mediumBotCreditsLeft};
                             let medBotDifference = parsedMediumBotCredits - medBotCreditsRemain.mediumBotCreditsLeft;
 
-                             console.log(`The Medium Bot Placed a bid of : ${mediumBotRandomBids}. You have lost against the BOT`);
+                             console.log(`The Medium Bot(s) Placed a bid of : ${mediumBotRandomBids}`);
                             
                                 if(userBid < mediumBotRandomBids) {
 
@@ -877,7 +877,6 @@ const FairNegotations = (props) => {
 
                                      break;
                                 }
-
                             
                                 if(type === botTypes.MEDIUM && botCredits > 0 && name != null && (userBid > mediumBotRandomBids)) {
                               
@@ -895,7 +894,17 @@ const FairNegotations = (props) => {
                     }
                     
             
-                    return processIntenseBots(allIntenseBotData, numberOfIntenseBots);
+                    setTimeout(() => {
+                        console.log(`Inside process intense bots. This is your final bot.`);
+
+                        try {
+                            
+                        } 
+                        
+                        catch(err) {
+                
+                        }
+                    }, 3000)
                 
 
                     }, 1300);
@@ -1014,11 +1023,6 @@ const FairNegotations = (props) => {
                 console.log(err.response.data);
          }
         })
-    }
-
-    const processIntenseBots = async function(allIntenseBotData) {
-        console.log(`Inside process intense bots `);
-    
     }
 
     const handleBiddingAggressiveness = function(lowBotBidAvg, mediumBotBidAvg, intenseBotBidAvg) {
