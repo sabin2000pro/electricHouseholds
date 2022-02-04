@@ -761,10 +761,7 @@ const FairNegotations = (props) => {
 
                         lowBotCreditsLeft = newLowCredits;
                         convertedBotBid = randBid;
-
-                        
-
-                        // If the USER DOES NOT PLACE A BID HIGHER THAN THE LOW BOT, START THE MEDIUM BOT
+                    
                         if(theUserBid < randBid) {
 
                             alert(`You have lost the auction in the first round agafinst the ${name} which is a ${type} bot`);
@@ -787,23 +784,17 @@ const FairNegotations = (props) => {
                          
                             setTimeout(() => {
                               
-                                // Start Round 2
-                                // Reappear user input.
                                 setRoundNumber(roundNumber + 1);
                                 setSeconds(60);
 
-                                // Place user bid first
                                 setUserTurn(true);
                                 setBotTurn(false);
                                
                                 setTimeout(() => {
                                       botPlaceRandomBid(lowBotData, mediumBotData, intenseBotData, openingBid);
                                       setRoundNumber(roundNumber + 1);
-                                }, 6000);
+                                }, 5000);
 
-                                
-                             
-                            
                                 // Send PUT request to reset virtual credits back to initial value
 
                             }, 1000);
@@ -813,7 +804,8 @@ const FairNegotations = (props) => {
                         if(randBid === 0) { // If the random low bot bid is 0 reload the page
 
                             setTimeout(() => {
-                                return window.location.reload(false);
+                                alert(`The user wins as the low bot hits 0`);
+
                             }, 1000)
                         }
 
@@ -863,7 +855,6 @@ const FairNegotations = (props) => {
                             
                                 if(userBid < mediumBotRandomBids) {
 
-                                    
                                      allBotData.push({...medBotCreditsRemain, medBotDifference, userCreditsLeft, userBid});
                                      allTheBidsData = [...allBotData, type];
                                      masterBotBids = {...allTheBidsData};
@@ -902,8 +893,14 @@ const FairNegotations = (props) => {
                         } 
                         
                         catch(err) {
-                
+
+                            if(err) {
+
+                                console.log(err);
+                                throw new Error(err);
+                            }
                         }
+
                     }, 3000)
                 
 
