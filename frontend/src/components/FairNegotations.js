@@ -38,10 +38,7 @@ const FairNegotations = (props) => {
     const [timerRunning, setTimerRunning] = useState(false);
     const [seconds, setSeconds] = useState(START_TIMER);
 
-    const [minBid, setMinBid] = useState(null);
     const [numOfBids, setNumOfBids] = useState(FLAGS.DEFAULT);
-    const [startTimer, setStartTimer] = useState(START_TIMER);
-    const [startTimerShown, setStartTimerShown] = useState(false);
     const [bidValid, setBidValid] = useState(false);
     const [updatedNewBid, setUpdatedNewBid] = useState(false);
     const [clearedBids, setClearedBids] = useState(false);
@@ -56,7 +53,6 @@ const FairNegotations = (props) => {
     const [feedbackFormValid, setFeedbackFormValid] = useState(false);
     const [feedbackFormSubmitted, setFeedbackFormSubmitted] = useState(false);
 
-    const [maxBidFound, setMaxBidFound] = useState(false);
     const [minBidFound, setMinBidFound] = useState(false);
     const [auctionChosen, setAuctionChosen] = useState(false);
     const [socialExchangeChosen, setSocialExchangeChosen] = useState(false);
@@ -79,7 +75,7 @@ const FairNegotations = (props) => {
     const [creditData, setCreditData] = useState([]);
     const [creditsFetched, setCreditsFetched] = useState(false);
    
-    const [theNextAppliance, setTheNextAppliance] = useState('');
+    const [remainingAppliances, setRemainingAppliances] = useState([]);
 
     let [userCreditsLeft, setUserCreditsLeft] = useState({});
     let [masterObject, setMasterObject] = useState({});
@@ -684,6 +680,16 @@ const FairNegotations = (props) => {
        return botPlaceRandomBid(lowBotData, mediumBotData, intenseBotData, openingBid);
      }
 
+     const getNextAppliance = async function() {
+        try {
+
+        } 
+        
+        catch(err) {
+
+        }
+    }
+
     const botPlaceRandomBid = async function(lowBotData, mediumBotData, intenseBotData, openingBid) {
 
         try {
@@ -773,10 +779,10 @@ const FairNegotations = (props) => {
                                 
                                    allBotData.push({...creditsRemainingObj, name, theDifference, userCreditsLeft, theUserBid, type});
                                    allTheBidsData = [...allBotData];
+                                   masterBotBids = {...allTheBidsData};
 
-                                    masterBotBids = {...allTheBidsData};
-                                    findMaxBetweenLowBot(allTheBidsData, theOpeningBid);
-                                    console.log(randBid);
+                                  findMaxBetweenLowBot(allTheBidsData, theOpeningBid);
+                                
                                     alert(`The winner is the ${type} bot(s) with a bid of ${randBid}`);
 
                                     console.log(`The bot : ${type} receives the timeslot preference : ${firstPreference} for this round`);
@@ -957,15 +963,6 @@ const FairNegotations = (props) => {
        console.log(roundNumber);
     }, [roundNumber]);
 
-    const getNextAppliance = async function() {
-        try {
-
-        } 
-        
-        catch(err) {
-
-        }
-    }
 
     const findMaxBetweenLowBot = function() {
         let maxBidBetween = 0;
