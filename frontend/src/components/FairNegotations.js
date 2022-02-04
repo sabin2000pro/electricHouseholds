@@ -69,7 +69,7 @@ const FairNegotations = (props) => {
 
     const [counterError, setCounterError] = useState(false);
     const [mainRoundOver, setMainRoundOver] = useState(false);
-    const [roundOneOver, setRoundOneOver] = useState(true);
+    const [roundOneOver, setRoundOneOver] = useState(false);
     const [roundTwoOver, setRoundTwoOver] = useState(false);
 
     const [feedbackData, setFeedbackData] = useState([]);
@@ -311,11 +311,10 @@ const FairNegotations = (props) => {
 
                         if(!botTypes.includes(availableTypesOfBots[0]) && !botTypes.includes(availableTypesOfBots[1]) && !botTypes.includes(availableTypesOfBots[2])) {
 
-                            setTimeout(() => {
+                            return setTimeout(() => {
                                 alert(`We could not find one of the bots. Sorry for the incovenience`);
                                 return history.push(redirectPath);
                             }, 2000)
-
                         }
                     }
 
@@ -387,7 +386,7 @@ const FairNegotations = (props) => {
         }
 
     }
-        return `Current Highest Bid ${maxBid}`;
+        return `Current Highest Bid £${maxBid}`;
     };
 
     const countTotalBids = () => {
@@ -604,7 +603,7 @@ const FairNegotations = (props) => {
     }
 
     function handleUserTurn() {
-        return setUserTurn(false);
+        return setUserTurn(!userTurn);
     }
 
     function handleInputBlur() {
@@ -638,17 +637,13 @@ const FairNegotations = (props) => {
             userCreditsLeft = {creditsLeft, openingBid};
             openingBid = userCreditsLeft;
 
-            if(convertedBid > virtualCredits) {
-                
-                alert(`Yoiu cannot do this`);
-                return history.push('/your-preferences')
-            }
-
+        
             if(convertedBid < virtualCredits) {
+
                 return creditData.map((credit) => {
 
                     const {_id} = credit; // Extract ID
-                     return updateNewBid(_id, virtualCredits);
+                     return updateNewBid(_id, virtualCredits, openingBid);
                  });
             }
         }
@@ -665,7 +660,7 @@ const FairNegotations = (props) => {
     }
 
     // Routine that updates the number of virtual credits left
-    const updateNewBid = function(_id, virtualCredits) {
+    const updateNewBid = function(_id, virtualCredits, openingBid) {
 
         try {
             axios.put(`http://localhost:5200/api/v1/credits/update-credits/${_id}`, {_id: _id, virtualCredits: virtualCredits}).then(data => {console.log(data)}).catch(err => {console.log(err)});
@@ -673,7 +668,7 @@ const FairNegotations = (props) => {
             alert(`Updated Data Virutal Credits`);
 
             const [lowBotData, mediumBotData, intenseBotData] = botBidData;  
-            return processBotDataBeforeTurn(lowBotData, mediumBotData, intenseBotData);  
+            return processBotDataBeforeTurn(lowBotData, mediumBotData, intenseBotData, openingBid);  
         }
         
          catch(err) {
@@ -687,19 +682,19 @@ const FairNegotations = (props) => {
         }
      } 
 
-     const processBotDataBeforeTurn = function(lowBotData, mediumBotData, intenseBotData) {
+     const processBotDataBeforeTurn = function(lowBotData, mediumBotData, intenseBotData, openingBid) {
           
-       return botPlaceRandomBid(lowBotData, mediumBotData, intenseBotData);
+       return botPlaceRandomBid(lowBotData, mediumBotData, intenseBotData, openingBid);
      }
 
-    const botPlaceRandomBid = async function(lowBotData, mediumBotData, intenseBotData) {
+    const botPlaceRandomBid = async function(lowBotData, mediumBotData, intenseBotData, openingBid) {
 
         try {
 
-        
             let masterBotBids = {};
             let lowBotPlacedBid = false;
-            
+            let theOpeningBid = parseInt(openingBid.openingBid);
+
            const {...allLowBotData} = lowBotData;
            const {...allMediumBotData} = mediumBotData;
            const {...allIntenseBotData} = intenseBotData;
@@ -709,6 +704,11 @@ const FairNegotations = (props) => {
            const sizeOfLow = Object.keys(allLowBotData).length;
            const sizeOfMedium = Object.keys(allMediumBotData).length;
            const sizeOfIntense = Object.keys(allIntenseBotData).length;
+
+           // If no data is found
+           if(sizeOfLow === 0 || sizeOfMedium === 0 || sizeOfIntense === 0) {
+                alert(`No data found in these objects`);
+           }
 
            const parsedLowBotCredits = parseInt(allLowBotData.botCredits);
            const parsedMediumBotCredits = parseInt(allMediumBotData.botCredits);
@@ -737,7 +737,7 @@ const FairNegotations = (props) => {
            if((sizeOfLow && sizeOfMedium && sizeOfIntense) > 0) {
                let creditsRemainingObj = {};
 
-            if(!userInputDisabled && botTurn && !userTurn) {
+            if(!userInputDisabled && botTurn && !userTurn) { // If it's the bot turn and not the user turn
                 
                 setTimeout(() => {
 
@@ -766,12 +766,14 @@ const FairNegotations = (props) => {
                         lowBotCreditsLeft = newLowCredits;
                         convertedBotBid = randBid;
 
+                        
+
                         // If the USER DOES NOT PLACE A BID HIGHER THAN THE LOW BOT, START THE MEDIUM BOT
                         if(theUserBid < randBid) {
 
                             alert(`You have lost the auction in the first round agafinst the ${name} which is a ${type} bot`);
                             
-                            for(const [userKey, userValue] of Object.entries(userCreditsLeft)) {
+                            for(const [userKey, userValue] of Object.entries(userCreditsLeft)) { // For every key value pair in the entries of user credits left
 
                                 if(userKey !== undefined && userValue !== undefined) { // if a user key exists
                                 
@@ -779,27 +781,35 @@ const FairNegotations = (props) => {
                                    allTheBidsData = [...allBotData];
 
                                     masterBotBids = {...allTheBidsData};
-                                    findMaxBetweenLowBot(allTheBidsData);
+                                    findMaxBetweenLowBot(allTheBidsData, theOpeningBid);
                                    
                                    break;
                                  
                                 }
                             }
                             // BEGIN NEXT ROUND
-                           
+                         
                             setTimeout(() => {
+                              
+                                // Start Round 2
+                                // Reappear user input.
+                                setRoundNumber(roundNumber + 1);
+                                setSeconds(60);
 
-                                setRoundOneOver(true); // Round 1 is over
-                                setSeconds(300);
+                                // Place user bid first
+                                setUserTurn(true);
+                                setBotTurn(false);
+                               
+                                setTimeout(() => {
+                                     return botPlaceRandomBid(lowBotData, mediumBotData, intenseBotData, openingBid);
+                                }, 6000);
 
-                                setRoundNumber(roundNumber + 1); // Start next round;
-
-
-                                setTheNextAppliance(nextAppliance);
+                                setRoundNumber(roundNumber + 1);
+                             
                             
                                 // Send PUT request to reset virtual credits back to initial value
 
-                            }, 2000);
+                            }, 1000);
                             return;
                         }
 
@@ -875,7 +885,6 @@ const FairNegotations = (props) => {
                                      
                                      if(mediumBotRandomBids !== 0 && !(userBid) < mediumBotRandomBids) {
                                         return processMediumBotBids(mediumBotRandomBids, name, type, mediumBotCreditsLeft);
-
                                      }
      
                                     }, 2000)
@@ -885,8 +894,7 @@ const FairNegotations = (props) => {
                         }
                     }
                     
-                  
-
+            
                     return processIntenseBots(allIntenseBotData, numberOfIntenseBots);
                 
 
@@ -918,13 +926,27 @@ const FairNegotations = (props) => {
       }
     }
 
+    useEffect(() => {
+       console.log(userTurn);
+        
+    }, [roundNumber]);
+
+    const getNextAppliance = async function() {
+        try {
+
+        } 
+        
+        catch(err) {
+
+        }
+    }
+
     const findMaxBetweenLowBot = function() {
         let maxBidBetween = 0;
 
         for(let i = 0; i < allTheBidsData.length; i++) {
             const lowBotBid = parseInt(allTheBidsData[i].theDifference);
-            
-            
+             
             if(lowBotBid > maxBidBetween) {
 
                 maxBidBetween = lowBotBid;
@@ -1108,6 +1130,8 @@ const FairNegotations = (props) => {
 
     }
 
+
+
     return (
 
         <React.Fragment>
@@ -1138,7 +1162,7 @@ const FairNegotations = (props) => {
             <h1>Bidding Seconds Remaining: {seconds}</h1>
 
             <h1>{findMaxBid()}</h1>
-            <h1>Low Bot Largest Bid : {findMaxBetweenLowBot()}</h1>
+            <h1>Low Bot Largest Bid : £{findMaxBetweenLowBot()}</h1>
             <h1>{countTotalBids()}</h1>
             
             {creditData.map((credit, key) => {
@@ -1146,21 +1170,21 @@ const FairNegotations = (props) => {
 
                 return <div key = {key}>
 
-                <h1>User Virtual Credits Remaining: {updatedNewBid ? credits.virtualCredits : credits.virtualCredits}</h1>
-                <h1 >Opening Bid: {credits.openingBid}</h1>
+                <h1>User Virtual Credits Remaining: £{updatedNewBid ? credits.virtualCredits : credits.virtualCredits}</h1>
+                <h1>Opening Bid: £{credits.openingBid}</h1>
             </div>
             })}
 
             <h1>Current Round Number : {roundNumber}</h1>
             <h2>User's Initial Appliance : {appliance}</h2>
+
             {roundOneOver && roundNumber === 2 ?  <h2>Next Appliance: {nextAppliance}</h2> :undefined }
            
-
             {!mainRoundOver ? <h1 className = "first--pref">User's First Chosen Preference : {firstPreference}</h1> : null }
 
-            {roundOneOver && roundNumber === 2 ?<h1 className = "second--pref">User's Second Chosen Preference: {secondPreference}</h1> : null }
+            {/* {roundOneOver && roundNumber === 2 ?<h1 className = "second--pref">User's Second Chosen Preference: {secondPreference}</h1> : null }
             {roundNumber === 3 ? <h1 className = "third--pref">User's Third Chosen Preference: {thirdPreference}</h1> : null}
-        
+         */}
             <div className = "container grid grid--2-cols">
 
                 <RegisterCard>
@@ -1171,14 +1195,15 @@ const FairNegotations = (props) => {
                     <div className = "bid--container">
 
                     <label className = "bid--lbl">Bid</label>
-                        {userInputDisabled ? 
+                        {roundOneOver && userInputDisabled ? 
                     
                         <input value = {bid} onChange = {(event) => {setBid(event.target.value)}} placeholder = "Enter your Bid" id = "bid" type = "hidden" /> :
                         
                         <input value = {bid} onChange = {(event) => {setBid(event.target.value)}} placeholder = "Enter your Bid" id = "bid" type = "text"/>
+                        }
 
-            }
                     </div>
+
 
                     <div className = "submit-bid--container">
                         <button className = "login--btn" type = "submit">Submit</button>
