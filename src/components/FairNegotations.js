@@ -297,6 +297,7 @@ const FairNegotations = (props) => {
                 const botDataLength = response.data.allBots.length;
            
                 if(botDataLength === 0) {
+
                     setTimeout(() => {
                         alert(`You are not allowed to start bidding because no bots are found`)
                     }, 2000)
@@ -326,7 +327,7 @@ const FairNegotations = (props) => {
 
                 }
 
-               
+
             });
 
           } 
@@ -764,7 +765,7 @@ const FairNegotations = (props) => {
                     
                         if(theUserBid < randBid) {
 
-                            alert(`You have lost the first auction against a ${type} bot`);
+                            alert(`You have lost the auction against the ${type} bot(s)`);
                             
                             for(const [userKey, userValue] of Object.entries(userCreditsLeft)) { // For every key value pair in the entries of user credits left
 
@@ -775,11 +776,27 @@ const FairNegotations = (props) => {
 
                                     masterBotBids = {...allTheBidsData};
                                     findMaxBetweenLowBot(allTheBidsData, theOpeningBid);
+                                    console.log(randBid);
+                                    alert(`The winner is the ${type} bot(s) with a bid of ${randBid}`);
+
+                                    console.log(`The bot : ${type} receives the timeslot preference : ${firstPreference} for this round`);
+
+                                    setTimeout(() => {
+                                        console.log(`...`);
+                                    }, 10000);
                                    
                                    break;
                                  
                                 }
                             }
+
+                             if(randBid === 0) { // If the random low bot bid is 0 reload the page
+
+                            setTimeout(() => {
+                                alert(`The user wins as the low bot hits 0`);
+
+                            }, 1000)
+                        }
 
                             // Display Results 
                             // BEGIN NEXT ROUND
@@ -801,6 +818,8 @@ const FairNegotations = (props) => {
                                       
                                       console.log(`The LOW bot now placed a bid of :`);
                                       console.log(randBid);
+
+                                    
                                 }, 5000);
 
                                 // Send PUT request to reset virtual credits back to initial value
@@ -809,13 +828,7 @@ const FairNegotations = (props) => {
                             return;
                         }
 
-                        if(randBid === 0) { // If the random low bot bid is 0 reload the page
-
-                            setTimeout(() => {
-                                alert(`The user wins as the low bot hits 0`);
-
-                            }, 1000)
-                        }
+                       
 
                         if(randBid >= 0 && randBid <= lowBotBidAvg) {
 
@@ -1202,7 +1215,7 @@ const FairNegotations = (props) => {
                     <div className = "bid--container">
 
                     <label className = "bid--lbl">Bid</label>
-                        {roundOneOver && userInputDisabled ? 
+                        {!roundOneOver && userInputDisabled ? 
                     
                         <input value = {bid} onChange = {(event) => {setBid(event.target.value)}} placeholder = "Enter your Bid" id = "bid" type = "hidden" /> :
                         
