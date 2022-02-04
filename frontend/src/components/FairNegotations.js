@@ -637,8 +637,7 @@ const FairNegotations = (props) => {
             userCreditsLeft = {creditsLeft, openingBid};
             openingBid = userCreditsLeft;
 
-        
-            if(convertedBid < virtualCredits) {
+           
 
                 return creditData.map((credit) => {
 
@@ -646,10 +645,7 @@ const FairNegotations = (props) => {
                      return updateNewBid(_id, virtualCredits, openingBid);
                  });
             }
-        }
-
-          
-            
+        
         catch(error) {
 
             if(error) {
@@ -801,10 +797,11 @@ const FairNegotations = (props) => {
                                 setBotTurn(false);
                                
                                 setTimeout(() => {
-                                     return botPlaceRandomBid(lowBotData, mediumBotData, intenseBotData, openingBid);
+                                      botPlaceRandomBid(lowBotData, mediumBotData, intenseBotData, openingBid);
+                                      setRoundNumber(roundNumber + 1);
                                 }, 6000);
 
-                                setRoundNumber(roundNumber + 1);
+                                
                              
                             
                                 // Send PUT request to reset virtual credits back to initial value
@@ -864,16 +861,19 @@ const FairNegotations = (props) => {
 
                              console.log(`The Medium Bot Placed a bid of : ${mediumBotRandomBids}. You have lost against the BOT`);
                             
-                            if(mediumBotRandomBids > userBid) {
-                                    console.log(`The medium bot placed a higher bid...`);
-                                }
-
                                 if(userBid < mediumBotRandomBids) {
-                                     alert(`You have now lost against the medium bot`);
 
+                                    
                                      allBotData.push({...medBotCreditsRemain, medBotDifference, userCreditsLeft, userBid});
                                      allTheBidsData = [...allBotData, type];
                                      masterBotBids = {...allTheBidsData};
+
+                                     console.log(`Starting round 2...`)
+                                     setRoundNumber(roundNumber + 1);
+
+                                     setTimeout(() => {
+                                        return botPlaceRandomBid(lowBotData, mediumBotData, intenseBotData, openingBid);
+                                     }, 5000)
 
                                      break;
                                 }
