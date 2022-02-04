@@ -764,7 +764,7 @@ const FairNegotations = (props) => {
                     
                         if(theUserBid < randBid) {
 
-                            alert(`You have lost the auction in the first round agafinst the ${name} which is a ${type} bot`);
+                            alert(`You have lost the first auction against a ${type} bot`);
                             
                             for(const [userKey, userValue] of Object.entries(userCreditsLeft)) { // For every key value pair in the entries of user credits left
 
@@ -780,19 +780,27 @@ const FairNegotations = (props) => {
                                  
                                 }
                             }
+
+                            // Display Results 
                             // BEGIN NEXT ROUND
                          
+                            // eslint-disable-next-line no-loop-func
                             setTimeout(() => {
                               
                                 setRoundNumber(roundNumber + 1);
-                                setSeconds(60);
 
                                 setUserTurn(true);
                                 setBotTurn(false);
+
+                                alert(`User - Place your bid for round 2 now..`);
                                
                                 setTimeout(() => {
+                                    
                                       botPlaceRandomBid(lowBotData, mediumBotData, intenseBotData, openingBid);
-                                      setRoundNumber(roundNumber + 1);
+                                      findMaxBetweenLowBot(allTheBidsData, theOpeningBid);
+                                      
+                                      console.log(`The LOW bot now placed a bid of :`);
+                                      console.log(randBid);
                                 }, 5000);
 
                                 // Send PUT request to reset virtual credits back to initial value
@@ -933,8 +941,7 @@ const FairNegotations = (props) => {
     }
 
     useEffect(() => {
-       console.log(userTurn);
-        
+       console.log(roundNumber);
     }, [roundNumber]);
 
     const getNextAppliance = async function() {
@@ -1163,7 +1170,6 @@ const FairNegotations = (props) => {
             <h1>Bidding Seconds Remaining: {seconds}</h1>
 
             <h1>{findMaxBid()}</h1>
-            <h1>Low Bot Largest Bid : £{findMaxBetweenLowBot()}</h1>
             <h1>{countTotalBids()}</h1>
             
             {creditData.map((credit, key) => {
