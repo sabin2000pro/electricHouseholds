@@ -208,8 +208,7 @@ const CreatePreference = (props) => {
             let lastApplianceObj = {};
 
             
-
-            setTimeout(() => {
+            await new Promise(resolve => setTimeout(resolve))
 
                 for(let i = 0; i < applianceNames.length - 1; i++) {
                         const firstAppliance = applianceNames[i];
@@ -218,18 +217,17 @@ const CreatePreference = (props) => {
                         const lastAppliance = applianceNames.slice(-1)[0];
                         const applianceIndexes = applianceNames.indexOf(nextApplianceAvailable);
 
-                    // eslint-disable-next-line no-loop-func
-                    setTimeout(() => {
+                    
+                   await new Promise(resolve => setTimeout((resolve)));
                         
-
                         if(applianceIndexes < applianceNames.length - 1) {
                              firstApplianceObj = {firstAppliance};
                              nextApplianceObj = {nextApplianceAvailable};
                              lastApplianceObj = {lastAppliance};
 
-                            firstApplianceData.push(firstApplianceObj);
-                            nextApplianceData.push(nextApplianceObj);
-                            lastApplianceData.push(lastApplianceObj);
+                                firstApplianceData.push(firstApplianceObj);
+                                nextApplianceData.push(nextApplianceObj);
+                                lastApplianceData.push(lastApplianceObj);
 
                             for(let index = 0; index < nextApplianceData.length - 1; index++) {
                                 
@@ -246,21 +244,15 @@ const CreatePreference = (props) => {
                                     filteredAppliances.forEach((filteredVals) => {
                                         newAppliance.push(...filteredVals);
                                         nextApplianceData = [...newAppliance];
-;                                   })
+;                                   });
 
-                                     
                                     for(let z = 0; z < lastApplianceData.length - 1; z++) {
                                    
                                         const lastApplianceAvailable = lastApplianceData[z]
                                         newLastAppliance.push(lastApplianceAvailable);
 
-                                       newLastAppliance.forEach((filteredLast) => {
-                                           console.log(filteredLast);
-                                       })
-
                                     }
-
-                                    
+  
                                }
                             }
 
@@ -268,24 +260,8 @@ const CreatePreference = (props) => {
                         setLastApplianceDataInserted(true);
                             
                       }
-
-                   
-                
-
-                    }, 1500);
-
-
-                      
                 }
 
-            
-            }, 2000)
-
-            // 1. Reload page after 3 seconds
-            // 2. Clear All Input Fields
-            // 3. Get user to submit the second preference by changing the current value of the Appliance to secondAppliance based on a flag
-            // 4. User submits the second preference = TRUE ?
-            // 5. NOW reload page and get user to submit third appliance
         } 
         
         catch(err) {
@@ -297,27 +273,16 @@ const CreatePreference = (props) => {
     }
 
     useEffect(() => {
-    
-        if(nextApplianceDataInserted && lastApplianceDataInserted) {
-           
-            console.log(`Next appliance data AFTER filtering`);
-            console.log(newAppliance);
-
-            console.log(`Lst appliance data :`);
-            console.log(newLastAppliance);
-            console.log(newLastAppliance.length);
-            
-        }
+      
     }, [nextApplianceDataInserted, lastApplianceDataInserted])
 
    
-
     const fetchAllPreferences = async () => {
         try {
 
             return await axios.get(`http://localhost:5200/api/v1/preferences/fetch-preferences`).then(response => {
+
                 const allPreferences = response.data.preferences;
-                
                 const length = response.data.preferences.length;
 
                 setPreferences(allPreferences);
@@ -365,7 +330,7 @@ const CreatePreference = (props) => {
         
             setOtherFirstPref(firstOtherPrefIndex[Math.floor(Math.random() * firstOtherPrefIndex.length)]); 
             setOtherSecondPref(secondOtherPrefIndex[Math.floor(Math.random() * secondOtherPrefIndex.length)]);
-            return setOtherThirdPref(thirdOtherPrefIndex[Math.floor(Math.random() * thirdOtherPrefIndex.length)]);
+            setOtherThirdPref(thirdOtherPrefIndex[Math.floor(Math.random() * thirdOtherPrefIndex.length)]);
         } 
         
         catch(error) {
@@ -416,12 +381,16 @@ const CreatePreference = (props) => {
    const validateCommentUsername = function() {
 
         try {
+
             return enteredCommentUsername.trim().length !== 0;
         } 
         
+
         catch(error) {
             setEnteredCommentUsernameValid(false);
-            return console.error(error);
+            console.error(error);
+
+            throw new Error(error);
         }
    } 
 
