@@ -973,10 +973,12 @@ const FairNegotations = (props) => {
       const getNextAppliance = async function() {
         try {
             // Send GET request to get the next user appliance for round 2
-            if(roundNumber === 2) {
-                console.log(`Inside the get next appliance function`);
-            }
+           
+            console.log(`GET REQUEST INSIDE ROUND NUMBER 2 GET NEXT APPLIANCE`);
+
         } 
+
+       
         
         catch(err) {
 
