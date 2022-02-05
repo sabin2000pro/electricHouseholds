@@ -32,8 +32,12 @@ const preferencesSchema = new mongoose.Schema({
 
     nextAppliance: {
         type: String
+    },
+
+    lastAppliance: {
+        type: String
     }
-    
+
 });
 
 const Preference = mongoose.model('Preference', preferencesSchema);
