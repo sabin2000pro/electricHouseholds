@@ -695,6 +695,7 @@ const FairNegotations = (props) => {
         try {
 
             let masterBotBids = {};
+            let intenseCreditsRemain = {};
             let lowBotPlacedBid = false;
             let theOpeningBid = parseInt(openingBid.openingBid);
 
@@ -916,7 +917,7 @@ const FairNegotations = (props) => {
                         console.log(`Inside process intense bots. This is your final bot.`);
 
                         try {
-                            
+                           
                         } 
                         
                         catch(err) {
