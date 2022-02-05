@@ -108,7 +108,7 @@ const CreatePreference = (props) => {
                 setFormValid(true);
                 setShowOkBtn(false);
 
-              
+
             }
           
         } 
@@ -129,8 +129,7 @@ const CreatePreference = (props) => {
     await axios.post(`http://localhost:5200/api/v1/preferences/create-preference`, {username: enteredUsername, appliance: chosenAppliance, nextAppliance: chosenNextAppliance, lastAppliance: chosenLastAppliance,  firstPreference: chosenFirstPreference, secondPreference: chosenSecondPreference , thirdPreference: chosenThirdPreference}).then(response => {
         setModalShown({title: 'Preferences', message: 'Your Preferences Have Been Submitted', showForm: false, showDefaultBtn: true});
 
-        console.log(response.data);
-       
+    
             setChosenAppliance("");
             setChosenFirstPreference("");
             setChosenSecondPreference("");
@@ -156,7 +155,7 @@ const CreatePreference = (props) => {
 
                 const allAppliances = response.data.appliances;
                 setAppliances(allAppliances);
-                console.log(allAppliances);
+               
 
                 return response.data.appliances.forEach((appl) => {
                     const {name} = appl;
@@ -189,9 +188,6 @@ const CreatePreference = (props) => {
             let nextApplianceObj = {};
             let lastApplianceObj = {};
 
-            
-
-
             await new Promise(resolve => setTimeout(resolve))
 
                 for(let i = 0; i < applianceNames.length - 1; i++) {
@@ -200,7 +196,6 @@ const CreatePreference = (props) => {
 
                         const lastAppliance = applianceNames.slice(-1)[0];
                         const applianceIndexes = applianceNames.indexOf(nextApplianceAvailable);
-
                     
                    await new Promise(resolve => setTimeout((resolve)));
                         
@@ -223,7 +218,6 @@ const CreatePreference = (props) => {
                                   const filteredRecentlyInserted = nextApplianceData.slice(0, recentlyInsertedIndex).concat(nextApplianceData.slice(recentlyInsertedIndex + 1, nextApplianceData.length));
                                   filteredAppliances.push(filteredRecentlyInserted);
                                   
-                                    
                                     // eslint-disable-next-line no-loop-func
                                     filteredAppliances.forEach((filteredVals) => {
                                         newAppliance.push(...filteredVals);
@@ -233,12 +227,8 @@ const CreatePreference = (props) => {
                                     for(let z = 0; z < lastApplianceData.length - 1; z++) {
                                    
                                         const lastApplianceAvailable = lastApplianceData[z]
-                                        newLastAppliance.push(lastApplianceAvailable);
-                                        
-                                        
+                                        newLastAppliance.push(lastApplianceAvailable);                                 
                                     }
-
-                                   
 
                                }
                             }
@@ -256,6 +246,8 @@ const CreatePreference = (props) => {
 
             if(err) {
                 console.error(err);
+
+                throw new Error(err);
             }
         }
     }

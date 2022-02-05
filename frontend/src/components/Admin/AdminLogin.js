@@ -20,6 +20,7 @@ const AdminLogin = (props) => { // Admin Login Component
     useEffect(() => {
         const authToken = localStorage.getItem("authToken");
         return checkToken(authToken);
+        
     }, []);
 
     const checkToken = (authToken) => { // Verifies the authentication token
