@@ -43,7 +43,7 @@ const CreatePreference = (props) => {
     const [appliances, setAppliances] = useState([]); // Array of appliances
     const [preferences, setPreferences] = useState([]);
     const [formValid, setFormValid] = useState(true);
-    
+
     const [preferencesBtnClicked, setPreferencesBtnClicked] = useState(false);
     const [preferenceSubmitted, setPreferenceSubmitted] = useState(false);
     const [modalShown, setModalShown] = useState();
@@ -189,6 +189,8 @@ const CreatePreference = (props) => {
             let nextApplianceObj = {};
             let lastApplianceObj = {};
 
+            
+
 
             await new Promise(resolve => setTimeout(resolve))
 
@@ -232,14 +234,18 @@ const CreatePreference = (props) => {
                                    
                                         const lastApplianceAvailable = lastApplianceData[z]
                                         newLastAppliance.push(lastApplianceAvailable);
-
+                                        
+                                        
                                     }
-  
+
+                                   
+
                                }
                             }
 
                         setNextApplianceDataInserted(true);
                         setLastApplianceDataInserted(true);
+                        
                             
                       }
                 }

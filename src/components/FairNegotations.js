@@ -30,7 +30,7 @@ const FairNegotations = (props) => {
 
     let location = useLocation();
     let history = useHistory();
-    let {username, appliance, firstPreference, secondPreference, thirdPreference, nextAppliance} = location.state.preference;
+    let {username, appliance, firstPreference, secondPreference, thirdPreference, nextAppliance, lastAppliance} = location.state.preference;
 
     const [auctionStarted, setAuctionStarted] = useState(false);
     const [botTypes, setBotTypes] = useState({LOW: 'Low', MEDIUM: 'Medium', INTENSE: 'Intense'})
@@ -680,15 +680,7 @@ const FairNegotations = (props) => {
        return botPlaceRandomBid(lowBotData, mediumBotData, intenseBotData, openingBid);
      }
 
-     const getNextAppliance = async function() {
-        try {
-
-        } 
-        
-        catch(err) {
-
-        }
-    }
+   
 
     const botPlaceRandomBid = async function(lowBotData, mediumBotData, intenseBotData, openingBid) {
 
@@ -786,11 +778,11 @@ const FairNegotations = (props) => {
                                 
                                     alert(`The winner is the ${type} bot(s) with a bid of ${randBid}`);
 
-                                    console.log(`The bot : ${type} receives the timeslot preference : ${firstPreference} for this round`);
+                                    alert(`The bot : ${type} receives the timeslot preference : ${firstPreference} for this round`);
 
                                     setTimeout(() => {
-                                        console.log(`...`);
-                                    }, 10000);
+                                        getNextAppliance();
+                                    }, 1000);
                                    
                                    break;
                                  
@@ -801,7 +793,6 @@ const FairNegotations = (props) => {
 
                             setTimeout(() => {
                                 alert(`The user wins as the low bot hits 0`);
-
                             }, 1000)
                         }
 
@@ -827,7 +818,7 @@ const FairNegotations = (props) => {
                                       console.log(randBid);
 
                                     
-                                }, 5000);
+                                }, 7000);
 
                                 // Send PUT request to reset virtual credits back to initial value
 
@@ -835,8 +826,7 @@ const FairNegotations = (props) => {
                             return;
                         }
 
-                       
-
+                    
                         if(randBid >= 0 && randBid <= lowBotBidAvg) {
 
                             isBetweenAvg = true;
@@ -892,7 +882,7 @@ const FairNegotations = (props) => {
 
                                      setTimeout(() => {
                                         return botPlaceRandomBid(lowBotData, mediumBotData, intenseBotData, openingBid);
-                                     }, 5000)
+                                     }, 8000)
 
                                      break;
                                 }
@@ -980,8 +970,32 @@ const FairNegotations = (props) => {
         }
     }
 
-    const displayWinner = () => { // Displays who the winner of Round 1 is
+      const getNextAppliance = async function() {
+        try {
+            // Send GET request to get the next user appliance for round 2
+            if(roundNumber === 2) {
+                console.log(`Inside the get next appliance function`);
+            }
+        } 
+        
+        catch(err) {
 
+            if(err) {
+                console.log(err);
+
+                throw new Error(err);
+            }
+        }
+    }
+
+    const displayWinner = () => { // Displays who the winner of Round 1 is
+        try {
+
+        } 
+        
+        catch(error) {
+            
+        }
     }
 
     const processLowBotBid = async function(mediumBotRandomBids, lowBotPlacedBid, name) {
@@ -1197,7 +1211,8 @@ const FairNegotations = (props) => {
             <h2>User's Initial Appliance : {appliance}</h2>
 
             {roundOneOver && roundNumber === 2 ?  <h2>Next Appliance: {nextAppliance}</h2> :undefined }
-           
+             <h2>Last Appliance: {lastAppliance}</h2>
+
             {!mainRoundOver ? <h1 className = "first--pref">User's First Chosen Preference : {firstPreference}</h1> : null }
 
             {/* {roundOneOver && roundNumber === 2 ?<h1 className = "second--pref">User's Second Chosen Preference: {secondPreference}</h1> : null }
@@ -1213,7 +1228,7 @@ const FairNegotations = (props) => {
                     <div className = "bid--container">
 
                     <label className = "bid--lbl">Bid</label>
-                        {!roundOneOver && userInputDisabled ? 
+                        {roundOneOver && userInputDisabled ? 
                     
                         <input value = {bid} onChange = {(event) => {setBid(event.target.value)}} placeholder = "Enter your Bid" id = "bid" type = "hidden" /> :
                         
