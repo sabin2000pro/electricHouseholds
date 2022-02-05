@@ -29,12 +29,9 @@ let otherPreferences = [
 
 const CreatePreference = (props) => {
     const [enteredUsername, setUsername] = useState("");
-    const [diffSearch, setDiffSearch] = useState(false);
-    const [searchTerm, setSearchTerm] = useState("");
     const [usernameValid, setUsernameValid] = useState(true);
     const [chosenAppliance, setChosenAppliance] = useState("");
-    const [nextApplianceFound, setNextApplianceFound] = useState(false);
-    const [applianceValid, setApplianceValid] = useState(true);
+
     const [otherFirstPref, setOtherFirstPref] = useState('');
     const [otherSecondPref, setOtherSecondPref] = useState('');
     const [otherThirdPref, setOtherThirdPref] = useState('');
@@ -45,11 +42,8 @@ const CreatePreference = (props) => {
 
     const [appliances, setAppliances] = useState([]); // Array of appliances
     const [preferences, setPreferences] = useState([]);
-    const [validPreferences, setValidPreferences] = useState(true);
     const [formValid, setFormValid] = useState(true);
-    const [washingMachineChosen, setWashingMachineChosen] = useState(false);
-    const [tumbleDrierChosen, setTumbleDrierChosen] = useState(false);
-    const [electricHeaterChosen, setElectricHeaterChosen] = useState(false);
+    
     const [preferencesBtnClicked, setPreferencesBtnClicked] = useState(false);
     const [preferenceSubmitted, setPreferenceSubmitted] = useState(false);
     const [modalShown, setModalShown] = useState();
@@ -66,7 +60,6 @@ const CreatePreference = (props) => {
     const [enteredCommentReasonValid, setEnteredCommentReasonValid] = useState(true);
     const [enteredCommentDescriptionValid, setEnteredCommentDescriptionValid] = useState(true);
 
-    const [creditData, setCreditData] = useState([]);
     const [firstApplianceData, setFirstApplianceData] = useState([]);
 
     let [nextApplianceData, setNextApplianceData] = useState([]);
@@ -77,7 +70,6 @@ const CreatePreference = (props) => {
 
     const [nextApplianceDataInserted, setNextApplianceDataInserted] = useState(false);
     const [lastApplianceDataInserted, setLastApplianceDataInserted] = useState(false);
-    const [appliancesFiltered, setAppliancesFiltered] = useState(false);
 
     const preferencesSubmitHandler = async (e) => {
 
@@ -110,16 +102,13 @@ const CreatePreference = (props) => {
             }
 
             else {
-                
 
                 processPreference();
-
                 setPreferenceSubmitted(true);
                 setFormValid(true);
                 setShowOkBtn(false);
 
-                // NOW after user submits their first preference.
-                // Take the next prefernce in the drop down menu and get the user to submit preferences for that
+              
             }
           
         } 
@@ -137,24 +126,17 @@ const CreatePreference = (props) => {
     // Function to process user preference.
     const processPreference = async () => { 
 
-        let prefSubmitted; 
-       
-        
     await axios.post(`http://localhost:5200/api/v1/preferences/create-preference`, {username: enteredUsername, appliance: chosenAppliance, nextAppliance: chosenNextAppliance, lastAppliance: chosenLastAppliance,  firstPreference: chosenFirstPreference, secondPreference: chosenSecondPreference , thirdPreference: chosenThirdPreference}).then(response => {
         setModalShown({title: 'Preferences', message: 'Your Preferences Have Been Submitted', showForm: false, showDefaultBtn: true});
 
         console.log(response.data);
        
-    
-
             setChosenAppliance("");
             setChosenFirstPreference("");
             setChosenSecondPreference("");
             setChosenThirdPreference("");
 
             return processNextAppliance();
-
-       
     })
        
     }
@@ -207,7 +189,7 @@ const CreatePreference = (props) => {
             let nextApplianceObj = {};
             let lastApplianceObj = {};
 
-            
+
             await new Promise(resolve => setTimeout(resolve))
 
                 for(let i = 0; i < applianceNames.length - 1; i++) {
