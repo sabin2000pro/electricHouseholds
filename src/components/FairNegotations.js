@@ -857,10 +857,6 @@ const FairNegotations = (props) => {
 
                             const {name, type, botCredits} = allMediumBotData;
 
-                            if(!name || !type || !botCredits) {
-
-                            }
-  
                             let mediumBotRandomBids = Math.floor(Math.random() * mediumBotBidAvg);
                             let mediumBotCreditsRemaining = parsedMediumBotCredits - mediumBotRandomBids;
                             let mediumBotCreditsLeft = mediumBotCreditsRemaining;
@@ -971,6 +967,7 @@ const FairNegotations = (props) => {
     }
 
       const getNextAppliance = async function() {
+          
         try {
             // Send GET request to get the next user appliance for round 2
            
@@ -978,8 +975,6 @@ const FairNegotations = (props) => {
 
         } 
 
-       
-        
         catch(err) {
 
             if(err) {

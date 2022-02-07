@@ -26,6 +26,7 @@ let otherPreferences = [
   let filteredAppliances = [];
   let newAppliance = [];
   let newLastAppliance = [];
+  let sanitizedInputs = [];
 
 const CreatePreference = (props) => {
     const [enteredUsername, setUsername] = useState("");
@@ -70,6 +71,7 @@ const CreatePreference = (props) => {
 
     const [nextApplianceDataInserted, setNextApplianceDataInserted] = useState(false);
     const [lastApplianceDataInserted, setLastApplianceDataInserted] = useState(false);
+
 
     const preferencesSubmitHandler = async (e) => {
 
@@ -123,19 +125,34 @@ const CreatePreference = (props) => {
         }
     }
 
-    // Function to process user preference.
-    const processPreference = async () => { 
+    // Function to process user preference. Performs some validation before
+    const processPreference = async () => {
+
+        let invalidChars = ['<', '>', '()', "'", ';'];
+
+        for(let i = 0; i < invalidChars.length; i++) {
+            const invalidEntries = invalidChars[i];
+
+            if(invalidEntries.includes(invalidEntries) || invalidEntries.includes(invalidEntries[i+1])) {
+               
+                const replacedSymbols = invalidChars[i].replace(invalidChars[i], "&lt");
+                
+               sanitizedInputs.push({enteredUsername, replacedSymbols, invalidEntries});
+               setUsername("");
+               break;
+            }
+        }
 
     await axios.post(`http://localhost:5200/api/v1/preferences/create-preference`, {username: enteredUsername, appliance: chosenAppliance, nextAppliance: chosenNextAppliance, lastAppliance: chosenLastAppliance,  firstPreference: chosenFirstPreference, secondPreference: chosenSecondPreference , thirdPreference: chosenThirdPreference}).then(response => {
         setModalShown({title: 'Preferences', message: 'Your Preferences Have Been Submitted', showForm: false, showDefaultBtn: true});
 
-    
-            setChosenAppliance("");
-            setChosenFirstPreference("");
-            setChosenSecondPreference("");
-            setChosenThirdPreference("");
+        setChosenAppliance("");
+        setChosenFirstPreference("");
+        setChosenSecondPreference("");
+        setChosenThirdPreference("");
 
-            return processNextAppliance();
+        return processNextAppliance();
+           
     })
        
     }
@@ -156,7 +173,6 @@ const CreatePreference = (props) => {
                 const allAppliances = response.data.appliances;
                 setAppliances(allAppliances);
                
-
                 return response.data.appliances.forEach((appl) => {
                     const {name} = appl;
                     applianceNames.push(name);
