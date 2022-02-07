@@ -15,6 +15,21 @@ const preferencesSchema = new mongoose.Schema({
         type: String
     },
 
+    hasFirstAppliance: {
+        type: Boolean,
+        default: false
+    },
+
+    hasSecondAppliance: {
+        type: Boolean,
+        default: false
+    },
+
+    hasThirdAppliance: {
+        type: Boolean,
+        default: false
+    }
+
     firstPreference: {
         type: String,
         required: [true, 'Please submit first timeslot preference']
