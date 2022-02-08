@@ -39,11 +39,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "react-scripts start",
-    "build-app": "webpack --mode production",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "react-scripts start"
   },
   "repository": {
     "type": "git",
