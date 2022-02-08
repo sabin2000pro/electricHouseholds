@@ -44,7 +44,7 @@
       "start": "serve -s build",
       "build": "./frontend react-scripts build",
       "test": "./frontend react-scripts test --env=jsdom",
-      "eject": "./ frontend react-scripts eject",
+      "eject": "./ =frontend react-scripts eject",
       "heroku-postbuild": "npm run build"
       
     
