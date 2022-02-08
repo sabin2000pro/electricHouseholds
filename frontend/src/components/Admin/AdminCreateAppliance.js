@@ -17,7 +17,7 @@ const AdminCreateAppliance = (props) => {
 
     const logoutHandler = () => { // Logout Handler Function to logout admins
         localStorage.removeItem("authToken"); // Remove auth token from local storage
-        return history.push('/home'); // Redirect user  back home
+        return history.push('/home'); // Redirect user  back home. Adding more dependneices
     }
 
     function redirectHome() {
