@@ -64,6 +64,7 @@ const FairNegotations = (props) => {
     const [bid, setBid] = useState('');
 
     const [counterError, setCounterError] = useState(false);
+
     const [mainRoundOver, setMainRoundOver] = useState(false);
     const [roundOneOver, setRoundOneOver] = useState(false);
     const [roundTwoOver, setRoundTwoOver] = useState(false);
@@ -76,6 +77,11 @@ const FairNegotations = (props) => {
     const [creditsFetched, setCreditsFetched] = useState(false);
    
     const [remainingAppliances, setRemainingAppliances] = useState([]);
+    const [roundOver, setRoundOver] = useState(false);
+    const [biddingOver, setBiddingOver] = useState(false);
+    const [lowBotWin, setLowBotWin] = useState(false);
+    const [mediumBotWin, setMediumBotWin] = useState(false);
+    const [intenseBotWin, setIntenseBotWin] = useState(false);
 
     let [userCreditsLeft, setUserCreditsLeft] = useState({});
     let [masterObject, setMasterObject] = useState({});
@@ -763,9 +769,8 @@ const FairNegotations = (props) => {
                         convertedBotBid = randBid;
                     
                         if(theUserBid < randBid) {
+                          
 
-                            alert(`You have lost the auction against the ${type} bot(s)`);
-                            
                             for(const [userKey, userValue] of Object.entries(userCreditsLeft)) { // For every key value pair in the entries of user credits left
 
                                 if(userKey !== undefined && userValue !== undefined) { // if a user key exists
@@ -774,56 +779,18 @@ const FairNegotations = (props) => {
                                    allTheBidsData = [...allBotData];
                                    masterBotBids = {...allTheBidsData};
 
-                                  findMaxBetweenLowBot(allTheBidsData, theOpeningBid);
-                                
-                                    alert(`The winner is the ${type} bot(s) with a bid of ${randBid}`);
-
-                                    alert(`The bot : ${type} receives the timeslot preference : ${firstPreference} for this round`);
-
-                                    setTimeout(() => {
-                                        getNextAppliance();
-                                    }, 1000);
+                                     setTimeout(() => {
+                                         getNextAppliance();
+                                     }, 1000);
                                    
-                                   break;
                                  
                                 }
+
+                            
                             }
 
-                             if(randBid === 0) { // If the random low bot bid is 0 reload the page
+                           
 
-                            setTimeout(() => {
-                                alert(`The user wins as the low bot hits 0`);
-                            }, 1000)
-                        }
-
-                            // Display Results 
-                            // BEGIN NEXT ROUND
-                         
-                            // eslint-disable-next-line no-loop-func
-                            setTimeout(() => {
-                              
-                                setRoundNumber(roundNumber + 1);
-
-                                setUserTurn(true);
-                                setBotTurn(false);
-
-                                alert(`User - Place your bid for round 2 now..`);
-                               
-                                setTimeout(() => {
-                                    
-                                      botPlaceRandomBid(lowBotData, mediumBotData, intenseBotData, openingBid);
-                                      findMaxBetweenLowBot(allTheBidsData, theOpeningBid);
-                                      
-                                      console.log(`The LOW bot now placed a bid of :`);
-                                      console.log(randBid);
-
-                                    
-                                }, 7000);
-
-                                // Send PUT request to reset virtual credits back to initial value
-
-                            }, 1000);
-                            return;
                         }
 
                     
@@ -832,7 +799,7 @@ const FairNegotations = (props) => {
                             isBetweenAvg = true;
 
                             if(isBetweenAvg) {
-                                console.log(convertedBotBid);
+                               
 
                                 // eslint-disable-next-line no-loop-func
                                 setTimeout(() => {
@@ -845,80 +812,105 @@ const FairNegotations = (props) => {
                         }
                       }
 
+                      setLowBotWin(true);
+
+                      if(lowBotWin) {
+                          alert(`The bot :low bot has won this round and receives the timeslot preference of ${firstPreference}`);
+                          alert(`Starting the next round`);
+
+                            // eslint-disable-next-line no-loop-func
+                  setTimeout(() => {
+                    
+                      setRoundNumber(roundNumber + 1);
+
+                      setUserTurn(true);
+                      setBotTurn(false);
+
+                     
+                      setTimeout(() => {
+                           // botPlaceRandomBid(lowBotData, mediumBotData, intenseBotData, openingBid);
+
+                      }, 8000);
+
+                     
+                  }, 1000);
+                      }
+
                 }
 
-                      setTimeout(() => {
-                          let medBotCreditsRemain = {};
-
-                        for(let index = 0; index < bidData.length; index++) {
-                           const userBid = parseInt(bidData[index].bid);
-                           
-                        for(let i = 0; i < numberOfMediumBots; i++) {
-
-                            const {name, type, botCredits} = allMediumBotData;
-
-                            let mediumBotRandomBids = Math.floor(Math.random() * mediumBotBidAvg);
-                            let mediumBotCreditsRemaining = parsedMediumBotCredits - mediumBotRandomBids;
-                            let mediumBotCreditsLeft = mediumBotCreditsRemaining;
-
-                            convertedBotBid = mediumBotRandomBids;
-                            medBotCreditsRemain = {mediumBotCreditsLeft};
-                            let medBotDifference = parsedMediumBotCredits - medBotCreditsRemain.mediumBotCreditsLeft;
-
-                             console.log(`The Medium Bot(s) Placed a bid of : ${mediumBotRandomBids}`);
-                            
-                                if(userBid < mediumBotRandomBids) {
-
-                                     allBotData.push({...medBotCreditsRemain, medBotDifference, userCreditsLeft, userBid});
-                                     allTheBidsData = [...allBotData, type];
-                                     masterBotBids = {...allTheBidsData};
-
-                                     console.log(`Starting round 2...`)
-                                     setRoundNumber(roundNumber + 1);
-
-                                     setTimeout(() => {
-                                        return botPlaceRandomBid(lowBotData, mediumBotData, intenseBotData, openingBid);
-                                     }, 8000)
-
-                                     break;
-                                }
-                            
-                                if(type === botTypes.MEDIUM && botCredits > 0 && name != null && (userBid > mediumBotRandomBids)) {
-                              
-                                    setTimeout(() => {
-                                     
-                                     if(mediumBotRandomBids !== 0 && !(userBid) < mediumBotRandomBids) {
-                                        return processMediumBotBids(mediumBotRandomBids, name, type, mediumBotCreditsLeft);
-                                     }
-     
-                                    }, 2000)
-     
-                                }
-     
-                        }
-                    }
-                    
-            
-                    setTimeout(() => {
-                        console.log(`Inside process intense bots. This is your final bot.`);
-
-                        try {
-                           
-                        } 
+                        if(!lowBotWin) {
+                            setTimeout(() => {
+                                let medBotCreditsRemain = {};
+      
+                              for(let index = 0; index < bidData.length; index++) {
+                                 const userBid = parseInt(bidData[index].bid);
+                                 
+                              for(let i = 0; i < numberOfMediumBots; i++) {
+      
+                                  const {name, type, botCredits} = allMediumBotData;
+      
+                                  let mediumBotRandomBids = Math.floor(Math.random() * mediumBotBidAvg);
+                                  let mediumBotCreditsRemaining = parsedMediumBotCredits - mediumBotRandomBids;
+                                  let mediumBotCreditsLeft = mediumBotCreditsRemaining;
+      
+                                  convertedBotBid = mediumBotRandomBids;
+                                  medBotCreditsRemain = {mediumBotCreditsLeft};
+                                  let medBotDifference = parsedMediumBotCredits - medBotCreditsRemain.mediumBotCreditsLeft;
+      
+                                      if(userBid < mediumBotRandomBids) {
+                                         
+                                           allBotData.push({...medBotCreditsRemain, medBotDifference, userCreditsLeft, userBid});
+                                           allTheBidsData = [...allBotData, type];
+                                           masterBotBids = {...allTheBidsData};
+                                           
+                                           setMainRoundOver(true);
+                                           setRoundNumber(roundNumber + 1);
+      
+                                           setTimeout(() => {
+                                              botPlaceRandomBid(lowBotData, mediumBotData, intenseBotData, openingBid);
+                                           }, 8000);
+      
+                                           break;
+                                      }
+                                  
+                                      if(type === botTypes.MEDIUM && botCredits > 0 && name != null && (userBid > mediumBotRandomBids)) {
+                                    
+                                          setTimeout(() => {
+                                           
+                                           if(mediumBotRandomBids !== 0 && !(userBid) < mediumBotRandomBids) {
+                                              return processMediumBotBids(mediumBotRandomBids, name, type, mediumBotCreditsLeft);
+                                           }
+           
+                                          }, 2000)
+           
+                                      }
+           
+                              }
+                          }
+      
                         
-                        catch(err) {
-
-                            if(err) {
-
-                                console.log(err);
-                                throw new Error(err);
-                            }
+                  
+                          setTimeout(() => {
+                              
+                              try {
+                                 
+                              } 
+                              
+                              catch(err) {
+      
+                                  if(err) {
+      
+                                      console.log(err);
+                                      throw new Error(err);
+                                  }
+                              }
+      
+                          }, 3000);
+      
+                          }, 1300);
                         }
 
-                    }, 3000)
-                
-
-                    }, 1300);
+                      
 
 
                 }, 1300); 
@@ -947,8 +939,8 @@ const FairNegotations = (props) => {
     }
 
     useEffect(() => {
-       console.log(roundNumber);
-    }, [roundNumber]);
+        setRoundOneOver(true);
+    }, [roundNumber, roundOneOver, lowBotWin]);
 
 
     const findMaxBetweenLowBot = function() {
@@ -967,11 +959,20 @@ const FairNegotations = (props) => {
     }
 
       const getNextAppliance = async function() {
-          
+
         try {
             // Send GET request to get the next user appliance for round 2
-           
-            console.log(`GET REQUEST INSIDE ROUND NUMBER 2 GET NEXT APPLIANCE`);
+        
+        
+            await axios.get(`http://localhost:5200/api/v1/preferences/fetch-preferences`).then(response => {
+                const data = response.data.preferences;
+                setRemainingAppliances(data);
+
+            }).catch(err => {
+                if(err) {
+                    console.log(err);
+                }
+            })
 
         } 
 
@@ -984,6 +985,10 @@ const FairNegotations = (props) => {
             }
         }
     }
+
+    useEffect(() => {
+       console.log(remainingAppliances);
+    }, [remainingAppliances]);
 
     const displayWinner = () => { // Displays who the winner of Round 1 is
         try {
@@ -1208,8 +1213,7 @@ const FairNegotations = (props) => {
             <h2>User's Initial Appliance : {appliance}</h2>
 
             {roundOneOver && roundNumber === 2 ?  <h2>Next Appliance: {nextAppliance}</h2> :undefined }
-             <h2>Last Appliance: {lastAppliance}</h2>
-
+            
             {!mainRoundOver ? <h1 className = "first--pref">User's First Chosen Preference : {firstPreference}</h1> : null }
 
             {/* {roundOneOver && roundNumber === 2 ?<h1 className = "second--pref">User's Second Chosen Preference: {secondPreference}</h1> : null }
@@ -1225,7 +1229,7 @@ const FairNegotations = (props) => {
                     <div className = "bid--container">
 
                     <label className = "bid--lbl">Bid</label>
-                        {roundOneOver && userInputDisabled ? 
+                        {!roundOneOver && userInputDisabled ? 
                     
                         <input value = {bid} onChange = {(event) => {setBid(event.target.value)}} placeholder = "Enter your Bid" id = "bid" type = "hidden" /> :
                         
@@ -1264,8 +1268,6 @@ const FairNegotations = (props) => {
 
 : undefined}
 
-        {mainRoundOver ? <h1>{`${findMaxBid()} the user receives the timeslot`}</h1>
-: undefined}
 
 </section>
 
