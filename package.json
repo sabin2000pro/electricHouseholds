@@ -39,7 +39,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "frontend react-scripts start"
+    "start": "./frontend react-scripts start"
   },
   "repository": {
     "type": "git",
