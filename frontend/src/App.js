@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter, Route } from 'react-router-dom'
 import Homepage from './components/Home/Homepage';
 import AdminRegister from './components/Admin/AdminRegister';
 import React from 'react';
@@ -24,7 +24,7 @@ const App = () => { // Trying to add the permissions..
 
     <div className = "App">
 
-      <Router>
+      <BrowserRouter pathname = "/">
         <Route exact path = '/' component={Homepage} />
         <Route exact path = '/api/v1/auth/client/admin-register' component = {AdminRegister}/>
         <Route exact path = '/your-preferences' component = {PreferencesHome}/>
@@ -43,7 +43,7 @@ const App = () => { // Trying to add the permissions..
         <Route exact path = "/fair-negotiations/:id" component = {FairNegotiations}/>
         <Route exact path = "/results" component = {ResultsScreen} />
 
-      </Router>
+      </BrowserRouter>
 
 
     </div>
