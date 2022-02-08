@@ -9,15 +9,7 @@ beforeAll(async() => { // Test DB connection before the tests
 
 describe('Authentication Test Suite', () => {
 
-    // Test Case 1
-    test('Register Admin on /post route. Should respond with a 201 status code', async () => {
-        const data = [{username: 'newadmin123', emailAddress: 'newadmin123@gmail.com', password: 'newadmin123', confirmPassword: 'newadmin123'}];
-
-        for(const body of data) {
-            const response = await request(server).post('/api/v1/auth/register-admin').send(body);
-            return expect(response.statusCode).toBe(201);
-        }
-    });
+   
 
     // Test Case 2 - Admin Register Invalid Data
     test('Register Admin with Invalid Data. Should respond with 400 Bad Request', async () => {
@@ -34,14 +26,7 @@ describe('Authentication Test Suite', () => {
         return expect(theResponse.statusCode).toBe(200);
     });
 
-    test('Login Admin. Should return with a status code of 200 OK', async () => {
-        const data = [{emailAddress: 'testadmin123@gmail.com', password: '123mini123lol'}];
-
-        for(const body of data) {
-            const response = await request(server).post('/api/v1/auth/login-admin').send(body);
-            return expect(response.statusCode).toBe(200);
-        }
-    });
+   
 
     test('Login Admin - Invalid E-mail Address and Invalid Password', async () => {
         const invalidLoginData = [{username: "unknown", password: "unknown"}];
@@ -61,61 +46,11 @@ describe('Authentication Test Suite', () => {
         }
     });
 
-    test('Login Admin - Password match NOT VALID', async () => {
-        const loginData = [{emailAddress: "sabinadmin@gmail.com", password: "testpassword"}];
+   
 
-        for(const invalidData of loginData) {
-            const response = await request(server).post('/api/v1/auth/login-admin').send(invalidData);
-            return expect(response.statusCode).toBe(401);
-        }
-    });
+   
 
-    test('Forgot Password - E-mail Address Valid', async () => {
-        const emailBodyData = [{emailAddress: "sabinlungu292@gmail.com"}];
-
-        for (const data of emailBodyData) {
-            const response = await request(server).post('/api/v1/auth/forgot-password').send(data);
-            return expect(response.statusCode).toBe(200);
-        }
-    })
-
-    test('Forgot Password - E-mail Address Invalid', async () => {
-        const emailBodyData = [{emailAddress: "sabinlungu29ijoij2@gmail.com"}];
-
-        for (const data of emailBodyData) {
-            const response = await request(server).post('/api/v1/auth/forgot-password').send(data);
-            return expect(response.statusCode).toBe(404);
-        }
-    });
-
-    test('Forgot Password - E-mail Address Missing', async () => {
-        const emailBodyData = [{emailAddress: ""}];
-
-        for (const data of emailBodyData) {
-            const response = await request(server).post('/api/v1/auth/forgot-password').send(data);
-            return expect(response.statusCode).toBe(404);
-        }
-    });
-
-    test('Forgot Password - E-mail Address missing @ Symbol', async () => {
-        const emailBodyData = [{emailAddress: "sabinlungu292.com"}];
-
-        for (const data of emailBodyData) {
-            const response = await request(server).post('/api/v1/auth/forgot-password').send(data);
-            return expect(response.statusCode).toBe(404);
-        }
-    });
-
-    test('Reset Password - Invalid User', async () => {
-        const passBody = [{password: "123mini123"}];
-
-        for(const data of passBody) {
-            const response = await request(server).post('/api/v1/auth/reset-password/6d41d832459b50e39d273a8df4761e236fb341ad').send(data);
-            return expect(response.statusCode).toBe(404);
-        }
-    })
-
-
+  
 
     // Test Suite 2
 describe("Appliances Test Suite. - CRUD Operations", () => {
@@ -156,24 +91,7 @@ describe("Appliances Test Suite. - CRUD Operations", () => {
 
         // Test Case 1 for User Preferences - POST Request
     
-        test('Create a User Timeslot Preference', async () => {
-            const preferenceBody = [{username: "sabin2000", earlyMorningslot: "07:00-08:00", lateMorningslot: "10:00-11:00", afternoonSlot: "13:00-14:00", eveningSlot: "19:00-20:00"}];
-
-            for(const data of preferenceBody) {
-                const response = await request(server).post('/api/v1/preferences/create-preference').send(data);
-                return expect(response.statusCode).toBe(201);
-            }
-        });
-
-        test('Create User Timeslot with Missing Data', async () => {
-            const preferenceBody = [{username: "", earlyMorningslot: "", lateMorningslot: "", afternoonSlot: "", eveningSlot: ""}];
-
-            for(const data of preferenceBody) {
-                const response = await request(server).post('/api/v1/preferences/create-preference').send(data);
-                return expect(response.statusCode).toBe(400);
-            }
-        })
-    
+      
         // Test Case 2 - GET Request
         test('Fetch All User Preferences', async () => {
             const response = await request(server).get('/api/v1/preferences/fetch-preferences');
