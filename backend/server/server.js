@@ -62,7 +62,7 @@ if(process.env.NODE_ENV === 'production') {// Get the index.html
 
 
 // Create Server to listen for incoming requests
-const server = app.listen(port, (err) => {
+const server = app.listen(process.env.PORT, (err) => {
     try {
 
         if(!err) { // If no error occurred
