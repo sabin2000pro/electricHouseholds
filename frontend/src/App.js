@@ -25,7 +25,7 @@ const App = () => { // Trying to add the permissions..
     <div className = "App">
 
       <Router>
-        <Route exact path = '/home' component={Homepage} />
+        <Route exact path = '/' component={Homepage} />
         <Route exact path = '/api/v1/auth/client/admin-register' component = {AdminRegister}/>
         <Route exact path = '/your-preferences' component = {PreferencesHome}/>
         <Route exact path = '/api/v1/auth/client/admin-login' component = {AdminLogin}/>
