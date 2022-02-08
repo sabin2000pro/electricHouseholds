@@ -26,7 +26,7 @@ const AdminLogin = (props) => { // Admin Login Component
     const checkToken = (authToken) => { // Verifies the authentication token
 
          if(authToken) { // if there is one already present
-             return history.push('/admin-dashboard'); // Adding herolku
+             return history.push('/admin-dashboard'); // Adding heroku public folder
          }
     }
 
