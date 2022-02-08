@@ -26,6 +26,8 @@ let theIntenseBots = []; // Array of intense bots
 let allBotData = []; // All of the bot data after bidding
 let allTheBidsData = [];
 
+const remainingAppliances = [];
+
 const FairNegotations = (props) => {
 
     let location = useLocation();
@@ -76,7 +78,6 @@ const FairNegotations = (props) => {
     const [creditData, setCreditData] = useState([]);
     const [creditsFetched, setCreditsFetched] = useState(false);
    
-    const [remainingAppliances, setRemainingAppliances] = useState([]);
     const [roundOver, setRoundOver] = useState(false);
     const [biddingOver, setBiddingOver] = useState(false);
     const [lowBotWin, setLowBotWin] = useState(false);
@@ -769,7 +770,7 @@ const FairNegotations = (props) => {
                         convertedBotBid = randBid;
                     
                         if(theUserBid < randBid) {
-                          
+                           
 
                             for(const [userKey, userValue] of Object.entries(userCreditsLeft)) { // For every key value pair in the entries of user credits left
 
@@ -788,8 +789,7 @@ const FairNegotations = (props) => {
 
                             
                             }
-
-                           
+ 
 
                         }
 
@@ -856,6 +856,7 @@ const FairNegotations = (props) => {
                                   convertedBotBid = mediumBotRandomBids;
                                   medBotCreditsRemain = {mediumBotCreditsLeft};
                                   let medBotDifference = parsedMediumBotCredits - medBotCreditsRemain.mediumBotCreditsLeft;
+
       
                                       if(userBid < mediumBotRandomBids) {
                                          
@@ -865,12 +866,13 @@ const FairNegotations = (props) => {
                                            
                                            setMainRoundOver(true);
                                            setRoundNumber(roundNumber + 1);
+                                          
       
                                            setTimeout(() => {
                                               botPlaceRandomBid(lowBotData, mediumBotData, intenseBotData, openingBid);
                                            }, 8000);
       
-                                           break;
+                                          
                                       }
                                   
                                       if(type === botTypes.MEDIUM && botCredits > 0 && name != null && (userBid > mediumBotRandomBids)) {
@@ -893,7 +895,8 @@ const FairNegotations = (props) => {
                           setTimeout(() => {
                               
                               try {
-                                 
+                                
+                                  
                               } 
                               
                               catch(err) {
@@ -965,8 +968,7 @@ const FairNegotations = (props) => {
         
         
             await axios.get(`http://localhost:5200/api/v1/preferences/fetch-preferences`).then(response => {
-                const data = response.data.preferences;
-                setRemainingAppliances(data);
+                
 
             }).catch(err => {
                 if(err) {
@@ -986,9 +988,7 @@ const FairNegotations = (props) => {
         }
     }
 
-    useEffect(() => {
-       console.log(remainingAppliances);
-    }, [remainingAppliances]);
+    
 
     const displayWinner = () => { // Displays who the winner of Round 1 is
         try {
@@ -1195,6 +1195,8 @@ const FairNegotations = (props) => {
 
             <h1>Username: {username} </h1>
             <h1>Bidding Seconds Remaining: {seconds}</h1>
+                        {!mainRoundOver ? <h1 className = "first--pref">User's First Chosen Preference : {firstPreference}</h1> : null }
+
 
             <h1>{findMaxBid()}</h1>
             <h1>{countTotalBids()}</h1>
@@ -1204,17 +1206,18 @@ const FairNegotations = (props) => {
 
                 return <div key = {key}>
 
-                <h1>User Virtual Credits Remaining: £{updatedNewBid ? credits.virtualCredits : credits.virtualCredits}</h1>
-                <h1>Opening Bid: £{credits.openingBid}</h1>
+                <h1>User Virtual Credits Remaining: {updatedNewBid ? credits.virtualCredits : credits.virtualCredits}</h1>
+                <h1>Opening Bid: {credits.openingBid}</h1>
             </div>
             })}
 
-            <h1>Current Round Number : {roundNumber}</h1>
-            <h2>User's Initial Appliance : {appliance}</h2>
+            <h2 >User's Initial Appliance : {appliance}</h2>
 
-            {roundOneOver && roundNumber === 2 ?  <h2>Next Appliance: {nextAppliance}</h2> :undefined }
-            
-            {!mainRoundOver ? <h1 className = "first--pref">User's First Chosen Preference : {firstPreference}</h1> : null }
+
+            <h1 style = {{marginBottom: '30px'}}>Current Round Number : {roundNumber}</h1>
+
+           
+
 
             {/* {roundOneOver && roundNumber === 2 ?<h1 className = "second--pref">User's Second Chosen Preference: {secondPreference}</h1> : null }
             {roundNumber === 3 ? <h1 className = "third--pref">User's Third Chosen Preference: {thirdPreference}</h1> : null}
@@ -1250,20 +1253,8 @@ const FairNegotations = (props) => {
 
         </div> 
 
-        {bidData.map((vals, key) => {
-
-            return <div key = {key}>
-                <h2>Round 1 Bids : £{vals.bid} placed by : {username}</h2>
-            </div>
-        })}
-
-            {allBotBids.map((botBid, key) => {
-
-                return <div key = {key}>
-                    <h2>Bot: {botBid}</h2>
-                </div>
-
-            })}
+       
+          
         </div>
 
 : undefined}
@@ -1271,44 +1262,7 @@ const FairNegotations = (props) => {
 
 </section>
 
-     <section className = "section--login"></section>
-
-        <div className = "container grid grid--2-cols">
-
-            <RegisterCard>
-
-            <form onSubmit = {submitFeedbackHandler} className = "login--form" method = "POST">
-
-                <h1 className = "feedback--heading">Leave your Feedback</h1>
-                
-                <div className = "feedback--box">
-
-                        <label className = "feedbackusername--lbl">Username</label>
-                        <input value = {enteredFeedbackUsername} onChange = {(event) => {setEnteredFeedbackUsername(event.target.value)}} placeholder = "Enter Username" type = "text"/>
-                    </div>
-
-                    <div className = "emailAddress--box">
-                        <label className = "emailAddress--lbl">E-mail Address</label>
-                        <input value = {enteredFeedbackEmailAddress} onChange = {(event) => {setEnteredFeedbackEmailAddress(event.target.value)}} placeholder = "Enter Your E-mail Address" id = "email" type = "text"/>
-                    </div>
-
-                    <div className = "feeling--box">
-                        <label className = "feeling--lbl">Feedback Feeling</label>
-                        <input value = {chosenFeedbackFeeling} onChange = {(event) => {setChosenFeedbackFeeling(event.target.value)}} placeholder = "Enter Your Feeling" id = "feeling" type = "text"/>
-                    </div>
-
-                    <div className = "description--box med-left">
-                        <label>Description</label>
-                        <input value = {enteredFeedbackDescription} onChange = {(event) => {setEnteredFeedbackDescription(event.target.value)}} placeholder = "Enter Description" id = "description" type = "text"/>
-                    </div>
-
-                    <div className = "submit--container">
-                        <button className = "login--btn" type = "submit">Submit</button>
-                    </div>
-                </form>
-
-        </RegisterCard>
-    </div>
+   
 
     <footer className = "footer">
                 <ul className = "footer--items">
