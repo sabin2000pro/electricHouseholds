@@ -24,6 +24,7 @@
     "mongoose": "^6.2.1",
     "morgan": "^1.10.0",
     "no": "0.0.1",
+    "nocache": "^3.0.1",
     "nodemailer": "^6.7.2",
     "nodemon": "^2.0.15",
     "react-router-dom": "^5.3.0",
