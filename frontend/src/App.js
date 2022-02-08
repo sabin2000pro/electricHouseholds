@@ -18,13 +18,13 @@ import FairNegotiations from './components/FairNegotations';
 import BotSettings from './components/AIBot/BotSettings';
 import ResultsScreen from './components/ResultsScreen';
 
-const App = () => { // Trying to add the permissions..
+const App = () => { // Trying to add the permissions.. Added browser router
 
   return (
 
     <div className = "App">
 
-      <BrowserRouter pathname = "/">
+      <BrowserRouter basename={window.location.pathname || ''}>
         <Route exact path = '/' component={Homepage} />
         <Route exact path = '/api/v1/auth/client/admin-register' component = {AdminRegister}/>
         <Route exact path = '/your-preferences' component = {PreferencesHome}/>
