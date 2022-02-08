@@ -39,7 +39,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "./frontend react-scripts start"
+    "start": "./frontend sudo react-scripts start"
     
   },
   "repository": {
