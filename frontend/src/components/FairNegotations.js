@@ -1194,7 +1194,7 @@ const FairNegotations = (props) => {
         <div>
 
             <h1>Username: {username} </h1>
-            <h1>Bidding Seconds Remaining: {seconds}</h1>
+            <h1>Bidding Second Remaining: {seconds}</h1>
                         {!mainRoundOver ? <h1 className = "first--pref">User's First Chosen Preference : {firstPreference}</h1> : null }
 
 
