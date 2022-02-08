@@ -1,5 +1,5 @@
 import React, {useState, useRef, useContext, useReducer, Fragment} from 'react';
-import { useHistory } from 'react-router';
+import { useHistory } from 'react-router-dom';
 import Header from '../Header';
 import HomepageImg from '../images/homepage/homepageimg.jpg';
 import RegisterCard from './RegisterCard';
