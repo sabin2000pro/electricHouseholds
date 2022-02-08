@@ -221,7 +221,7 @@ const CreatePreference = (props) => {
                              nextApplianceObj = {nextApplianceAvailable};
                              lastApplianceObj = {lastAppliance};
 
-                             // Push the first appliance here ok man testing heroku
+                             // Push the appliance to array
                                 firstApplianceData.push(firstApplianceObj);
                                 nextApplianceData.push(nextApplianceObj);
                                 lastApplianceData.push(lastApplianceObj);
