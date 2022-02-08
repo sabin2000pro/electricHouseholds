@@ -42,7 +42,7 @@
    
      
       "start": "./backend/server node server.js",
-      "build": "cd frontend/ && npm install && npm build"
+      "build": "cd frontend/ && npm install && npm run build"
   
   },
   "repository": {
