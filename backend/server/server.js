@@ -54,9 +54,9 @@ if(process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'));
 }
 
-if(process.env.NODE_ENV === 'production') {
+if(process.env.NODE_ENV === 'production') {// Get the index.html
     app.get('*', (request, response, next) => {
-        return request.sendFile(path.resolve(__dirname, 'build', 'index.html'))
+        return request.sendFile(path.resolve(__dirname, 'public', 'index.html'))
     })
 }
 
