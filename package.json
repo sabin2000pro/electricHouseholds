@@ -27,7 +27,9 @@
     "nocache": "^3.0.1",
     "nodemailer": "^6.7.2",
     "nodemon": "^2.0.15",
+    "react": "^17.0.2",
     "react-router-dom": "^5.3.0",
+    "react-scripts": "^5.0.0",
     "slugify": "^1.6.5",
     "socket.io": "^4.4.1",
     "supertest": "^6.2.2",
@@ -37,7 +39,11 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "react-scripts start"
+    "start": "react-scripts start",
+    "build-app": "webpack --mode production",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
   "repository": {
     "type": "git",
