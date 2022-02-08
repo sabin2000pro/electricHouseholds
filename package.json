@@ -40,14 +40,10 @@
   "devDependencies": {},
   "scripts": {
    
-      "dev": "./frontend react-scripts start",
-      "start": "serve -s build",
-      "build": "./frontend react-scripts build",
-      "test": "./frontend react-scripts test --env=jsdom",
-      "eject": "./ =frontend react-scripts eject",
-      "heroku-postbuild": "npm run build"
-      
-    
+     
+      "start": "./backend/server node server.js",
+      "build": "cd frontend/ && npm install && npm build"
+  
   },
   "repository": {
     "type": "git",
