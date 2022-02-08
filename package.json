@@ -37,7 +37,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "node ./backend/server/server.js"
+    "start": "react-scripts start"
   },
   "repository": {
     "type": "git",
