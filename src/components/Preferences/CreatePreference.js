@@ -215,16 +215,17 @@ const CreatePreference = (props) => {
                     
                    await new Promise(resolve => setTimeout((resolve)));
                         
-                        if(applianceIndexes < applianceNames.length - 1) {
-                            
+                        if(applianceIndexes < applianceNames.length - 1) { // Loop over the appliances
+
                              firstApplianceObj = {firstAppliance};
                              nextApplianceObj = {nextApplianceAvailable};
                              lastApplianceObj = {lastAppliance};
 
+                             // Push the first appliance
                                 firstApplianceData.push(firstApplianceObj);
                                 nextApplianceData.push(nextApplianceObj);
                                 lastApplianceData.push(lastApplianceObj);
-
+// Loop
                             for(let index = 0; index < nextApplianceData.length - 1; index++) {
                                 
                                 const data = nextApplianceData[index];
