@@ -18,7 +18,7 @@ import FairNegotiations from './components/FairNegotations';
 import BotSettings from './components/AIBot/BotSettings';
 import ResultsScreen from './components/ResultsScreen';
 
-const App = () => { // Adding permissions to push over to heroku !
+const App = () => { // Adding permissions to push over to heroku !. Trying to dommit and upload to heroku
 
   return (
 
