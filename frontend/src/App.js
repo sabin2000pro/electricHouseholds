@@ -18,7 +18,7 @@ import FairNegotiations from './components/FairNegotations';
 import BotSettings from './components/AIBot/BotSettings';
 import ResultsScreen from './components/ResultsScreen';
 
-const App = () => { // Deploying. Main App . Added permissions now after pushing. Restearted heroku server
+const App = () => { // Adding permissions to push over to heroku !
 
   return (
 
