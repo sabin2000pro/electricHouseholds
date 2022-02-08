@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const dotenv = require('dotenv');
 dotenv.config({path: 'config.env'});
 const mongoSanitize = require('express-mongo-sanitize');
@@ -53,6 +54,12 @@ if(process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'));
 }
 
+if(process.env.NODE_ENV === 'production') {
+    app.get('*', (request, response, next) => {
+        return request.sendFile(path.resolve(__dirname, 'build', 'index.html'))
+    })
+}
+
 
 // Create Server to listen for incoming requests
 const server = app.listen(port, (err) => {
@@ -90,7 +97,7 @@ process.on('uncaughtException', (err, promise) => {
 
 // Handle 404 Routes
 app.all('*', (request, response, next) => {
-    
+
     if(request.method === 'GET') {
         
         response.status(404).json({status: 'Fail', message: 'The route you requested is not valid'});
