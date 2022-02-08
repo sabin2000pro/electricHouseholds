@@ -28,7 +28,7 @@ const preferencesSchema = new mongoose.Schema({
     hasThirdAppliance: {
         type: Boolean,
         default: false
-    }
+    },
 
     firstPreference: {
         type: String,

@@ -138,7 +138,7 @@ const CreatePreference = (props) => {
                 const replacedSymbols = invalidChars[i].replace(invalidChars[i], "&lt");
                 
                sanitizedInputs.push({enteredUsername, replacedSymbols, invalidEntries});
-               setUsername("");
+              
                break;
             }
         }
@@ -216,6 +216,7 @@ const CreatePreference = (props) => {
                    await new Promise(resolve => setTimeout((resolve)));
                         
                         if(applianceIndexes < applianceNames.length - 1) {
+                            
                              firstApplianceObj = {firstAppliance};
                              nextApplianceObj = {nextApplianceAvailable};
                              lastApplianceObj = {lastAppliance};
