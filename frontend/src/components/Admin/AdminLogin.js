@@ -20,13 +20,13 @@ const AdminLogin = (props) => { // Admin Login Component
     useEffect(() => {
         const authToken = localStorage.getItem("authToken");
         return checkToken(authToken);
-        
+
     }, []);
 
     const checkToken = (authToken) => { // Verifies the authentication token
 
          if(authToken) { // if there is one already present
-             return history.push('/admin-dashboard');
+             return history.push('/admin-dashboard'); // Adding herolku
          }
     }
 
