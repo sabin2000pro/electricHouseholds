@@ -39,7 +39,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "frontend/public react-scripts start"
+    "start": "frontend/public node ./node_modules/react-scripts/bin/react-scripts.js start"
   },
   "repository": {
     "type": "git",
