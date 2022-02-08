@@ -15,7 +15,7 @@ const AdminDashboard = (props) => { // Admin Dashboard Component
     const [searchTerm, setSearchTerm] = useState('');
 
     useEffect(() => {
-        return verifyAuthToken();
+        return verifyAuthToken(); // Verify the auth token call
     }, [appliances]);
 
     const fetchApplianceData = async () => { // Routine to fetch the available appliances from the backend database
@@ -31,7 +31,7 @@ const AdminDashboard = (props) => { // Admin Dashboard Component
         
         catch(err) {
 
-            if(err) {
+            if(err) { // If an error occurs
                 return console.error(err);
             }
         }
