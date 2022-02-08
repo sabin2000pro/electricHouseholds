@@ -18,7 +18,7 @@ import FairNegotiations from './components/FairNegotations';
 import BotSettings from './components/AIBot/BotSettings';
 import ResultsScreen from './components/ResultsScreen';
 
-const App = () => { // Main app component. Adding heroku deployment
+const App = () => { // Main app component. Adding heroku deployment. Added a unique SSH key
 
   return (
 
