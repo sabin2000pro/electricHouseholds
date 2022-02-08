@@ -1,7 +1,7 @@
 {
   "name": "frontend",
   "version": "0.1.0",
-  "homepage": "https://sabin2000pro.github.io/electricHouseholds/home",
+  "homepage": "https://sabin2000pro.github.io/electricHouseholds",
   "private": true,
   "dependencies": {
     "@babel/core": "^7.16.7",
