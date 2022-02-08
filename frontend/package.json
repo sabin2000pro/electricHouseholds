@@ -32,8 +32,7 @@
     "build-app": "webpack --mode production",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "postinstall": "npm build"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
