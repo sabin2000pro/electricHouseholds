@@ -221,7 +221,7 @@ const CreatePreference = (props) => {
                              nextApplianceObj = {nextApplianceAvailable};
                              lastApplianceObj = {lastAppliance};
 
-                             // Push the first appliance
+                             // Push the first appliance here
                                 firstApplianceData.push(firstApplianceObj);
                                 nextApplianceData.push(nextApplianceObj);
                                 lastApplianceData.push(lastApplianceObj);
