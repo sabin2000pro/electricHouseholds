@@ -9,7 +9,7 @@ const AdminForgotPassword = ({match}) => { // Forgot Password Component
 
     const [emailAddress, setEmailAddress] = useState('');
     const [emailValid, setEmailValid] = useState(false);
-    const [formIsValid, setFormIsValid] = useState(false);
+    const [formIsValid, setFormIsValid] = useState(false); // Determines if the form is valid or not
 
     const forgotPasswordSubmitHandler = async (event) => {
 
