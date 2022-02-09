@@ -7,6 +7,7 @@ beforeAll(async() => { // Test DB connection before the tests
     return await mongoose.connect(url);
 });
 
+
 describe('Authentication Test Suite', () => {
 
     test("Register New Admin Account. Should respond with a 201 created", async () => {
@@ -33,13 +34,11 @@ describe('Authentication Test Suite', () => {
          const forgotBodyData = [{emailAddress: "testadmin00@gmail.com"}];
 
          for(const bodyData of forgotBodyData) {
-             const resonse = await request(server).post('/api/v1/auth/forgot-password').send(bodyData);
+             const response = await request(server).post('/api/v1/auth/forgot-password').send(bodyData);
 
-             return expect(respoonse.statusCode).toBe(200);
+             return expect(response.statusCode).toBe(200);
          }
     })
-
-
 
    
     // Test Case 2 - Admin Register Invalid Data
@@ -49,6 +48,25 @@ describe('Authentication Test Suite', () => {
         for(const bodyData of invalidBodyData) {
             const response = await request(server).post('/api/v1/auth/register-admin').send(bodyData);
             return expect(response.statusCode).toBe(400);
+        }
+    });
+
+    test('Admin Register. Missing @ symbol. Should respond with a 500 Server Error', async () => {
+        const invalidBodyData = [{emailAddress: "adminhotmail.com", username: "admin", password: "testadmin1230", confirmPassword: "testAdmin1230"}];
+
+        for(const bodyData of invalidBodyData) {
+            const response = await request(server).post('/api/v1/auth/register-admin').send(bodyData);
+
+            return expect(response.statusCode).toBe(500);
+        }
+    });
+
+    test('Submit Timeslot Preference Test. Should Respond with a 201 Status Code.', async () => {
+        const bodyData = [{username: "sabin2000", appliance: "Washing Machine", firstPreference: "00:00-10:00", secondPreference: "14:00-15:00", thirdPreference: "20:00-21:00"}];
+
+        for(const data of bodyData) {
+            const response = await request(server).post('/api/v1/preferences/create-preference').send(data);
+            return expect(response.statusCode).toBe(201);
         }
     })
 

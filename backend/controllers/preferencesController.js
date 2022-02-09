@@ -14,7 +14,7 @@ module.exports.createPreference = catchAsync(async (request, response, next) => 
         const newPreference = new Preference({username, appliance, firstPreference, secondPreference, thirdPreference, nextAppliance, lastAppliance});
         await newPreference.save();
         
-        return response.status(ok).json({newPreference});
+        return response.status(201).json({newPreference});
     }
 
 });
