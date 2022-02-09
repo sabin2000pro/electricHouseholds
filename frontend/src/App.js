@@ -18,7 +18,7 @@ import FairNegotiations from './components/FairNegotations';
 import BotSettings from './components/AIBot/BotSettings';
 import ResultsScreen from './components/ResultsScreen';
 
-const App = () => { // Trying to add the permissions.. Added browser router//.. Trying to solve this. Added custom URL in
+const App = () => { // Trying to add the permissions.. Added browser router//.. Trying to solve this. Added custom URL in. Changed uRL in package.json
 
   return (
 
