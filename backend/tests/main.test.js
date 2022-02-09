@@ -70,6 +70,51 @@ describe('Authentication Test Suite', () => {
         }
     })
 
+    test('Admin Login - Invalid Password. Returns a 401 Unauthorized Code', async () => {
+        const bodyData = [{emailAddress: "testadmin00@gmail.com", password: "afjdewjejf"}];
+
+        for(const data of bodyData) {
+
+            const response = await request(server).post('/api/v1/auth/login-admin').send(data);
+            return expect(response.statusCode).toBe(401);
+
+        }
+    })
+
+    test('User - Submit Feedback Data. Returns 201 Created Code. ', async () => {
+        const feedbackData = [{feedbackUsername: "sabin2009", feedbackEmailAddress: "sabin200@gmail.com", feedbackFeeling: "Happy", "feedbackDescription": "Amazing algorithm! I relly enjoyed playing against the bot"}]
+
+        for(const bodyData of feedbackData) {
+            const response = await request(server).post('/api/v1/feedback/create-feedback').send(bodyData);
+
+            return expect(response.statusCode).toBe(201);
+        }
+    });
+
+    test('Delete All Feedbacks. Returns a 204 Status Code no Content', async () => {
+        const noContentData = [{}];
+
+        for(const data of noContentData) {
+            const response = await request(server).delete('/api/v1/feedback/delete-feedbacks').send(data);
+            return expect(response.statusCode).toBe(204);
+        }
+    });
+
+    test('Admin - Get All Appliances. Returns a 200 OK Status Code', async () => {
+        const response = await request(server).get('/api/v1/preferences/fetch-preferences').send();
+        return expect(response.statusCode).toBe(200);
+    })
+
+    test('Admin - Create Electrical Appliance. Returns a 201 Created Status Code', async () => {
+        const applianceBodyData = [{}]
+    });
+
+    test('Bots - Get All Bots. Returns with 200 OK Status Code', async () => {
+
+    });
+
+    
+
 
 
 
