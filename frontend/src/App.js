@@ -18,14 +18,13 @@ import FairNegotiations from './components/FairNegotations';
 import BotSettings from './components/AIBot/BotSettings';
 import ResultsScreen from './components/ResultsScreen';
 
-const App = () => { // Trying to add the permissions.. ADDING URL ROUTES. Added a proxy for the backend when deployed
+const App = () => { // Trying to add the permissions.. ADDING URL ROUTES. Added a proxy for the backend when deployed. Please work . APP COMPONENT
 
   return (
 
     <div className = "App">
 
       <BrowserRouter basename= '/electricHouseholds'>
-
       
       <Route exact path = '/' component={Homepage} />
         <Route exact path = '/api/v1/auth/client/admin-register' component = {AdminRegister}/>
