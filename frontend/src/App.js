@@ -26,7 +26,7 @@ const App = () => { // Trying to add the permissions.. Added browser router//.. 
 
       <BrowserRouter basename= '/'>
 
-      <Switch>
+      
       <Route exact path = '/' component={Homepage} />
         <Route exact path = '/api/v1/auth/client/admin-register' component = {AdminRegister}/>
         <Route exact path = '/your-preferences' component = {PreferencesHome}/>
@@ -44,7 +44,7 @@ const App = () => { // Trying to add the permissions.. Added browser router//.. 
         <Route exact path = "/appliance/:id" component = {Appliance}/>
         <Route exact path = "/fair-negotiations/:id" component = {FairNegotiations}/>
         <Route exact path = "/results" component = {ResultsScreen} />
-      </Switch>
+    
 
        
 
