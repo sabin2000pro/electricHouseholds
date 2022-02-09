@@ -596,8 +596,6 @@ const CreatePreference = (props) => {
                     <h2 className = "appliance--heading">Last Appliance : {JSON.stringify(theData.lastAppliance, null).toString().replaceAll("\"", "")}</h2>
 
 
-
-
                     <h2 className = "appliance--heading">Your Preference 1 : {JSON.stringify(theData.firstPreference, null).toString().replaceAll("\"", "")}</h2>
                     <h2 className = "appliance--heading">Your Preference 2 : {JSON.stringify(theData.secondPreference, null).toString().replaceAll("\"", "")}</h2>
                     <h2 className = "appliance--heading">Your Preference 3 : {JSON.stringify(theData.thirdPreference, null).toString().replaceAll("\"", "")}</h2>

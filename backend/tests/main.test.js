@@ -106,30 +106,53 @@ describe('Authentication Test Suite', () => {
     })
 
     test('Admin - Create Electrical Appliance. Returns a 201 Created Status Code', async () => {
-        const applianceBodyData = [{}]
-    });
-
-    test('Bots - Get All Bots. Returns with 200 OK Status Code', async () => {
-
-    });
-
-    
-
-
-
-
-
-    // Test Suite 2
-describe("Appliances Test Suite. - CRUD Operations", () => {
-
-    // Test Case 1
-    test("Create Appliance. Should return a 201 Created Status Code", async () => {
-        const applianceBodyData = [{"name": "Test Appliance", "image": "tesurl", "description": "A test appliance"}];
+        const applianceBodyData = [{name: "Washing Machine", description: "A Washing Machine"}];
 
         for(const data of applianceBodyData) {
             const response = await request(server).post('/api/v1/appliances/create-appliance').send(data);
+
             return expect(response.statusCode).toBe(201);
+        } 
+    });
+
+    test('Bots - Get All Bots. Returns with 200 OK Status Code', async () => {
+        const response = await request(server).get('/api/v1/bot/get-bots').send();
+
+        return expect(response.statusCode).toBe(200);
+    });
+
+    test('Bots - Delete All Bot Data. Returns with a 204 No Content Status Code', async () => {
+        const noContentData = [{}];
+
+        for(const data of noContentData) {
+            const response = await request(server).delete('/api/v1/bot/delete-bots').send(data);
+
+            return expect(response.statusCode).toBe(204);
         }
     });
 
-})})
+    test('Admin - Delete All Electrical Appliances. Should Return with 204 No Content Code', async () => {
+        const noElectricalAppliances = [{}];
+
+        for(const data of noElectricalAppliances) {
+            const response = await request(server).delete('/api/v1/appliances/delete-appliances').send(data);
+
+            return expect(response.statusCode).toBe(204);
+        }
+    });
+
+    test('Timeslots - Fetch All Timeslots. Should Return with a 200 OK Status Code', async () => {
+        const response = await request(server).get('/api/v1/timeslots/fetch-timeslots', async () => {
+            return expect(response.statusCode).toBe(200);
+        })
+    });
+
+    test('Bids - Get All Bid Data. Returns a 200 OK Status Code', async () => {
+
+    });
+
+    test('Comments - Get All Comment Data. Returns a 200 OK status Code', async () => {
+
+    })
+
+})
