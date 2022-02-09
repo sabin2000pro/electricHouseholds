@@ -24,7 +24,7 @@ const App = () => { // Trying to add the permissions.. Added browser router//.. 
 
     <div className = "App">
 
-      <BrowserRouter basename= '/electricHouseholds'>
+      <BrowserRouter basename= {process.env.PUBLIC_URL}>
 
       <Switch>
       <Route exact path = '/' component={Homepage} />
