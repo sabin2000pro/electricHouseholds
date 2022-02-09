@@ -18,7 +18,7 @@ import FairNegotiations from './components/FairNegotations';
 import BotSettings from './components/AIBot/BotSettings';
 import ResultsScreen from './components/ResultsScreen';
 
-const App = () => { // Trying to add the permissions.. ADDING URL ROUTES
+const App = () => { // Trying to add the permissions.. ADDING URL ROUTES. Added a proxy for the backend when deployed
 
   return (
 
