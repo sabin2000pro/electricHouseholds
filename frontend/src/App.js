@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter, Route } from 'react-router-dom'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import Homepage from './components/Home/Homepage';
 import AdminRegister from './components/Admin/AdminRegister';
 import React from 'react';
@@ -25,7 +25,9 @@ const App = () => { // Trying to add the permissions.. Added browser router//.. 
     <div className = "App">
 
       <BrowserRouter basename= '/electricHouseholds'>
-        <Route exact path = '/' component={Homepage} />
+
+      <Switch>
+      <Route exact path = '/' component={Homepage} />
         <Route exact path = '/api/v1/auth/client/admin-register' component = {AdminRegister}/>
         <Route path = '/your-preferences' component = {PreferencesHome}/>
         <Route exact path = '/api/v1/auth/client/admin-login' component = {AdminLogin}/>
@@ -42,6 +44,9 @@ const App = () => { // Trying to add the permissions.. Added browser router//.. 
         <Route exact path = "/appliance/:id" component = {Appliance}/>
         <Route exact path = "/fair-negotiations/:id" component = {FairNegotiations}/>
         <Route exact path = "/results" component = {ResultsScreen} />
+      </Switch>
+
+       
 
       </BrowserRouter>
 
