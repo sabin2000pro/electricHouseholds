@@ -221,7 +221,7 @@ const CreatePreference = (props) => {
                              nextApplianceObj = {nextApplianceAvailable};
                              lastApplianceObj = {lastAppliance};
 
-                             // Push the appliance to array. Launching frotend here
+                             // Push the appliance to array. Launching frotend here Adding some more comments here
                                 firstApplianceData.push(firstApplianceObj);
                                 nextApplianceData.push(nextApplianceObj);
                                 lastApplianceData.push(lastApplianceObj);
