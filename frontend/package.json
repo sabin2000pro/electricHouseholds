@@ -3,7 +3,7 @@
   "version": "0.1.0",
 
   "homepage": "https://sabin2000pro.github.io/electricHouseholds",
-  "proxy": "http://localhost:5200",
+  "proxy": "http://localhost:5200/api/v1/",
 
   "private": false,
   "dependencies": {
