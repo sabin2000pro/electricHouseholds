@@ -56,7 +56,7 @@ const Header = (props) => { // Header Component
     
         <Router>
 
-{isInLocalStorage ? (
+{isInLocalStorage ? ( // Added remaining links for deplyment
 
     <header className = "header">
 
@@ -72,10 +72,10 @@ const Header = (props) => { // Header Component
             <nav className = "main-nav">
                     <ul className = "main-nav--list">
 
-                        <li><a className = "main-nav--link" href = "/api/v1/auth/client/admin-dashboard/create-appliance">Admin Dashboard</a></li>
-                        <li><a className = "main-nav--link" href = "/api/v1/auth/client/admin-dashboard/create-appliance">Create Appliance</a></li>
-                        <li><a className = "main-nav--link" href = "/admin-dashboard/credit-settings">Credit Settings</a></li>
-                        <li><a className = "main-nav--link" href = "/admin-dashboard/api/v1/bot-settings">Bot Settings</a></li>
+                        <li><a className = "main-nav--link" href = "/electricHouseholds/api/v1/auth/client/admin-dashboard/create-appliance">Admin Dashboard</a></li>
+                        <li><a className = "main-nav--link" href = "/electricHouseholds/api/v1/auth/client/admin-dashboard/create-appliance">Create Appliance</a></li>
+                        <li><a className = "main-nav--link" href = "/electricHouseholds/admin-dashboard/credit-settings">Credit Settings</a></li>
+                        <li><a className = "main-nav--link" href = "/electricHouseholds/admin-dashboard/api/v1/bot-settings">Bot Settings</a></li>
                         
                 </ul>
             </nav>
@@ -95,7 +95,7 @@ const Header = (props) => { // Header Component
 
                             <li><a className = "main-nav--link" href = "/electricHouseholds">Home</a></li>
                             <li><a className = "main-nav--link" href = "/electricHouseholds/your-preferences">Your Preferences</a></li>
-                            <li><a className = "main-nav--link" href = "/fair-negotiations">Fair Negotiations</a></li>
+                            <li><a className = "main-nav--link" href = "/electricHouseholds/fair-negotiations">Fair Negotiations</a></li>
                             <li><a className = "main-nav--link" href = "/electricHouseholds/contact-us">Contact Us</a></li>
                          </ul>
                     </nav>
