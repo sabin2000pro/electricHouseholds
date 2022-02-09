@@ -7,7 +7,7 @@ import RegisterCard from './RegisterCard';
 import axios from 'axios';
 import Modal from '../../UI/Modal';
 
-const AdminLogin = (props) => { // Admin Login Component. Adding comments and updating permissions
+const AdminLogin = (props) => { // Admin Login Component. Adding comments and updating permissions /// Addingf more core
     let history = useHistory();
     const [enteredEmail, setEmailAddress] = useState('');
     const [emailValid, setEmailValid] = useState(true);
