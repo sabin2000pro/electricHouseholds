@@ -3,6 +3,7 @@ import {useLocation, useHistory} from 'react-router-dom';
 import RegisterCard from './Admin/RegisterCard';
 import axios from 'axios';
 import './FairNegotiations.css';
+import Modal from '../UI/Modal';
 
 let DELAY = 1200;
 let START_TIMER = 60;
@@ -27,6 +28,7 @@ let allBotData = []; // All of the bot data after bidding
 let allTheBidsData = [];
 
 const remainingAppliances = [];
+const filteredRemainingAppliances = [];
 
 const FairNegotations = (props) => {
 
@@ -84,8 +86,13 @@ const FairNegotations = (props) => {
     const [mediumBotWin, setMediumBotWin] = useState(false);
     const [intenseBotWin, setIntenseBotWin] = useState(false);
 
+    const [formSubmitted, setFormSubmitted] = useState(false);
+    const [modalShown, setModalShown] = useState();
+
     let [userCreditsLeft, setUserCreditsLeft] = useState({});
     let [masterObject, setMasterObject] = useState({});
+
+
 
     const beginLiveAuctionHandler = function() {
         return setAuctionStarted(!auctionStarted);
@@ -423,9 +430,27 @@ const FairNegotations = (props) => {
     const submitBidHandler = async (event) => {
 
         try {
-            event.preventDefault();
 
-            await axios.get(`http://localhost:5200/api/v1/credits/get-credits`).then(response => {
+            event.preventDefault();
+        
+            if(roundNumber === 1) {
+                performBid();
+               
+            }
+           
+        } 
+        
+        catch(error) {
+
+            if(error) {
+                console.error(error);
+                throw new Error(error);
+            }
+        }
+    }
+
+    const performBid = async () => {
+        await axios.get(`http://localhost:5200/api/v1/credits/get-credits`).then(response => {
                 const theCreditData = response.data.allCredits;
 
                 setCreditData(theCreditData);
@@ -444,7 +469,7 @@ const FairNegotations = (props) => {
 
                     else {
 
-                        return submitBid(openingBid, virtualCredits);
+                         submitBid(openingBid, virtualCredits);   
                     }
 
                 });
@@ -458,15 +483,6 @@ const FairNegotations = (props) => {
                     throw new Error(err);
                 }
             })
-        } 
-        
-        catch(error) {
-
-            if(error) {
-                console.error(error);
-                throw new Error(error);
-            }
-        }
     }
 
     function reloadPage() {
@@ -527,10 +543,6 @@ const FairNegotations = (props) => {
 
     }
 
-    function handleBidValidity() {
-       return setBidValid(true);
-    }
-
     const submitBid = async function(openingBid, virtualCredits) {
 
         try {
@@ -545,28 +557,11 @@ const FairNegotations = (props) => {
                 setSeconds(FLAGS.DEFAULT);
             }
 
-           else if(bid.trim().length === FLAGS.DEFAULT) {
-                setBidValid(false);
-                alert(`Cannot leave the bid field empty`);
-
-                clearFields();
-                return reloadPage();
-            }
-
-            else if(isNaN(convertedBid)) {
-
-                setBidValid(false);
-                alert(`Bid must be a number`);
-
-                clearFields();
-                return reloadPage();
-            }
-
-            else {
+         
                 setBidValid(true);
                 handleUserTurn();
                 handleBotTurn();
-            }
+            
 
              if(bidValid) {
  
@@ -665,7 +660,7 @@ const FairNegotations = (props) => {
         try {
             axios.put(`http://localhost:5200/api/v1/credits/update-credits/${_id}`, {_id: _id, virtualCredits: virtualCredits}).then(data => {console.log(data)}).catch(err => {console.log(err)});
             setUpdatedNewBid(true);
-            alert(`Updated Data Virutal Credits`);
+           
 
             const [lowBotData, mediumBotData, intenseBotData] = botBidData;  
             return processBotDataBeforeTurn(lowBotData, mediumBotData, intenseBotData, openingBid);  
@@ -693,8 +688,7 @@ const FairNegotations = (props) => {
 
         try {
 
-            let masterBotBids = {};
-            let intenseCreditsRemain = {};
+          
             let lowBotPlacedBid = false;
             let theOpeningBid = parseInt(openingBid.openingBid);
 
@@ -768,8 +762,17 @@ const FairNegotations = (props) => {
 
                         lowBotCreditsLeft = newLowCredits;
                         convertedBotBid = randBid;
-                    
+
                         if(theUserBid < randBid) {
+                            console.log(`The bot ${type} has placed a bid of ${theDifference}`)
+                            setModalShown({title: "Preferences", message: "No preferences found"});
+
+                            setTimeout(() => {
+         
+                                setTimeout(() => {
+                                   setModalShown(null);
+                                }, 4500);
+                            }, 3000)
                            
 
                             for(const [userKey, userValue] of Object.entries(userCreditsLeft)) { // For every key value pair in the entries of user credits left
@@ -778,7 +781,7 @@ const FairNegotations = (props) => {
                                 
                                    allBotData.push({...creditsRemainingObj, name, theDifference, userCreditsLeft, theUserBid, type});
                                    allTheBidsData = [...allBotData];
-                                   masterBotBids = {...allTheBidsData};
+
 
                                      setTimeout(() => {
                                          getNextAppliance();
@@ -812,33 +815,18 @@ const FairNegotations = (props) => {
                         }
                       }
 
-                      setLowBotWin(true);
-
-                      if(lowBotWin) {
-                          alert(`The bot :low bot has won this round and receives the timeslot preference of ${firstPreference}`);
-                          alert(`Starting the next round`);
-
+                   
                             // eslint-disable-next-line no-loop-func
                   setTimeout(() => {
                     
                       setRoundNumber(roundNumber + 1);
-
-                      setUserTurn(true);
-                      setBotTurn(false);
-
-                     
-                      setTimeout(() => {
-                           // botPlaceRandomBid(lowBotData, mediumBotData, intenseBotData, openingBid);
-
-                      }, 8000);
-
-                     
                   }, 1000);
-                      }
+   
 
                 }
 
                         if(!lowBotWin) {
+                            
                             setTimeout(() => {
                                 let medBotCreditsRemain = {};
       
@@ -857,22 +845,25 @@ const FairNegotations = (props) => {
                                   medBotCreditsRemain = {mediumBotCreditsLeft};
                                   let medBotDifference = parsedMediumBotCredits - medBotCreditsRemain.mediumBotCreditsLeft;
 
-      
+                                
                                       if(userBid < mediumBotRandomBids) {
+                                        
+                                        setModalShown({title: "Preferences", message: "No preferences found"});
+                                        
+                                        setTimeout(() => {
+                                           setModalShown(null);
+                                        }, 4500);
                                          
                                            allBotData.push({...medBotCreditsRemain, medBotDifference, userCreditsLeft, userBid});
                                            allTheBidsData = [...allBotData, type];
-                                           masterBotBids = {...allTheBidsData};
-                                           
+                                        
+                                          
+                                           botBidData.push({medBotDifference});
+                                           console.log(botBidData);
+
                                            setMainRoundOver(true);
                                            setRoundNumber(roundNumber + 1);
-                                          
-      
-                                           setTimeout(() => {
-                                              botPlaceRandomBid(lowBotData, mediumBotData, intenseBotData, openingBid);
-                                           }, 8000);
-      
-                                          
+ 
                                       }
                                   
                                       if(type === botTypes.MEDIUM && botCredits > 0 && name != null && (userBid > mediumBotRandomBids)) {
@@ -909,12 +900,11 @@ const FairNegotations = (props) => {
                               }
       
                           }, 3000);
+
+                         
       
                           }, 1300);
                         }
-
-                      
-
 
                 }, 1300); 
 
@@ -940,38 +930,63 @@ const FairNegotations = (props) => {
           return console.log(`Error here processed gracefully`);
       }
     }
+   
 
-    useEffect(() => {
-        setRoundOneOver(true);
-    }, [roundNumber, roundOneOver, lowBotWin]);
-
-
-    const findMaxBetweenLowBot = function() {
+    const findMaxBetween = function() {
         let maxBidBetween = 0;
 
         for(let i = 0; i < allTheBidsData.length; i++) {
             const lowBotBid = parseInt(allTheBidsData[i].theDifference);
-             
-            if(lowBotBid > maxBidBetween) {
 
+            if(lowBotBid > maxBidBetween) {
                 maxBidBetween = lowBotBid;
             }
 
-           return maxBidBetween;
+
+           return `The winning household placed a round wining bid of ${maxBidBetween}.. Starting the next round`;
+        }
+
+        for(let i = 0; i < allTheBidsData.length; i++) {
+            console.log(allTheBidsData[i].medBotDifference);
         }
     }
 
       const getNextAppliance = async function() {
 
         try {
+           
             // Send GET request to get the next user appliance for round 2
         
         
             await axios.get(`http://localhost:5200/api/v1/preferences/fetch-preferences`).then(response => {
+               
+                 
+                response.data.preferences.forEach((prefs) => {
+                   remainingAppliances.push(prefs.nextAppliance, prefs.lastAppliance);
+                });
+
+               
+                if(remainingAppliances.includes("")) {
+
+                    let filteredArr = remainingAppliances.filter(function (el) {
+                        return el !== "";
+                    });
+
+                   let uniqueAppliances = [...new Set(filteredArr)];
+                  filteredRemainingAppliances.push(uniqueAppliances);
+
+                   console.log(filteredRemainingAppliances);
+                
+                }
+
+                
+                
                 
 
             }).catch(err => {
+
                 if(err) {
+
                     console.log(err);
                 }
             })
@@ -1128,21 +1143,6 @@ const FairNegotations = (props) => {
         }
     }
 
-    const findMaxBidBetweenBotAndUser = function() {
-
-        try {
-
-            let userMaxBid = 0;
-            let bidMaxBid = 0;
-        } 
-        
-        catch(err) {
-            if(err) {
-                const maxErrMsg = err.message;
-                console.log(maxErrMsg);
-            }
-        }
-    }
 
     useEffect(() => {
         return socialExchangeHandler();
@@ -1165,8 +1165,7 @@ const FairNegotations = (props) => {
 
     }
 
-
-
+    
     return (
 
         <React.Fragment>
@@ -1197,9 +1196,11 @@ const FairNegotations = (props) => {
             <h1>Bidding Seconds: {seconds}</h1>
                         {!mainRoundOver ? <h1 className = "first--pref">User's First Chosen Preference : {firstPreference}</h1> : null }
 
-
             <h1>{findMaxBid()}</h1>
             <h1>{countTotalBids()}</h1>
+
+            {modalShown ? <Modal title = "Round Winner" message = {findMaxBetween()} /> : null}
+           
             
             {creditData.map((credit, key) => {
                 const credits = credit;
@@ -1211,46 +1212,51 @@ const FairNegotations = (props) => {
             </div>
             })}
 
-            <h2 >User's Initial Appliance : {appliance}</h2>
+            {!mainRoundOver ? <h2 >User's Initial Appliance : {appliance}</h2> : null}
 
+            {mainRoundOver ? filteredRemainingAppliances.map((val, key) => {
+               return <h1>Your next appliance {val}</h1>
+            }) : null}
+                
+                
+          
+               
+     
 
-            <h1 style = {{marginBottom: '30px'}}>Current Round Number : {roundNumber}</h1>
+            <h1 style = {{marginBottom: '90px'}}>Round Number : {roundNumber}</h1>
 
-           
-
-
-            {/* {roundOneOver && roundNumber === 2 ?<h1 className = "second--pref">User's Second Chosen Preference: {secondPreference}</h1> : null }
-            {roundNumber === 3 ? <h1 className = "third--pref">User's Third Chosen Preference: {thirdPreference}</h1> : null}
-         */}
             <div className = "container grid grid--2-cols">
 
-                <RegisterCard>
-                    <h1 className = "bid--header">Submit Bid</h1>
+       <RegisterCard>
+                    <h1 className = "bid--header">Submit Round Bid</h1>
 
-                    <form className = "login--form" onSubmit = {submitBidHandler} method = "POST">
+                <form id = "bidForm" className = "login--form" onSubmit = {submitBidHandler} method = "POST">
 
                     <div className = "bid--container">
 
-                    <label className = "bid--lbl">Bid</label>
-                        {!roundOneOver && userInputDisabled ? 
-                    
-                        <input value = {bid} onChange = {(event) => {setBid(event.target.value)}} placeholder = "Enter your Bid" id = "bid" type = "hidden" /> :
-                        
-                        <input value = {bid} onChange = {(event) => {setBid(event.target.value)}} placeholder = "Enter your Bid" id = "bid" type = "text"/>
-                        }
+                    <label className = "bid--lbl">Round Bid</label>
 
+                        {roundNumber === 1 && userInputDisabled && roundNumber !== 2 ? 
+                    
+                        <input value = {bid} onChange = {(event) => {setBid(event.target.value)}} placeholder = "Enter your Round 1 Bid" id = "bid" type = "hidden" /> :
+                        
+                        <input value = {bid} onChange = {(event) => {setBid(event.target.value)}} placeholder = "Enter your Round 1 Bid" id = "bid" type = "text"/> }
+
+                      
                     </div>
 
 
                     <div className = "submit-bid--container">
-                        <button className = "login--btn" type = "submit">Submit</button>
+                        <button className = "login--btn">Submit</button>
                     </div>
 
-                </form>
+                </form> 
 
-                </RegisterCard>
+            </RegisterCard>  
+
             </div>
 
+         
         </div> 
 
        

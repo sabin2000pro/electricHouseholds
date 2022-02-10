@@ -287,7 +287,7 @@ const CreatePreference = (props) => {
                 setPreferencesBtnClicked(!preferencesBtnClicked);
                 generateRandomTimeslots();
 
-                preferences.push(allPreferences);
+                preferences.push(allPreferences); 
 
                 if(length === 0) {
                     return setModalShown({title: "Preferences", message: "No preferences found"});
@@ -590,20 +590,21 @@ const CreatePreference = (props) => {
                 return <div key = {key}>
                     <div className = "preferences--card">
 
-                    <h2 className = "appliance--heading">Username : {JSON.stringify(theData.username, null).toString().replaceAll("\"", "")}</h2>
-                    <h2 className = "appliance--heading">Initial Appliance : {JSON.stringify(theData.appliance, null).toString().replaceAll("\"", "")}</h2>
-                    <h2 className = "appliance--heading">Next Appliance : {JSON.stringify(theData.nextAppliance, null).toString().replaceAll("\"", "")}</h2>
-                    <h2 className = "appliance--heading">Last Appliance : {JSON.stringify(theData.lastAppliance, null).toString().replaceAll("\"", "")}</h2>
+                    <h2 className = "appliance--heading">Username : {theData.username}</h2>
+                    <h2 className = "appliance--heading">Initial Appliance : {theData.appliance}</h2>
+                    <h2 className = "appliance--heading">Next Appliance : {theData.nextAppliance}</h2>
+                    <h2 className = "appliance--heading">Last Appliance : {theData.lastAppliance}</h2>
 
 
-                    <h2 className = "appliance--heading">Your Preference 1 : {JSON.stringify(theData.firstPreference, null).toString().replaceAll("\"", "")}</h2>
-                    <h2 className = "appliance--heading">Your Preference 2 : {JSON.stringify(theData.secondPreference, null).toString().replaceAll("\"", "")}</h2>
-                    <h2 className = "appliance--heading">Your Preference 3 : {JSON.stringify(theData.thirdPreference, null).toString().replaceAll("\"", "")}</h2>
+
+                    <h2 className = "appliance--heading">Your Preference 1 : {theData.firstPreference}</h2>
+                    <h2 className = "appliance--heading">Your Preference 2 : {theData.secondPreference}</h2>
+                    <h2 className = "appliance--heading">Your Preference 3 : {theData.thirdPreference}</h2>
 
                     <h2 className = "appliance--heading">Random Allocations</h2>
-                    <h2 className = "appliance--heading">First Random Slot : {JSON.stringify(otherFirstPref, null).toString().replaceAll("\"", "")}</h2>
-                    <h2 className = "appliance--heading">Second Random Slot : {JSON.stringify(otherSecondPref, null).toString().replaceAll("\"", "")}</h2>
-                    <h2 className = "appliance--heading">Third Random Slot : {JSON.stringify(otherThirdPref, null).toString().replaceAll("\"", "")}</h2>
+                    <h2 className = "appliance--heading">First Random Slot : {otherFirstPref}</h2>
+                    <h2 className = "appliance--heading">Second Random Slot : {otherSecondPref}</h2>
+                    <h2 className = "appliance--heading">Third Random Slot : {otherThirdPref}</h2>
                     
                
                     <Link className = "negotiate--btn" to = {{pathname: `/fair-negotiations/${preference._id}`, state: {preference}} }>Negotiate Preference</Link>

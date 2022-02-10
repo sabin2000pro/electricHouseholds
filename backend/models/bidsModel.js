@@ -8,6 +8,14 @@ const bidSchema = new mongoose.Schema({
         max: [2000, 'Max bid you can place is 2000']
     },
 
+    nextRoundBid: {
+        type: Number
+    },
+
+    finalRoundBid: {
+        type: Number
+    },
+
     username: {
         type: String
     },

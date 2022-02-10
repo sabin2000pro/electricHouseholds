@@ -143,3 +143,11 @@
     margin-top: 40px;
     font-size: 38px;
 }
+
+.winner--btn {
+    font-size: 18px;
+    padding: 12px 24px;
+    border-radius: 200px;
+    border: none;
+    background-color: lightgreen;
+}
