@@ -28,9 +28,10 @@ let allBotData = []; // All of the bot data after bidding
 let allTheBidsData = [];
 
 const remainingAppliances = [];
-const filteredRemainingAppliances = [];
+
 const nextApplianceData = [];
 const lastApplianceData = [];
+const lastRemainingAppliance = [];
 
 const FairNegotations = (props) => {
 
@@ -954,29 +955,35 @@ const FairNegotations = (props) => {
      
             await axios.get(`http://localhost:5200/api/v1/preferences/fetch-preferences`).then(response => {
                let data = response.data.preferences;
+
+
                for(let i = 0; i < data.length - 1; i ++) {
-                   
+
                 let nextAppliance = data.slice(-1)[0].nextAppliance;
                 let lastAppliance = data.slice(-1)[0].lastAppliance;
+            
                 
                 remainingAppliances.push(nextAppliance);
+                lastRemainingAppliance.push(lastAppliance)
                }
+
 
                for(let k = 0; k < remainingAppliances.length - 1; k++) {
 
                  if(nextApplianceData.indexOf(remainingAppliances[k]) === -1) {
                      nextApplianceData.push(remainingAppliances[k]);
+ 
                  }
+                }
+
+                for(let i = 0; i < lastRemainingAppliance.length - 1; i++) {
+                    if(lastApplianceData.indexOf(lastRemainingAppliance[i]) === -1) {
+
+                        lastApplianceData.push(lastRemainingAppliance[i]);
+                        console.log(lastApplianceData);
+                    }
+                }
                  
-                 if(lastApplianceData.indexOf(remainingAppliances[k]) === -1) {
-                     lastApplianceData.push(remainingAppliances[k]);
-
-                     console.log(lastApplianceData);
-                 }
-
-
-               }
-
 
             }).catch(err => {
 
