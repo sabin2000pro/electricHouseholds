@@ -690,7 +690,9 @@ const FairNegotations = (props) => {
        return botPlaceRandomBid(lowBotData, mediumBotData, intenseBotData, openingBid);
      }
 
-   
+   useEffect(() => {
+        console.log(lowBotWin);
+   }, [lowBotWin]);
 
     const botPlaceRandomBid = async function(lowBotData, mediumBotData, intenseBotData, openingBid) {
 
@@ -727,7 +729,7 @@ const FairNegotations = (props) => {
            let newMediumCredits = mediumBotCreditsLeft;
            mediumBotCreditsLeft = newMediumCredits;
 
-           let lowBotBidAvg = parsedLowBotCredits * 0.30;
+           let lowBotBidAvg = parsedLowBotCredits * 0.10;
            let mediumBotBidAvg = parsedMediumBotCredits * 0.60;
            let intenseBotBidAvg = parsedIntenseBotCredits * 0.90;
 
@@ -791,42 +793,53 @@ const FairNegotations = (props) => {
                                    allTheBidsData = [...allBotData];
 
                                      setTimeout(() => {
+                                        setRoundNumber(roundNumber + 1);
                                          getNextAppliance();
+                                        setLowBotWin(true);
+
+                                        return;
+                                       
                                      }, 1000);
-                                   
-                                 
+
+                                      if(theUserBid > randBid) {
+
+                             
+
+                    // eslint-disable-next-line no-loop-func
+                    setTimeout(() => {
+
+                        lowBotPlacedBid = true;
+                         processLowBotBid(convertedBotBid, lowBotPlacedBid, name);
+
+                         setLowBotWin(false);
+                        
+                    }, 2000)
+
+            }
+
+
                                 }
 
                             
                             }
+
+                            return;
  
 
                         }
 
-                    
-                        if(randBid >= 0 && randBid <= lowBotBidAvg) {
 
-                            isBetweenAvg = true;
-
-                            if(isBetweenAvg) {
-                               
-
-                                // eslint-disable-next-line no-loop-func
-                                setTimeout(() => {
-
-                                    lowBotPlacedBid = true;
-                                    return processLowBotBid(convertedBotBid, lowBotPlacedBid, name);
-                                }, 2000)
-                            }
-                        
-                        }
                       }
+                     
+                    if(!lowBotWin) {
+                       alert(`One moment.. Verifying other households bids..`)
+                       
+                    }
 
                 }
 
-                        if(!lowBotWin) {
-                            
-                            setTimeout(() => {
+                
+                 setTimeout(() => {
                                 let medBotCreditsRemain = {};
       
                               for(let index = 0; index < bidData.length; index++) {
@@ -886,29 +899,11 @@ const FairNegotations = (props) => {
                               }
                           }
       
-                        
-                          if(!mediumBotWin) {
-
-                            let intenseBotCreditsRemain;
-
-                            for(let index = 0; index < bidData.length; index++) {
-                                 const userBid = parseInt(bidData[index].bid);
-
-                                 for(let i = 0; i < numberOfIntenseBots.length; i++) {
-                                    const {name, type, botCredits} = allIntenseBotData;
-
-                                    console.log(`Now bot ${name} amnd ${type}`);
-                                 }
-
-                            }
-
-                            
-                          }
-                  
+                   
                           
       
                           }, 1300);
-                        }
+                        
 
                 }, 1300); 
 
@@ -986,7 +981,8 @@ const FairNegotations = (props) => {
                     if(lastApplianceData.indexOf(lastRemainingAppliance[i]) === -1) {
 
                         lastApplianceData.push(lastRemainingAppliance[i]);
-                        console.log(lastApplianceData);
+                       
+                    
                     }
                 }
                  
