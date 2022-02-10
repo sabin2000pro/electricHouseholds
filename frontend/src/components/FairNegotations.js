@@ -38,7 +38,7 @@ const FairNegotations = (props) => {
 
     let location = useLocation();
     let history = useHistory();
-    let {username, appliance, firstPreference, secondPreference, thirdPreference} = location.state.preference;
+    let {username, appliance, firstPreference, secondPreference, thirdPreference, nextAppliance, lastAppliance} = location.state.preference;
 
     const [auctionStarted, setAuctionStarted] = useState(false);
     const [botTypes, setBotTypes] = useState({LOW: 'Low', MEDIUM: 'Medium', INTENSE: 'Intense'})
@@ -106,6 +106,7 @@ const FairNegotations = (props) => {
     const [nextRoundForm, setNextRoundForm] = useState(false);
     const [lastRoundForm, setLastRoundForm] = useState(false);
     const [mainRoundFormActive, setMainRoundFormActive] = useState(true);
+    const [lastApplianceSet, setLastApplianceSet] = useState(false);
 
 
 
@@ -786,8 +787,10 @@ const FairNegotations = (props) => {
         console.log(`Next round form activated? ${nextRoundForm}`);
 
         console.log(`Round 2 over ? ${roundTwoOver}`);
+
+        console.log(`Last round form activated ? ${lastRoundForm}`);
        
-   }, [lowBotWin, mediumBotWin, nextRoundForm, roundNumber, roundTwoOver]);
+   }, [lowBotWin, mediumBotWin, nextRoundForm, roundNumber, roundTwoOver, lastRoundForm]);
 
     const botPlaceRandomBid = async function(lowBotData, mediumBotData, intenseBotData, openingBid) {
 
@@ -825,7 +828,7 @@ const FairNegotations = (props) => {
 
            let lowBotBidAvg = parsedLowBotCredits * 0.10;
            let mediumBotBidAvg = parsedMediumBotCredits * 0.30;
-           let intenseBotBidAvg = parsedIntenseBotCredits * 0.95;
+           let intenseBotBidAvg = parsedIntenseBotCredits * 0.80;
 
            if(handleBiddingAggressiveness(lowBotBidAvg, mediumBotBidAvg, intenseBotBidAvg)) {
                console.log(`Low Bot Biding Average cannot be bigger than medium and intense`);
@@ -860,6 +863,7 @@ const FairNegotations = (props) => {
                         let randBid = Math.floor(Math.random() * lowBotBidAvg);
                         let lowBotCreditsLeft = parsedLowBotCredits - randBid;
                         let newLowCredits = lowBotCreditsLeft;
+                        let nextApplianceRound;
 
                         creditsRemainingObj = {lowBotCreditsLeft};
                         let theDifference = allLowBotData.botCredits - creditsRemainingObj.lowBotCreditsLeft;
@@ -867,21 +871,40 @@ const FairNegotations = (props) => {
                         lowBotCreditsLeft = newLowCredits;
                         convertedBotBid = randBid;
 
-                        if(nextRoundBid < randBid && roundNumber === 2) {
-                            alert(`Bot ${type} in round ${roundNumber} placed a bid of ${theDifference}`);
+                      nextApplianceData.forEach((nextApp) => {
+
+                            nextApplianceRound = nextApp;
+
+                             if(nextRoundBid < randBid && roundNumber === 2) {
+                            alert(`Bot ${type} in round ${roundNumber} placed a bid of ${theDifference} and wins the bid for appliance ${nextApplianceRound}`);
                            
                             setRoundTwoOver(true);
                             setNextRoundBid("");
 
                             setLowBotWin(true);
+                            setLastRoundForm(true);
+                            
 
                             if(lowBotWin) {
-                                setRoundNumber(roundNumber + 1);
+
+                               setTimeout(() => {
+                                   getNextAppliance();
+                                  
+                                   setRoundNumber(roundNumber + 1);
+;                               }, 3000)
                             }
 
 
                             return;
 
+                        }
+
+                        })
+
+                       
+                        if(nextRoundBid > randBid && roundNumber === 2) {
+                            alert(`You placed a higher bid than the low bot.. Moving onto the next household...`);
+                            setLowBotWin(false);
                         }
 
                     
@@ -977,6 +1000,28 @@ const FairNegotations = (props) => {
                                   medBotCreditsRemain = {mediumBotCreditsLeft};
                                   let medBotDifference = parsedMediumBotCredits - medBotCreditsRemain.mediumBotCreditsLeft;
 
+                                  if(nextRoundBid < mediumBotRandomBids && roundNumber === 2) {
+                                    alert(`Bot ${type} in round ${roundNumber} placed a bid of ${medBotDifference} and wins the bid for appliance ${appliance}`);
+                                   
+                                    setRoundTwoOver(true);
+                                    setNextRoundBid("");
+        
+                                    setLowBotWin(true);
+        
+                                    if(lowBotWin) {
+                                       setTimeout(() => {
+                                           getNextAppliance();
+                                          
+                                           setRoundNumber(roundNumber + 1);
+        ;                               }, 3000)
+                                    }
+        
+        
+                                    return;
+        
+                                }
+        
+
                                     if(userBid < mediumBotRandomBids) {
 
                                         console.log(`Bot ${type} placed bid of ${medBotDifference}`);
@@ -1051,7 +1096,7 @@ const FairNegotations = (props) => {
                                 }
 
                                 if(userBid > intenseBotBid) {
-                                    alert(`You have won the bidding round. You have received your preferred timeslots for your appliance ${appliance}`);
+                                    alert(`You have won the bidding round. You have received your preferred timeslots for your appliance ${appliance}. You spent ${userBid} Virtual Credits. Congratulations!`);
 
 
                                     setTimeout(() => {
@@ -1123,13 +1168,17 @@ const FairNegotations = (props) => {
             }
 
 
-           return `The winning household placed a round wining bid of ${maxBidBetween}.. Starting the next round`;
+           return `The winning household placed a round wining bid of ${maxBidBetween} and receives the timeslot ${firstPreference} for the appliance ${appliance}`;
         }
 
         for(let i = 0; i < allTheBidsData.length; i++) {
             console.log(allTheBidsData[i].medBotDifference);
         }
     }
+
+    useEffect(() => {
+        console.log(`:last Appliance set ? ${lastApplianceSet}`);
+    }, [lastApplianceSet])
 
       const getNextAppliance = async function() {
 
@@ -1164,6 +1213,13 @@ const FairNegotations = (props) => {
                     if(lastApplianceData.indexOf(lastRemainingAppliance[i]) === -1) {
 
                         lastApplianceData.push(lastRemainingAppliance[i]);
+                       
+                        lastApplianceData.forEach((lastOne) => {
+                            lastAppliance = lastOne;
+
+                            setLastApplianceSet(true);
+                            console.log(`Last Appiance : ${lastAppliance}`)
+                        })
 
                     }
                 }
@@ -1375,9 +1431,7 @@ const FairNegotations = (props) => {
 
             {modalShown && roundNumber === 1 ? <Modal title = "Round Winner" message = {findMaxBetween()} /> : null}
             
-        
-           
-            
+
             {creditData.map((credit, key) => {
                 const credits = credit;
 
@@ -1391,11 +1445,17 @@ const FairNegotations = (props) => {
             {!mainRoundOver ? <h2 >User's Initial Appliance : {appliance}</h2> : null}
 
                
-            {mainRoundOver ? nextApplianceData.map((val, key) => {
+            {mainRoundOver && roundNumber === 2 ? nextApplianceData.map((val, key) => {
                return <div key = {key}>
                <h1>Your next appliance {val}</h1>
                </div>
 
+            }) : null}
+
+            {mainRoundOver && roundNumber === 3 && roundNumber !== 2 ? lastApplianceData.map((val, key) => {
+                return <div key = {key}>
+               <h1>Your last appliance {val}</h1>
+               </div>
             }) : null}
 
             
