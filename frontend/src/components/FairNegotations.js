@@ -100,7 +100,10 @@ const FairNegotations = (props) => {
 
     const [nextRoundBid, setNextRoundBid] = useState('');
     const [lastRoundBid, setLastRoundBid] = useState('');
+
     const [userWinBid, setUserWinBid] = useState(false);
+    const [nextRoundForm, setNextRoundForm] = useState(false);
+    const [lastRoundForm, setLastRoundForm] = useState(false);
 
 
 
@@ -646,8 +649,7 @@ const FairNegotations = (props) => {
             userCreditsLeft = {creditsLeft, openingBid};
             openingBid = userCreditsLeft;
 
-           
-
+        
                 return creditData.map((credit) => {
 
                     const {_id} = credit; // Extract ID
@@ -731,9 +733,9 @@ const FairNegotations = (props) => {
            let newMediumCredits = mediumBotCreditsLeft;
            mediumBotCreditsLeft = newMediumCredits;
 
-           let lowBotBidAvg = parsedLowBotCredits * 0.40;
-           let mediumBotBidAvg = parsedMediumBotCredits * 0.70;
-           let intenseBotBidAvg = parsedIntenseBotCredits * 1;
+           let lowBotBidAvg = parsedLowBotCredits * 0.10;
+           let mediumBotBidAvg = parsedMediumBotCredits * 0.30;
+           let intenseBotBidAvg = parsedIntenseBotCredits * 0.95;
 
            if(handleBiddingAggressiveness(lowBotBidAvg, mediumBotBidAvg, intenseBotBidAvg)) {
                console.log(`Low Bot Biding Average cannot be bigger than medium and intense`);
@@ -794,8 +796,6 @@ const FairNegotations = (props) => {
                                    allBotData.push({...creditsRemainingObj, name, theDifference, userCreditsLeft, theUserBid, type});
                                    allTheBidsData = [...allBotData];
 
-                                    
-
                                      setTimeout(() => {
                                         setRoundNumber(roundNumber + 1);
                                         
@@ -825,7 +825,7 @@ const FairNegotations = (props) => {
             }
 
 
-                                }
+                             }
 
                             
                             }
@@ -838,7 +838,6 @@ const FairNegotations = (props) => {
 
                       }
                
-
                 }
 
                 
@@ -860,10 +859,9 @@ const FairNegotations = (props) => {
                                   medBotCreditsRemain = {mediumBotCreditsLeft};
                                   let medBotDifference = parsedMediumBotCredits - medBotCreditsRemain.mediumBotCreditsLeft;
 
-                                
-                                      if(userBid < mediumBotRandomBids) {
+                                    if(userBid < mediumBotRandomBids) {
 
-                                          console.log(`Bot ${type} placed bid of ${medBotDifference}`);
+                                        console.log(`Bot ${type} placed bid of ${medBotDifference}`);
                                         
                                         alert(`Another household has placed a higher bid and receives the timeslot for the appliance ${appliance}. Moving onto the next round`);
                                         
@@ -880,8 +878,6 @@ const FairNegotations = (props) => {
                                             setMediumBotWin(true);
 
                                             getNextAppliance();
-
-                                            console.log(`User lost`);
     
                                             return;
                                            
@@ -912,13 +908,10 @@ const FairNegotations = (props) => {
 
                             if(!mediumBotWin && !lowBotWin) {
                                 setTimeout(() => {
-                                    console.log(`Processing Intense botbids now..`)
-    
+                                    let intenseCreditsLeftObj;
+                                   
                                       for(let index = 0; index < bidData.length; index++) {
                                         const userBid = parseInt(bidData[index].bid);
-
-                                    console.log(`User credits remaining`);
-                                    console.log(userCreditsLeft);
 
                                     
                                  for(let i = 0; i < numberOfIntenseBots; i++) {
@@ -927,9 +920,35 @@ const FairNegotations = (props) => {
                                     let intenseBotBid = Math.floor(Math.random() * intenseBotBidAvg);
 
                                 let intenseBotCreditsRemaining = parsedIntenseBotCredits - intenseBotBid;
-                                let mediumBotCreditsLeft = intenseBotCreditsRemaining;
+                                let intenseBotCreditsLeft = intenseBotCreditsRemaining;
+
+                                convertedBotBid = intenseBotBid
+                                intenseCreditsLeftObj = {intenseBotCreditsLeft};
+                                let intenseBotDifference = parsedIntenseBotCredits- intenseCreditsLeftObj.intenseBotCreditsLeft;
 
                                 console.log(`The bot ${name} type ${type} placed a bid of ${intenseBotBid}`);
+
+                                if(userBid < intenseBotBid) {
+                                    alert(`Another household has placed a higher bid and receives the timeslot for the appliance ${appliance}. Moving onto the next round`);
+                                }
+
+                                if(userBid > intenseBotBid) {
+                                    alert(`You have won the bidding round. You have received your preferred timeslots for your appliance ${appliance}`);
+
+
+                                    setTimeout(() => {
+                                        alert(`One sec... starting next round`);
+
+                                        setRoundNumber(roundNumber + 1);
+                                        getNextAppliance();
+                                        setNextRoundForm(true);
+
+                                        return;
+
+                                       
+                                    }, 3000)
+                                  
+                                }
                                     
             
                                  }
