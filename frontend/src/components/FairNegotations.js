@@ -951,16 +951,13 @@ const FairNegotations = (props) => {
       const getNextAppliance = async function() {
 
         try {
-           
-            // Send GET request to get the next user appliance for round 2
-        
-        
+     
             await axios.get(`http://localhost:5200/api/v1/preferences/fetch-preferences`).then(response => {
                let data = response.data.preferences;
-       
-               
                for(let i = 0; i < data.length - 1; i ++) {
+                   
                 let nextAppliance = data.slice(-1)[0].nextAppliance;
+                let lastAppliance = data.slice(-1)[0].lastAppliance;
                 
                 remainingAppliances.push(nextAppliance);
                }
@@ -970,6 +967,14 @@ const FairNegotations = (props) => {
                  if(nextApplianceData.indexOf(remainingAppliances[k]) === -1) {
                      nextApplianceData.push(remainingAppliances[k]);
                  }
+                 
+                 if(lastApplianceData.indexOf(remainingAppliances[k]) === -1) {
+                     lastApplianceData.push(remainingAppliances[k]);
+
+                     console.log(lastApplianceData);
+                 }
+
+
                }
 
 
