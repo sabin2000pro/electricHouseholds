@@ -818,7 +818,6 @@ const FairNegotations = (props) => {
                         }
                       }
 
-
                 }
 
                         if(!lowBotWin) {
@@ -1211,7 +1210,13 @@ const FairNegotations = (props) => {
                </div>
 
             }) : null}
-                
+
+            {/* {lastApplianceData.map((val, key) => {
+                return <div key = {key}>
+                 {val}
+                </div>
+            })}
+                 */}
                 
             <h1 style = {{marginBottom: '90px'}}>Round Number : {roundNumber}</h1>
 
