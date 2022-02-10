@@ -37,7 +37,7 @@ const FairNegotations = (props) => {
 
     let location = useLocation();
     let history = useHistory();
-    let {username, appliance, firstPreference, secondPreference, thirdPreference, nextAppliance, lastAppliance} = location.state.preference;
+    let {username, appliance, firstPreference, secondPreference, thirdPreference} = location.state.preference;
 
     const [auctionStarted, setAuctionStarted] = useState(false);
     const [botTypes, setBotTypes] = useState({LOW: 'Low', MEDIUM: 'Medium', INTENSE: 'Intense'})
@@ -73,8 +73,10 @@ const FairNegotations = (props) => {
     const [counterError, setCounterError] = useState(false);
 
     const [mainRoundOver, setMainRoundOver] = useState(false);
-    const [roundOneOver, setRoundOneOver] = useState(false);
     const [roundTwoOver, setRoundTwoOver] = useState(false);
+    const [roundOneOver, setRoundOneOver] = useState(false);
+
+    const [lastRoundOver, setLastRoundOver] = useState(false);
 
     const [feedbackData, setFeedbackData] = useState([]);
     const [bids, setBids] = useState([]);
@@ -94,6 +96,9 @@ const FairNegotations = (props) => {
 
     let [userCreditsLeft, setUserCreditsLeft] = useState({});
     let [masterObject, setMasterObject] = useState({});
+
+    const [nextRoundBid, setNextRoundBid] = useState('');
+    const [lastRoundBid, setLastRoundBid] = useState('');
 
 
 
@@ -860,6 +865,10 @@ const FairNegotations = (props) => {
 
                                            setMainRoundOver(true);
                                            setRoundNumber(roundNumber + 1);
+
+                                             setTimeout(() => {
+                                         getNextAppliance();
+                                     }, 1000);
  
                                       }
                                   
