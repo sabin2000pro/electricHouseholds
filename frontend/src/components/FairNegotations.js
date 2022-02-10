@@ -888,10 +888,12 @@ const FairNegotations = (props) => {
                                            
                                          }, 1000);
 
+                                         return;
+
 
                                       }
                                   
-                                      if(type === botTypes.MEDIUM && botCredits > 0 && name != null && (userBid > mediumBotRandomBids) && !mainRoundOver) {
+                                      if(type === botTypes.MEDIUM && botCredits > 0 && name != null && (userBid > mediumBotRandomBids)) {
                                     
                                           setTimeout(() => {
                                            
@@ -899,7 +901,7 @@ const FairNegotations = (props) => {
                                            processMediumBotBids(mediumBotRandomBids, name, type, mediumBotCreditsLeft);
 
                                            setMediumBotWin(false);
-                                           console.log(`Med bot did not win`)
+                                           console.log(`Med bot did not win`);
                                           
                                            }
            
@@ -907,36 +909,47 @@ const FairNegotations = (props) => {
            
                                       }
 
-                                      return;
+                                   
+
+                                     
            
                               }
 
-                              return;
+                            if(!mediumBotWin && !lowBotWin) {
+                                setTimeout(() => {
+                                    console.log(`Processing Intense botbids now..`)
+    
+                                      for(let index = 0; index < bidData.length; index++) {
+                                    const userBid = parseInt(bidData[index].bid);
+                                    
+                                 for(let i = 0; i < numberOfIntenseBots; i++) {
+                                     console.log(`Processing :`);
+                                     console.log(numberOfIntenseBots);
+            
+                                 }
+            
+                                }
+    
+    
+                                }, 2000)
+            
+                              
+            
+            
+                              
+                               
+                    
+    
+                                 
+                            }
+
+                          
 
                              
                           }
 
 
-                          if(!mediumBotWin) {
-                            setTimeout(() => {
-                                console.log(`Processing Intense botbids now..`)
-                            }, 2000)
-        
-                            for(let index = 0; index < bidData.length; index++) {
-                                const userBid = parseInt(bidData[index].bid);
-                                
-                             for(let i = 0; i < numberOfIntenseBots.length - 1; i++) {
-                                 console.log(`Processing :`);
-                                 console.log(numberOfIntenseBots);
-        
-                             }
-        
-                            }
-        
-        
-                          }
-                           
-                
+                         
       
                    
                           
