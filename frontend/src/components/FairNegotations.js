@@ -104,6 +104,7 @@ const FairNegotations = (props) => {
     const [userWinBid, setUserWinBid] = useState(false);
     const [nextRoundForm, setNextRoundForm] = useState(false);
     const [lastRoundForm, setLastRoundForm] = useState(false);
+    const [mainRoundFormActive, setMainRoundFormActive] = useState(true);
 
 
 
@@ -696,7 +697,8 @@ const FairNegotations = (props) => {
 
    useEffect(() => {
         console.log(lowBotWin);
-   }, [lowBotWin, mediumBotWin]);
+        console.log(`Next round form activated? ${nextRoundForm}`)
+   }, [lowBotWin, mediumBotWin, nextRoundForm]);
 
     const botPlaceRandomBid = async function(lowBotData, mediumBotData, intenseBotData, openingBid) {
 
@@ -802,6 +804,7 @@ const FairNegotations = (props) => {
                                         setLowBotWin(true);
                                         setMainRoundOver(true);
                                         getNextAppliance();
+                                        setNextRoundForm(true);
 
                                        return;
                                        
@@ -1314,7 +1317,7 @@ const FairNegotations = (props) => {
 
                 </form> 
 
-            </RegisterCard>  
+        </RegisterCard>  
 
             </div>
 
