@@ -1,3 +1,4 @@
+/* eslint-disable no-loop-func */
 import React, {useState, useEffect, useRef} from 'react';
 import {useLocation, useHistory} from 'react-router-dom';
 import RegisterCard from './Admin/RegisterCard';
@@ -99,6 +100,7 @@ const FairNegotations = (props) => {
 
     const [nextRoundBid, setNextRoundBid] = useState('');
     const [lastRoundBid, setLastRoundBid] = useState('');
+    const [userWinBid, setUserWinBid] = useState(false);
 
 
 
@@ -731,7 +733,7 @@ const FairNegotations = (props) => {
 
            let lowBotBidAvg = parsedLowBotCredits * 0.40;
            let mediumBotBidAvg = parsedMediumBotCredits * 0.70;
-           let intenseBotBidAvg = parsedIntenseBotCredits * 0.90;
+           let intenseBotBidAvg = parsedIntenseBotCredits * 1;
 
            if(handleBiddingAggressiveness(lowBotBidAvg, mediumBotBidAvg, intenseBotBidAvg)) {
                console.log(`Low Bot Biding Average cannot be bigger than medium and intense`);
@@ -841,7 +843,7 @@ const FairNegotations = (props) => {
 
                 
                  setTimeout(() => {
-                                let medBotCreditsRemain = {};
+                             let medBotCreditsRemain = {};
       
                               for(let index = 0; index < bidData.length; index++) {
                                  const userBid = parseInt(bidData[index].bid);
@@ -870,11 +872,8 @@ const FairNegotations = (props) => {
                                         }, 4500);
                                          
                                            allBotData.push({...medBotCreditsRemain, medBotDifference, userCreditsLeft, userBid});
-
                                            botBidData.push({medBotDifference});
 
-                                           
-                                          
                                            setTimeout(() => {
                                             setRoundNumber(roundNumber + 1);
                                              setMainRoundOver(true);
@@ -909,10 +908,6 @@ const FairNegotations = (props) => {
            
                                       }
 
-                                   
-
-                                     
-           
                               }
 
                             if(!mediumBotWin && !lowBotWin) {
@@ -920,11 +915,22 @@ const FairNegotations = (props) => {
                                     console.log(`Processing Intense botbids now..`)
     
                                       for(let index = 0; index < bidData.length; index++) {
-                                    const userBid = parseInt(bidData[index].bid);
+                                        const userBid = parseInt(bidData[index].bid);
+
+                                    console.log(`User credits remaining`);
+                                    console.log(userCreditsLeft);
+
                                     
                                  for(let i = 0; i < numberOfIntenseBots; i++) {
-                                     console.log(`Processing :`);
-                                     console.log(numberOfIntenseBots);
+                                    const {name, type, botCredits} = allIntenseBotData;
+
+                                    let intenseBotBid = Math.floor(Math.random() * intenseBotBidAvg);
+
+                                let intenseBotCreditsRemaining = parsedIntenseBotCredits - intenseBotBid;
+                                let mediumBotCreditsLeft = intenseBotCreditsRemaining;
+
+                                console.log(`The bot ${name} type ${type} placed a bid of ${intenseBotBid}`);
+                                    
             
                                  }
             
@@ -933,41 +939,17 @@ const FairNegotations = (props) => {
     
                                 }, 2000)
             
-                              
-            
-            
-                              
-                               
-                    
-    
-                                 
+   
                             }
 
-                          
-
-                             
                           }
 
 
-                         
-      
-                   
-                          
-      
-                          }, 1300);
-
-                          
-
-                          
+                         }, 1300);
 
                 }, 1300); 
 
-               
 
-               
-                        
-
-                
                 }, 1300);
             }
 
@@ -1019,7 +1001,6 @@ const FairNegotations = (props) => {
             await axios.get(`http://localhost:5200/api/v1/preferences/fetch-preferences`).then(response => {
                let data = response.data.preferences;
 
-
                for(let i = 0; i < data.length - 1; i ++) {
 
                 let nextAppliance = data.slice(-1)[0].nextAppliance;
@@ -1027,26 +1008,26 @@ const FairNegotations = (props) => {
             
                 
                 remainingAppliances.push(nextAppliance);
-                lastRemainingAppliance.push(lastAppliance)
+                lastRemainingAppliance.push(lastAppliance);
+
                }
 
 
                for(let k = 0; k < remainingAppliances.length - 1; k++) {
 
                  if(nextApplianceData.indexOf(remainingAppliances[k]) === -1) {
-                     nextApplianceData.push(remainingAppliances[k]);
 
-                     console.log(nextApplianceData);
+                     nextApplianceData.push(remainingAppliances[k]);
  
                  }
                 }
 
                 for(let i = 0; i < lastRemainingAppliance.length - 1; i++) {
+
                     if(lastApplianceData.indexOf(lastRemainingAppliance[i]) === -1) {
 
                         lastApplianceData.push(lastRemainingAppliance[i]);
-                       
-                    
+
                     }
                 }
                  
