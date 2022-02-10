@@ -790,7 +790,6 @@ const FairNegotations = (props) => {
                                    allBotData.push({...creditsRemainingObj, name, theDifference, userCreditsLeft, theUserBid, type});
                                    allTheBidsData = [...allBotData];
 
-
                                      setTimeout(() => {
                                          getNextAppliance();
                                      }, 1000);
@@ -857,14 +856,14 @@ const FairNegotations = (props) => {
                                         }, 4500);
                                          
                                            allBotData.push({...medBotCreditsRemain, medBotDifference, userCreditsLeft, userBid});
-                                           allTheBidsData = [...allBotData, type];
-                                        
-                                          
+
                                            botBidData.push({medBotDifference});
                                            console.log(botBidData);
 
                                            setMainRoundOver(true);
                                            setRoundNumber(roundNumber + 1);
+
+                                           
 
                                              setTimeout(() => {
                                          getNextAppliance();
@@ -888,26 +887,25 @@ const FairNegotations = (props) => {
                           }
       
                         
-                  
-                          setTimeout(() => {
-                              
-                              try {
-                                
-                                  
-                              } 
-                              
-                              catch(err) {
-      
-                                  if(err) {
-      
-                                      console.log(err);
-                                      throw new Error(err);
-                                  }
-                              }
-      
-                          }, 3000);
+                          if(!mediumBotWin) {
 
-                         
+                            let intenseBotCreditsRemain;
+
+                            for(let index = 0; index < bidData.length; index++) {
+                                 const userBid = parseInt(bidData[index].bid);
+
+                                 for(let i = 0; i < numberOfIntenseBots.length; i++) {
+                                    const {name, type, botCredits} = allIntenseBotData;
+
+                                    console.log(`Now bot ${name} amnd ${type}`);
+                                 }
+
+                            }
+
+                            
+                          }
+                  
+                          
       
                           }, 1300);
                         }
