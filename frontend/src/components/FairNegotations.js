@@ -692,7 +692,7 @@ const FairNegotations = (props) => {
 
    useEffect(() => {
         console.log(lowBotWin);
-   }, [lowBotWin]);
+   }, [lowBotWin, mediumBotWin]);
 
     const botPlaceRandomBid = async function(lowBotData, mediumBotData, intenseBotData, openingBid) {
 
@@ -729,8 +729,8 @@ const FairNegotations = (props) => {
            let newMediumCredits = mediumBotCreditsLeft;
            mediumBotCreditsLeft = newMediumCredits;
 
-           let lowBotBidAvg = parsedLowBotCredits * 0.10;
-           let mediumBotBidAvg = parsedMediumBotCredits * 0.60;
+           let lowBotBidAvg = parsedLowBotCredits * 0.40;
+           let mediumBotBidAvg = parsedMediumBotCredits * 0.70;
            let intenseBotBidAvg = parsedIntenseBotCredits * 0.90;
 
            if(handleBiddingAggressiveness(lowBotBidAvg, mediumBotBidAvg, intenseBotBidAvg)) {
@@ -792,18 +792,23 @@ const FairNegotations = (props) => {
                                    allBotData.push({...creditsRemainingObj, name, theDifference, userCreditsLeft, theUserBid, type});
                                    allTheBidsData = [...allBotData];
 
+                                    
+
                                      setTimeout(() => {
                                         setRoundNumber(roundNumber + 1);
-                                         getNextAppliance();
+                                        
                                         setLowBotWin(true);
+                                        setMainRoundOver(true);
+                                        getNextAppliance();
 
-                                        return;
+                                       return;
                                        
                                      }, 1000);
 
+
+
                                       if(theUserBid > randBid) {
 
-                             
 
                     // eslint-disable-next-line no-loop-func
                     setTimeout(() => {
@@ -830,11 +835,7 @@ const FairNegotations = (props) => {
 
 
                       }
-                     
-                    if(!lowBotWin) {
-                       alert(`One moment.. Verifying other households bids..`)
-                       
-                    }
+               
 
                 }
 
@@ -862,7 +863,7 @@ const FairNegotations = (props) => {
 
                                           console.log(`Bot ${type} placed bid of ${medBotDifference}`);
                                         
-                                        setModalShown({title: "Preferences", message: "No preferences found"});
+                                        alert(`Another household has placed a higher bid and receives the timeslot for the appliance ${appliance}. Moving onto the next round`);
                                         
                                         setTimeout(() => {
                                            setModalShown(null);
@@ -871,45 +872,93 @@ const FairNegotations = (props) => {
                                            allBotData.push({...medBotCreditsRemain, medBotDifference, userCreditsLeft, userBid});
 
                                            botBidData.push({medBotDifference});
-                                           console.log(botBidData);
-
-                                           setMainRoundOver(true);
-                                           setRoundNumber(roundNumber + 1);
 
                                            
+                                          
+                                           setTimeout(() => {
+                                            setRoundNumber(roundNumber + 1);
+                                             setMainRoundOver(true);
+                                            setMediumBotWin(true);
 
-                                             setTimeout(() => {
-                                         getNextAppliance();
-                                     }, 1000);
- 
+                                            getNextAppliance();
+
+                                            console.log(`User lost`);
+    
+                                            return;
+                                           
+                                         }, 1000);
+
+
                                       }
                                   
-                                      if(type === botTypes.MEDIUM && botCredits > 0 && name != null && (userBid > mediumBotRandomBids)) {
+                                      if(type === botTypes.MEDIUM && botCredits > 0 && name != null && (userBid > mediumBotRandomBids) && !mainRoundOver) {
                                     
                                           setTimeout(() => {
                                            
                                            if(mediumBotRandomBids !== 0 && !(userBid) < mediumBotRandomBids) {
-                                              return processMediumBotBids(mediumBotRandomBids, name, type, mediumBotCreditsLeft);
+                                           processMediumBotBids(mediumBotRandomBids, name, type, mediumBotCreditsLeft);
+
+                                           setMediumBotWin(false);
+                                           console.log(`Med bot did not win`)
+                                          
                                            }
            
                                           }, 2000)
            
                                       }
+
+                                      return;
            
                               }
+
+                              return;
+
+                             
                           }
+
+
+                          if(!mediumBotWin) {
+                            setTimeout(() => {
+                                console.log(`Processing Intense botbids now..`)
+                            }, 2000)
+        
+                            for(let index = 0; index < bidData.length; index++) {
+                                const userBid = parseInt(bidData[index].bid);
+                                
+                             for(let i = 0; i < numberOfIntenseBots.length - 1; i++) {
+                                 console.log(`Processing :`);
+                                 console.log(numberOfIntenseBots);
+        
+                             }
+        
+                            }
+        
+        
+                          }
+                           
+                
       
                    
                           
       
                           }, 1300);
-                        
+
+                          
+
+                          
 
                 }, 1300); 
+
+               
+
+               
+                        
 
                 
                 }, 1300);
             }
+
+          
             
          }
 
@@ -973,6 +1022,8 @@ const FairNegotations = (props) => {
 
                  if(nextApplianceData.indexOf(remainingAppliances[k]) === -1) {
                      nextApplianceData.push(remainingAppliances[k]);
+
+                     console.log(nextApplianceData);
  
                  }
                 }
