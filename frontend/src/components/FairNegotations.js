@@ -29,6 +29,8 @@ let allTheBidsData = [];
 
 const remainingAppliances = [];
 const filteredRemainingAppliances = [];
+const nextApplianceData = [];
+const lastApplianceData = [];
 
 const FairNegotations = (props) => {
 
@@ -815,13 +817,6 @@ const FairNegotations = (props) => {
                         }
                       }
 
-                   
-                            // eslint-disable-next-line no-loop-func
-                  setTimeout(() => {
-                    
-                      setRoundNumber(roundNumber + 1);
-                  }, 1000);
-   
 
                 }
 
@@ -847,6 +842,8 @@ const FairNegotations = (props) => {
 
                                 
                                       if(userBid < mediumBotRandomBids) {
+
+                                          console.log(`Bot ${type} placed bid of ${medBotDifference}`);
                                         
                                         setModalShown({title: "Preferences", message: "No preferences found"});
                                         
@@ -959,29 +956,22 @@ const FairNegotations = (props) => {
         
         
             await axios.get(`http://localhost:5200/api/v1/preferences/fetch-preferences`).then(response => {
+               let data = response.data.preferences;
+       
                
-                 
-                response.data.preferences.forEach((prefs) => {
-                   remainingAppliances.push(prefs.nextAppliance, prefs.lastAppliance);
-                });
-
-               
-                if(remainingAppliances.includes("")) {
-
-                    let filteredArr = remainingAppliances.filter(function (el) {
-                        return el !== "";
-                    });
-
-                   let uniqueAppliances = [...new Set(filteredArr)];
-                  filteredRemainingAppliances.push(uniqueAppliances);
-
-                   console.log(filteredRemainingAppliances);
+               for(let i = 0; i < data.length - 1; i ++) {
+                let nextAppliance = data.slice(-1)[0].nextAppliance;
                 
-                }
+                remainingAppliances.push(nextAppliance);
+               }
 
-                
-                
-                
+               for(let k = 0; k < remainingAppliances.length - 1; k++) {
+
+                 if(nextApplianceData.indexOf(remainingAppliances[k]) === -1) {
+                     nextApplianceData.push(remainingAppliances[k]);
+                 }
+               }
+
 
             }).catch(err => {
 
@@ -1000,18 +990,6 @@ const FairNegotations = (props) => {
 
                 throw new Error(err);
             }
-        }
-    }
-
-    
-
-    const displayWinner = () => { // Displays who the winner of Round 1 is
-        try {
-
-        } 
-        
-        catch(error) {
-            
         }
     }
 
@@ -1214,15 +1192,15 @@ const FairNegotations = (props) => {
 
             {!mainRoundOver ? <h2 >User's Initial Appliance : {appliance}</h2> : null}
 
-            {mainRoundOver ? filteredRemainingAppliances.map((val, key) => {
-               return <h1>Your next appliance {val}</h1>
+               
+            {mainRoundOver ? nextApplianceData.map((val, key) => {
+               return <div key = {key}>
+               <h1>Your next appliance {val}</h1>
+               </div>
+
             }) : null}
                 
                 
-          
-               
-     
-
             <h1 style = {{marginBottom: '90px'}}>Round Number : {roundNumber}</h1>
 
             <div className = "container grid grid--2-cols">
