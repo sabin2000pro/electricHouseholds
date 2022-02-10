@@ -899,15 +899,18 @@ const FairNegotations = (props) => {
 
                         }
 
+                        return;
+
                         })
 
                        
                         if(nextRoundBid > randBid && roundNumber === 2) {
-                            alert(`You placed a higher bid than the low bot.. Moving onto the next household...`);
+                            alert(`You placed a higher bid than one of the households bot.. Moving onto the next household...`);
                             setLowBotWin(false);
+
+                            continue;
                         }
 
-                    
 
                         if(theUserBid < randBid) {
 
@@ -966,6 +969,8 @@ const FairNegotations = (props) => {
 
                              }
 
+                             return;
+
                             
                             }
 
@@ -974,15 +979,19 @@ const FairNegotations = (props) => {
 
                         }
 
-                        
+                     
+
+                       
 
 
                       }
                
                 }
 
+                if(roundNumber === 1 || (roundNumber === 2) && userTurn && botTurn) {
+                    alert(`Checking for MH`)
                 
-                 setTimeout(() => {
+                     setTimeout(() => {
                              let medBotCreditsRemain = {};
       
                               for(let index = 0; index < bidData.length; index++) {
@@ -1006,13 +1015,15 @@ const FairNegotations = (props) => {
                                     setRoundTwoOver(true);
                                     setNextRoundBid("");
         
-                                    setLowBotWin(true);
-        
-                                    if(lowBotWin) {
+                                    setMediumBotWin(true);
+
+                                    setRoundNumber(roundNumber + 1);
+
+                                    if(mediumBotWin) {
+
                                        setTimeout(() => {
-                                           getNextAppliance();
-                                          
-                                           setRoundNumber(roundNumber + 1);
+
+                                           return;
         ;                               }, 3000)
                                     }
         
@@ -1020,6 +1031,7 @@ const FairNegotations = (props) => {
                                     return;
         
                                 }
+                            
         
 
                                     if(userBid < mediumBotRandomBids) {
@@ -1069,7 +1081,10 @@ const FairNegotations = (props) => {
 
                               }
 
+                              
+
                             if(!mediumBotWin && !lowBotWin) {
+
                                 setTimeout(() => {
                                     let intenseCreditsLeftObj;
                                    
@@ -1127,7 +1142,8 @@ const FairNegotations = (props) => {
                           }
 
 
-                         }, 1300);
+                         }, 1300)
+                      }
 
                 }, 1300); 
 
