@@ -102,7 +102,7 @@ const FairNegotations = (props) => {
     const [lastRoundForm, setLastRoundForm] = useState(false);
     const [lastApplianceSet, setLastApplianceSet] = useState(false);
     const [outOfCredits, setOutOfCredits] = useState(false);
-
+    const [feedbackFormDisplay, setFeedbackFormDisplay] = useState(false);
 
     const beginLiveAuctionHandler = function() {
         return setAuctionStarted(!auctionStarted);
@@ -238,7 +238,6 @@ const FairNegotations = (props) => {
 
                 else {
                     setCreditData(credits);
-                    console.log(credits);
                 }
 
             }).catch(error => {
@@ -634,10 +633,6 @@ const FairNegotations = (props) => {
                 userCreditsLeft = {creditsLeft, openingBid};
                 openingBid = userCreditsLeft;
 
-                // if(convertedBid > userCreditsLeft) {
-                //     alert(`You cannot place a bid > virtual credits available`);
-                //     window.location.reload(false);
-                // }
 
                 return creditData.map((credit) => {
 
@@ -686,7 +681,7 @@ const FairNegotations = (props) => {
         if(roundNumber === 1) {
             try {
                
-                axios.put(`http://localhost:5200/api/v1/credits/update-credits/${_id}`, {_id: _id, virtualCredits: virtualCredits}).then(data => {console.log(data)}).catch(err => {console.log(err)});
+                axios.put(`http://localhost:5200/api/v1/credits/update-credits/${_id}`, {_id: _id, virtualCredits: virtualCredits}).then(data => {}).catch(err => {console.log(err)});
                 setUpdatedNewBid(true);
                
                 const [lowBotData, mediumBotData, intenseBotData] = botBidData;  
@@ -740,22 +735,13 @@ const FairNegotations = (props) => {
            if(roundNumber === 2) {
 
             if(creditsAvailable === 0) {
-                alert(`You are out of credits. Round ${roundNumber} over`);
-                setOutOfCredits(true);
-
-                window.location.reload(false);
-
+              
                 return;
             }
          
 
             if(theUserBid > creditsAvailable) {
-
-                alert(`You cannot place a bid > number of credits you have left. Round ${roundOver} over`);
-                setOutOfCredits(true);
- 
-                window.location.reload(false);
-                return;
+                 return;
             }
 
            }
@@ -764,7 +750,7 @@ const FairNegotations = (props) => {
      })
    }
 
-    const botPlaceRandomBid = async function(lowBotData, mediumBotData, intenseBotData, openingBid, virtualCredits) {
+    const botPlaceRandomBid = async function(lowBotData, mediumBotData, intenseBotData) {
 
         try {
 
@@ -802,10 +788,6 @@ const FairNegotations = (props) => {
            let mediumBotBidAvg = parsedMediumBotCredits * 0.30;
            let intenseBotBidAvg = parsedIntenseBotCredits * 0.80;
 
-           if(handleBiddingAggressiveness(lowBotBidAvg, mediumBotBidAvg, intenseBotBidAvg)) {
-               console.log(`Low Bot Biding Average cannot be bigger than medium and intense`);
-           }
-        
            theLowBots.push(allLowBotData);
            theMediumBots.push(allMediumBotData);
            theIntenseBots.push(allIntenseBotData);
@@ -852,12 +834,13 @@ const FairNegotations = (props) => {
                           nextApplianceRound = nextApp;
   
                           if(nextRoundBid < randBid && roundNumber === 2) {
+                            alert(`You lose the second round`);
 
                               setRoundTwoOver(true);
                               setNextRoundBid("");
   
-                              setLowBotWin(true);
-                              setLastRoundForm(true);
+                              setLowBotWin(!lowBotWin);
+                              setLastRoundForm(!lastRoundForm);
                               
   
                               if(lowBotWin) {
@@ -879,6 +862,7 @@ const FairNegotations = (props) => {
                           })
   
                           if(nextRoundBid > randBid && roundNumber === 2) {
+                              alert(`You win the second round`);
                              
                               setRoundTwoOver(true);
                               setLowBotWin(false);
@@ -936,7 +920,7 @@ const FairNegotations = (props) => {
   
                            setLowBotWin(false);
                           
-                      }, 3000)
+                      }, 4500)
   
               }
   
@@ -960,10 +944,12 @@ const FairNegotations = (props) => {
 
                 if(roundNumber === 1 || (roundNumber === 2) && (userTurn && botTurn)) {
                     
+
                      setTimeout(() => {
                              let medBotCreditsRemain = {};
       
                               for(let index = 0; index < bidData.length; index++) {
+
                                  const userBid = parseInt(bidData[index].bid);
 
                                  
@@ -996,7 +982,8 @@ const FairNegotations = (props) => {
 
                                            return;
 
-                                     }, 3000)
+                                     }, 4500)
+
                                     }
         
         
@@ -1028,7 +1015,7 @@ const FairNegotations = (props) => {
 
                                             return;
                                            
-                                         }, 1000);
+                                         }, 4500);
 
                                          return;
 
@@ -1042,12 +1029,16 @@ const FairNegotations = (props) => {
                                             setTimeout(() => {
                                                 
                                                 setTimeout(() => {
+
                                                     setModalShown(null);
+
                                                 }, 4500);
+
                                             }, 4000)
 
                                             allBotData.push({...medBotCreditsRemain, medBotDifference, userCreditsLeft, userBid});
                                             allTheBidsData = [...allBotData];
+
                                             
                                     
                                           setTimeout(() => {
@@ -1055,18 +1046,23 @@ const FairNegotations = (props) => {
                                         if(mediumBotRandomBids !== 0 && !(userBid) < mediumBotRandomBids) {
                                            processMediumBotBids(mediumBotRandomBids, name, type, mediumBotCreditsLeft);
 
-                                                            setModalShown({title: "Preferences", message: "No preferences found"});
+                                             setModalShown({title: "Preferences", message: "No preferences found"});
                                                 setBiddingOver(true);
 
                                                 setTimeout(() => {
                                                     
                                                     setTimeout(() => {
+
                                                         setModalShown(null);
+
                                                     }, 4500);
+
                                                 }, 4000)
 
                                                 allBotData.push({...medBotCreditsRemain, medBotDifference, userCreditsLeft, userBid});
                                                 allTheBidsData = [...allBotData];
+
+                                                displayWinner();
                              
 
                                            setMediumBotWin(false);                                          
@@ -1121,6 +1117,8 @@ const FairNegotations = (props) => {
 
                                     allBotData.push({...creditsRemainingObj, intenseBotDifference, userCreditsLeft, userBid});
                                     allTheBidsData = [...allBotData];
+
+                 
 
                                 }
 
@@ -1219,10 +1217,14 @@ const FairNegotations = (props) => {
                 }
     
     
-               return `Round ${roundNumber} - the winning bidder placed a round wining bid of ${maxBidBetween} and receives the timeslots ${firstPreference} ${secondPreference} and ${thirdPreference} for the appliance ${appliance}`;
+                return `Round ${roundNumber} - the winning bidder placed a round wining bid of ${maxBidBetween} and receives the timeslots ${firstPreference} ${secondPreference} and ${thirdPreference} for the appliance ${appliance}`;
             } 
     
         
+    }
+
+    const displayWinner = () => {
+        console.log(`Winner function call`);
     }
 
     useEffect(() => {
@@ -1362,7 +1364,6 @@ const FairNegotations = (props) => {
             event.preventDefault();
             
             const {data} = await axios.post(`http://localhost:5200/api/v1/feedback/create-feedback`, {feedbackUsername: enteredFeedbackUsername, feedbackEmailAddress: enteredFeedbackEmailAddress, feedbackFeeling: chosenFeedbackFeeling, feedbackDescription: enteredFeedbackDescription});
-            console.log(data);
 
             if(!data) {
                 return alert(`No data could be submitted`);
