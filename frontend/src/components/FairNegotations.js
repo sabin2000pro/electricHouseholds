@@ -5,6 +5,7 @@ import RegisterCard from './Admin/RegisterCard';
 import axios from 'axios';
 import './FairNegotiations.css';
 import Modal from '../UI/Modal';
+import ResultsScreen from '../components/ResultsScreen'
 
 let DELAY = 1200;
 let START_TIMER = 60;
@@ -108,6 +109,7 @@ const FairNegotations = (props) => {
 
     const [results, setResults] = useState([]);
     const [outOfCredits, setOutOfCredits] = useState(false);
+
 
     const beginLiveAuctionHandler = function() {
         return setAuctionStarted(!auctionStarted);
@@ -730,7 +732,7 @@ const FairNegotations = (props) => {
    useEffect(() => {
        
        
-   }, [lowBotWin, mediumBotWin, nextRoundForm, roundNumber, roundTwoOver, lastRoundForm, outOfCredits]);
+   }, [lowBotWin, mediumBotWin, nextRoundForm, roundNumber, roundTwoOver, lastRoundForm, outOfCredits, biddingOver]);
 
    const getVirtualCreditsRemaining = async function(theUserBid) {
 
@@ -886,7 +888,6 @@ const FairNegotations = (props) => {
   
                           })
   
-                         
                           if(nextRoundBid > randBid && roundNumber === 2) {
                              
                               setRoundTwoOver(true);
@@ -901,6 +902,16 @@ const FairNegotations = (props) => {
                           if(theUserBid < randBid) {
   
                               setModalShown({title: "Preferences", message: "No preferences found"});
+                              setBiddingOver(true);
+
+
+                              if(!biddingOver) {
+                                  
+                                 setTimeout(() => {
+
+                                    return history.push({pathname: '/results', userBidData: theUserBid, winningBid: theDifference});
+                                 }, 3000);
+                              }
   
                            
                               setTimeout(() => {
@@ -993,6 +1004,7 @@ const FairNegotations = (props) => {
 
                                   if(nextRoundBid < mediumBotRandomBids && roundNumber === 2) {
                                     alert(`Bot ${type} in round ${roundNumber} placed a bid of ${medBotDifference} and wins the bid for appliance ${appliance}`);
+                                    setBiddingOver(true);
                                    
                                     setRoundTwoOver(true);
                                     setNextRoundBid("");
@@ -1060,7 +1072,7 @@ const FairNegotations = (props) => {
                                            getNextAppliance();
                                            setRoundNumber(roundNumber + 1);
 
-                                           return;
+                                           
                                           
                                            }
            
@@ -1107,7 +1119,7 @@ const FairNegotations = (props) => {
                                         setNextRoundForm(true);
                                         setLastRoundForm(false);
 
-                                        return;
+                                       
 
                                        
                                     }, 3000)
