@@ -584,14 +584,17 @@ const FairNegotations = (props) => {
     }
 
     const submitBid = async function(openingBid, virtualCredits) {
+
         const convertedNextRoundBid = parseInt(nextRoundBid);
         const convertedLastRoundBid = parseInt(lastRoundBid);
 
-        console.log(`Last round bid placed : `);
-        console.log(convertedLastRoundBid);
-
         if(roundNumber === 1 || roundNumber === 2 || roundNumber === 3) {
             const convertedBid = parseInt(bid);
+
+            if(convertedLastRoundBid === 0 || convertedNextRoundBid === 0 || convertedBid === 0) {
+                alert(`Cannot place a bid of 0`);
+                setLastRoundBid("");
+            }
             
             if(processOpeningBid(openingBid, convertedBid)) {
                 alert(`Entered bid cannot be the same as the opening bid`);
@@ -610,7 +613,6 @@ const FairNegotations = (props) => {
                  await axios.post(`http://localhost:5200/api/v1/bids/create-bid`, {bid: bid, nextRoundBid: nextRoundBid}).then(response => {
                      const newBidData = response.data;
 
-
                      if(!newBidData) {
                         alert(`No data found regarding bids`);
                      }
@@ -618,7 +620,6 @@ const FairNegotations = (props) => {
                      setBids(newBidData);
                      bidData.push({bid, nextRoundBid});
 
-                   
                      const smallestBid = findMinBid(bid);
                      handleBidSubmission(convertedBid, convertedNextRoundBid, virtualCredits, openingBid);
 
@@ -631,7 +632,7 @@ const FairNegotations = (props) => {
                         throw new Error(error);
                      }
                  })
-        }
+             }
 
           
             }
