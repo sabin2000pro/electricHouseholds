@@ -7,7 +7,7 @@ import './FairNegotiations.css';
 import Modal from '../UI/Modal';
 
 let DELAY = 1200;
-let START_TIMER = 10;
+let START_TIMER = 60;
 let REFRESH_SECONDS = 30000;
 
 const FLAGS = {
@@ -178,20 +178,20 @@ const FairNegotations = (props) => {
           if(roundNumber === 2 && seconds === 0) {
               alert(`Time up R2`);
 
-              setRoundTwoOver(!roundTwoOver);
+              setRoundTwoOver(true);
               getNextAppliance();
 
               return handleCounterReset();
           }
 
-          if(roundNumber === 3 && seconds < 0) {
+          if(roundNumber === 3 && seconds === 0) {
 
               setMainRoundOver(!mainRoundOver);
               setClearedBids(true);
               clearFields();
 
               if(roundTwoOver && clearedBids) {
-                  
+
                 return handleCounterReset();
 
               }
