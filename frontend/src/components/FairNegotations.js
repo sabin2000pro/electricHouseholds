@@ -628,6 +628,7 @@ const FairNegotations = (props) => {
                      console.log(bidLength);
                      
                      console.log(newBidData.newBid);
+                     console.log(newBidData.reputationPoints);
 
                      if(newBidData.newBid.bid === null && roundNumber === 3) {
                         // Handle Previous bid null values accordingly
