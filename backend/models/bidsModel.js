@@ -12,7 +12,7 @@ const bidSchema = new mongoose.Schema({
         type: Number
     },
 
-    finalRoundBid: {
+    lastRoundBid: {
         type: Number
     },
 
@@ -22,6 +22,13 @@ const bidSchema = new mongoose.Schema({
 
     creditsLeft: {
         type: String
+    },
+
+    reputationPoints: {
+        type: String,
+        default: 0,
+        min: [10, 'You can have a minimum of 10 reputation points'],
+        max: [100, 'You can have a maximum of 100 reputation points']
     }
 
 });

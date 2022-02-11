@@ -578,6 +578,7 @@ const FairNegotations = (props) => {
         catch(err) {
 
             if(err) {
+
                 console.error(err);
                 throw new Error(err);
             }
@@ -1273,8 +1274,7 @@ const FairNegotations = (props) => {
                     maxBidBetween = userBid;
                 }
     
-    
-                 
+
                 return `Round ${roundNumber} - the winning bidder placed a round wining bid of ${maxBidBetween} and receives the timeslots ${firstPreference} ${secondPreference} and ${thirdPreference} for the appliance ${appliance}`;
             } 
     
@@ -1333,6 +1333,8 @@ const FairNegotations = (props) => {
                 if(err) {
 
                     console.log(err);
+
+                    throw new Error(err);
                 }
             })
 
@@ -1358,7 +1360,11 @@ const FairNegotations = (props) => {
                const bid = response.data.newBid.bid;
                const username = response.data.newBid.username;
 
+               console.log(bid);
+               console.log(username);
+
                if(bid != null && username != null) {
+                   
                  return allBotBids.push(bid, username);
                }
            }

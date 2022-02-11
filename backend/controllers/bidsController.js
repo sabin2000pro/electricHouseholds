@@ -30,10 +30,10 @@ module.exports.fetchOpeningBid = catchAsync(async (request, response, next) => {
 // @ Middleware Function Description: Used to create a bid by allowing a POST request to the server
 module.exports.createBid = catchAsync(async (request, response, next) => {
    
-       const {nickname, bid, virtualCredits, openingBid, username, reputationPoints, creditsLeft, nextRoundBid, finalRoundBid} = request.body;
+       const {nickname, bid, virtualCredits, openingBid, username, reputationPoints, creditsLeft, nextRoundBid, lastRoundBid} = request.body;
 
       
-        const newBid = await Bid.create({nickname, bid, virtualCredits, openingBid, username, reputationPoints, creditsLeft, nextRoundBid, finalRoundBid});
+        const newBid = await Bid.create({nickname, bid, virtualCredits, openingBid, username, reputationPoints, creditsLeft, nextRoundBid, lastRoundBid});
         await newBid.save(); // Save the new bid data to the database.
 
         return response.status(created).json({newBid});
