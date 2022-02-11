@@ -167,6 +167,7 @@ const FairNegotations = (props) => {
           };
 
           if(roundNumber === 1 && seconds === 0) {
+
               alert(`TIme up after 1R1`);
               setMainRoundOver(!mainRoundOver);
               getNextAppliance();
@@ -199,12 +200,13 @@ const FairNegotations = (props) => {
           }
 
           if(roundNumber > 3) {
-              alert(`No more rounds found... Displaying results screen...`);
-
+            
               setTimeout(() => {
-                return history.push({pathname: '/results'})
 
-              }, 2500);
+                alert(`No more rounds found... Displaying results screen...`);
+
+                return history.push({pathname: '/results'})
+              }, 1000);
           }
 
         } 
@@ -324,6 +326,7 @@ const FairNegotations = (props) => {
           try {
 
             return await axios.get(`http://localhost:5200/api/v1/bot/get-bots`).then(response => {
+
                 let availableTypesOfBots = [botTypes.LOW, botTypes.MEDIUM, botTypes.INTENSE];
                 let redirectPath = '/your-preferences';
 
@@ -332,9 +335,11 @@ const FairNegotations = (props) => {
            
                 if(botDataLength === 0) {
 
+
                     setTimeout(() => {
                         alert(`You are not allowed to start bidding because no households to bid against are found`)
                     }, 2000)
+
                 }
 
                  if(botDataLength !== 0) {
@@ -342,6 +347,7 @@ const FairNegotations = (props) => {
                     setBotData(theBotData);
 
                     for(let i = 0; i < theBotData.length - 1; i++) {
+
                         const botTypes = theBotData[i].type;
 
                         if(!botTypes.includes(availableTypesOfBots[0]) && !botTypes.includes(availableTypesOfBots[1]) && !botTypes.includes(availableTypesOfBots[2])) {
@@ -350,6 +356,7 @@ const FairNegotations = (props) => {
                                 alert(`We could not find any Households. Sorry for the inconvenience`);
                                 return history.push(redirectPath);
                             }, 2000)
+
                         }
                     }
 
@@ -423,7 +430,6 @@ const FairNegotations = (props) => {
 
     }
 
-  
         return `Current Highest Bid £${maxBid}`;
     };
 
@@ -579,8 +585,12 @@ const FairNegotations = (props) => {
 
     const submitBid = async function(openingBid, virtualCredits) {
         const convertedNextRoundBid = parseInt(nextRoundBid);
+        const convertedLastRoundBid = parseInt(lastRoundBid);
 
-        if(roundNumber === 1 || roundNumber === 2) {
+        console.log(`Last round bid placed : `);
+        console.log(convertedLastRoundBid);
+
+        if(roundNumber === 1 || roundNumber === 2 || roundNumber === 3) {
             const convertedBid = parseInt(bid);
             
             if(processOpeningBid(openingBid, convertedBid)) {
@@ -841,11 +851,7 @@ const FairNegotations = (props) => {
                         for(let i = 0; i < numberOfLowBots; i++) {
 
                          const {name, type} = allLowBotData;
-
-                         console.log(parsedLowBotCredits);
                         
-                           
-                          
                           let randBid = Math.floor(Math.random() * lowBotBidAvg);
                           let lowBotCreditsLeft = parsedLowBotCredits - randBid;
 
