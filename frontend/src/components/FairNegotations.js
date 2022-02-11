@@ -5,7 +5,6 @@ import RegisterCard from './Admin/RegisterCard';
 import axios from 'axios';
 import './FairNegotiations.css';
 import Modal from '../UI/Modal';
-import ResultsScreen from '../components/ResultsScreen'
 
 let DELAY = 1200;
 let START_TIMER = 60;
@@ -47,13 +46,11 @@ const FairNegotations = (props) => {
     const [timerRunning, setTimerRunning] = useState(false);
     const [seconds, setSeconds] = useState(START_TIMER);
 
-    const [numOfBids, setNumOfBids] = useState(FLAGS.DEFAULT);
     const [bidValid, setBidValid] = useState(false);
     const [updatedNewBid, setUpdatedNewBid] = useState(false);
     const [clearedBids, setClearedBids] = useState(false);
    
     let [userInputDisabled, setUserInputDisabled] = useState(false);
-    const [creditsSubtracted, setCreditsSubtracted] = useState(false);
     const [bidsFound, setBidsFound] = useState(false);
     const [enteredFeedbackUsername, setEnteredFeedbackUsername] = useState("");
     const [enteredFeedbackEmailAddress, setEnteredFeedbackEmailAddress] = useState("");
@@ -76,7 +73,6 @@ const FairNegotations = (props) => {
 
     const [mainRoundOver, setMainRoundOver] = useState(false);
     const [roundTwoOver, setRoundTwoOver] = useState(false);
-    const [roundOneOver, setRoundOneOver] = useState(false);
 
     const [lastRoundOver, setLastRoundOver] = useState(false);
 
@@ -97,7 +93,6 @@ const FairNegotations = (props) => {
     const [modalShown, setModalShown] = useState();
 
     let [userCreditsLeft, setUserCreditsLeft] = useState({});
-    let [masterObject, setMasterObject] = useState({});
 
     const [nextRoundBid, setNextRoundBid] = useState('');
     const [lastRoundBid, setLastRoundBid] = useState('');
@@ -106,8 +101,6 @@ const FairNegotations = (props) => {
     const [nextRoundForm, setNextRoundForm] = useState(false);
     const [lastRoundForm, setLastRoundForm] = useState(false);
     const [lastApplianceSet, setLastApplianceSet] = useState(false);
-
-    const [results, setResults] = useState([]);
     const [outOfCredits, setOutOfCredits] = useState(false);
 
 
@@ -732,7 +725,7 @@ const FairNegotations = (props) => {
    useEffect(() => {
        
        
-   }, [lowBotWin, mediumBotWin, nextRoundForm, roundNumber, roundTwoOver, lastRoundForm, outOfCredits, biddingOver]);
+   }, [lowBotWin, mediumBotWin, nextRoundForm, roundNumber, roundTwoOver, lastRoundForm, outOfCredits, biddingOver, userWinBid]);
 
    const getVirtualCreditsRemaining = async function(theUserBid) {
 
@@ -904,16 +897,11 @@ const FairNegotations = (props) => {
                               setModalShown({title: "Preferences", message: "No preferences found"});
                               setBiddingOver(true);
 
+                              setTimeout(() => {
+                                return history.push({pathname: '/results', winner: 'Household', bid: randBid, appliance: appliance, prefOne: firstPreference});
+                            }, 3500)
 
-                              if(!biddingOver) {
-                                  
-                                 setTimeout(() => {
 
-                                    return history.push({pathname: '/results', userBidData: theUserBid, winningBid: theDifference});
-                                 }, 3000);
-                              }
-  
-                           
                               setTimeout(() => {
                                  
                                   setTimeout(() => {
@@ -944,6 +932,8 @@ const FairNegotations = (props) => {
   
                                      
                 if(theUserBid > randBid) {
+
+                    setUserWinBid(true);
   
   
                       // eslint-disable-next-line no-loop-func
@@ -974,9 +964,6 @@ const FairNegotations = (props) => {
   
                         }
                       }
-
-                      
-               
                 }
 
                 if(roundNumber === 1 || (roundNumber === 2) && (userTurn && botTurn)) {
@@ -1030,8 +1017,7 @@ const FairNegotations = (props) => {
                             
                                     if(userBid < mediumBotRandomBids) {
 
-                                        console.log(`Bot ${type} placed bid of ${medBotDifference}`);
-                                        
+                                    
                                         alert(`Another household has placed a higher bid and receives the timeslot for the appliance ${appliance}. Moving onto the next round`);
                                         getNextAppliance();
                                         
@@ -1048,8 +1034,6 @@ const FairNegotations = (props) => {
                                             setMainRoundOver(true);
                                             setMediumBotWin(true);
 
-                                            
-    
                                             return;
                                            
                                          }, 1000);
@@ -1062,39 +1046,39 @@ const FairNegotations = (props) => {
                                     
                                           setTimeout(() => {
                                            
-                                           if(mediumBotRandomBids !== 0 && !(userBid) < mediumBotRandomBids) {
+                                        if(mediumBotRandomBids !== 0 && !(userBid) < mediumBotRandomBids) {
                                            processMediumBotBids(mediumBotRandomBids, name, type, mediumBotCreditsLeft);
 
                                            setMediumBotWin(false);
                                            console.log(`Med bot did not win`);
-
+                                          
 
                                            getNextAppliance();
                                            setRoundNumber(roundNumber + 1);
 
                                            
-                                          
+                                          return;
                                            }
            
                                           }, 2000)
            
                                       }
 
-                                      return;
+                                      
                               }
 
                             if(!mediumBotWin && !lowBotWin) {
 
                                 setTimeout(() => {
                                     let intenseCreditsLeftObj;
-                                   
+
                                       for(let index = 0; index < bidData.length; index++) {
+
                                         const userBid = parseInt(bidData[index].bid);
 
                                     
                                  for(let i = 0; i < numberOfIntenseBots; i++) {
-                                    const {name, type, botCredits} = allIntenseBotData;
-
+                                
                                 let intenseBotBid = Math.floor(Math.random() * intenseBotBidAvg);
 
                                 let intenseBotCreditsRemaining = parsedIntenseBotCredits - intenseBotBid;
@@ -1102,15 +1086,22 @@ const FairNegotations = (props) => {
 
                                 convertedBotBid = intenseBotBid
                                 intenseCreditsLeftObj = {intenseBotCreditsLeft};
-                                let intenseBotDifference = parsedIntenseBotCredits- intenseCreditsLeftObj.intenseBotCreditsLeft;
+                                let intenseBotDifference = parsedIntenseBotCredits - intenseCreditsLeftObj.intenseBotCreditsLeft;
 
                                 if(userBid < intenseBotBid) {
-                                    alert(`Another household has placed a higher bid and receives the timeslot for the appliance ${appliance}. Moving onto the next round`);
+                                    setTimeout(() => {
+                                        return history.push({pathname: '/results', winner: 'Household', bid: intenseBotBid, appliance: appliance, prefOne: firstPreference});
+                                    }, 3000)
                                 }
 
                                 if(userBid > intenseBotBid) {
-                                    alert(`You have won the bidding round. You have received your preferred timeslots for your appliance ${appliance}. You spent ${userBid} Virtual Credits. Congratulations!`);
+                                    alert(`Bidding Over. Taking you to the results screen`);
 
+                                    setTimeout(() => {
+                                        return history.push({pathname: '/results', winner: 'User', bid: userBid, appliance: appliance, prefOne: firstPreference});
+                                    }, 3000)
+
+                                   
                                     setTimeout(() => {
                                    
                                         getNextAppliance();
@@ -1118,15 +1109,12 @@ const FairNegotations = (props) => {
                                         
                                         setNextRoundForm(true);
                                         setLastRoundForm(false);
-
-                                       
-
                                        
                                     }, 3000)
                                   
                                 }
-                                    
-            
+
+                              
                                  }
             
                                 }
@@ -1134,7 +1122,6 @@ const FairNegotations = (props) => {
     
                                 }, 2000)
             
-   
                             }
 
                           }
@@ -1149,8 +1136,6 @@ const FairNegotations = (props) => {
                 }, 1300);
             }
 
-          
-            
          }
 
         }
@@ -1197,7 +1182,6 @@ const FairNegotations = (props) => {
 
                 let nextAppliance = data.slice(-1)[0].nextAppliance;
                 let lastAppliance = data.slice(-1)[0].lastAppliance;
-            
                 
                 remainingAppliances.push(nextAppliance);
                 lastRemainingAppliance.push(lastAppliance);
@@ -1220,6 +1204,7 @@ const FairNegotations = (props) => {
                         lastApplianceData.push(lastRemainingAppliance[i]);
                        
                         lastApplianceData.forEach((lastOne) => {
+
                             lastAppliance = lastOne;
                             setLastApplianceSet(true);
                            
@@ -1287,19 +1272,11 @@ const FairNegotations = (props) => {
 
         return await axios.post(`http://localhost:5200/api/v1/bids/create-bid`, {bid: convertedBotBid, username: name, botType: type, creditsLeft: mediumBotCreditsLeft}).then(response => {
 
-            const data = response.data.newBid;
-            const mediumBids = response.data.newBid.bid;
-            const creditsLeft = parseInt(response.data.newBid.creditsLeft);
-
-            // Check to see if there is data present
-            if(data) {
-
-            }
-           
+          
         }).catch(err => {  
 
             if(err) {
-                console.log(err.response.data);
+                return console.log(err.response.data);
          }
         })
     }

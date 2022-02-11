@@ -6,9 +6,9 @@ const ResultsScreen = (props) => { // The results screen that shows the results 
 
   return <Fragment>
         <div>
-            <h1>Your Results Here: {location.userBidData} </h1>
+            <h1 style = {{textAlign: 'center', padding: '20px'}}>Round Results</h1>
 
-            <h1>Winning Bid: {location.winningBid}</h1>
+            <h1>Winner : {location.winner} spent {location.bid} virtual credits for appliance {location.appliance} and receives the timeslots: {}</h1>
         </div>
   </Fragment>
 };
