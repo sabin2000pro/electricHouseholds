@@ -103,6 +103,7 @@ const FairNegotations = (props) => {
     const [lastApplianceSet, setLastApplianceSet] = useState(false);
     const [outOfCredits, setOutOfCredits] = useState(false);
     const [feedbackFormDisplay, setFeedbackFormDisplay] = useState(false);
+    const [results, setResults] = useState([]);
 
     const beginLiveAuctionHandler = function() {
         return setAuctionStarted(!auctionStarted);
@@ -1061,11 +1062,9 @@ const FairNegotations = (props) => {
 
                                                 allBotData.push({...medBotCreditsRemain, medBotDifference, userCreditsLeft, userBid});
                                                 allTheBidsData = [...allBotData];
-
-                                                displayWinner();
                              
 
-                                           setMediumBotWin(false);                                          
+                                           setMediumBotWin(!mediumBotWin);                                          
 
                                            getNextAppliance();
                                            setRoundNumber(roundNumber + 1);
@@ -1188,10 +1187,13 @@ const FairNegotations = (props) => {
 
     }
 
+    useEffect(() => {
+
+    }, [results]);
+
     const findMaxBetween = function() {
 
         let maxBidBetween = 0;
-
 
             for(let i = 0; i < allTheBidsData.length; i++) {
 
@@ -1210,6 +1212,7 @@ const FairNegotations = (props) => {
 
                 if(intenseBotBid > maxBidBetween) {
                     maxBidBetween = intenseBotBid;
+                
                 }
 
                 if(userBid > maxBidBetween) {
@@ -1217,14 +1220,11 @@ const FairNegotations = (props) => {
                 }
     
     
+                 
                 return `Round ${roundNumber} - the winning bidder placed a round wining bid of ${maxBidBetween} and receives the timeslots ${firstPreference} ${secondPreference} and ${thirdPreference} for the appliance ${appliance}`;
             } 
     
         
-    }
-
-    const displayWinner = () => {
-        console.log(`Winner function call`);
     }
 
     useEffect(() => {
@@ -1253,8 +1253,8 @@ const FairNegotations = (props) => {
                  if(nextApplianceData.indexOf(remainingAppliances[k]) === -1) {
 
                      nextApplianceData.push(remainingAppliances[k]);
- 
                  }
+
                 }
 
                 for(let i = 0; i < lastRemainingAppliance.length - 1; i++) {
@@ -1420,6 +1420,22 @@ const FairNegotations = (props) => {
 
     }
 
+    // Routine invoked to display the winner.
+    const viewResultsHandler = () => {
+        try {
+            console.log(`Inside the view results handler`);
+        } 
+        
+        catch(err) {
+
+            if(err) {
+                console.log(err);
+                throw new Error(err);
+               
+            }
+        }
+    }
+
     
     return (
 
@@ -1568,7 +1584,19 @@ const FairNegotations = (props) => {
 : undefined }
 
 
+ {/* <div className = "container grid grid--2-cols">
 
+        <RegisterCard>
+                <h1 className = "bid--header">Submit Round Bid</h1>
+
+            <form id = "bidForm" className = "login--form" onSubmit = {submitBidHandler} method = "POST">
+
+            </form>
+
+            </RegisterCard>
+
+            </div> */}
+            
 
 </section>
 
