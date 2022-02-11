@@ -125,7 +125,8 @@ const FairNegotations = (props) => {
             }
 
            else if(timerRunning === null) {
-               return setSeconds(START_TIMER);
+               alert(`Time is up!`);
+            setSeconds(START_TIMER);
            }
 
         }, [callback, timerRunning]);
@@ -165,7 +166,8 @@ const FairNegotations = (props) => {
             }
           };
 
-          if(roundNumber === 1 && seconds < 0) {
+          if(roundNumber === 1 && seconds === 0) {
+              alert(`TIme up after 1R1`);
 
             return handleCounterReset();
 
@@ -179,7 +181,7 @@ const FairNegotations = (props) => {
 
               if(roundTwoOver && clearedBids) {
                 return handleCounterReset();
-                
+
               }
 
           }
