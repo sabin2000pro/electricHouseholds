@@ -622,11 +622,8 @@ const FairNegotations = (props) => {
  
                  await axios.post(`http://localhost:5200/api/v1/bids/create-bid`, {bid: bid, nextRoundBid: nextRoundBid, lastRoundBid: lastRoundBid}).then(response => {
                      const newBidData = response.data;
-
-                        newBidData.forEach((newBid) => {
-                            console.log(newBid);
-                        });
-                        
+                     
+                     console.log(newBidData);
 
                      if(!newBidData) {
                         alert(`No data found regarding bids`);
