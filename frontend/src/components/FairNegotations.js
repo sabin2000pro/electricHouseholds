@@ -445,7 +445,8 @@ const FairNegotations = (props) => {
                 performBid();
             }
             if(roundNumber === 3) {
-              
+                alert(`In Round Final`);
+                performBid();
             }
    
         } 
@@ -837,22 +838,18 @@ const FairNegotations = (props) => {
                           if(nextRoundBid < randBid && roundNumber === 2) {
                             alert(`You lose the second round`);
 
+                            setRoundNumber(roundNumber + 1);
+                            getNextAppliance();
+
                               setRoundTwoOver(true);
+                              setLastRoundForm(true);
                               setNextRoundBid("");
   
                               setLowBotWin(!lowBotWin);
                               setLastRoundForm(!lastRoundForm);
                               
   
-                              if(lowBotWin) {
-  
-                                 setTimeout(() => {
-  
-                                     setRoundNumber(roundNumber + 1);
-                                     getNextAppliance();
-  ;                               }, 3000)
-                              }
-  
+                             
   
                               return;
   
@@ -1203,7 +1200,7 @@ const FairNegotations = (props) => {
                 const userBid = parseInt(allTheBidsData[i].userBid);
 
                 if(lowBotBid > maxBidBetween) {
-                    maxBidBetween = lowBotBid;
+                    maxBidBetween = lowBotBid;                    
                 }
 
                 if(medBotBid > maxBidBetween) {
@@ -1341,23 +1338,6 @@ const FairNegotations = (props) => {
         })
     }
 
-    const handleBiddingAggressiveness = function(lowBotBidAvg, mediumBotBidAvg, intenseBotBidAvg) {
-        try {
-
-            return (lowBotBidAvg < mediumBotBidAvg) && (mediumBotBidAvg < intenseBotBidAvg) && (lowBotBidAvg < intenseBotBidAvg);
-        } 
-        
-        catch(err) {
-
-            if(err) {
-                console.error(err);
-                throw new Error(err);
-            }
-        }
-
-     
-    }
-
     const submitFeedbackHandler = async (event) => {
         try {
 
@@ -1469,8 +1449,8 @@ const FairNegotations = (props) => {
 
 
              {!mainRoundOver && roundNumber === 1 ? <h1 className = "first--pref">First Chosen Preference : {firstPreference}</h1> : null }
-                {!mainRoundOver && roundNumber === 1 ? <h1 className = "first--pref">Next Chosen Preference : {secondPreference}</h1> : null }
-                {!mainRoundOver && roundNumber === 1 ?  <h1 className = "first--pref">Last Chosen Preference : {thirdPreference}</h1> : null }
+             {!mainRoundOver && roundNumber === 1 ? <h1 className = "first--pref">Next Chosen Preference : {secondPreference}</h1> : null }
+             {!mainRoundOver && roundNumber === 1 ?  <h1 className = "first--pref">Last Chosen Preference : {thirdPreference}</h1> : null }
 
 
             <h1>{findMaxBid()}</h1>
@@ -1487,6 +1467,7 @@ const FairNegotations = (props) => {
                 <h1>User Virtual Credits Remaining: {updatedNewBid ? credits.virtualCredits : credits.virtualCredits}</h1>
              
             </div>
+
             })}
 
             {!mainRoundOver ? <h2 >User's Initial Appliance : {appliance}</h2> : null}
@@ -1501,7 +1482,9 @@ const FairNegotations = (props) => {
             {roundTwoOver ? lastApplianceData.map((val, key) => {
               
                 return <div key = {key}>
+
                <h1>Your last appliance {val}</h1>
+
                </div>
 
             }) : null}
@@ -1525,7 +1508,7 @@ const FairNegotations = (props) => {
         
             :
         
-            <input value = {nextRoundBid} onChange = {(event) => {setNextRoundBid(event.target.value)}} placeholder = "Enter Round  Bid" id = "bid" type = "hidden" /> }
+            <input value = {lastRoundBid} onChange = {(event) => {setLastRoundBid(event.target.value)}} placeholder = "Enter Round Bid" id = "bid" type = "text" /> }
 
           
         </div>
