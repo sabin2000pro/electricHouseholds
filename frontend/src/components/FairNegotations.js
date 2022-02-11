@@ -847,9 +847,7 @@ const FairNegotations = (props) => {
   
                               setLowBotWin(!lowBotWin);
                               setLastRoundForm(!lastRoundForm);
-                              
-  
-                             
+                            
   
                               return;
   
@@ -861,6 +859,9 @@ const FairNegotations = (props) => {
   
                           if(nextRoundBid > randBid && roundNumber === 2) {
                               alert(`You win the second round`);
+
+                              setRoundNumber(roundNumber + 1);
+                              getNextAppliance();
                              
                               setRoundTwoOver(true);
                               setLowBotWin(false);
@@ -902,25 +903,28 @@ const FairNegotations = (props) => {
   
                                          return;
                                          
-                                       }, 3000);
-  
-                                     
-                if(theUserBid > randBid) {
+                                     }, 3000);
+            
+                                                
+                            if(theUserBid > randBid) {
 
-                    setUserWinBid(true);
-  
-  
-                      // eslint-disable-next-line no-loop-func
-                      setTimeout(() => {
-  
-                          lowBotPlacedBid = true;
-                           processLowBotBid(convertedBotBid, lowBotPlacedBid, name);
-  
-                           setLowBotWin(false);
-                          
-                      }, 4500)
-  
-              }
+                                setUserWinBid(true);
+
+                                setRoundNumber(roundNumber + 1);
+                                getNextAppliance();
+            
+            
+                                // eslint-disable-next-line no-loop-func
+                                setTimeout(() => {
+            
+                                    lowBotPlacedBid = true;
+                                    processLowBotBid(convertedBotBid, lowBotPlacedBid, name);
+            
+                                    setLowBotWin(false);
+                                    
+                                }, 4500)
+            
+                        }
   
   
                           }
@@ -964,13 +968,17 @@ const FairNegotations = (props) => {
                                   let medBotDifference = parsedMediumBotCredits - medBotCreditsRemain.mediumBotCreditsLeft;
 
                                   if(nextRoundBid < mediumBotRandomBids && roundNumber === 2) {
+
+                                    setRoundNumber(roundNumber + 1);
+                                    getNextAppliance();
+
                                     setBiddingOver(true);
                                    
                                     setRoundTwoOver(true);
                                     setNextRoundBid("");
         
                                     setMediumBotWin(true);
-                                    setRoundNumber(roundNumber + 1);
+                                   
                                     setLastRoundForm(true);
                                     
 
@@ -1113,8 +1121,6 @@ const FairNegotations = (props) => {
 
                                     allBotData.push({...creditsRemainingObj, intenseBotDifference, userCreditsLeft, userBid});
                                     allTheBidsData = [...allBotData];
-
-                 
 
                                 }
 
