@@ -7,7 +7,7 @@ import './FairNegotiations.css';
 import Modal from '../UI/Modal';
 
 let DELAY = 1200;
-let START_TIMER = 20;
+let START_TIMER = 10;
 let REFRESH_SECONDS = 30000;
 
 const FLAGS = {
@@ -182,7 +182,7 @@ const FairNegotations = (props) => {
 
           if(roundNumber === 3 && seconds < 0) {
 
-              setRoundTwoOver(true);
+              setMainRoundOver(!mainRoundOver);
               setClearedBids(true);
               clearFields();
 
@@ -194,8 +194,12 @@ const FairNegotations = (props) => {
           }
 
           if(roundNumber > 3) {
-              alert(`No more rounds found...`);
-              return;
+              alert(`No more rounds found... Displaying results screen...`);
+
+              setTimeout(() => {
+                return history.push({pathname: '/results'})
+
+              }, 2500);
           }
 
         } 
@@ -1096,14 +1100,14 @@ const FairNegotations = (props) => {
                                            setRoundNumber(roundNumber + 1);
 
                                            
+
+                                           
                                           return;
                                            }
            
                                           }, 4500)
            
-                                      }
-
-                                      
+                                      }  
                               }
 
                             if(!mediumBotWin && !lowBotWin) {
@@ -1146,6 +1150,7 @@ const FairNegotations = (props) => {
                                 }
 
                                 if(userBid > intenseBotBid) {
+
                                     setModalShown({title: "Preferences", message: "No preferences found"});
                                     setBiddingOver(true);
       
@@ -1153,14 +1158,15 @@ const FairNegotations = (props) => {
                                        
                                         setTimeout(() => {
                                            setModalShown(null);
+
                                         }, 4500);
+
                                     }, 4000)
                                    
                                 
                                     allBotData.push({userBid: userBid});
                                     allTheBidsData = [...allBotData];
 
-                                  
                                     setTimeout(() => {
                                    
                                         getNextAppliance();
