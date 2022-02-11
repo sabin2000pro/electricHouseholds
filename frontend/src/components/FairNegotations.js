@@ -168,9 +168,16 @@ const FairNegotations = (props) => {
 
           if(roundNumber === 1 && seconds === 0) {
               alert(`TIme up after 1R1`);
+              setMainRoundOver(true);
+              getNextAppliance();
 
             return handleCounterReset();
 
+          }
+
+          if(roundNumber === 2 && seconds === 0) {
+              alert(`Time up R2`);
+              getNextAppliance();
           }
 
           if(roundNumber === 3 && seconds < 0) {
@@ -188,6 +195,7 @@ const FairNegotations = (props) => {
 
           if(roundNumber > 3) {
               alert(`No more rounds found...`);
+              return;
           }
 
         } 
