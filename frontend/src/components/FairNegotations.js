@@ -441,22 +441,18 @@ const FairNegotations = (props) => {
 
             event.preventDefault();
            
-        
             if(roundNumber === 1) {
                 performBid();
             }
 
             if(roundNumber === 2) {
-                console.log(`Inside next bid`);
+              
                 performBid();
             }
             if(roundNumber === 3) {
-                console.log(`Inside final round `);
-
+              
             }
-
-           
-           
+   
         } 
         
         catch(error) {
@@ -576,14 +572,9 @@ const FairNegotations = (props) => {
                 setSeconds(FLAGS.DEFAULT);
             }
             
-
             setBidValid(true);
             handleUserTurn();
             handleBotTurn();
-
-            console.log(userTurn);
-            console.log(botTurn);
-        
 
              if(bidValid) {
  
@@ -631,16 +622,6 @@ const FairNegotations = (props) => {
         return setBotTurn(true);        
     }
 
-    const processLessThanCredits = function(convertedBid, userCreditsLeft) {
-        try {
-
-        } 
-        
-        catch(err) {
-
-        }
-    }
-
     const handleBidSubmission = async function(convertedBid, convertedNextRoundBid, virtualCredits, openingBid) {
 
         try {
@@ -658,14 +639,10 @@ const FairNegotations = (props) => {
                 userCreditsLeft = {creditsLeft, openingBid};
                 openingBid = userCreditsLeft;
 
-
                 if(convertedBid > userCreditsLeft) {
                     alert(`You cannot place a bid > virtual credits available`);
                     window.location.reload(false);
                 }
-
-                console.log(`CREDITS LEFT `);
-                console.log(creditsLeft);
 
                 return creditData.map((credit) => {
 
@@ -673,21 +650,14 @@ const FairNegotations = (props) => {
                    
                      return updateNewBid(_id, virtualCredits, openingBid, convertedNextRoundBid, nextRoundCredits);
                  });
-
-
             }
 
-
             if(roundNumber === 2) {
-                
-
+            
                 return creditData.map((credit) => {
 
                     let nextRoundCreditsRemain = virtualCredits - convertedNextRoundBid;
                     openingBid = userCreditsLeft;
-                     console.log(`In Round 2 you have credits remaining : `);
-                     console.log(nextRoundCreditsRemain);
-
 
                 if(convertedBid > nextRoundCreditsRemain) {
                     alert(`You cannot place a bid > virtual credits available`);
@@ -740,7 +710,7 @@ const FairNegotations = (props) => {
         }
 
         if(roundNumber === 2) {
-            console.log(`Round 2 for PUT request`);
+          
             axios.put(`http://localhost:5200/api/v1/credits/update-credits/${_id}`, {_id: _id, virtualCredits: virtualCredits}).then(data => {console.log(data)}).catch(err => {console.log(err)});
           
             setUpdatedNewBid(true);
@@ -771,18 +741,19 @@ const FairNegotations = (props) => {
         
            let creditsAvailable = val.virtualCredits;
 
-           if(theUserBid > creditsAvailable) {
+           if(roundNumber === 2) {
 
-               alert(`You do not have any more credits remaining. Round is over`);
-               setOutOfCredits(true);
-               window.location.reload(false);
+            if(theUserBid > creditsAvailable) {
+
+                alert(`You cannot place a bid > number of credits you have left. Round over`);
+                setOutOfCredits(true);
+ 
+                window.location.reload(false);
+                return;
+            }
+
            }
-
-           if(theUserBid < creditsAvailable) {
-               setOutOfCredits(false);
-
-           }
-          
+           
         })
      })
    }
@@ -791,10 +762,6 @@ const FairNegotations = (props) => {
 
         try {
 
-            // Get credits remaining
-            console.log(`Inside bot place random bid with credits remaining`);
-
-           
             let lowBotPlacedBid = false;
             
 
@@ -857,6 +824,7 @@ const FairNegotations = (props) => {
                       getVirtualCreditsRemaining(theUserBid);
 
                       if(!outOfCredits) {
+
                         for(let i = 0; i < numberOfLowBots; i++) {
 
                             const {name, type} = allLowBotData;
@@ -919,7 +887,6 @@ const FairNegotations = (props) => {
   
                           if(theUserBid < randBid) {
   
-                               console.log(`The bot ${type} has placed a bid of ${theDifference}`)
                               setModalShown({title: "Preferences", message: "No preferences found"});
   
                            
@@ -1185,11 +1152,7 @@ const FairNegotations = (props) => {
 
 
            return `The winning household placed a round wining bid of ${maxBidBetween} and receives the timeslot ${firstPreference} for the appliance ${appliance}`;
-        }
-
-        for(let i = 0; i < allTheBidsData.length; i++) {
-            console.log(allTheBidsData[i].medBotDifference);
-        }
+        } 
     }
 
     useEffect(() => {
@@ -1231,9 +1194,8 @@ const FairNegotations = (props) => {
                        
                         lastApplianceData.forEach((lastOne) => {
                             lastAppliance = lastOne;
-
                             setLastApplianceSet(true);
-                            console.log(`Last Appiance : ${lastAppliance}`)
+                           
                         })
 
                     }
@@ -1332,15 +1294,6 @@ const FairNegotations = (props) => {
      
     }
 
-
-    function handleNewTurn() {
-
-        setUserTurn(false);
-        setBotTurn(true);
-    }
-
-    // Routine used to submit feedback by the user. This routine will handle a POST request
-
     const submitFeedbackHandler = async (event) => {
         try {
 
@@ -1349,8 +1302,6 @@ const FairNegotations = (props) => {
             const {data} = await axios.post(`http://localhost:5200/api/v1/feedback/create-feedback`, {feedbackUsername: enteredFeedbackUsername, feedbackEmailAddress: enteredFeedbackEmailAddress, feedbackFeeling: chosenFeedbackFeeling, feedbackDescription: enteredFeedbackDescription});
             console.log(data);
 
-          
-           
             if(!data) {
                 return alert(`No data could be submitted`);
             }
@@ -1384,7 +1335,6 @@ const FairNegotations = (props) => {
 
         }
     }
-
 
     useEffect(() => {
         return socialExchangeHandler();
@@ -1433,6 +1383,8 @@ const FairNegotations = (props) => {
         <div className = "appliance--data">
 
         <div>
+
+            <button className = "household--btn" type = "submit">View Household Bid Data</button>
 
             <h1>Username: {username} </h1>
             <h1>Bidding Seconds: {seconds}</h1>
