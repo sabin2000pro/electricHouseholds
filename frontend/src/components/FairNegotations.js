@@ -7,7 +7,7 @@ import './FairNegotiations.css';
 import Modal from '../UI/Modal';
 
 let DELAY = 1200;
-let START_TIMER = 60;
+let START_TIMER = 20;
 let REFRESH_SECONDS = 30000;
 
 const FLAGS = {
@@ -38,7 +38,7 @@ const FairNegotations = (props) => {
 
     let location = useLocation();
     let history = useHistory();
-    let {_id, username, appliance, firstPreference, secondPreference, thirdPreference, nextAppliance, lastAppliance} = location.state.preference;
+    let {username, appliance, firstPreference, secondPreference, thirdPreference, nextAppliance, lastAppliance} = location.state.preference;
 
     const [auctionStarted, setAuctionStarted] = useState(false);
     const [botTypes, setBotTypes] = useState({LOW: 'Low', MEDIUM: 'Medium', INTENSE: 'Intense'})
@@ -84,7 +84,6 @@ const FairNegotations = (props) => {
     const [creditData, setCreditData] = useState([]);
     const [creditsFetched, setCreditsFetched] = useState(false);
    
-    const [roundOver, setRoundOver] = useState(false);
     const [biddingOver, setBiddingOver] = useState(false);
     const [lowBotWin, setLowBotWin] = useState(false);
     const [mediumBotWin, setMediumBotWin] = useState(false);
@@ -100,6 +99,7 @@ const FairNegotations = (props) => {
     const [userWinBid, setUserWinBid] = useState(false);
     const [nextRoundForm, setNextRoundForm] = useState(false);
     const [lastRoundForm, setLastRoundForm] = useState(false);
+
     const [lastApplianceSet, setLastApplianceSet] = useState(false);
     const [outOfCredits, setOutOfCredits] = useState(false);
     const [feedbackFormDisplay, setFeedbackFormDisplay] = useState(false);
@@ -111,7 +111,7 @@ const FairNegotations = (props) => {
 
     const handleCounterReset = () => {
         setTimerRunning(null);
-        return setSeconds(100);
+        return setSeconds(START_TIMER);
     }
 
     const useInterval = (callback, delay) => {
@@ -125,7 +125,7 @@ const FairNegotations = (props) => {
             }
 
            else if(timerRunning === null) {
-               return setSeconds(100);
+               return setSeconds(START_TIMER);
            }
 
         }, [callback, timerRunning]);
@@ -167,10 +167,9 @@ const FairNegotations = (props) => {
 
           if(roundNumber === 1 && seconds < 0) {
 
-
             return handleCounterReset();
-          }
 
+          }
 
           if(roundNumber === 3 && seconds < 0) {
 
@@ -180,9 +179,15 @@ const FairNegotations = (props) => {
 
               if(roundTwoOver && clearedBids) {
                 return handleCounterReset();
+                
               }
 
           }
+
+          if(roundNumber > 3) {
+              alert(`No more rounds found...`);
+          }
+
         } 
         
         catch (error) {
@@ -445,7 +450,6 @@ const FairNegotations = (props) => {
                 performBid();
             }
             if(roundNumber === 3) {
-                alert(`In Round Final`);
                 performBid();
             }
    
@@ -817,11 +821,15 @@ const FairNegotations = (props) => {
 
                         for(let i = 0; i < numberOfLowBots; i++) {
 
-                            const {name, type} = allLowBotData;
-                            let isBetweenAvg = false;
+                         const {name, type} = allLowBotData;
+
+                         console.log(parsedLowBotCredits);
+                        
+                           
                           
                           let randBid = Math.floor(Math.random() * lowBotBidAvg);
                           let lowBotCreditsLeft = parsedLowBotCredits - randBid;
+
                           let newLowCredits = lowBotCreditsLeft;
                           let nextApplianceRound;
   
@@ -880,8 +888,11 @@ const FairNegotations = (props) => {
                               setTimeout(() => {
                                  
                                   setTimeout(() => {
+
                                      setModalShown(null);
+
                                   }, 4500);
+
                               }, 4000)
                              
   
@@ -972,14 +983,14 @@ const FairNegotations = (props) => {
                                     setRoundNumber(roundNumber + 1);
                                     getNextAppliance();
 
-                                    setBiddingOver(true);
+                                    setBiddingOver(!biddingOver);
                                    
-                                    setRoundTwoOver(true);
+                                    setRoundTwoOver(!roundTwoOver);
                                     setNextRoundBid("");
         
-                                    setMediumBotWin(true);
+                                    setMediumBotWin(!mediumBotWin);
                                    
-                                    setLastRoundForm(true);
+                                    setLastRoundForm(!lastRoundForm);
                                     
 
                                     if(mediumBotWin) {
@@ -1447,8 +1458,6 @@ const FairNegotations = (props) => {
         <div className = "appliance--data">
 
         <div>
-
-            <button className = "household--btn" type = "submit">View Household Bid Data</button>
 
             <h1>Username: {username} </h1>
             <h1>Bidding Seconds: {seconds}</h1>
