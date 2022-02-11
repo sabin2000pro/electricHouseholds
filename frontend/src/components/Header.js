@@ -95,7 +95,7 @@ const Header = (props) => { // Header Component
 
                             <li><a className = "main-nav--link" href = "/electricHouseholds">Home</a></li>
                             <li><a className = "main-nav--link" href = "/electricHouseholds/your-preferences">Your Preferences</a></li>
-                            <li><a className = "main-nav--link" href = "/electricHouseholds/fair-negotiations">Fair Negotiations</a></li>
+                          
                             <li><a className = "main-nav--link" href = "/electricHouseholds/contact-us">Contact Us</a></li>
                          </ul>
                     </nav>
