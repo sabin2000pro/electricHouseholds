@@ -565,7 +565,7 @@ const FairNegotations = (props) => {
         }
     }
 
-    const handleInvalidBidSubmission = function(convertedBid, virtualCredits) {
+    const handleInvalidBidSubmission = function(convertedBid, convertedNextRoundBid, convertedLastRoundBid, virtualCredits) {
 
         try {
 
@@ -576,7 +576,6 @@ const FairNegotations = (props) => {
 
             if(err) {
                 console.error(err);
-
                 throw new Error(err);
             }
         }
@@ -590,6 +589,10 @@ const FairNegotations = (props) => {
 
         if(roundNumber === 1 || roundNumber === 2 || roundNumber === 3) {
             const convertedBid = parseInt(bid);
+
+            if(handleInvalidBidSubmission(convertedBid, convertedNextRoundBid, convertedLastRoundBid, virtualCredits)) {
+                alert(`You have placed more than you are allowed to`);
+            }
 
             if(convertedLastRoundBid === 0 || convertedNextRoundBid === 0 || convertedBid === 0) {
                 alert(`Cannot place a bid of 0`);
@@ -628,6 +631,7 @@ const FairNegotations = (props) => {
                  }).catch(error => {
  
                      if(error) {
+
                         console.error(error);
                         throw new Error(error);
                      }
