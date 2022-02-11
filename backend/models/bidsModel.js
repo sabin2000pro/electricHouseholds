@@ -28,7 +28,7 @@ const bidSchema = new mongoose.Schema({
         type: String,
         default: 0,
         min: [10, 'You can have a minimum of 10 reputation points'],
-        max: [100, 'You can have a maximum of 100 reputation points']
+        max: [100, 'You can have a maximum of 100 reputation pointsc']
     }
 
 });
