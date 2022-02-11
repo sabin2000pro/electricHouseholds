@@ -453,7 +453,12 @@ const FairNegotations = (props) => {
                 console.log(`Inside next bid`);
                 performBid();
             }
+            if(roundNumber === 3) {
+                console.log(`Inside final round `);
 
+            }
+
+           
            
         } 
         
@@ -467,45 +472,14 @@ const FairNegotations = (props) => {
     }
 
 
-
-    // const submitNextBidHandler = async (event) => {
-    //     event.preventDefault();
-     
-    //    if(roundNumber === 2) {
-
-    //     await axios.post(`http://localhost:5200/api/v1/bids/create-bid`, {nextRoundBid: nextRoundBid}).then(response => {
-    //         const nextBidData = response.data;
-    //         setBids(nextBidData);
-
-           
-
-    //         setBidSubmitted(true);
-
-    //         if(bidSubmitted) {
-    //             bidData.push({nextRoundBid});
-               
-    //             performBid();
-    //         }
-
-
-    //     }).catch(err => {
-
-    //         if(err) {
-    //             console.log(err);
-    //         }
-    //     })
-    //    }
-        
-       
-        
-    // }
-
     useEffect(() => {
 
     }, [bidSubmitted])
 
     const performBid = async () => {
+
         await axios.get(`http://localhost:5200/api/v1/credits/get-credits`).then(response => {
+
                 const theCreditData = response.data.allCredits;
 
                 setCreditData(theCreditData);
@@ -518,9 +492,7 @@ const FairNegotations = (props) => {
                 return response.data.allCredits.forEach((creditVal) => {
                     const {openingBid, virtualCredits} = creditVal;
 
-                
                     return submitBid(openingBid, virtualCredits);   
-
 
                 });
 
@@ -599,7 +571,6 @@ const FairNegotations = (props) => {
         if(roundNumber === 1 || roundNumber === 2) {
             const convertedBid = parseInt(bid);
             
-
             if(processOpeningBid(openingBid, convertedBid)) {
                 alert(`Entered bid cannot be the same as the opening bid`);
                 
@@ -647,10 +618,7 @@ const FairNegotations = (props) => {
 
           
             }
-
-         
-          
-            
+    
         } 
 
 
@@ -687,7 +655,6 @@ const FairNegotations = (props) => {
          
                 let creditsLeft = virtualCredits - convertedBid;
 
-
                 let newResult = creditsLeft;
                 virtualCredits = newResult;
             
@@ -695,6 +662,13 @@ const FairNegotations = (props) => {
                 openingBid = userCreditsLeft;
 
                 console.log(virtualCredits);
+
+                if(convertedBid > virtualCredits) {
+                    alert(`You cannot place a bid > virtual credits available`);
+
+                    window.location.reload(false);
+                }
+
                 return creditData.map((credit) => {
 
                     const {_id} = credit; // Extract ID
@@ -702,14 +676,12 @@ const FairNegotations = (props) => {
                      return updateNewBid(_id, virtualCredits, openingBid, convertedNextRoundBid, nextRoundCredits);
                  });
 
-               
-            
 
-         
             }
 
 
             if(roundNumber === 2) {
+                
 
                 return creditData.map((credit) => {
 
@@ -717,6 +689,13 @@ const FairNegotations = (props) => {
                     openingBid = userCreditsLeft;
                      console.log(`In Round 2 you have credits remaining : `);
                      console.log(nextRoundCreditsRemain);
+
+
+                if(convertedBid > nextRoundCreditsRemain) {
+                    alert(`You cannot place a bid > virtual credits available`);
+
+                    window.location.reload(false);
+                }
 
                     const {_id} = credit;
                      console.log(`ID R2 : ${_id}`);
