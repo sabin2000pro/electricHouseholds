@@ -634,10 +634,10 @@ const FairNegotations = (props) => {
                 userCreditsLeft = {creditsLeft, openingBid};
                 openingBid = userCreditsLeft;
 
-                if(convertedBid > userCreditsLeft) {
-                    alert(`You cannot place a bid > virtual credits available`);
-                    window.location.reload(false);
-                }
+                // if(convertedBid > userCreditsLeft) {
+                //     alert(`You cannot place a bid > virtual credits available`);
+                //     window.location.reload(false);
+                // }
 
                 return creditData.map((credit) => {
 
@@ -1006,18 +1006,16 @@ const FairNegotations = (props) => {
                             
                                     if(userBid < mediumBotRandomBids) {
 
-
+                                        setModalShown({title: "Preferences", message: "No preferences found"});
+                                        setBiddingOver(true);
+          
                                         setTimeout(() => {
-                                            setModalShown({title: "Preferences", message: "No preferences found"});
-                                            getNextAppliance();
-
-                                        }, 4000);
-
+                                           
+                                            setTimeout(() => {
+                                               setModalShown(null);
+                                            }, 4500);
+                                        }, 4000)
                                        
-                                        setTimeout(() => {
-                                           setModalShown(null);
-                                        }, 4500);
-                                        
                                    
                                            allBotData.push({...medBotCreditsRemain, medBotDifference, userCreditsLeft, userBid});
                                            allTheBidsData = [...allBotData];
@@ -1037,11 +1035,39 @@ const FairNegotations = (props) => {
                                       }
                                   
                                       if(type === botTypes.MEDIUM && botCredits > 0 && name != null && (userBid > mediumBotRandomBids)) {
+
+                                        setModalShown({title: "Preferences", message: "No preferences found"});
+                                            setBiddingOver(true);
+
+                                            setTimeout(() => {
+                                                
+                                                setTimeout(() => {
+                                                    setModalShown(null);
+                                                }, 4500);
+                                            }, 4000)
+
+                                            allBotData.push({...medBotCreditsRemain, medBotDifference, userCreditsLeft, userBid});
+                                            allTheBidsData = [...allBotData];
+                                            
                                     
                                           setTimeout(() => {
                                            
                                         if(mediumBotRandomBids !== 0 && !(userBid) < mediumBotRandomBids) {
                                            processMediumBotBids(mediumBotRandomBids, name, type, mediumBotCreditsLeft);
+
+                                                            setModalShown({title: "Preferences", message: "No preferences found"});
+                                                setBiddingOver(true);
+
+                                                setTimeout(() => {
+                                                    
+                                                    setTimeout(() => {
+                                                        setModalShown(null);
+                                                    }, 4500);
+                                                }, 4000)
+
+                                                allBotData.push({...medBotCreditsRemain, medBotDifference, userCreditsLeft, userBid});
+                                                allTheBidsData = [...allBotData];
+                             
 
                                            setMediumBotWin(false);                                          
 
@@ -1052,7 +1078,7 @@ const FairNegotations = (props) => {
                                           return;
                                            }
            
-                                          }, 2000)
+                                          }, 4500)
            
                                       }
 
@@ -1082,26 +1108,38 @@ const FairNegotations = (props) => {
 
                                 if(userBid < intenseBotBid) {
                                     setModalShown({title: "Preferences", message: "No preferences found"});
+                                    setBiddingOver(true);
+      
+                                    setTimeout(() => {
+                                       
+                                        setTimeout(() => {
+                                           setModalShown(null);
+                                        }, 3000);
+
+                                    }, 2000)
+                                   
 
                                     allBotData.push({...creditsRemainingObj, intenseBotDifference, userCreditsLeft, userBid});
                                     allTheBidsData = [...allBotData];
-
-                                    console.log(`Intense`);
-                                    console.log(intenseBotDifference);
 
                                 }
 
                                 if(userBid > intenseBotBid) {
                                     setModalShown({title: "Preferences", message: "No preferences found"});
+                                    setBiddingOver(true);
+      
+                                    setTimeout(() => {
+                                       
+                                        setTimeout(() => {
+                                           setModalShown(null);
+                                        }, 4500);
+                                    }, 4000)
+                                   
                                 
                                     allBotData.push({userBid: userBid});
                                     allTheBidsData = [...allBotData];
 
-                                    setTimeout(() => {
-                                        setModalShown(null);
-                                     }, 4500);
-                                     
-                                     
+                                  
                                     setTimeout(() => {
                                    
                                         getNextAppliance();
@@ -1153,8 +1191,10 @@ const FairNegotations = (props) => {
     }
 
     const findMaxBetween = function() {
+
         let maxBidBetween = 0;
-        
+
+
             for(let i = 0; i < allTheBidsData.length; i++) {
 
                 const lowBotBid = parseInt(allTheBidsData[i].theDifference);
@@ -1179,9 +1219,9 @@ const FairNegotations = (props) => {
                 }
     
     
-               return `The winning bidder placed a round wining bid of ${maxBidBetween} and receives the timeslots ${firstPreference} ${secondPreference} and ${thirdPreference} for the appliance ${appliance}`;
+               return `Round ${roundNumber} - the winning bidder placed a round wining bid of ${maxBidBetween} and receives the timeslots ${firstPreference} ${secondPreference} and ${thirdPreference} for the appliance ${appliance}`;
             } 
-        
+    
         
     }
 
@@ -1420,7 +1460,6 @@ const FairNegotations = (props) => {
             <h1>{countTotalBids()}</h1>
 
             {modalShown && roundNumber === 1 ? <Modal title = "Round Winner" message = {findMaxBetween()} /> : null}
-            {modalShown && roundNumber === 2 ? <Modal title = "Round Winner" message = {findMaxBetween()} /> : null}
 
 
             {creditData.map((credit, key) => {
