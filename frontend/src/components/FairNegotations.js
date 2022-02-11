@@ -1476,7 +1476,7 @@ const FairNegotations = (props) => {
 
             })}
 
-            {!mainRoundOver ? <h2 >User's Initial Appliance : {appliance}</h2> : null}
+            {!mainRoundOver && !roundTwoOver ? <h2 >User's Initial Appliance : {appliance}</h2> : null}
 
             {mainRoundOver && roundNumber === 2 ? nextApplianceData.map((val, key) => {
                return <div key = {key}>
