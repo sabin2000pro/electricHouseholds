@@ -38,7 +38,7 @@ const FairNegotations = (props) => {
 
     let location = useLocation();
     let history = useHistory();
-    let {username, appliance, firstPreference, secondPreference, thirdPreference, nextAppliance, lastAppliance} = location.state.preference;
+    let {_id, username, appliance, firstPreference, secondPreference, thirdPreference, nextAppliance, lastAppliance} = location.state.preference;
 
     const [auctionStarted, setAuctionStarted] = useState(false);
     const [botTypes, setBotTypes] = useState({LOW: 'Low', MEDIUM: 'Medium', INTENSE: 'Intense'})
@@ -743,8 +743,6 @@ const FairNegotations = (props) => {
                 alert(`You are out of credits. Round ${roundNumber} over`);
                 setOutOfCredits(true);
 
-                creditsAvailable = 0;
-
                 window.location.reload(false);
 
                 return;
@@ -854,8 +852,7 @@ const FairNegotations = (props) => {
                           nextApplianceRound = nextApp;
   
                           if(nextRoundBid < randBid && roundNumber === 2) {
-                              alert(`Household in round ${roundNumber} placed a bid of ${theDifference} and wins the bid for appliance ${nextApplianceRound} and receives the timeslot preferences instead`);
-                             
+
                               setRoundTwoOver(true);
                               setNextRoundBid("");
   
@@ -898,16 +895,11 @@ const FairNegotations = (props) => {
                               setBiddingOver(true);
 
                               setTimeout(() => {
-                                return history.push({pathname: '/results', winner: 'Household', bid: randBid, appliance: appliance, prefOne: firstPreference});
-                            }, 3500)
-
-
-                              setTimeout(() => {
                                  
                                   setTimeout(() => {
                                      setModalShown(null);
                                   }, 4500);
-                              }, 3000)
+                              }, 4000)
                              
   
                               for(const [userKey, userValue] of Object.entries(userCreditsLeft)) { // For every key value pair in the entries of user credits left
@@ -990,7 +982,6 @@ const FairNegotations = (props) => {
                                   let medBotDifference = parsedMediumBotCredits - medBotCreditsRemain.mediumBotCreditsLeft;
 
                                   if(nextRoundBid < mediumBotRandomBids && roundNumber === 2) {
-                                    alert(`Bot ${type} in round ${roundNumber} placed a bid of ${medBotDifference} and wins the bid for appliance ${appliance}`);
                                     setBiddingOver(true);
                                    
                                     setRoundTwoOver(true);
@@ -1017,8 +1008,10 @@ const FairNegotations = (props) => {
                             
                                     if(userBid < mediumBotRandomBids) {
 
-                                    
-                                        alert(`Another household has placed a higher bid and receives the timeslot for the appliance ${appliance}. Moving onto the next round`);
+                                        setTimeout(() => {
+                                            return history.push({pathname: '/results', winner: 'Household', round: roundNumber, bid: mediumBotRandomBids, appliance: appliance, prefOne: firstPreference});
+                                        }, 3000)
+
                                         getNextAppliance();
                                         
                                         setTimeout(() => {
@@ -1074,7 +1067,7 @@ const FairNegotations = (props) => {
 
                                       for(let index = 0; index < bidData.length; index++) {
 
-                                        const userBid = parseInt(bidData[index].bid);
+                                    const userBid = parseInt(bidData[index].bid);
 
                                     
                                  for(let i = 0; i < numberOfIntenseBots; i++) {
@@ -1368,7 +1361,6 @@ const FairNegotations = (props) => {
 
     <section className = "section--login">
 
-       
           <h1 className = "fn--heading">Choose Your Desired Algorithm Below</h1>
 
          
