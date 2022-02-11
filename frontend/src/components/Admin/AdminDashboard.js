@@ -22,9 +22,11 @@ const AdminDashboard = (props) => { // Admin Dashboard Component
         try {
             
            return await axios.get(`http://localhost:5200/api/v1/appliances/fetch-appliances`).then(response => {
+
                const allAppliances = response.data.appliances;
                setAppliances(allAppliances);
                setAppliancesFetched(!appliancesFetched);
+               
            });
 
         } 
