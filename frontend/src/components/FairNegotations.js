@@ -102,6 +102,7 @@ const FairNegotations = (props) => {
 
     const [lastApplianceSet, setLastApplianceSet] = useState(false);
     const [outOfCredits, setOutOfCredits] = useState(false);
+
     const [feedbackFormDisplay, setFeedbackFormDisplay] = useState(false);
     const [results, setResults] = useState([]);
 
@@ -508,6 +509,7 @@ const FairNegotations = (props) => {
                 }
 
                 return response.data.allCredits.forEach((creditVal) => {
+
                     const {openingBid, virtualCredits} = creditVal;
 
                     return submitBid(openingBid, virtualCredits);   
@@ -550,6 +552,7 @@ const FairNegotations = (props) => {
     }
 
     const processNullCredits = (virtualCredits) => {
+
         try {
             return virtualCredits !== 0;
         }
@@ -569,7 +572,7 @@ const FairNegotations = (props) => {
 
         try {
 
-            return (convertedBid > virtualCredits);
+            return (convertedBid > virtualCredits) || convertedNextRoundBid > virtualCredits || convertedLastRoundBid > virtualCredits;
         } 
         
         catch(err) {
@@ -588,10 +591,13 @@ const FairNegotations = (props) => {
         const convertedLastRoundBid = parseInt(lastRoundBid);
 
         if(roundNumber === 1 || roundNumber === 2 || roundNumber === 3) {
+
             const convertedBid = parseInt(bid);
 
             if(handleInvalidBidSubmission(convertedBid, convertedNextRoundBid, convertedLastRoundBid, virtualCredits)) {
-                alert(`You have placed more than you are allowed to`);
+                alert(`Insufficient Virtual Credits. Round over`);
+
+                window.location.reload(false);
             }
 
             if(convertedLastRoundBid === 0 || convertedNextRoundBid === 0 || convertedBid === 0) {
@@ -613,8 +619,10 @@ const FairNegotations = (props) => {
 
              if(bidValid) {
  
-                 await axios.post(`http://localhost:5200/api/v1/bids/create-bid`, {bid: bid, nextRoundBid: nextRoundBid}).then(response => {
+                 await axios.post(`http://localhost:5200/api/v1/bids/create-bid`, {bid: bid, nextRoundBid: nextRoundBid, lastRoundBid: lastRoundBid}).then(response => {
                      const newBidData = response.data;
+
+                     console.log(newBidData);
 
                      if(!newBidData) {
                         alert(`No data found regarding bids`);
