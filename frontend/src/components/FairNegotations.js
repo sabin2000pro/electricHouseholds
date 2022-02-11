@@ -1234,7 +1234,7 @@ const FairNegotations = (props) => {
        
     }, [lastApplianceSet])
 
-      const getNextAppliance = async function() {
+      const getNextAppliance = async () => {
 
         try {
      
@@ -1303,12 +1303,12 @@ const FairNegotations = (props) => {
            await axios.post(`http://localhost:5200/api/v1/bids/create-bid`, {bid: mediumBotRandomBids, username: name}).then(response => {
              
            if(lowBotPlacedBid) {
+
                const bid = response.data.newBid.bid;
                const username = response.data.newBid.username;
 
                if(bid != null && username != null) {
-                return allBotBids.push(bid, username);
-
+                 return allBotBids.push(bid, username);
                }
            }
                
