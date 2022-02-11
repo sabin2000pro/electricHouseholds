@@ -159,7 +159,7 @@ const FairNegotations = (props) => {
             setClearedBids(true);
 
             clearFields();
-            setTimeUp(true);
+            setTimeUp(!timeUp);
 
             if(timeUp) { // if the time is up for round 1
                 return handleCounterReset();
@@ -168,7 +168,7 @@ const FairNegotations = (props) => {
 
           if(roundNumber === 1 && seconds === 0) {
               alert(`TIme up after 1R1`);
-              setMainRoundOver(true);
+              setMainRoundOver(!mainRoundOver);
               getNextAppliance();
 
             return handleCounterReset();
@@ -177,7 +177,11 @@ const FairNegotations = (props) => {
 
           if(roundNumber === 2 && seconds === 0) {
               alert(`Time up R2`);
+
+              setRoundTwoOver(!roundTwoOver);
               getNextAppliance();
+
+              return handleCounterReset();
           }
 
           if(roundNumber === 3 && seconds < 0) {
@@ -187,6 +191,7 @@ const FairNegotations = (props) => {
               clearFields();
 
               if(roundTwoOver && clearedBids) {
+                  
                 return handleCounterReset();
 
               }
