@@ -741,11 +741,24 @@ const FairNegotations = (props) => {
         
            let creditsAvailable = val.virtualCredits;
 
+    
            if(roundNumber === 2) {
+
+            if(creditsAvailable === 0) {
+                alert(`You are out of credits. Round ${roundNumber} over`);
+                setOutOfCredits(true);
+
+                creditsAvailable = 0;
+
+                window.location.reload(false);
+
+                return;
+            }
+         
 
             if(theUserBid > creditsAvailable) {
 
-                alert(`You cannot place a bid > number of credits you have left. Round over`);
+                alert(`You cannot place a bid > number of credits you have left. Round ${roundOver} over`);
                 setOutOfCredits(true);
  
                 window.location.reload(false);
@@ -875,7 +888,7 @@ const FairNegotations = (props) => {
   
                          
                           if(nextRoundBid > randBid && roundNumber === 2) {
-                              alert(`You placed a higher bid than one of the households bot.. Moving onto the next household...`);
+                             
                               setRoundTwoOver(true);
                               setLowBotWin(false);
   
@@ -1008,6 +1021,7 @@ const FairNegotations = (props) => {
                                         console.log(`Bot ${type} placed bid of ${medBotDifference}`);
                                         
                                         alert(`Another household has placed a higher bid and receives the timeslot for the appliance ${appliance}. Moving onto the next round`);
+                                        getNextAppliance();
                                         
                                         setTimeout(() => {
                                            setModalShown(null);
@@ -1022,7 +1036,7 @@ const FairNegotations = (props) => {
                                             setMainRoundOver(true);
                                             setMediumBotWin(true);
 
-                                            getNextAppliance();
+                                            
     
                                             return;
                                            
@@ -1042,6 +1056,10 @@ const FairNegotations = (props) => {
                                            setMediumBotWin(false);
                                            console.log(`Med bot did not win`);
 
+
+                                           getNextAppliance();
+                                           setRoundNumber(roundNumber + 1);
+
                                            return;
                                           
                                            }
@@ -1049,6 +1067,8 @@ const FairNegotations = (props) => {
                                           }, 2000)
            
                                       }
+
+                                      return;
                               }
 
                             if(!mediumBotWin && !lowBotWin) {
@@ -1081,7 +1101,6 @@ const FairNegotations = (props) => {
 
                                     setTimeout(() => {
                                    
-
                                         getNextAppliance();
                                         setRoundNumber(roundNumber + 1);
                                         
@@ -1134,11 +1153,7 @@ const FairNegotations = (props) => {
             }
       }
 
-      finally {
-          return console.log(`Error here processed gracefully`);
-      }
     }
-   
 
     const findMaxBetween = function() {
         let maxBidBetween = 0;
