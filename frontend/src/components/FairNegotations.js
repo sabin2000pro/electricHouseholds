@@ -715,9 +715,9 @@ const FairNegotations = (props) => {
       
      } 
 
-     const processBotDataBeforeTurn = function(lowBotData, mediumBotData, intenseBotData, openingBid, virtualcredits) {
+     const processBotDataBeforeTurn = function(lowBotData, mediumBotData, intenseBotData, virtualcredits) {
           
-       return botPlaceRandomBid(lowBotData, mediumBotData, intenseBotData, openingBid);
+       return botPlaceRandomBid(lowBotData, mediumBotData, intenseBotData);
      }
 
    useEffect(() => {
