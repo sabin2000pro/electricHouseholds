@@ -127,14 +127,35 @@ const FairNegotations = (props) => {
     const [feedbackFormDisplay, setFeedbackFormDisplay] = useState(false);
     const [results, setResults] = useState([]);
 
+    /**
+         * 
+         * @returns : Returns a string with the total number of bids enclosed by single quotes
+         * @method: countTotalBids()
+         * @param: null
+         */
+
     const beginLiveAuctionHandler = function() {
         return setAuctionStarted(!auctionStarted);
     }
+
+    /**
+         * 
+         * @returns : Returns a string with the total number of bids enclosed by single quotes
+         * @method: countTotalBids()
+         * @param: null
+         */
 
     const handleCounterReset = () => {
         setTimerRunning(null);
         return setSeconds(START_TIMER);
     }
+
+    /**
+         * 
+         * @returns : Returns a string with the total number of bids enclosed by single quotes
+         * @method: countTotalBids()
+         * @param: null
+         */
 
     const useInterval = (callback, delay) => {
         const savedCallback = useRef();
@@ -265,14 +286,33 @@ const FairNegotations = (props) => {
           return fetchUserBidData();
       }, []);
 
-      // Routine that toggles between true / false if the english auction algorithm is chosen
+      /**
+         * 
+         * @returns : Returns a string with the total number of bids enclosed by single quotes
+         * @method: countTotalBids()
+         * @param: null
+         */
       const chosenEnglishAuctionHandler = function() {
           return setAuctionChosen(!auctionChosen);
       };
+
+      /**
+         * 
+         * @returns : Returns a string with the total number of bids enclosed by single quotes
+         * @method: countTotalBids()
+         * @param: null
+         */
       
       const chosenSocialExchangeHandler = function() {
           return setSocialExchangeChosen(!socialExchangeChosen);
       }
+
+      /**
+         * 
+         * @returns : Returns a string with the total number of bids enclosed by single quotes
+         * @method: countTotalBids()
+         * @param: null
+         */
 
       const fetchCreditData = async () => {
         try {
@@ -308,6 +348,13 @@ const FairNegotations = (props) => {
         }
     }
 
+    /**
+         * 
+         * @returns : Returns a string with the total number of bids enclosed by single quotes
+         * @method: countTotalBids()
+         * @param: null
+         */
+
     const fetchUserBidData = async function() {
 
             try {
@@ -342,7 +389,13 @@ const FairNegotations = (props) => {
             }
       }
 
-      // Fetches the AI bot data from the backend
+     /**
+         * 
+         * @returns : Returns a string with the total number of bids enclosed by single quotes
+         * @method: countTotalBids()
+         * @param: null
+         */
+
       const fetchBotData = async function() {
 
           try {
@@ -406,6 +459,13 @@ const FairNegotations = (props) => {
           }
       }
 
+      /**
+         * 
+         * @returns : Returns a string with the total number of bids enclosed by single quotes
+         * @method: countTotalBids()
+         * @param: null
+         */
+
     const findMinBid = (minBid) => {
         try {
 
@@ -439,6 +499,13 @@ const FairNegotations = (props) => {
         }
     };
 
+    /**
+         * 
+         * @returns : Returns a string with the total number of bids enclosed by single quotes
+         * @method: countTotalBids()
+         * @param: null
+         */
+
     const findMaxBid = () => { // Finds the maximum bid placed
         let maxBid = 0;
 
@@ -460,7 +527,6 @@ const FairNegotations = (props) => {
          * @returns : Returns a string with the total number of bids enclosed by single quotes
          * @method: countTotalBids()
          * @param: null
-         *
          */
 
     const countTotalBids = () => {
@@ -600,6 +666,13 @@ const FairNegotations = (props) => {
 
     }
 
+    /**
+         * 
+         * @returns : Returns a string with the total number of bids enclosed by single quotes
+         * @method: countTotalBids()
+         * @param: null
+         */
+        
     const submitBid = async function(openingBid, virtualCredits) {
 
         const convertedNextRoundBid = parseInt(nextRoundBid);
@@ -662,17 +735,47 @@ const FairNegotations = (props) => {
         } 
 
 
+        /**
+         * 
+         * @returns : Returns a string with the total number of bids enclosed by single quotes
+         * @method: countTotalBids()
+         * @param: null
+         */
+
     function handleUserTurn() {
         return setUserTurn(!userTurn);
     }
+
+
+    /**
+         * 
+         * @returns : Returns a string with the total number of bids enclosed by single quotes
+         * @method: countTotalBids()
+         * @param: null
+         */
 
     function handleInputBlur() {
         return setUserInputDisabled(true);
     }
 
+    /**
+         * 
+         * @returns : Returns a string with the total number of bids enclosed by single quotes
+         * @method: countTotalBids()
+         * @param: null
+         */
+
     function handleBotTurn() {
         return setBotTurn(true);        
     }
+
+
+    /**
+         * 
+         * @returns : Returns a string with the total number of bids enclosed by single quotes
+         * @method: countTotalBids()
+         * @param: null
+         */
 
     const handleBidSubmission = async function(convertedBid, convertedNextRoundBid, virtualCredits, openingBid) {
 
@@ -732,7 +835,13 @@ const FairNegotations = (props) => {
         }
     }
 
-    // Routine that updates the number of virtual credits left
+    /**
+         * 
+         * @returns : Returns a string with the total number of bids enclosed by single quotes
+         * @method: countTotalBids()
+         * @param: null
+         */
+
     const updateNewBid = function(_id, virtualCredits, openingBid, nextRoundCreditsRemain) {
 
 
@@ -770,15 +879,30 @@ const FairNegotations = (props) => {
       
      } 
 
+     /**
+         * 
+         * @returns : Returns a string with the total number of bids enclosed by single quotes
+         * @method: countTotalBids()
+         * @param: null
+         */
+
      const processBotDataBeforeTurn = function(lowBotData, mediumBotData, intenseBotData, virtualcredits) {
           
        return botPlaceRandomBid(lowBotData, mediumBotData, intenseBotData);
      }
 
+
    useEffect(() => {
        
        
    }, [lowBotWin, mediumBotWin, nextRoundForm, roundNumber, roundTwoOver, lastRoundForm, outOfCredits, biddingOver, userWinBid]);
+
+   /**
+         * 
+         * @returns : Returns a string with the total number of bids enclosed by single quotes
+         * @method: countTotalBids()
+         * @param: null
+         */
 
    const getVirtualCreditsRemaining = async function(theUserBid) {
 
@@ -805,6 +929,14 @@ const FairNegotations = (props) => {
         })
      })
    }
+
+
+   /**
+         * 
+         * @returns : Returns a string with the total number of bids enclosed by single quotes
+         * @method: countTotalBids()
+         * @param: null
+         */
 
     const botPlaceRandomBid = async function(lowBotData, mediumBotData, intenseBotData) {
 
