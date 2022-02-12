@@ -1,3 +1,16 @@
+/*
+ * File Creation Date: December 2021
+ * Author: Sabin Constantin Lungu
+ * -----
+ * Last Modified: Saturday 12th February 2022
+ * Modified By: Sabin Constantin Lungu
+ * -----
+ * Copyright (c) 2021-2022 - eHouseholds Sabin Constantin Lungu - Edinburgh Napier Univeristy - All Rights Reserved
+ * Any unauthorised broadcasting, public performance, copying or re-recording will constitute an infringement of copyright
+ */
+
+
+
 /* eslint-disable no-lone-blocks */
 import React, {useState, Fragment, useEffect} from 'react';
 import './CreatePreference.css';
@@ -5,7 +18,6 @@ import {Link} from 'react-router-dom';
 import RegisterCard from '../Admin/RegisterCard';
 import axios from 'axios';
 import Modal from '../../UI/Modal';
-import FairNegotiations from '../FairNegotations';
 
 let DEFAULT_TEXT = {
     preferenceHeader: 'Your Preferences'
@@ -216,17 +228,16 @@ const CreatePreference = (props) => {
                     
                    await new Promise(resolve => setTimeout((resolve)));
                         
-                        if(applianceIndexes < applianceNames.length - 1) { // Loop over the appliances
+                        if(applianceIndexes < applianceNames.length - 1) { 
 
                              firstApplianceObj = {firstAppliance};
                              nextApplianceObj = {nextApplianceAvailable};
                              lastApplianceObj = {lastAppliance};
 
-                             // Push the appliance to array. More comments....
-                                firstApplianceData.push(firstApplianceObj);
-                                nextApplianceData.push(nextApplianceObj);
-                                lastApplianceData.push(lastApplianceObj);
-// Loop
+                            firstApplianceData.push(firstApplianceObj);
+                            nextApplianceData.push(nextApplianceObj);
+                            lastApplianceData.push(lastApplianceObj);
+
                             for(let index = 0; index < nextApplianceData.length - 1; index++) {
                                 
                                 const data = nextApplianceData[index];

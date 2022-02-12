@@ -1,6 +1,18 @@
+/*
+ * File Creation Date: December 2021
+ * Author: Sabin Constantin Lungu
+ * -----
+ * Last Modified: Saturday 12th February 2022
+ * Modified By: Sabin Constantin Lungu
+ * -----
+ * Copyright (c) 2021-2022 - eHouseholds Sabin Constantin Lungu - Edinburgh Napier Univeristy - All Rights Reserved
+ * Any unauthorised broadcasting, public performance, copying or re-recording will constitute an infringement of copyright
+ */
+
+
 import React, {useState, Fragment} from 'react';
 import RegisterCard from '../Admin/RegisterCard';
-import { Link, useHistory } from 'react-router-dom';
+import {useHistory } from 'react-router-dom';
 import axios from 'axios';
 import {motion, AnimatePresence} from 'framer-motion';
 import './ContactHome.css';
@@ -19,11 +31,9 @@ const CreateContact = (props) => {
    const [issueType, setIssueType] = useState('');
    const [issueTypeValid, setIssueTypeValid] = useState(false);
    const [description, setDescription] = useState('');
-   const [descriptionValid, setDescriptionValid] = useState(false);
    const [formValid, setFormValid] = useState(true);
 
-   const contactSubmitMsg = <p className = "success-msg">Form Submit Success</p>
-
+   
    const contactUsHandler = async (e) => {
 
        try {
