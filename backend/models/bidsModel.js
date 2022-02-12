@@ -17,13 +17,13 @@ const mongoose = require('mongoose');
 
 const bidSchema = new mongoose.Schema({
 
-    bid: {
+    bid: { // The Initial Bid
         type: Number,
         minlength: [20, "min bid you can place is 20"],
         max: [2000, 'Max bid you can place is 2000']
     },
 
-    nextRoundBid: {
+    nextRoundBid: { // The next round bid
         type: Number
     },
 
@@ -35,11 +35,11 @@ const bidSchema = new mongoose.Schema({
         type: String
     },
 
-    creditsLeft: {
+    creditsLeft: { // Number of credits left
         type: String
     },
 
-    reputationPoints: {
+    reputationPoints: { // Reputation Points field
         type: String,
         default: 0,
         min: [10, 'You can have a minimum of 10 reputation points'],
