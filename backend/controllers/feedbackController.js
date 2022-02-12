@@ -1,3 +1,14 @@
+/*
+ * File Creation Date: December 2021
+ * Author: Sabin Constantin Lungu
+ * -----
+ * Last Modified: Saturday 12th February 2022
+ * Modified By: Sabin Constantin Lungu
+ * -----
+ * Copyright (c) 2022 - eHouseholds Sabin Constantin Lungu. All Rights Reserved
+ * Any unauthorised broadcasting, public performance, copying or re-recording will constitute an infringement of copyright
+ */
+
 const Feedback = require('../models/feedbackModel');
 const catchAsync = require('../utils/catchAsync');
 const ErrorResponse = require('../utils/errorResponse');
@@ -67,6 +78,7 @@ module.exports.editFeedback = catchAsync(async (request, response, next) => {
 });
 
 module.exports.deleteFeedback = catchAsync(async (request, response, next) => {
+
     if(request.method !== 'DELETE') {
 
         const id = request.params.id;
@@ -77,7 +89,6 @@ module.exports.deleteFeedback = catchAsync(async (request, response, next) => {
         }
     }
 
-    
 });
 
 module.exports.deleteAllFeedbacks = catchAsync(async (request, response, next) => {
