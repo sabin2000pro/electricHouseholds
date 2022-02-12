@@ -734,7 +734,6 @@ const FairNegotations = (props) => {
         
            let creditsAvailable = val.virtualCredits;
 
-    
            if(roundNumber === 2) {
 
             if(creditsAvailable === 0) {
@@ -742,7 +741,6 @@ const FairNegotations = (props) => {
                 return;
             }
          
-
             if(theUserBid > creditsAvailable) {
                  return;
             }

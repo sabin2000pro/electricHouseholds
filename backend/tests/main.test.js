@@ -148,11 +148,15 @@ describe('Authentication Test Suite', () => {
     });
 
     test('Bids - Get All Bid Data. Returns a 200 OK Status Code', async () => {
-
+        const response = await request(server).get('/api/v1/bids/fetch-bids', async () => {
+            return expect(response.statusCode).toBe(200);
+        })
     });
 
     test('Comments - Get All Comment Data. Returns a 200 OK status Code', async () => {
-
+        const response = await request(server).get('/api/v1/comments/fetch-comments', async () => {
+            return expect(response.statusCode).toBe(200);
+        })
     })
 
 })
