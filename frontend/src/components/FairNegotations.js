@@ -672,7 +672,7 @@ const FairNegotations = (props) => {
          * @method: countTotalBids()
          * @param: null
          */
-        
+
     const submitBid = async function(openingBid, virtualCredits) {
 
         const convertedNextRoundBid = parseInt(nextRoundBid);
@@ -1423,7 +1423,7 @@ const FairNegotations = (props) => {
                 
                 }
 
-                if(userBid > maxBidBetween) {
+                if(userBid > maxBidBetween) { // If user bid > max bid
                     maxBidBetween = userBid;
                 }
     
