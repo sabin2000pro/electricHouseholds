@@ -1034,8 +1034,11 @@ const FairNegotations = (props) => {
                               setLastRoundForm(!lastRoundForm);
                             
   
+                              return;
+  
                           }
   
+                          return;
   
                           })
   
@@ -1150,9 +1153,8 @@ const FairNegotations = (props) => {
                                   if(nextRoundBid < mediumBotRandomBids) {
                                       alert(`Lose round 2`);
 
-                                      getNextAppliance();
                                     setRoundNumber(roundNumber + 1);
-                                    
+                                    getNextAppliance();
 
                                     setBiddingOver(!biddingOver);
                                    
@@ -1161,7 +1163,8 @@ const FairNegotations = (props) => {
         
                                     setMediumBotWin(!mediumBotWin);
                                     setLastRoundForm(!lastRoundForm);
-
+                                     
+                
                                 }
                             
                                     if(userBid < mediumBotRandomBids) {
