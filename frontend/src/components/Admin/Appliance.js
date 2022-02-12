@@ -1,12 +1,23 @@
-import React, {Fragment, useState, useEffect} from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
-import PropTypes from 'prop-types'
+/*
+ * File Creation Date: December 2021
+ * Author: Sabin Constantin Lungu
+ * -----
+ * Last Modified: Saturday 12th February 2022
+ * Modified By: Sabin Constantin Lungu
+ * -----
+ * Copyright (c) 2021-2022 - eHouseholds Sabin Constantin Lungu - Edinburgh Napier Univeristy - All Rights Reserved
+ * Any unauthorised broadcasting, public performance, copying or re-recording will constitute an infringement of copyright
+ */
+
+
+import React, {Fragment} from 'react';
+import {useLocation } from 'react-router-dom';
 import Header from '../Header';
 import HomepageImg from '../images/homepage/homepageimg.jpg';
 import RegisterCard from './RegisterCard';
 
 const Appliance = (props) => {
-    let history = useHistory();
+
     let location = useLocation();
     const {name, image, description} = location.state.appliance;
     
@@ -48,7 +59,7 @@ const Appliance = (props) => {
                     <div className = "applianceimage--box">
                         <h1 style = {{textAlign: 'center', marginLeft: '200px', color: 'white', fontSize: '32px'}}>{description}</h1>
                     </div>
-</div>
+        </div>
                    
                 
             </RegisterCard>
