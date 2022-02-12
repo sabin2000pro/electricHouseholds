@@ -842,19 +842,19 @@ const FairNegotations = (props) => {
            let newMediumCredits = mediumBotCreditsLeft;
            mediumBotCreditsLeft = newMediumCredits;
 
-           let lowBotBidAvg = parsedLowBotCredits * 0.10;
-           let mediumBotBidAvg = parsedMediumBotCredits * 0.30;
-           let intenseBotBidAvg = parsedIntenseBotCredits * 0.80;
+           let lowBotBidAvg = parsedLowBotCredits * 0.80;
+           let mediumBotBidAvg = parsedMediumBotCredits * 0.90;
+           let intenseBotBidAvg = parsedIntenseBotCredits * 1;
 
            theLowBots.push(allLowBotData);
            theMediumBots.push(allMediumBotData);
            theIntenseBots.push(allIntenseBotData);
 
            if((sizeOfLow && sizeOfMedium && sizeOfIntense) > 0) {
+
                let creditsRemainingObj = {};
 
             if(!userInputDisabled && botTurn && !userTurn && roundNumber === 1 || roundNumber === 2) {
-
              
                 setTimeout(() => {
 
@@ -929,7 +929,7 @@ const FairNegotations = (props) => {
   
   
                           if(theUserBid < randBid) {
-  
+
                               setModalShown({title: "Preferences", message: "No preferences found"});
                               setBiddingOver(true);
 
@@ -959,32 +959,22 @@ const FairNegotations = (props) => {
                                           setMainRoundOver(true);
                                           getNextAppliance();
                                           setNextRoundForm(true);
-  
-                                         return;
-                                         
+
+                                          lowBotPlacedBid = true;
+                                          return processLowBotBid(convertedBotBid, lowBotPlacedBid, name);
+                                           
                                      }, 3000);
             
                                                 
-                            if(theUserBid > randBid) {
+                                    if(theUserBid > randBid) {
+                                        alert(`Winn`);
 
-                                setUserWinBid(true);
+                                        setUserWinBid(true);
 
-                                setRoundNumber(roundNumber + 1);
-                                getNextAppliance();
-            
-            
-                                // eslint-disable-next-line no-loop-func
-                                setTimeout(() => {
-            
-                                    lowBotPlacedBid = true;
-                                    processLowBotBid(convertedBotBid, lowBotPlacedBid, name);
-            
-                                    setLowBotWin(false);
-                                    
-                                }, 4500)
-            
-                        }
-  
+                                        setRoundNumber(roundNumber + 1);
+                                        getNextAppliance();
+                                }
+        
   
                           }
   
@@ -1007,6 +997,7 @@ const FairNegotations = (props) => {
                     
 
                      setTimeout(() => {
+
                              let medBotCreditsRemain = {};
       
                               for(let index = 0; index < bidData.length; index++) {
@@ -1037,7 +1028,6 @@ const FairNegotations = (props) => {
                                     setNextRoundBid("");
         
                                     setMediumBotWin(!mediumBotWin);
-                                   
                                     setLastRoundForm(!lastRoundForm);
                                     
 
@@ -1057,6 +1047,7 @@ const FairNegotations = (props) => {
                                 }
                             
                                     if(userBid < mediumBotRandomBids) {
+                                        console.log(`${type} ${name} Bot Placed bid of ${mediumBotRandomBids}`);
 
                                         setModalShown({title: "Preferences", message: "No preferences found"});
                                         setBiddingOver(true);
@@ -1065,10 +1056,11 @@ const FairNegotations = (props) => {
                                            
                                             setTimeout(() => {
                                                setModalShown(null);
+
                                             }, 4500);
+
                                         }, 4000)
                                        
-                                   
                                            allBotData.push({...medBotCreditsRemain, medBotDifference, userCreditsLeft, userBid});
                                            allTheBidsData = [...allBotData];
 
@@ -1104,12 +1096,12 @@ const FairNegotations = (props) => {
                                             allBotData.push({...medBotCreditsRemain, medBotDifference, userCreditsLeft, userBid});
                                             allTheBidsData = [...allBotData];
 
-                                            
-                                    
+
                                           setTimeout(() => {
                                            
                                         if(mediumBotRandomBids !== 0 && !(userBid) < mediumBotRandomBids) {
-                                           processMediumBotBids(mediumBotRandomBids, name, type, mediumBotCreditsLeft);
+
+                                            console.log(`${type} ${name} Bot Placed bid of ${mediumBotRandomBids}`);
 
                                              setModalShown({title: "Preferences", message: "No preferences found"});
                                                 setBiddingOver(true);
@@ -1128,14 +1120,12 @@ const FairNegotations = (props) => {
                                                 allTheBidsData = [...allBotData];
                              
 
-                                           setMediumBotWin(!mediumBotWin);                                          
+                                           setMediumBotWin(!mediumBotWin); 
+                                           processMediumBotBids(mediumBotRandomBids, name, type, mediumBotCreditsLeft);                                         
 
                                            getNextAppliance();
                                            setRoundNumber(roundNumber + 1);
 
-                                           
-
-                                           
                                           return;
                                            }
            
@@ -1155,6 +1145,8 @@ const FairNegotations = (props) => {
 
                                     
                                  for(let i = 0; i < numberOfIntenseBots; i++) {
+                                    const {name, type, botCredits} = allIntenseBotData;
+
                                 
                                 let intenseBotBid = Math.floor(Math.random() * intenseBotBidAvg);
 
@@ -1168,12 +1160,18 @@ const FairNegotations = (props) => {
                                 if(userBid < intenseBotBid) {
                                     setModalShown({title: "Preferences", message: "No preferences found"});
                                     setBiddingOver(true);
-      
+
+                                    console.log(`$THE ${type} ${name} Bot Placed bid of ${intenseBotBid}`);
+
                                     setTimeout(() => {
                                        
                                         setTimeout(() => {
                                            setModalShown(null);
                                         }, 3000);
+
+
+                                    getNextAppliance();
+                                    setRoundNumber(roundNumber + 1);
 
                                     }, 2000)
                                    
@@ -1359,22 +1357,22 @@ const FairNegotations = (props) => {
         }
     }
 
-    const processLowBotBid = async function(mediumBotRandomBids, lowBotPlacedBid, name) {
+    const processLowBotBid = async function(convertedBotBid, lowBotPlacedBid, name) {
         try {
 
-           await axios.post(`http://localhost:5200/api/v1/bids/create-bid`, {bid: mediumBotRandomBids, username: name}).then(response => {
+           await axios.post(`http://localhost:5200/api/v1/bids/create-bid`, {bid: convertedBotBid, username: name}).then(response => {
+               console.log(`INSIDE PROCESS LOW BOT BID`);
              
            if(lowBotPlacedBid) {
 
-               const bid = response.data.newBid.bid;
-               const username = response.data.newBid.username;
-
-               console.log(bid);
-               console.log(username);
+               const botBid = response.data.newBid.bid;
+               const botName = response.data.newBid.username;
 
                if(bid != null && username != null) {
 
-                 return allBotBids.push(bid, username);
+                allBotBids.push(bid, username);
+                results.push({winningBid: convertedBotBid, name});
+
                }
            }
                
@@ -1649,6 +1647,12 @@ const FairNegotations = (props) => {
             </RegisterCard>
 
             </div> */}
+
+            {mainRoundOver ? results.map((win, key) => {
+                return <div key = {key}>
+                    <h1>Round {roundNumber - 1} results - another household spent {win.winningBid} credits for {appliance}</h1>
+                </div>
+            }) : null}
             
 
 </section>
