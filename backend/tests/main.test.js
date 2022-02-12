@@ -153,11 +153,27 @@ describe('Authentication Test Suite', () => {
         })
     });
 
+    test('List virtual credits. Should return with a 200 OK Status Code', async () => {
+        const response = await request(server).get('/api/v1/credits/get-credits', async () => {
+            return expect(response.statusCode).toBe(200);
+        })
+    });
+
+
     test('Comments - Get All Comment Data. Returns a 200 OK status Code', async () => {
         const response = await request(server).get('/api/v1/comments/fetch-comments', async () => {
             return expect(response.statusCode).toBe(200);
         })
-        
-    })
+    });
+
+    test('Create Virtual Credits - Should return with a 201 status code.', async () => {
+       const bodyData = [{virtualCredits: "1000"}];
+
+       for(const body of bodyData) {
+           const response = await request(server).post('/api/v1/credits/create-credits').send(body);
+
+           return expect(response.statusCode).toBe(201);
+       }
+    } )
 
 })
