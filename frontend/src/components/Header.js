@@ -1,5 +1,17 @@
+/*
+ * File Creation Date: December 2021
+ * Author: Sabin Constantin Lungu
+ * -----
+ * Last Modified: Saturday 12th February 2022
+ * Modified By: Sabin Constantin Lungu
+ * -----
+ * Copyright (c) 2021-2022 - eHouseholds Sabin Constantin Lungu - Edinburgh Napier Univeristy - All Rights Reserved
+ * Any unauthorised broadcasting, public performance, copying or re-recording will constitute an infringement of copyright
+ */
+
+
 import React, {useEffect, useState} from 'react';
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import './Home/Homepage.css';
 import axios from 'axios';
 import Logo from '../components/images/logo.png';
@@ -32,12 +44,15 @@ const Header = (props) => { // Header Component
 
     const fetchApplianceData = async () => {
         try {
+            
             return await axios.get(`http://localhost:5200/api/v1/appliances/fetch-appliances`).then(response => {
+
                 const allAppliances = response.data.appliances;
                 setAppliances(allAppliances);
                 console.log(allAppliances);
 
             }).catch(error => {
+
                 if(error) {
                     return console.error(error);
                 }
