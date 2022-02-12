@@ -1,3 +1,14 @@
+/*
+ * Created At: December 2021
+ * Author: Sabin Constantin Lungu
+ * -----
+ * Last Modified: Saturday 12th February 2022
+ * Modified By: Sabin Constantin Lungu
+ * -----
+ * Copyright (c) 2022 eHouseholds
+ */
+
+
 const Appliance = require('../models/applianceModel');
 const catchAsync = require('../utils/catchAsync');
 const ok = 200;
