@@ -956,8 +956,7 @@ const FairNegotations = (props) => {
                                           setRoundNumber(roundNumber + 1);
                                           
                                           setLowBotWin(true);
-                                          setMainRoundOver(true);
-                                          getNextAppliance();
+                                          
                                           setNextRoundForm(true);
 
                                           lowBotPlacedBid = true;
@@ -965,17 +964,6 @@ const FairNegotations = (props) => {
                                            
                                      }, 3000);
             
-                                                
-                                    if(theUserBid > randBid) {
-                                        alert(`Winn`);
-
-                                        setUserWinBid(true);
-
-                                        setRoundNumber(roundNumber + 1);
-                                        getNextAppliance();
-                                }
-        
-  
                           }
   
                                return;
@@ -987,6 +975,19 @@ const FairNegotations = (props) => {
    
   
                           }
+
+                          if(theUserBid > randBid) {
+                            alert(`Winn`);
+                            setUserWinBid(true);
+
+                            setRoundNumber(roundNumber + 1);
+                          
+                            setMainRoundOver(true);
+                            getNextAppliance();
+
+                            return;
+                    }
+
   
   
                         }
