@@ -1,3 +1,15 @@
+/*
+ * File Creation Date: December 2021
+ * Author: Sabin Constantin Lungu
+ * -----
+ * Last Modified: Saturday 12th February 2022
+ * Modified By: Sabin Constantin Lungu
+ * -----
+ * Copyright (c) 2021-2022 - eHouseholds Sabin Constantin Lungu - Edinburgh Napier Univeristy - All Rights Reserved
+ * Any unauthorised broadcasting, public performance, copying or re-recording will constitute an infringement of copyright
+ */
+
+
 /* eslint-disable no-loop-func */
 import React, {useState, useEffect, useRef} from 'react';
 import {useLocation, useHistory} from 'react-router-dom';
@@ -33,6 +45,15 @@ const remainingAppliances = [];
 const nextApplianceData = [];
 const lastApplianceData = [];
 const lastRemainingAppliance = [];
+
+
+/**
+ * 
+ * @returns : Main JSX Body
+ * @method: FairNegotiations
+ * @description: Fair Negotiations component stores the code required to make the First Price Sealed Bid Algorithm work
+ * @param: props
+ */
 
 const FairNegotations = (props) => {
 

@@ -9,7 +9,6 @@
  * Any unauthorised broadcasting, public performance, copying or re-recording will constitute an infringement of copyright
  */
 
-
 import React, {useEffect, useState} from 'react';
 import { BrowserRouter as Router } from "react-router-dom";
 import './Home/Homepage.css';
@@ -44,7 +43,7 @@ const Header = (props) => { // Header Component
 
     const fetchApplianceData = async () => {
         try {
-            
+
             return await axios.get(`http://localhost:5200/api/v1/appliances/fetch-appliances`).then(response => {
 
                 const allAppliances = response.data.appliances;

@@ -1,12 +1,23 @@
+/*
+ * File Creation Date: December 2021
+ * Author: Sabin Constantin Lungu
+ * -----
+ * Last Modified: Saturday 12th February 2022
+ * Modified By: Sabin Constantin Lungu
+ * -----
+ * Copyright (c) 2021-2022 - eHouseholds Sabin Constantin Lungu - Edinburgh Napier Univeristy - All Rights Reserved
+ * Any unauthorised broadcasting, public performance, copying or re-recording will constitute an infringement of copyright
+ */
+
+
 import React, {Fragment, useEffect, useState} from 'react';
-import {useLocation, useHistory, Link} from 'react-router-dom';
+import {useLocation, useHistory} from 'react-router-dom';
 
 const ResultsScreen = (props) => { // The results screen that shows the results at the end of the bidding session rounds
   const location = useLocation();
   const [detailsShown, setDetailsShown] = useState(false);
   const [nextRoundStarted, setNextRoundStarted] = useState(false);
 
-  let history = useHistory();
 
   const redirect = () => {
 
