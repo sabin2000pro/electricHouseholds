@@ -1,23 +1,34 @@
-    import React, {useEffect, useState, Fragment} from 'react';
-    import RegisterCard from '../Admin/RegisterCard';
-    import ModalCard from '../../UI/ModalCard';
-    import Header from '../Header';
-    import './BotSettings.css'
-    import {Link} from 'react-router-dom';
-    import HomepageImg from '../images/homepage/homepageimg.jpg';
-    import axios from 'axios';
+
+/*
+ * File Creation Date: December 2021
+ * Author: Sabin Constantin Lungu
+ * -----
+ * Last Modified: Saturday 12th February 2022
+ * Modified By: Sabin Constantin Lungu
+ * -----
+ * Copyright (c) 2021-2022 - eHouseholds Sabin Constantin Lungu - Edinburgh Napier Univeristy - All Rights Reserved
+ * Any unauthorised broadcasting, public performance, copying or re-recording will constitute an infringement of copyright
+ */
+
+
+import React, {useState, Fragment} from 'react';
+import RegisterCard from '../Admin/RegisterCard';
+import Header from '../Header';
+import './BotSettings.css'
+import HomepageImg from '../images/homepage/homepageimg.jpg';
+import axios from 'axios';
 
 const BotSettings = (props) => {
 
-        const [enteredBotName, setEnteredBotName] = useState('');
-        const [enteredVirtualCredits, setEnteredVirtualCredits] = useState('');
-        const [enteredBotType, setChosenBotType] = useState('');
-        const [enteredBidRange, setEnteredBidRange] = useState('');
-        const [enteredBotNumber, setEnteredBotNumber] = useState('');
+    const [enteredBotName, setEnteredBotName] = useState('');
+    const [enteredVirtualCredits, setEnteredVirtualCredits] = useState('');
+    const [enteredBotType, setChosenBotType] = useState('');
+    const [enteredBidRange, setEnteredBidRange] = useState('');
+    const [enteredBotNumber, setEnteredBotNumber] = useState('');
 
-        const [formValid, setFormValid] = useState(true);
+    const [formValid, setFormValid] = useState(true);
 
-        const submitBotHandler = async (event) => {
+    const submitBotHandler = async (event) => {
 
             try {
                 event.preventDefault();
@@ -94,18 +105,20 @@ const BotSettings = (props) => {
                             <input value = {enteredBotType} onChange = {(event) => setChosenBotType(event.target.value)} placeholder = "Enter Bot Type" id = "type" type = "text"/>
                         </div>
 
-                      
-
+                    
                         <div className = "botcounter--box">
 
                         <label className = "botcounter--lbl">Number of Bots</label>
 
                             <select onChange = {(event) => {setEnteredBotNumber(event.target.value)}} className = "box">
                                 <option value = {1}>1</option>
+
                                 <option value = {2}>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
+
+                                <option value = {3}>3</option>
+                                <option value = {4}>4</option>
+                                <option value = {5}>5</option>
+
                             </select>
                         </div>
                 
