@@ -151,3 +151,7 @@
     border: none;
     background-color: lightgreen;
 }
+
+.results--btn {
+    margin-left: 900px;
+}

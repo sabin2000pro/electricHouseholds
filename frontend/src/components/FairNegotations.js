@@ -954,6 +954,10 @@ const FairNegotations = (props) => {
                                        setTimeout(() => {
   
                                           setRoundNumber(roundNumber + 1);
+                                          getNextAppliance();
+                                          
+                                          setMainRoundOver(true);
+                                          setBiddingOver(true);
                                           
                                           setLowBotWin(true);
                                           
@@ -975,7 +979,7 @@ const FairNegotations = (props) => {
    
                           }
 
-                          if(theUserBid > randBid) {
+                          if(theUserBid > randBid && roundNumber === 1) {
                             alert(`Winn`);
                             setUserWinBid(true);
 
@@ -1066,7 +1070,10 @@ const FairNegotations = (props) => {
 
                                            setTimeout(() => {
 
+                                           
                                             setRoundNumber(roundNumber + 1);
+                                            getNextAppliance();
+                                    
                                             setMainRoundOver(true);
                                             setMediumBotWin(true);
 
@@ -1159,7 +1166,7 @@ const FairNegotations = (props) => {
                                     setModalShown({title: "Preferences", message: "No preferences found"});
                                     setBiddingOver(true);
 
-                                    
+
                                     setTimeout(() => {
                                        
                                         setTimeout(() => {
@@ -1175,6 +1182,8 @@ const FairNegotations = (props) => {
 
                                     allBotData.push({...creditsRemainingObj, intenseBotDifference, userCreditsLeft, userBid});
                                     allTheBidsData = [...allBotData];
+
+                                    return;
 
                                 }
 
@@ -1207,6 +1216,8 @@ const FairNegotations = (props) => {
                                     }, 3000)
                                   
                                 }
+
+                                return;
 
                               
                                  }
@@ -1650,6 +1661,8 @@ const FairNegotations = (props) => {
                     <h1>Round {roundNumber - 1} results - another household spent {win.winningBid} credits for {appliance}</h1>
                 </div>
             }) : null}
+
+            {mainRoundOver ? <button className = "results--btn">View Winning Results</button> : null}
             
 
 </section>
