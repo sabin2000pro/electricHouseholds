@@ -955,7 +955,7 @@ const FairNegotations = (props) => {
   
                                           setRoundNumber(roundNumber + 1);
                                           getNextAppliance();
-                                          
+
                                           setMainRoundOver(true);
                                           setBiddingOver(true);
                                           
@@ -1144,15 +1144,14 @@ const FairNegotations = (props) => {
                                 setTimeout(() => {
                                     let intenseCreditsLeftObj;
 
-                            for(let index = 0; index < bidData.length; index++) {
+                            for(let i = 0; i < bidData.length; i++) {
 
-                                    const userBid = parseInt(bidData[index].bid);
+                                    const nextUserBid = parseInt(bidData[i].bid);
 
-                                    
                                  for(let i = 0; i < numberOfIntenseBots; i++) {
+
                                     const {name, type, botCredits} = allIntenseBotData;
 
-                                
                                 let intenseBotBid = Math.floor(Math.random() * intenseBotBidAvg);
 
                                 let intenseBotCreditsRemaining = parsedIntenseBotCredits - intenseBotBid;
@@ -1162,7 +1161,9 @@ const FairNegotations = (props) => {
                                 intenseCreditsLeftObj = {intenseBotCreditsLeft};
                                 let intenseBotDifference = parsedIntenseBotCredits - intenseCreditsLeftObj.intenseBotCreditsLeft;
 
-                                if(userBid < intenseBotBid) {
+                                if(nextUserBid < intenseBotBid) {
+                                    console.log(`${name} and ${type} placed a bid of ${intenseBotDifference} and has ${botCredits} left`);
+
                                     setModalShown({title: "Preferences", message: "No preferences found"});
                                     setBiddingOver(true);
 
