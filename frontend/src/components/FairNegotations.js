@@ -1034,11 +1034,8 @@ const FairNegotations = (props) => {
                               setLastRoundForm(!lastRoundForm);
                             
   
-                              return;
-  
                           }
   
-                          return;
   
                           })
   
@@ -1150,10 +1147,12 @@ const FairNegotations = (props) => {
                                   medBotCreditsRemain = {medCredsLeft};
                                   let medBotDifference = parsedMediumBotCredits - medBotCreditsRemain.medCredsLeft;
 
-                                  if(nextRoundBid < mediumBotRandomBids && roundNumber === 2) {
+                                  if(nextRoundBid < mediumBotRandomBids) {
+                                      alert(`Lose round 2`);
 
+                                      getNextAppliance();
                                     setRoundNumber(roundNumber + 1);
-                                    getNextAppliance();
+                                    
 
                                     setBiddingOver(!biddingOver);
                                    
@@ -1162,21 +1161,7 @@ const FairNegotations = (props) => {
         
                                     setMediumBotWin(!mediumBotWin);
                                     setLastRoundForm(!lastRoundForm);
-                                    
 
-                                    if(mediumBotWin) {
-
-                                       setTimeout(() => {
-
-                                           return;
-
-                                     }, 4500)
-
-                                    }
-        
-        
-                                    return;
-        
                                 }
                             
                                     if(userBid < mediumBotRandomBids) {
