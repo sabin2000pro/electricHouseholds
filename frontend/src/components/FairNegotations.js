@@ -622,14 +622,7 @@ const FairNegotations = (props) => {
  
                  await axios.post(`http://localhost:5200/api/v1/bids/create-bid`, {bid: bid, nextRoundBid: nextRoundBid, lastRoundBid: lastRoundBid}).then(response => {
                      const newBidData = response.data;
-                     const bidLength = newBidData.length;
-
-                     console.log(`Number of bids : `);
-                     console.log(bidLength);
                      
-                     console.log(newBidData.newBid);
-                     console.log(newBidData.reputationPoints);
-
                      if(newBidData.newBid.bid === null && roundNumber === 3) {
                         // Handle Previous bid null values accordingly
                      }
@@ -813,8 +806,7 @@ const FairNegotations = (props) => {
         try {
 
             let lowBotPlacedBid = false;
-            
-
+        
            const {...allLowBotData} = lowBotData;
            const {...allMediumBotData} = mediumBotData;
            const {...allIntenseBotData} = intenseBotData;
@@ -1166,7 +1158,6 @@ const FairNegotations = (props) => {
 
                                     setModalShown({title: "Preferences", message: "No preferences found"});
                                     setBiddingOver(true);
-
 
                                     setTimeout(() => {
                                        
