@@ -973,7 +973,6 @@ const FairNegotations = (props) => {
   
                               return;
    
-  
                           }
 
                           if(theUserBid > randBid) {
@@ -986,7 +985,7 @@ const FairNegotations = (props) => {
                             getNextAppliance();
 
                             return;
-                    }
+                     }
 
   
   
@@ -1012,11 +1011,11 @@ const FairNegotations = (props) => {
       
                                   let mediumBotRandomBids = Math.floor(Math.random() * mediumBotBidAvg);
                                   let mediumBotCreditsRemaining = parsedMediumBotCredits - mediumBotRandomBids;
-                                  let mediumBotCreditsLeft = mediumBotCreditsRemaining;
+                                  let medCredsLeft = mediumBotCreditsRemaining;
       
                                   convertedBotBid = mediumBotRandomBids;
-                                  medBotCreditsRemain = {mediumBotCreditsLeft};
-                                  let medBotDifference = parsedMediumBotCredits - medBotCreditsRemain.mediumBotCreditsLeft;
+                                  medBotCreditsRemain = {medCredsLeft};
+                                  let medBotDifference = parsedMediumBotCredits - medBotCreditsRemain.medCredsLeft;
 
                                   if(nextRoundBid < mediumBotRandomBids && roundNumber === 2) {
 
@@ -1102,8 +1101,6 @@ const FairNegotations = (props) => {
                                            
                                         if(mediumBotRandomBids !== 0 && !(userBid) < mediumBotRandomBids) {
 
-                                            console.log(`${type} ${name} Bot Placed bid of ${mediumBotRandomBids}`);
-
                                              setModalShown({title: "Preferences", message: "No preferences found"});
                                                 setBiddingOver(true);
 
@@ -1140,7 +1137,7 @@ const FairNegotations = (props) => {
                                 setTimeout(() => {
                                     let intenseCreditsLeftObj;
 
-                                      for(let index = 0; index < bidData.length; index++) {
+                            for(let index = 0; index < bidData.length; index++) {
 
                                     const userBid = parseInt(bidData[index].bid);
 
@@ -1162,8 +1159,7 @@ const FairNegotations = (props) => {
                                     setModalShown({title: "Preferences", message: "No preferences found"});
                                     setBiddingOver(true);
 
-                                    console.log(`$THE ${type} ${name} Bot Placed bid of ${intenseBotBid}`);
-
+                                    
                                     setTimeout(() => {
                                        
                                         setTimeout(() => {
