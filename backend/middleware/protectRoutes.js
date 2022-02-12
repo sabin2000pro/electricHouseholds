@@ -1,3 +1,17 @@
+
+
+/*
+ * File Creation Date: December 2021
+ * Author: Sabin Constantin Lungu
+ * Purpose of File: Protects Back-End Routes with a JWT token
+ * -----
+ * Last Modified: Saturday 12th February 2022
+ * Modified By: Sabin Constantin Lungu
+ * -----
+ * Copyright (c) 2022 - eHouseholds Sabin Constantin Lungu. All Rights Reserved
+ * Any unauthorised broadcasting, public performance, copying or re-recording will constitute an infringement of copyright
+ */
+
 const Admin = require('../models/adminModel');
 const ErrorResponse = require('../utils/errorResponse');
 const catchAsync = require('../utils/catchAsync');
