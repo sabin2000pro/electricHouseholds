@@ -527,47 +527,6 @@ const FairNegotations = (props) => {
             })
     }
 
-    function reloadPage() {
-
-        return setTimeout(() => {
-            return window.location.reload(false);
-        }, 1000);
-    }
-
-    const processOpeningBid = function(openingBid, convertedBid) {
-
-        try {
-
-           return convertedBid === openingBid;
-        }
-        
-        catch(err) {
-
-            if(err) {
-                console.error(err);
-
-                throw new Error(err);
-            }
-        }
-    }
-
-    const processNullCredits = (virtualCredits) => {
-
-        try {
-            return virtualCredits !== 0;
-        }
-
-        catch(error) {
-
-            if(error) {
-                const someErrMsg = error.response.data;
-                console.error(someErrMsg);
-
-                throw new Error(someErrMsg);
-            }
-        }
-    }
-
     const handleInvalidBidSubmission = function(convertedBid, convertedNextRoundBid, convertedLastRoundBid, virtualCredits) {
 
         try {
@@ -606,14 +565,7 @@ const FairNegotations = (props) => {
                 setLastRoundBid("");
             }
             
-            if(processOpeningBid(openingBid, convertedBid)) {
-                alert(`Entered bid cannot be the same as the opening bid`);
-                
-                window.location.reload(false);
-                clearFields();
-                setSeconds(FLAGS.DEFAULT);
-            }
-            
+           
             setBidValid(true);
             handleUserTurn();
             handleBotTurn();
@@ -622,7 +574,7 @@ const FairNegotations = (props) => {
  
                  await axios.post(`http://localhost:5200/api/v1/bids/create-bid`, {bid: bid, nextRoundBid: nextRoundBid, lastRoundBid: lastRoundBid}).then(response => {
                      const newBidData = response.data;
-                     
+
                      if(newBidData.newBid.bid === null && roundNumber === 3) {
                         // Handle Previous bid null values accordingly
                      }
