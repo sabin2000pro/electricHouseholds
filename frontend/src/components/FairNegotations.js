@@ -455,6 +455,14 @@ const FairNegotations = (props) => {
         return `Current Highest Bid £${maxBid}`;
     };
 
+      /**
+         * 
+         * @returns : Returns a string with the total number of bids enclosed by single quotes
+         * @method: countTotalBids()
+         * @param: null
+         *
+         */
+
     const countTotalBids = () => {
 
         try {
@@ -481,7 +489,14 @@ const FairNegotations = (props) => {
         }
     }
 
-    // This routine is used to submit a bid that has been placed by sending a POST request to the back-end.
+      /**
+         * 
+         * @returns : null
+         * @method: submitBidHandler()
+         * @description: 
+         * @param: null
+         */
+
     const submitBidHandler = async (event) => {
 
         try {
@@ -516,6 +531,15 @@ const FairNegotations = (props) => {
 
     }, [bidSubmitted])
 
+     /**
+         * 
+         * @returns : null
+         * @method: performBid()
+         * @description: This function is responsible for fetching the Virtual Credits from the backend, looping through them using a for each loop, destructuring the opening bid and virtual credits aavailable
+         * @description: Finally, it invokes a routine called submit bid which sends off a POST request to the server to store the virtual credits entered by the user
+         * @param: null
+         */
+
     const performBid = async () => {
 
         await axios.get(`http://localhost:5200/api/v1/credits/get-credits`).then(response => {
@@ -547,6 +571,16 @@ const FairNegotations = (props) => {
                 }
             })
     }
+
+       /**
+         * 
+         * @returns : Returns true OR false depending on the outcome of the pre-condition
+         * @method: handleInvalidBidSubmission()
+         * @param: convertedBid: The parsed bid to an integer
+         * @param: convertedNextRoundBid: The parsed next round bid submitted by the user
+         * @param: virtualCredits: The number of virtual credits remaining
+         * @param: convertedLastRoundBid: The last round bid placed by the user
+         */
 
     const handleInvalidBidSubmission = function(convertedBid, convertedNextRoundBid, convertedLastRoundBid, virtualCredits) {
 
@@ -1224,6 +1258,15 @@ const FairNegotations = (props) => {
 
     }, [results]);
 
+        /**
+     * 
+     * @returns : String
+     * @method: findMaxBetween()
+     * @description: This function is used to find the maximum bid placed between the user and other households.
+     * @description: This routine deals with mutability. The maximum bid is stored in the variable maxBidBetween and is returned
+     * @param: null
+     */
+
     const findMaxBetween = function() {
 
         let maxBidBetween = 0;
@@ -1262,6 +1305,15 @@ const FairNegotations = (props) => {
     useEffect(() => {
        
     }, [lastApplianceSet])
+
+         /**
+         * 
+         * @returns : null
+         * @method: connectDB()
+         * @description: Asynchronous Function fetches the next and last appliance that has been submitted by the user. It loops through the end of an array after fetching the preferences using axios and sending a GET request.
+         * @description: It returns the last appliance by slicing the last index in the array and pushing it into another array
+         * @param: null
+         */
 
       const getNextAppliance = async () => {
 
