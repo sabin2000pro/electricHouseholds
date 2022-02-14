@@ -15,6 +15,11 @@ const preferencesSchema = new mongoose.Schema({
         type: String
     },
 
+    day: {
+        type: String,
+        enum: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    },
+
     hasFirstAppliance: {
         type: Boolean,
         default: false

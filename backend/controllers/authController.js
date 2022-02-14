@@ -159,7 +159,6 @@ module.exports.fetchAllAdmins = catchAsync(async (request, response, next) => {
 module.exports.deleteAdminAccount = catchAsync(async (request, response, next) => {
 
     if(method === 'DELETE') {
-        const method = request.method;
         const id = request.params.id;
 
         if(!id) {
@@ -174,6 +173,7 @@ module.exports.deleteAdminAccount = catchAsync(async (request, response, next) =
 module.exports.deleteAllAdmins = catchAsync(async(request, response, next) => {
     
     if(request.method === 'DELETE') {
+        
         await Admin.deleteMany();
         return response.status(204).json({success: true, message: 'All Admins Deleted Success'});
     }

@@ -1115,7 +1115,6 @@ const FairNegotations = (props) => {
                 }
 
                 if(roundNumber === 1 || (roundNumber === 2) && (userTurn && botTurn)) {
-                    
 
                      setTimeout(() => {
 
@@ -1124,7 +1123,6 @@ const FairNegotations = (props) => {
                               for(let index = 0; index < bidData.length; index++) {
 
                                  const userBid = parseInt(bidData[index].bid);
-
                                  
                               for(let i = 0; i < numberOfMediumBots; i++) {
       
