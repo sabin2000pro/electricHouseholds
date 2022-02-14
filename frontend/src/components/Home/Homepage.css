@@ -99,6 +99,7 @@ Main Color: #00b894
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 96px;
+    width: -20px;
     margin-top: -50px;
     align-items: center;
 }
