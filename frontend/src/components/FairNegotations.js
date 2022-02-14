@@ -1096,20 +1096,20 @@ const FairNegotations = (props) => {
    
                           }
 
-                          if(theUserBid > randBid && roundNumber === 1) {
-                            alert(`Winn`);
-                            setUserWinBid(true);
+                          if(theUserBid > randBid && roundNumber === 1) { // if the bid of the user is > low bot bid and we are in round 1
+
+                            alert(`User - you win against another household. Moving onto round ${roundNumber + 1}`);
+                            setUserWinBid(!userWinBid);
 
                             setRoundNumber(roundNumber + 1);
                           
-                            setMainRoundOver(true);
+                            setMainRoundOver(!mainRoundOver);
                             getNextAppliance();
 
                             return;
                      }
 
-  
-  
+
                         }
                       }
                 }
