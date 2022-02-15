@@ -7,6 +7,7 @@ const preferencesSchema = new mongoose.Schema({
     username: {
         type: String,
         required: [true, 'You must specify username please'],
+        
         min: [10, 'Username must NOT be less than 10 characters'],
         max: [20, 'Username cannot exceed 20 characters']
     },
@@ -20,17 +21,7 @@ const preferencesSchema = new mongoose.Schema({
         enum: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
     },
 
-    hasFirstAppliance: {
-        type: Boolean,
-        default: false
-    },
-
-    hasSecondAppliance: {
-        type: Boolean,
-        default: false
-    },
-
-    hasThirdAppliance: {
+    hasAppliance: {
         type: Boolean,
         default: false
     },
