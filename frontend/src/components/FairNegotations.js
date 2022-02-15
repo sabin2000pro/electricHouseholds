@@ -73,10 +73,12 @@ const FairNegotations = (props) => {
    
     let [userInputDisabled, setUserInputDisabled] = useState(false);
     const [bidsFound, setBidsFound] = useState(false);
+
     const [enteredFeedbackUsername, setEnteredFeedbackUsername] = useState("");
     const [enteredFeedbackEmailAddress, setEnteredFeedbackEmailAddress] = useState("");
     const [chosenFeedbackFeeling, setChosenFeedbackFeeling] = useState("");
     const [enteredFeedbackDescription, setEnteredFeedbackDescription] = useState('');
+
     const [feedbackFormValid, setFeedbackFormValid] = useState(false);
     const [feedbackFormSubmitted, setFeedbackFormSubmitted] = useState(false);
 
@@ -126,6 +128,7 @@ const FairNegotations = (props) => {
 
     const [feedbackFormDisplay, setFeedbackFormDisplay] = useState(false);
     const [results, setResults] = useState([]);
+    const [roundLost, setRoundLost] = useState(false);
 
     /**
          * 
@@ -1015,12 +1018,12 @@ const FairNegotations = (props) => {
                             setRoundNumber(roundNumber + 1);
                             getNextAppliance();
 
-                              setRoundTwoOver(!roundTwoOver);
-                              setLastRoundForm(!lastRoundForm);
-                              setNextRoundBid("");
+                            setRoundTwoOver(!roundTwoOver);
+                            setLastRoundForm(!lastRoundForm);
+                            setNextRoundBid("");
   
-                              setLowBotWin(!lowBotWin);
-                              setLastRoundForm(!lastRoundForm);
+                            setLowBotWin(!lowBotWin);
+                            setLastRoundForm(!lastRoundForm);
                             
   
                               return;
@@ -1542,6 +1545,7 @@ const FairNegotations = (props) => {
     }
 
     const submitFeedbackHandler = async (event) => {
+
         try {
 
             event.preventDefault();
@@ -1605,6 +1609,7 @@ const FairNegotations = (props) => {
 
     // Routine invoked to display the winner.
     const viewResultsHandler = () => {
+
         try {
             console.log(`Inside the view results handler`);
         } 
@@ -1757,15 +1762,37 @@ const FairNegotations = (props) => {
 </RegisterCard>  
 
 
-</div>}
+</div>
+
+}
 
         
         </div> 
 
+
+        <div className = "container grid grid--2-cols">
+                        <RegisterCard>
+
+                    <h1 className = "bid--header">Submit Feedback</h1>
+                <form id = "feedbackForm" className = "login--form" onSubmit = {submitFeedbackHandler} method = "POST">
+
+                    <div className = "feedback--container">
+                        <label htmlFor = "feedbackUsername">Username</label>
+                        <input placeholder = "Enter Username" type = "text" value = {enteredFeedbackUsername} onChange = {(e) => {setEnteredFeedbackUsername(e.target.value)}} />
+                    </div>
+
+                </form>
+
+                </RegisterCard>
+
+     </div>
+
         </div>
+        
 
 : undefined }
 
+            
 
  {/* <div className = "container grid grid--2-cols">
 
@@ -1781,14 +1808,16 @@ const FairNegotations = (props) => {
             </div> */}
 
             {mainRoundOver ? results.map((win, key) => {
+
                 return <div key = {key}>
                     <h1>Round {roundNumber - 1} results - another household spent {win.winningBid} credits for {appliance}</h1>
                 </div>
+
             }) : null}
 
             {mainRoundOver ? <button className = "results--btn">View Winning Results</button> : null}
-            
 
+        
 </section>
 
     <footer className = "footer">
