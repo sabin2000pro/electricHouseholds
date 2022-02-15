@@ -412,7 +412,9 @@ const FairNegotations = (props) => {
 
 
                     setTimeout(() => {
-                        alert(`You are not allowed to start bidding because no households to bid against are found`)
+                        alert(`You are not allowed to start bidding because no households to bid against are found`);
+
+                        return history.push('/');
                     }, 2000)
 
                 }
@@ -1096,7 +1098,7 @@ const FairNegotations = (props) => {
                           }
 
                           if(theUserBid > randBid && roundNumber === 1) { // if the bid of the user is > low bot bid and we are in round 1
-                            
+
                             setModalShown({title: "Preferences", message: "No preferences found"});
                             setUserWinBid(!userWinBid);
 

@@ -50,7 +50,7 @@ const PreferencesHome = () => {
 
     <footer className = "footer">
         <ul className = "footer--items">
-            <li className = "footer--item">Copyright All Rights Reserved - eHouseholds Sabin Constantin Lungu - 2021</li>
+            <li className = "footer--item">Copyright All Rights Reserved - eHouseholds Sabin Constantin Lungu - 2022</li>
         </ul>
     </footer>
 

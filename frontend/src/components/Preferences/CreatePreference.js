@@ -691,7 +691,6 @@ const CreatePreference = (props) => {
                 </div>
 
 
-          
             }) : null};
             
         </section>
