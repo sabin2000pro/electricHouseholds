@@ -173,11 +173,10 @@ const CreatePreference = (props) => {
         let lastAppliancePost = {};
 
         lastApplianceData.forEach((app, key) => {
-            console.log(`Keyval`);
            lastAppliancePost = app;
         });
  
-         await axios.post(`http://localhost:5200/api/v1/preferences/create-preference`, {username: enteredUsername, appliance: firstApplianceData[0], nextAppliance: nextApplianceData[0] , lastAppliance: lastAppliancePost.name, firstPreference: chosenFirstPreference, secondPreference: chosenSecondPreference , thirdPreference: chosenThirdPreference}).then(response => {
+         return await axios.post(`http://localhost:5200/api/v1/preferences/create-preference`, {username: enteredUsername, appliance: firstApplianceData[0], nextAppliance: nextApplianceData[0] , lastAppliance: lastAppliancePost.name, firstPreference: chosenFirstPreference, secondPreference: chosenSecondPreference , thirdPreference: chosenThirdPreference}).then(response => {
                 setModalShown({title: 'Preferences', message: 'Your Preferences Have Been Submitted', showForm: false, showDefaultBtn: true});
 
                 setChosenAppliance("");
@@ -202,7 +201,7 @@ const CreatePreference = (props) => {
 
                 if(err) {
 
-                    console.log(err);
+                    return console.error(err);
                 }
             })
         

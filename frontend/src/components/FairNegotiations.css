@@ -72,14 +72,14 @@
 
 
 .bid--container input {
-    margin-right: 140px;
-    margin-bottom: 50px;
-    margin-top: 50px;
+    margin-right: 49px;
+    margin-bottom: 70px;
+    margin-top: -50px;
 }
 
-.bid--lbl {
-    margin-right: -100px;
-    margin-top: 50px;
+.bid--container label {
+    margin-left: 130px;
+    margin-right: 50px;
 }
 
 .third--pref {
