@@ -575,6 +575,7 @@ const CreatePreference = (props) => {
                <option>Yes</option>
                <option>No</option>
             </select>
+            
         </div>
 
         <div className = "morningslot--box">
