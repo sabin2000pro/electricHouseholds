@@ -110,10 +110,10 @@ const FairNegotations = (props) => {
     const [biddingOver, setBiddingOver] = useState(false);
     const [lowBotWin, setLowBotWin] = useState(false);
     const [mediumBotWin, setMediumBotWin] = useState(false);
+
     const [intenseBotWin, setIntenseBotWin] = useState(false);
    
     const [modalShown, setModalShown] = useState();
-
     let [userCreditsLeft, setUserCreditsLeft] = useState({});
 
     const [nextRoundBid, setNextRoundBid] = useState('');
@@ -323,6 +323,7 @@ const FairNegotations = (props) => {
         try {
 
             return await axios.get(`http://localhost:5200/api/v1/credits/get-credits`).then(response => {
+
                 const credits = response.data.allCredits;
                 setCreditsFetched(true);
 
@@ -584,8 +585,14 @@ const FairNegotations = (props) => {
               
                 performBid();
             }
+
             if(roundNumber === 3) {
                 performBid();
+            }
+
+            if(roundNumber > 3) {
+                alert(`No more rounds found...`);
+                return;
             }
    
         } 
@@ -700,7 +707,7 @@ const FairNegotations = (props) => {
                 setLastRoundBid("");
             }
         
-            
+
             setBidValid(true);
             handleUserTurn();
             handleBotTurn();
@@ -927,6 +934,13 @@ const FairNegotations = (props) => {
      })
    }
 
+   useEffect(() => {
+    if(roundLost) {
+        console.log(`ROUND LOST`);
+        console.log(roundLost);
+    }
+   }, [roundLost])
+
 
    /**
          * 
@@ -1055,6 +1069,7 @@ const FairNegotations = (props) => {
   
   
                           if(theUserBid < randBid) {
+                              setRoundLost(!roundLost);
 
                               setModalShown({title: "Preferences", message: "No preferences found"});
                               setBiddingOver(true);
