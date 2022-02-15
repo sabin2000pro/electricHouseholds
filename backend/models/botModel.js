@@ -19,6 +19,12 @@ const BotSchema = new mongoose.Schema({
     numberOfBots: { // The number of bots the user decides to choose
         type: String,
         default: 0
+    },
+
+    roundNumnber: {
+        type: Number,
+        default: 1,
+        max: [3, 'There can only be a max of 3 rounds']
     }
 });
 

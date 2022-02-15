@@ -55,6 +55,7 @@ const lastRemainingAppliance = [];
  * @param: props
  */
 
+
 const FairNegotations = (props) => {
 
     let location = useLocation();
