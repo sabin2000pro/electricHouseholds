@@ -215,6 +215,7 @@ const FairNegotations = (props) => {
           if(roundNumber === 1 && seconds === 0) {
 
               alert(`TIme up after 1R1`);
+              // Display modal after the time is up for round 1
               setMainRoundOver(!mainRoundOver);
               getNextAppliance();
 
@@ -225,6 +226,7 @@ const FairNegotations = (props) => {
           if(roundNumber === 2 && seconds === 0) {
               alert(`Time up R2`);
 
+              // Display modal after time is up for round 2
               setRoundTwoOver(true);
               getNextAppliance();
 
@@ -274,7 +276,7 @@ const FairNegotations = (props) => {
 
       // Clears the input field
       function clearFields() {
-        setBid("");
+        return setBid("");
       }
 
       useEffect(() => {
@@ -335,6 +337,7 @@ const FairNegotations = (props) => {
             }).catch(error => {
 
                 if(error) {
+
                      console.error(error.response.data);
                      throw new Error(error);
                 }
@@ -428,9 +431,9 @@ const FairNegotations = (props) => {
 
                     for(let i = 0; i < theBotData.length - 1; i++) {
 
-                        const botTypes = theBotData[i].type;
+                        const typesOfBots = theBotData[i].type;
 
-                        if(!botTypes.includes(availableTypesOfBots[0]) && !botTypes.includes(availableTypesOfBots[1]) && !botTypes.includes(availableTypesOfBots[2])) {
+                        if(!typesOfBots.includes(availableTypesOfBots[0]) && !typesOfBots.includes(availableTypesOfBots[1]) && !typesOfBots.includes(availableTypesOfBots[2])) {
 
                             return setTimeout(() => {
                                 alert(`We could not find any Households. Sorry for the inconvenience`);
@@ -688,6 +691,7 @@ const FairNegotations = (props) => {
 
             if(handleInvalidBidSubmission(convertedBid, convertedNextRoundBid, convertedLastRoundBid, virtualCredits)) {
                 alert(`Insufficient Virtual Credits. Please bid again`); 
+                // Display modal to display insufficient credits
                 return;   
             }
 
@@ -695,8 +699,8 @@ const FairNegotations = (props) => {
                 alert(`Cannot place a bid of 0`);
                 setLastRoundBid("");
             }
+        
             
-           
             setBidValid(true);
             handleUserTurn();
             handleBotTurn();
@@ -864,10 +868,6 @@ const FairNegotations = (props) => {
             
         }
 
-        if(roundNumber === 3) {
-
-        }
-
         if(roundNumber > 3) {
             alert(`No more rounds to process`)
         }
@@ -912,7 +912,7 @@ const FairNegotations = (props) => {
            if(roundNumber === 2) {
 
             if(creditsAvailable === 0) {
-              
+                setOutOfCredits(true);
                 return;
             }
          
@@ -991,6 +991,7 @@ const FairNegotations = (props) => {
                       getVirtualCreditsRemaining(theUserBid);
 
                       if(!outOfCredits) {
+                          setOutOfCredits(false);
 
                         for(let i = 0; i < numberOfLowBots; i++) {
 
@@ -1013,7 +1014,11 @@ const FairNegotations = (props) => {
                           nextApplianceRound = nextApp;
   
                           if(nextRoundBid < randBid && roundNumber === 2) {
-                            alert(`You lose the second round`);
+                            alert(`You lose the round`);
+
+                            // Set the round to be over
+                            // Show modal saying that you lost the second round and then display the results
+                            // Set flag to show the winning results
 
                             setRoundNumber(roundNumber + 1);
                             getNextAppliance();
@@ -1199,6 +1204,7 @@ const FairNegotations = (props) => {
                                       if(type === botTypes.MEDIUM && botCredits > 0 && name != null && (userBid > mediumBotRandomBids)) {
 
                                         setModalShown({title: "Preferences", message: "No preferences found"});
+
                                             setBiddingOver(true);
 
                                             setTimeout(() => {
@@ -1230,7 +1236,8 @@ const FairNegotations = (props) => {
 
                                                     }, 4500);
 
-                                                }, 4000)
+                                                }, 4000);
+
 
                                                 allBotData.push({...medBotCreditsRemain, medBotDifference, userCreditsLeft, userBid});
                                                 allTheBidsData = [...allBotData];
@@ -1782,18 +1789,27 @@ const FairNegotations = (props) => {
 
                     <div className = "feedback--container">
                         <label htmlFor = "feedbackUsername">Username</label>
-                        <input placeholder = "Enter Username" type = "text" value = {enteredFeedbackUsername} onChange = {(e) => {setEnteredFeedbackUsername(e.target.value)}} />
+                        <input value = {enteredFeedbackUsername} placeholder = "Enter Username" onChange = {(e) => {setEnteredFeedbackUsername(e.target.value)}} />
                     </div>
 
                     <div className = "feedback--container">
-                        <label htmlFor = "feedbackUsername">Username</label>
-                        <input placeholder = "Enter Username" type = "text" value = {enteredFeedbackUsername} onChange = {(e) => {setEnteredFeedbackUsername(e.target.value)}} />
+                        <label htmlFor = "feedbackUsername">E-mail</label>
+                        <input />
                     </div>
 
                     <div className = "feedback--container">
-                        <label htmlFor = "feedbackUsername">Username</label>
-                        <input placeholder = "Enter Username" type = "text" value = {enteredFeedbackUsername} onChange = {(e) => {setEnteredFeedbackUsername(e.target.value)}} />
+                        <label htmlFor = "feedbackUsername">Feeling</label>
+                        <input />
                     </div>
+
+                    <div className = "feedback--container">
+                        <label htmlFor = "feedbackUsername">Description</label>
+                        <input />
+                    </div>
+
+                    <div className = "submit-bid--container">
+                    <button className = "login--btn">Submit</button>
+                </div>
 
 
                 </form>
