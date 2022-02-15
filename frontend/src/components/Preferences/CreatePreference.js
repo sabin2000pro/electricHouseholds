@@ -94,7 +94,6 @@ const CreatePreference = (props) => {
     const [chosenDay, setChosenDay] = useState("");
     const [dayChosenByUser, setDayChosenByUser] = useState(false);
     const [hasTheAppliance, setHasTheAppliance] = useState(false);
-
     
 
     useEffect(() => {
@@ -157,6 +156,13 @@ const CreatePreference = (props) => {
 
     }, [preferenceSubmitted, firstApplianceFound, secondPrefSubmitted, lastPrefSubmitted, lastApplianceFound]);
 
+    useEffect(() => {
+
+        console.log('Has the appliance ? ');
+        console.log(hasTheAppliance);
+
+    }, [hasTheAppliance])
+
     const processPreference = async () => {
 
         let invalidChars = ['<', '>', '()', "'", ';'];
@@ -181,7 +187,18 @@ const CreatePreference = (props) => {
         });
  
          return await axios.post(`http://localhost:5200/api/v1/preferences/create-preference`, {username: enteredUsername, appliance: firstApplianceData[0], nextAppliance: nextApplianceData[0] , lastAppliance: lastAppliancePost.name, firstPreference: chosenFirstPreference, secondPreference: chosenSecondPreference , thirdPreference: chosenThirdPreference, hasAppliance: hasTheAppliance, day: dayChosenByUser}).then(response => {
-             console.log(response);
+             const hasAppliance = JSON.stringify(response.data.newPreference.hasAppliance);
+
+             let hasAppliancePreference = hasAppliance.replaceAll('"', '');
+
+             if(hasAppliancePreference === 'No') {
+                 alert(`User does not preferences for this appliance`);
+                 setHasTheAppliance(!hasTheAppliance);
+                 return;
+             }
+
+             // Process if user does not have appliance and if user has appliance
+
                 setModalShown({title: 'Preferences', message: 'Your Preferences Have Been Submitted', showForm: false, showDefaultBtn: true});
 
                 setChosenAppliance("");
@@ -229,17 +246,16 @@ const CreatePreference = (props) => {
         try {
 
             return await axios.get(`http://localhost:5200/api/v1/appliances/fetch-appliances`).then(response => {
-
-                const allAppliances = response.data.appliances;
-                setAppliances(allAppliances);
-
-                console.log("All Appliances");
-                
                 let appName;
                 let nextAppName;
                 let lastAppName;
 
+                const allAppliances = response.data.appliances;
+                setAppliances(allAppliances);
+            
+
                for(let i = 0; i < allAppliances.length; i++) {
+
                    appName = allAppliances[0].name;
                    nextAppName = allAppliances[1].name; 
                    lastAppName = allAppliances.slice(-1)[0];
