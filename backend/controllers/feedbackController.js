@@ -44,15 +44,14 @@ module.exports.viewFeedbackByID = catchAsync(async (request, response, next) => 
 
 module.exports.createFeedback = catchAsync(async (request, response, next) => {
     
-
     if(request.method === 'POST') {
-        const {feedbackUsername, feedbackEmailAddress, feedbackFeeling, feedbackDescription} = request.body;
+        const {feedbackUsername, feedbackEmailAddress, feedbackFeeling, feedbackDescription, feedbackReason} = request.body;
 
         if(!feedbackUsername || !feedbackEmailAddress || !feedbackFeeling || !feedbackDescription) {
             return next(new ErrorResponse(`Invalid Feedback Entries`, 400));
         }
 
-        const newFeedback = new Feedback({feedbackUsername, feedbackEmailAddress, feedbackFeeling, feedbackDescription});
+        const newFeedback = new Feedback({feedbackUsername, feedbackEmailAddress, feedbackFeeling, feedbackDescription, feedbackReason});
         await newFeedback.save(); // Save feedback to database
     
         return response.status(created).json({newFeedback});

@@ -1263,6 +1263,10 @@ const FairNegotations = (props) => {
 
                                     const {name, type, botCredits} = allIntenseBotData;
 
+                                    if(!name || !type || !botCredits) {
+                                        console.log(`Could not find data`);
+                                    }
+
                                 let intenseBotBid = Math.floor(Math.random() * intenseBotBidAvg);
 
                                 let intenseBotCreditsRemaining = parsedIntenseBotCredits - intenseBotBid;
@@ -1273,8 +1277,7 @@ const FairNegotations = (props) => {
                                 let intenseBotDifference = parsedIntenseBotCredits - intenseCreditsLeftObj.intenseBotCreditsLeft;
 
                                 if(nextUserBid < intenseBotBid) {
-                                    console.log(`${name} and ${type} placed a bid of ${intenseBotDifference} and has ${botCredits} left`);
-
+                                    
                                     setModalShown({title: "Preferences", message: "No preferences found"});
                                     setBiddingOver(true);
 
@@ -1389,6 +1392,7 @@ const FairNegotations = (props) => {
 
                 const lowBotBid = parseInt(allTheBidsData[i].theDifference);
                 const medBotBid = parseInt(allTheBidsData[i].medBotDifference);
+
                 const intenseBotBid = parseInt(allTheBidsData[i].intenseBotDifference);
                 const userBid = parseInt(allTheBidsData[i].userBid);
 
@@ -1652,6 +1656,7 @@ const FairNegotations = (props) => {
 
             <h1>Username: {username} </h1>
             <h1>Bidding Seconds: {seconds}</h1>
+            <h1>Household Credits: </h1>
 
 
              {!mainRoundOver && roundNumber === 1 ? <h1 className = "first--pref">First Chosen Preference : {firstPreference}</h1> : null }
@@ -1769,7 +1774,6 @@ const FairNegotations = (props) => {
         
         </div> 
 
-
         <div className = "container grid grid--2-cols">
                         <RegisterCard>
 
@@ -1781,9 +1785,20 @@ const FairNegotations = (props) => {
                         <input placeholder = "Enter Username" type = "text" value = {enteredFeedbackUsername} onChange = {(e) => {setEnteredFeedbackUsername(e.target.value)}} />
                     </div>
 
+                    <div className = "feedback--container">
+                        <label htmlFor = "feedbackUsername">Username</label>
+                        <input placeholder = "Enter Username" type = "text" value = {enteredFeedbackUsername} onChange = {(e) => {setEnteredFeedbackUsername(e.target.value)}} />
+                    </div>
+
+                    <div className = "feedback--container">
+                        <label htmlFor = "feedbackUsername">Username</label>
+                        <input placeholder = "Enter Username" type = "text" value = {enteredFeedbackUsername} onChange = {(e) => {setEnteredFeedbackUsername(e.target.value)}} />
+                    </div>
+
+
                 </form>
 
-                </RegisterCard>
+         </RegisterCard>
 
      </div>
 
