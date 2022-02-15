@@ -22,8 +22,8 @@ const preferencesSchema = new mongoose.Schema({
     },
 
     hasAppliance: { // Stores true or false if the user has the current appliance being asked to enter preference for
-        type: Boolean,
-        default: false
+        type: String,
+        required: [true, 'You must let us know if you have this appliance or not']
     },
 
     firstPreference: {

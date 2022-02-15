@@ -320,7 +320,7 @@ const CreatePreference = (props) => {
                                     filteredAppliances.forEach((filteredVals) => {
                                         newAppliance.push(...filteredVals);
                                         nextApplianceData = [...newAppliance];
-;                                   });
+                                   });
 
                                     for(let z = 0; z < lastApplianceData.length - 1; z++) {
                                    
@@ -379,6 +379,7 @@ const CreatePreference = (props) => {
             }).catch(err => {
 
                 if(err) {
+
                     console.error(err);
                     throw new Error(err);
 
@@ -570,12 +571,11 @@ const CreatePreference = (props) => {
      <div className = "has--box">
             <label className = "has--lbl">Have appliance?</label>
 
-            <select className = "box">
+            <select onChange = {(e) => {setHasTheAppliance(e.target.value)}} value = {hasTheAppliance}  className = "box">
                <option>Yes</option>
                <option>No</option>
             </select>
         </div>
-
 
         <div className = "morningslot--box">
 
