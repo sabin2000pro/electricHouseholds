@@ -518,7 +518,7 @@ const FairNegotations = (props) => {
 
     }
 
-        return `Current Highest Bid £${maxBid}`;
+        return `Current Highest Bid ${maxBid}`;
     };
 
       /**
@@ -682,7 +682,8 @@ const FairNegotations = (props) => {
             const convertedBid = parseInt(bid);
 
             if(handleInvalidBidSubmission(convertedBid, convertedNextRoundBid, convertedLastRoundBid, virtualCredits)) {
-                alert(`Insufficient Virtual Credits. Please bid again`);    
+                alert(`Insufficient Virtual Credits. Please bid again`); 
+                return;   
             }
 
             if(convertedLastRoundBid === 0 || convertedNextRoundBid === 0 || convertedBid === 0) {
@@ -1399,7 +1400,6 @@ const FairNegotations = (props) => {
                     maxBidBetween = userBid;
                 }
     
-
                 return `Round ${roundNumber} - the winning bidder placed a round wining bid of ${maxBidBetween} and receives the timeslots ${firstPreference} ${secondPreference} and ${thirdPreference} for the appliance ${appliance}`;
             } 
     
@@ -1624,7 +1624,7 @@ const FairNegotations = (props) => {
 
          
         <div className = "container grid grid--2-cols">
-            <button onClick = {chosenEnglishAuctionHandler} className = "auction--btn">First Priced Sealed Bid </button>
+            <button onClick = {chosenEnglishAuctionHandler} className = "auction--btn">Auction</button>
             <button onClick = {chosenSocialExchangeHandler} className = "social--btn">Social Exchange</button>
         </div>
 
@@ -1644,9 +1644,8 @@ const FairNegotations = (props) => {
 
 
              {!mainRoundOver && roundNumber === 1 ? <h1 className = "first--pref">First Chosen Preference : {firstPreference}</h1> : null }
-             {!mainRoundOver && roundNumber === 1 ? <h1 className = "first--pref">Next Chosen Preference : {secondPreference}</h1> : null }
-             {!mainRoundOver && roundNumber === 1 ?  <h1 className = "first--pref">Last Chosen Preference : {thirdPreference}</h1> : null }
-
+             {roundNumber === 2 ? <h1 className = "first--pref">Second Chosen Preference : {secondPreference}</h1> : null}
+             {roundNumber === 3 ? <h1 className = "first--pref">Third Chosen Preference : {thirdPreference}</h1> : null}
 
             <h1>{findMaxBid()}</h1>
             <h1>{countTotalBids()}</h1>

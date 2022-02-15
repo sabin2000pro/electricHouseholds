@@ -14,7 +14,7 @@
 /* eslint-disable no-lone-blocks */
 import React, {useState, Fragment, useEffect} from 'react';
 import './CreatePreference.css';
-import {Link} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 import RegisterCard from '../Admin/RegisterCard';
 import axios from 'axios';
 import Modal from '../../UI/Modal';
@@ -24,7 +24,7 @@ let DEFAULT_TEXT = {
 }
 
 const applianceNames = [];
-// Fake other household preferences
+
 let otherPreferences = [
 
     {
@@ -41,9 +41,10 @@ let otherPreferences = [
   let sanitizedInputs = [];
 
 const CreatePreference = (props) => {
+    let history = useHistory();
     const [enteredUsername, setUsername] = useState("");
     const [usernameValid, setUsernameValid] = useState(true);
-    const [chosenAppliance, setChosenAppliance] = useState("");
+    const [firstApplianceFound, setFirstApplianceFound] = useState(false);
 
     const [otherFirstPref, setOtherFirstPref] = useState('');
     const [otherSecondPref, setOtherSecondPref] = useState('');
@@ -56,6 +57,7 @@ const CreatePreference = (props) => {
     const [appliances, setAppliances] = useState([]); // Array of appliances
     const [preferences, setPreferences] = useState([]);
     const [formValid, setFormValid] = useState(true);
+    const [applianceFound, setApplianceFound] = useState(false);
 
     const [preferencesBtnClicked, setPreferencesBtnClicked] = useState(false);
     const [preferenceSubmitted, setPreferenceSubmitted] = useState(false);
@@ -83,6 +85,17 @@ const CreatePreference = (props) => {
 
     const [nextApplianceDataInserted, setNextApplianceDataInserted] = useState(false);
     const [lastApplianceDataInserted, setLastApplianceDataInserted] = useState(false);
+    const [chosenAppliance, setChosenAppliance] = useState("");
+
+    const [lastApplianceFound, setLastApplianceFound] = useState(false);
+    const [secondPrefSubmitted, setSecondPrefSubmitted] = useState(false);
+    const [lastPrefSubmitted, setLastPrefSubmitted] = useState(false);
+    const [chosenDay, setChosenDay] = useState(false);
+
+    useEffect(() => {
+        console.log(`Pref submitted ? `);
+        console.log(preferenceSubmitted);
+    }, [preferenceSubmitted])
 
 
     const preferencesSubmitHandler = async (e) => {
@@ -118,7 +131,6 @@ const CreatePreference = (props) => {
             else {
 
                 processPreference();
-                setPreferenceSubmitted(true);
                 setFormValid(true);
                 setShowOkBtn(false);
 
@@ -137,7 +149,10 @@ const CreatePreference = (props) => {
         }
     }
 
-    // Function to process user preference. Performs some validation before
+    useEffect(() => {
+
+    }, [preferenceSubmitted, firstApplianceFound, secondPrefSubmitted, lastPrefSubmitted, lastApplianceFound]);
+
     const processPreference = async () => {
 
         let invalidChars = ['<', '>', '()', "'", ';'];
@@ -155,19 +170,32 @@ const CreatePreference = (props) => {
             }
         }
 
+        if(firstApplianceFound) {
 
-    await axios.post(`http://localhost:5200/api/v1/preferences/create-preference`, {username: enteredUsername, appliance: chosenAppliance, nextAppliance: chosenNextAppliance, lastAppliance: chosenLastAppliance,  firstPreference: chosenFirstPreference, secondPreference: chosenSecondPreference , thirdPreference: chosenThirdPreference}).then(response => {
-        setModalShown({title: 'Preferences', message: 'Your Preferences Have Been Submitted', showForm: false, showDefaultBtn: true});
-
-        setChosenAppliance("");
-        setChosenFirstPreference("");
-        setChosenSecondPreference("");
-        setChosenThirdPreference("");
-
-        return processNextAppliance();
-           
-    })
-       
+            await axios.post(`http://localhost:5200/api/v1/preferences/create-preference`, {username: enteredUsername, appliance: firstApplianceData[0], nextAppliance: chosenNextAppliance, lastAppliance: chosenLastAppliance,  firstPreference: chosenFirstPreference, secondPreference: chosenSecondPreference , thirdPreference: chosenThirdPreference}).then(response => {
+                setModalShown({title: 'Preferences', message: 'Your Preferences Have Been Submitted', showForm: false, showDefaultBtn: true});
+                console.log(response);
+        
+                setChosenAppliance("");
+                setChosenFirstPreference("");
+                setChosenSecondPreference("");
+                setChosenThirdPreference("");
+        
+                setPreferenceSubmitted(!preferenceSubmitted);
+                setFirstApplianceFound(false);
+        
+                setSecondPrefSubmitted(!secondPrefSubmitted)
+                setLastApplianceFound(true);
+        
+                setLastPrefSubmitted(true);
+                setLastApplianceFound(true);
+        
+                if(preferenceSubmitted && secondPrefSubmitted) {
+                    processNextAppliance();
+                }
+        
+            })
+        }  
     }
     
     const modalHandler = () => {
@@ -178,6 +206,10 @@ const CreatePreference = (props) => {
         return fetchAllAppliances();
     }, []);
 
+    useEffect(() => {
+
+    }, [firstApplianceFound, lastApplianceFound])
+
     const fetchAllAppliances = async () => {
         try {
 
@@ -185,13 +217,28 @@ const CreatePreference = (props) => {
 
                 const allAppliances = response.data.appliances;
                 setAppliances(allAppliances);
-               
-                return response.data.appliances.forEach((appl) => {
-                    const {name} = appl;
-                    applianceNames.push(name);
-                });
 
+                let appName;
+                let nextAppName;
+                let lastAppName;
 
+               for(let i = 0; i < allAppliances.length; i++) {
+                   appName = allAppliances[0].name;
+                   nextAppName = allAppliances[1].name; 
+                   lastAppName = allAppliances.slice(-1)[0];
+               }
+
+               firstApplianceData.push(appName);
+               nextApplianceData.push(nextAppName);
+               lastApplianceData.push(lastAppName);
+
+               setApplianceFound(true);
+               setFirstApplianceFound(true); 
+
+               console.log(firstApplianceData);
+
+        
+              
             }).catch(err => {
 
                 if(err) {
@@ -209,6 +256,9 @@ const CreatePreference = (props) => {
         }
     }
 
+    useEffect(() => {
+    }, [applianceFound]);
+
     const processNextAppliance = async () => {
 
         try {
@@ -220,12 +270,13 @@ const CreatePreference = (props) => {
             await new Promise(resolve => setTimeout(resolve))
 
                 for(let i = 0; i < applianceNames.length - 1; i++) {
+
                         const firstAppliance = applianceNames[i];
                         const nextApplianceAvailable = applianceNames[i + 1];
 
                         const lastAppliance = applianceNames.slice(-1)[0];
                         const applianceIndexes = applianceNames.indexOf(nextApplianceAvailable);
-                    
+
                    await new Promise(resolve => setTimeout((resolve)));
                         
                         if(applianceIndexes < applianceNames.length - 1) { 
@@ -233,10 +284,14 @@ const CreatePreference = (props) => {
                              firstApplianceObj = {firstAppliance};
                              nextApplianceObj = {nextApplianceAvailable};
                              lastApplianceObj = {lastAppliance};
+                             console.log(firstApplianceData);
+
 
                             firstApplianceData.push(firstApplianceObj);
                             nextApplianceData.push(nextApplianceObj);
                             lastApplianceData.push(lastApplianceObj);
+
+                            setApplianceFound(!applianceFound);
 
                             for(let index = 0; index < nextApplianceData.length - 1; index++) {
                                 
@@ -265,7 +320,6 @@ const CreatePreference = (props) => {
 
                         setNextApplianceDataInserted(true);
                         setLastApplianceDataInserted(true);
-                        
                             
                       }
                 }
@@ -475,42 +529,38 @@ const CreatePreference = (props) => {
         </div>
 
         <div className = "issueType--box">
-          <label className = "issue--lbl" htmlFor = "issue">Appliance</label>
 
-        {!nextApplianceDataInserted ? <select onChange = {(e) => {setChosenAppliance(e.target.value)}} value = {chosenAppliance} className = "box">
-          <option>Select Appliance</option>
 
-            {appliances.map((appliance, key) => {
-                return <option key = {key}>{appliance.name}</option>
-            })};
 
-        </select> : newAppliance.length === 0 ? nextApplianceData.map((theNextOne, key) => {
-           
-           
+        {firstApplianceFound ? firstApplianceData.map((firstOne, key) => {
 
-    return <select key = {key} onChange = {(e) => {setChosenNextAppliance(e.target.value)}} value = {chosenNextAppliance} className = "box">
+            return <div key = {key}>
+            <label className = "issue--lbl" htmlFor = "issue">Select Preferences For {firstOne}
+                <input type = "hidden" value = {chosenAppliance} onSubmit = {() => setChosenAppliance(firstOne)} />
+            </label>
+            </div> 
+            
+        }) : null}
 
-       
-    <option value>Select Appliance</option>
-   <option key = {key}>{theNextOne.nextApplianceAvailable}</option>
+        {preferenceSubmitted && !firstApplianceFound && lastPrefSubmitted ? nextApplianceData.map((next, key) => {
 
-    
+        return <div key = {key}>
 
-</select>
-        }) : newLastAppliance.map((filteredLast, key) => {
-         
-            return <select key = {key} onChange = {(e) => {setChosenLastAppliance(e.target.value)}} value = {chosenLastAppliance} className = "box">
+        <label className = "issue--lbl" htmlFor = "issue">Select Preferences For : {next}</label>
 
-       
-        <option value>Select Appliance</option>
-        <option key = {key}>{filteredLast.lastAppliance}</option>
+        </div>
+        }) : null} 
 
-</select>
 
-        })}
+      {/* {preferenceSubmitted && secondPrefSubmitted & lastApplianceFound ? lastApplianceData.map((lastOne, key) => {
+            return <div key = {key}>
+            <label className = "issue--lbl" htmlFor = "issue">Select Preferences For {lastOne.name}
+             
+            </label>
+            </div> 
+        }) : null} */}
 
-       
-      
+
      </div>
 
         <div className = "morningslot--box">
@@ -535,7 +585,7 @@ const CreatePreference = (props) => {
     </div>
 
         <div className = "latemorning--box">
-            <label className = "password--lbl">Second Preference</label>
+            <label className = "second--lbl">Second Preference</label>
 
             <select onChange = {(e) => {setChosenSecondPreference(e.target.value)}} value = {chosenSecondPreference} className = "box">
                 <option>06:00-07:00</option>
@@ -592,23 +642,17 @@ const CreatePreference = (props) => {
 
         <section>
          
-            {preferencesBtnClicked && preferences.map((preference, key) => {
+            {preferencesBtnClicked && firstApplianceFound ? preferences.map((preference, key) => {
                 const theData = preference;
-
-                if(!theData) {
-                    return console.log(`No data found`);
-                }
 
                 return <div key = {key}>
                     <div className = "preferences--card">
 
-                    {theData._id}
+
                     <h2 className = "appliance--heading">Username : {theData.username}</h2>
-                    <h2 className = "appliance--heading">Initial Appliance : {theData.appliance}</h2>
-                    <h2 className = "appliance--heading">Next Appliance : {theData.nextAppliance}</h2>
+                    <h2 className = "appliance--heading">First Appliance : {theData.appliance}</h2>
+                    <h2 className = "appliance--heading">Next Appliance : {theData.appliance}</h2>
                     <h2 className = "appliance--heading">Last Appliance : {theData.lastAppliance}</h2>
-
-
 
                     <h2 className = "appliance--heading">Your Preference 1 : {theData.firstPreference}</h2>
                     <h2 className = "appliance--heading">Your Preference 2 : {theData.secondPreference}</h2>
@@ -618,15 +662,27 @@ const CreatePreference = (props) => {
                     <h2 className = "appliance--heading">First Random Slot : {otherFirstPref}</h2>
                     <h2 className = "appliance--heading">Second Random Slot : {otherSecondPref}</h2>
                     <h2 className = "appliance--heading">Third Random Slot : {otherThirdPref}</h2>
-                    
+
+                    {firstApplianceFound ? firstApplianceData.map((first, theKey) => {
+                        
+                        return <div key = {theKey}>
+                            
+                        <h2 className = "appliance--heading">First Appliance : {first}</h2>
+    
+                        </div>
+                    }) : null}
+                
                
-                    <Link className = "negotiate--btn" to = {{pathname: `/fair-negotiations/${preference._id}`, state: {preference}} }>Negotiate Preference</Link>
+                    <Link className = "negotiate--btn" to = {{pathname: `/fair-negotiations/${preference._id}`, state: {preference, firstApplianceData}} }>Negotiate Preference</Link>
                     
                     </div>
                 </div>
 
+
           
-            })};
+            }) : null};
+            
+            
        
 
         </section>

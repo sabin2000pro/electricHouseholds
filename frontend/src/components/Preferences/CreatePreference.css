@@ -15,7 +15,7 @@
 
 .morningslot--box {
     margin-top: 55px;
-    margin-left: -50px;
+    margin-left: -56px;
 }
 
 .username--box {
@@ -27,7 +27,16 @@
 
 .latemorning--box {
     margin-top: 50px;
-    margin-left: -100px;
+    margin-left: -90px;
+}
+
+.morning--lbl {
+    margin-right: 50px;
+}
+
+
+.box {
+    margin-right: 170px;
 }
 
 .afternoon--box {
