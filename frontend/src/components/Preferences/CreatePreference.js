@@ -90,7 +90,12 @@ const CreatePreference = (props) => {
     const [lastApplianceFound, setLastApplianceFound] = useState(false);
     const [secondPrefSubmitted, setSecondPrefSubmitted] = useState(false);
     const [lastPrefSubmitted, setLastPrefSubmitted] = useState(false);
-    const [chosenDay, setChosenDay] = useState(false);
+
+    const [chosenDay, setChosenDay] = useState("");
+    const [dayChosenByUser, setDayChosenByUser] = useState(false);
+    const [hasTheAppliance, setHasTheAppliance] = useState(false);
+
+    
 
     useEffect(() => {
         console.log(`Pref submitted ? `);
@@ -133,7 +138,6 @@ const CreatePreference = (props) => {
                 processPreference();
                 setFormValid(true);
                 setShowOkBtn(false);
-
 
             }
           
@@ -220,6 +224,7 @@ const CreatePreference = (props) => {
     }, [firstApplianceFound, lastApplianceFound])
 
     const fetchAllAppliances = async () => {
+
         try {
 
             return await axios.get(`http://localhost:5200/api/v1/appliances/fetch-appliances`).then(response => {
@@ -560,16 +565,17 @@ const CreatePreference = (props) => {
         }) : null} 
 
 
-      {/* {preferenceSubmitted && secondPrefSubmitted & lastApplianceFound ? lastApplianceData.map((lastOne, key) => {
-            return <div key = {key}>
-            <label className = "issue--lbl" htmlFor = "issue">Select Preferences For {lastOne.name}
-             
-            </label>
-            </div> 
-        }) : null} */}
-
-
      </div>
+
+     <div className = "has--box">
+            <label className = "has--lbl">Have appliance?</label>
+
+            <select className = "box">
+               <option>Yes</option>
+               <option>No</option>
+            </select>
+        </div>
+
 
         <div className = "morningslot--box">
 
@@ -668,6 +674,7 @@ const CreatePreference = (props) => {
                 const theData = preference;
 
                 return <div key = {key}>
+
                     <div className = "preferences--card">
 
 
