@@ -110,7 +110,7 @@ const AdminDashboard = (props) => { // Admin Dashboard Component
 
     <section className = "section--forgotpassword">
 
-        {appliances.length === 0 ? <p className = "appliances-notext">No appliances found</p> : appliances.map((appliance, key) => {
+        {appliances.length === 0 ? <Modal title = "Error" message = "No appliance found" />: appliances.map((appliance, key) => {
 
             return <div className = "preferences--card" key = {key}>
                 
