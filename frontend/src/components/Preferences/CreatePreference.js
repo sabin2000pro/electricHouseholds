@@ -169,13 +169,10 @@ const CreatePreference = (props) => {
                break;
             }
         }
-
-        if(firstApplianceFound) {
-
-            await axios.post(`http://localhost:5200/api/v1/preferences/create-preference`, {username: enteredUsername, appliance: firstApplianceData[0], nextAppliance: chosenNextAppliance, lastAppliance: chosenLastAppliance,  firstPreference: chosenFirstPreference, secondPreference: chosenSecondPreference , thirdPreference: chosenThirdPreference}).then(response => {
+ 
+           return await axios.post(`http://localhost:5200/api/v1/preferences/create-preference`, {username: enteredUsername, appliance: firstApplianceData[0], nextAppliance: nextApplianceData[0] , lastAppliance: lastApplianceData[0], firstPreference: chosenFirstPreference, secondPreference: chosenSecondPreference , thirdPreference: chosenThirdPreference}).then(response => {
                 setModalShown({title: 'Preferences', message: 'Your Preferences Have Been Submitted', showForm: false, showDefaultBtn: true});
-                console.log(response);
-        
+
                 setChosenAppliance("");
                 setChosenFirstPreference("");
                 setChosenSecondPreference("");
@@ -194,8 +191,14 @@ const CreatePreference = (props) => {
                     processNextAppliance();
                 }
         
+            }).catch(err => {
+
+                if(err) {
+
+                    console.log(err);
+                }
             })
-        }  
+        
     }
     
     const modalHandler = () => {
@@ -236,6 +239,7 @@ const CreatePreference = (props) => {
                setFirstApplianceFound(true); 
 
                console.log(firstApplianceData);
+               console.log(nextApplianceData);
 
         
               
@@ -651,7 +655,7 @@ const CreatePreference = (props) => {
 
                     <h2 className = "appliance--heading">Username : {theData.username}</h2>
                     <h2 className = "appliance--heading">First Appliance : {theData.appliance}</h2>
-                    <h2 className = "appliance--heading">Next Appliance : {theData.appliance}</h2>
+                    <h2 className = "appliance--heading">Next Appliance : {theData.nextAppliance}</h2>
                     <h2 className = "appliance--heading">Last Appliance : {theData.lastAppliance}</h2>
 
                     <h2 className = "appliance--heading">Your Preference 1 : {theData.firstPreference}</h2>
@@ -663,16 +667,6 @@ const CreatePreference = (props) => {
                     <h2 className = "appliance--heading">Second Random Slot : {otherSecondPref}</h2>
                     <h2 className = "appliance--heading">Third Random Slot : {otherThirdPref}</h2>
 
-                    {firstApplianceFound ? firstApplianceData.map((first, theKey) => {
-                        
-                        return <div key = {theKey}>
-                            
-                        <h2 className = "appliance--heading">First Appliance : {first}</h2>
-    
-                        </div>
-                    }) : null}
-                
-               
                     <Link className = "negotiate--btn" to = {{pathname: `/fair-negotiations/${preference._id}`, state: {preference, firstApplianceData}} }>Negotiate Preference</Link>
                     
                     </div>
