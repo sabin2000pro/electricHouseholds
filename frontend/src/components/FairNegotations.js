@@ -1096,9 +1096,13 @@ const FairNegotations = (props) => {
                           }
 
                           if(theUserBid > randBid && roundNumber === 1) { // if the bid of the user is > low bot bid and we are in round 1
-
-                            alert(`User - you win against another household. Moving onto round ${roundNumber + 1}`);
+                            
+                            setModalShown({title: "Preferences", message: "No preferences found"});
                             setUserWinBid(!userWinBid);
+
+                            if(userWinBid) {
+                                alert(`User wins`);
+                            }
 
                             setRoundNumber(roundNumber + 1);
                           

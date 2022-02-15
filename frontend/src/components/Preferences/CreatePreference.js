@@ -169,8 +169,15 @@ const CreatePreference = (props) => {
                break;
             }
         }
+
+        let lastAppliancePost = {};
+
+        lastApplianceData.forEach((app, key) => {
+            console.log(`Keyval`);
+           lastAppliancePost = app;
+        });
  
-           return await axios.post(`http://localhost:5200/api/v1/preferences/create-preference`, {username: enteredUsername, appliance: firstApplianceData[0], nextAppliance: nextApplianceData[0] , lastAppliance: chosenAppliance, firstPreference: chosenFirstPreference, secondPreference: chosenSecondPreference , thirdPreference: chosenThirdPreference}).then(response => {
+         await axios.post(`http://localhost:5200/api/v1/preferences/create-preference`, {username: enteredUsername, appliance: firstApplianceData[0], nextAppliance: nextApplianceData[0] , lastAppliance: lastAppliancePost.name, firstPreference: chosenFirstPreference, secondPreference: chosenSecondPreference , thirdPreference: chosenThirdPreference}).then(response => {
                 setModalShown({title: 'Preferences', message: 'Your Preferences Have Been Submitted', showForm: false, showDefaultBtn: true});
 
                 setChosenAppliance("");
@@ -221,6 +228,8 @@ const CreatePreference = (props) => {
                 const allAppliances = response.data.appliances;
                 setAppliances(allAppliances);
 
+                console.log("All Appliances");
+                
                 let appName;
                 let nextAppName;
                 let lastAppName;
@@ -229,6 +238,7 @@ const CreatePreference = (props) => {
                    appName = allAppliances[0].name;
                    nextAppName = allAppliances[1].name; 
                    lastAppName = allAppliances.slice(-1)[0];
+
                }
 
                firstApplianceData.push(appName);
@@ -238,11 +248,8 @@ const CreatePreference = (props) => {
                setApplianceFound(true);
                setFirstApplianceFound(true); 
 
-               console.log(firstApplianceData);
-               console.log(nextApplianceData);
-
-        
-              
+               console.log(lastApplianceData);
+            
             }).catch(err => {
 
                 if(err) {
@@ -628,6 +635,20 @@ const CreatePreference = (props) => {
 
         </div>
 
+        <div className = "day--box">
+            <label className = "day--lbl">Day</label>
+
+            <select className = "box">
+                <option>Monday</option>
+                <option>Tuesday</option>
+                <option>Wednesday</option>
+                <option>Thursday</option>
+                <option>Friday</option>
+                <option>Saturday</option>
+                <option>Sunday</option>
+            </select>
+        </div>
+
         <div className = "submit--container">
             <button className = "login--btn" type = "submit">Submit</button>
         </div>
@@ -674,9 +695,6 @@ const CreatePreference = (props) => {
           
             }) : null};
             
-            
-       
-
         </section>
 
     </section>
