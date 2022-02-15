@@ -62,10 +62,12 @@ const FairNegotations = (props) => {
     let {username, appliance, firstPreference, secondPreference, thirdPreference, nextAppliance, lastAppliance} = location.state.preference;
 
     const [auctionStarted, setAuctionStarted] = useState(false);
-    const [botTypes, setBotTypes] = useState({LOW: 'Low', MEDIUM: 'Medium', INTENSE: 'Intense'})
+    const [botTypes, setBotTypes] = useState({LOW: 'Low', MEDIUM: 'Medium', INTENSE: 'Intense'});
+
     const [roundNumber, setRoundNumber] = useState(1);
     const [timerRunning, setTimerRunning] = useState(false);
     const [seconds, setSeconds] = useState(START_TIMER);
+    
 
     const [bidValid, setBidValid] = useState(false);
     const [updatedNewBid, setUpdatedNewBid] = useState(false);
@@ -912,7 +914,7 @@ const FairNegotations = (props) => {
 
         const virtualCreditsAvailable = response.data.allCredits;
 
-        virtualCreditsAvailable.forEach((val) => {
+       return virtualCreditsAvailable.forEach((val) => {
         
            let creditsAvailable = val.virtualCredits;
 
