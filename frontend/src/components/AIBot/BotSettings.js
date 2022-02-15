@@ -11,12 +11,14 @@
  */
 
 
-import React, {useState, Fragment} from 'react';
+import React, {useState, Fragment, useEffect} from 'react';
 import RegisterCard from '../Admin/RegisterCard';
 import Header from '../Header';
 import './BotSettings.css'
 import HomepageImg from '../images/homepage/homepageimg.jpg';
 import axios from 'axios';
+import Modal from './../../UI/Modal';
+
 
 const BotSettings = (props) => {
 
@@ -27,6 +29,13 @@ const BotSettings = (props) => {
     const [enteredBotNumber, setEnteredBotNumber] = useState('');
 
     const [formValid, setFormValid] = useState(true);
+    const [settingsSubmitted, setSettingsSubmitted] = useState(false);
+    const [modalShown, setModalShown] = useState({});
+
+    useEffect(() => {
+        console.log(`Settings submitted ? `);
+        console.log(settingsSubmitted);
+    }, [settingsSubmitted])
 
     const submitBotHandler = async (event) => {
 
@@ -34,7 +43,7 @@ const BotSettings = (props) => {
                 event.preventDefault();
 
                 await axios.post(`http://localhost:5200/api/v1/bot/create-bot`, {name: enteredBotName, botCredits: enteredVirtualCredits, type: enteredBotType, bidRange: enteredBidRange, numberOfBots: enteredBotNumber});
-                alert(`Bot Data Configured`);
+                setModalShown({title: "Preferences", message: "No preferences found"});
 
                 setEnteredBotName("");
                 setEnteredVirtualCredits("");
@@ -43,6 +52,7 @@ const BotSettings = (props) => {
                 setEnteredBidRange("");
 
                 setFormValid(true);
+                setSettingsSubmitted(!settingsSubmitted)
 
                 if(formValid) {
                     return window.location.reload(false);
@@ -82,6 +92,8 @@ const BotSettings = (props) => {
 </section>
 
     <section className = "section--login">
+
+    {settingsSubmitted ? <Modal title = "Settings" message = "Settings Configured" /> : null}
 
             <div className = "container grid grid--2-cols">
                 
@@ -135,7 +147,7 @@ const BotSettings = (props) => {
 
             <footer className = "footer">
                     <ul className = "footer--items">
-                        <li className = "footer--item">Copyright All Rights Reserved - eHouseholds Sabin Constantin Lungu - 2021</li>
+                        <li className = "footer--item">Copyright All Rights Reserved - eHouseholds Sabin Constantin Lungu - 202</li>
                     </ul>
             </footer>
 
