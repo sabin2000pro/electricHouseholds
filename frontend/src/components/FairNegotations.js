@@ -1121,6 +1121,7 @@ const FairNegotations = (props) => {
                           }
 
                           if(theUserBid > randBid && roundNumber === 1) { // if the bid of the user is > low bot bid and we are in round 1
+                            alert(`You win round ${roundNumber}`)
 
                             setModalShown({title: "Preferences", message: "No preferences found"});
                             setUserWinBid(!userWinBid);
@@ -1658,12 +1659,13 @@ const FairNegotations = (props) => {
     <section className = "section--login">
 
           <h1 className = "fn--heading">Choose Your Desired Algorithm Below</h1>
-
          
         <div className = "container grid grid--2-cols">
             <button onClick = {chosenEnglishAuctionHandler} className = "auction--btn">Auction</button>
             <button onClick = {chosenSocialExchangeHandler} className = "social--btn">Social Exchange</button>
         </div>
+
+        {socialExchangeChosen ? alert(`Chosen Social Exchange`) : null}
 
         {auctionChosen ?
             <div className = "appliance--data">
@@ -1705,8 +1707,10 @@ const FairNegotations = (props) => {
             {!mainRoundOver && !roundTwoOver ? <h2 >User's Initial Appliance : {appliance}</h2> : null}
 
             {mainRoundOver && roundNumber === 2 ? nextApplianceData.map((val, key) => {
+
                return <div key = {key}>
-               <h1>Your next appliance {val}</h1>
+
+                 <h1>Your next appliance {val}</h1>
                </div>
 
             }) : null}
@@ -1727,6 +1731,7 @@ const FairNegotations = (props) => {
           
 
 <RegisterCard>
+
         <h1 className = "bid--header">Submit Round Bid</h1>
 
     <form id = "bidForm" className = "login--form" onSubmit = {submitBidHandler} method = "POST">
@@ -1793,8 +1798,7 @@ const FairNegotations = (props) => {
 
 }
 
-        
-        </div> 
+     </div> 
 
         <div className = "container grid grid--2-cols">
                         <RegisterCard>
@@ -1809,7 +1813,7 @@ const FairNegotations = (props) => {
 
                     <div className = "feedback--container">
                         <label htmlFor = "feedbackUsername">E-mail</label>
-                        <input />
+                        <input value = {enteredFeedbackEmailAddress} placeholder = "Enter E-mail" onChange = {(e) => {setEnteredFeedbackEmailAddress(e.target.value)}} />
                     </div>
 
                     <div className = "feedback--container">
