@@ -19,13 +19,18 @@ const notFound = 404;
 const serverError = 500;
 
 module.exports.createPreference = catchAsync(async (request, response, next) => {
-    const {username, appliance, firstPreference, secondPreference, thirdPreference, nextAppliance, lastAppliance, day} = request.body;
+    const {username, appliance, firstPreference, hasAppliance, secondPreference, thirdPreference, nextAppliance, lastAppliance, day} = request.body;
+
+    if(!hasAppliance) {
+        return response.status(badRequest).json({message: "You need to specify the has appliance field"});
+    }
 
     if(request.method === 'POST') { // If there is a POST request -> create the preference
-        const newPreference = new Preference({username, appliance, firstPreference, secondPreference, thirdPreference, nextAppliance, lastAppliance, day});
+
+        const newPreference = new Preference({username, appliance, firstPreference, secondPreference, thirdPreference, nextAppliance, lastAppliance, day, hasAppliance});
         await newPreference.save();
         
-        return response.status(201).json({newPreference});
+        return response.status(created).json({newPreference});
     }
 
 });
@@ -34,7 +39,7 @@ module.exports.getPreferenceByID = catchAsync(async (request, response, next) =>
     const id = request.params.id;
 
     if(!id) {
-        return response.status(404).json({status: "Fail", message: "Preference with that ID not found"});
+        return response.status(notFound).json({status: "Fail", message: "Preference with that ID not found"});
     }
 
     const preference = await Preference.findById(id);
@@ -45,7 +50,7 @@ module.exports.fetchAllPreferences = catchAsync(async (request, response, next) 
 
     if(request.method === 'GET') {
         const preferences = await Preference.find();
-        return response.status(200).json({preferences});
+        return response.status(ok).json({preferences});
     }
 
 });
@@ -54,14 +59,15 @@ module.exports.editPreference = catchAsync(async (request, response, next) => {
     const id = request.params.id;
 
     if(!id) {
-        return response.status(404).json({status: "Fail", message: "Could not find the preference with that ID"});
+        return response.status(notFound).json({status: "Fail", message: "Could not find the preference with that ID"});
     }
 
     if(request.method == 'PUT') {
+
         const updatedPreference = await Preference.findByIdAndUpdate(id, request.body);
         await updatedPreference.save();
 
-        return response.status(200).json({updatedPreference});
+        return response.status(ok).json({updatedPreference});
 
     }
 });
@@ -70,7 +76,7 @@ module.exports.deletePreference = catchAsync(async (request, response, next) => 
     const id = request.params.id;
 
     if(!id) {
-        return response.status(404).json({status: "Fail", message: "Could not find the preference with that ID"});
+        return response.status(notFound).json({status: "Fail", message: "Could not find the preference with that ID"});
     }
 
     if(request.method === 'DELETE') {
@@ -81,15 +87,16 @@ module.exports.deletePreference = catchAsync(async (request, response, next) => 
 });
 
 module.exports.deleteAllPreferences = catchAsync(async(request, response, next) => {
+
     if(request.method === 'DELETE') {
 
         await Preference.deleteMany();
-        return response.status(204).json("Preferences Deleted");
+        return response.status(noContent).json("Preferences Deleted");
     }
 })
 
 module.exports.sortPreferences = catchAsync(async (request, response, next) => {
   
     const allPreferences = await sort;
-    return response.status(200).json({allPreferences});
+    return response.status(ok).json({allPreferences});
 });

@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const feedbackSchema = new mongoose.Schema({ // The Feedback Mongoos Schema
+
     feedbackUsername: {
         type: String,
         required: [true, 'You must specify username']
@@ -22,6 +23,11 @@ const feedbackSchema = new mongoose.Schema({ // The Feedback Mongoos Schema
         type: String,
         minlength: 10,
         required: [true, 'You must specify description'],
+    },
+
+    feedbackReason: {
+        type: String,
+        required: [true, 'Please provide your reason for the feeling']
     }
 });
 
