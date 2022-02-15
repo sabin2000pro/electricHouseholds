@@ -10,7 +10,7 @@
  */
 
 
-import React, {useState, useEffect, useReducer, useContext, Fragment} from 'react';
+import React, {useState, useEffect, Fragment} from 'react';
 import {useHistory, Link} from 'react-router-dom';
 import Header from '../Header';
 import '../Preferences/CreatePreference.css';
@@ -25,10 +25,15 @@ const AdminDashboard = (props) => { // Admin Dashboard Component
     const [appliances, setAppliances] = useState([]);
     const [appliancesFetched, setAppliancesFetched] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
+    const [appliancesPresent, setAppliancesPresent] = useState(true);
 
     useEffect(() => {
         return verifyAuthToken(); // Verify the auth token call
     }, [appliances]);
+
+    useEffect(() => {
+        console.log(`Appliances present ? `)
+    }, [appliancesPresent])
 
     const fetchApplianceData = async () => { // Routine to fetch the available appliances from the backend database
         try {
@@ -36,8 +41,19 @@ const AdminDashboard = (props) => { // Admin Dashboard Component
            return await axios.get(`http://localhost:5200/api/v1/appliances/fetch-appliances`).then(response => {
 
                const allAppliances = response.data.appliances;
-               setAppliances(allAppliances);
-               setAppliancesFetched(!appliancesFetched);
+
+               if(allAppliances.length === 0) {
+                   return setAppliancesPresent(!appliancesPresent);
+               }
+
+               if(allAppliances.length !== 0) {
+                    setAppliances(allAppliances);
+                    setAppliancesFetched(!appliancesFetched);
+
+                    setAppliancesPresent(appliancesPresent)
+               }
+
+              
 
            });
 
@@ -45,7 +61,7 @@ const AdminDashboard = (props) => { // Admin Dashboard Component
         
         catch(err) {
 
-            if(err) { // If an error occurs
+            if(err) {
                 return console.error(err);
             }
         }
@@ -54,9 +70,9 @@ const AdminDashboard = (props) => { // Admin Dashboard Component
     const verifyAuthToken = () => {
 
         if(!localStorage.getItem("authToken")) { // If there's no authorization token
+
             alert('You are not authorized to view this route. You are not logged in');
             return history.push('/home');
-        
         }
     }
 
@@ -85,6 +101,7 @@ const AdminDashboard = (props) => { // Admin Dashboard Component
     return (
          
     <Fragment>
+
       <Header searchterm = {searchTerm} />
         
         <section className = "section--home">
@@ -110,7 +127,7 @@ const AdminDashboard = (props) => { // Admin Dashboard Component
 
     <section className = "section--forgotpassword">
 
-        {appliances.length === 0 ? <Modal title = "Error" message = "No appliance found" />: appliances.map((appliance, key) => {
+        {appliances.length === 0  && !appliancesPresent ? <Modal title = "Error" message = "No appliances found" button = "Ok" />: appliances.map((appliance, key) => {
 
             return <div className = "preferences--card" key = {key}>
                 
@@ -119,6 +136,7 @@ const AdminDashboard = (props) => { // Admin Dashboard Component
                 <h1 style = {{color: 'white', marginTop: '40px', fontWeight: 600, fontSize: '36px'}}>Description: {appliance.description}</h1>
 
                 <div className = "appliance--buttons">
+
                 <Link className = "appliance--editbtn" to = {{pathname: `/admin-dashboard/edit-appliance/${appliance._id}`, state: {appliance}} }>Edit Appliance</Link>
                 <Link className = "appliance--viewbtn" to = {{pathname: `/appliance/${appliance._id}`, state: {appliance}} }>View Appliance</Link>
 

@@ -180,7 +180,8 @@ const CreatePreference = (props) => {
            lastAppliancePost = app;
         });
  
-         return await axios.post(`http://localhost:5200/api/v1/preferences/create-preference`, {username: enteredUsername, appliance: firstApplianceData[0], nextAppliance: nextApplianceData[0] , lastAppliance: lastAppliancePost.name, firstPreference: chosenFirstPreference, secondPreference: chosenSecondPreference , thirdPreference: chosenThirdPreference}).then(response => {
+         return await axios.post(`http://localhost:5200/api/v1/preferences/create-preference`, {username: enteredUsername, appliance: firstApplianceData[0], nextAppliance: nextApplianceData[0] , lastAppliance: lastAppliancePost.name, firstPreference: chosenFirstPreference, secondPreference: chosenSecondPreference , thirdPreference: chosenThirdPreference, hasAppliance: hasTheAppliance, day: dayChosenByUser}).then(response => {
+             console.log(response);
                 setModalShown({title: 'Preferences', message: 'Your Preferences Have Been Submitted', showForm: false, showDefaultBtn: true});
 
                 setChosenAppliance("");
@@ -571,11 +572,11 @@ const CreatePreference = (props) => {
      <div className = "has--box">
             <label className = "has--lbl">Have appliance?</label>
 
-            <select onChange = {(e) => {setHasTheAppliance(e.target.value)}} value = {hasTheAppliance}  className = "box">
+            <select onChange = {(e) => {setHasTheAppliance(e.target.value)}} value = {hasTheAppliance} className = "box">
                <option>Yes</option>
                <option>No</option>
             </select>
-            
+
         </div>
 
         <div className = "morningslot--box">
@@ -644,7 +645,7 @@ const CreatePreference = (props) => {
         <div className = "day--box">
             <label className = "day--lbl">Day</label>
 
-            <select className = "box">
+            <select onChange = {(e) => {setDayChosenByUser(e.target.value)}} value = {dayChosenByUser}  className = "box">
                 <option>Monday</option>
                 <option>Tuesday</option>
                 <option>Wednesday</option>

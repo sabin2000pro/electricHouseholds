@@ -73,7 +73,7 @@ const AdminCreateAppliance = (props) => {
           <p className = "home--description">Welcome to your Admin Dashboard. Here you will be able to view all of the electrical appliances available that users can submit their preferences for. You have the option to search for appliances if there are too many as well.</p>
   
           <a className = "btn btn--full mgr-sm" href = "/admin-dashboard">Admin Home</a>
-          <a onClick = {logoutHandler} className = "btn btn--outline" href = "/home">Logout</a>
+          <a onClick = {logoutHandler} className = "btn btn--outline" href = "/">Logout</a>
   
           </div>
   
@@ -116,7 +116,7 @@ const AdminCreateAppliance = (props) => {
 
     <footer className = "footer">
         <ul className = "footer--items">
-            <li className = "footer--item">Copyright All Rights Reserved - eHouseholds Sabin Constantin Lungu - 2021</li>
+            <li className = "footer--item">Copyright All Rights Reserved - eHouseholds Sabin Constantin Lungu - 2022</li>
         </ul>
     </footer>
   
