@@ -71,7 +71,7 @@ const BotSettings = (props) => {
         <h1 className = "heading--primary">AI Bot Settings Panel</h1>
         <p className = "home--description">In this dashboard panel, you will be able to configure various AI Bot settings such as the number of Virtual Credits the AI bot can bid. You can create up to three types of AI bots, low bidding bots, medium and high intensity bots.</p>
         
-        <a className = "btn btn--outline" href = "/home">Logout</a>
+        <a className = "btn btn--outline" href = "/">Logout</a>
     </div>
 
         <div className = "home-img-box">

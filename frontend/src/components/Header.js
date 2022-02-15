@@ -86,7 +86,7 @@ const Header = (props) => { // Header Component
             <nav className = "main-nav">
                     <ul className = "main-nav--list">
 
-                        <li><a className = "main-nav--link" href = "/electricHouseholds/api/v1/auth/client/admin-dashboard/create-appliance">Admin Dashboard</a></li>
+                        <li><a className = "main-nav--link" href = "/electricHouseholds/admin-dashboard">Admin Dashboard</a></li>
                         <li><a className = "main-nav--link" href = "/electricHouseholds/api/v1/auth/client/admin-dashboard/create-appliance">Create Appliance</a></li>
                         <li><a className = "main-nav--link" href = "/electricHouseholds/admin-dashboard/credit-settings">Credit Settings</a></li>
                         <li><a className = "main-nav--link" href = "/electricHouseholds/admin-dashboard/api/v1/bot-settings">Bot Settings</a></li>

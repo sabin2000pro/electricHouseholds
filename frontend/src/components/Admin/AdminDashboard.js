@@ -97,7 +97,7 @@ const AdminDashboard = (props) => { // Admin Dashboard Component
         <p className = "home--description">Welcome to your Admin Dashboard. Here you will be able to view all of the electrical appliances available that users can submit their preferences for. You have the option to search for appliances if there are too many as well.</p>
 
         <button onClick = {fetchApplianceData} className = "btn btn--full mgr-sm" href = "#">View Appliances</button>
-        <a onClick = {logoutHandler} className = "btn btn--outline" href = "/home">Logout</a>
+        <a onClick = {logoutHandler} className = "btn btn--outline" href = "/">Logout</a>
 
         </div>
 
@@ -137,7 +137,7 @@ const AdminDashboard = (props) => { // Admin Dashboard Component
         <ul className = "footer--items">
             <li className = "footer--item">Copyright All Rights Reserved - eHouseholds Sabin Constantin Lungu - 2021</li>
         </ul>
-        
+
     </footer>
 
         </Fragment>

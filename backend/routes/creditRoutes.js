@@ -17,6 +17,7 @@ const creditController = require('../controllers/creditController');
 
 creditRouter.route('/create-credits').post(creditController.createCredits);
 creditRouter.route('/get-credits').get(creditController.getAllCredits);
+creditRouter.route('/get-credits/:id').get(creditController.getCreditByID);
 creditRouter.route('/delete-credits').delete(creditController.deleteCredits);
 creditRouter.route('/delete-credits/:id').delete(creditController.deleteCreditByID);
 creditRouter.route('/update-credits/:id').put(creditController.updateCredits);

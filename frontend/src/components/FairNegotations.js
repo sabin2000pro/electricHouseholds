@@ -682,9 +682,7 @@ const FairNegotations = (props) => {
             const convertedBid = parseInt(bid);
 
             if(handleInvalidBidSubmission(convertedBid, convertedNextRoundBid, convertedLastRoundBid, virtualCredits)) {
-                alert(`Insufficient Virtual Credits. Round over`);
-
-                window.location.reload(false);
+                alert(`Insufficient Virtual Credits. Please bid again`);    
             }
 
             if(convertedLastRoundBid === 0 || convertedNextRoundBid === 0 || convertedBid === 0) {
