@@ -35,8 +35,9 @@ pipeline {
 
             steps {
                 dir("./frontend") {
-                    echo "Deploying the frontend after tests"
                     
+                    echo "Deploying the frontend after tests"
+                    sh 'npm run deploy'
                 }
             }
 
