@@ -2,13 +2,15 @@ pipeline {
 
     agent any
 
+    tools {nodejs "node"}
+
     stages {
 
         stage("build") {
 
             steps {
                 echo 'Building the NodeJS APP OK..'
-                sh 'npm install'
+                sh 'node-v -v'
             }
 
         }
