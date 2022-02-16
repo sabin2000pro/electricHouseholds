@@ -31,7 +31,8 @@ pipeline {
 
             steps {
                 dir("./frontend") {
-
+                    sh 'npm install'
+                    sh 'npm install react-dom --save'
                     sh 'npm run deploy'
                 }
             }
