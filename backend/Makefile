@@ -9,5 +9,4 @@ import:
 	node seeder --import
 
 run_ci:
-	docker system prune
-	docker run -p 8080:8080 --name=jenkins-master jenkins/jenkins
+	docker run -p 8080:8080 --name=jenkins-master -d -v jenkins_home:/var/jenkins_home jenkins/jenkins
