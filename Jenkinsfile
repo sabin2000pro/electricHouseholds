@@ -19,9 +19,12 @@ pipeline {
         stage("test") {
 
             steps {
-                echo 'Testing the app...'
-                dir('/backend')
+                dir('./backend') {
+                     echo 'Testing the app...'
+                
                 sh 'ls -a'
+                }
+               
             }
 
         }
