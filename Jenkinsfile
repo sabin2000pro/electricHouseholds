@@ -24,7 +24,7 @@ pipeline {
                      echo 'Testing the app...'
                 
                      sh 'ls -a'
-                     sh 'npm run'
+                     sh 'npm run test'
                 }
                
             }
