@@ -20,7 +20,7 @@ pipeline {
 
             steps {
                 echo 'Testing the app...'
-                sh 'npm run test ./frontend'
+                sh 'npm run test'
             }
 
         }
