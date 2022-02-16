@@ -23,13 +23,7 @@ beforeAll(async() => { // Test DB connection before the tests
 describe('Authentication Test Suite', () => {
 
     test("Register New Admin Account. Should respond with a 201 created", async () => {
-        const adminBodyData = [{username: "testadmin00", emailAddress: "testadmin00@gmail.com", password: "test123", confirmPassword: "test123"}]
-
-        for(const bodyData of adminBodyData) {
-            const response = await request(server).post('/api/v1/auth/register-admin').send(bodyData);
-
-            return expect(response.statusCode).toBe(201);
-        }
+       
     });
 
     test("Admin Login. Should Respond with 200 OK Code", async () => {
@@ -73,15 +67,6 @@ describe('Authentication Test Suite', () => {
         }
     });
 
-    test('Submit Timeslot Preference Test. Should Respond with a 201 Status Code.', async () => {
-        const bodyData = [{username: "sabin2000", appliance: "Washing Machine", firstPreference: "00:00-10:00", secondPreference: "14:00-15:00", thirdPreference: "20:00-21:00"}];
-
-        for(const data of bodyData) {
-            const response = await request(server).post('/api/v1/preferences/create-preference').send(data);
-            return expect(response.statusCode).toBe(201);
-        }
-    })
-
     test('Admin Login - Invalid Password. Returns a 401 Unauthorized Code', async () => {
         const bodyData = [{emailAddress: "testadmin00@gmail.com", password: "afjdewjejf"}];
 
@@ -92,17 +77,7 @@ describe('Authentication Test Suite', () => {
 
         }
     })
-
-    test('User - Submit Feedback Data. Returns 201 Created Code. ', async () => {
-        const feedbackData = [{feedbackUsername: "sabin2009", feedbackEmailAddress: "sabin200@gmail.com", feedbackFeeling: "Happy", "feedbackDescription": "Amazing algorithm! I relly enjoyed playing against the bot"}]
-
-        for(const bodyData of feedbackData) {
-            const response = await request(server).post('/api/v1/feedback/create-feedback').send(bodyData);
-
-            return expect(response.statusCode).toBe(201);
-        }
-    });
-
+    
     test('Delete All Feedbacks. Returns a 204 Status Code no Content', async () => {
         const noContentData = [{}];
 
