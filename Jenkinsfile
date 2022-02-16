@@ -2,11 +2,6 @@ pipeline {
 
     agent any
 
-    tools {
-       // I hoped it would work with this command...
-       nodejs 'nodejs16'
-   }
-
     stages {
 
         stage("build") {
