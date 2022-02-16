@@ -11,6 +11,7 @@ pipeline {
             steps {
                 echo 'Building the NodeJS APP OK..'
                 sh 'node -v'
+                sh 'npm install'
             }
 
         }
