@@ -158,6 +158,7 @@ describe('Authentication Test Suite', () => {
 
 afterAll(done => {
     // Closing the DB connection allows Jest to exit successfully.
-    mongoose.connection.close()
+    mongoose.connection.close();
+    server.close();
     done();
   })
