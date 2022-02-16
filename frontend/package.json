@@ -1,9 +1,7 @@
 {
   "name": "frontend",
   "version": "0.1.0",
-
   "homepage": "https://sabin2000pro.github.io/electricHouseholds",
-
   "private": false,
   "dependencies": {
     "@babel/core": "^7.16.7",
@@ -21,10 +19,8 @@
     "framer-motion": "^5.5.5",
     "install": "^0.13.0",
     "npm": "^8.3.0",
-    "react": "^17.0.2",
     "react-animated-dots": "^1.1.0",
     "react-bootstrap": "^0.32.4",
-    "react-dom": "^17.0.2",
     "react-router": "^6.2.1",
     "react-scripts": "^5.0.0",
     "reactjs-popup": "^2.0.5",
