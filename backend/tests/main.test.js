@@ -26,15 +26,6 @@ describe('Authentication Test Suite', () => {
        
     });
 
-    test("Admin Login. Should Respond with 200 OK Code", async () => {
-        const adminLoginData = [{emailAddress: "testadmin00@gmail.com", password: "test123"}]
-
-        for(const loginData of adminLoginData) {
-            const response = await request(server).post('/api/v1/auth/login-admin').send(loginData);
-
-            return expect(response.statusCode).toBe(200);
-        }
-    });
 
     test("Admin Forgot Password. Should Respond with a 200 OK Status Code", async () => {
          const forgotBodyData = [{emailAddress: "testadmin00@gmail.com"}];
@@ -77,7 +68,7 @@ describe('Authentication Test Suite', () => {
 
         }
     })
-    
+
     test('Delete All Feedbacks. Returns a 204 Status Code no Content', async () => {
         const noContentData = [{}];
 
