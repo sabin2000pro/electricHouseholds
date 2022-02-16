@@ -20,8 +20,8 @@ pipeline {
 
             steps {
                 echo 'Testing the app...'
-                sh 'cd backend'
-                sh 'npm run test'
+                dir('/backend')
+                sh 'ls -a'
             }
 
         }
