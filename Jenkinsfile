@@ -2,7 +2,9 @@ pipeline {
 
     agent any
 
-    tools {nodejs "nodejs:16.14.0"}
+    tools {
+        nodejs "node16.14.0"
+    }
 
     stages {
 
@@ -23,7 +25,7 @@ pipeline {
                      echo 'Testing the app...'
                 
                      sh 'ls -a'
-                     sh 'npm run test'
+                     sh 'npm run'
                 }
                
             }
