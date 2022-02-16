@@ -36,8 +36,6 @@ pipeline {
                     sh 'npm install'
                     sh 'npm install react-dom --save'
                     sh 'CI=false npm run deploy'
-                    sh 'git config user.email "sabinlungu293@gmail.com"'
-                    sh 'git config user.name "sabinlungudotcpp"'
                 }
             }
 
