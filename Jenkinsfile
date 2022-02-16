@@ -21,7 +21,7 @@ pipeline {
             steps {
                 echo 'Testing the app...'
                 sh 'cd backend'
-                sh 'npm test'
+                sh 'ls -a'
             }
 
         }
