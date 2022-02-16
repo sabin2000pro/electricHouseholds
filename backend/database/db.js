@@ -24,7 +24,7 @@ const DB_CONN_URL = process.env.DB_CONN_URL;
 const connectDB = async () => { // Method to connect to the MongoDB database
     try {
 
-        return await mongoose.connect(DB_CONN_URL).then(conn => {
+        return await mongoose.connect("mongodb+srv://sabin2000:123mini123@cluster0.xcriw.mongodb.net/electricHouseholds?retryWrites=true&w=majority").then(conn => {
             
             if(conn.connection) {
 
