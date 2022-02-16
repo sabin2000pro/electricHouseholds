@@ -370,8 +370,8 @@ const CreatePreference = (props) => {
       
     }, [nextApplianceDataInserted, lastApplianceDataInserted])
 
-   
     const fetchAllPreferences = async () => {
+
         try {
 
             return await axios.get(`http://localhost:5200/api/v1/preferences/fetch-preferences`).then(response => {
@@ -390,6 +390,7 @@ const CreatePreference = (props) => {
                 }
 
                 return setTimeout(() => {
+
                     {!preferenceSubmitted && setModalShown({title: "Are you happy with your preferences?", commTitle: "Comment Title: ", username: "Username: ", reason: "Reason: ", description: "Description: ", showInputs: true, showSubmitBtn: true})};
                 }, 2000);
 
@@ -580,12 +581,14 @@ const CreatePreference = (props) => {
         <label className = "issue--lbl" htmlFor = "issue">Select Preferences For : {next}</label>
 
         </div>
+
         }) : null} 
 
 
      </div>
 
      <div className = "has--box">
+
             <label className = "has--lbl">Have appliance?</label>
 
             <select onChange = {(e) => {setHasTheAppliance(e.target.value)}} value = {hasTheAppliance} className = "box">
@@ -638,6 +641,7 @@ const CreatePreference = (props) => {
         </div>
 
         <div className = "afternoon--box">
+
             <label className = "password--lbl">Third Preference</label>
 
             <select onChange = {(e) => {setChosenThirdPreference(e.target.value)}} value = {chosenThirdPreference} className = "box">
@@ -689,6 +693,7 @@ const CreatePreference = (props) => {
         <section>
          
             {preferencesBtnClicked && firstApplianceFound ? preferences.map((preference, key) => {
+
                 const theData = preference;
 
                 return <div key = {key}>

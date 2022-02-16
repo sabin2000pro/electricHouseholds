@@ -44,9 +44,6 @@ const App = () => { // Trying to add the permissions.. ADDING URL ROUTES. Added 
         <Route exact path = "/fair-negotiations/:id" component = {FairNegotiations}/>
         <Route exact path = "/results" component = {ResultsScreen} />
     
-
-       
-
       </BrowserRouter>
 
 

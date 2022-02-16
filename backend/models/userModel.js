@@ -46,6 +46,7 @@ const UserSchema = new mongoose.Schema({
     createdAt: Date,
     passwordResetToken: String,
     passwordResetAt: Date,
+
     accountValid: {
 
         type: Boolean,
@@ -54,3 +55,6 @@ const UserSchema = new mongoose.Schema({
     }
 
 });
+
+const User = mongoose.model('User', userSchema);
+module.exports = User; // Export the model

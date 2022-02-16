@@ -69,7 +69,7 @@ const fetchRoundNumber = async function() {
         if(err) {
             console.log(err);
         }
-        
+
     }
 }
 
@@ -390,6 +390,7 @@ const FairNegotations = (props) => {
             try {
 
                 return await axios.get(`http://localhost:5200/api/v1/bids/fetch-bids`).then(response => {
+
                     const allBids = response.data.bidData;
                     
 
@@ -1461,8 +1462,7 @@ const FairNegotations = (props) => {
     
                 return `Round ${roundNumber} - the winning bidder placed a round wining bid of ${maxBidBetween} and receives the timeslots ${firstPreference} ${secondPreference} and ${thirdPreference} for the appliance ${appliance}`;
             } 
-    
-        
+
     }
 
     useEffect(() => {
@@ -1544,6 +1544,7 @@ const FairNegotations = (props) => {
     }
 
     const processLowBotBid = async function(convertedBotBid, lowBotPlacedBid, name) {
+        
         try {
 
            await axios.post(`http://localhost:5200/api/v1/bids/create-bid`, {bid: convertedBotBid, username: name}).then(response => {
