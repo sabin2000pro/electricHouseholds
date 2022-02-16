@@ -11,11 +11,6 @@ pipeline {
             steps {
                 sh 'node -v'
                 sh 'npm install'
-
-                dir('./backend') {
-                    echo 'Running docker compose'
-                    sh 'docker-compose up --build'
-                }
             }
 
         }
