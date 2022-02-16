@@ -19,7 +19,7 @@ pipeline {
         stage("test") {
 
             steps {
-                `
+                
                 dir('./backend') {
                      echo 'Testing the app...'
                 
