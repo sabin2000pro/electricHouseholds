@@ -9,9 +9,13 @@ pipeline {
         stage("build") {
 
             steps {
-                echo 'Building the NodeJS APP OK..'
                 sh 'node -v'
                 sh 'npm install'
+
+                dir('./backend') {
+                    echo 'Running docker compose'
+                    sh 'docker-compose up --build'
+                }
             }
 
         }
@@ -20,10 +24,7 @@ pipeline {
 
             steps {
                 
-                dir('./backend') {
-                     echo 'Testing the app...'
-                
-                     sh 'ls -a'
+                dir('./backend') {            
                      sh 'npm run test'
                 }
                
@@ -35,8 +36,7 @@ pipeline {
 
             steps {
                 dir("./frontend") {
-                    
-                    echo "Deploying the frontend after tests"
+
                     sh 'npm run deploy'
                 }
             }
