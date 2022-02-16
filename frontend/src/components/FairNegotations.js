@@ -45,6 +45,7 @@ const remainingAppliances = [];
 const nextApplianceData = [];
 const lastApplianceData = [];
 const lastRemainingAppliance = [];
+let startingRoundNumber;
 
 
 /**
@@ -54,6 +55,25 @@ const lastRemainingAppliance = [];
  * @description: Fair Negotiations component stores the code required to make the First Price Sealed Bid Algorithm work
  * @param: props
  */
+
+// Fetch Default Round Number Configured From Admin Dashboard
+
+const fetchRoundNumber = async function() {
+
+    try {
+
+    } 
+    
+    catch(err) {
+
+        if(err) {
+            console.log(err);
+        }
+        
+    }
+}
+
+let MAX_ROUNDS = 3;
 
 
 const FairNegotations = (props) => {

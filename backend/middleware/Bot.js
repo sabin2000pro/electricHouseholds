@@ -6,6 +6,22 @@ class Bot {
         this.type = type;
         this.numberOfBots = numberOfBots;
     }
+
+    getBotname() {
+        return this.name;
+    }
+
+    getBotCredits() {
+        return this.botCredits;
+    }
+
+    getBotType() {
+        return this.type;
+    }
+
+    getNumberOfBots() {
+        return this.numberOfBots;
+    }
 }
 
 module.exports = Bot;
