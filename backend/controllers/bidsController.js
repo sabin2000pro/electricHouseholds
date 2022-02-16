@@ -43,7 +43,6 @@ module.exports.createBid = catchAsync(async (request, response, next) => {
    
        const {nickname, bid, virtualCredits, openingBid, username, reputationPoints, creditsLeft, nextRoundBid, lastRoundBid} = request.body;
 
-      
         const newBid = await Bid.create({nickname, bid, virtualCredits, openingBid, username, reputationPoints, creditsLeft, nextRoundBid, lastRoundBid});
         await newBid.save(); // Save the new bid data to the database.
 
