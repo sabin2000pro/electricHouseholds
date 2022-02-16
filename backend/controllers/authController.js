@@ -62,11 +62,11 @@ module.exports.loginAdmin = catchAsync(async (request, response, next) => { // C
     // Compare passwords before logging in
     const passwordsMatch = await admin.compareLoginPasswords(password);
 
-    if(!passwordsMatch) {
+    if(!passwordsMatch) { // If passwords do not match
         return response.status(unauthorized).json({status: 'Failed reading admin', message: 'PAsswords do not match!'});
     }
 
-    return sendToken(admin, ok, response); // Adding CI/CD with Jenkins
+    return sendToken(admin, ok, response); // Adding CI/CD with Jenkins and trying to rebuild
 
 });
 
