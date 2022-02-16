@@ -7,7 +7,7 @@ pipeline {
         stage("build") {
 
             steps {
-                echo 'Building the NodeJS APP..'
+                echo 'Building the NodeJS APP OK..'
                 sh 'npm install'
             }
 
