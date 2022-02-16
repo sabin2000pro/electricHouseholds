@@ -81,7 +81,7 @@ module.exports.getMe = catchAsync(async (request, response, next) => {
         const adminId = request.admin.id;
 
         if(!adminId) {
-            return next(new ErrorResponse(`Could not find curently logged in ADMIN`, 404)); // test
+            return next(new ErrorResponse(`Could not find curently logged in ADMIN`, 404)); // test // Adding more code
         }
 
         const admin = await Admin.findById(adminId);
