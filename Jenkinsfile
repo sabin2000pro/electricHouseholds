@@ -22,7 +22,8 @@ pipeline {
                 dir('./backend') {
                      echo 'Testing the app...'
                 
-                sh 'ls -a'
+                     sh 'ls -a'
+                     sh 'npm run test'
                 }
                
             }
