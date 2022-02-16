@@ -2,7 +2,7 @@ pipeline {
 
     agent any
 
-    tools {nodejs "nodejs-16.14.0"}
+    tools {nodejs "nodejs-16.4.0"}
 
     stages {
 
@@ -19,6 +19,7 @@ pipeline {
         stage("test") {
 
             steps {
+                `
                 dir('./backend') {
                      echo 'Testing the app...'
                 
