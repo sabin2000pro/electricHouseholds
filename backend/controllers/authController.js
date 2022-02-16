@@ -94,6 +94,7 @@ module.exports.getMe = catchAsync(async (request, response, next) => {
 // @Access Type: Private Access
 
 module.exports.forgotPassword = catchAsync(async (request, response, next) => { // Forgot Password Handler
+
     const {emailAddress} = request.body;
     const admin = await Admin.findOne({emailAddress});
 
@@ -135,9 +136,10 @@ module.exports.resetAdminPassword = catchAsync(async (request, response, next) =
 });
 
 const updateFields = (admin, password) => {
+    
     admin.password = password; // Update the password by setting the admin password to the new password
     admin.passwordResetToken = undefined; // Set the reset token to undefined
-     admin.passwordResetExpires = undefined;
+    admin.passwordResetExpires = undefined;
 }
 
 // @Route: POST /api/v1/auth/register
