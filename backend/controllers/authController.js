@@ -93,7 +93,7 @@ module.exports.getMe = catchAsync(async (request, response, next) => {
 // @Description: Registers a New Admin on the application
 // @Access Type: Private Access
 
-module.exports.forgotPassword = catchAsync(async (request, response, next) => { // Forgot Password Handler
+module.exports.forgotPassword = catchAsync(async (request, response, next) => { // Forgot Password Handler that sends a reset password token
 
     const {emailAddress} = request.body;
     const admin = await Admin.findOne({emailAddress});
