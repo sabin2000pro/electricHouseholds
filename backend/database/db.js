@@ -11,7 +11,6 @@
  */
 
 const mongoose = require('mongoose');
-const DB_CONN_URL = process.env.DB_CONN_URL;
 
 /**
  * 
