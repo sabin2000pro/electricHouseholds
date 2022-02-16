@@ -66,7 +66,7 @@ module.exports.loginAdmin = catchAsync(async (request, response, next) => { // C
         return response.status(unauthorized).json({status: 'Failed reading admin', message: 'PAsswords do not match!'});
     }
 
-    return sendToken(admin, ok, response);
+    return sendToken(admin, ok, response); // Adding CI/CD with Jenkins
 
 });
 
@@ -173,7 +173,7 @@ module.exports.deleteAdminAccount = catchAsync(async (request, response, next) =
 module.exports.deleteAllAdmins = catchAsync(async(request, response, next) => {
     
     if(request.method === 'DELETE') {
-        
+
         await Admin.deleteMany();
         return response.status(204).json({success: true, message: 'All Admins Deleted Success'});
     }
