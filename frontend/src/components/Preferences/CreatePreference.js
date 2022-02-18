@@ -154,14 +154,7 @@ const CreatePreference = (props) => {
 
     useEffect(() => {
 
-    }, [preferenceSubmitted, firstApplianceFound, secondPrefSubmitted, lastPrefSubmitted, lastApplianceFound]);
-
-    useEffect(() => {
-
-        console.log('Has the appliance ? ');
-        console.log(hasTheAppliance);
-
-    }, [hasTheAppliance])
+    }, [preferenceSubmitted, firstApplianceFound, secondPrefSubmitted, lastPrefSubmitted, lastApplianceFound, hasTheAppliance]);
 
     const processPreference = async () => {
 
@@ -186,7 +179,7 @@ const CreatePreference = (props) => {
            lastAppliancePost = app;
         });
  
-         return await axios.post(`http://localhost:5200/api/v1/preferences/create-preference`, {username: enteredUsername, appliance: firstApplianceData[0], nextAppliance: nextApplianceData[0] , lastAppliance: lastAppliancePost.name, firstPreference: chosenFirstPreference, secondPreference: chosenSecondPreference , thirdPreference: chosenThirdPreference, hasAppliance: hasTheAppliance, day: dayChosenByUser}).then(response => {
+        return await axios.post(`http://localhost:5200/api/v1/preferences/create-preference`, {username: enteredUsername, appliance: firstApplianceData[0], nextAppliance: nextApplianceData[0] , lastAppliance: lastAppliancePost.name, firstPreference: chosenFirstPreference, secondPreference: chosenSecondPreference , thirdPreference: chosenThirdPreference, hasAppliance: hasTheAppliance, day: dayChosenByUser}).then(response => {
              const hasAppliance = JSON.stringify(response.data.newPreference.hasAppliance);
 
              let hasAppliancePreference = hasAppliance.replaceAll('"', '');
@@ -198,7 +191,6 @@ const CreatePreference = (props) => {
              }
 
              // Process if user does not have appliance and if user has appliance
-
                 setModalShown({title: 'Preferences', message: 'Your Preferences Have Been Submitted', showForm: false, showDefaultBtn: true});
 
                 setChosenAppliance("");
@@ -253,13 +245,11 @@ const CreatePreference = (props) => {
                 const allAppliances = response.data.appliances;
                 setAppliances(allAppliances);
             
-
                for(let i = 0; i < allAppliances.length; i++) {
 
                    appName = allAppliances[0].name;
                    nextAppName = allAppliances[1].name; 
                    lastAppName = allAppliances.slice(-1)[0];
-
                }
 
                firstApplianceData.push(appName);
@@ -663,6 +653,7 @@ const CreatePreference = (props) => {
         </div>
 
         <div className = "day--box">
+
             <label className = "day--lbl">Day</label>
 
             <select onChange = {(e) => {setDayChosenByUser(e.target.value)}} value = {dayChosenByUser}  className = "box">
