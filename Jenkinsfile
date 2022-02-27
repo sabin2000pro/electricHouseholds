@@ -27,6 +27,12 @@ pipeline {
 
         }
 
+        stage("EndToEndTests") {
+            steps {
+                
+            }
+        }
+
         stage("deploy") {
 
             steps {
