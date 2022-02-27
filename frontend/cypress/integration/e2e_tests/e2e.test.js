@@ -68,15 +68,15 @@ describe('Admin Login Tests', () => {
     });
 
     it('Admin Login - Image Displayed', () => {
-
-    });
+        cy.get('div[class="home-img-box"]').find('img').should('be.visible');
+    }); 
 
     it('Admin Login - Paragraph Text Displayed', () => {
-
+        cy.contains('Login');
     });
 
     it('Admin Login - Footer Displayed', () => {
-
+        cy.get('footer[class="footer"]').should('be.visible');
     })
 })
 
@@ -118,6 +118,12 @@ describe('Admin Dashboard - Forgot Password Tests', () => {
     });
 
     it('Forgot Password - Footer Present', () => {
-        
+
+    })
+})
+
+describe('Contact Us Tests', () => {
+    it('Visit Contact Us Page', () => {
+
     })
 })
