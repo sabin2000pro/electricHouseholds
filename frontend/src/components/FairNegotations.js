@@ -1230,7 +1230,6 @@ const FairNegotations = (props) => {
 
                                            setTimeout(() => {
 
-                                           
                                             setRoundNumber(roundNumber + 1);
                                             getNextAppliance();
                                     
@@ -1599,47 +1598,6 @@ const FairNegotations = (props) => {
         })
     }
 
-    const submitFeedbackHandler = async (event) => {
-
-        try {
-
-            event.preventDefault();
-            
-            const {data} = await axios.post(`http://localhost:5200/api/v1/feedback/create-feedback`, {feedbackUsername: enteredFeedbackUsername, feedbackEmailAddress: enteredFeedbackEmailAddress, feedbackFeeling: chosenFeedbackFeeling, feedbackDescription: enteredFeedbackDescription});
-
-            if(!data) {
-                return alert(`No data could be submitted`);
-            }
-
-        }
-        
-        catch(error) {
-
-            if(error) {
-                setFeedbackFormValid(false);
-                console.error(error);
-                throw new Error(error);
-            }
-        }
-    };
-
-    // Routine used to validate the feedback submitted by the user
-    const validateFeedback = function() {
-
-        try {
-
-        }
-        
-        catch(error) {
-
-            if(error) {
-
-                console.error(error);
-                throw new Error(error);
-            }
-
-        }
-    }
 
     useEffect(() => {
         return socialExchangeHandler();
@@ -1662,24 +1620,7 @@ const FairNegotations = (props) => {
 
     }
 
-    // Routine invoked to display the winner.
-    const viewResultsHandler = () => {
 
-        try {
-            console.log(`Inside the view results handler`);
-        } 
-        
-        catch(err) {
-
-            if(err) {
-                console.log(err);
-                throw new Error(err);
-               
-            }
-        }
-    }
-
-    
     return (
 
         <React.Fragment>
@@ -1708,11 +1649,26 @@ const FairNegotations = (props) => {
 
             <h1>Username: {username} </h1>
             <h1>Bidding Seconds: {seconds}</h1>
-            <h1>Household Credits: </h1>
+            
+             {!mainRoundOver && roundNumber === 1 ? <h1 className = "first--pref">Submit bid for your timeslot preference for {appliance}</h1> : null }
+             {mainRoundOver && roundNumber === 2 ? nextApplianceData.map((val, key) => {
 
-             {!mainRoundOver && roundNumber === 1 ? <h1 className = "first--pref">First Chosen Preference : {firstPreference}</h1> : null }
-             {roundNumber === 2 ? <h1 className = "first--pref">Second Chosen Preference : {secondPreference}</h1> : null}
-             {roundNumber === 3 ? <h1 className = "first--pref">Third Chosen Preference : {thirdPreference}</h1> : null}
+            return <div key = {key}>
+
+            <h1>Now submit your bid for {val}</h1>
+            </div>
+
+            }) : null}
+
+             {roundNumber === 3 ? <h1 className = "first--pref">Submit Final Bid For  {roundTwoOver ? lastApplianceData.map((val, key) => {
+              
+              return <div key = {key}>
+
+                {val}
+
+             </div>
+
+          }) : null} </h1> : null}
 
             <h1>{findMaxBid()}</h1>
             <h1>{countTotalBids()}</h1>
@@ -1730,27 +1686,9 @@ const FairNegotations = (props) => {
             </div>
 
             })}
+           
 
-            {!mainRoundOver && !roundTwoOver ? <h2 >User's Initial Appliance : {appliance}</h2> : null}
-
-            {mainRoundOver && roundNumber === 2 ? nextApplianceData.map((val, key) => {
-
-               return <div key = {key}>
-
-                 <h1>Your next appliance {val}</h1>
-               </div>
-
-            }) : null}
-
-            {roundTwoOver ? lastApplianceData.map((val, key) => {
-              
-                return <div key = {key}>
-
-               <h1>Your last appliance {val}</h1>
-
-               </div>
-
-            }) : null}
+        
       
             <h1 style = {{marginBottom: '90px'}}>Round Number : {roundNumber}</h1>
 
@@ -1827,22 +1765,6 @@ const FairNegotations = (props) => {
 
      </div> 
 
-        <div className = "container grid grid--2-cols">
-                        <RegisterCard>
-
-                    <h1 className = "bid--header"></h1>
-                <form id = "feedbackForm" className = "login--form" onSubmit = {submitFeedbackHandler} method = "POST">
-
-                    <div className = "submit-bid--container">
-                    <button className = "login--btn">Submit</button>
-                </div>
-
-
-                </form>
-
-         </RegisterCard>
-
-     </div>
 
         </div>
         
