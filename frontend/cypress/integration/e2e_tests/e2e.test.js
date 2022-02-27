@@ -27,6 +27,10 @@ describe('Your Preferences Test', () => {
         cy.get('#pref--form').submit();
     });
 
+    it('View All Preferences Button', () => {
+        cy.get('button[class = "viewpreferences--btn"]').should('be.visible');
+    })
+
     it('Your Preferences - Input Fields Displayed', () => {
         cy.get('div[class="username--box"]').find('input');
     });
