@@ -82,7 +82,7 @@ const CreateContact = (props) => {
             <RegisterCard>
                 <h1 className = "heading--primary contact--us">Contact Us</h1>
                 
-        <form onSubmit = {contactUsHandler} method = "POST" className = "login--form">
+        <form id = "contact--form" onSubmit = {contactUsHandler} method = "POST" className = "login--form">
 
         <div className = "forename--box">
             <label className = "forename--lbl">Forename</label>

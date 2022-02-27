@@ -133,15 +133,15 @@ describe('Contact Us Tests', () => {
     });
 
     it('Contact Us - Paragraph Text Displayed', () => {
-
+        cy.contains('Should you encounter');
     });
 
     it('Contact Us - Form Displayed', () => {
-        
+        cy.get('#contact--form').should('be.visible');
     });
 
     it('Contact Us - Input Fields Displayed', () => {
-
+        cy.get('div[class="forename--box"]').find('input').should('be.visible');
     });
 
     it('Contact Us - Submit Button Displayed', () => {
