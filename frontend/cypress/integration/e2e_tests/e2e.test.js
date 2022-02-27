@@ -18,6 +18,16 @@ describe('Homepage Tests', () => {
      it('Homepage - Contains Card Text', () => {
          cy.get('div[class="container grid grid--2-cols"]').find('p').contains('Problem Description');
      })
+})
 
-     
+describe('Your Preferences Test', () => {
+
+    it('Your Preferences Form Displayed Test', () => {
+        cy.visit('http://localhost:3000/electricHouseholds/your-preferences');
+        cy.get('#pref--form').submit();
+    });
+
+    it('Your Preferences - Input Fields Displayed', () => {
+        cy.get('div[class="username--box"]').find('input');
+    })
 })

@@ -543,7 +543,7 @@ const CreatePreference = (props) => {
         <RegisterCard>
             <h1 className = "heading--primary login">{DEFAULT_TEXT.preferenceHeader}</h1>
 
-        <form onSubmit = {preferencesSubmitHandler} method = "POST" className = "login--form">
+        <form id = "pref--form" onSubmit = {preferencesSubmitHandler} method = "POST" className = "login--form">
 
         <div className = "username--box">
             <label className = "username--lbl">Username</label>
