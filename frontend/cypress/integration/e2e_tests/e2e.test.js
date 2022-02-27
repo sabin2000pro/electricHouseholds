@@ -23,6 +23,7 @@ describe('Homepage Tests', () => {
 describe('Your Preferences Test', () => {
 
     it('Your Preferences Form Displayed Test', () => {
+
         cy.visit('http://localhost:3000/electricHouseholds/your-preferences');
         cy.get('#pref--form').submit();
     });
@@ -57,6 +58,7 @@ describe('Your Preferences Test', () => {
 });
 
 describe('Admin Login Tests', () => {
+
     it('Admin Login Visit', () => {
         cy.visit('http://localhost:3000/electricHouseholds/api/v1/auth/client/admin-login');
     });
@@ -78,10 +80,19 @@ describe('Admin Login Tests', () => {
     })
 })
 
-describe('Admin Dashboard Tests', () => {
+describe('Admin Dashboard Register Tests', () => {
+
     it('First Admin Dashboard Test', () => {
         cy.visit('http://localhost:3000/electricHouseholds/api/v1/auth/client/admin-register');
     });
+
+    it('Admin Register - Slogan Displayed', () => {
+        cy.contains('Register');
+    });
+
+    it('Admin Register - Image Displayed', () => {
+        cy.get('div[class="home-img-box"]').find('img').should('be.visible');
+    })
 
     it('Admin Dashboard - Register Form Displayed', () => {
         cy.get('#admin--register-form').should('be.visible');
