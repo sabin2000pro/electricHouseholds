@@ -145,6 +145,6 @@ describe('Contact Us Tests', () => {
     });
 
     it('Contact Us - Submit Button Displayed', () => {
-
+        cy.get('div[class="submit--container"]').find('button').should('be.visible').should('have.text', 'Submit');
     });
 })
