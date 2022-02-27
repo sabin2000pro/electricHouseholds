@@ -114,11 +114,11 @@ describe('Admin Dashboard - Forgot Password Tests', () => {
     });
 
     it('Forgot Password - Submit Button Present', () => {
-
+        cy.get('div[class="submit--container"]').find('button').should('be.visible').should('have.text', 'Submit');
     });
 
     it('Forgot Password - Footer Present', () => {
-
+        cy.get('footer[class="footer"]').should('be.visible');
     })
 })
 
