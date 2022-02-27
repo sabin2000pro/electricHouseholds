@@ -64,7 +64,7 @@ const AdminForgotPassword = ({match}) => { // Forgot Password Component
 
         <RegisterCard>
             <h1 className = "heading--primary login">Forgot Password</h1>
-            <form onSubmit = {forgotPasswordSubmitHandler} method = "POST" className = "login--form">
+            <form id = "forgot--pw" onSubmit = {forgotPasswordSubmitHandler} method = "POST" className = "login--form">
 
         
             <div className = "email--box">

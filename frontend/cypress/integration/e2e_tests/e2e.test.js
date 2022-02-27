@@ -97,4 +97,14 @@ describe('Admin Dashboard Register Tests', () => {
     it('Admin Dashboard - Register Form Displayed', () => {
         cy.get('#admin--register-form').should('be.visible');
     })
+});
+
+describe('Admin Dashboard - Forgot Password Tests', () => {
+    it('Forgot Password Visit', () => {
+        cy.visit('http://localhost:3000/electricHouseholds/api/v1/auth/client/admin-forgotpassword');
+    })
+
+    it('Forgot Password - Form Displayed', () => {
+        
+    })
 })
