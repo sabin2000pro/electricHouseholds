@@ -126,5 +126,9 @@ describe('Contact Us Tests', () => {
 
     it('Visit Contact Us Page', () => {
         cy.visit('http://localhost:3000/electricHouseholds/contact-us');
+    });
+
+    it('Contact Us - Slogan Displayed', () => {
+        cy.contains('Contact Us');
     })
 })
