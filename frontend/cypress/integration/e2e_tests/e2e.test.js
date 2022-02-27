@@ -48,7 +48,7 @@ describe('Your Preferences Test', () => {
     });
 
     it('Your Preferences - Day Drop Down Menu', () => {
-
+        cy.get('div[class="day--box"]').find('select').contains('Tuesday');
     });
 
     it('Your Preferences - Form Submit', () => {
