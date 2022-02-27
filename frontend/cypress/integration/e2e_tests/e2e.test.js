@@ -123,7 +123,8 @@ describe('Admin Dashboard - Forgot Password Tests', () => {
 })
 
 describe('Contact Us Tests', () => {
-    it('Visit Contact Us Page', () => {
 
+    it('Visit Contact Us Page', () => {
+        cy.visit('http://localhost:3000/electricHouseholds/contact-us');
     })
 })
