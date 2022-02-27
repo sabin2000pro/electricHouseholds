@@ -130,5 +130,23 @@ describe('Contact Us Tests', () => {
 
     it('Contact Us - Slogan Displayed', () => {
         cy.contains('Contact Us');
-    })
+    });
+
+    it('Contact Us - Paragraph Text Displayed', () => {
+
+    });
+
+    it('Contact Us - Form Displayed', () => {
+        
+    });
+
+    it('Contact Us - Input Fields Displayed', () => {
+
+    });
+
+    it('Contact Us - Submit Button Displayed', () => {
+
+    });
+
+    
 })
