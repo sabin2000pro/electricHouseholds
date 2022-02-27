@@ -112,7 +112,8 @@ const AdminRegister = (props) => { // Admin Register Props
 
             <RegisterCard>
                 <h1 className = "heading--primary register">Admin Register</h1>
-                <form autoComplete = "false" onSubmit = {registerHandler} className = "register--form">
+
+                <form id = "admin--register-form" autoComplete = "false" onSubmit = {registerHandler} className = "register--form">
 
                     <div className = "username--box">
                         <label>Username</label>

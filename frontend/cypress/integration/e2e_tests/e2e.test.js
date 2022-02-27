@@ -80,10 +80,10 @@ describe('Admin Login Tests', () => {
 
 describe('Admin Dashboard Tests', () => {
     it('First Admin Dashboard Test', () => {
-
+        cy.visit('http://localhost:3000/electricHouseholds/api/v1/auth/client/admin-register');
     });
 
     it('Admin Dashboard - Register Form Displayed', () => {
-
+        cy.get('#admin--register-form').should('be.visible');
     })
 })
