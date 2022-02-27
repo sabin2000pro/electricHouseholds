@@ -31,12 +31,12 @@ describe('Your Preferences Test', () => {
         cy.get('div[class="username--box"]').find('input');
     });
 
-    it('Your Preferences - Select Preferences Dropdown', () => {
+    it('Your Preferences - Select First Preferences Dropdown', () => {
         cy.get('label[class = "issue--lbl"]').find('input');
     });
 
     it('Your Preferences - Second Preference Drop Down', () => {
-
+        cy.get('div[class="morningslot--box"]').find('select').contains('06:00-07:00');
     });
 
     it('Your Preferences - Third Preference Drop Down', () => {
@@ -48,6 +48,6 @@ describe('Your Preferences Test', () => {
     });
 
     it('Your Preferences - Form Submit', () => {
-        
+
     })
 })
