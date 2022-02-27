@@ -115,5 +115,9 @@ describe('Admin Dashboard - Forgot Password Tests', () => {
 
     it('Forgot Password - Submit Button Present', () => {
 
+    });
+
+    it('Forgot Password - Footer Present', () => {
+        
     })
 })
