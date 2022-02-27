@@ -54,4 +54,16 @@ describe('Your Preferences Test', () => {
     it('Your Preferences - Form Submit', () => {
 
     })
+});
+
+describe('Admin Login Tests', () => {
+    it('', () => {
+
+    })
+})
+
+describe('Admin Dashboard Tests', () => {
+    it('First Admin Dashboard Test', () => {
+        
+    })
 })
