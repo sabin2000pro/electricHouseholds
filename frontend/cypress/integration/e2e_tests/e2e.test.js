@@ -57,13 +57,25 @@ describe('Your Preferences Test', () => {
 });
 
 describe('Admin Login Tests', () => {
-    it('', () => {
+    it('Admin Login Form', () => {
+        cy.visit('http://localhost:3000/electricHouseholds/api/v1/auth/client/admin-login');
+    });
 
+    it('Admin Login - Form Displayed', () => {
+
+    });
+
+    it('Admin Login - Image Displayed', () => {
+
+    });
+
+    it('Admin Login - Paragraph Text Displayed', () => {
+        
     })
 })
 
 describe('Admin Dashboard Tests', () => {
     it('First Admin Dashboard Test', () => {
-        
+
     })
 })
