@@ -40,7 +40,7 @@ describe('Your Preferences Test', () => {
     });
 
     it('Your Preferences - Third Preference Drop Down', () => {
-
+        cy.get('div[class="latemorning--box"]').find('select').contains('09:00-10:00');
     });
 
     it('Your Preferences - Day Drop Down Menu', () => {
