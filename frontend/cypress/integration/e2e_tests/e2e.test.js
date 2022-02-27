@@ -148,7 +148,3 @@ describe('Contact Us Tests', () => {
 
     });
 })
-
-describe('Fair Negotiations - Test Suite', () => {
-
-});

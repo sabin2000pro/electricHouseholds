@@ -51,7 +51,6 @@ const CreateContact = (props) => {
             }
 
             const {data} = await axios.post(`http://localhost:5200/api/v1/contacts/create-contact`, {firstName: firstName, lastName: lastName, username: username, emailAddress: emailAddress, issueType: issueType, description: description});
-            console.log(data);
             
             setFormValid(true);
 
