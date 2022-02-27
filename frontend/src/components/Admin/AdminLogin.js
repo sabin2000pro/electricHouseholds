@@ -146,7 +146,8 @@ const AdminLogin = (props) => { // Admin Login Component. Adding comments and up
                 
                 <RegisterCard>
                     <h1 className = "heading--primary login">Admin Login</h1>
-                    <form onSubmit = {loginHandler} className = "login--form">
+
+                    <form id = "login--formadmin" onSubmit = {loginHandler} className = "login--form">
 
                     <div className = "email--box">
                         <label className = "email--lbl">E-mail</label>

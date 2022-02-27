@@ -57,12 +57,12 @@ describe('Your Preferences Test', () => {
 });
 
 describe('Admin Login Tests', () => {
-    it('Admin Login Form', () => {
+    it('Admin Login Visit', () => {
         cy.visit('http://localhost:3000/electricHouseholds/api/v1/auth/client/admin-login');
     });
 
     it('Admin Login - Form Displayed', () => {
-
+        cy.get('#login--formadmin').should('be.visible');
     });
 
     it('Admin Login - Image Displayed', () => {
@@ -70,7 +70,11 @@ describe('Admin Login Tests', () => {
     });
 
     it('Admin Login - Paragraph Text Displayed', () => {
-        
+
+    });
+
+    it('Admin Login - Footer Displayed', () => {
+
     })
 })
 
