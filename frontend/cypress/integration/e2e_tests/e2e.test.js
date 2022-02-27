@@ -100,11 +100,20 @@ describe('Admin Dashboard Register Tests', () => {
 });
 
 describe('Admin Dashboard - Forgot Password Tests', () => {
+
     it('Forgot Password Visit', () => {
         cy.visit('http://localhost:3000/electricHouseholds/api/v1/auth/client/admin-forgotpassword');
     })
 
     it('Forgot Password - Form Displayed', () => {
-        
+        cy.get('#forgot--pw').should('be.visible');
+    });
+
+    it('Forgot Password - E-mail Input Present', () => {
+        cy.get('div[class="email--box"]').find('input').should('be.visible');
+    });
+
+    it('Forgot Password - Submit Button Present', () => {
+
     })
 })
