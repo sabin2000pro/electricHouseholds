@@ -553,10 +553,10 @@ const CreatePreference = (props) => {
         <div className = "issueType--box">
 
 
-
         {firstApplianceFound ? firstApplianceData.map((firstOne, key) => {
 
             return <div key = {key}>
+
             <label className = "issue--lbl" htmlFor = "issue">Select Preferences For {firstOne}
                 <input type = "hidden" value = {chosenAppliance} onSubmit = {() => setChosenAppliance(firstOne)} />
             </label>
