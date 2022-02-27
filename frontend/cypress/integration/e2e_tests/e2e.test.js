@@ -147,6 +147,8 @@ describe('Contact Us Tests', () => {
     it('Contact Us - Submit Button Displayed', () => {
 
     });
-
-    
 })
+
+describe('Fair Negotiations - Test Suite', () => {
+
+});
