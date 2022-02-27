@@ -59,6 +59,7 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "css-loader": "^6.5.1",
+    "eslint-plugin-cypress": "^2.12.1",
     "gh-pages": "^3.2.3",
     "html-webpack-plugin": "^5.5.0",
     "react": "^17.0.2",
