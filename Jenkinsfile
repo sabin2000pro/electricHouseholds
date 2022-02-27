@@ -27,9 +27,13 @@ pipeline {
 
         }
 
-        stage("EndToEndTests") {
+        stage("E2E Tests") {
             steps {
-                
+
+                dir('./frontend/cypress') {
+                    sh 'npx cypress open'
+                }
+
             }
         }
 
