@@ -19,6 +19,7 @@ const serverError = 500;
 module.exports.createComment = catchAsync(async (request, response, next) => {
 
     if(request.method === 'POST') {
+        
         const {commentTitle, commentUsername, commentReason, commentDescription} = request.body;
         const newComment = new Comment({commentTitle, commentUsername, commentReason, commentDescription});
         await newComment.save();

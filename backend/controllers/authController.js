@@ -120,7 +120,7 @@ module.exports.forgotPassword = catchAsync(async (request, response, next) => { 
 // @Access Type: Private Access
 
 module.exports.resetAdminPassword = catchAsync(async (request, response, next) => {
-    
+
     const resetToken = request.params.resetToken; // Extract the reset token
     const password = request.body.password; // Get the new password from the body
     
@@ -134,6 +134,7 @@ module.exports.resetAdminPassword = catchAsync(async (request, response, next) =
         updateFields(admin, password);
         await admin.save(); 
         return response.status(200).json({success: true, data: "Password Reset Success"});
+        
 });
 
 const updateFields = (admin, password) => {

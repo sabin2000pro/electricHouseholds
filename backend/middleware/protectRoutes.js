@@ -18,8 +18,8 @@ const catchAsync = require('../utils/catchAsync');
 const jwt = require('jsonwebtoken');
 
 module.exports.protect = catchAsync(async (request, response, next) => {
-    let token;
-    const authHeader = request.headers.authorization;
+    let token; // The token will be stored here
+    const authHeader = request.headers.authorization; // The authorization header token in the form of Bearer <token></token>
 
     if(authHeader && authHeader.startsWith('Bearer')) { // if the auth header starts with Bearer ...
         token = authHeader.split(' ')[1]; // Turn it into an array
@@ -30,8 +30,7 @@ module.exports.protect = catchAsync(async (request, response, next) => {
     }
 
     try {
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        console.log(decoded);
+        const decoded = jwt.verify(token, process.env.JWT_SECRET); // Decode the token
 
         request.admin = await Admin.findById(decoded.id);
         return next();
@@ -48,7 +47,6 @@ module.exports.protect = catchAsync(async (request, response, next) => {
 // Middleware Function to restrict acess (RBAC) to specific users
 module.exports.restrictTo = (...roles) => {
     return (request, response, next) => {
-        
 
         return next();
     }

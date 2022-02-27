@@ -75,7 +75,6 @@ const fetchRoundNumber = async function() {
 
 let MAX_ROUNDS = 3;
 
-
 const FairNegotations = (props) => {
 
     let location = useLocation();
@@ -187,6 +186,7 @@ const FairNegotations = (props) => {
         const savedCallback = useRef();
     
         useEffect(() => { // Hook to to set the current callback
+
             setTimerRunning(true);
 
             if(timerRunning) {
@@ -194,8 +194,10 @@ const FairNegotations = (props) => {
             }
 
            else if(timerRunning === null) {
+
                alert(`Time is up!`);
             setSeconds(START_TIMER);
+
            }
 
         }, [callback, timerRunning]);
@@ -959,10 +961,12 @@ const FairNegotations = (props) => {
    }
 
    useEffect(() => {
+
     if(roundLost) {
         console.log(`ROUND LOST`);
         console.log(roundLost);
     }
+
    }, [roundLost])
 
 
@@ -1544,7 +1548,7 @@ const FairNegotations = (props) => {
     }
 
     const processLowBotBid = async function(convertedBotBid, lowBotPlacedBid, name) {
-        
+
         try {
 
            await axios.post(`http://localhost:5200/api/v1/bids/create-bid`, {bid: convertedBotBid, username: name}).then(response => {
@@ -1591,7 +1595,7 @@ const FairNegotations = (props) => {
 
             if(err) {
                 return console.log(err.response.data);
-         }
+            }
         })
     }
 
@@ -1705,7 +1709,6 @@ const FairNegotations = (props) => {
             <h1>Username: {username} </h1>
             <h1>Bidding Seconds: {seconds}</h1>
             <h1>Household Credits: </h1>
-
 
              {!mainRoundOver && roundNumber === 1 ? <h1 className = "first--pref">First Chosen Preference : {firstPreference}</h1> : null }
              {roundNumber === 2 ? <h1 className = "first--pref">Second Chosen Preference : {secondPreference}</h1> : null}
@@ -1827,28 +1830,8 @@ const FairNegotations = (props) => {
         <div className = "container grid grid--2-cols">
                         <RegisterCard>
 
-                    <h1 className = "bid--header">Submit Feedback</h1>
+                    <h1 className = "bid--header"></h1>
                 <form id = "feedbackForm" className = "login--form" onSubmit = {submitFeedbackHandler} method = "POST">
-
-                    <div className = "feedback--container">
-                        <label htmlFor = "feedbackUsername">Username</label>
-                        <input value = {enteredFeedbackUsername} placeholder = "Enter Username" onChange = {(e) => {setEnteredFeedbackUsername(e.target.value)}} />
-                    </div>
-
-                    <div className = "feedback--container">
-                        <label htmlFor = "feedbackUsername">E-mail</label>
-                        <input value = {enteredFeedbackEmailAddress} placeholder = "Enter E-mail" onChange = {(e) => {setEnteredFeedbackEmailAddress(e.target.value)}} />
-                    </div>
-
-                    <div className = "feedback--container">
-                        <label htmlFor = "feedbackUsername">Feeling</label>
-                        <input />
-                    </div>
-
-                    <div className = "feedback--container">
-                        <label htmlFor = "feedbackUsername">Description</label>
-                        <input />
-                    </div>
 
                     <div className = "submit-bid--container">
                     <button className = "login--btn">Submit</button>
@@ -1866,20 +1849,7 @@ const FairNegotations = (props) => {
 
 : undefined }
 
-            
-
- {/* <div className = "container grid grid--2-cols">
-
-        <RegisterCard>
-                <h1 className = "bid--header">Submit Round Bid</h1>
-
-            <form id = "bidForm" className = "login--form" onSubmit = {submitBidHandler} method = "POST">
-
-            </form>
-
-            </RegisterCard>
-
-            </div> */}
+        
 
             {mainRoundOver ? results.map((win, key) => {
 
