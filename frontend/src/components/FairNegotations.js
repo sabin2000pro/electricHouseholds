@@ -116,6 +116,8 @@ const FairNegotations = (props) => {
     const [userWinsRoundOne, setUserWinsRoundOne] = useState(false);
     const [userWinsNextRound, setUserWinsNextRound] = useState(false);
 
+    const [showSatisfactionForm, setShowSatisfactionForm] = useState(false);
+
     /**
          * 
          * @returns : Returns a string with the total number of bids enclosed by single quotes
@@ -1579,8 +1581,6 @@ const FairNegotations = (props) => {
 
             <h1>{findMaxBid()}</h1>
             <h1>{countTotalBids()}</h1>
-
-            {userWinsNextRound && modalShown ? <Modal title = "Round winner" message = {findMaxBetween()} /> : null}
 
             {modalShown && roundNumber === 1 ? <Modal title = "Round Winner" message = {findMaxBetween()} /> : null}
 
