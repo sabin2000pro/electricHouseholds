@@ -18,13 +18,13 @@
   }
   
   .modal__header {
-    background: lightgreen;
+    background: red;
     padding: 1rem;
   }
   
   .modal__header h2 {
     margin: 0;
-    color: black;
+    color: white;
   }
   
   .modal__content {
