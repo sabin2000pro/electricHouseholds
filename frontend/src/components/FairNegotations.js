@@ -971,7 +971,9 @@ const FairNegotations = (props) => {
         console.log(roundLost);
     }
 
-   }, [roundLost])
+    console.log(`User wins round 1 ? ${userWinsRoundOne}`);
+
+   }, [roundLost, userWinsRoundOne])
 
 
    /**
@@ -1157,15 +1159,12 @@ const FairNegotations = (props) => {
                           if(theUserBid > randBid && roundNumber === 1) { // if the bid of the user is > low bot bid and we are in round 1
                             alert(`You win round ${roundNumber}`);
 
-                            
+                            setUserWinsRoundOne(true);
 
                             setModalShown({title: "Preferences", message: "No preferences found"});
                             setUserWinBid(!userWinBid);
 
-                            if(userWinBid) {
-                                alert(`User wins`);
-                            }
-
+                        
                             setRoundNumber(roundNumber + 1);
                           
                             setMainRoundOver(!mainRoundOver);
@@ -1607,47 +1606,7 @@ const FairNegotations = (props) => {
         })
     }
 
-    const submitFeedbackHandler = async (event) => {
 
-        try {
-
-            event.preventDefault();
-            
-            const {data} = await axios.post(`http://localhost:5200/api/v1/feedback/create-feedback`, {feedbackUsername: enteredFeedbackUsername, feedbackEmailAddress: enteredFeedbackEmailAddress, feedbackFeeling: chosenFeedbackFeeling, feedbackDescription: enteredFeedbackDescription});
-
-            if(!data) {
-                return alert(`No data could be submitted`);
-            }
-
-        }
-        
-        catch(error) {
-
-            if(error) {
-                setFeedbackFormValid(false);
-                console.error(error);
-                throw new Error(error);
-            }
-        }
-    };
-
-    // Routine used to validate the feedback submitted by the user
-    const validateFeedback = function() {
-
-        try {
-
-        }
-        
-        catch(error) {
-
-            if(error) {
-
-                console.error(error);
-                throw new Error(error);
-            }
-
-        }
-    }
 
     return (
 
