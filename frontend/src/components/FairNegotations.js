@@ -964,7 +964,7 @@ const FairNegotations = (props) => {
            if(roundNumber === 3) {
 
                if(creditsAvailable === 0) {
-                   
+
                    setOutOfCredits(true);
                    return;
                }
@@ -983,7 +983,9 @@ const FairNegotations = (props) => {
 
     console.log(`User wins round 1 ? ${userWinsRoundOne}`);
 
-   }, [roundLost, userWinsRoundOne])
+    console.log(`User wins next round ?? ${userWinsNextRound}`);
+
+   }, [roundLost, userWinsRoundOne, userWinsNextRound])
 
 
    /**
@@ -1335,7 +1337,9 @@ const FairNegotations = (props) => {
                                 let intenseBotDifference = parsedIntenseBotCredits - intenseCreditsLeftObj.intenseBotCreditsLeft;
 
                                 if(nextUserBid < intenseBotBid) {
-                                    
+
+                                    setUserWinsNextRound(false);
+
                                     setModalShown({title: "Preferences", message: "No preferences found"});
                                     setBiddingOver(true);
 
@@ -1350,7 +1354,6 @@ const FairNegotations = (props) => {
 
                                     }, 2000)
                                    
-
                                     allBotData.push({...creditsRemainingObj, intenseBotDifference, userCreditsLeft, userBid});
                                     allTheBidsData = [...allBotData];
 
