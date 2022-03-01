@@ -981,11 +981,7 @@ const FairNegotations = (props) => {
         console.log(roundLost);
     }
 
-    console.log(`User wins round 1 ? ${userWinsRoundOne}`);
-
-    console.log(`User wins next round ?? ${userWinsNextRound}`);
-
-   }, [roundLost, userWinsRoundOne, userWinsNextRound])
+   }, [roundLost, userWinsRoundOne])
 
 
    /**
@@ -1206,8 +1202,7 @@ const FairNegotations = (props) => {
                                   if(nextRoundBid < mediumBotRandomBids) {
                                       alert(`Lose round 2`);
 
-                                      setModalShown({title: "Preferences", message: "No preferences found"});
-                                      setUserWinsNextRound(false);
+                                    setModalShown({title: "Preferences", message: "No preferences found"});
 
                                     setRoundNumber(roundNumber + 1);
                                     getNextAppliance();
@@ -1230,12 +1225,12 @@ const FairNegotations = (props) => {
                                         setBiddingOver(true);
           
                                        
-                                           allBotData.push({...medBotCreditsRemain, medBotDifference, userCreditsLeft, userBid});
-                                           allTheBidsData = [...allBotData];
+                                        allBotData.push({...medBotCreditsRemain, medBotDifference, userCreditsLeft, userBid});
+                                        allTheBidsData = [...allBotData];
 
                                            setTimeout(() => {
 
-                                            setRoundNumber(roundNumber + 1);
+                                         setRoundNumber(roundNumber + 1);
                                             getNextAppliance();
                                     
                                             setMainRoundOver(true);
@@ -1303,6 +1298,7 @@ const FairNegotations = (props) => {
                                            setRoundNumber(roundNumber + 1);
 
                                           return;
+                                          
                                            }
            
                                           }, 4500)
