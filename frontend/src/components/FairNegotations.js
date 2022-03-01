@@ -1622,6 +1622,10 @@ const FairNegotations = (props) => {
         })
     }
 
+    const displayUserWinner = (appliance, firstPreference) => {
+        return `You have won the bidding round and you receive your timeslot preferences for your chosen appliance ${appliance}`;
+    }
+
 
 
     return (
@@ -1660,7 +1664,7 @@ const FairNegotations = (props) => {
             <h1>{findMaxBid()}</h1>
             <h1>{countTotalBids()}</h1>
 
-            {userWinsRoundOne && <Modal title = "Round winner" message = "You win the round USER" />}
+            {userWinsRoundOne && <Modal title = "Round winner" message = {displayUserWinner(appliance, firstPreference)} />}
 
             {modalShown && roundNumber === 1 ? <Modal title = "Round Winner" message = {findMaxBetween()} /> : null}
 
