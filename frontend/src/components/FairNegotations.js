@@ -1063,6 +1063,7 @@ const FairNegotations = (props) => {
                           }
 
                           if(nextRoundBid > randBid && roundNumber === 2) {
+                              alert('You have won the round!')
 
                               setUserWinsNextRound(true);
 
@@ -1133,7 +1134,6 @@ const FairNegotations = (props) => {
                           if(theUserBid > randBid && roundNumber === 1) { // if the bid of the user is > low bot bid and we are in round 1
                             setUserWinsRoundOne(true);
 
-                            displayUserWinData(randBid, roundNumber);
                             setModalShown({title: "Preferences", message: "No preferences found"});
                             setUserWinBid(!userWinBid);
 
@@ -1567,9 +1567,7 @@ const FairNegotations = (props) => {
         })
     }
 
-    const displayUserWinData = (randBid, roundNumber) => {
-        alert(`Another household wins and placed a bid of ${randBid}`);
-    }
+  
 
     return (
 
@@ -1599,7 +1597,7 @@ const FairNegotations = (props) => {
 
             <h1>Bidding Seconds: {seconds}</h1>
 
-             {!mainRoundOver && roundNumber === 1 ? <h1 className = "first--pref">Submit bid for your timeslot preference for {appliance}</h1> : null }
+             {!mainRoundOver && roundNumber === 1 ? <h1 className = "first--pref">Submit Bid For {appliance}</h1> : null }
              
              {roundNumber === 2 ? <h1 className = "first--pref">Submit Bid For {nextAppliance}</h1> : null}
              {roundNumber === 3 ? <h1 className = "first--pref">Submit Bid For {lastAppliance}</h1> : null}
@@ -1607,7 +1605,6 @@ const FairNegotations = (props) => {
             <h1>{findMaxBid()}</h1>
             <h1>{countTotalBids()}</h1>
 
-            {modalShown && userWinsRoundOne ? <Modal title = "Round winner" message = {displayUserWinData()} /> : null}
             {userWinsNextRound && modalShown ? <Modal title = "Round winner" message = {findMaxBetween()} /> : null}
 
             {modalShown && roundNumber === 1 ? <Modal title = "Round Winner" message = {findMaxBetween()} /> : null}
@@ -1632,15 +1629,6 @@ const FairNegotations = (props) => {
 
             }) : null}
 
-            {roundTwoOver ? lastApplianceData.map((val, key) => {
-              
-                return <div key = {key}>
-
-               <h1>Your last appliance {val}</h1>
-
-               </div>
-
-            }) : null}
       
             <h1 style = {{marginBottom: '90px'}}>Round Number : {roundNumber}</h1>
 
