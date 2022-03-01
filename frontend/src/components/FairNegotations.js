@@ -1101,6 +1101,10 @@ const FairNegotations = (props) => {
                           if(theUserBid > randBid && roundNumber === 1) { // if the bid of the user is > low bot bid and we are in round 1
                             setUserWinsRoundOne(true);
 
+                            setTimeout(() => {
+                                return alert(`You have won round ${roundNumber} - you have paid ${theUserBid} virtual credits for the timeslots associated with the appliance ${appliance}`)
+                            }, 2000)
+
                             setModalShown({title: "Preferences", message: "No preferences found"});
                             setUserWinBid(!userWinBid);
 
