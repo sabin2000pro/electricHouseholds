@@ -1566,7 +1566,7 @@ const FairNegotations = (props) => {
 
         <div>
 
-            <h1>Bidding Seconds: {seconds}</h1>
+            <h1>Seconds Left: {seconds}</h1>
 
              {!mainRoundOver && roundNumber === 1 ? <h1 className = "first--pref">Submit Bid For {appliance}</h1> : null }
              
