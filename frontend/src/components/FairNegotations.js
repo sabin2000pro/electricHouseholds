@@ -45,33 +45,7 @@ const remainingAppliances = [];
 const nextApplianceData = [];
 const lastApplianceData = [];
 const lastRemainingAppliance = [];
-let startingRoundNumber;
 
-
-/**
- * 
- * @returns : Main JSX Body
- * @method: FairNegotiations
- * @description: Fair Negotiations component stores the code required to make the First Price Sealed Bid Algorithm work
- * @param: props
- */
-
-// Fetch Default Round Number Configured From Admin Dashboard
-
-const fetchRoundNumber = async function() {
-
-    try {
-
-    } 
-    
-    catch(err) {
-
-        if(err) {
-            console.log(err);
-        }
-
-    }
-}
 
 let MAX_ROUNDS = 3;
 
@@ -88,21 +62,12 @@ const FairNegotations = (props) => {
     const [timerRunning, setTimerRunning] = useState(false);
     const [seconds, setSeconds] = useState(START_TIMER);
     
-
     const [bidValid, setBidValid] = useState(false);
     const [updatedNewBid, setUpdatedNewBid] = useState(false);
     const [clearedBids, setClearedBids] = useState(false);
    
     let [userInputDisabled, setUserInputDisabled] = useState(false);
     const [bidsFound, setBidsFound] = useState(false);
-
-    const [enteredFeedbackUsername, setEnteredFeedbackUsername] = useState("");
-    const [enteredFeedbackEmailAddress, setEnteredFeedbackEmailAddress] = useState("");
-    const [chosenFeedbackFeeling, setChosenFeedbackFeeling] = useState("");
-    const [enteredFeedbackDescription, setEnteredFeedbackDescription] = useState('');
-
-    const [feedbackFormValid, setFeedbackFormValid] = useState(false);
-    const [feedbackFormSubmitted, setFeedbackFormSubmitted] = useState(false);
 
     const [minBidFound, setMinBidFound] = useState(false);
     const [auctionChosen, setAuctionChosen] = useState(false);
@@ -121,7 +86,6 @@ const FairNegotations = (props) => {
 
     const [lastRoundOver, setLastRoundOver] = useState(false);
 
-    const [feedbackData, setFeedbackData] = useState([]);
     const [bids, setBids] = useState([]);
     const [botData, setBotData] = useState([]);
 
@@ -132,8 +96,6 @@ const FairNegotations = (props) => {
     const [biddingOver, setBiddingOver] = useState(false);
     const [lowBotWin, setLowBotWin] = useState(false);
     const [mediumBotWin, setMediumBotWin] = useState(false);
-
-    const [intenseBotWin, setIntenseBotWin] = useState(false);
    
     const [modalShown, setModalShown] = useState();
     let [userCreditsLeft, setUserCreditsLeft] = useState({});
@@ -148,13 +110,11 @@ const FairNegotations = (props) => {
     const [lastApplianceSet, setLastApplianceSet] = useState(false);
     const [outOfCredits, setOutOfCredits] = useState(false);
 
-    const [feedbackFormDisplay, setFeedbackFormDisplay] = useState(false);
     const [results, setResults] = useState([]);
     const [roundLost, setRoundLost] = useState(false);
 
     const [userWinsRoundOne, setUserWinsRoundOne] = useState(false);
     const [userWinsNextRound, setUserWinsNextRound] = useState(false);
-    const [userWinsLastRound, setUserWinsLastRound] = useState(false);
 
     /**
          * 
@@ -1063,12 +1023,9 @@ const FairNegotations = (props) => {
   
                           nextApplianceRound = nextApp;
 
-                          if(nextRoundBid > randBid) {
-                              alert(`You placed a higher bid..`);
-                          }
-  
+                     
                           if(nextRoundBid < randBid && roundNumber === 2) {
-                          
+                
 
                             setRoundNumber(roundNumber + 1);
                             getNextAppliance();
@@ -1080,7 +1037,7 @@ const FairNegotations = (props) => {
                             setLowBotWin(!lowBotWin);
                             setLastRoundForm(!lastRoundForm);
                             
-  
+
                               return;
   
                           }
@@ -1088,13 +1045,11 @@ const FairNegotations = (props) => {
                           })
   
                           if(nextRoundBid < randBid && roundNumber === 2) {
-                              alert(`You lost`)
+                              alert(`You lost against another household. Another household placed a bid of ${randBid}, wins the round and receives the timeslot preferences for ${nextAppliance}`);
                               
                             setTimeout(() => {
-                                setUserWinsNextRound(false);
                                 setModalShown({title: "Preferences", message: "No preferences found"});
-
-                            }, 2000);
+                            }, 1000);
                             
                               setRoundNumber(roundNumber + 1);
                               getNextAppliance();
@@ -1178,7 +1133,7 @@ const FairNegotations = (props) => {
                           if(theUserBid > randBid && roundNumber === 1) { // if the bid of the user is > low bot bid and we are in round 1
                             setUserWinsRoundOne(true);
 
-                            
+                            displayUserWinData(randBid, roundNumber);
                             setModalShown({title: "Preferences", message: "No preferences found"});
                             setUserWinBid(!userWinBid);
 
@@ -1230,36 +1185,29 @@ const FairNegotations = (props) => {
         
                                     setMediumBotWin(!mediumBotWin);
                                     setLastRoundForm(!lastRoundForm);
+
+                                    setModalShown(null);
                                      
                                 }
                             
                                     if(userBid < mediumBotRandomBids) {
 
-                                        console.log(`${type} ${name} Bot Placed bid of ${mediumBotRandomBids}`);
-
                                         setModalShown({title: "Preferences", message: "No preferences found"});
                                         setBiddingOver(true);
           
-                                        setTimeout(() => {
-                                           
-                                            setTimeout(() => {
-                                               setModalShown(null);
 
-                                            }, 4500);
-
-                                        }, 4000)
-                                       
-                                           allBotData.push({...medBotCreditsRemain, medBotDifference, userCreditsLeft, userBid});
-                                           allTheBidsData = [...allBotData];
+                                         allBotData.push({...medBotCreditsRemain, medBotDifference, userCreditsLeft, userBid});
+                                        allTheBidsData = [...allBotData];
 
                                            setTimeout(() => {
 
-                                           
                                             setRoundNumber(roundNumber + 1);
                                             getNextAppliance();
                                     
                                             setMainRoundOver(true);
                                             setMediumBotWin(true);
+
+                                            //setModalShown(null);
 
                                             return;
                                            
@@ -1372,6 +1320,8 @@ const FairNegotations = (props) => {
                                     allBotData.push({...creditsRemainingObj, intenseBotDifference, userCreditsLeft, userBid});
                                     allTheBidsData = [...allBotData];
 
+                                    setModalShown(null);
+
                                     return;
 
                                 }
@@ -1381,16 +1331,6 @@ const FairNegotations = (props) => {
                                     setModalShown({title: "Preferences", message: "No preferences found"});
                                     setBiddingOver(true);
       
-                                    setTimeout(() => {
-                                       
-                                        setTimeout(() => {
-                                           setModalShown(null);
-
-                                        }, 4500);
-
-                                    }, 4000)
-                                   
-                                
                                     allBotData.push({userBid: userBid});
                                     allTheBidsData = [...allBotData];
 
@@ -1401,8 +1341,12 @@ const FairNegotations = (props) => {
                                         
                                         setNextRoundForm(true);
                                         setLastRoundForm(false);
+
+                                        setModalShown(null);
                                        
-                                    }, 3000)
+                                    }, 3000);
+
+                                    setModalShown(null);
                                   
                                 }
 
@@ -1623,16 +1567,8 @@ const FairNegotations = (props) => {
         })
     }
 
-    const displayUserWinner = (appliance, firstPreference) => {
-        return `You have won the bidding round and you receive your timeslot preferences for your chosen appliance ${appliance}`;
-    }
-
-    const displayNextRoundWin = (nextAppliance) => {
-        return `You have won round ${roundNumber - 1} and you have received your timeslot preferences for your chosen appliance ${nextAppliance}`;
-    }
-
-    const displayLastRoundWin = (lastAppliance) => {
-
+    const displayUserWinData = (randBid, roundNumber) => {
+        alert(`Another household wins and placed a bid of ${randBid}`);
     }
 
     return (
@@ -1671,11 +1607,10 @@ const FairNegotations = (props) => {
             <h1>{findMaxBid()}</h1>
             <h1>{countTotalBids()}</h1>
 
-            {userWinsRoundOne && <Modal title = "Round winner" message = {displayUserWinner(appliance, firstPreference)} />}
-            {userWinsNextRound ? <Modal title = "Round winner" message = {displayNextRoundWin(nextAppliance)} /> : null}
+            {modalShown && userWinsRoundOne ? <Modal title = "Round winner" message = {displayUserWinData()} /> : null}
+            {userWinsNextRound && modalShown ? <Modal title = "Round winner" message = {findMaxBetween()} /> : null}
 
             {modalShown && roundNumber === 1 ? <Modal title = "Round Winner" message = {findMaxBetween()} /> : null}
-
 
             {creditData.map((credit, key) => {
                 const credits = credit;
