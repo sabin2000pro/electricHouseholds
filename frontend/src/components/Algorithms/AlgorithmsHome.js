@@ -34,6 +34,8 @@ const AlgorithmsHome = (props) => {
             <p className = "home--description">2. At the end of either rounds, your bid is going to be compared against other households.</p>
             <p className = "home--description">3. If your bid is greater than the other households bids, you receive the timeslot and pay the virtual credits for that round.</p>
             <p className = "home--description">4. If any of the other households submit a bid greater than yours, then they will receive the timeslot, but you get to keep your credits.</p>
+            <p className = "home--description">5. For Round 1 please hit enter twice when submitting a bid to prevent form resubmission</p>
+            <p className = "home--description">6. For Round 2 onwards please hit enter only once.</p>
 
             <a className = "btn btn--full mgr-sm" href = "/your-preferences">Start Now</a>
             <a className = "btn btn--outline" href = "/about-us">About Us</a>

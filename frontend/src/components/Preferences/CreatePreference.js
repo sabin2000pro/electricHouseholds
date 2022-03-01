@@ -107,12 +107,7 @@ const CreatePreference = (props) => {
         try {
             e.preventDefault();
 
-            // Validate Preferences
-            if(enteredUsername.trim().length === 0) {
-                setUsernameValid(false);
-                setShowForm(false);
-                return setModalShown({title: 'Username Error', message: "Username Cannot be blank."});
-            };
+          
 
             if(chosenFirstPreference === chosenSecondPreference) {
                 setFormValid(false);
@@ -179,18 +174,8 @@ const CreatePreference = (props) => {
            lastAppliancePost = app;
         });
  
-        return await axios.post(`http://localhost:5200/api/v1/preferences/create-preference`, {username: enteredUsername, appliance: firstApplianceData[0], nextAppliance: nextApplianceData[0] , lastAppliance: lastAppliancePost.name, firstPreference: chosenFirstPreference, secondPreference: chosenSecondPreference , thirdPreference: chosenThirdPreference, hasAppliance: hasTheAppliance, day: dayChosenByUser}).then(response => {
-             const hasAppliance = JSON.stringify(response.data.newPreference.hasAppliance);
-
-             let hasAppliancePreference = hasAppliance.replaceAll('"', '');
-
-             if(hasAppliancePreference === 'No') {
-                 alert(`User does not preferences for this appliance`);
-                 setHasTheAppliance(!hasTheAppliance);
-                 return;
-             }
-
-             // Process if user does not have appliance and if user has appliance
+        return await axios.post(`http://localhost:5200/api/v1/preferences/create-preference`, {appliance: firstApplianceData[0], nextAppliance: nextApplianceData[0] , lastAppliance: lastAppliancePost.name, firstPreference: chosenFirstPreference, secondPreference: chosenSecondPreference , thirdPreference: chosenThirdPreference, day: dayChosenByUser}).then(response => {
+            
                 setModalShown({title: 'Preferences', message: 'Your Preferences Have Been Submitted', showForm: false, showDefaultBtn: true});
 
                 setChosenAppliance("");
@@ -494,18 +479,6 @@ const CreatePreference = (props) => {
        }
    }
 
-   const validateCommentDescription = function() {
-
-        try {
-            return enteredCommentDescription.trim().length !== 0;
-        } 
-        
-        catch(error) {
-
-            setEnteredCommentDescriptionValid(false);
-            return console.error(error);
-        }
-   };
 
     const commentFormHandler = async (event) => {
         try {
@@ -545,11 +518,6 @@ const CreatePreference = (props) => {
 
         <form id = "pref--form" onSubmit = {preferencesSubmitHandler} method = "POST" className = "login--form">
 
-        <div className = "username--box">
-            <label className = "username--lbl">Username</label>
-            <input id = "username" onChange = {(e) => {setUsername(e.target.value)}} value = {enteredUsername} placeholder = "Enter your Username" type = "text"/>
-        </div>
-
         <div className = "issueType--box">
 
 
@@ -577,17 +545,7 @@ const CreatePreference = (props) => {
 
      </div>
 
-     <div className = "has--box">
-
-            <label className = "has--lbl">Have appliance?</label>
-
-            <select onChange = {(e) => {setHasTheAppliance(e.target.value)}} value = {hasTheAppliance} className = "box">
-               <option>Yes</option>
-               <option>No</option>
-            </select>
-
-        </div>
-
+    
         <div className = "morningslot--box">
 
             <label className = "morning--lbl">First Preference</label>
@@ -701,7 +659,7 @@ const CreatePreference = (props) => {
                     <h2 className = "appliance--heading">Your Preference 2 : {theData.secondPreference}</h2>
                     <h2 className = "appliance--heading">Your Preference 3 : {theData.thirdPreference}</h2>
 
-                    <h2 className = "appliance--heading">Random Allocations</h2>
+                    <h2 className = "appliance--heading">Allocations</h2>
                     <h2 className = "appliance--heading">First Random Slot : {otherFirstPref}</h2>
                     <h2 className = "appliance--heading">Second Random Slot : {otherSecondPref}</h2>
                     <h2 className = "appliance--heading">Third Random Slot : {otherThirdPref}</h2>

@@ -1647,8 +1647,7 @@ const FairNegotations = (props) => {
 
         <div>
 
-            <h1>Username: {username} </h1>
-            <h1>Bidding Seconds: {seconds}</h1>
+            <h1>Seconds Left: {seconds}</h1>
             
              {!mainRoundOver && roundNumber === 1 ? <h1 className = "first--pref">Submit bid for your timeslot preference for {appliance}</h1> : null }
              {mainRoundOver && roundNumber === 2 ? nextApplianceData.map((val, key) => {
@@ -1771,8 +1770,6 @@ const FairNegotations = (props) => {
 
 : undefined }
 
-        
-
             {mainRoundOver ? results.map((win, key) => {
 
                 return <div key = {key}>
@@ -1781,9 +1778,6 @@ const FairNegotations = (props) => {
 
             }) : null}
 
-            {mainRoundOver ? <button className = "results--btn">View Winning Results</button> : null}
-
-        
 </section>
 
     <footer className = "footer">
