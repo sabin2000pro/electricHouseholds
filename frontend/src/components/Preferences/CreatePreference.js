@@ -602,7 +602,7 @@ const CreatePreference = (props) => {
     </div>   
 
         <div className = "viewcontainer--btn">
-            <button onClick = {fetchAllPreferences} className = "viewpreferences--btn">View All Preferences</button>
+            <button onClick = {fetchAllPreferences} className = "viewpreferences--btn">View Allocations</button>
         </div> 
 
         <section>
@@ -614,14 +614,6 @@ const CreatePreference = (props) => {
                 return <div key = {key}>
 
                     <div className = "preferences--card">
-
-                    <h2 className = "appliance--heading">First Appliance : {theData.appliance}</h2>
-                    <h2 className = "appliance--heading">Next Appliance : {theData.nextAppliance}</h2>
-                    <h2 className = "appliance--heading">Last Appliance : {theData.lastAppliance}</h2>
-
-                    <h2 className = "appliance--heading">Preference 1 : {theData.firstPreference}</h2>
-                    <h2 className = "appliance--heading">Preference 2 : {theData.secondPreference}</h2>
-                    <h2 className = "appliance--heading">Preference 3 : {theData.thirdPreference}</h2>
 
                     <h2 className = "appliance--heading">Allocations</h2>
                     <h2 className = "appliance--heading">{otherFirstPref}</h2>
