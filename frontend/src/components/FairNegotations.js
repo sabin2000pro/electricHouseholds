@@ -1088,6 +1088,7 @@ const FairNegotations = (props) => {
                           })
   
                           if(nextRoundBid < randBid && roundNumber === 2) {
+                              alert(`You lost`)
                               
                             setTimeout(() => {
                                 setUserWinsNextRound(false);
