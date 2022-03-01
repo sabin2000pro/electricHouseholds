@@ -1063,7 +1063,7 @@ const FairNegotations = (props) => {
                           }
 
                           if(nextRoundBid > randBid && roundNumber === 2) {
-                              alert('You have won the round!')
+                              alert(`You win round ${roundNumber} - you have paid ${nextRoundBid} for the appliance ${nextAppliance}` );
 
                               setUserWinsNextRound(true);
 
