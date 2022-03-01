@@ -909,6 +909,7 @@ const FairNegotations = (props) => {
            if(roundNumber === 2) {
 
             if(creditsAvailable === 0) {
+                
                 setOutOfCredits(true);
                 return;
             }
@@ -925,15 +926,6 @@ const FairNegotations = (props) => {
    }
 
    useEffect(() => {
-
-    if(roundLost) {
-        console.log(`ROUND LOST`);
-        console.log(roundLost);
-    }
-
-    console.log(`User wins round 1 ? ${userWinsRoundOne}`);
-
-    console.log(`User wins next round ${userWinsNextRound}`);
 
    }, [roundLost, userWinsRoundOne, userWinsNextRound])
 
