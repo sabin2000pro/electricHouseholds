@@ -33,8 +33,7 @@ const PreferencesHome = () => {
             <p className = "home--description">Make sure to reload the page after submitting your desired preferences</p>
 
     
-            <a className = "btn btn--full mgr-sm" href = "/your-preferences">Start Now</a>
-            <a className = "btn btn--outline" href = "/about-us">About Us</a>
+          
         </div>
     
         <div className = "home-img-box">
