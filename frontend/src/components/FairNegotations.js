@@ -612,7 +612,6 @@ const FairNegotations = (props) => {
             }
 
             if(roundNumber === 2) {
-              
                 return performBid();
             }
 
@@ -621,6 +620,7 @@ const FairNegotations = (props) => {
             }
 
             if(roundNumber > 3) {
+
                 alert(`No more rounds found...`);
                 performBid();
                 return;
@@ -1088,22 +1088,7 @@ const FairNegotations = (props) => {
   
                           })
   
-                          if(nextRoundBid < randBid && roundNumber === 2) {
-                            alert('You lose');
-                              setRoundNumber(roundNumber + 1);
-                              getNextAppliance();
-                             
-                              setRoundTwoOver(!roundTwoOver);
-                              setLowBotWin(!lowBotWin);
-  
-                              setLastRoundForm(!lastRoundForm);
-  
-                            return;
-                          }
-
-                          
-  
-  
+                    
                           if(theUserBid < randBid) {
                               
                               setRoundLost(!roundLost);
@@ -1164,11 +1149,14 @@ const FairNegotations = (props) => {
                                 
                                 setModalShown({title: "Preferences", message: "No preferences found"});
                                 setUserWinBid(!userWinBid);
+
+                                setModalShown(null);
     
                                 setRoundNumber(roundNumber + 1);
                               
                                 setMainRoundOver(!mainRoundOver);
                                 getNextAppliance();
+
                             }, 2000)
                         
 
@@ -1641,13 +1629,12 @@ const FairNegotations = (props) => {
              {!mainRoundOver && roundNumber === 1 ? <h1 className = "first--pref">Submit bid for your timeslot preference for {appliance}</h1> : null }
              
              {roundNumber === 2 ? <h1 className = "first--pref">Now submit bid for {nextAppliance}</h1> : null}
-             {roundNumber === 3 ? <h1 className = "first--pref">Now submit bid for {lastAppliance}</h1> : null}
+             {roundNumber === 3 ? <h1 className = "first--pref">Now submit final bid for {lastAppliance}</h1> : null}
 
             <h1>{findMaxBid()}</h1>
             <h1>{countTotalBids()}</h1>
 
-            {userWinsRoundOne && <Modal title = "Round winner" message = "You win the round USER" />}
-
+            {userWinsRoundOne ? <Modal title = "Round winner" message = "You win the round USER" /> : null}
             {modalShown && roundNumber === 1 ? <Modal title = "Round Winner" message = {findMaxBetween()} /> : null}
 
 
@@ -1656,7 +1643,7 @@ const FairNegotations = (props) => {
 
                 return <div key = {key}>
 
-                <h1>User Virtual Credits Remaining: {updatedNewBid ? credits.virtualCredits : credits.virtualCredits}</h1>
+                <h1>Virtual Credits Remaining: {updatedNewBid ? credits.virtualCredits : credits.virtualCredits}</h1>
              
             </div>
 
