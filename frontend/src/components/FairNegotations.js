@@ -1577,7 +1577,7 @@ const FairNegotations = (props) => {
 
     <section className = "section--login">
 
-          <h1 className = "fn--heading">Choose Your Desired Algorithm Below</h1>
+          <h1 className = "fn--heading">Choose Algorithm</h1>
          
         <div className = "container grid grid--2-cols">
             <button onClick = {chosenEnglishAuctionHandler} className = "auction--btn">Auction</button>
@@ -1601,8 +1601,8 @@ const FairNegotations = (props) => {
 
              {!mainRoundOver && roundNumber === 1 ? <h1 className = "first--pref">Submit bid for your timeslot preference for {appliance}</h1> : null }
              
-             {roundNumber === 2 ? <h1 className = "first--pref">Now submit bid for {nextAppliance}</h1> : null}
-             {roundNumber === 3 ? <h1 className = "first--pref">Now submit bid for {lastAppliance}</h1> : null}
+             {roundNumber === 2 ? <h1 className = "first--pref">Submit Bid For {nextAppliance}</h1> : null}
+             {roundNumber === 3 ? <h1 className = "first--pref">Submit Bid For {lastAppliance}</h1> : null}
 
             <h1>{findMaxBid()}</h1>
             <h1>{countTotalBids()}</h1>
@@ -1617,7 +1617,7 @@ const FairNegotations = (props) => {
 
                 return <div key = {key}>
 
-                <h1>User Virtual Credits Remaining: {updatedNewBid ? credits.virtualCredits : credits.virtualCredits}</h1>
+                <h1>Virtual Credits Remaining: {updatedNewBid ? credits.virtualCredits : credits.virtualCredits}</h1>
              
             </div>
 
@@ -1649,13 +1649,13 @@ const FairNegotations = (props) => {
 
 <RegisterCard>
 
-        <h1 className = "bid--header">Submit Round Bid</h1>
+        <h1 className = "bid--header">Submit Bid</h1>
 
     <form id = "bidForm" className = "login--form" onSubmit = {submitBidHandler} method = "POST">
 
         <div className = "bid--container">
 
-        <label className = "bid--lbl">Round Bid</label>
+        <label className = "bid--lbl">Bid</label>
 
             {roundNumber === 2 && userInputDisabled && roundNumber !== 3 && !roundTwoOver ? 
                 <input value = {nextRoundBid} onChange = {(event) => {setNextRoundBid(event.target.value)}} placeholder = "Enter Round Bid" id = "bid" type = "text"/>
