@@ -14,7 +14,7 @@ import React, { Fragment} from 'react';
 import Header from '../../components/Header';
 import HomepageImg from '../../components/images/homepage/homepageimg.jpg';
 
-const AlgorithmsHome = (props) => {
+const AlgorithmsHome = () => {
 
     return (
     
@@ -36,16 +36,14 @@ const AlgorithmsHome = (props) => {
             <p className = "home--description">4. If any of the other households submit a bid greater than yours, then they will receive the timeslot, but you get to keep your credits.</p>
             <p className = "home--description">5. For Round 1 please hit enter twice when submitting a bid to prevent form resubmission</p>
             <p className = "home--description">6. For Round 2 onwards please hit enter only once.</p>
-
-            <a className = "btn btn--full mgr-sm" href = "/your-preferences">Start Now</a>
-            <a className = "btn btn--outline" href = "/about-us">About Us</a>
-
             </div>
 
                 <div className = "home-img-box">
                     <img className = "home--img" alt = "Wind Turbine" src = {HomepageImg} />
                 </div>
+
             </div>
+
       </section>
 
 
