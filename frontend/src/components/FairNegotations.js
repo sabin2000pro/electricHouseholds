@@ -1092,7 +1092,12 @@ const FairNegotations = (props) => {
                           })
   
                           if(nextRoundBid < randBid && roundNumber === 2) {
-                            alert(`You lose round ${roundNumber}`);
+                              
+                            setTimeout(() => {
+                                setModalShown({title: "Preferences", message: "No preferences found"});
+
+                            }, 2000);
+                            
                               setRoundNumber(roundNumber + 1);
                               getNextAppliance();
                              
@@ -1120,9 +1125,7 @@ const FairNegotations = (props) => {
                             return;
                           }
 
-                          console.log(`LAST ROUND BIDD ::: `);
-                          console.log(lastRoundBid);
-
+                    
   
                           if(theUserBid < randBid) {
                               
@@ -1629,7 +1632,13 @@ const FairNegotations = (props) => {
         return `You have won the bidding round and you receive your timeslot preferences for your chosen appliance ${appliance}`;
     }
 
+    const displayNextRoundWin = (nextAppliance) => {
+        return `You have won round ${roundNumber - 1} and you have received your timeslot preferences for your chosen appliance ${nextAppliance}`;
+    }
 
+    const displayLastRoundWin = (lastAppliance) => {
+        
+    }
 
     return (
 
@@ -1668,6 +1677,7 @@ const FairNegotations = (props) => {
             <h1>{countTotalBids()}</h1>
 
             {userWinsRoundOne && <Modal title = "Round winner" message = {displayUserWinner(appliance, firstPreference)} />}
+            {userWinsNextRound &&  <Modal title = "Round winner" message = {displayNextRoundWin(nextAppliance)} />}
 
             {modalShown && roundNumber === 1 ? <Modal title = "Round Winner" message = {findMaxBetween()} /> : null}
 
