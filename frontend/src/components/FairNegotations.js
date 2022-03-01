@@ -1003,39 +1003,14 @@ const FairNegotations = (props) => {
                           let lowBotCreditsLeft = parsedLowBotCredits - randBid;
 
                           let newLowCredits = lowBotCreditsLeft;
-                          let nextApplianceRound;
-  
+                          
                           creditsRemainingObj = {lowBotCreditsLeft};
                           let theDifference = allLowBotData.botCredits - creditsRemainingObj.lowBotCreditsLeft;
   
                           lowBotCreditsLeft = newLowCredits;
                           convertedBotBid = randBid;
   
-                        nextApplianceData.forEach((nextApp) => {
-  
-                          nextApplianceRound = nextApp;
 
-                     
-                          if(nextRoundBid < randBid && roundNumber === 2) {
-                
-
-                            setRoundNumber(roundNumber + 1);
-                            getNextAppliance();
-
-                            setRoundTwoOver(!roundTwoOver);
-                            setLastRoundForm(!lastRoundForm);
-                            setNextRoundBid("");
-  
-                            setLowBotWin(!lowBotWin);
-                            setLastRoundForm(!lastRoundForm);
-                            
-
-                              return;
-  
-                          }
-    
-                          })
-  
                           if(nextRoundBid < randBid && roundNumber === 2) {
                               alert(`You lost against another household. Another household placed a bid of ${randBid}, wins the round and receives the timeslot preferences for ${nextAppliance}`);
                               
@@ -1055,7 +1030,7 @@ const FairNegotations = (props) => {
                           }
 
                           if(nextRoundBid > randBid && roundNumber === 2) {
-                              alert(`You win round ${roundNumber} - you have paid ${nextRoundBid} for the appliance ${nextAppliance}` );
+                              alert(`You win round ${roundNumber} - you have paid ${nextRoundBid} Virtual Credits for the appliance ${nextAppliance}` );
 
                               setUserWinsNextRound(true);
 
@@ -1180,6 +1155,10 @@ const FairNegotations = (props) => {
 
                                     setModalShown(null);
                                      
+                                }
+
+                                if(nextRoundBid > mediumBotRandomBids && roundNumber === 2) {
+                                    alert(`You won round 2 against another household`);
                                 }
                             
                                     if(userBid < mediumBotRandomBids) {
