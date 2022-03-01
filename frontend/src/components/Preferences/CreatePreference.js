@@ -94,6 +94,8 @@ const CreatePreference = (props) => {
     const [chosenDay, setChosenDay] = useState("");
     const [dayChosenByUser, setDayChosenByUser] = useState(false);
     const [hasTheAppliance, setHasTheAppliance] = useState(false);
+
+    const [firstAppliancePrefSubmitted, setFirstAppliancePrefSubmitted] = useState(false);
     
 
     useEffect(() => {
@@ -362,10 +364,7 @@ const CreatePreference = (props) => {
                     return setModalShown({title: "Preferences", message: "No preferences found"});
                 }
 
-                return setTimeout(() => {
-
-                    {!preferenceSubmitted && setModalShown({title: "Are you happy with your preferences?", commTitle: "Comment Title: ", username: "Username: ", reason: "Reason: ", description: "Description: ", showInputs: true, showSubmitBtn: true})};
-                }, 2000);
+             
 
             }).catch(err => {
 
@@ -447,36 +446,6 @@ const CreatePreference = (props) => {
     }
    }
 
-   const validateCommentUsername = function() {
-
-        try {
-
-            return enteredCommentUsername.trim().length !== 0;
-        } 
-        
-
-        catch(error) {
-            setEnteredCommentUsernameValid(false);
-            console.error(error);
-
-            throw new Error(error);
-        }
-   } 
-
-   const validateCommentReason = function() {
-       try {
-            return enteredCommentReason.trim().length !== 0;
-       }
-       
-       catch(error) {
-
-            if(error) {
-                setEnteredCommentReasonValid(false);
-                return console.error(error);
-            }
-       }
-   }
-
 
     const commentFormHandler = async (event) => {
         try {
@@ -516,14 +485,11 @@ const CreatePreference = (props) => {
 
         <form id = "pref--form" onSubmit = {preferencesSubmitHandler} method = "POST" className = "login--form">
 
-     
-
         <div className = "issueType--box">
-
 
         {firstApplianceFound ? firstApplianceData.map((firstOne, key) => {
 
-            return <div key = {key}>
+            return <div className = "first--box" key = {key}>
 
             <label className = "issue--lbl" htmlFor = "issue">Select Preferences For {firstOne}
                 <input type = "hidden" value = {chosenAppliance} onSubmit = {() => setChosenAppliance(firstOne)} />
@@ -649,20 +615,18 @@ const CreatePreference = (props) => {
 
                     <div className = "preferences--card">
 
-
-                    <h2 className = "appliance--heading">Username : {theData.username}</h2>
                     <h2 className = "appliance--heading">First Appliance : {theData.appliance}</h2>
                     <h2 className = "appliance--heading">Next Appliance : {theData.nextAppliance}</h2>
                     <h2 className = "appliance--heading">Last Appliance : {theData.lastAppliance}</h2>
 
-                    <h2 className = "appliance--heading">Your Preference 1 : {theData.firstPreference}</h2>
-                    <h2 className = "appliance--heading">Your Preference 2 : {theData.secondPreference}</h2>
-                    <h2 className = "appliance--heading">Your Preference 3 : {theData.thirdPreference}</h2>
+                    <h2 className = "appliance--heading">Preference 1 : {theData.firstPreference}</h2>
+                    <h2 className = "appliance--heading">Preference 2 : {theData.secondPreference}</h2>
+                    <h2 className = "appliance--heading">Preference 3 : {theData.thirdPreference}</h2>
 
                     <h2 className = "appliance--heading">Allocations</h2>
-                    <h2 className = "appliance--heading">First Random Slot : {otherFirstPref}</h2>
-                    <h2 className = "appliance--heading">Second Random Slot : {otherSecondPref}</h2>
-                    <h2 className = "appliance--heading">Third Random Slot : {otherThirdPref}</h2>
+                    <h2 className = "appliance--heading">{otherFirstPref}</h2>
+                    <h2 className = "appliance--heading">{otherSecondPref}</h2>
+                    <h2 className = "appliance--heading">{otherThirdPref}</h2>
 
                     <Link className = "negotiate--btn" to = {{pathname: `/fair-negotiations/${preference._id}`, state: {preference, firstApplianceData}} }>Negotiate Preference</Link>
                     

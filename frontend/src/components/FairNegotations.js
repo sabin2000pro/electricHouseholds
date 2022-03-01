@@ -1068,11 +1068,7 @@ const FairNegotations = (props) => {
                           }
   
                           if(nextRoundBid < randBid && roundNumber === 2) {
-                            alert(`You lose R2`);
-
-                            // Set the round to be over
-                            // Show modal saying that you lost the second round and then display the results
-                            // Set flag to show the winning results
+                          
 
                             setRoundNumber(roundNumber + 1);
                             getNextAppliance();
@@ -1094,6 +1090,7 @@ const FairNegotations = (props) => {
                           if(nextRoundBid < randBid && roundNumber === 2) {
                               
                             setTimeout(() => {
+                                setUserWinsNextRound(false);
                                 setModalShown({title: "Preferences", message: "No preferences found"});
 
                             }, 2000);
@@ -1110,7 +1107,6 @@ const FairNegotations = (props) => {
                           }
 
                           if(nextRoundBid > randBid && roundNumber === 2) {
-                              alert(`You have won round 2 mANN`);
 
                               setUserWinsNextRound(true);
 
@@ -1124,8 +1120,6 @@ const FairNegotations = (props) => {
   
                             return;
                           }
-
-                    
   
                           if(theUserBid < randBid) {
                               
@@ -1637,7 +1631,7 @@ const FairNegotations = (props) => {
     }
 
     const displayLastRoundWin = (lastAppliance) => {
-        
+
     }
 
     return (
@@ -1677,7 +1671,7 @@ const FairNegotations = (props) => {
             <h1>{countTotalBids()}</h1>
 
             {userWinsRoundOne && <Modal title = "Round winner" message = {displayUserWinner(appliance, firstPreference)} />}
-            {userWinsNextRound &&  <Modal title = "Round winner" message = {displayNextRoundWin(nextAppliance)} />}
+            {userWinsNextRound ? <Modal title = "Round winner" message = {displayNextRoundWin(nextAppliance)} /> : null}
 
             {modalShown && roundNumber === 1 ? <Modal title = "Round Winner" message = {findMaxBetween()} /> : null}
 
@@ -1794,8 +1788,7 @@ const FairNegotations = (props) => {
 
 : undefined }
 
-        
-
+    
             {mainRoundOver ? results.map((win, key) => {
 
                 return <div key = {key}>
@@ -1804,7 +1797,6 @@ const FairNegotations = (props) => {
 
             }) : null}
 
-            {mainRoundOver ? <button className = "results--btn">View Winning Results</button> : null}
 
         
         </section>
