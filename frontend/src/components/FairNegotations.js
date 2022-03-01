@@ -756,7 +756,7 @@ const FairNegotations = (props) => {
                      }
                     
                      setBids(newBidData);
-                     bidData.push({bid, nextRoundBid});
+                     bidData.push({bid, nextRoundBid, lastRoundBid});
 
                      const smallestBid = findMinBid(bid);
                      handleBidSubmission(convertedBid, convertedNextRoundBid, virtualCredits, openingBid);
@@ -1025,7 +1025,7 @@ const FairNegotations = (props) => {
 
                let creditsRemainingObj = {};
 
-            if(!userInputDisabled && botTurn && !userTurn && roundNumber === 1 || roundNumber === 2) {
+            if(!userInputDisabled && botTurn && !userTurn && roundNumber === 1 || roundNumber === 2 || roundNumber === 3) {
              
                 setTimeout(() => {
 
@@ -1119,6 +1119,9 @@ const FairNegotations = (props) => {
   
                             return;
                           }
+
+                          console.log(`LAST ROUND BIDD ::: `);
+                          console.log(lastRoundBid);
 
   
                           if(theUserBid < randBid) {
