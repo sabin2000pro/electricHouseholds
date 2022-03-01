@@ -19,15 +19,12 @@ const notFound = 404;
 const serverError = 500;
 
 module.exports.createPreference = catchAsync(async (request, response, next) => {
-    const {username, appliance, firstPreference, hasAppliance, secondPreference, thirdPreference, nextAppliance, lastAppliance, day} = request.body;
 
-    if(!hasAppliance) {
-        return response.status(badRequest).json({message: "You need to specify the has appliance field"});
-    }
+    const {appliance, firstPreference, secondPreference, thirdPreference, nextAppliance, lastAppliance, day} = request.body;
 
     if(request.method === 'POST') { // If there is a POST request -> create the preference
 
-        const newPreference = new Preference({username, appliance, firstPreference, secondPreference, thirdPreference, nextAppliance, lastAppliance, day, hasAppliance});
+        const newPreference = new Preference({appliance, firstPreference, secondPreference, thirdPreference, nextAppliance, lastAppliance, day});
         await newPreference.save();
         
         return response.status(created).json({newPreference});

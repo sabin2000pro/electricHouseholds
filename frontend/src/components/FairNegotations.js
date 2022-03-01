@@ -152,6 +152,10 @@ const FairNegotations = (props) => {
     const [results, setResults] = useState([]);
     const [roundLost, setRoundLost] = useState(false);
 
+    const [userWinsRoundOne, setUserWinsRoundOne] = useState(false);
+    const [userWinsNextRound, setUserWinsNextRound] = useState(false);
+    const [userWinsLastRound, setUserWinsLastRound] = useState(false);
+
     /**
          * 
          * @returns : Returns a string with the total number of bids enclosed by single quotes
@@ -1056,7 +1060,7 @@ const FairNegotations = (props) => {
                           nextApplianceRound = nextApp;
   
                           if(nextRoundBid < randBid && roundNumber === 2) {
-                            alert(`You lose the round`);
+                            alert(`You lose R2`);
 
                             // Set the round to be over
                             // Show modal saying that you lost the second round and then display the results
@@ -1081,9 +1085,8 @@ const FairNegotations = (props) => {
   
                           })
   
-                          if(nextRoundBid > randBid && roundNumber === 2) {
-                              alert(`You win the ${roundNumber + 1} round`);
-
+                          if(nextRoundBid < randBid && roundNumber === 2) {
+                            alert('You lose');
                               setRoundNumber(roundNumber + 1);
                               getNextAppliance();
                              
@@ -1092,11 +1095,14 @@ const FairNegotations = (props) => {
   
                               setLastRoundForm(!lastRoundForm);
   
-                              continue;
+                            return;
                           }
+
+                          
   
   
                           if(theUserBid < randBid) {
+                              
                               setRoundLost(!roundLost);
 
                               setModalShown({title: "Preferences", message: "No preferences found"});
@@ -1149,7 +1155,9 @@ const FairNegotations = (props) => {
                           }
 
                           if(theUserBid > randBid && roundNumber === 1) { // if the bid of the user is > low bot bid and we are in round 1
-                            alert(`You win round ${roundNumber}`)
+                            alert(`You win round ${roundNumber}`);
+
+                            
 
                             setModalShown({title: "Preferences", message: "No preferences found"});
                             setUserWinBid(!userWinBid);
@@ -1230,6 +1238,7 @@ const FairNegotations = (props) => {
 
                                            setTimeout(() => {
 
+                                           
                                             setRoundNumber(roundNumber + 1);
                                             getNextAppliance();
                                     
@@ -1598,16 +1607,36 @@ const FairNegotations = (props) => {
         })
     }
 
-
-    useEffect(() => {
-        return socialExchangeHandler();
-    }, []);
-
-    const socialExchangeHandler = () => {
+    const submitFeedbackHandler = async (event) => {
 
         try {
-            // 3rd Algorithm
-        } 
+
+            event.preventDefault();
+            
+            const {data} = await axios.post(`http://localhost:5200/api/v1/feedback/create-feedback`, {feedbackUsername: enteredFeedbackUsername, feedbackEmailAddress: enteredFeedbackEmailAddress, feedbackFeeling: chosenFeedbackFeeling, feedbackDescription: enteredFeedbackDescription});
+
+            if(!data) {
+                return alert(`No data could be submitted`);
+            }
+
+        }
+        
+        catch(error) {
+
+            if(error) {
+                setFeedbackFormValid(false);
+                console.error(error);
+                throw new Error(error);
+            }
+        }
+    };
+
+    // Routine used to validate the feedback submitted by the user
+    const validateFeedback = function() {
+
+        try {
+
+        }
         
         catch(error) {
 
@@ -1616,10 +1645,9 @@ const FairNegotations = (props) => {
                 console.error(error);
                 throw new Error(error);
             }
+
         }
-
     }
-
 
     return (
 
@@ -1647,27 +1675,11 @@ const FairNegotations = (props) => {
 
         <div>
 
-            <h1>Seconds Left: {seconds}</h1>
-            
+            <h1>Bidding Seconds: {seconds}</h1>
+
              {!mainRoundOver && roundNumber === 1 ? <h1 className = "first--pref">Submit bid for your timeslot preference for {appliance}</h1> : null }
-             {mainRoundOver && roundNumber === 2 ? nextApplianceData.map((val, key) => {
-
-            return <div key = {key}>
-
-            <h1>Now submit your bid for {val}</h1>
-            </div>
-
-            }) : null}
-
-             {roundNumber === 3 ? <h1 className = "first--pref">Submit Final Bid For  {roundTwoOver ? lastApplianceData.map((val, key) => {
-              
-              return <div key = {key}>
-
-                {val}
-
-             </div>
-
-          }) : null} </h1> : null}
+             {roundNumber === 2 ? <h1 className = "first--pref">Now submit bid for {nextAppliance}</h1> : null}
+             {roundNumber === 3 ? <h1 className = "first--pref">Third Chosen Preference : {thirdPreference}</h1> : null}
 
             <h1>{findMaxBid()}</h1>
             <h1>{countTotalBids()}</h1>
@@ -1685,9 +1697,25 @@ const FairNegotations = (props) => {
             </div>
 
             })}
-           
 
-        
+            {mainRoundOver && roundNumber === 2 ? nextApplianceData.map((val, key) => {
+
+               return <div key = {key}>
+
+                 <h1>Your next appliance {val}</h1>
+               </div>
+
+            }) : null}
+
+            {roundTwoOver ? lastApplianceData.map((val, key) => {
+              
+                return <div key = {key}>
+
+               <h1>Your last appliance {val}</h1>
+
+               </div>
+
+            }) : null}
       
             <h1 style = {{marginBottom: '90px'}}>Round Number : {roundNumber}</h1>
 
@@ -1764,11 +1792,14 @@ const FairNegotations = (props) => {
 
      </div> 
 
+     
 
         </div>
         
 
 : undefined }
+
+        
 
             {mainRoundOver ? results.map((win, key) => {
 
@@ -1778,6 +1809,9 @@ const FairNegotations = (props) => {
 
             }) : null}
 
+            {mainRoundOver ? <button className = "results--btn">View Winning Results</button> : null}
+
+        
 </section>
 
     <footer className = "footer">

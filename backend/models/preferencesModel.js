@@ -3,15 +3,7 @@
 const mongoose = require('mongoose');
 
 const preferencesSchema = new mongoose.Schema({
-
-    username: {
-        type: String,
-        required: [true, 'You must specify username please'],
-
-        min: [10, 'Username must NOT be less than 10 characters'],
-        max: [20, 'Username cannot exceed 20 characters']
-    },
-
+    
     appliance: {
         type: String
     },
@@ -21,10 +13,6 @@ const preferencesSchema = new mongoose.Schema({
         enum: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
     },
 
-    hasAppliance: { // Stores true or false if the user has the current appliance being asked to enter preference for
-        type: String,
-        required: [true, 'You must let us know if you have this appliance or not']
-    },
 
     firstPreference: {
         type: String,

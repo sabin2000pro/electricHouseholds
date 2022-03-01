@@ -107,8 +107,6 @@ const CreatePreference = (props) => {
         try {
             e.preventDefault();
 
-          
-
             if(chosenFirstPreference === chosenSecondPreference) {
                 setFormValid(false);
                 setShowForm(false);
@@ -517,6 +515,8 @@ const CreatePreference = (props) => {
             <h1 className = "heading--primary login">{DEFAULT_TEXT.preferenceHeader}</h1>
 
         <form id = "pref--form" onSubmit = {preferencesSubmitHandler} method = "POST" className = "login--form">
+
+     
 
         <div className = "issueType--box">
 
