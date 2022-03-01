@@ -608,20 +608,21 @@ const FairNegotations = (props) => {
             event.preventDefault();
            
             if(roundNumber === 1) {
-                performBid();
+                return performBid();
             }
 
             if(roundNumber === 2) {
               
-                performBid();
+                return performBid();
             }
 
             if(roundNumber === 3) {
-                performBid();
+                return performBid();
             }
 
             if(roundNumber > 3) {
                 alert(`No more rounds found...`);
+                performBid();
                 return;
             }
    
@@ -1157,18 +1158,19 @@ const FairNegotations = (props) => {
                           }
 
                           if(theUserBid > randBid && roundNumber === 1) { // if the bid of the user is > low bot bid and we are in round 1
-                            alert(`You win round ${roundNumber}`);
-
                             setUserWinsRoundOne(true);
 
-                            setModalShown({title: "Preferences", message: "No preferences found"});
-                            setUserWinBid(!userWinBid);
-
+                            setTimeout(() => {
+                                
+                                setModalShown({title: "Preferences", message: "No preferences found"});
+                                setUserWinBid(!userWinBid);
+    
+                                setRoundNumber(roundNumber + 1);
+                              
+                                setMainRoundOver(!mainRoundOver);
+                                getNextAppliance();
+                            }, 2000)
                         
-                            setRoundNumber(roundNumber + 1);
-                          
-                            setMainRoundOver(!mainRoundOver);
-                            getNextAppliance();
 
                             return;
                      }
@@ -1637,11 +1639,14 @@ const FairNegotations = (props) => {
             <h1>Bidding Seconds: {seconds}</h1>
 
              {!mainRoundOver && roundNumber === 1 ? <h1 className = "first--pref">Submit bid for your timeslot preference for {appliance}</h1> : null }
+             
              {roundNumber === 2 ? <h1 className = "first--pref">Now submit bid for {nextAppliance}</h1> : null}
-             {roundNumber === 3 ? <h1 className = "first--pref">Third Chosen Preference : {thirdPreference}</h1> : null}
+             {roundNumber === 3 ? <h1 className = "first--pref">Now submit bid for {lastAppliance}</h1> : null}
 
             <h1>{findMaxBid()}</h1>
             <h1>{countTotalBids()}</h1>
+
+            {userWinsRoundOne && <Modal title = "Round winner" message = "You win the round USER" />}
 
             {modalShown && roundNumber === 1 ? <Modal title = "Round Winner" message = {findMaxBetween()} /> : null}
 
@@ -1771,13 +1776,13 @@ const FairNegotations = (props) => {
             {mainRoundOver ? <button className = "results--btn">View Winning Results</button> : null}
 
         
-</section>
+        </section>
 
-    <footer className = "footer">
-                <ul className = "footer--items">
-                <li className = "footer--item">Copyright All Rights Reserved - eHouseholds Sabin Constantin Lungu - 2021</li>
-            </ul>
-    </footer>
+            <footer className = "footer">
+                        <ul className = "footer--items">
+                        <li className = "footer--item">Copyright All Rights Reserved - eHouseholds Sabin Constantin Lungu - 2021</li>
+                    </ul>
+            </footer>
 
 </React.Fragment>
     )
