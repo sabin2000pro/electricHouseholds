@@ -619,6 +619,12 @@ const CreatePreference = (props) => {
                     <h2 className = "appliance--heading">{otherSecondPref}</h2>
                     <h2 className = "appliance--heading">{otherThirdPref}</h2>
 
+                    <h2 className = "appliance--heading">Your Chosen Preferences</h2>
+
+                    <h2 className = "appliance--heading">{preference.firstPreference}</h2>
+                    <h2 className = "appliance--heading">{preference.secondPreference}</h2>
+                    <h2 className = "appliance--heading">{preference.thirdPreference}</h2>
+
                     <Link className = "negotiate--btn" to = {{pathname: `/fair-negotiations/${preference._id}`, state: {preference, firstApplianceData}} }>Negotiate Allocations</Link>
                     
                     </div>
