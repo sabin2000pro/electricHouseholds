@@ -15,7 +15,7 @@ const path = require('path');
 const fs = require('fs');
 // Configure Environment Variables
 const dotenv = require('dotenv');
-dotenv.config({path: 'config.env'});
+dotenv.config({path: 'config.env'}); // Added react icons
 const DB_URL = process.env.DB_CONN_URL;
 const Admin = require('./models/adminModel');
 const Appliance = require('./models/applianceModel');
