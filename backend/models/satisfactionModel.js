@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const SatisfactionSchema = new mongoose.Schema({
 
     satisfaction: {
-        type: String,
+        type: String, // Adding deplyment
         required: [true, 'You must select an option'],
         enum: ['Very Happy', 'Happy', 'Neutral', 'Unhappy', 'Very Unhappy']
     },
