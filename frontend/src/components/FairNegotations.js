@@ -682,8 +682,6 @@ const FairNegotations = (props) => {
         const convertedNextRoundBid = parseInt(nextRoundBid);
         const convertedLastRoundBid = parseInt(lastRoundBid);
 
-        console.log(`Converted last round bid : ${convertedLastRoundBid}`);
-
         if(roundNumber === 1 || roundNumber === 2 || roundNumber === 3) {
 
             const convertedBid = parseInt(bid);
@@ -705,14 +703,8 @@ const FairNegotations = (props) => {
 
              if(bidValid) {
  
-                 await axios.post(`http://localhost:5200/api/v1/bids/create-bid`, {bid: bid, nextRoundBid: nextRoundBid, lastRoundBid: convertedLastRoundBid}).then(response => {
+                 await axios.post(`http://localhost:5200/api/v1/bids/create-bid`, {bid: bid, nextRoundBid: nextRoundBid, lastRoundBid: lastRoundBid}).then(response => {
                      const newBidData = response.data;
-
-                     console.log(newBidData);
-
-                     if(newBidData.newBid.bid === null && roundNumber === 3) {
-                        // Handle Previous bid null values accordingly
-                     }
 
                      if(!newBidData) {
                         alert(`No data found regarding bids`);
@@ -721,8 +713,9 @@ const FairNegotations = (props) => {
                      setBids(newBidData);
                      bidData.push({bid, nextRoundBid, lastRoundBid});
 
+                
                      const smallestBid = findMinBid(bid);
-                     handleBidSubmission(convertedBid, convertedNextRoundBid, virtualCredits, openingBid);
+                     handleBidSubmission(convertedBid, convertedNextRoundBid, convertedLastRoundBid, virtualCredits, openingBid);
 
                      return smallestBid;
  
@@ -769,7 +762,7 @@ const FairNegotations = (props) => {
         return setBotTurn(true);        
     }
 
-    const handleBidSubmission = async function(convertedBid, convertedNextRoundBid, virtualCredits, openingBid) {
+    const handleBidSubmission = async function(convertedBid, convertedNextRoundBid, convertedLastRoundBid, virtualCredits, openingBid) {
 
         try {
 
@@ -814,6 +807,14 @@ const FairNegotations = (props) => {
                 })
             }
 
+            if(roundNumber === 3) {
+                return processLastRoundRemainingCredits(convertedLastRoundBid);
+            }
+
+            if(roundNumber > MAX_ROUNDS) {
+                alert(`Not possible..`);
+            }
+
         }
         
         catch(error) {
@@ -823,6 +824,10 @@ const FairNegotations = (props) => {
                 throw new Error(error);
             }
         }
+    }
+
+    const processLastRoundRemainingCredits = (convertedLastRoundBid) => {
+        console.log(`Last round bid is ... ${convertedLastRoundBid}`);
     }
 
     /**
