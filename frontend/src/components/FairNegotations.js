@@ -684,7 +684,7 @@ const FairNegotations = (props) => {
          * @param: nullkkkkiojoi
          */
 
-    const submitBid = async function(openingBid, virtualCredits) { // Submit Bid. Removed file
+    const submitBid = async function(openingBid, virtualCredits) { // Submit Bid. Removed file again and submitting file
 
         const convertedNextRoundBid = parseInt(nextRoundBid);
         const convertedLastRoundBid = parseInt(lastRoundBid);
