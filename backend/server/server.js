@@ -12,6 +12,7 @@
 
 const express = require('express');
 const path = require('path');
+const cors=require("cors");
 const dotenv = require('dotenv');
 dotenv.config({path: 'config.env'});
 const morgan = require('morgan');
@@ -19,6 +20,15 @@ const app = express();
 const port = 5200;
 
 const connectDB = require('../database/db');
+
+
+const corsOptions ={
+   origin:'*', 
+   credentials:true,            //access-control-allow-credentials:true
+   optionSuccessStatus:200,
+}
+
+app.use(cors(corsOptions)) // Use this after the variable declaration
 
 // Import the Routes Here
 const authRoutes = require('../routes/authRoutes');
