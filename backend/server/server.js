@@ -62,6 +62,7 @@ app.use('/api/v1/bids', bidRoutes);
 app.use('/api/v1/feedback', feedbackRoutes);
 app.use('/api/v1/bot', botRoutes);
 app.use('/api/v1/credits', creditRoutes);
+app.use('/api/v1/satisfaction', satisfactionRoutes);
 
 if(process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'));
