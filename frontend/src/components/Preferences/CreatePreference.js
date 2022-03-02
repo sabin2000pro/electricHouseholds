@@ -222,7 +222,10 @@ const CreatePreference = (props) => {
 
         try {
 
-            return await axios.get(`http://localhost:5200/api/v1/appliances/fetch-appliances`).then(response => {
+            return await axios.get(`http://localhost:5200/api/v1/appliances/fetch-appliances`, {
+                headers: {
+                  'Access-Control-Allow-Origin': '*',
+                }}).then(response => {
                 let appName;
                 let nextAppName;
                 let lastAppName;
@@ -349,7 +352,10 @@ const CreatePreference = (props) => {
 
         try {
 
-            return await axios.get(`http://localhost:5200/api/v1/preferences/fetch-preferences`).then(response => {
+            return await axios.get(`http://localhost:5200/api/v1/preferences/fetch-preferences`, {
+                headers: {
+                  'Access-Control-Allow-Origin': '*',
+                }}).then(response => {
 
                 const allPreferences = response.data.preferences;
                 const length = response.data.preferences.length;
