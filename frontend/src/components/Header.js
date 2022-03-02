@@ -48,8 +48,7 @@ const Header = (props) => { // Header Component
 
                 const allAppliances = response.data.appliances;
                 setAppliances(allAppliances);
-                console.log(allAppliances);
-
+                
             }).catch(error => {
 
                 if(error) {
@@ -76,13 +75,7 @@ const Header = (props) => { // Header Component
 
     <img alt = "The header logo" src = {Logo} className = "img--logo"/>
 
-            <div className = "search--box">
-             <FaSearch className = "search--icon" />
-             <input className = "admin--search" type = "text" placeholder = "Search Appliances" onChange = {(event) => {setSearchTerm(event.target.value)}} />
-
-           
-            </div>
-
+         
             <nav className = "main-nav">
                     <ul className = "main-nav--list">
 
@@ -96,13 +89,6 @@ const Header = (props) => { // Header Component
 
             </header>) : (<header className = "header">
 
-           
-                        <img alt = "The header logo" src = {Logo} className = "img--logo"/>
-                        <div className = "search--box">
-                    <FaSearch className = "search--icon" />
-                <input className = "admin--search" type = "text" placeholder = "Search" />            
-
-                         </div>
 
                         <nav className = "main-nav">
                              <ul className = "main-nav--list">

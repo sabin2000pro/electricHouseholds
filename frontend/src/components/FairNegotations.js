@@ -116,6 +116,9 @@ const FairNegotations = (props) => {
     const [userWinsNextRound, setUserWinsNextRound] = useState(false);
 
     const [showSatisfactionForm, setShowSatisfactionForm] = useState(false);
+    const [theSatisfaction, setTheSatisfaction] = useState("");
+    const [satisfactionDescription, setSatisfactionDescription] = useState("");
+
 
     /**
          * 
@@ -123,6 +126,10 @@ const FairNegotations = (props) => {
          * @method: countTotalBids()
          * @param: null
          */
+
+    useEffect(() => {
+        console.log(`Last round over ? ${lastRoundOver}`);
+    }, [lastRoundOver])
 
     const beginLiveAuctionHandler = function() {
         return setAuctionStarted(!auctionStarted);
@@ -239,10 +246,11 @@ const FairNegotations = (props) => {
               setTimeout(() => {
 
                 alert(`No more rounds found... End of auction`);
-
-                return window.location.reload(false);
+                setLastRoundOver(!lastRoundOver);
 
               }, 1000);
+
+              return window.location.reload(false);
           }
 
         } 
