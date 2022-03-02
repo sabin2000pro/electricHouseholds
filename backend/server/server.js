@@ -91,7 +91,7 @@ const server = app.listen(port, (err) => {
 });
 
 // Handle server crashes
-process.on('uncaughtException', (err, promise) => {
+process.on('uncaughtException', (err, promise) => { // Re-installed packages
     
     if(err) {
         return console.error(err);
