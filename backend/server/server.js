@@ -16,7 +16,7 @@ const dotenv = require('dotenv');
 dotenv.config({path: 'config.env'});
 const morgan = require('morgan');
 const app = express();
-const port = process.env.PORT;
+const port = 5200;
 
 const connectDB = require('../database/db');
 
@@ -56,7 +56,6 @@ app.use('/api/v1/satisfaction', satisfactionRoutes);
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
   });
 
 if(process.env.NODE_ENV === 'development') {
@@ -71,7 +70,7 @@ if(process.env.NODE_ENV === 'production') {// Get the index.html
 
 
 // Create Server to listen for incoming requests
-const server = app.listen(process.env.PORT, (err) => {
+const server = app.listen(port, (err) => {
     try {
 
         if(!err) { // If no error occurred
