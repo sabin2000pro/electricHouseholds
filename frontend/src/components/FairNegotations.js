@@ -681,7 +681,7 @@ const FairNegotations = (props) => {
          * 
          * @returns : Returns a string with the total number of bids enclosed by single quotes
          * @method: countTotalBids()
-         * @param: null
+         * @param: nullkkkk
          */
 
     const submitBid = async function(openingBid, virtualCredits) {
@@ -689,7 +689,10 @@ const FairNegotations = (props) => {
         const convertedNextRoundBid = parseInt(nextRoundBid);
         const convertedLastRoundBid = parseInt(lastRoundBid);
 
+    
+
         if(roundNumber === 1 || roundNumber === 2 || roundNumber === 3) {
+            
 
             const convertedBid = parseInt(bid);
 
