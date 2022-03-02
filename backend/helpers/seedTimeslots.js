@@ -14,6 +14,7 @@
 
 const mongoose = require('mongoose');
 const Timeslots = require('../models/timeslotsModel');
+const Appliance = require('../models/applianceModel');
 const dotenv = require('dotenv');
 dotenv.config({path: '../config.env'});
 const DB_CONN_URL = process.env.DB_CONN_URL;
@@ -75,6 +76,12 @@ const importTimeslots = async () => {
         }
     }
 };
+
+const importAppliances = async () => {
+    try {
+        const timeslots = JSON.parse(fs.readFileSync(`/Users/sabin2000/Desktop/eHouseholds/backend/data/appliances.json`));
+    }
+}
 
 const deleteTimeslots = async () => {
     try {
