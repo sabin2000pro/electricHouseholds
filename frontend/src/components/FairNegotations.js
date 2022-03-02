@@ -204,8 +204,6 @@ const FairNegotations = (props) => {
 
           if(roundNumber === 1 && seconds === 0) {
 
-              alert(`TIme up after 1R1`);
-              // Display modal after the time is up for round 1
               setMainRoundOver(!mainRoundOver);
               getNextAppliance();
 
@@ -214,9 +212,8 @@ const FairNegotations = (props) => {
           }
 
           if(roundNumber === 2 && seconds === 0) {
-              alert(`Time up R2`);
+              alert(`Run out of time..`);
 
-              // Display modal after time is up for round 2
               setRoundTwoOver(true);
               getNextAppliance();
 
@@ -237,11 +234,13 @@ const FairNegotations = (props) => {
 
           }
 
-          if(roundNumber > 3) {
+          if(roundNumber > MAX_ROUNDS) {
             
               setTimeout(() => {
 
-                alert(`No more rounds found...`);
+                alert(`No more rounds found... End of auction`);
+
+                return window.location.reload(false);
 
               }, 1000);
           }
@@ -808,7 +807,7 @@ const FairNegotations = (props) => {
             }
 
             if(roundNumber === 3) {
-                return processLastRoundRemainingCredits(convertedLastRoundBid);
+                return processLastRoundRemainingCredits(lastRoundBid, virtualCredits);
             }
 
             if(roundNumber > MAX_ROUNDS) {
@@ -826,8 +825,16 @@ const FairNegotations = (props) => {
         }
     }
 
-    const processLastRoundRemainingCredits = (convertedLastRoundBid) => {
-        console.log(`Last round bid is ... ${convertedLastRoundBid}`);
+    const processLastRoundRemainingCredits = (lastRoundBid, virtualCredits) => {
+        return creditData.map((credit) => {
+
+            let lastRoundCreditsRemain = virtualCredits - lastRoundBid;
+
+            const {_id} = credit;
+            return updateNewBid(_id, lastRoundCreditsRemain, virtualCredits);
+
+
+        })
     }
 
     /**
@@ -873,7 +880,17 @@ const FairNegotations = (props) => {
             
         }
 
-        if(roundNumber > 3) {
+        if(roundNumber === 3) {
+            axios.put(`http://localhost:5200/api/v1/credits/update-credits/${_id}`, {_id: _id, virtualCredits: virtualCredits}).then(data => {console.log(data)}).catch(err => {console.log(err)});
+          
+            setUpdatedNewBid(true);
+            const [lowBotData, mediumBotData, intenseBotData] = botBidData;  
+
+            return processBotDataBeforeTurn(lowBotData, mediumBotData, intenseBotData, openingBid, virtualCredits);  
+            
+        }
+
+        if(roundNumber > MAX_ROUNDS) {
             alert(`No more rounds to process`)
         }
       
@@ -996,6 +1013,7 @@ const FairNegotations = (props) => {
                 for(let k = 0; k < bidData.length; k++) {
 
                        const userBidVal = bidData[k].bid;
+                       const lastUserBid = bidData[k].lastRoundBid;
                        const theUserBid = parseInt(userBidVal);
 
                       getVirtualCreditsRemaining(theUserBid);
@@ -1018,7 +1036,6 @@ const FairNegotations = (props) => {
                           lowBotCreditsLeft = newLowCredits;
                           convertedBotBid = randBid;
   
-
                           if(nextRoundBid < randBid && roundNumber === 2) {
                               alert(`You lost against another household. Another household placed a bid of ${randBid}, wins the round and receives the timeslot preferences for ${nextAppliance}`);
                               
@@ -1036,6 +1053,24 @@ const FairNegotations = (props) => {
   
                             return;
                           }
+
+                          if(lastUserBid < randBid && roundNumber === 3) {
+                              alert(`You lost the last round unfortunately...`);
+
+                              setRoundNumber(roundNumber + 1);
+
+                              if(roundNumber > MAX_ROUNDS) {
+                                  alert(`The auction is over..`);
+
+                                  setTimeout(() => {
+                                    return window.location.reload(false);
+                                  }, 2000);
+
+                              }
+
+                              return;
+                          }
+                          
 
                           if(nextRoundBid > randBid && roundNumber === 2) {
                               alert(`You win round ${roundNumber} - you have paid ${nextRoundBid} Virtual Credits for the appliance ${nextAppliance}` );
@@ -1129,7 +1164,7 @@ const FairNegotations = (props) => {
                       }
                 }
 
-                if(roundNumber === 1 || (roundNumber === 2) && (userTurn && botTurn)) {
+                if(roundNumber === 1 || (roundNumber === 2) || (roundNumber === 3) && (userTurn && botTurn)) {
 
                      setTimeout(() => {
 
@@ -1152,7 +1187,7 @@ const FairNegotations = (props) => {
                                   let medBotDifference = parsedMediumBotCredits - medBotCreditsRemain.medCredsLeft;
 
                                   if(nextRoundBid < mediumBotRandomBids) {
-                                      alert(`Lose round 2`);
+                                      alert(`You lost round ${roundNumber}`);
 
                                     setRoundNumber(roundNumber + 1);
                                     getNextAppliance();
@@ -1170,7 +1205,7 @@ const FairNegotations = (props) => {
                                 }
 
                                 if(nextRoundBid > mediumBotRandomBids && roundNumber === 2) {
-                                    alert(`You won round 2 against another household`);
+                                    alert(`You won round ${roundNumber} against another household`);
                                 }
                             
                                     if(userBid < mediumBotRandomBids) {
@@ -1179,7 +1214,7 @@ const FairNegotations = (props) => {
                                         setBiddingOver(true);
           
 
-                                         allBotData.push({...medBotCreditsRemain, medBotDifference, userCreditsLeft, userBid});
+                                        allBotData.push({...medBotCreditsRemain, medBotDifference, userCreditsLeft, userBid});
                                         allTheBidsData = [...allBotData];
 
                                            setTimeout(() => {
@@ -1189,8 +1224,6 @@ const FairNegotations = (props) => {
                                     
                                             setMainRoundOver(true);
                                             setMediumBotWin(true);
-
-                                            //setModalShown(null);
 
                                             return;
                                            

@@ -38,6 +38,7 @@ const contactRoutes = require('../routes/contactRoutes');
 const feedbackRoutes = require('../routes/feedbackRoutes');
 const botRoutes = require('../routes/botRoutes');
 const creditRoutes = require('../routes/creditRoutes');
+const satisfactionRoutes = require('../routes/satisfactionRoutes');
 
 // Middlewares
 app.use(mongoSanitize());
