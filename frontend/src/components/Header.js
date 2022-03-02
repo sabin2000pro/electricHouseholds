@@ -98,8 +98,6 @@ const Header = (props) => { // Header Component
 
                 <img alt = "The header logo" src = {Logo} className = "img--logo"/>
 
-
-
                         <nav className = "main-nav">
                              <ul className = "main-nav--list">
 

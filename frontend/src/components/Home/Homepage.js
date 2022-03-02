@@ -35,6 +35,14 @@ const Homepage = (props) => { // Main Homepage Component
 
                  <h1 className = "heading--primary">eHouseholds</h1>
                 <p className = "home--description">Reducing your peak electricity consumptions through the experimentation of two Fair Negotiation Algorithms. This is very important in order to reuse clean energy from green renewable sources. We are aiming to save the planet by limiting the usage of electrical appliances throughout various hours during the day.</p>
+                <p className = "home--description">In general, an algorithm are step-by-step instructions that are executed in order to solve a problem. In this context, a fair negotiation algorithm is algorithm is a type of algorithm that runs on an AI-oriented smart meter within homes. It runs at various intervals during the day, and it would negotiate a fixed schedule with different smart meters in other households. This is to establish a fixed timeslot for when high-powered appliances should run. </p>
+                <p className = "home--description">Timeslot negotiation means that you are placing bids in the form of Virtual Credits against other households who also want to run their appliances at the same time as you.</p>
+                <p className = "home--description">1. Click on the "Your Preferences" link above to start submitting your preferences for the appliances that are currently available. On this page you will be presented with a form where you can select up to 3 timeslot preferences for the presented electrical appliances and the day in which you would like to run your appliances on.</p>
+                <p className = "home--description">2. After you submit your preferences, you can view your hourly timeslot allocations by clicking on the button "View Allocations"</p>
+
+
+
+
 
                 
             
@@ -96,17 +104,10 @@ const Homepage = (props) => { // Main Homepage Component
     </div>
 
     <div className = "container grid grid--2-cols">
-        <p className = "load--description reverse">The solution to this problem is to disperse the usage of household appliances by submitting when you would like to run your electrical appliance. However, you can only run your chosen appliance for a maximum of 3 hours per day.</p>
+        <p className = "load--description reverse">Cutting down on high electricity usage demand within homes worldwide is crucial to make effective use of renewable energy sources. This is to save the environment and tackle climate change without having to buy in unclean electricity from centralised national grids. Utilising electrical appliances all at once throughout the day for long periods consumes a lot of electricity. This increases the price to pay towards electricity and means that it may not be met by renewable sources. This is an issue known as a reduction in load balancing.</p>
     </div>
     
-    <div className = "container grid grid--2-cols">
-        <p className = "load--heading--second">Problem Solution</p>    
-    </div>
-
-    <div className = "container grid grid--2-cols">
-        <p className = "load--description--second reverse">The solution to this problem is to disperse the usage of household appliances by submitting when you would like to run your electrical appliance. However, you can only run your chosen appliance for a maximum of 3 hours per day.</p>
-        <img className = "electricity--img secondary--img load--img" src = {LoadBalance} />
-    </div>
+   
 
     </section>
 
