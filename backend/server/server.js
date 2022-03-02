@@ -14,12 +14,7 @@ const express = require('express');
 const path = require('path');
 const dotenv = require('dotenv');
 dotenv.config({path: 'config.env'});
-const mongoSanitize = require('express-mongo-sanitize');
-const helmet = require('helmet');
 const morgan = require('morgan');
-const xss = require('xss-clean');
-const cookieParser = require('cookie-parser');
-const nocache = require('nocache');
 const app = express();
 const port = process.env.PORT;
 
@@ -40,11 +35,7 @@ const creditRoutes = require('../routes/creditRoutes');
 const satisfactionRoutes = require('../routes/satisfactionRoutes');
 
 // Middlewares
-app.use(mongoSanitize());
-app.use(xss());
-app.use(helmet());
-app.use(cookieParser());
-app.use(nocache());
+
 app.use(express.json());
 connectDB();
 
@@ -61,6 +52,12 @@ app.use('/api/v1/feedback', feedbackRoutes);
 app.use('/api/v1/bot', botRoutes);
 app.use('/api/v1/credits', creditRoutes);
 app.use('/api/v1/satisfaction', satisfactionRoutes);
+
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  });
 
 if(process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'));
