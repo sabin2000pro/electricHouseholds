@@ -42,7 +42,7 @@
   },
   "scripts": {
     "start": "cd backend/server && npm start",
-    "build": "cd frontend/ && npm install && npm run build"
+    "build": "cd frontend/ && npm run build"
   },
   "repository": {
     "type": "git",
