@@ -46,7 +46,6 @@ const nextApplianceData = [];
 const lastApplianceData = [];
 const lastRemainingAppliance = [];
 
-
 let MAX_ROUNDS = 3;
 
 const FairNegotations = (props) => {
@@ -242,9 +241,8 @@ const FairNegotations = (props) => {
             
               setTimeout(() => {
 
-                alert(`No more rounds found... Displaying results screen...`);
+                alert(`No more rounds found...`);
 
-                return history.push({pathname: '/results'})
               }, 1000);
           }
 
@@ -684,6 +682,8 @@ const FairNegotations = (props) => {
         const convertedNextRoundBid = parseInt(nextRoundBid);
         const convertedLastRoundBid = parseInt(lastRoundBid);
 
+        console.log(`Converted last round bid : ${convertedLastRoundBid}`);
+
         if(roundNumber === 1 || roundNumber === 2 || roundNumber === 3) {
 
             const convertedBid = parseInt(bid);
@@ -698,16 +698,17 @@ const FairNegotations = (props) => {
                 alert(`Cannot place a bid of 0`);
                 setLastRoundBid("");
             }
-        
-
+    
             setBidValid(true);
             handleUserTurn();
             handleBotTurn();
 
              if(bidValid) {
  
-                 await axios.post(`http://localhost:5200/api/v1/bids/create-bid`, {bid: bid, nextRoundBid: nextRoundBid, lastRoundBid: lastRoundBid}).then(response => {
+                 await axios.post(`http://localhost:5200/api/v1/bids/create-bid`, {bid: bid, nextRoundBid: nextRoundBid, lastRoundBid: convertedLastRoundBid}).then(response => {
                      const newBidData = response.data;
+
+                     console.log(newBidData);
 
                      if(newBidData.newBid.bid === null && roundNumber === 3) {
                         // Handle Previous bid null values accordingly

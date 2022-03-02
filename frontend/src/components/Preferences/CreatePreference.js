@@ -609,14 +609,12 @@ const CreatePreference = (props) => {
          
             {preferencesBtnClicked && firstApplianceFound ? preferences.map((preference, key) => {
 
-                const theData = preference;
-
                 return <div key = {key}>
 
                     <div className = "preferences--card">
 
 
-                    <h2 className = "appliance--heading">Allocations For {theData.appliance} and {theData.nextAppliance}</h2>
+                    <h2 className = "appliance--heading">Allocations</h2>
                     <h2 className = "appliance--heading">{otherFirstPref}</h2>
                     <h2 className = "appliance--heading">{otherSecondPref}</h2>
                     <h2 className = "appliance--heading">{otherThirdPref}</h2>
