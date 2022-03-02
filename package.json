@@ -2,7 +2,7 @@
   "name": "ehouseholds",
   "version": "1.0.0",
   "description": "",
-  "main": "./backend/server/server.js",
+  "main": "cd backend/server/server.js",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cache": "^2.3.1",
