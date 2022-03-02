@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/electricHouseholds/static/css/main.47b01aeb.css",
-    "main.js": "/electricHouseholds/static/js/main.85832bd5.js",
+    "main.js": "/electricHouseholds/static/js/main.434c3ee9.js",
     "static/media/loadbalance.jpg": "/electricHouseholds/static/media/loadbalance.9595e6c65b81f22ac18b.jpg",
     "static/media/homepageimg.jpg": "/electricHouseholds/static/media/homepageimg.af69bd691e62617535be.jpg",
     "static/media/peakelectricity.jpg": "/electricHouseholds/static/media/peakelectricity.1274424b41e60883b84d.jpg",
@@ -9,10 +9,10 @@
     "static/media/electricity2.jpg": "/electricHouseholds/static/media/electricity2.9ee484ac99a4528fce67.jpg",
     "index.html": "/electricHouseholds/index.html",
     "main.47b01aeb.css.map": "/electricHouseholds/static/css/main.47b01aeb.css.map",
-    "main.85832bd5.js.map": "/electricHouseholds/static/js/main.85832bd5.js.map"
+    "main.434c3ee9.js.map": "/electricHouseholds/static/js/main.434c3ee9.js.map"
   },
   "entrypoints": [
     "static/css/main.47b01aeb.css",
-    "static/js/main.85832bd5.js"
+    "static/js/main.434c3ee9.js"
   ]
 }

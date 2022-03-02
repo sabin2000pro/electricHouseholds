@@ -18,13 +18,14 @@
   }
   
   .modal__header {
-    background: red;
+    background: lightgreen;
     padding: 1rem;
   }
   
   .modal__header h2 {
     margin: 0;
-    color: white;
+    text-align: center;
+    color: black;
   }
   
   .modal__content {
