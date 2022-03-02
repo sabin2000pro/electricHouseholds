@@ -2,7 +2,9 @@
   "name": "ehouseholds",
   "version": "1.0.0",
   "description": "",
-  "engines": {"node": "17.6.0"},
+  "engines": {
+    "node": "17.6.0"
+  },
   "main": "./backend/server/server.js",
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -29,6 +31,7 @@
     "nodemailer": "^6.7.2",
     "nodemon": "^2.0.15",
     "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "react-router-dom": "^5.3.0",
     "react-scripts": "^5.0.0",
     "slugify": "^1.6.5",
@@ -43,7 +46,7 @@
   },
   "scripts": {
     "start": "cd backend/server && npm start",
-    "build": "cd frontend/ && npm run build"
+    "build": "cd frontend/ && npm install && npm run build"
   },
   "repository": {
     "type": "git",
