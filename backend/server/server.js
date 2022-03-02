@@ -73,7 +73,7 @@ if(process.env.NODE_ENV === 'production') {// Get the index.html
 const server = app.listen(port, (err) => {
     try {
 
-        if(!err) { // If no error occurred fgwg 
+        if(!err) { // If no error occurred fgwg . Set some configs
             return console.log(`Listening for requests on port ${port} in environment ${process.env.NODE_ENV}`);
         }
 
