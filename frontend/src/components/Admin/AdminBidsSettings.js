@@ -67,9 +67,8 @@ const AdminBidsSettings = () => {
 
         <div className = "home-text-box">
                 <h1 className = "heading--primary">Admin Credits Settings</h1>
-                <p className = "home--description">Configure the Virtual Credit Settings.</p>
+                <p className = "home--description">Configure Virtual Credit Settings.</p>
 
-                <a className = "btn btn--full mgr-sm" href = "/your-preferences">Start Now</a>
                 <a onClick = {logoutHandler} className = "btn btn--outline" href = "/home">Logout</a>
             </div>
 
@@ -88,12 +87,6 @@ const AdminBidsSettings = () => {
                     <h1 className = "heading--primary login">Configure Credits Settings</h1>
 
                     <form onSubmit = {creditSubmitHandler} className = "login--form">
-
-                    
-                    <div className = "nickname--box">
-                        <label className = "name--lbl">Opening Bid</label>
-                        <input value = {enteredOpeningBid} onChange = {(e) => {setEnteredOpeningBid(e.target.value)}} placeholder = "Enter Opening Bid" type = "text"/>
-                    </div>
 
                     <div className = "credits--box">
                         <label className = "image--lbl">Virtual Credits</label>

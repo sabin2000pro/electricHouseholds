@@ -23,7 +23,7 @@ import Modal from './../../UI/Modal';
 const BotSettings = (props) => {
 
     const [enteredBotName, setEnteredBotName] = useState('');
-    const [enteredVirtualCredits, setEnteredVirtualCredits] = useState('');
+    const [enteredVirtualCredits, setEnteredVirtualCredits] = useState("50");
     const [enteredBotType, setChosenBotType] = useState('');
     const [enteredBidRange, setEnteredBidRange] = useState('');
     const [enteredBotNumber, setEnteredBotNumber] = useState('');
@@ -108,8 +108,7 @@ const BotSettings = (props) => {
                         </div>
 
                         <div className = "bot--box">
-                            <label className = "bot--lbl">Credits</label>
-                            <input value = {enteredVirtualCredits} onChange = {(event) => setEnteredVirtualCredits(event.target.value)} placeholder = "Enter Bot Credits" id = "credits" type = "text"/>
+                            <input value = {enteredVirtualCredits} placeholder = "Enter Bot Credits" id = "credits" type = "hidden"/>
                         </div>
 
                         <div className = "type--box">

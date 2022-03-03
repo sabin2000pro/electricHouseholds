@@ -33,7 +33,6 @@ const Appliance = (props) => {
                 <h1 className = "heading--primary">Your Appliance</h1>
                 <p className = "home--description">View information about appliance below</p>
 
-                <a className = "btn btn--full mgr-sm" href = "/your-preferences">Start Now</a>
                 <a className = "btn btn--outline" href = "/home">Logout</a>
             </div>
 

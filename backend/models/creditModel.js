@@ -1,10 +1,7 @@
 const mongoose = require('mongoose');
 
 const creditSchema = new mongoose.Schema({
-    openingBid: {
-        type: String
-    },
-
+   
     virtualCredits: {
         type: String,
         default: 50

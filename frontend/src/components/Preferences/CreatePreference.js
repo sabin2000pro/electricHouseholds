@@ -226,6 +226,7 @@ const CreatePreference = (props) => {
                 headers: {
                   'Access-Control-Allow-Origin': '*',
                 }}).then(response => {
+                    
                 let appName;
                 let nextAppName;
                 let lastAppName;
@@ -242,12 +243,12 @@ const CreatePreference = (props) => {
 
                firstApplianceData.push(appName);
                nextApplianceData.push(nextAppName);
+
                lastApplianceData.push(lastAppName);
 
                setApplianceFound(true);
                setFirstApplianceFound(true); 
-
-               console.log(lastApplianceData);
+               setLastApplianceFound(true);
             
             }).catch(err => {
 
@@ -514,8 +515,23 @@ const CreatePreference = (props) => {
 
         }) : null} 
 
+            {preferenceSubmitted && !firstApplianceFound && !lastPrefSubmitted ? lastApplianceData.map((last, key) => {
+
+    return <div key = {key}>
+
+    <label className = "issue--lbl" htmlFor = "issue">Select Preferences For : {last.name}</label>
+
+    </div>
+
+    }) : null} 
+
+
+       
+
 
      </div>
+
+
 
     
         <div className = "morningslot--box">

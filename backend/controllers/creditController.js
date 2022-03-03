@@ -15,9 +15,9 @@ const ok = 200;
 const created = 201;
 
 module.exports.createCredits = catchAsync(async (request, response, next) => {
-    const {openingBid, virtualCredits, creditsLeft} = request.body;
+    const {virtualCredits, creditsLeft} = request.body;
 
-    const newCredit = new Credit({openingBid, virtualCredits, creditsLeft});
+    const newCredit = new Credit({virtualCredits, creditsLeft});
     await newCredit.save();
 
     return response.status(201).json("Credits Created");

@@ -7,8 +7,8 @@ const BotSchema = new mongoose.Schema({
     },
 
     botCredits: {
-        type: String,
-        default: 0
+        type: Number,
+        default: 50
     },
 
     type: {
