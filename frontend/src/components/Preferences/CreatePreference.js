@@ -70,11 +70,6 @@ const CreatePreference = (props) => {
     const [enteredCommentReason, setEnteredCommentReason] = useState('');
     const [enteredCommentDescription, setEnteredCommentDescription] = useState('');
 
-    const [enteredCommentTitleValid, setEnteredCommentTitleValid] = useState(true);
-    const [enteredCommentUsernameValid, setEnteredCommentUsernameValid] = useState(true);
-    const [enteredCommentReasonValid, setEnteredCommentReasonValid] = useState(true);
-    const [enteredCommentDescriptionValid, setEnteredCommentDescriptionValid] = useState(true);
-
     const [firstApplianceData, setFirstApplianceData] = useState([]);
 
     let [nextApplianceData, setNextApplianceData] = useState([]);
@@ -96,6 +91,8 @@ const CreatePreference = (props) => {
     const [hasTheAppliance, setHasTheAppliance] = useState(false);
 
     const [firstAppliancePrefSubmitted, setFirstAppliancePrefSubmitted] = useState(false);
+
+    const [appliancePrefSubmitted, setAppliancePrefSubmitted] = useState(false);
     
 
     useEffect(() => {
@@ -149,7 +146,9 @@ const CreatePreference = (props) => {
 
     useEffect(() => {
 
-    }, [preferenceSubmitted, firstApplianceFound, secondPrefSubmitted, lastPrefSubmitted, lastApplianceFound, hasTheAppliance]);
+    }, [preferenceSubmitted, firstApplianceFound, secondPrefSubmitted, lastPrefSubmitted, lastApplianceFound, hasTheAppliance, appliancePrefSubmitted]);
+
+    
 
     const processPreference = async () => {
 
@@ -176,9 +175,16 @@ const CreatePreference = (props) => {
  
         return await axios.post(`http://localhost:5200/api/v1/preferences/create-preference`, {appliance: firstApplianceData[0], nextAppliance: nextApplianceData[0] , lastAppliance: lastAppliancePost.name, firstPreference: chosenFirstPreference, secondPreference: chosenSecondPreference , thirdPreference: chosenThirdPreference, day: dayChosenByUser}).then(response => {
             
-                setModalShown({title: 'Preferences', message: 'Your Preferences Have Been Submitted', showForm: false, showDefaultBtn: true});
+                setModalShown({title: 'Your Preferences', message: `You have submitted your preference for ${firstApplianceData[0]} - now submit preferences for ${nextApplianceData[0]}`, showForm: false, showDefaultBtn: true});
+
+                setAppliancePrefSubmitted(true);
+
+                if(appliancePrefSubmitted) {
+                    setModalShown({title: 'Your Preferences', message: `You have submitted your preferences for ${nextApplianceData[0]} - you can now view your allocations below`, showForm: false, showDefaultBtn: true});
+                }
 
                 setChosenAppliance("");
+
                 setChosenFirstPreference("");
                 setChosenSecondPreference("");
                 setChosenThirdPreference("");
@@ -226,7 +232,7 @@ const CreatePreference = (props) => {
                 headers: {
                   'Access-Control-Allow-Origin': '*',
                 }}).then(response => {
-                    
+
                 let appName;
                 let nextAppName;
                 let lastAppName;
@@ -368,11 +374,10 @@ const CreatePreference = (props) => {
                 preferences.push(allPreferences); 
 
                 if(length === 0) {
-                    return setModalShown({title: "Preferences", message: "No preferences found"});
+                    return setModalShown({title: "Allocations", message: "No Allocations Found"});
                 }
 
              
-
             }).catch(err => {
 
                 if(err) {
@@ -532,8 +537,6 @@ const CreatePreference = (props) => {
      </div>
 
 
-
-    
         <div className = "morningslot--box">
 
             <label className = "morning--lbl">First Preference</label>
@@ -641,7 +644,7 @@ const CreatePreference = (props) => {
                     <h2 className = "appliance--heading">{otherSecondPref}</h2>
                     <h2 className = "appliance--heading">{otherThirdPref}</h2>
 
-                    <h2 className = "appliance--heading">Your Chosen Preferences</h2>
+                    <h2 className = "appliance--heading">Your Chosen Preferences for 1. {preference.appliance} and <br/> 2. {preference.nextAppliance}</h2>
 
                     <h2 className = "appliance--heading">{preference.firstPreference}</h2>
                     <h2 className = "appliance--heading">{preference.secondPreference}</h2>

@@ -77,7 +77,9 @@ const Header = (props) => { // Header Component
     <img alt = "The header logo" src = {Logo} className = "img--logo"/>
 
             <div className = "search--box">
+
              <FaSearch className = "search--icon" />
+
              <input className = "admin--search" type = "text" placeholder = "Search Appliances" onChange = {(event) => {setSearchTerm(event.target.value)}} />
 
            
@@ -103,8 +105,7 @@ const Header = (props) => { // Header Component
 
                             <li><a className = "main-nav--link" href = "/electricHouseholds">Home</a></li>
                             <li><a className = "main-nav--link" href = "/electricHouseholds/your-preferences">Your Preferences</a></li>
-                          
-                            <li><a className = "main-nav--link" href = "/electricHouseholds/contact-us">Contact Us</a></li>
+                        
                          </ul>
                     </nav>
 
