@@ -34,7 +34,7 @@ pipeline {
         stage("deploy") {
 
             steps {
-                sh "/usr/bin/docker-compose up --build -d"
+                sh 'docker build -t sabin2000/ehouseholds .'
                 }
             
 
