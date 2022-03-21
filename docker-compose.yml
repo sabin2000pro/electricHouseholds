@@ -5,7 +5,7 @@ services:
   backend:
     image: ehouseholds
     build:
-      context: .
+      context: ./backend
       dockerfile: Dockerfile # Dockerfile to run
     ports: 
       - "5200:5200"
@@ -31,10 +31,10 @@ services:
       interval: 10s
       timeout: 10s
       retries: 5
-
+  
   tests: # Tests Service
     build:
-      context: .
+      context: ./backend
       dockerfile: Dockerfile
     volumes:
       - /app/node_modules
