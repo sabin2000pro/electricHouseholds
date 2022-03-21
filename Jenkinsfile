@@ -1,6 +1,8 @@
 pipeline {
 
-    agent any
+    agent docker {
+      image 'node:6'
+    }
 
     tools {nodejs "nodejs"}
 
@@ -33,6 +35,9 @@ pipeline {
         }
 
         stage("deploy") {
+            when {
+             branch 'main'
+      }
 
             steps {
                 echo 'Building docker image...'
