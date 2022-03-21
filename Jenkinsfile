@@ -1,6 +1,6 @@
 pipeline {
 
-    agent any
+    agent { dockerfile true }
 
     tools {nodejs "nodejs"}
 
@@ -35,7 +35,7 @@ pipeline {
 
             steps {
                 sh 'docker build -t sabin2000/ehouseholds .'
-             }
+                }
             
 
         }
