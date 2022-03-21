@@ -34,8 +34,6 @@ pipeline {
         stage("deploy") {
 
             steps {
-                    sh 'npm install'
-                    sh 'chmod 777 /var/run/docker.sock'
                     sh 'docker build -t sabin2000/ehouseholds .'
                     sh 'docker push sabin2000/ehouseholds'
                 }
