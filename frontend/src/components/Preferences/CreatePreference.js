@@ -75,9 +75,6 @@ const CreatePreference = (props) => {
     let [nextApplianceData, setNextApplianceData] = useState([]);
     let [lastApplianceData, setLastApplianceData] = useState([]);
 
-    const [chosenNextAppliance, setChosenNextAppliance] = useState('');
-    const [chosenLastAppliance, setChosenLastAppliance] = useState('');
-
     const [nextApplianceDataInserted, setNextApplianceDataInserted] = useState(false);
     const [lastApplianceDataInserted, setLastApplianceDataInserted] = useState(false);
     const [chosenAppliance, setChosenAppliance] = useState("");
@@ -86,11 +83,9 @@ const CreatePreference = (props) => {
     const [secondPrefSubmitted, setSecondPrefSubmitted] = useState(false);
     const [lastPrefSubmitted, setLastPrefSubmitted] = useState(false);
 
-    const [chosenDay, setChosenDay] = useState("");
     const [dayChosenByUser, setDayChosenByUser] = useState(false);
     const [hasTheAppliance, setHasTheAppliance] = useState(false);
 
-    const [firstAppliancePrefSubmitted, setFirstAppliancePrefSubmitted] = useState(false);
 
     const [appliancePrefSubmitted, setAppliancePrefSubmitted] = useState(false);
     

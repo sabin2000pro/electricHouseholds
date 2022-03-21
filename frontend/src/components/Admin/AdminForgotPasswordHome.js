@@ -30,9 +30,6 @@ const AdminForgotPasswordHome = () => { // Forgot Password Home
    
             <h1 className = "heading--primary">Admin Forgot Password</h1>
            <p className = "home--description">If you are an Admin and have forgotten your password, please fill out the form below to reset it.</p>
-   
-           <a className = "btn btn--full mgr-sm" href = "/your-preferences">Start Now</a>
-           <a className = "btn btn--outline" href = "/about-us">About Us</a>
        </div>
    
        <div className = "home-img-box">

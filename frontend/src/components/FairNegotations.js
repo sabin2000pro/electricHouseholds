@@ -789,9 +789,7 @@ const FairNegotations = (props) => {
                 userCreditsLeft = {creditsLeft, openingBid};
                 openingBid = userCreditsLeft;
 
-                
-                
-
+            
                 return creditData.map((credit) => { // Loop through the credit data
 
                     const {_id} = credit; // Extract ID

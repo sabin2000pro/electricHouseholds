@@ -21,6 +21,7 @@ import axios from 'axios';
 import Modal from '../../UI/Modal';
 
 const AdminDashboard = (props) => { // Admin Dashboard Component
+    
     let history = useHistory();
     const [appliances, setAppliances] = useState([]);
     const [appliancesFetched, setAppliancesFetched] = useState(false);

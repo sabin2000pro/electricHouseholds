@@ -20,10 +20,9 @@ import axios from 'axios';
 const AdminEditAppliance = (props) => {
     let history = useHistory();
     let location = useLocation();
+    
     const {_id} = location.state.appliance;
 
-    const [editedName, setEditedName] = useState('');
-    const [editedImage, setEditedImage] = useState('');
     const [newDescription, setEditedDescription] = useState('');
     const [appliances, setAppliances] = useState([]);
     const [appliancesFetched, setAppliancesFetched] = useState(false);

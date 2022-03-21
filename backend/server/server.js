@@ -14,13 +14,23 @@ const express = require('express');
 const path = require('path');
 const cors=require("cors");
 const dotenv = require('dotenv');
+const session = require('express-session');
 dotenv.config({path: 'config.env'});
 const morgan = require('morgan');
-const app = express();
+const app = express(); 
 const port = 5200;
-
 const connectDB = require('../database/db');
 
+const sessionConfig = {
+    secret: 'MYSECRET',
+    name: 'ehouseholds',
+    resave: false,
+    saveUninitialized: false,
+    cookie : {
+      sameSite: 'strict', // THIS is the config you are looing for.
+    }
+  };
+  
 
 const corsOptions ={
    origin:'*', 
@@ -75,8 +85,16 @@ if(process.env.NODE_ENV === 'development') {
 if(process.env.NODE_ENV === 'production') {// Get the index.html
     app.get('*', (request, response, next) => {
         return request.sendFile(path.resolve(__dirname, 'public', 'index.html'))
-    })
+    });
+
+
+    app.set('trust proxy', 1); // trust first proxy
+        sessionConfig.cookie.secure = true; // serve secure cookies
+    
 }
+
+app.use(session(sessionConfig));
+
 
 
 // Create Server to listen for incoming requests
