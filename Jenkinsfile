@@ -34,6 +34,7 @@ pipeline {
         stage("deploy") {
 
             steps {
+                    sh 'brew install docker'
                     sh 'docker build -t sabin2000/ehouseholds .'
                     sh 'docker push sabin2000/ehouseholds'
                 }
