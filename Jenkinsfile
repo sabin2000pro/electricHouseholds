@@ -9,10 +9,12 @@ pipeline {
         stage("build") {
 
             steps {
-                dir('./backend')
-                sh 'node -v'
-                sh 'npm install'
-                sh "npm build"
+                dir('./backend') {
+                      sh 'node -v'
+                      sh 'npm install'
+                      sh "npm build"
+                }
+              
             }
 
         }
