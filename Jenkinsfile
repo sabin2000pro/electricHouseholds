@@ -9,7 +9,7 @@ pipeline {
         stage("build") {
 
             steps {
-                dir('./backend') {
+                dir('./frontend') {
                       sh 'node -v'
                       sh 'npm install'
                       sh "npm run build"
