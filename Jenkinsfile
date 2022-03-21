@@ -1,6 +1,4 @@
 pipeline {
-    registryCredential = 'dockerhub'
-    PATH = "$PATH:/usr/bin"
 
     agent any
 
@@ -36,7 +34,6 @@ pipeline {
         stage("deploy") {
 
             steps {
-                echo "PATH is: $PATH"
                 sh "/usr/bin/docker-compose up --build -d"
                 }
             
