@@ -31,16 +31,6 @@ pipeline {
 
         }
 
-        stage("E2E Tests") {
-            steps {
-
-                dir('./frontend/cypress') {
-                    sh 'npx cypress open'
-                }
-
-            }
-        }
-
         stage("deploy") {
 
             steps {
