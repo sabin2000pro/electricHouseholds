@@ -35,7 +35,7 @@ pipeline {
 
             steps {
                 sh 'docker build -t sabin2000/ehouseholds .'
-                }
+             }
             
 
         }
