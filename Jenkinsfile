@@ -9,8 +9,10 @@ pipeline {
         stage("build") {
 
             steps {
+                dir('./backend')
                 sh 'node -v'
                 sh 'npm install'
+                sh "npm build"
             }
 
         }
@@ -40,14 +42,11 @@ pipeline {
         stage("deploy") {
 
             steps {
-
-                dir("./frontend") {
-
                     sh 'npm install'
-                    sh 'npm install react-dom --save'
-                    sh 'CI=false npm run deploy'
+                    sh 'docker build -t sabin2000/ehouseholds .'
+                    sh 'docker push sabin2000/ehouseholds'
                 }
-            }
+            
 
         }
 

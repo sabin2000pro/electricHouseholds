@@ -31,6 +31,17 @@ services:
       interval: 10s
       timeout: 10s
       retries: 5
+
+  frontend:
+    image: ehouseholds
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - /app/node_modules
+      - .:/app
   
   tests: # Tests Service
     build:
@@ -39,7 +50,7 @@ services:
     volumes:
       - /app/node_modules
       - .:/app
-    command: ["npm", "test"]
+    command: ["npm", "run", "test"]
 
 volumes:
   mongodb_data_volume:

@@ -11,3 +11,8 @@ main_branch:
 
 check_branch:
 	git branch
+
+prune-docker:
+	- docker system prune
+	- docker image prune - 
+	- docker container prune
