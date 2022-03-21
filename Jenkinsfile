@@ -23,7 +23,8 @@ pipeline {
 
             steps {
                 
-                dir('./backend') {            
+                dir('./backend') {    
+                     echo 'Running tests..'        
                      sh 'npm run test'
                 }
                
@@ -34,6 +35,7 @@ pipeline {
         stage("deploy") {
 
             steps {
+                echo 'Building docker image...'
                 sh 'docker build -t sabin2000/ehouseholds .'
                 }
             
