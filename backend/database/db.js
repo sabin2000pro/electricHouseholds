@@ -12,12 +12,14 @@
 
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
+dotenv.config({path: '../config.env'})
 const DB_URL = process.env.DB_URL;
 
 const connectDB = async () => { // Method to connect to the MongoDB database
+    
     try {
 
-        return await mongoose.connect("mongodb+srv://sabin2000:123mini123@cluster0.xcriw.mongodb.net/electricHouseholds?retryWrites=true&w=majority").then(conn => {
+        return await mongoose.connect(DB_URL).then(conn => {
             
             if(conn.connection) {
 

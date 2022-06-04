@@ -9,7 +9,6 @@
  * Any unauthorised broadcasting, public performance, copying or re-recording will constitute an infringement of copyright
  */
 
-
 class ErrorResponse extends Error {
     
     constructor(message, statusCode) {
