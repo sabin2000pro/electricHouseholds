@@ -149,7 +149,7 @@ const CreatePreference = (props) => {
     const processPreference = async () => {
 
         try {
-            
+
             let invalidChars = ['<', '>', '()', "'", ';'];
 
             for(let i = 0; i < invalidChars.length; i++) {
@@ -408,26 +408,40 @@ const CreatePreference = (props) => {
     }
 
     // Fair Negotiation Algorithm 1 Implementation
-    const generateRandomTimeslots = () => {
+     const generateRandomTimeslots = () => {
 
+    
         try {
 
             let firstOtherPrefIndex = otherPreferences[0].firstOtherPreference;
             let secondOtherPrefIndex = otherPreferences[0].secondOtherPreference
             let thirdOtherPrefIndex = otherPreferences[0].thirdOtherPreference;
+
+            // Add Validation before setting the random timeslots
+            console.log(firstOtherPrefIndex);
+            validateTimeslots(firstOtherPrefIndex, secondOtherPrefIndex, thirdOtherPrefIndex)
         
             setOtherFirstPref(firstOtherPrefIndex[Math.floor(Math.random() * firstOtherPrefIndex.length)]); 
             setOtherSecondPref(secondOtherPrefIndex[Math.floor(Math.random() * secondOtherPrefIndex.length)]);
             setOtherThirdPref(thirdOtherPrefIndex[Math.floor(Math.random() * thirdOtherPrefIndex.length)]);
+
+        
         } 
         
         catch(error) {
         
             if(error) {
-                console.error(error);
-                throw new Error(error);
+                const stack = error.stack
+
+                console.error(error.message);
+                console.log(stack);
+                
             }
         }
+    }
+
+    const validateTimeslots = (firstOtherPrefIndex, secondOtherPrefIndex, thirdOtherPrefIndex) => {
+
     }
 
    const commentInputsHandler = (event) => {
@@ -669,5 +683,4 @@ const CreatePreference = (props) => {
 
     )
 }
-
 export default CreatePreference

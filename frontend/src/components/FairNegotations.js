@@ -18,6 +18,7 @@ import axios from 'axios';
 import './FairNegotiations.css';
 import Modal from '../UI/Modal';
 import SocialExchange from './SocialExchange/SocialExchange';
+import {generateRandomTimeslots} from '../components/Preferences/CreatePreference';
 
 let DELAY = 1200;
 let START_TIMER = 60;
@@ -291,26 +292,12 @@ const FairNegotations = (props) => {
           return fetchUserBidData();
       }, []);
 
-      /**
-         * 
-         * @returns : Returns a string with the total number of bids enclosed by single quotes
-         * @method: countTotalBids()
-         * @param: null
-         */
+
       const chosenEnglishAuctionHandler = function() {
           return setAuctionChosen(!auctionChosen);
       };
 
-      /**
-         * 
-         * @returns : Returns a string with the total number of bids enclosed by single quotes
-         * @method: countTotalBids()
-         * @param: null
-         */
       
-      const chosenSocialExchangeHandler = function() {
-          return setSocialExchangeChosen(!socialExchangeChosen);
-      }
 
       /**
          * 
@@ -1613,13 +1600,21 @@ const FairNegotations = (props) => {
         return `You win the round. You have paid ${nextRoundBid} virtual credits for the timeslots`;
     }
 
+    const chosenSocialExchangeHandler = function() {
+        setSocialExchangeChosen(!socialExchangeChosen);
+
+        // Social Exchange Algorithm
+        // 1. Call get random timeslots from the Create Preferences File
+       
+     }
+
     return (
 
         <React.Fragment>
 
     <section className = "section--login">
 
-          <h1 className = "fn--heading">Choose Algorithm</h1>
+         <h1 className = "fn--heading">Choose Algorithm</h1>
          
         <div className = "container grid grid--2-cols">
             <button onClick = {chosenEnglishAuctionHandler} className = "auction--btn">Auction</button>
@@ -1721,7 +1716,6 @@ const FairNegotations = (props) => {
             
             <input value = {bid} onChange = {(event) => {setBid(event.target.value)}} placeholder = "Enter your Round Bid" id = "bid" type = "text"/> }
 
-          
         </div>
 
                 <div className = "submit-bid--container">
@@ -1739,14 +1733,11 @@ const FairNegotations = (props) => {
 
      </div> 
 
-     
-
-        </div>
+</div>
         
 
 : undefined }
 
-    
             {mainRoundOver ? results.map((win, key) => {
 
                 return <div key = {key}>
