@@ -86,19 +86,21 @@ const CreatePreference = (props) => {
     const [dayChosenByUser, setDayChosenByUser] = useState(false);
     const [hasTheAppliance, setHasTheAppliance] = useState(false);
 
-
     const [appliancePrefSubmitted, setAppliancePrefSubmitted] = useState(false);
     
 
     useEffect(() => {
+
         console.log(`Pref submitted ? `);
         console.log(preferenceSubmitted);
+
     }, [preferenceSubmitted])
 
 
     const preferencesSubmitHandler = async (e) => {
 
         try {
+
             e.preventDefault();
 
             if(chosenFirstPreference === chosenSecondPreference) {
@@ -146,63 +148,76 @@ const CreatePreference = (props) => {
 
     const processPreference = async () => {
 
-        let invalidChars = ['<', '>', '()', "'", ';'];
+        try {
+            
+            let invalidChars = ['<', '>', '()', "'", ';'];
 
-        for(let i = 0; i < invalidChars.length; i++) {
-            const invalidEntries = invalidChars[i];
-
-            if(invalidEntries.includes(invalidEntries) || invalidEntries.includes(invalidEntries[i+1])) {
-               
-                const replacedSymbols = invalidChars[i].replace(invalidChars[i], "&lt");
-                
-               sanitizedInputs.push({enteredUsername, replacedSymbols, invalidEntries});
-              
-               break;
+            for(let i = 0; i < invalidChars.length; i++) {
+                const invalidEntries = invalidChars[i];
+    
+                if(invalidEntries.includes(invalidEntries) || invalidEntries.includes(invalidEntries[i+1])) {
+                   
+                    const replacedSymbols = invalidChars[i].replace(invalidChars[i], "&lt");
+                    
+                   sanitizedInputs.push({enteredUsername, replacedSymbols, invalidEntries});
+                  
+                   break;
+                }
             }
+    
+            let lastAppliancePost = {};
+    
+            lastApplianceData.forEach((app, key) => {
+               lastAppliancePost = app;
+            });
+     
+            return await axios.post(`http://localhost:5200/api/v1/preferences/create-preference`, {appliance: firstApplianceData[0], nextAppliance: nextApplianceData[0] , lastAppliance: lastAppliancePost.name, firstPreference: chosenFirstPreference, secondPreference: chosenSecondPreference , thirdPreference: chosenThirdPreference, day: dayChosenByUser}).then(response => {
+                
+                   setModalShown({title: 'Your Preferences', message: `You have submitted your preference for ${firstApplianceData[0]} - now submit preferences for ${nextApplianceData[0]}`, showForm: false, showDefaultBtn: true});
+    
+                setAppliancePrefSubmitted(true);
+    
+                    if(appliancePrefSubmitted) {
+                        setModalShown({title: 'Your Preferences', message: `You have submitted your preferences for ${nextApplianceData[0]} - you can now view your allocations below`, showForm: false, showDefaultBtn: true});
+                    }
+    
+                    setChosenAppliance("");
+    
+                    setChosenFirstPreference("");
+                    setChosenSecondPreference("");
+                    setChosenThirdPreference("");
+            
+                    setPreferenceSubmitted(!preferenceSubmitted);
+                    setFirstApplianceFound(false);
+            
+                    setSecondPrefSubmitted(!secondPrefSubmitted)
+                    setLastApplianceFound(true);
+            
+                    setLastPrefSubmitted(true);
+                    setLastApplianceFound(true);
+            
+                    if(preferenceSubmitted && secondPrefSubmitted) {
+                        processNextAppliance();
+                    }
+            
+                }).catch(err => {
+    
+                    if(err) {
+    
+                        return console.error(err);
+                    }
+                })
+        }
+        
+        catch(error) {
+
+            if(error) {
+                return console.error(error.message);
+            }
+
         }
 
-        let lastAppliancePost = {};
-
-        lastApplianceData.forEach((app, key) => {
-           lastAppliancePost = app;
-        });
- 
-        return await axios.post(`http://localhost:5200/api/v1/preferences/create-preference`, {appliance: firstApplianceData[0], nextAppliance: nextApplianceData[0] , lastAppliance: lastAppliancePost.name, firstPreference: chosenFirstPreference, secondPreference: chosenSecondPreference , thirdPreference: chosenThirdPreference, day: dayChosenByUser}).then(response => {
-            
-                setModalShown({title: 'Your Preferences', message: `You have submitted your preference for ${firstApplianceData[0]} - now submit preferences for ${nextApplianceData[0]}`, showForm: false, showDefaultBtn: true});
-
-                setAppliancePrefSubmitted(true);
-
-                if(appliancePrefSubmitted) {
-                    setModalShown({title: 'Your Preferences', message: `You have submitted your preferences for ${nextApplianceData[0]} - you can now view your allocations below`, showForm: false, showDefaultBtn: true});
-                }
-
-                setChosenAppliance("");
-
-                setChosenFirstPreference("");
-                setChosenSecondPreference("");
-                setChosenThirdPreference("");
-        
-                setPreferenceSubmitted(!preferenceSubmitted);
-                setFirstApplianceFound(false);
-        
-                setSecondPrefSubmitted(!secondPrefSubmitted)
-                setLastApplianceFound(true);
-        
-                setLastPrefSubmitted(true);
-                setLastApplianceFound(true);
-        
-                if(preferenceSubmitted && secondPrefSubmitted) {
-                    processNextAppliance();
-                }
-        
-            }).catch(err => {
-
-                if(err) {
-
-                    return console.error(err);
-                }
-            })
+      
         
     }
     

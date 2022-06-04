@@ -3,13 +3,16 @@ import axios from 'axios';
 import FairNegotiations from '../FairNegotations'
 
 const SocialExchange = () => {
+    
   return (
      <React.Fragment>
+     
          <div>
              <h2>Social Exchange Algorithm</h2>
 
-             <FairNegotiations />
+             <FairNegotiations title = "" data = "" />
          </div>
+
      </React.Fragment>
   )
 }

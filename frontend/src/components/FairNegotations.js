@@ -17,6 +17,7 @@ import RegisterCard from './Admin/RegisterCard';
 import axios from 'axios';
 import './FairNegotiations.css';
 import Modal from '../UI/Modal';
+import SocialExchange from './SocialExchange/SocialExchange';
 
 let DELAY = 1200;
 let START_TIMER = 60;
@@ -1351,7 +1352,6 @@ const FairNegotations = (props) => {
 
                                     }, 2000)
                                    
-
                                     allBotData.push({...creditsRemainingObj, intenseBotDifference, userCreditsLeft, userBid});
                                     allTheBidsData = [...allBotData];
 
@@ -1430,7 +1430,6 @@ const FairNegotations = (props) => {
     }, [results]);
 
 
-
         /**
      * 
      * @returns : String
@@ -1439,8 +1438,6 @@ const FairNegotations = (props) => {
      * @description: This routine deals with mutability. The maximum bid is stored in the variable maxBidBetween and is returned
      * @param: null
      */
-
-
 
     const findMaxBetween = function() {
 
@@ -1608,8 +1605,11 @@ const FairNegotations = (props) => {
 
      
     const modalHandler = () => {
+
         setTimeout(() => {
+
             {modalShown && setModalShown(null)}
+
         }, 2000)
     }
 
@@ -1630,15 +1630,18 @@ const FairNegotations = (props) => {
             <button onClick = {chosenSocialExchangeHandler} className = "social--btn">Social Exchange</button>
         </div>
 
-        {socialExchangeChosen ? alert(`Chosen Social Exchange`) : null}
+        {socialExchangeChosen ? <SocialExchange /> : null}
 
         {auctionChosen ?
+        
             <div className = "appliance--data">
             <button className = "start--auction" onClick = {beginLiveAuctionHandler} >Begin</button>
         </div>
+
      : null}
 
      {auctionStarted ? 
+
         <div className = "appliance--data">
 
         <div>
