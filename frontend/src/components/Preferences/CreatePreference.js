@@ -416,18 +416,27 @@ const CreatePreference = (props) => {
             let secondOtherPrefIndex = otherPreferences[0].secondOtherPreference
             let thirdOtherPrefIndex = otherPreferences[0].thirdOtherPreference;
 
-            const firstRandomSlot = firstOtherPrefIndex[Math.floor(Math.random() * firstOtherPrefIndex.length)];
-            const secondRandomSlot = secondOtherPrefIndex[Math.floor(Math.random() * secondOtherPrefIndex.length)];
-            const thirdRandomSlot = thirdOtherPrefIndex[Math.floor(Math.random() * thirdOtherPrefIndex.length)]
+            let firstRandomSlot = firstOtherPrefIndex[Math.floor(Math.random() * firstOtherPrefIndex.length)];
+            let secondRandomSlot = secondOtherPrefIndex[Math.floor(Math.random() * secondOtherPrefIndex.length)];
+            let thirdRandomSlot = thirdOtherPrefIndex[Math.floor(Math.random() * thirdOtherPrefIndex.length)]
 
             // Add Validation before setting the random timeslots
             setOtherFirstPref(firstRandomSlot); 
             setOtherSecondPref(secondRandomSlot);
             setOtherThirdPref(thirdRandomSlot);
 
-            console.log(`first random slot : ${firstRandomSlot}`)
+            console.log(`First Random Slot : ${firstRandomSlot}`);
+            console.log(`Second Random Slot : ${secondRandomSlot}`);
 
-        
+            // Check to see if the first slot matches the user's entered one
+            if(firstRandomSlot === secondRandomSlot || firstRandomSlot === thirdRandomSlot) {
+                alert(`Some Allocations conflict with each other`)
+            }
+
+            if(secondRandomSlot === thirdRandomSlot) {
+                alert(`Some Allocations conflict with each other`)
+            }
+
         } 
         
         catch(error) {
@@ -437,9 +446,9 @@ const CreatePreference = (props) => {
 
                 console.error(error.message);
                 console.log(stack);
-                
             }
         }
+        
     }
 
    const commentInputsHandler = (event) => {
