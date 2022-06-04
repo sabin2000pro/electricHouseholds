@@ -448,7 +448,7 @@ const CreatePreference = (props) => {
                 console.log(stack);
             }
         }
-        
+
     }
 
    const commentInputsHandler = (event) => {
@@ -497,6 +497,7 @@ const CreatePreference = (props) => {
                 alert(`Invalid Comment Title`);
             }
            
+            
          await axios.post(`http://localhost:5200/api/v1/comments/create-comment`, {commentTitle: enteredCommentTitle, commentUsername: enteredCommentUsername, commentReason: enteredCommentReason, commentDescription: enteredCommentDescription});
          return window.location.reload(false);
 
@@ -505,8 +506,11 @@ const CreatePreference = (props) => {
         catch(error) {
 
             if(error) {
+
              console.error(error);
-                throw new Error(error);
+
+            throw new Error(error);
+
             }
         }
 

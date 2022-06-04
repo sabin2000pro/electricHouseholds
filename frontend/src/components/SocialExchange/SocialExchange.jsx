@@ -16,13 +16,9 @@ const SocialExchange = () => { // Social Exchange Algorithm
     
   return (
      <React.Fragment>
-
-         <div>
-             <h2>Social Exchange Algorithm</h2>
-
-             <FairNegotiations title = "" data = "" />
+         <div className = "social-container">
+            <h1 style = {{textAlign: 'center'}}>Social Exchange</h1>
          </div>
-
      </React.Fragment>
   )
 }
