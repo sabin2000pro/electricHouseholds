@@ -12,14 +12,16 @@
 
 const express = require('express');
 const path = require('path');
-const cors=require("cors");
+const cors= require("cors");
 const dotenv = require('dotenv');
+dotenv.config({path: 'config.env'});
 const cookieParser = require('cookie-parser');
 const xss = require('xss-clean');
+const hpp = require('hpp')
+const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
 const fileUpload = require('express-fileupload');
 const session = require('express-session');
-dotenv.config({path: 'config.env'});
 const morgan = require('morgan');
 const app = express(); 
 const port = 5200;
@@ -65,6 +67,8 @@ app.use(xss());
 app.use(cookieParser());
 app.use(mongoSanitize());
 app.use(fileUpload());
+app.use(hpp());
+app.use(helmet());
 
 connectDB();
 
@@ -92,6 +96,7 @@ if(process.env.NODE_ENV === 'development') {
 }
 
 if(process.env.NODE_ENV === 'production') {// Get the index.html
+
     app.get('*', (request, response, next) => {
         return request.sendFile(path.resolve(__dirname, 'public', 'index.html'))
     });
@@ -102,7 +107,6 @@ if(process.env.NODE_ENV === 'production') {// Get the index.html
 }
 
 app.use(session(sessionConfig));
-
 
 // Create Server to listen for incoming requests
 const server = app.listen(port, (err) => {
@@ -123,6 +127,8 @@ const server = app.listen(port, (err) => {
             return console.error(err);
         }
     }
+
+
 });
 
 // Handle server crashes
@@ -139,6 +145,11 @@ process.on('uncaughtException', (err, promise) => { // Re-installed packages
 });
 
 process.on('unhandledRejection', (error, promise) => {
+    console.log(`Server closed the connection due to unhandled rejection error : ${error.message}`);
+
+    return server.close(() => {
+        process.exit(1);
+    })
     
 });
 
