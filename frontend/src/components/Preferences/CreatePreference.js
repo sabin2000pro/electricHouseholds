@@ -416,13 +416,16 @@ const CreatePreference = (props) => {
             let secondOtherPrefIndex = otherPreferences[0].secondOtherPreference
             let thirdOtherPrefIndex = otherPreferences[0].thirdOtherPreference;
 
+            const firstRandomSlot = firstOtherPrefIndex[Math.floor(Math.random() * firstOtherPrefIndex.length)];
+            const secondRandomSlot = secondOtherPrefIndex[Math.floor(Math.random() * secondOtherPrefIndex.length)];
+            const thirdRandomSlot = thirdOtherPrefIndex[Math.floor(Math.random() * thirdOtherPrefIndex.length)]
+
             // Add Validation before setting the random timeslots
-            console.log(firstOtherPrefIndex);
-            validateTimeslots(firstOtherPrefIndex, secondOtherPrefIndex, thirdOtherPrefIndex)
-        
-            setOtherFirstPref(firstOtherPrefIndex[Math.floor(Math.random() * firstOtherPrefIndex.length)]); 
-            setOtherSecondPref(secondOtherPrefIndex[Math.floor(Math.random() * secondOtherPrefIndex.length)]);
-            setOtherThirdPref(thirdOtherPrefIndex[Math.floor(Math.random() * thirdOtherPrefIndex.length)]);
+            setOtherFirstPref(firstRandomSlot); 
+            setOtherSecondPref(secondRandomSlot);
+            setOtherThirdPref(thirdRandomSlot);
+
+            console.log(`first random slot : ${firstRandomSlot}`)
 
         
         } 
@@ -437,10 +440,6 @@ const CreatePreference = (props) => {
                 
             }
         }
-    }
-
-    const validateTimeslots = (firstOtherPrefIndex, secondOtherPrefIndex, thirdOtherPrefIndex) => {
-
     }
 
    const commentInputsHandler = (event) => {
