@@ -55,15 +55,22 @@ const UserSchema = new mongoose.Schema({
         default: Date.now
     },
 
+    bidsWon: {
+        type: Number,
+        default: 0
+    },
+    
+    bidsLost: {
+        type: Number,
+        default: 0
+    },
 
     passwordResetToken: String,
     passwordResetAt: Date,
 
     accountValid: {
-
         type: Boolean,
         default: false,
-        required: [true, '']
     }
 
 });

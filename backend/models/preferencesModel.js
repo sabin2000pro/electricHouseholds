@@ -13,7 +13,6 @@ const preferencesSchema = new mongoose.Schema({
         enum: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
     },
 
-
     firstPreference: {
         type: String,
         required: [true, 'Please submit first timeslot preference']
