@@ -61,6 +61,11 @@ const satisfactionRoutes = require('../routes/satisfactionRoutes');
 
 app.use(cors(corsOptions)) // Use this after the variable declaration
 app.use(express.json());
+app.use(xss());
+app.use(cookieParser());
+app.use(mongoSanitize());
+app.use(fileUpload());
+
 connectDB();
 
 // Mount the routes

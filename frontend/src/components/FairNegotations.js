@@ -703,6 +703,7 @@ const FairNegotations = (props) => {
              if(bidValid) {
  
                  await axios.post(`http://localhost:5200/api/v1/bids/create-bid`, {bid: bid, nextRoundBid: nextRoundBid, lastRoundBid: lastRoundBid}).then(response => {
+                     
                      const newBidData = response.data;
 
                      if(!newBidData) {

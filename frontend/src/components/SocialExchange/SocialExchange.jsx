@@ -19,6 +19,7 @@ const SocialExchange = () => { // Social Exchange Algorithm
          <div className = "social-container">
             <h1 style = {{textAlign: 'center'}}>Social Exchange</h1>
          </div>
+         
      </React.Fragment>
   )
 }
