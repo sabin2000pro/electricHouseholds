@@ -44,7 +44,6 @@ const corsOptions ={
    optionSuccessStatus:200,
 }
 
-
 // Import the Routes Here
 const authRoutes = require('../routes/authRoutes');
 const bidRoutes = require('../routes/bidsRoutes');
@@ -150,7 +149,7 @@ process.on('unhandledRejection', (error, promise) => {
     return server.close(() => {
         process.exit(1);
     })
-    
+
 });
 
 // Handle 404 Routes
