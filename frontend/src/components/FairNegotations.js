@@ -1101,10 +1101,7 @@ const FairNegotations = (props) => {
                             return;
                           }
 
-                        
-
-                          
-  
+                    
                           if(theUserBid < randBid) {
                               
                               setRoundLost(!roundLost);
@@ -1506,8 +1503,7 @@ const FairNegotations = (props) => {
                for(let k = 0; k < remainingAppliances.length - 1; k++) {
 
                  if(nextApplianceData.indexOf(remainingAppliances[k]) === -1) {
-
-                     nextApplianceData.push(remainingAppliances[k]);
+                     return nextApplianceData.push(remainingAppliances[k]);
                  }
 
                 }
@@ -1521,8 +1517,8 @@ const FairNegotations = (props) => {
                         lastApplianceData.forEach((lastOne) => {
 
                             lastAppliance = lastOne;
-                            setLastApplianceSet(true);
-                           
+                            setLastApplianceSet(!lastApplianceSet);
+                        
                         })
 
                     }
@@ -1633,7 +1629,7 @@ const FairNegotations = (props) => {
         {socialExchangeChosen ? <SocialExchange /> : null}
 
         {auctionChosen ?
-        
+
             <div className = "appliance--data">
             <button className = "start--auction" onClick = {beginLiveAuctionHandler} >Begin</button>
         </div>
@@ -1676,8 +1672,7 @@ const FairNegotations = (props) => {
 
             {nextRoundForm ? <div className = "container grid grid--2-cols">
           
-
-<RegisterCard>
+        <RegisterCard>
 
         <h1 className = "bid--header">Submit Bid</h1>
 
@@ -1694,7 +1689,6 @@ const FairNegotations = (props) => {
         
             <input value = {lastRoundBid} onChange = {(event) => {setLastRoundBid(event.target.value)}} placeholder = "Enter Round Bid" id = "bid" type = "text" /> }
 
-          
         </div>
 
 
@@ -1708,7 +1702,6 @@ const FairNegotations = (props) => {
 
         </div>
                     
-            
              :
                     
              <div className = "container grid grid--2-cols">
@@ -1731,14 +1724,13 @@ const FairNegotations = (props) => {
           
         </div>
 
+                <div className = "submit-bid--container">
+                    <button className = "login--btn">Submit</button>
+                </div>
 
-        <div className = "submit-bid--container">
-            <button className = "login--btn">Submit</button>
-        </div>
+            </form> 
 
-    </form> 
-
-</RegisterCard>  
+        </RegisterCard>  
 
 
 </div>
@@ -1763,8 +1755,6 @@ const FairNegotations = (props) => {
 
             }) : null}
 
-
-        
         </section>
 
             <footer className = "footer">
@@ -1772,6 +1762,7 @@ const FairNegotations = (props) => {
                         <li className = "footer--item">Copyright All Rights Reserved - eHouseholds Sabin Constantin Lungu - 2021</li>
                     </ul>
             </footer>
+
 
 </React.Fragment>
     )
