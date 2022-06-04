@@ -143,7 +143,6 @@ const CreatePreference = (props) => {
 
     }, [preferenceSubmitted, firstApplianceFound, secondPrefSubmitted, lastPrefSubmitted, lastApplianceFound, hasTheAppliance, appliancePrefSubmitted]);
 
-    
 
     const processPreference = async () => {
 
@@ -223,10 +222,7 @@ const CreatePreference = (props) => {
 
         try {
 
-            return await axios.get(`http://localhost:5200/api/v1/appliances/fetch-appliances`, {
-                headers: {
-                  'Access-Control-Allow-Origin': '*',
-                }}).then(response => {
+            return await axios.get(`http://localhost:5200/api/v1/appliances/fetch-appliances`, {headers: {'Access-Control-Allow-Origin': '*'}}).then(response => {
 
                 let appName;
                 let nextAppName;
@@ -254,8 +250,10 @@ const CreatePreference = (props) => {
             }).catch(err => {
 
                 if(err) {
-                    return console.error(err);
+                    const message = err.message;
+                    return console.error(message);
                 }
+
             })
         } 
         
@@ -525,12 +523,7 @@ const CreatePreference = (props) => {
 
     }) : null} 
 
-
-       
-
-
      </div>
-
 
         <div className = "morningslot--box">
 
@@ -551,6 +544,7 @@ const CreatePreference = (props) => {
                 <option>02:00-03:00</option>
                 <option>04:00-05:00</option>
             </select>
+
     </div>
 
         <div className = "latemorning--box">
@@ -633,7 +627,6 @@ const CreatePreference = (props) => {
 
                     <div className = "preferences--card">
 
-
                     <h2 className = "appliance--heading">Allocations</h2>
                     <h2 className = "appliance--heading">{otherFirstPref}</h2>
                     <h2 className = "appliance--heading">{otherSecondPref}</h2>
@@ -650,13 +643,15 @@ const CreatePreference = (props) => {
                     </div>
                 </div>
 
-
             }) : null};
             
         </section>
 
+
     </section>
+
 </Fragment>
+
     )
 }
 
