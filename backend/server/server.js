@@ -91,14 +91,12 @@ if(process.env.NODE_ENV === 'production') {// Get the index.html
         return request.sendFile(path.resolve(__dirname, 'public', 'index.html'))
     });
 
-
     app.set('trust proxy', 1); // trust first proxy
         sessionConfig.cookie.secure = true; // serve secure cookies
     
 }
 
 app.use(session(sessionConfig));
-
 
 
 // Create Server to listen for incoming requests
@@ -133,7 +131,11 @@ process.on('uncaughtException', (err, promise) => { // Re-installed packages
     return server.close(() => {
         return process.exit(1);
     });
-})
+});
+
+process.on('unhandledRejection', (error, promise) => {
+    
+});
 
 // Handle 404 Routes
 app.all('*', (request, response, next) => {
