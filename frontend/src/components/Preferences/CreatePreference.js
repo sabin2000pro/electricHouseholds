@@ -409,7 +409,6 @@ const CreatePreference = (props) => {
 
     // Fair Negotiation Algorithm 1 Implementation
      const generateRandomTimeslots = () => {
-
     
         try {
 

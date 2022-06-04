@@ -87,7 +87,7 @@ module.exports.getMe = catchAsync(async (request, response, next) => {
         const admin = await Admin.findById(adminId);
         return response.status(200).json({success: true, data: admin});
     }
-    
+
 })
 
 // @Route: POST /api/v1/auth/register
@@ -188,6 +188,6 @@ module.exports.deleteAllAdmins = catchAsync(async(request, response, next) => {
 // @Access Type: Private Access
 
 const sendToken = (admin, status, response) => { // Sends back the JWT token
-     const token = admin.generateResetPasswordToken();
+     const token = admin.getAuthToken();
      return response.status(status).json({token});
 }

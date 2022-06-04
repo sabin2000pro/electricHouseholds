@@ -104,7 +104,7 @@ adminSchema.methods.getResetPasswordToken = function() { // Get the reset passwo
 };
 
 // Generates a unique JWT token for verifying the admin identity
-adminSchema.methods.generateResetPasswordToken = function() {
+adminSchema.methods.getAuthToken = function() {
     return jwt.sign({id: this._id}, process.env.JWT_SECRET, {expiresIn: process.env.JWT_EXPIRES_IN});
 }
 

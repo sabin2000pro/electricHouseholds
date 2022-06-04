@@ -11,14 +11,8 @@
  */
 
 const mongoose = require('mongoose');
-
-/**
- * 
- * @returns : null
- * @method: connectDB()
- * @description: Establishes a connection to MongoDB database
- * @param: null
- */
+const dotenv = require('dotenv');
+const DB_URL = process.env.DB_URL;
 
 const connectDB = async () => { // Method to connect to the MongoDB database
     try {
