@@ -14,6 +14,10 @@ const express = require('express');
 const path = require('path');
 const cors=require("cors");
 const dotenv = require('dotenv');
+const cookieParser = require('cookie-parser');
+const xss = require('xss-clean');
+const mongoSanitize = require('express-mongo-sanitize');
+const fileUpload = require('express-fileupload');
 const session = require('express-session');
 dotenv.config({path: 'config.env'});
 const morgan = require('morgan');
@@ -38,7 +42,6 @@ const corsOptions ={
    optionSuccessStatus:200,
 }
 
-app.use(cors(corsOptions)) // Use this after the variable declaration
 
 // Import the Routes Here
 const authRoutes = require('../routes/authRoutes');
@@ -56,6 +59,7 @@ const satisfactionRoutes = require('../routes/satisfactionRoutes');
 
 // Middlewares
 
+app.use(cors(corsOptions)) // Use this after the variable declaration
 app.use(express.json());
 connectDB();
 

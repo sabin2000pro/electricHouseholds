@@ -8,3 +8,8 @@
  * Copyright (c) 2022 - eHouseholds Sabin Constantin Lungu. All Rights Reserved
  * Any unauthorised broadcasting, public performance, copying or re-recording will constitute an infringement of copyright
  */
+
+module.exports.getAllUsers = async (request, response, next) => {
+
+};
+

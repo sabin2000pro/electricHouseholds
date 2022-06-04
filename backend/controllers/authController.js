@@ -87,6 +87,7 @@ module.exports.getMe = catchAsync(async (request, response, next) => {
         const admin = await Admin.findById(adminId);
         return response.status(200).json({success: true, data: admin});
     }
+    
 })
 
 // @Route: POST /api/v1/auth/register

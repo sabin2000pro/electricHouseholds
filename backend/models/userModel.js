@@ -12,6 +12,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const crypto = require('crypto');
 
 const UserSchema = new mongoose.Schema({
     username: {
@@ -43,7 +44,18 @@ const UserSchema = new mongoose.Schema({
         required: [true, 'Please confirm your password']
     },
 
-    createdAt: Date,
+    role: {
+        type: String,
+        default: 'user',
+        enum: ['bot-creator', 'moderator', 'admin']
+    },
+
+    createdAt: {
+        type: Date,
+        default: Date.now
+    },
+
+
     passwordResetToken: String,
     passwordResetAt: Date,
 

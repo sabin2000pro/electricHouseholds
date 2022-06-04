@@ -271,7 +271,7 @@ const CreatePreference = (props) => {
     useEffect(() => {
     }, [applianceFound]);
 
-    const processNextAppliance = async () => {
+    const processNextAppliance = async () => { // Process the next appliance for the user to choose from
 
         try {
 
@@ -440,6 +440,7 @@ const CreatePreference = (props) => {
    const validateCommentTitle = function() {
 
     try {
+
         return enteredCommentTitle.trim().length !== 0;
     } 
     
@@ -452,7 +453,6 @@ const CreatePreference = (props) => {
 
     }
    }
-
 
     const commentFormHandler = async (event) => {
         try {

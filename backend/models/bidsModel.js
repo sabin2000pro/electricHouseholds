@@ -30,10 +30,6 @@ const bidSchema = new mongoose.Schema({
         type: Number
     },
 
-    username: {
-        type: String
-    },
-
     creditsLeft: { // Number of credits left
         type: String
     },
