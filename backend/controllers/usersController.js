@@ -13,3 +13,6 @@ module.exports.getAllUsers = async (request, response, next) => {
 
 };
 
+module.exports.getSingleUser = async (request, response, next) => {
+    
+};
