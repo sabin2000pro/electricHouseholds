@@ -27,6 +27,7 @@ const App = () => { // Trying to add the permissions.. ADDING URL ROUTES. Added 
       <BrowserRouter basename= '/electricHouseholds'>
       
       <Route exact path = '/' component={Homepage} />
+      
         <Route exact path = '/api/v1/auth/client/admin-register' component = {AdminRegister}/>
         <Route exact path = '/your-preferences' component = {PreferencesHome}/>
         <Route exact path = '/api/v1/auth/client/admin-login' component = {AdminLogin}/>
