@@ -160,3 +160,22 @@ which are going to be stored in a MongoDB database.
 24. The Web application is going to allow Admins to Edit the content of an
 electrical appliance.
 
+25. The Web application is going to allow Admins to Delete an electrical
+appliance.
+
+26. The Web Application must be protected against NoSQL injection attacks.
+
+27. The Web application is going to be developed using the Model View
+Controller (MVC) architecture pattern.
+
+28.The First Price Seal Bid algorithm is going to have a button that allows users
+to view the minimum bid placed. Invokes function that finds the minimum
+value in the array of bids.
+
+29.The First Priced Seal Bid Algorithm is going to have a field where users will be
+able to view the maximum bid placed. Invokes function that finds the
+maximum value in the array of bids.
+
+
+
+
