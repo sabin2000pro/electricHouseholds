@@ -136,25 +136,25 @@ against Denial-of-Service attacks coming from the same IP address.
 16. The Web application is going to prevent against Parameter Pollution Attacks
 on the back end.
 
-17.Web application is going to allow only two administrators to register every 90
+17. Web application is going to allow only two administrators to register every 90
 days.
 
-18.Web application is going to have a timer in the First Priced Sealed Bid
+18. Web application is going to have a timer in the First Priced Sealed Bid
 Algorithm section which counts down from 10 seconds. Users have 10
 seconds to place a bid, otherwise the input field gets reset as well as the
 timer.
 
 19. Web application could support animations to make it look more appealing.
 
-20.Web application is going to allow Administrators to Register an account.
+20 .Web application is going to allow Administrators to Register an account.
 
 21.Web application is going to allow Administrators to Login into their account.
 
-22.Web application is going to allow Administrators to Reset their password from
+22. Web application is going to allow Administrators to Reset their password from
 a forgot password link. Node Mailer is going to be used as an SMTP server
 for e-mail transmission.
 
-23.The Web application is going to allow Admins to create electrical appliances
+23. The Web application is going to allow Admins to create electrical appliances
 which are going to be stored in a MongoDB database.
 
 24. The Web application is going to allow Admins to Edit the content of an
