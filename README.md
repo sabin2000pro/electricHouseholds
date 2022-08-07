@@ -66,3 +66,32 @@ Sealed Bid algorithm. Households are given several virtual credits to spend for 
 given number of rounds. Individuals must figure out how they wish to spend their
 credits wisely because they still need to be left with credits for the remaining rounds,
 otherwise they risk losing the auction.
+
+** Requirements Specification
+
+This section is going to outline all the requirements that this web application requires.
+A MOSCOW Product Backlog table is going to outline the must-have, should have,
+and could have requirements. With a focus on the most important ones which are the
+must-haves to deliver business value. The must-have requirements are the most
+important ones, and they cannot be negotiated. If they are not delivered on time,
+then the entire project fails.
+
+An advantage of using MOSCOW is that it is easy to implement and understand. It is
+used to overcome Scope Creep as new requirements keep arising throughout the
+project. This way developers have a clear insight into the most important
+requirements that need to be worked on. It is to ensure business value is added. A
+table is outlined below that shows the must-have, should have, and could have
+requirements. It also includes a brief explanation as to why they are chosen. An
+overall list of functional requirements can be found below. Each requirement is
+assigned a number (1,2,3) which is a unique ID that can be referenced. The
+requirements are then partitioned and placed within a MOSCOW product backlog
+table that can be found in section 3.1.1 which prioritizes the requirements.
+
+1. The Web Application containing a section that contains text which describes
+the importance of reducing household electricity consumption.
+
+2. The Web Application must contain a section of text that explains the issue of
+Load Balancing and the ways to overcome this problem.
+
+3. The Web Application must have a footer component at the bottom of the
+page.
