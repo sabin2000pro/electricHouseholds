@@ -95,3 +95,26 @@ Load Balancing and the ways to overcome this problem.
 
 3. The Web Application must have a footer component at the bottom of the
 page.
+
+4. The homepage of the web application must have a navigation bar component
+that allows users to navigation between pages using React Router.
+
+5. The Web application must allow users to enter the hour as a string of when
+they would like to run their electrical appliance.
+
+6. The Web application must allow users to select the appliance they would like
+to submit for their hourly preference. The drop-down menu stores a choice of
+various appliances set by the admin.
+
+7. The Web application must have a database running to store the user’s hourly
+preference as a string.
+
+8. The Web application must have a random allocation algorithm function that
+allocates random timeslots to users when a button is pressed.
+
+9. The Web application must allow users to bid for a timeslot they would like to
+have allocated if using the First Priced Sealed Bid Algorithm.
+
+10. The Web application must allocate an assigned number of virtual credits for
+households to use based on how much they have invested. The administrator
+can allocate virtual credits to households by configuring bid settings
