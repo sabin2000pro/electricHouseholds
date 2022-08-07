@@ -148,7 +148,7 @@ timer.
 
 20 .Web application is going to allow Administrators to Register an account.
 
-21.Web application is going to allow Administrators to Login into their account.
+21. Web application is going to allow Administrators to Login into their account.
 
 22. Web application is going to allow Administrators to Reset their password from
 a forgot password link. Node Mailer is going to be used as an SMTP server
