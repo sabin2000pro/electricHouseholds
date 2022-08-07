@@ -1,6 +1,6 @@
 # eHouseholds
 
-## Application Overview
+## 1.0 - Application Overview
 Most individuals use their electrical appliances such as kettles, dishwashers, and
 microwaves to perform the tasks they need to accomplish daily. Electrical appliances
 such as washing machines, electric heaters and tumble-driers can be time delayed.
@@ -42,7 +42,7 @@ algorithm that runs on an AI-oriented smart meter within homes. It runs at vario
 intervals during the day, and it would negotiate a fixed schedule with different smart
 meters in other households.
 
-## Project Aims & Objectives
+## 1.1 - Project Aims & Objectives
 The first aim of this project is to educate households throughout Scotland about the
 problem of reducing peak consumption and the different fair negotiation algorithms
 that might tackle this, the individuals’ hourly timeslots that they choose to run at
@@ -66,7 +66,7 @@ given number of rounds. Individuals must figure out how they wish to spend their
 credits wisely because they still need to be left with credits for the remaining rounds,
 otherwise they risk losing the auction.
 
-## Requirements Specification
+## 1.2 - Requirements Specification
 
 This section is going to outline all the requirements that this web application requires.
 A MOSCOW Product Backlog table is going to outline the must-have, should have,
@@ -198,4 +198,20 @@ respect to the number of Virtual Credits Available.
 The maximum number of rounds initially will be capped at 3, for the three
 preferences chosen
 
+## 1.3 - Non-Functional Requirements
+
+1. Load the website in < 3 seconds given that the number of simultaneous users
+exceeds 1000.
+
+2. Query Optimization. A fast database data retrieval. Fetch all preferences data
+given > 1000 database entries created by 100+ simultaneous users.
+
+3. Place auction bids in < 3 seconds without any delay given 1000+
+simultaneous users placing bids against other households.
+
+4. The Web Application must still function and be rendered available in the event
+of an attempted Denial of Service attack.
+
+5. The admin schema data in the database must maintain its integrity, especially
+the hashed password in the event of a NoSQL Injection attack pre protection.
 
