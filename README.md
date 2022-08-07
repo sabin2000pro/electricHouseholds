@@ -67,7 +67,7 @@ given number of rounds. Individuals must figure out how they wish to spend their
 credits wisely because they still need to be left with credits for the remaining rounds,
 otherwise they risk losing the auction.
 
-** Requirements Specification
+## Requirements Specification
 
 This section is going to outline all the requirements that this web application requires.
 A MOSCOW Product Backlog table is going to outline the must-have, should have,
