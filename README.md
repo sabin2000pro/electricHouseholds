@@ -12,8 +12,7 @@ them because if electrical appliances are used simultaneously throughout
 households, then demand for clean energy will not be met because unclean energy
 will have to be used from non-renewable sources. 
 
-These non-renewable sources are
-unclean and emits lots of carbon dioxide which therefore leads to a spike in energy
+These non-renewable sources are unclean and emits lots of carbon dioxide which therefore leads to a spike in energy
 prices as well as impacting the environment in a negative way. The main problem
 that is constantly brought up is the idea of high peak consumption. We want to
 increase load balancing and to decrease peak consumption instead of lowering load
@@ -117,4 +116,16 @@ have allocated if using the First Priced Sealed Bid Algorithm.
 
 10. The Web application must allocate an assigned number of virtual credits for
 households to use based on how much they have invested. The administrator
-can allocate virtual credits to households by configuring bid settings
+can allocate virtual credits to households by configuring bid settings.
+
+11. Web application must have unit test cases to test the back-end APIs using
+Jest.
+
+12. The Web application must have fully functioned End-To-End tests that tests
+the front-end features using a testing framework called Cypress.
+
+13. The Web application must allow the users to view the bids placed for
+timeslots.
+
+14. The Web application must prevent against XSS attacks using a package
+called xss-clean.
