@@ -168,14 +168,34 @@ appliance.
 27. The Web application is going to be developed using the Model View
 Controller (MVC) architecture pattern.
 
-28.The First Price Seal Bid algorithm is going to have a button that allows users
+28. The First Price Seal Bid algorithm is going to have a button that allows users
 to view the minimum bid placed. Invokes function that finds the minimum
 value in the array of bids.
 
-29.The First Priced Seal Bid Algorithm is going to have a field where users will be
+29. The First Priced Seal Bid Algorithm is going to have a field where users will be
 able to view the maximum bid placed. Invokes function that finds the
 maximum value in the array of bids.
 
+30. The First Priced Seal Bid Algorithm is going to have a modal that users can
+view how many bids have been placed and who won the bidding round.
 
+31. The First Priced Bidding Algorithm which is a fair negotiation algorithm is
+going to allow users to bid against bots given several rounds. Every user is
+going to have several virtual credits to bid per round.
+
+32. Virtual Credits left after a round are taken forward to be used for the next
+round.
+
+33. The AI bot is going have configured several Virtual Credits that the bot can
+spend from the Admin Dashboard.
+
+34. The AI bot is also going to have three levels of intensity which are Low,
+Medium, and Intense. Low intensity bots will place smaller bids between a
+specified range and an intense bot will place an extremely high bid with
+respect to the number of Virtual Credits Available.
+
+35. There are going to be several rounds where users can bid for their timeslots.
+The maximum number of rounds initially will be capped at 3, for the three
+preferences chosen
 
 
