@@ -320,7 +320,5 @@ within their allocated range.
 2.1 – (Bot) Bot automatically inputs a bid in an input field while user input is restricted.
 
 2.2 – (Bot) – Deduct the bot’s virtual credits if bot bid > user bid and wins the rounds.
+
 2.3 – Round over.
-
-## 1.7 - eHouseholds Implementation
-
