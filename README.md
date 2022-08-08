@@ -291,3 +291,33 @@ desired preferences for the desired appliance. The pseudocode for this algorithm
 can be found below as well as an activity diagram that represents sequential flows of
 activities that represents how the algorithm is going to be implemented with various
 Boolean checks that determine if a condition has been met or not.
+
+1.0 - Display the Opening Bid on Screen via State.
+
+1.1 - Display Preference 1 of a given user on the screen.
+
+1.2 - Display Preference 2 of a given user on the screen.
+
+1.3 - Display the Preference 3 of a given user on the screen.
+
+1.4 - Display the Appliance the user has chosen for the above three preferences.
+
+1.5 - Display the round number on the screen in the form: Round: “X”. X is a mutable
+value that changes when the round is over after 30 seconds
+
+1.6 - Start Bid Button Clicked.
+
+1.7 – Begin 30 second countdown timer.
+
+1.8 – (User) Enter desired single bid for the first preference.
+
+1.9 – If no bid has been entered or if the bid entered is equal to 0, display error
+message. User input bid field disappears since it is the bots turn.
+
+2.0 – After a 3 second timeout, a random bot type gets ready to place a random bid
+within their allocated range.
+
+2.1 – (Bot) Bot automatically inputs a bid in an input field while user input is restricted.
+
+2.2 – (Bot) – Deduct the bot’s virtual credits if bot bid > user bid and wins the rounds.
+2.3 – Round over.
