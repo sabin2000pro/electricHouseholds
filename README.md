@@ -256,3 +256,8 @@ highest bid so far was.
 
 ## 1.5 Use Case Diagram - Admin I
 ![Admin User Case Diagram](https://user-images.githubusercontent.com/29733613/183458644-b8c6d5ff-3606-45d6-b665-1d1426527b69.png)
+
+## 1.5.1 - Use Case Diagram - Admin II (Authentication)
+
+![Admin Use Case Diagram II](https://user-images.githubusercontent.com/29733613/183462794-581205a5-f3d3-4d55-a666-86e652087199.png)
+
