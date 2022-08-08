@@ -322,33 +322,5 @@ within their allocated range.
 2.2 – (Bot) – Deduct the bot’s virtual credits if bot bid > user bid and wins the rounds.
 2.3 – Round over.
 
-## 1.7 - Client Server Architecture Design
+## 1.7 - eHouseholds Implementation
 
-The client/server architecture is used to set up one server that listens for incoming
-client requests over a TCP/IP connection. Servers are constantly active until
-terminated by a user. The responsibility of a server is to listen for client requests on a
-specified port. Clients that send GET requests usually receive a 200 OK status code
-with some data associated with the request from the server. The 200-status code
-means that the request coming from the client has been successful. Moreover,
-resources can be created on the server and the server usually sends back a 201
-created status. An advantage of using this type of architecture is that there is one
-central server. Meaningful error messages can be logged inside the console which
-reports the cause of the error and why the server crashed. Error handling using
-try/catch is a technique that can be used in this instance. 
-
-Tasks can be partitioned
-into multiple parts, therefore allowing servers to deal with more than one task at once. Figure 3.0 shows the design of the client/server architecture. 
-
-The diagram shows the interaction between the client and server. The diagram also shows how a
-docker container runs the back-end server and how it closely links to the front-end
-with a node package called “axios”. This package is solely used to perform API calls
-by fetching data from the back end and rendering it on the front end for the users to
-see. For this web application, there are going to be various RESTful APIs that are
-going to be outlined in a table in section 3.4.
-
-The server is going to communicate with these APIs by accessing several endpoints
-and depending on what kind of request the client sends, the server is going to
-respond with an appropriate message and status code. As rate limiting is going to be
-incorporated within the back end, the server is going to eventually send back a 429
-too many requests status code which indicates that too many requests have been
-sent from the same IP address. This is beneficial because it prevents against denialof-service attacks. However, for this application, rate limiting is mostly going to be used to prevent more than two admins from being registered every 90 days
