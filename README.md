@@ -261,3 +261,33 @@ highest bid so far was.
 
 ![Admin Use Case Diagram II](https://user-images.githubusercontent.com/29733613/183462794-581205a5-f3d3-4d55-a666-86e652087199.png)
 
+## 1.6 - First Priced Sealed Bid Algorithm Design
+
+The First Priced Sealed Bidding Algorithm is a type of fair negotiation algorithm that
+allows users to bid their allocated virtual credits against a bot that has their
+corresponding virtual credits as well with the bots having different levels of bidding
+intensity. Initially, if no bots are found then the bidding cannot even start because the
+user has no 3rd party to bid against. Moreover, these virtual credits can be
+configured from the admin dashboard according to how much money has been
+invested into green energy systems. This is fairer because the more money a
+household invests, the more credits they will be allocated to spend on bidding
+compared to the initial size of households.
+
+Households could have the same size,
+but one might have invested more than the other, therefore A low-intensity bot can
+place a very low (weak) bid within a smaller range concerning the number of virtual
+credits available for the bot. The default number of virtual credits available for both
+the user and bot is 30 and throughout the specified number of rounds, the credits
+must be equally dispersed such that the bot and user have enough for all the
+available rounds. However, the virtual credits can easily be configured from the
+Admin Dashboard and can increase at any point. Also, a medium intensity bot will
+place a bid slightly greater than the weaker bot but within a different range. 
+
+Finally, the intense bot will place a very high bid at random within a specified range that is bigger than the medium and weaker bots and therefore makes it harder for the user to defeat. Furthermore, at the end of one round, whoever has placed the highest bid,
+is awarded that preference for that round. The winner can either be the bot or the
+user depending on the maximum bid placed. Whoever runs out of virtual credits first,
+i.e whoever has placed the largest bid at the end of 60 seconds, receives their
+desired preferences for the desired appliance. The pseudocode for this algorithm
+can be found below as well as an activity diagram that represents sequential flows of
+activities that represents how the algorithm is going to be implemented with various
+Boolean checks that determine if a condition has been met or not.
