@@ -236,4 +236,4 @@ the users how the entire system functions. Admin functionalities are going to di
 from the regular user interactions. Initially, users will not be able to access admin
 routes because it is not feasible to create many admin accounts at once.
 
-![alt text] ![User Use Case Diagram](https://user-images.githubusercontent.com/29733613/183455583-b540ef7f-6565-44c0-b38e-be6fa2a96a30.png)
+![User Use Case Diagram](https://user-images.githubusercontent.com/29733613/183455583-b540ef7f-6565-44c0-b38e-be6fa2a96a30.png)
