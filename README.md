@@ -254,4 +254,4 @@ of virtual credits they must use which is configured from an admin dashboard. Af
 users submit a bid, the current highest bid field is updated which shows what the
 highest bid so far was.
 
-## 1.5 Use Case Diagram - Admin
+## 1.5 Use Case Diagram - Admin I
