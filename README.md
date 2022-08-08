@@ -237,3 +237,19 @@ from the regular user interactions. Initially, users will not be able to access 
 routes because it is not feasible to create many admin accounts at once.
 
 ![User Use Case Diagram](https://user-images.githubusercontent.com/29733613/183455583-b540ef7f-6565-44c0-b38e-be6fa2a96a30.png)
+
+Regular users of the application will be presented initially with the electrical
+appliance they will have to run during their chosen timeslots. Users can select a
+timeslot preference in the form of hourly (1 hour) timeslots such as “12:00-13:00”,
+“15:30-16:30” etc. If the users are not happy with the timeslots they entered, they
+can always modify the timeslot by sending a PUT request to the server. Users can
+also delete their timeslot preference if they are not happy. If timeslots are deleted,
+users will have to choose another timeslot for an electrical appliance. Users will
+experiment with one fair negotiation algorithm.
+
+The first algorithm randomly allocates a timeslot from a JSON file by going through
+every timeslot in an array. Users can also submit bids for timeslots they would like to
+have allocated against other households. However, they are given a certain number
+of virtual credits they must use which is configured from an admin dashboard. After
+users submit a bid, the current highest bid field is updated which shows what the
+highest bid so far was.
