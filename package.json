@@ -45,7 +45,7 @@
     "gh-pages": "^3.2.3"
   },
   "scripts": {
-    "start": "cd backend/server && npm start",
+    "start": "cd ./frontend && npm start",
     "build": "cd frontend/ && npm install && npm run build"
   },
   "repository": {
