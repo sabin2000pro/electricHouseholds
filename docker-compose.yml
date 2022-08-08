@@ -3,7 +3,7 @@ services:
 
   #: Docker Service for the back-end
   backend:
-    image: ehouseholds
+    image: sabin2000/electrichouseholds
 
     build:
       context: ./backend
