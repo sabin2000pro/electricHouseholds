@@ -53,7 +53,8 @@ const AdminRegister = (props) => { // Admin Register Props
                 setFormIsValid(false);
             }
 
-            const { data } = await axios.post(`http://18.132.71.197:3000/api/v1/auth/register-admin`, {username: enteredUsername, emailAddress: enteredEmail, password: enteredPassword, confirmPassword: enteredConfirmPassword});
+            const { data } = await axios.post(`http://18.132.71.197:5200/api/v1/auth/register-admin`, {username: enteredUsername, emailAddress: enteredEmail, password: enteredPassword, confirmPassword: enteredConfirmPassword});
+            console.log(data)
             alert('Account Registered success');
 
             return history.push('/home'); // Redirect home
