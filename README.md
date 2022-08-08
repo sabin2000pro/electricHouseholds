@@ -215,3 +215,5 @@ of an attempted Denial of Service attack.
 5. The admin schema data in the database must maintain its integrity, especially
 the hashed password in the event of a NoSQL Injection attack pre protection.
 
+## 1.4 Use Case Diagram - User
+
