@@ -19,7 +19,7 @@ const connectDB = async () => { // Method to connect to the MongoDB database
     
     try {
 
-        return await mongoose.connect(DB_URL).then(conn => {
+        return await mongoose.connect("mongodb+srv://sabin2000:123mini123@cluster0.vsn1te6.mongodb.net/ehouseholds?retryWrites=true&w=majority").then(conn => {
             
             if(conn.connection) {
 
