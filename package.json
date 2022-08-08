@@ -43,10 +43,10 @@
     "xss-clean": "^0.1.1"
   },
   "devDependencies": {
+    "concurrently": "^7.3.0",
     "gh-pages": "^3.2.3"
   },
   "scripts": {
-    "start": "cd ./frontend && npm run start",
     "build": "cd frontend/ && npm install && npm run build"
   },
   "repository": {

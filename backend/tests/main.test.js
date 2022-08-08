@@ -15,7 +15,7 @@ const mongoose = require('mongoose');
 const server = require('../server/server');
 
 beforeAll(async() => { // Test DB connection before the tests
-    const url = 'mongodb+srv://sabin2000:123mini123@cluster0.xcriw.mongodb.net/electricHouseholds?retryWrites=true&w=majority';
+    const url = process.env.MONGO_URL;
     return await mongoose.connect(url);
 });
 

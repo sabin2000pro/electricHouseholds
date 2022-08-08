@@ -12,7 +12,6 @@ services:
       - "5200:5200"
     volumes: # Volumes for web application to auto reload
       - /app/node_modules
-      - .:/app
 
   #: Docker service for the database. Parameters: Image, Restart, Ports, Volumes, Environment and Healthcheck
   database:
@@ -45,7 +44,6 @@ services:
       - "3000:3000"
     volumes:
       - /app/node_modules
-      - .:/app
   
   tests: # Tests Service
     build:
@@ -53,7 +51,7 @@ services:
       dockerfile: Dockerfile
     volumes:
       - /app/node_modules
-      - .:/app
+
     command: ["npm", "run", "test"]
 
 volumes:
