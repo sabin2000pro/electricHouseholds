@@ -4,6 +4,7 @@ services:
   #: Docker Service for the back-end
   backend:
     image: ehouseholds
+
     build:
       context: ./backend
       dockerfile: Dockerfile # Dockerfile to run
@@ -15,6 +16,7 @@ services:
 
   #: Docker service for the database. Parameters: Image, Restart, Ports, Volumes, Environment and Healthcheck
   database:
+
     image: mongo
     restart: always #: Always restart the database if an error occurs
     ports:
@@ -23,6 +25,7 @@ services:
       - type: volume
         source: mongodb_data_volume
         target: /data/db
+        
     environment: # MongoDB environment, specifies the username and password from the environment variables in config.env
       MONGO_INITDB_ROOT_USERNAME: process.env.MONGO_USERNAME
       MONGO_INITDB_ROOT_PASSWORD: process.env.MONGO_PASSWORD
@@ -33,7 +36,8 @@ services:
       retries: 5
 
   frontend:
-    image: ehouseholds
+
+    image: sabin2000/electrichouseholds-client
     build:
       context: ./frontend
       dockerfile: Dockerfile
