@@ -217,3 +217,21 @@ the hashed password in the event of a NoSQL Injection attack pre protection.
 
 ## 1.4 Use Case Diagram - User
 
+Use Case Diagrams are visual representations of how specific end-users interact
+with a software system. The main purpose of use case diagrams is to capture the
+requirements of an entire application and represent them in a visual diagram. Use
+Case diagrams consisting of arrows, connectors, and actors. Use case diagrams
+also define the overall scope of the project. For this web application, there are only
+two actors defined. The consumers (end-users) of the web application who want to
+learn more about smart energy consumption and load balancing and the
+administrators are also considered to be actors because they have separate
+functions that are isolated from the users. For example, administrators can register
+an account, log in and create various electrical appliances to be stored in the
+database.
+
+An advantage of using Use Case diagrams is that it allows developers to gain a
+deeper understanding of how the system works. Also, the flow of sequential activities
+in these diagrams are outlined one after the other, making it easier to understand for
+the users how the entire system functions. Admin functionalities are going to differ
+from the regular user interactions. Initially, users will not be able to access admin
+routes because it is not feasible to create many admin accounts at once.
