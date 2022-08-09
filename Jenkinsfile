@@ -1,10 +1,6 @@
 pipeline {
 
-    agent {
-        docker {
-            image 'node:18.7.0'
-        }
-    }
+    agent any
 
     environment {
         NODE_ENV = 'production'
@@ -13,6 +9,12 @@ pipeline {
     tools {nodejs "node"}
 
     stages {
+
+        stage("Start Docker") {
+            steps {
+                sh "docker-compose up --build -d"
+      }
+        }
 
         stage("build") { // 1. Stage 1 Build The Frontend
 
