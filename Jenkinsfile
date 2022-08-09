@@ -1,7 +1,7 @@
 pipeline {
 
     agent any 
-    
+
     environment {
         NODE_ENV = 'production'
     }
@@ -13,7 +13,6 @@ pipeline {
         stage("Docker Test") {
             agent {
                 docker {
-                    label 'docker'
                     image 'node:18.7.0'
                     args '--name docker-node' // list any args
                 }
