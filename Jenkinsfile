@@ -1,6 +1,8 @@
 pipeline {
 
-    agent any 
+    agent {
+        docker { image 'node:18.7.0' }
+    }
 
     tools {nodejs "node"}
 
@@ -29,7 +31,7 @@ pipeline {
             steps {
 
                 echo 'Building docker image...'
-                sh '/usr/local/bin/docker-compose up --build -d'
+                sh ' docker-compose up --build -d'
                
                 echo 'Starting deployment to AWS Server...'
             }

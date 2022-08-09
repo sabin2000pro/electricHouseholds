@@ -13,7 +13,7 @@ services:
     volumes: # Volumes for web application to auto reload
       - /app/node_modules
 
-  ci_server:
+  jenkins:
     image: jenkins/jenkins:lts
     privileged: true
     user: root
