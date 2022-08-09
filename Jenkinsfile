@@ -1,8 +1,6 @@
 pipeline {
 
-    agent {
-        docker { image 'node:18.7.0' }
-    }
+    agent any
 
     tools {nodejs "node"}
 
