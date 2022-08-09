@@ -17,6 +17,7 @@ pipeline {
 
                 dir('./frontend') {
                       sh 'npm install'
+                      sh 'npm install react-router-dom --save'
                       sh "npm run build"
                 }
               
