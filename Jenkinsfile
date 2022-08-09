@@ -1,7 +1,9 @@
 pipeline {
 
-    agent docker {
-        image 'node:18.7.0'
+    agent {
+        docker {
+            image 'node:18.7.0'
+        }
     }
 
     environment {
