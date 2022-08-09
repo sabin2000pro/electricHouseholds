@@ -6,7 +6,7 @@ pipeline {
 
     stages {
 
-        stage("build") {
+        stage("build") { // 1. Stage 1 Build The Frontend
 
             steps {
 
@@ -20,7 +20,7 @@ pipeline {
         }
 
 
-        stage("deploy") {
+        stage("deploy") { // 2. Stage to deploy the application to AWS
 
             when {
              branch 'main'
@@ -36,8 +36,6 @@ pipeline {
                 sh 'docker-compose push frontend'
 
                 echo 'Starting deployment to AWS Server...'
-
-                sh ''
             }
             
 
