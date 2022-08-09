@@ -13,6 +13,16 @@ services:
     volumes: # Volumes for web application to auto reload
       - /app/node_modules
 
+  ci_server:
+    image: jenkins/jenkins:lts
+    privileged: true
+    user: root
+    ports:
+      - 8080:8080
+      - 50000:50000
+    volumes:
+        - /var/host/jenkins_home:/var/jenkins_home
+
   #: Docker service for the database. Parameters: Image, Restart, Ports, Volumes, Environment and Healthcheck
   database:
 
