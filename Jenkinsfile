@@ -35,10 +35,6 @@ pipeline {
 
         }
 
-        stage("package") {
-            echo "Preparing to publish to NPM...",
-            
-        }
 
         stage("deploy") {
 
