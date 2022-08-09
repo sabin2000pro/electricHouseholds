@@ -1,11 +1,8 @@
 pipeline {
 
     agent {
-        docker {
-            image 'node:18.7.0'
-        }
+        label 'docker' 
     }
-
     environment {
         NODE_ENV = 'production'
     }
@@ -13,6 +10,20 @@ pipeline {
     tools {nodejs "node"}
 
     stages {
+
+        stage("Docker Test") {
+            agent {
+                docker {
+                    label 'docker'
+                    image 'node:18.7.0'
+                    args '--name docker-node' // list any args
+                }
+            }
+
+            steps {
+                sh 'node --version'
+            }
+        }
 
         stage("build") { // 1. Stage 1 Build The Frontend
 
