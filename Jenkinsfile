@@ -1,7 +1,7 @@
 pipeline {
 
     agent {
-        dockerfile true
+        docker { image 'node:18.7.0' }
     }
 
     tools {nodejs "node"}
