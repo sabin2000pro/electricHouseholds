@@ -1,11 +1,5 @@
 pipeline {
 
-    agent any {
-      image 'node:18.7.0'
-    }
-
-    tools {nodejs "nodejs"}
-
     stages {
 
         stage("build") {
