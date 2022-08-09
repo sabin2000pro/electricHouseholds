@@ -29,7 +29,7 @@ pipeline {
             steps {
 
                 echo 'Building docker image...'
-                sh ' docker-compose up --build -d'
+                sh 'docker login'
                
                 echo 'Starting deployment to AWS Server...'
             }
