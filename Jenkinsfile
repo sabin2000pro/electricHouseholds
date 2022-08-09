@@ -1,4 +1,5 @@
 pipeline {
+    checkout 'scm'
 
     agent docker {
       image 'node:18.7.0'
@@ -34,6 +35,11 @@ pipeline {
 
         }
 
+        stage("package") {
+            echo "Preparing to publish to NPM...",
+            
+        }
+
         stage("deploy") {
 
             when {
@@ -43,6 +49,7 @@ pipeline {
             steps {
 
                 echo 'Building docker image...'
+
                 sh 'docker login'
                 sh 'docker-compose up --build -d'
                 sh 'docker-compose push backend'
@@ -55,6 +62,8 @@ pipeline {
             
 
         }
+
+
 
     }
 }
