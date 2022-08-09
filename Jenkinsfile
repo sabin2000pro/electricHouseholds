@@ -8,6 +8,8 @@ pipeline {
 
     tools {nodejs "node"}
 
+    stages {
+
         stage("build") { // 1. Stage 1 Build The Frontend
 
             steps {
@@ -46,3 +48,4 @@ pipeline {
 
 
     }
+}
