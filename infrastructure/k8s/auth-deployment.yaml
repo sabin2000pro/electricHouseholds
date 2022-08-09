@@ -15,3 +15,8 @@ spec:
     metadata:
       labels:
         app: auth
+
+    spec:
+      containers:
+        - name: auth
+          image: sabin2000/electrichouseholds-auth-service
