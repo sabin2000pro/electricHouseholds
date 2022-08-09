@@ -1,6 +1,5 @@
 pipeline {
-    checkout 'scm'
-
+    
     agent docker {
       image 'node:18.7.0'
     }
