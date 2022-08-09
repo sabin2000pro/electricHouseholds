@@ -2,6 +2,10 @@ pipeline {
 
     agent any 
 
+    environment {
+        PATH = "/usr/local/bin/docker-compose"
+    }
+
     tools {nodejs "node"}
 
     stages {
