@@ -2,14 +2,9 @@ pipeline {
 
     agent any 
 
-    environment {
-        NODE_ENV = 'production'
-    }
-
     tools {nodejs "node"}
 
     stages {
-
 
         stage("build") { // 1. Stage 1 Build The Frontend
 
@@ -17,7 +12,6 @@ pipeline {
 
                 dir('./frontend') {
                       sh 'npm install'
-                      sh 'cd src && npm install react-router-dom --save'
                       sh "npm run build"
                 }
               
