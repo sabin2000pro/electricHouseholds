@@ -19,19 +19,6 @@ pipeline {
 
         }
 
-        stage("test") {
-
-            steps {
-                
-                dir('./backend') {    
-                     echo 'Running backend tests..'        
-                     sh 'npm run test'
-                }
-               
-            }
-
-        }
-
 
         stage("deploy") {
 
