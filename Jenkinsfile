@@ -29,10 +29,8 @@ pipeline {
             steps {
 
                 echo 'Building docker image...'
-                sh 'docker-compose up --build -d'
-                sh 'docker-compose push backend'
-                sh 'docker-compose push frontend'
-
+                sh '/usr/local/bin/docker-compose up --build -d'
+               
                 echo 'Starting deployment to AWS Server...'
             }
             
