@@ -1,6 +1,12 @@
 pipeline {
 
-    agent any
+    agent docker {
+        image 'node:18.7.0'
+    }
+
+    environment {
+        NODE_ENV = 'production'
+    }
 
     tools {nodejs "node"}
 
