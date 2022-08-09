@@ -1,8 +1,7 @@
 pipeline {
 
-    agent {
-        label 'docker' 
-    }
+    agent any 
+    
     environment {
         NODE_ENV = 'production'
     }
