@@ -1,7 +1,7 @@
 pipeline {
 
     agent docker {
-      image 'node:6'
+      image 'node:18.7.0'
     }
 
     tools {nodejs "nodejs"}
@@ -11,8 +11,8 @@ pipeline {
         stage("build") {
 
             steps {
+
                 dir('./frontend') {
-                      sh 'node -v'
                       sh 'npm install'
                       sh "npm run build"
                 }
@@ -26,7 +26,7 @@ pipeline {
             steps {
                 
                 dir('./backend') {    
-                     echo 'Running tests..'        
+                     echo 'Running backend tests..'        
                      sh 'npm run test'
                 }
                
@@ -35,14 +35,23 @@ pipeline {
         }
 
         stage("deploy") {
+
             when {
              branch 'main'
-      }
+          }
 
             steps {
+
                 echo 'Building docker image...'
-                sh 'docker build -t sabin2000/ehouseholds .'
-                }
+                sh 'docker login'
+                sh 'docker-compose up --build -d'
+                sh 'docker-compose push backend'
+                sh 'docker-compose push frontend'
+
+                echo 'Starting deployment to AWS Server...'
+
+                sh ''
+            }
             
 
         }
