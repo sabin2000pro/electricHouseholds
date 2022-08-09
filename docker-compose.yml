@@ -37,8 +37,8 @@ services:
       - 27017:27017
     volumes:
       - type: volume
-        source: mongodb_data_volume
-        target: /data/db
+        source: "mongodb_data_volume"
+        target: "/data/db"
         
     environment: # MongoDB environment, specifies the username and password from the environment variables in config.env
       MONGO_INITDB_ROOT_USERNAME: process.env.MONGO_USERNAME
