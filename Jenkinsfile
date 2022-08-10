@@ -5,6 +5,11 @@ pipeline {
 
     stages {
 
+        stage("Prepare Docker Dompose") {
+            sh 'curl -L "https://github.com/docker/compose/releases/download/v2.6.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose'
+            
+        }
+
         stage("build") { // 1. Stage 1 Build The Frontend
 
             steps {
