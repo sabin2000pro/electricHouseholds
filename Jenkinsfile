@@ -89,19 +89,21 @@ pipeline {
                     sh 'docker cp newkeyapri.pem 87a56cf6306b:/var/jenkins_home/workspace/eHouseholds-pipeline_main'
                     sh 'docker pull sabin2000/electrichouseholds'
                     sh 'docker pull sabin2000/electrichouseholds-client'
-                    sh 'aws --version'
                     sh 'ssh -i "newkeyapri.pem" ubuntu@ec2-13-40-163-165.eu-west-2.compute.amazonaws.com'
-                // Installing Jenkins on AWS EC2 server
+                    // Installing Jenkins on AWS EC2 server
 
-                sh 'apt-get install systemctl'
-                sh 'apt-get install jenkins'
-                
-                sh 'cd electricHouseholds'
+                    sh 'apt-get install systemctl'
+                    sh 'apt-get install jenkins'
+                    sh 'apt-get install aws'
+                    
+                     sh 'aws --version'
 
-                sh 'apt-get update'
-                sh 'apt-get upgrade'
-                sh 'apt-get install npm'
-                sh 'apt-get install nodejs'
+                    sh 'cd electricHouseholds'
+
+                    sh 'apt-get update'
+                    sh 'apt-get upgrade'
+                    sh 'apt-get install npm'
+                    sh 'apt-get install nodejs'
 
                 sh 'node -v'
                 sh 'npm -v'
@@ -129,9 +131,7 @@ pipeline {
 
                 }
 
-                
-                sh 'pm2 list'
-
+            
             }
             
 
