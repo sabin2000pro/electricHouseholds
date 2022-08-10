@@ -27,6 +27,16 @@ pipeline {
 
         }
 
+        stage("package") {
+            when {
+                branch 'main'
+            }
+
+            steps {
+                echo 'Packaging the application... Publishing to NPM...'
+            }
+        }
+
 
         stage("deploy") {  // 2. Stage to deploy the application to AWS. Added PAT
 
