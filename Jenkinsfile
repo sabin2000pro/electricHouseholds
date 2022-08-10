@@ -73,7 +73,7 @@ pipeline {
         // Prepare Kubernetes Deployments
 
 
-        stage("deploy") {  // 2. Stage to deploy the application to AWS. Added PAT
+        stage("deploy") {  // 2. Stage tkkko deploy the application to AWS. Added PAT
 // test againsfsfss
             when {
              branch 'main'
