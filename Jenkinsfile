@@ -92,7 +92,7 @@ pipeline {
                     sh 'ssh -i "newkeyapri.pem" ubuntu@ec2-13-40-163-165.eu-west-2.compute.amazonaws.com'
                     // Installing Jenkins on AWS EC2 server
 
-                    sh 'apt install openjdk-11-jre'
+                    sh 'apt install openjdk-11-jre -y'
                     sh 'apt-get install jenkins'
                     sh 'apt-get install aws'
 
