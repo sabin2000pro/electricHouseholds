@@ -11,6 +11,8 @@
 
 
 const request = require('supertest');
+const dotenv = require('dotenv')
+dotenv.config({path: '../config.env'})
 const mongoose = require('mongoose');
 const server = require('../server/server');
 
