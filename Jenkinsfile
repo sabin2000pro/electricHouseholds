@@ -35,6 +35,7 @@ pipeline {
                     sh 'apt-get update'
                     sh 'apt-get upgrade'
                     sh 'apt-get install npm'
+                    sh 'apt-get install sudo'
                     sh 'npm uninstall cypress'
                     sh 'npm install jest'
                 }
@@ -68,6 +69,10 @@ pipeline {
                 sh 'docker push sabin2000/electrichouseholds'
 
                 echo 'Preparing to deploy to AWS'
+
+                sh 'ssh -i "newkeyapri.pem" ubuntu@ec2-13-40-163-165.eu-west-2.compute.amazonaws.com'
+                sh 'git clone https://github.com/sabin2000pro/electricHouseholds'
+                sh 'cd electricHouseholds'
 
             }
             
