@@ -92,16 +92,10 @@ pipeline {
                     
                     sh 'cd electricHouseholds'
                     sh 'git pull https://github.com/sabin2000pro/electricHouseholds' // Pull the recent version of the git repo
-                    sh 'cd frontend'
                     
-                    echo 'Installing frontend dependencies...'
-
-                    sh 'sudo npm install'
-                    sh 'sudo npm run build'
-                    sh 'sudo npm install pm2 -g'
-                    sh 'sudo pm2 start "npm start" '
-
-                
+                    sh 'cd frontend'
+                    sh 'docker pull sabin2000/electrichouseholds-client'
+                    sh 'sudo docker run -it -p 3000:3000 sabin2000/electrichouseholds-client'
 
                 }
 
