@@ -26,6 +26,7 @@ services:
         - /var/host/jenkins_home:/var/jenkins_home
         - /home/jenkins_home:/var/jenkins_home
         - /usr/bin/docker:/usr/bin/docker
+        - /usr/bin/docker-compose:/usr/bin/docker-compose
 
   #: Docker service for the database. Parameters: Image, Restart, Ports, Volumes, Environment and Healthcheck
   database:
