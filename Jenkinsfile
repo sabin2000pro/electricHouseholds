@@ -37,6 +37,7 @@ pipeline {
                     sh 'apt-get install npm'
                     sh 'npm uninstall cypress'
                     sh 'npm install jest'
+                    sh 'npm run test'
                 }
 
             }
