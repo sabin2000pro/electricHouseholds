@@ -88,11 +88,12 @@ pipeline {
 
                     echo 'Preparing to deploy to AWS'
 
-                    sh 'ssh -i "newkeyapri.pem" ubuntu@ec2-13-40-163-165.eu-west-2.compute.amazonaws.com'
+                    sh 'sudo su -s /bin/bash jenkins'
+                    sh 'sudo ssh -i "newkeyapri.pem" ubuntu@ec2-13-40-163-165.eu-west-2.compute.amazonaws.com'
                     
                     sh 'cd electricHouseholds'
                     sh 'git pull https://github.com/sabin2000pro/electricHouseholds' // Pull the recent version of the git repo
-                    
+    
                     sh 'cd frontend'
                     sh 'docker pull sabin2000/electrichouseholds-client'
                     sh 'sudo docker run -it -p 3000:3000 sabin2000/electrichouseholds-client'
