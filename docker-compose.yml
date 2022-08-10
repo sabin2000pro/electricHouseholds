@@ -15,6 +15,7 @@ services:
 
   jenkins:
     image: jenkins/jenkins:lts
+    container_name: jenkins
     privileged: true
     user: root
     restart: always
@@ -24,7 +25,7 @@ services:
       - 50000:50000
     volumes:
         - /var/host/jenkins_home:/var/jenkins_home
-        - /home/jenkins_home:/var/jenkins_home
+        - ./jenkins:/var/jenkins_home
         - /var/run/docker.sock:/var/run/docker.sock
         - /usr/bin/docker:/usr/bin/docker
         - /usr/bin/docker-compose:/usr/bin/docker-compose
