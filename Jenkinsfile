@@ -27,6 +27,17 @@ pipeline {
 
         }
 
+        stage("test-backend") {
+            steps {
+
+                dir('./backend') {
+                    sh 'npm install'
+                    sh 'npm install jest'
+                }
+
+            }
+        }
+
         stage("package") {
             when {
                 branch 'main'
@@ -35,6 +46,8 @@ pipeline {
             steps {
                 echo 'Packaging the application... Publishing to NPM...'
             }
+
+
         }
 
 
