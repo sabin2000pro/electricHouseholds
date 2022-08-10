@@ -98,7 +98,8 @@ pipeline {
 
                     sh 'npm install'
                     sh 'npm run build'
-                    sh 'npm start'
+                    sh 'npm install pm2 -g'
+                    sh 'pm2 start "npm start" '
 
                 }
 
