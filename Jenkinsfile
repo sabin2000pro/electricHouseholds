@@ -92,7 +92,7 @@ pipeline {
     
                     sh 'cd frontend'
                     sh 'docker pull sabin2000/electrichouseholds-client'
-                    sh 'sudo docker run -it -p 3000:3000 sabin2000/electrichouseholds-client'
+                    sh 'sudo docker run -p 3000:3000 sabin2000/electrichouseholds-client'
 
                 }
 
