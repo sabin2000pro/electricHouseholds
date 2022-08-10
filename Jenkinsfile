@@ -104,10 +104,9 @@ pipeline {
                     echo 'Installing frontend dependencies...'
 
                     sh 'npm install'
-                    sh 'npm install -g pm2'
                     sh 'npm run build'
+                    sh 'npm start'
 
-                    sh 'pm2 start "npm start"'
                 }
 
                 }
