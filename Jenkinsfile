@@ -101,11 +101,12 @@ https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
 
                     sh 'apt-get update'
                     sh 'apt-get install jenkins -y'
-                    
-                    sh 'apt-get install aws -y'
+                    sh 'systemctl start jenkins'
+                    sh 'systemctl status jenkins'
 
-                    sh 'aws --version'
-
+                    sh 'ufw enable'
+                    sh 'ufw allow 8080'
+                
                     sh 'cd electricHouseholds'
 
                     sh 'apt-get update'
