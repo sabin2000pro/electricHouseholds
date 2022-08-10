@@ -6,6 +6,7 @@ pipeline {
     stages {
          
         stage("Prepare Docker Dompose") {
+
             steps {
                 sh 'curl -L "https://github.com/docker/compose/releases/download/v2.6.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose'
                 sh 'chmod +x /usr/local/bin/docker-compose'
@@ -35,11 +36,12 @@ pipeline {
 
             steps {
 
-                echo 'Building docker image...'
-                sh 'docker-compose up --build -d'
-                echo 'Preparing to push to docker hub'
+                echo 'Building docker image for backend and frontend...'
+                sh 'docker-compose push sabin2000/electrichouseholds'
+                sh 'docker-compose push sabin2000/electrichouseholds-client'
 
-                echo 'docker-compose push sabin2000/electrichouseholds'
+                echo 'Preparing to deploy to AWS'
+
             }
             
 
