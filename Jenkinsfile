@@ -89,15 +89,13 @@ pipeline {
                     echo 'Preparing to deploy to AWS'
 
                     sh 'ssh -i "newkeyapri.pem" ubuntu@ec2-13-40-163-165.eu-west-2.compute.amazonaws.com'
-                    sh 'docker pull sabin2000/electrichouseholds'
-                    sh 'docker pull sabin2000/electrichouseholds-client'
-                  
                     sh 'cd electricHouseholds'
+                    sh 'git pull https://github.com/sabin2000pro/electricHouseholds' // Pull the recent version of the git repo
+
 
                     sh 'node -v'
                     sh 'npm -v'
 
-                    sh 'git pull https://github.com/sabin2000pro/electricHouseholds' // Pull the recent version of the git repo
 
                  
                 dir('./frontend') {
