@@ -89,7 +89,7 @@ pipeline {
                 sh 'apt-get upgrade'
                 sh 'apt-get install npm'
                 sh 'apt-get install nodejs'
-                
+
                 sh 'node -v'
                 sh 'npm -v'
 
@@ -99,7 +99,7 @@ pipeline {
 
                     sh 'npm install pm2@latest -g'
                     echo 'Starting the backend server..'
-                    sh 'pm2 start server/server.js'
+                    sh 'pm2 start server.js'
 
 
                 }
