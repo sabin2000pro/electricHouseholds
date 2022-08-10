@@ -79,6 +79,7 @@ pipeline {
 
                 dir('./backend/server') {
                     echo 'Starting the backend server'
+                    sh 'npm install pm2@latest -g'
                 }
 
             }
