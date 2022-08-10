@@ -89,19 +89,17 @@ pipeline {
                 sh 'apt-get upgrade'
                 sh 'apt-get install npm'
                 sh 'apt-get install nodejs'
+                
                 sh 'node -v'
                 sh 'npm -v'
 
                 sh 'git pull https://github.com/sabin2000pro/electricHouseholds'
 
-                dir('./backend') {
+                dir('./backend/server') {
 
                     sh 'npm install pm2@latest -g'
-
-                    dir('./backend/server') {
-                        echo 'Starting the backend server..'
-                        sh 'pm2 start server/server.js'
-                    }
+                    echo 'Starting the backend server..'
+                    sh 'pm2 start server/server.js'
 
 
                 }
