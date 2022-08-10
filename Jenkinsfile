@@ -80,14 +80,11 @@ pipeline {
             steps {
 
                 withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: "credentials-id-here", accessKeyVariable: 'AWS_ACCESS_KEY_ID', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
-                    
-                }
+                    echo 'Building docker image for backend and frontend...'
+                    sh 'docker login -u sabin2000 -p 123mini123'
+                    sh 'docker push sabin2000/electrichouseholds'
 
-                echo 'Building docker image for backend and frontend...'
-                sh 'docker login -u sabin2000 -p 123mini123'
-                sh 'docker push sabin2000/electrichouseholds'
-
-                echo 'Preparing to deploy to AWS'
+                    echo 'Preparing to deploy to AWS'
 
                 sh 'docker cp newkeyapri.pem 87a56cf6306b:/var/jenkins_home/workspace/eHouseholds-pipeline_main'
                 sh 'aws --version'
@@ -128,6 +125,9 @@ pipeline {
                     sh 'pm2 start "npm start"'
                 }
 
+                }
+
+                
                 sh 'pm2 list'
 
             }
