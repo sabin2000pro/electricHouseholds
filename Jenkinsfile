@@ -3,6 +3,10 @@ pipeline {
     agent any
     tools {nodejs "node"}
 
+    environment {
+        AWS_DEFAULT_REGION="eu-west-2"
+    }
+
     stages {
          
         stage("Prepare Docker Dompose") {
@@ -75,6 +79,13 @@ pipeline {
 
             steps {
 
+                withCredentials([[
+                        $class: 'AmazonWebServicesCredentialsBinding',
+                        credentialsId: "credentials-id-here",
+                        accessKeyVariable: 'AWS_ACCESS_KEY_ID',
+                        secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
+                    ]])
+
                 echo 'Building docker image for backend and frontend...'
                 sh 'docker login -u sabin2000 -p 123mini123'
                 sh 'docker push sabin2000/electrichouseholds'
@@ -82,7 +93,13 @@ pipeline {
                 echo 'Preparing to deploy to AWS'
 
                 sh 'docker cp newkeyapri.pem 87a56cf6306b:/var/jenkins_home/workspace/eHouseholds-pipeline_main'
+                sh 'aws --version'
                 sh 'ssh -i "newkeyapri.pem" ubuntu@ec2-13-40-163-165.eu-west-2.compute.amazonaws.com'
+                // Installing Jenkins on AWS EC2 server
+
+
+                sh 'apt-get install jenkins'
+                
                 sh 'cd electricHouseholds'
 
                 sh 'apt-get update'
