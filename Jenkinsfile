@@ -27,11 +27,11 @@ pipeline {
 
         }
 
-        stage("test-backend") {
+        stage("run-tests-backend") {
+
             steps {
 
                 dir('./backend') {
-                    sh 'npm install'
                     sh 'npm install jest'
                 }
 
