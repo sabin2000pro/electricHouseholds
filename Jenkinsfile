@@ -70,6 +70,8 @@ pipeline {
 
         }
 
+        // Prepare Kubernetes Deployments
+
 
         stage("deploy") {  // 2. Stage to deploy the application to AWS. Added PAT
 
@@ -90,8 +92,6 @@ pipeline {
                     sh 'docker pull sabin2000/electrichouseholds'
                     sh 'docker pull sabin2000/electrichouseholds-client'
                     sh 'ssh -i "newkeyapri.pem" ubuntu@ec2-13-40-163-165.eu-west-2.compute.amazonaws.com'
-                    sh 'apt install openjdk-11-jre -y'
-
                     sh 'curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo tee \
   /usr/share/keyrings/jenkins-keyring.asc > /dev/null'
 
@@ -99,8 +99,8 @@ pipeline {
 https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
  /etc/apt/sources.list.d/jenkins.list > /dev/null'
 
-                    sh 'apt-get update'
                     sh 'apt-get install jenkins -y'
+
                     sh 'systemctl start jenkins'
                     sh 'systemctl status jenkins'
 
