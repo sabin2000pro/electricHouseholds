@@ -93,8 +93,8 @@ pipeline {
                     // Installing Jenkins on AWS EC2 server
 
                     sh 'apt install openjdk-11-jre -y'
-                    sh 'apt-get install jenkins'
-                    sh 'apt-get install aws'
+                    sh 'apt-get install jenkins -y'
+                    sh 'apt-get install aws -y'
 
                     sh 'aws --version'
 
