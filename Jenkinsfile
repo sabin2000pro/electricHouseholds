@@ -32,6 +32,10 @@ pipeline {
             steps {
 
                 dir('./backend') {
+                    sh 'apt-get update'
+                    sh 'apt-get upgrade'
+                    sh 'apt-get install npm'
+                    sh 'npm install --unsafe-perm=true --allow-root cypress'
                     sh 'npm install jest'
                 }
 
@@ -39,6 +43,7 @@ pipeline {
         }
 
         stage("package") {
+
             when {
                 branch 'main'
             }
@@ -46,7 +51,6 @@ pipeline {
             steps {
                 echo 'Packaging the application... Publishing to NPM...'
             }
-
 
         }
 
