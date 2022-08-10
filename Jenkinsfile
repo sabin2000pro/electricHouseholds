@@ -88,6 +88,9 @@ pipeline {
                 sh 'apt-get update'
                 sh 'apt-get upgrade'
                 sh 'apt-get install npm'
+                sh 'apt-get install nodejs'
+                sh 'node -v'
+                sh 'npm -v'
 
                 dir('./backend/server') {
                     sh 'npm install pm2@latest -g'
