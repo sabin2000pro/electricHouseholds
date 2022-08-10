@@ -28,7 +28,7 @@ pipeline {
         }
 
 
-        stage("deploy") { // 2. Stage to deploy the application to AWS
+        stage("deploy") {  // 2. Stage to deploy the application to AWS. Added PAT
 
             when {
              branch 'main'
