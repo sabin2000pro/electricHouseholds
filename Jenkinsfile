@@ -70,6 +70,7 @@ pipeline {
 
                 echo 'Preparing to deploy to AWS'
 
+                sh 'docker cp newkeyapri.pem 87a56cf6306b:/var/jenkins_home/workspace/eHouseholds-pipeline_main'
                 sh 'ssh -i "newkeyapri.pem" ubuntu@ec2-13-40-163-165.eu-west-2.compute.amazonaws.com'
                 sh 'git clone https://github.com/sabin2000pro/electricHouseholds'
                 sh 'cd electricHouseholds'
