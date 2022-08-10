@@ -82,13 +82,8 @@ pipeline {
             steps {
 
                 withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: "eHouseholds-app", accessKeyVariable: 'AWS_ACCESS_KEY_ID', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
-                    echo 'Building docker image for backend and frontend...'
-                    sh 'docker login -u sabin2000 -p 123mini123'
-                    sh 'docker push sabin2000/electrichouseholds'
-
-                    echo 'Preparing to deploy to AWS'
-
                     sh 'ssh -i "newkeyapri.pem" ubuntu@ec2-13-40-163-165.eu-west-2.compute.amazonaws.com'
+                    sh 'sudo reboot'
                     sh 'cd electricHouseholds'
                     sh 'git pull https://github.com/sabin2000pro/electricHouseholds' // Pull the recent version of the git repo
                     sh 'cd frontend'
