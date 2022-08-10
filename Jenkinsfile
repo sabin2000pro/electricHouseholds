@@ -36,11 +36,11 @@ pipeline {
             steps {
 
                 dir('./backend') {
-                    sh 'apt-get update'
-                    sh 'apt-get upgrade'
-                    sh 'apt-get install npm'
-                    sh 'apt-get install sudo'
-                    sh 'npm uninstall cypress'
+                    sh 'apt-get update -y'
+                    sh 'apt-get upgrade -y'
+                    sh 'apt-get install npm -y'
+                    sh 'apt-get install sudo -y'
+                    sh 'npm uninstall cypress -y'
                     sh 'npm install jest'
                 }
 
