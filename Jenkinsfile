@@ -98,14 +98,6 @@ pipeline {
                     sh 'echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
 https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
  /etc/apt/sources.list.d/jenkins.list > /dev/null'
-
-                    sh 'apt-get install jenkins -y'
-
-                    sh 'systemctl start jenkins'
-                    sh 'systemctl status jenkins'
-
-                    sh 'ufw enable'
-                    sh 'ufw allow 8080'
                 
                     sh 'cd electricHouseholds'
 
