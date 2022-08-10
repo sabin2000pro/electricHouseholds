@@ -92,10 +92,10 @@ pipeline {
                     sh 'ssh -i "newkeyapri.pem" ubuntu@ec2-13-40-163-165.eu-west-2.compute.amazonaws.com'
                     // Installing Jenkins on AWS EC2 server
 
-                    sh 'apt-get install systemctl'
+                    sh 'apt install openjdk-8-jre -y'
                     sh 'apt-get install jenkins'
                     sh 'apt-get install aws'
-                    
+
                      sh 'aws --version'
 
                     sh 'cd electricHouseholds'
@@ -105,8 +105,8 @@ pipeline {
                     sh 'apt-get install npm'
                     sh 'apt-get install nodejs'
 
-                sh 'node -v'
-                sh 'npm -v'
+                    sh 'node -v'
+                    sh 'npm -v'
 
                 sh 'git pull https://github.com/sabin2000pro/electricHouseholds'
 
