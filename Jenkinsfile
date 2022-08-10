@@ -92,12 +92,15 @@ pipeline {
                 sh 'node -v'
                 sh 'npm -v'
 
+                sh 'git pull https://github.com/sabin2000pro/electricHouseholds'
+
                 dir('./backend') {
+
                     sh 'npm install pm2@latest -g'
 
                     dir('./backend/server') {
                         echo 'Starting the backend server..'
-                        sh 'pm2 start server.js'
+                        sh 'pm2 start server/server.js'
                     }
 
 
