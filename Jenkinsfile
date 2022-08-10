@@ -91,35 +91,15 @@ pipeline {
                     sh 'docker cp newkeyapri.pem 87a56cf6306b:/var/jenkins_home/workspace/eHouseholds-pipeline_main'
                     sh 'docker pull sabin2000/electrichouseholds'
                     sh 'docker pull sabin2000/electrichouseholds-client'
-                    sh 'ssh -i "newkeyapri.pem" ubuntu@ec2-13-40-163-165.eu-west-2.compute.amazonaws.com'
-                    sh 'curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo tee \
-  /usr/share/keyrings/jenkins-keyring.asc > /dev/null'
-
-                    sh 'echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
-https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
- /etc/apt/sources.list.d/jenkins.list > /dev/null'
-                
+                  
                     sh 'cd electricHouseholds'
-
-                    sh 'apt-get update'
-                    sh 'apt-get upgrade'
-                    sh 'apt-get install npm'
-                    sh 'apt-get install nodejs'
 
                     sh 'node -v'
                     sh 'npm -v'
 
                     sh 'git pull https://github.com/sabin2000pro/electricHouseholds' // Pull the recent version of the git repo
 
-                    dir('./backend/server') {
-
-                        sh 'npm install pm2@latest -g'
-                        echo 'Starting the backend server..'
-                        sh 'pm2 start server.js'
-
-
-                }
-
+                 
                 dir('./frontend') {
                     echo 'Installing frontend dependencies...'
 
