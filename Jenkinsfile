@@ -28,7 +28,7 @@ pipeline {
             steps {
 
                 echo 'Building docker image...'
-                sh 'sudo docker login'
+                sh 'docker login'
                 echo 'Starting deployment to AWS Server...'
             }
             
