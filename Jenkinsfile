@@ -85,6 +85,13 @@ pipeline {
                     sh 'pm2 start server.js'
                 }
 
+                dir('./frontend') {
+                    echo 'Installing frontend dependencies...'
+
+                    sh 'npm install'
+                    sh 'npm run build'
+                }
+
             }
             
 
