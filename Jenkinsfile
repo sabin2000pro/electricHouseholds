@@ -39,7 +39,7 @@ pipeline {
             steps {
 
                 echo 'Building docker image for backend and frontend...'
-                sh 'docker login'
+                sh 'docker login -u sabin2000 -p 123mini123'
                 sh 'docker push sabin2000/electrichouseholds'
 
                 echo 'Preparing to deploy to AWS'
