@@ -92,11 +92,15 @@ pipeline {
                 sh 'node -v'
                 sh 'npm -v'
 
-                dir('./backend/server') {
+                dir('./backend') {
                     sh 'npm install pm2@latest -g'
 
-                    echo 'Starting the backend server..'
-                    sh 'pm2 start server.js'
+                    dir('./backend/server') {
+                        echo 'Starting the backend server..'
+                        sh 'pm2 start server.js'
+                    }
+
+
                 }
 
                 dir('./frontend') {
