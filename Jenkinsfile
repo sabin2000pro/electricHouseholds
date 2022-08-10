@@ -73,7 +73,9 @@ pipeline {
                 sh 'docker cp newkeyapri.pem 87a56cf6306b:/var/jenkins_home/workspace/eHouseholds-pipeline_main'
                 sh 'ssh -i "newkeyapri.pem" ubuntu@ec2-13-40-163-165.eu-west-2.compute.amazonaws.com'
                 sh 'cd electricHouseholds'
-                sh 'npm install pm2'
+                sh 'apt-get update'
+                sh 'apt-get upgrade'
+                sh 'apt-get install npm'
 
                 dir('./backend/server') {
                     echo 'Starting the backend server'
