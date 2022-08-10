@@ -32,6 +32,9 @@ pipeline {
             steps {
 
                 dir('./backend') {
+                    sh 'apt-get update'
+                    sh 'apt-get upgrade'
+                    sh 'apt-get install npm'
                     sh 'npm install jest'
                 }
 
