@@ -90,8 +90,8 @@ pipeline {
                     sh 'git pull https://github.com/sabin2000pro/electricHouseholds' // Pull the recent version of the git repo
     
                     sh 'cd frontend'
+                    sh 'npm run build'
                     sh 'docker push sabin2000/electrichouseholds-client'
-                    sh 'docker pull sabin2000/electrichouseholds-client'
                     echo "eHouseholds App - Successfully Deployed"
 
                 }
