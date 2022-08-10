@@ -36,7 +36,9 @@ pipeline {
 
                 echo 'Building docker image...'
                 sh 'docker-compose up --build -d'
-                echo 'Starting deployment to AWS Server...'
+                echo 'Preparing to push to docker hub'
+
+                echo 'docker-compose push sabin2000/electrichouseholds'
             }
             
 
