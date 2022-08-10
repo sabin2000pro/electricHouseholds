@@ -43,6 +43,17 @@ pipeline {
             }
         }
 
+        stage('run-tests-frontend') {
+
+            steps {
+                dir('./frontend') {
+                    echo 'Running front-end tests...'
+                }
+
+
+            }
+        }
+
         stage("package") {
 
             when {
