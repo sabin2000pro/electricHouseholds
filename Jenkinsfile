@@ -95,10 +95,10 @@ pipeline {
                     
                     echo 'Installing frontend dependencies...'
 
-                    sh 'npm install'
-                    sh 'npm run build'
-                    sh 'npm install pm2 -g'
-                    sh 'pm2 start "npm start" '
+                    sh 'sudo npm install'
+                    sh 'sudo npm run build'
+                    sh 'sudo npm install pm2 -g'
+                    sh 'sudo pm2 start "npm start" '
 
                 
 
