@@ -10,7 +10,7 @@
  */
 
 
-const mongoose = require('mongoose');
+const mongoose = require('mongoose'); // Removed cypress folder from backend
 const path = require('path');
 const fs = require('fs');
 // Configure Environment Variables
