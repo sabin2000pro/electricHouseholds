@@ -17,6 +17,10 @@ services:
     image: jenkins/jenkins:lts
     container_name: jenkins
     privileged: true
+    depends_on:
+      - backend
+      - frontend
+      
     user: root
     restart: always
 
