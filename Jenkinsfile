@@ -30,6 +30,8 @@ pipeline {
 
         stage("deploy") { // 2. Stage to deploy the application to AWS
 
+        withDockerRegistry([credentialsId: 'docker-hub-credentials', usernameVariable: 'sabin2000', passwordVariable: '123mini123'])
+
             when {
              branch 'main'
           }
