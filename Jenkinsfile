@@ -86,12 +86,14 @@ pipeline {
 
                     echo 'Preparing to deploy to AWS'
 
-                sh 'docker cp newkeyapri.pem 87a56cf6306b:/var/jenkins_home/workspace/eHouseholds-pipeline_main'
-                sh 'aws --version'
-                sh 'ssh -i "newkeyapri.pem" ubuntu@ec2-13-40-163-165.eu-west-2.compute.amazonaws.com'
+                    sh 'docker cp newkeyapri.pem 87a56cf6306b:/var/jenkins_home/workspace/eHouseholds-pipeline_main'
+                    sh 'docker pull sabin2000/electrichouseholds'
+                    sh 'docker pull sabin2000/electrichouseholds-client'
+                    sh 'aws --version'
+                    sh 'ssh -i "newkeyapri.pem" ubuntu@ec2-13-40-163-165.eu-west-2.compute.amazonaws.com'
                 // Installing Jenkins on AWS EC2 server
 
-
+                sh 'apt-get install systemctl'
                 sh 'apt-get install jenkins'
                 
                 sh 'cd electricHouseholds'
