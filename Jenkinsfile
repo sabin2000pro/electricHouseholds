@@ -35,7 +35,7 @@ pipeline {
                     sh 'apt-get update'
                     sh 'apt-get upgrade'
                     sh 'apt-get install npm'
-                    sh 'npm install --unsafe-perm=true --allow-root cypress'
+                    sh 'export CYPRESS_CACHE_FOLDER=/app/.cache'
                     sh 'npm install jest'
                 }
 
