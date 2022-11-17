@@ -322,3 +322,5 @@ within their allocated range.
 2.2 – (Bot) – Deduct the bot’s virtual credits if bot bid > user bid and wins the rounds.
 
 2.3 – Round over.
+
+# Homepage Implementation
