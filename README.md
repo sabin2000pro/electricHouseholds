@@ -1,6 +1,6 @@
 # eHouseholds
 
-## 1.0 - Application Overview
+Platform  Overview
 Most individuals use their electrical appliances such as kettles, dishwashers, and
 microwaves to perform the tasks they need to accomplish daily. Electrical appliances
 such as washing machines, electric heaters and tumble-driers can be time delayed.
@@ -42,7 +42,7 @@ algorithm that runs on an AI-oriented smart meter within homes. It runs at vario
 intervals during the day, and it would negotiate a fixed schedule with different smart
 meters in other households.
 
-## 1.1 - Project Aims & Objectives
+## Project Aims & Objectives
 The first aim of this project is to educate households throughout Scotland about the
 problem of reducing peak consumption and the different fair negotiation algorithms
 that might tackle this, the individuals’ hourly timeslots that they choose to run at
@@ -66,7 +66,7 @@ given number of rounds. Individuals must figure out how they wish to spend their
 credits wisely because they still need to be left with credits for the remaining rounds,
 otherwise they risk losing the auction.
 
-## 1.2 - Requirements Specification
+## Requirements Specification
 
 This section is going to outline all the requirements that this web application requires.
 A MOSCOW Product Backlog table is going to outline the must-have, should have,
@@ -322,5 +322,3 @@ within their allocated range.
 2.2 – (Bot) – Deduct the bot’s virtual credits if bot bid > user bid and wins the rounds.
 
 2.3 – Round over.
-
-# Homepage Implementation
